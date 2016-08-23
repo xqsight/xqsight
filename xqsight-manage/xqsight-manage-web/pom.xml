@@ -15,8 +15,8 @@
     <dependencies>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-system-manage</artifactId>
-            <version>1.0.0</version>
+            <artifactId>xqsight-manage-service</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
