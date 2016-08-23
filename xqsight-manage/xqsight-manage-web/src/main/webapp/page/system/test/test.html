@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>测试管理</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- bootstrap & fonts  -->
+    <link rel="stylesheet" href="../../../static/ace/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../../static/ace/css/font-awesome.css" />
+    <!-- ace styles & fonts & common-->
+    <link rel="stylesheet" href="../../../static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../../../static/ace/css/ace-fonts.css" />
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="../../../static/ace/js/html5shiv.js"></script>
+    <script src="../../../static/ace/js/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="no-skin">
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content">
+                <div class="row no-margin">
+                    <form id="roleForm" name="roleForm">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="action" class="col-xs-2 control-label">选择域名</label>
+                                <div class="col-xs-9">
+                                    <select id="action"  class="form-control selectpicker" data-style="btn-white" data-width="100%" title="选择域名" required>
+                                        <option value="http://localhost:8080">localhost</option>
+                                        <option value="http://182.61.6.205">182.61.6.205</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-1 red">*</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="url" class="col-xs-2 control-label">访问URL</label>
+                                <div class="col-xs-9">
+                                    <input type="text" class="form-control" id="url" placeholder="访问URL" required>
+                                </div>
+                                <div class="col-xs-1 red">*</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="params" class="col-xs-2 control-label">参数</label>
+                                <div class="col-xs-9">
+                                    <textarea class="form-control" id="params" placeholder="参数"></textarea>
+                                </div>
+                                <div class="col-xs-1"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="resp" class="col-xs-2 control-label">返回数据</label>
+                                <div class="col-xs-9">
+                                    <textarea class="form-control" id="resp" placeholder="返回数据"></textarea>
+                                </div>
+                                <div class="col-xs-1"></div>
+                            </div>
+                            <div class="center">
+                                <button class="btn btn-white btn-default btn-round" type="button" id="btn_save">
+                                    <i class="ace-icon fa fa-check "></i>
+                                    提交
+                                </button>
+                                &nbsp; &nbsp; &nbsp;
+                                <button class="btn btn-white btn-default btn-round" type="button" id="btn_cancel">
+                                    <i class="ace-icon fa fa-close"></i>
+                                    取消
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div><!-- /.col -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="../../../static/ace/js/jquery.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="../../../static/ace/js/jquery1x.js"></script>
+<![endif]-->
+
+<script src="../../../static/ace/js/bootstrap.js"></script>
+<script src="../../../static/ace/js/ace.js"></script>
+<script src="../../../static/js/pub.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="../../../static/validator/jquery-html5Validate.js"></script>
+<script src="test.js"></script>
+</body>
+</html>
+</html>

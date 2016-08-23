@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>个人信息</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- bootstrap & fonts -->
+    <link rel="stylesheet" href="../../../static/ace/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../../static/ace/css/font-awesome.css" />
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="../../../static/ace/css/bootstrap-editable.css" />
+
+    <!-- ace styles & fonts & common-->
+    <link rel="stylesheet" href="../../../static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../../../static/ace/css/ace-fonts.css" />
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/fileinput/css/fileinput.css" type="text/css" />
+
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="../../../static/ace/js/html5shiv.js"></script>
+    <script src="../../../static/ace/js/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="no-skin">
+<!-- /section:basics/navbar.layout -->
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="">
+                            <div class="user-profile">
+                                <div class="tabbable">
+                                    <ul class="nav nav-tabs padding-18">
+                                        <li class="active">
+                                            <a data-toggle="tab" href="#baseinfo">
+                                                <i class="green ace-icon fa fa-user bigger-120"></i>
+                                                基本信息
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a data-toggle="tab" href="#updpassword">
+                                                <i class="orange ace-icon fa fa-lock bigger-120"></i>
+                                               修改密码
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content no-border padding-24">
+                                        <div id="baseinfo" class="tab-pane in active">
+                                            <div class="row">
+                                                <div class="col-xs-12 col-sm-3 center">
+                                                    <span class="profile-picture">
+                                                        <img id="imgUrl" class="editable img-responsive editable-click editable-empty" alt="Alex's Avatar" src="../../../static/images/profile-pic.jpg">
+                                                    </span>
+                                                    <input id="fileId" name="fileId" type="file" class="file" data-show-preview="false">
+                                                </div><!-- /.col -->
+                                                <div class="col-xs-12 col-sm-9">
+                                                    <div class="profile-user-info">
+                                                        <div class="profile-info-row">
+                                                            <div class="profile-info-name"> 用&nbsp;&nbsp;户&nbsp;&nbsp;名 </div>
+                                                            <div class="profile-info-value">
+                                                                <span class="saicfcEdit editable editable-click editable-unsaved editable-empty" id="userName">alexdoe</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="profile-info-row">
+                                                            <div class="profile-info-name"> 登&nbsp;&nbsp;录&nbsp;&nbsp;名 </div>
+                                                            <div class="profile-info-value">
+                                                                <span id="loginName">Netherlands</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="profile-info-row">
+                                                            <div class="profile-info-name"> 注册时间 </div>
+                                                            <div class="profile-info-value">
+                                                                <span id="createTime">2010/06/20</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div><!-- /.col -->
+                                            </div><!-- /.row -->
+                                            <div class="space-20"></div>
+                                        </div><!-- /#home -->
+
+                                        <div id="updpassword" class="tab-pane">
+                                            <form id="updForm" name="updForm">
+                                                <div class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <label for="password" class="col-sm-2 control-label">新&nbsp;&nbsp;密&nbsp;&nbsp;码</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="password" class="form-control" id="password" placeholder="新密码" required>
+                                                        </div>
+                                                        <div class="col-sm-1"><font color="red">*</font></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="repassword" class="col-sm-2 control-label">确认密码</label>
+                                                        <div class="col-sm-9">
+                                                            <input type="password" class="form-control" id="repassword" placeholder="确认密码" required>
+                                                        </div>
+                                                        <div class="col-sm-1"><font color="red">*</font></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="clearfix form-actions no-margin">
+                                                    <div class="center">
+                                                        <button class="btn btn-white btn-default btn-round" type="button" id="btn_pwd_upd">
+                                                            <i class="ace-icon fa fa-check "></i>
+                                                            提交
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div><!-- /#updpassword -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>  <!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="../../../static/ace/js/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../../../static/ace/js/jquery1x.js"></script>
+<![endif]-->
+<script src="../../../static/ace/js/bootstrap.js"></script>
+<script src="../../../static/ace/js/ace.js"></script>
+<script src="../../../static/js/pub.js"></script>
+
+
+<!--上传组件-->
+<script type="text/javascript" src="../../../static/fileinput/js/plugins/canvas-to-blob.js"></script>
+<script type="text/javascript" src="../../../static/fileinput/js/fileinput.js"></script>
+<script type="text/javascript" src="../../../static/fileinput/js/fileinput_locale_zh.js"></script>
+
+<!-- page specific plugin scripts -->
+<!-- ace scripts -->
+<script src="../../../static/ace/js/jquery.gritter.js"></script>
+<script src="../../../static/ace/js/ace/elements.fileinput.js"></script>
+<script src="../../../static/ace/js/x-editable/bootstrap-editable.js"></script>
+<script src="../../../static/ace/js/x-editable/ace-editable.js"></script>
+
+<script src="../../../static/validator/jquery-html5Validate.js"></script>
+
+<script src="userInfo.js"></script>
+</body>
+</html>
