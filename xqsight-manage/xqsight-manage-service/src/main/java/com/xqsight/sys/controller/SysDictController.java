@@ -30,8 +30,8 @@ public class SysDictController {
     @RequestMapping("save")
     public Object saveDict(SysDict sysDict) {
         sysDict.setCreateOprId(SSOUtils.getCurrentUserId().toString());
-        List<SysDict> sysDicts = sysDictService.querySysDictByDictCode(sysDict.getDictCode());
-        if (sysDicts != null && sysDicts.size() > 0) {
+        SysDict sysDicts = sysDictService.querySysDictByDictCode(sysDict.getDictCode());
+        if (sysDict != null) {
             return MessageSupport.failureMsg("字典编号[" + sysDict.getDictCode() + "]已经存在，请修改后保存");
         } else {
             sysDictService.saveSysDict(sysDict);

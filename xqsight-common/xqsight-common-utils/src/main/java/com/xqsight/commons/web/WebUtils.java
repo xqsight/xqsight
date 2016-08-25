@@ -4,6 +4,8 @@
 package com.xqsight.commons.web;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +27,25 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 public class WebUtils {
     
     private final static Logger logger = LogManager.getLogger(WebUtils.class);
-    
+
+    /**
+     * \b 是单词边界(连着的两个(字母字符 与 非字母字符) 之间的逻辑上的间隔),
+     字符串在编译时会被转码一次,所以是 "\\b"
+     \B 是单词内部逻辑间隔(连着的两个字母字符之间的逻辑上的间隔)
+     */
+    static String phoneReg = "\\b(ip(hone|od)|android|opera m(ob|in)i"
+            +"|windows (phone|ce)|blackberry"
+            +"|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp"
+            +"|laystation portable)|nokia|fennec|htc[-_]"
+            +"|mobile|up.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\\b";
+    static String tableReg = "\\b(ipad|tablet|(Nexus 7)|up.browser"
+            +"|[1-4][0-9]{2}x[1-4][0-9]{2})\\b";
+
+    /** 移动设备正则匹配：手机端、平板**/
+    static Pattern phonePat = Pattern.compile(phoneReg, Pattern.CASE_INSENSITIVE);
+    static Pattern tablePat = Pattern.compile(tableReg, Pattern.CASE_INSENSITIVE);
+
+
     /** 空的fastjson序列化特性数组,当需要返回JSON对象且使用系统默认序列化配置时，作为放弃个性配置的标志参数 */
     public final static SerializerFeature[] EMPTY_SERALIZER_FEATURE_ARRAY = new SerializerFeature[0];
     
@@ -163,9 +183,15 @@ public class WebUtils {
      * @return
      */
     public static boolean isMobile(HttpServletRequest request) {
-        String ua = getUserAgent(request);
-        logger.debug("Request, User-Agent is {}", ua);
-        return ua != null && ua.matches(".*(Android|iPhone|Nokia|iPod|webOS|BlackBerry).*");
+        String userAgent = getUserAgent(request);
+        logger.debug("Request, User-Agent is {}", userAgent);
+        Matcher matcherPhone = phonePat.matcher(userAgent);
+        Matcher matcherTable = tablePat.matcher(userAgent);
+        if(matcherPhone.find() || matcherTable.find()){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

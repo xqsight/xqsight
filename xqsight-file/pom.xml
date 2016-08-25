@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>xqsight-file-upload</module>
+        <module>xqsight-file-uploader</module>
     </modules>
 
 

@@ -644,7 +644,7 @@ Editableform is linked with one of input types, e.g. 'text', 'select' etc.
 (function ($) {
     "use strict";
     
-    //utils
+    //support
     $.fn.editableutils = {
         /**
         * classic JS inheritance function

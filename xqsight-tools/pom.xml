@@ -10,6 +10,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>xqsight-tools</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>xqsight-code-generator</module>
+    </modules>
 
 
 </project>

@@ -108,7 +108,7 @@ public interface SysDictService {
 	 * @return List<SysDict>    返回类型
 	 * @throws
 	 */
-	List<SysDict> querySysDictByDictCode(String dictCode);
+	SysDict querySysDictByDictCode(String dictCode);
 	
 	/**
 	 * 

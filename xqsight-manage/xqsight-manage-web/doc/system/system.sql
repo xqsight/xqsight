@@ -4,259 +4,287 @@
 /*==============================================================*/
 
 
-drop table if exists SYS_DICT;
+drop table if exists sys_dict;
 
-drop table if exists SYS_DICT_DETAIL;
+drop table if exists sys_dict_detail;
 
-drop table if exists SYS_FILE;
+drop table if exists sys_file;
 
-drop table if exists SYS_LOGIN;
+drop table if exists sys_login;
 
-drop table if exists SYS_MENU;
+drop table if exists sys_menu;
 
-drop table if exists SYS_MENU_ROLE;
+drop table if exists sys_menu_role;
 
-drop table if exists SYS_QUICK_KEY;
+drop table if exists sys_quick_key;
 
-drop table if exists SYS_ROLE;
+drop table if exists sys_role;
 
-drop table if exists SYS_USER;
+drop table if exists sys_user;
 
-drop table if exists SYS_USER_ROLE;
+drop table if exists sys_user_role;
+
+drop table if exists sys_org;
+
+drop table if exists sys_log;
 
 /*==============================================================*/
-/* Table: SYS_DICT                                              */
+/* Table: sys_dict                                              */
 /*==============================================================*/
-create table SYS_DICT
+create table sys_dict
 (
-   DICT_ID              bigint not null auto_increment comment '字典内码',
-   DICT_CODE            varchar(120) comment '字典编号',
-   DICT_NAME            varchar(120) comment '字典名称',
-   ACTIVE               int not null default 0 comment '是否有效 0:有效 -1:无效',
-   CREATE_OPR_ID        varchar(40) comment '创建人ID',
-   CREATE_TIME          datetime comment '创建时间',
-   UPD_OPR_ID           varchar(40) comment '修改人ID',
-   UPDATE_TIME          datetime comment '修改时间',
-   REMARK               varchar(200) comment '备注',
-   primary key (DICT_ID)
+   dict_id              bigint not null auto_increment comment '字典内码',
+   dict_code            varchar(120) comment '字典编号',
+   dict_name            varchar(120) comment '字典名称',
+   active               int not null default 0 comment '是否有效 0:有效 -1:无效',
+   create_opr_id        varchar(40) comment '创建人ID',
+   create_time          datetime comment '创建时间',
+   upd_opr_id           varchar(40) comment '修改人ID',
+   update_time          datetime comment '修改时间',
+   remark               varchar(200) comment '备注',
+   primary key (dict_id)
 );
 
-alter table SYS_DICT comment '系统字典表';
+alter table sys_dict comment '系统字典表';
 
 /*==============================================================*/
-/* Table: SYS_DICT_DETAIL                                       */
+/* Table: sys_dict_detail                                       */
 /*==============================================================*/
-create table SYS_DICT_DETAIL
+create table sys_dict_detail
 (
-   DICT_DETAIL_ID       bigint not null auto_increment comment '明细编号',
-   DICT_ID              bigint not null comment '字典编号',
-   DICT_VALUE           VARCHAR(40) not null comment '字典值',
-   DICT_DESP            VARCHAR(120) not null comment '字典描述',
-   EDITABLE             int default 0 comment '是否可编辑0:有效-1:无效',
-   DICT_LANG            varchar(120) comment '语言',
-   ACTIVE               int not null default 0 comment '是否有效 0:有效 -1:无效',
-   CREATE_OPR_ID        varchar(40) comment '创建人ID',
-   CREATE_TIME          datetime comment '创建时间',
-   UPD_OPR_ID           varchar(40) comment '修改人ID',
-   UPDATE_TIME          datetime comment '修改时间',
-   REMARK               varchar(200) comment '备注',
-   primary key (DICT_DETAIL_ID)
+   dict_detail_id       bigint not null auto_increment comment '明细编号',
+   dict_id              bigint not null comment '字典编号',
+   dict_value           VARCHAR(40) not null comment '字典值',
+   dict_desp            VARCHAR(120) not null comment '字典描述',
+   editable             int default 0 comment '是否可编辑0:有效-1:无效',
+   dict_lang            varchar(120) comment '语言',
+   active               int not null default 0 comment '是否有效 0:有效 -1:无效',
+   create_opr_id        varchar(40) comment '创建人ID',
+   create_time          datetime comment '创建时间',
+   upd_opr_id           varchar(40) comment '修改人ID',
+   update_time          datetime comment '修改时间',
+   remark               varchar(200) comment '备注',
+   primary key (dict_detail_id)
 );
 
-alter table SYS_DICT_DETAIL comment '系统字典明细表';
+alter table sys_dict_detail comment '系统字典明细表';
 
 /*==============================================================*/
-/* Table: SYS_FILE                                              */
+/* Table: sys_file                                              */
 /*==============================================================*/
-create table SYS_FILE
+create table sys_file
 (
-   FILE_ID              bigint not null auto_increment comment '主键',
-   FILE_NAME            varchar(200) comment '文件名称',
-   FILE_URL             varchar(500) comment '附件URL',
-   FILE_DOMAIN          varchar(500) comment '文件域',
-   FILE_EXT             varchar(10) default '0' comment '扩展名',
-   FILE_SIZE            varchar(10) default '0' comment '大小',
-   ATTACHMENT_TYPE      char(2) default '0' comment '附件类型 01:普通图 02:缩略图 03:LOGO',
-   FILE_KIND            varchar(10) default '0' comment '附件种类 Image Vedio Doc Excel Ppt',
-   ACTIVE               int not null default 0 comment '是否有效  0:有效 -1:无效',
-   CREATE_OPR_ID        varchar(40) comment '创建人ID',
-   CREATE_TIME          datetime comment '创建时间',
-   UPD_OPR_ID           varchar(40) comment '修改人ID',
-   UPDATE_TIME          datetime comment '修改时间',
-   REMARK               varchar(200) comment '备注',
-   primary key (FILE_ID)
+   file_id              bigint not null auto_increment comment '主键',
+   file_name            varchar(200) comment '文件名称',
+   file_url             varchar(500) comment '附件URL',
+   file_domain          varchar(500) comment '文件域',
+   file_ext             varchar(10) default '0' comment '扩展名',
+   file_size            varchar(10) default '0' comment '大小',
+   attachment_type      char(2) default '0' comment '附件类型 01:普通图 02:缩略图 03:LOGO',
+   file_kind            varchar(10) default '0' comment '附件种类 Image Vedio Doc Excel Ppt',
+   active               int not null default 0 comment '是否有效  0:有效 -1:无效',
+   create_opr_id        varchar(40) comment '创建人ID',
+   create_time          datetime comment '创建时间',
+   upd_opr_id           varchar(40) comment '修改人ID',
+   update_time          datetime comment '修改时间',
+   remark               varchar(200) comment '备注',
+   primary key (file_id)
 );
 
-alter table SYS_FILE comment ' 文件表';
+alter table sys_file comment ' 文件表';
 
 /*==============================================================*/
-/* Table: SYS_LOGIN                                             */
+/* Table: sys_login                                             */
 /*==============================================================*/
-create table SYS_LOGIN
+create table sys_login
 (
-   ID                   bigint not null auto_increment comment '登陆内码',
-   ORG_ID               bigint  comment '组织机构',
-   LOGIN_ID             varchar(120) comment '登陆名称',
-   USER_NAME            varchar(120) comment '昵称',
-   REAL_NAME            varchar(120) comment '真实姓名',
-   PASSWORD             varchar(120) comment '登陆密码',
-   LOGIN_TYPE           int comment '登陆类型 1:编号 2:邮箱 3:电话',
-   SEX                  int comment '性别 0:未知 1:男 2:女',
-   USER_BORN            datetime comment '生日',
-   AGE                  int comment '年龄',
-   FROM_SOURCE          varchar(20) comment '来源 WECHAT  PC  MOBILE',
-   IMG_URL              varchar(120) comment '图片地址',
-   SALT                 varchar(120) comment '随机数',
-   LOCKED               int comment '是否锁定 0-未锁定 -1-锁定 ',
-   ACTIVE               int not null default 0 comment '是否有效 0:有效 -1:无效',
-   CREATE_OPR_ID        varchar(40) comment '创建人ID',
-   CREATE_TIME          datetime comment '创建时间',
-   UPD_OPR_ID           varchar(40) comment '修改人ID',
-   UPDATE_TIME          datetime comment '修改时间',
-   REMARK               varchar(200) comment '备注',
-   primary key (ID)
+   id                   bigint not null auto_increment comment '登陆内码',
+   org_id               bigint  comment '组织机构',
+   login_id             varchar(120) comment '登陆名称',
+   user_name            varchar(120) comment '昵称',
+   real_name            varchar(120) comment '真实姓名',
+   password             varchar(120) comment '登陆密码',
+   login_type           int comment '登陆类型 1:编号 2:邮箱 3:电话',
+   sex                  int comment '性别 0:未知 1:男 2:女',
+   user_born            datetime comment '生日',
+   age                  int comment '年龄',
+   from_source          varchar(20) comment '来源 WECHAT  PC  MOBILE',
+   img_url              varchar(120) comment '图片地址',
+   salt                 varchar(120) comment '随机数',
+   locked               int comment '是否锁定 0-未锁定 -1-锁定 ',
+   active               int not null default 0 comment '是否有效 0:有效 -1:无效',
+   create_opr_id        varchar(40) comment '创建人ID',
+   create_time          datetime comment '创建时间',
+   upd_opr_id           varchar(40) comment '修改人ID',
+   update_time          datetime comment '修改时间',
+   remark               varchar(200) comment '备注',
+   primary key (id)
 );
 
-alter table SYS_LOGIN comment '用户登陆表';
+alter table sys_login comment '用户登陆表';
 
 /*==============================================================*/
-/* Table: SYS_MENU                                              */
+/* Table: sys_menu                                              */
 /*==============================================================*/
-create table SYS_MENU
+create table sys_menu
 (
-   MENU_ID              bigint not null auto_increment comment '菜单内码',
-   PARENT_ID            bigint not null default 0 comment '父级内码',
-   MENU_NAME            varchar(120) not null comment '菜单名称',
-   URL                  varchar(200) comment '菜单访问URL',
-   ICON                 varchar(120) comment '图标',
-   TYPE                 INT default 0 comment '类型 0：菜单1：功能',
-   PERMISSION           varchar(200) comment '允许字符串',
-   SORT                 INT default 0 comment '排序',
-   ACTIVE               int not null default 0 comment '是否有效 0:有效 -1:无效',
-   CREATE_OPR_ID        varchar(40) comment '创建人ID',
-   CREATE_TIME          datetime comment '创建时间',
-   UPD_OPR_ID           varchar(40) comment '修改人ID',
-   UPDATE_TIME          datetime comment '修改时间',
-   REMARK               varchar(200) comment '备注',
-   primary key (MENU_ID)
+   menu_id              bigint not null auto_increment comment '菜单内码',
+   parent_id            bigint not null default 0 comment '父级内码',
+   menu_name            varchar(120) not null comment '菜单名称',
+   url                  varchar(200) comment '菜单访问URL',
+   icon                 varchar(120) comment '图标',
+   type                 INT default 0 comment '类型 0：菜单1：功能',
+   permission           varchar(200) comment '允许字符串',
+   sort                 INT default 0 comment '排序',
+   active               int not null default 0 comment '是否有效 0:有效 -1:无效',
+   create_opr_id        varchar(40) comment '创建人ID',
+   create_time          datetime comment '创建时间',
+   upd_opr_id           varchar(40) comment '修改人ID',
+   update_time          datetime comment '修改时间',
+   remark               varchar(200) comment '备注',
+   primary key (menu_id)
 );
 
-alter table SYS_MENU comment '菜单信息表';
+alter table sys_menu comment '菜单信息表';
 
 /*==============================================================*/
-/* Table: SYS_ORG                                              */
+/* Table: sys_org                                              */
 /*==============================================================*/
-create table SYS_ORG
+create table sys_org
 (
-   ORG_ID               bigint not null auto_increment comment '组织内码',
-   PARENT_ID            bigint not null default 0 comment '父级ID',
-   ORG_NAME             varchar(120) not null comment '组织名称',
-   ORG_TYPE             varchar(40) comment '组织类型',
-   ORG_CODE             varchar(120) comment '组织编号',
-   CUSTOM_CODE          varchar(120) comment '自定义编号',
-   SORT                 INT default 0 comment '排序',
-   ICON                 varchar(40) comment '图标',
-   ACTIVE               int not null default 0 comment '是否有效 0:有效 -1:无效',
-   CREATE_OPR_ID        varchar(40) comment '创建人ID',
-   CREATE_TIME          datetime comment '创建时间',
-   UPD_OPR_ID           varchar(40) comment '修改人ID',
-   UPDATE_TIME          datetime comment '修改时间',
-   REMARK               varchar(200) comment '备注',
-   primary key (ORG_ID)
+   org_id               bigint not null auto_increment comment '组织内码',
+   parent_id            bigint not null default 0 comment '父级ID',
+   org_name             varchar(120) not null comment '组织名称',
+   org_type             varchar(40) comment '组织类型',
+   org_code             varchar(120) comment '组织编号',
+   custom_code          varchar(120) comment '自定义编号',
+   sort                 INT default 0 comment '排序',
+   icon                 varchar(40) comment '图标',
+   active               int not null default 0 comment '是否有效 0:有效 -1:无效',
+   create_opr_id        varchar(40) comment '创建人ID',
+   create_time          datetime comment '创建时间',
+   upd_opr_id           varchar(40) comment '修改人ID',
+   update_time          datetime comment '修改时间',
+   remark               varchar(200) comment '备注',
+   primary key (org_id)
 );
 
-alter table SYS_ORG comment '组织机构表';
+alter table sys_org comment '组织机构表';
 
 /*==============================================================*/
-/* Table: SYS_MENU_ROLE                                         */
+/* Table: sys_menu_role                                         */
 /*==============================================================*/
-create table SYS_MENU_ROLE
+create table sys_menu_role
 (
-   MENU_ID              bigint not null comment '菜单内码',
-   ROLE_ID              bigint not null comment '角色内码',
-   primary key (MENU_ID, ROLE_ID)
+   menu_id              bigint not null comment '菜单内码',
+   role_id              bigint not null comment '角色内码',
+   primary key (menu_id, role_id)
 );
 
-alter table SYS_MENU_ROLE comment '菜单角色表';
+alter table sys_menu_role comment '菜单角色表';
 
 /*==============================================================*/
-/* Table: SYS_QUICK_KEY                                         */
+/* Table: sys_quick_key                                         */
 /*==============================================================*/
-create table SYS_QUICK_KEY
+create table sys_quick_key
 (
-   Id                   bigint not null comment '登陆内码',
-   FUN_ORDER            int not null comment '功能序号',
-   KEY_ICON             varchar(120) comment '图标',
-   KEY_TITLE            varchar(120) comment '标题',
-   KEY_VALUE            varchar(120) comment '连接值',
-   ACTIVE               int not null default 0 comment '是否有效 0:有效 -1:无效',
-   CREATE_OPR_ID        varchar(40) comment '创建人ID',
-   CREATE_TIME          datetime comment '创建时间',
-   UPD_OPR_ID           varchar(40) comment '修改人ID',
-   UPDATE_TIME          datetime comment '修改时间',
-   REMARK               varchar(200) comment '备注',
-   primary key (Id, FUN_ORDER)
+   id                   bigint not null comment '登陆内码',
+   fun_order            int not null comment '功能序号',
+   key_icon             varchar(120) comment '图标',
+   key_title            varchar(120) comment '标题',
+   key_value            varchar(120) comment '连接值',
+   active               int not null default 0 comment '是否有效 0:有效 -1:无效',
+   create_opr_id        varchar(40) comment '创建人ID',
+   create_time          datetime comment '创建时间',
+   upd_opr_id           varchar(40) comment '修改人ID',
+   update_time          datetime comment '修改时间',
+   remark               varchar(200) comment '备注',
+   primary key (id, fun_order)
 );
 
-alter table SYS_QUICK_KEY comment '快捷键表';
+alter table sys_quick_key comment '快捷键表';
 
 /*==============================================================*/
-/* Table: SYS_ROLE                                              */
+/* Table: sys_role                                              */
 /*==============================================================*/
-create table SYS_ROLE
+create table sys_role
 (
-   ROLE_ID              bigint not null auto_increment comment '角色内码',
-   ROLE_NAME            varchar(120) comment '角色名称',
-   ROLE_CODE            varchar(120) comment '角色编号',
-   ROLE_TYPE            varchar(40) comment '角色类型',
-   ACTIVE               int not null default 0 comment '是否有效 0:有效 -1:无效',
-   CREATE_OPR_ID        varchar(40) comment '创建人ID',
-   CREATE_TIME          datetime comment '创建时间',
-   UPD_OPR_ID           varchar(40) comment '修改人ID',
-   UPDATE_TIME          datetime comment '修改时间',
-   REMARK               varchar(200) comment '备注',
-   primary key (ROLE_ID)
+   role_id              bigint not null auto_increment comment '角色内码',
+   role_name            varchar(120) comment '角色名称',
+   role_code            varchar(120) comment '角色编号',
+   role_type            varchar(40) comment '角色类型',
+   active               int not null default 0 comment '是否有效 0:有效 -1:无效',
+   create_opr_id        varchar(40) comment '创建人ID',
+   create_time          datetime comment '创建时间',
+   upd_opr_id           varchar(40) comment '修改人ID',
+   update_time          datetime comment '修改时间',
+   remark               varchar(200) comment '备注',
+   primary key (role_id)
 );
 
-alter table SYS_ROLE comment '角色信息表';
+alter table sys_role comment '角色信息表';
 
 /*==============================================================*/
-/* Table: SYS_USER                                              */
+/* Table: sys_user                                              */
 /*==============================================================*/
-create table SYS_USER
+create table sys_user
 (
-   ID                   bigint not null auto_increment comment '登陆内码',
-   USER_CODE            varchar(40) comment '用户编号',
-   CELL_PHONE           varchar(40) comment '电话',
-   EMAIL                varchar(40) comment '邮箱',
-   QQ                   varchar(40) comment 'Qq',
-   WECHAT               varchar(40) comment '微信',
-   ALIPAY               varchar(40) comment '支付宝',
-   INTEREST             varchar(200) comment '兴趣',
-   COUNTRY              int comment '国家',
-   PROVINCE             int comment '省份',
-   CITY                 int comment '县',
-   ADRESS               varchar(400) comment '详细地址',
-   ACTIVE               int not null default 0 comment '是否有效 0:有效 -1:无效',
-   CREATE_OPR_ID        varchar(40) comment '创建人ID',
-   CREATE_TIME          datetime comment '创建时间',
-   UPD_OPR_ID           varchar(40) comment '修改人ID',
-   UPDATE_TIME          datetime comment '修改时间',
-   REMARK               varchar(200) comment '备注',
-   primary key (ID)
+   id                   bigint not null auto_increment comment '登陆内码',
+   user_code            varchar(40) comment '用户编号',
+   cell_phone           varchar(40) comment '电话',
+   email                varchar(40) comment '邮箱',
+   qq                   varchar(40) comment 'Qq',
+   wechat               varchar(40) comment '微信',
+   alipay               varchar(40) comment '支付宝',
+   interest             varchar(200) comment '兴趣',
+   country              int comment '国家',
+   province             int comment '省份',
+   city                 int comment '县',
+   adress               varchar(400) comment '详细地址',
+   active               int not null default 0 comment '是否有效 0:有效 -1:无效',
+   create_opr_id        varchar(40) comment '创建人ID',
+   create_time          datetime comment '创建时间',
+   upd_opr_id           varchar(40) comment '修改人ID',
+   update_time          datetime comment '修改时间',
+   remark               varchar(200) comment '备注',
+   primary key (id)
 );
 
-alter table SYS_USER comment '用户信息表 ';
+alter table sys_user comment '用户信息表 ';
 
 /*==============================================================*/
 /* Table: SYS_USER_ROLE                                         */
 /*==============================================================*/
-create table SYS_USER_ROLE
+create table sys_user_role
 (
-   ID                   bigint not null comment '用户内码',
-   ROLE_ID              bigint not null comment '角色内码',
-   primary key (ID, ROLE_ID)
+   id                   bigint not null comment '用户内码',
+   role_id              bigint not null comment '角色内码',
+   primary key (id, role_id)
 );
 
-alter table SYS_USER_ROLE comment '用户角色表';
+alter table sys_user_role comment '用户角色表';
+
+/*==============================================================*/
+/* table: sys_log                                               */
+/*==============================================================*/
+create table sys_log
+(
+   log_id               bigint not null auto_increment comment '日志内码',
+   log_type            varchar(10) comment '日志类型',
+   log_title            varchar(400) comment '日志标题',
+   log_desc             varchar(2000) comment '日志描述',
+   req_ip               varchar(200) comment '请求ip',
+   req_url              varchar(200) comment '请求url',
+   req_method           varchar(400) comment '请求方法',
+   req_data             varchar(2000) comment '请求数据',
+   exception            varchar(2000) comment '请求异常',
+   agent_user           varchar(200) comment '用户代理',
+   create_opr_id        varchar(40) comment '创建人id',
+   create_time          datetime comment '创建时间',
+   remark               varchar(200) comment '备注',
+   primary key (log_id)
+);
+
+alter table sys_log comment '系统日志';
+
 

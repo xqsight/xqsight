@@ -4,12 +4,11 @@
  */
 package com.xqsight.sys.mysqlmapper;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Select;
-
 import com.xqsight.sys.model.SysLogin;
 import com.xqsight.sys.model.SysMenu;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @Description: TODO
@@ -18,11 +17,11 @@ import com.xqsight.sys.model.SysMenu;
  */
 public interface SysAuthMapper {
 
-	@Select("SELECT SL.* ,CASE WHEN SUR.ID IS NULL THEN -1 ELSE 0 END ISSELECTED FROM SYS_LOGIN SL LEFT JOIN SYS_USER_ROLE SUR ON SL.ID = SUR.ID and SUR.ROLE_ID=#{roleId, jdbcType=NUMERIC}")
-	List<SysLogin> queryAuthUser(int roleId);
+	@Select("select sl.* ,case when sur.id is null then -1 else 0 end isselected from sys_login sl left join sys_user_role sur on sl.id = sur.id and sur.role_id=#{roleId, jdbcType=NUMERIC}")
+	List<SysLogin> queryAuthUser(long roleId);
 
 	
-	@Select("SELECT DISTINCT SM.* ,CASE WHEN SMR.MENU_ID IS NULL THEN -1 ELSE 0 END ISSELECTED FROM  SYS_MENU SM LEFT JOIN SYS_MENU_ROLE SMR ON SM.MENU_ID = SMR.MENU_ID LEFT JOIN SYS_USER_ROLE SUR ON SUR.ROLE_ID = SMR.ROLE_ID WHERE TYPE=0 AND SUR.ID =#{userId, jdbcType=NUMERIC}  ORDER BY SM.SORT ASC")
+	@Select("select distinct sm.* ,case when smr.menu_id is null then -1 else 0 end isselected from  sys_menu sm left join sys_menu_role smr on sm.menu_id = smr.menu_id left join sys_user_role sur on sur.role_id = smr.role_id where type=0 and sur.id =#{userId, jdbcType=NUMERIC}  order by sm.sort asc")
 	List<SysMenu> queryCurrentUserMenu(long userId);
 
 }

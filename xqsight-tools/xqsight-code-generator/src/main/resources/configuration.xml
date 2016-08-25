@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<configuration>
+    <classpath>
+        <entry>lib/ojdbc14.jar</entry>
+        <entry>lib/sqljdbc4.jar</entry>
+        <entry>lib/mysql-connector-java-5.1.36-bin.jar</entry>
+        <entry>lib/postgresql-8.2-505.jdbc2.jar</entry>
+    </classpath>
+    <connections>
+        <database name="pmpf">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://10.116.15.114:3306/test</url>
+            <username>root</username>
+            <password>root</password>
+            <schema/>
+        </database>
+        <database name="sample">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://10.116.15.114:3306/sample</url>
+            <username>root</username>
+            <password>root</password>
+            <schema/>
+        </database>
+        <database name="root">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://182.61.6.205:3306/test</url>
+            <username>root</username>
+            <password>root</password>
+            <schema/>
+        </database>
+    </connections>
+    <tagertProject>temp</tagertProject>
+    <basePackage>com.saicfc.system</basePackage>
+    <moduleName>log</moduleName>
+    <templates>
+        <template engine="freemarker" name="控制类" selected="true">
+            <templateFile>controller.ftl</templateFile>
+            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\controller\</targetPath>
+            <targetFileName>${table.className}Controller.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="服务类" selected="true">
+            <templateFile>Service.ftl</templateFile>
+            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\Service\</targetPath>
+            <targetFileName>${table.className}Service.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="服务实现类" selected="true">
+            <templateFile>Serviceimpl.ftl</templateFile>
+            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\Service\impl\</targetPath>
+            <targetFileName>${table.className}ServiceImpl.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="实体类" selected="true">
+            <templateFile>model.ftl</templateFile>
+            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\model\</targetPath>
+            <targetFileName>${table.className}.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="Mapping类" selected="true">
+            <templateFile>mapper.ftl</templateFile>
+            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\mysqlmapper\</targetPath>
+            <targetFileName>${table.className}Mapper.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="主页面" selected="false">
+            <templateFile>mainhtml.ftl</templateFile>
+            <targetPath>${tagertProject}\page\${moduleName}\</targetPath>
+            <targetFileName>${table.className}Main.html</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="编辑页面 " selected="false">
+            <templateFile>edithtml.ftl</templateFile>
+            <targetPath>${tagertProject}\page\${moduleName}\</targetPath>
+            <targetFileName>${table.className}Edit.html</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+    </templates>
+</configuration>

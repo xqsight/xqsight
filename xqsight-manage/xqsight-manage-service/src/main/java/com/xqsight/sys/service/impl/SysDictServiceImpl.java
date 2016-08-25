@@ -96,7 +96,7 @@ public class SysDictServiceImpl implements SysDictService {
 	 * @see com.xqsight.sys.service.SysDictService#querySysDictByDictCode(String)
 	 */
 	@Override
-	public List<SysDict> querySysDictByDictCode(String dictCode) {
+	public SysDict querySysDictByDictCode(String dictCode) {
 		return sysDictMapper.querySysDictByDictCode(dictCode);
 	}
 

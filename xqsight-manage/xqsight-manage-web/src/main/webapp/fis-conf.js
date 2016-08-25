@@ -107,7 +107,7 @@ fis.config.set('pack', {
     ],
     'static/js/pkg/pgk.zoomimage.js': [
         'static/zoomimage/js/eye.js',
-        'static/zoomimage/js/utils.js',
+        'static/zoomimage/js/support.js',
         'static/zoomimage/js/zoomimage.js',
         'static/zoomimage/js/layout.js'
     ],

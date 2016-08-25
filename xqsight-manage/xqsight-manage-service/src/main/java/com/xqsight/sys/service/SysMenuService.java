@@ -99,4 +99,10 @@ public interface SysMenuService {
      */
 	List<SysMenu> querySysMenuByUser(Long userId);
 
+	/**
+	 * querySysMenu 查询菜单
+	 * @return
+	 */
+	List<SysMenu> querySysMenu();
+
 }

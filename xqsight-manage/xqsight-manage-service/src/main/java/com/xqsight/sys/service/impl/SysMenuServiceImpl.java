@@ -86,4 +86,9 @@ private static Logger logger = LogManager.getLogger(SysMenuServiceImpl.class);
 		List<SysMenu> sysMenus = sysMenuMapper.querySysMenuAllForTree();
 		return new TreeSupport<SysMenu>().generateFullTree(sysMenus);
 	}
+
+	@Override
+	public List<SysMenu> querySysMenu() {
+		return sysMenuMapper.querySysMenu();
+	}
 }

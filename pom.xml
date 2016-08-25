@@ -94,6 +94,10 @@
         <!-- ehcache -->
         <ehcache.version>2.4.3</ehcache.version>
         <shiro.ehcache.version>1.2.4</shiro.ehcache.version>
+
+        <imgscalr.version>4.2</imgscalr.version>
+        <ant.version>1.9.6</ant.version>
+
     </properties>
     <build>
         <plugins>
@@ -224,13 +228,13 @@
                 <artifactId>mail</artifactId>
                 <version>${java.mail.version}</version>
             </dependency>
-            <!-- nysql connection start -->
+            <!-- mysql connection start -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.connection.version}</version>
             </dependency>
-            <!-- nysql connection end -->
+            <!-- mysql connection end -->
             <!-- apache start -->
 
             <dependency>
@@ -742,6 +746,18 @@
                 <artifactId>jsch</artifactId>
                 <version>${jsch.version}</version>
             </dependency>
+
+            <dependency>
+                <groupId>org.imgscalr</groupId>
+                <artifactId>imgscalr-lib</artifactId>
+                <version>${imgscalr.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.ant</groupId>
+                <artifactId>ant</artifactId>
+                <version>${ant.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <dependencies>

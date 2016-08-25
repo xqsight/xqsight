@@ -4,14 +4,14 @@
  */
 package com.xqsight.sys.mysqlmapper;
 
-import java.util.List;
-
+import com.xqsight.sys.model.SysQuickKey;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.xqsight.sys.model.SysQuickKey;
+import java.util.List;
+
 
 /**
  * @Description: TODO
@@ -20,14 +20,14 @@ import com.xqsight.sys.model.SysQuickKey;
  */
 public interface SysQuickKeyMapper {
 
-	@Insert("INSERT INTO SYS_QUICK_KEY (ID, FUN_ORDER, KEY_ICON,KEY_TITLE,KEY_VALUE, ACTIVE, CREATE_TIME, CREATE_OPR_ID,  REMARK) VALUES("
+	@Insert("insert into sys_quick_key (id, fun_order, key_icon,key_title,key_value, active, create_time, create_opr_id,  remark) values("
 	+ "#{id, jdbcType=VARCHAR},#{funOrder, jdbcType=NUMERIC},#{keyIcon, jdbcType=VARCHAR},#{keyTitle, jdbcType=VARCHAR},#{keyValue, jdbcType=VARCHAR},#{active, jdbcType=NUMERIC},#{createTime, jdbcType=TIMESTAMP} ,#{createOprId, jdbcType=VARCHAR} ,  #{remark, jdbcType=VARCHAR})")
 	void saveSysQuickKey(SysQuickKey sysQuickKey);
 
-	@Delete("DELETE FROM SYS_QUICK_KEY WHERE  id = #{id, jdbcType=NUMERIC}")
+	@Delete("delete from sys_quick_key where id = #{id, jdbcType=NUMERIC}")
 	void deleteSysQuickKey(@Param("id") long id);
 
-	@Select("SELECT * FROM SYS_QUICK_KEY WHERE id = #{id, jdbcType=NUMERIC} ORDER BY FUN_ORDER ASC")
+	@Select("select * from sys_quick_key where id = #{id, jdbcType=NUMERIC} order by fun_order asc")
 	List<SysQuickKey> querySysQuickKeyById(@Param("id") long id);
 	
 }
