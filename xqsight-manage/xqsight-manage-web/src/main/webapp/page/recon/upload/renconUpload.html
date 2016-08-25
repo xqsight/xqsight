@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>对账上传</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- bootstrap & fonts -->
+    <link rel="stylesheet" href="../../../static/ace/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../../static/ace/css/font-awesome.css" />
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="../../../static/ace/css/datepicker.css" />
+
+    <!-- ace styles & fonts & common -->
+    <link rel="stylesheet" href="../../../static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../../../static/ace/css/ace-fonts.css" />
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="../../../static/ace/js/html5shiv.js"></script>
+    <script src="../../../static/ace/js/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="no-skin">
+<!-- /section:basics/navbar.layout -->
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content">
+                <div class="row" id="searchDiv">
+                    <div class="widget-box transparent">
+                            <div class="widget-header widget-header-flat" style="color: #000">
+                                <h4 class="widget-title lighter">
+                                    <i class="ace-icon fa fa-search"></i>
+                                    搜索
+                                </h4>
+                                <div class="widget-toolbar">
+                                    <a href="#" data-action="collapse">
+                                        <i class="ace-icon fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body" style="display: block;">
+                                <div class="widget-main padding-10">
+                                    <!-- start condition -->
+                                    <div class="row" id="filter">
+                                        <label class="col-md-1 control-label">日期范围</label>
+                                        <div class="col-md-4">
+                                            <div class="input-daterange input-group width-100" data-date-format="yyyy-mm-dd ">
+                                                <input type="text" class="input-sm form-control" data-date-format="yyyy-mm-dd" name="startTime" id="startTime" placeholder="开始日期"/>
+                                                <span class="input-group-addon">
+                                                    <i class="fa fa-exchange"></i>
+                                                </span>
+                                                <input type="text" class="input-sm form-control" name="endTime" id="endTime" placeholder="结束日期"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 operateDiv pull-right">
+                                            <button id="btn-query" type="button" data-rel="tooltip" title="查询" class="order-input btn btn-light btn-sm">
+                                                <i class="ace-icon fa fa-search bigger-120"></i>
+                                            </button>
+                                            <button id="btn-reset" type="button" data-rel="tooltip" title="重置" class="order-input btn btn-light btn-sm">
+                                                <i class="ace-icon fa fa-reply bigger-120"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-12 hr hr12 hr-dotted"></div>
+                                    </div>
+                                    <!-- end condition -->
+                                </div><!-- /.widget-main -->
+                            </div><!-- /.widget-body -->
+                        </div>
+
+                    <div class="col-xs-12">
+                        <div class="row">
+                            <form id="fileUploadFrom" action="javascript:void(0);">
+                                <div class="col-md-1" style="width: 300px;">
+                                    <input name="fileShow" class="input-xlarge" type="text" id="fileShow" placeholder="上传对账文件" style="width: 300px;" readonly>
+                                </div>
+                                <div class="col-md-1 div1" style="width: 100px;">
+                                    <div class="div2">选择文件</div>
+                                    <input id="fileToUpload" name="file1" onchange="reconUpload.fileUpChangeFun();" type="file" class="inputstyle" style=" width: 97px;">
+                                </div>
+                                <button id="btn-fileUpload" type="button" class="btn btn-light btn-sm " style="  margin-left: 10px;">上传</button>
+                            </form>
+                        </div>
+                        <div >
+                            <table id="reconUpload-table" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <th class="center">编号</th>
+                                    <th class="center">导入时间</th>
+                                    <th class="center">导入文件名</th>
+                                    <th class="center">对账状态</th>
+                                    <th class="center">功能</th>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+
+                </div><!-- /.col -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="../../../static/ace/js/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../../../static/ace/js/jquery1x.js"></script>
+<![endif]-->
+
+<script src="../../../static/ace/js/bootstrap.js"></script>
+<script src="../../../static/ace/js/ace.js"></script>
+<script src="../../../static/js/pub.js"></script>
+
+<!-- page specific plugin scripts -->
+<!--datatables组件-->
+<script src="../../../static/ace/js/dataTables/jquery.dataTables.js"></script>
+<script src="../../../static/ace/js/dataTables/jquery.dataTables.bootstrap.js"></script>
+<!--日期组件-->
+<script src="../../../static/ace/js/date-time/bootstrap-datepicker.js"></script>
+<script src="../../../static/ace/js/date-time/daterangepicker.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="../../../static/js/ajaxfileupload.js"></script>
+<script src="reconUpload.js"></script>
+</body>
+</html>

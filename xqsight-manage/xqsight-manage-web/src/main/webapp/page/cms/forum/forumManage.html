@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>论坛管理</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- bootstrap & fonts  -->
+    <link rel="stylesheet" href="../../../static/ace/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../../static/ace/css/font-awesome.css" />
+
+    <!-- ace styles & fonts & common-->
+    <link rel="stylesheet" href="../../../static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../../../static/ace/css/ace-fonts.css" />
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/fileinput/css/fileinput.css" type="text/css" />
+    <link rel="stylesheet" href="../../../static/kindeditor/themes/default/default.css" />
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="../../../static/ace/js/html5shiv.js"></script>
+    <script src="../../../static/ace/js/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="no-skin">
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content">
+                <div class="row no-margin">
+                    <div class="widget-box transparent">
+                        <div class="widget-header widget-header-flat">
+                            <h4 class="widget-title light-grey">
+                                <i class="ace-icon fa fa-comment-o"></i>
+                                帖子内容
+                            </h4>
+                            <div class="widget-toolbar">
+                                <a href="javascript:void(0);" data-action="collapse">
+                                    <i class="ace-icon fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main padding-10">
+                                <!-- start condition -->
+                                <div>
+                                    <ul class="ace-thumbnails clearfix"  id="picShow">
+                                    </ul>
+                                </div>
+                                <div id="articleComent"></div>
+                                <!-- end condition -->
+                            </div><!-- /.widget-main -->
+                        </div><!-- /.widget-body -->
+                    </div>
+                    <div class="widget-box transparent">
+                        <div class="widget-header widget-header-flat">
+                            <h4 class="widget-title light-grey">
+                                <i class="ace-icon fa fa-comment"></i>
+                                交流内容
+                            </h4>
+                            <div class="widget-toolbar">
+                                <a href="javascript:void(0);" data-action="collapse">
+                                    <i class="ace-icon fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="widget-body">
+                            <div class="widget-main padding-10">
+                                <!-- start condition -->
+                                <div class="scroll-content" id="comment">
+                                    <!--<div class="profile-activity clearfix">
+                                        <div>
+                                            <img class="pull-left" alt="Alex Doe's avatar" src="../assets/avatars/avatar5.png">
+                                            changed his profile photo.
+                                            <div class="time">
+                                                <i class="ace-icon fa fa-clock-o bigger-110"></i>
+                                                an hour ago
+                                            </div>
+                                        </div>
+
+                                        <div class="tools action-buttons">
+                                            <a href="void(0)" class="blue">
+                                                <i class="ace-icon fa fa-pencil bigger-125"></i>
+                                            </a>
+                                            <a href="void(0)" class="red">
+                                                <i class="ace-icon fa fa-times bigger-125"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    -->
+                                </div>
+                                <!-- end condition -->
+                            </div><!-- /.widget-main -->
+                        </div><!-- /.widget-body -->
+                    </div>
+                </div><!-- /.col -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="../../../static/ace/js/jquery.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="../../../static/ace/js/jquery1x.js"></script>
+<![endif]-->
+
+<script src="../../../static/ace/js/bootstrap.js"></script>
+<script src="../../../static/ace/js/ace.js"></script>
+<script src="../../../static/js/pub.js"></script>
+
+<!-- 富文本编辑组件 -->
+<script type="text/javascript" src="../../../static/kindeditor/kindeditor.js"></script>
+<script type="text/javascript" src="../../../static/kindeditor/lang/zh_CN.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="../../../static/validator/jquery-html5Validate.js"></script>
+<script src="forumManage.js"></script>
+</body>
+</html>
+</html>
