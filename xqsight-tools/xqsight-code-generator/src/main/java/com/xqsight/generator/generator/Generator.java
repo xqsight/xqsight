@@ -82,7 +82,6 @@ import com.xqsight.generator.task.TaskListener;
 import com.xqsight.generator.util.ClassloaderUtility;
 import com.xqsight.generator.util.ObjectFactory;
 import com.xqsight.generator.util.StringUtil;
-import org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper;
 
 public class Generator extends JFrame {
 
@@ -566,8 +565,9 @@ public class Generator extends JFrame {
     public static void main(String[] args) {
         try {
             //设置本属性将改变窗口边框样式定义
-            BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencySmallShadow;
-            org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+//            BeautyEyeLNFHelper.frameBorderStyle = BeautyEyeLNFHelper.FrameBorderStyle.translucencySmallShadow;
+//            org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+//
         } catch (Exception e) {
 
         }

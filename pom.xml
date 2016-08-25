@@ -819,6 +819,7 @@
         <module>xqsight-tools</module>
         <module>xqsight-cms</module>
         <module>xqsight-file</module>
+        <module>xqsight-chonic</module>
     </modules>
 
 
