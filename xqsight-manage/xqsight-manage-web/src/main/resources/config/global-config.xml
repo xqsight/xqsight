@@ -29,8 +29,7 @@
 		<import resource="classpath*:config/xqsight-file-test-upload.xml" />
 	-->
 
-	<import resource="classpath*:config/props/xqsight-mysql-props.xml" />
-	<import resource="classpath*:config/mysql/xqsight-mysql-dao.xml" />
+	<import resource="classpath*:config/xqsight-mysql-dao.xml" />
 	<import resource="classpath*:config/xqsight-common-sso-shiro.xml" />
 	<import resource="classpath*:config/xqsight-common-authc.xml" />
 	<import resource="classpath:config/shiro-config.xml" />
