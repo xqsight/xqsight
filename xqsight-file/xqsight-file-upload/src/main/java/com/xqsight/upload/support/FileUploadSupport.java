@@ -34,6 +34,7 @@ public class FileUploadSupport {
     private final static String separator = File.separator;
     private final static String Dot = ".";
 
+
     /**
      * 上传文件，返回访问地址
      *
@@ -135,7 +136,7 @@ public class FileUploadSupport {
      * @throws IOException
      */
     private static void ftpUloadFile(String path, String filename, InputStream inputStream) throws IOException {
-        FlashFtpUtils.FlashFtpConfig flashFtpConfig = new FlashFtpUtils.FlashFtpConfig(FileUploadConfig.FTP_URL, FileUploadConfig.FTP_PORT, FileUploadConfig.FTP_USERNAME, FileUploadConfig.FTP_PASSWORD, false);
+        FlashFtpUtils.FlashFtpConfig flashFtpConfig = new FlashFtpUtils.FlashFtpConfig(FileUploadConfig.FTP_URL, Integer.valueOf(FileUploadConfig.FTP_PORT), FileUploadConfig.FTP_USERNAME, FileUploadConfig.FTP_PASSWORD, false);
         FlashFtpUtils.putFile(path, filename, inputStream, flashFtpConfig);
     }
 
@@ -151,7 +152,7 @@ public class FileUploadSupport {
         if (StringUtils.equalsIgnoreCase(FileUploadConfig.SAVE_TYPE, "LOCAL")) {
             FileUtils.deleteDirectory(new File(filePath));
         } else {
-            FlashFtpUtils.FlashFtpConfig flashFtpConfig = new FlashFtpUtils.FlashFtpConfig(FileUploadConfig.FTP_URL, FileUploadConfig.FTP_PORT, FileUploadConfig.FTP_USERNAME, FileUploadConfig.FTP_PASSWORD, false);
+            FlashFtpUtils.FlashFtpConfig flashFtpConfig = new FlashFtpUtils.FlashFtpConfig(FileUploadConfig.FTP_URL, Integer.valueOf(FileUploadConfig.FTP_PORT), FileUploadConfig.FTP_USERNAME, FileUploadConfig.FTP_PASSWORD, false);
             FlashFtpUtils.deleteFile(filePath, flashFtpConfig);
         }
     }

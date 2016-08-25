@@ -19,14 +19,14 @@ import java.util.Map;
 
 /**
  * 字典工具类
- * @author ThinkGem
+ * @author jerry
  * @version 2013-5-29
  */
 public class DictSupport {
 	
 	private static SysDictService sysDictService = SpringContextHolder.getBean(SysDictService.class);
 
-	public static String getDictDetailValue(String dictValue, String dictCode, String defaultLabel){
+	public static String getDictDetailValue(String dictValue, String dictCode, String defaultValue){
 		if (StringUtils.isNotBlank(dictCode) && StringUtils.isNotBlank(dictValue)){
 			for (SysDictDetail sysDictDetail : getDictList(dictCode)){
 				if (dictValue.equals(sysDictDetail.getDictValue())){
@@ -34,7 +34,11 @@ public class DictSupport {
 				}
 			}
 		}
-		return defaultLabel;
+		return defaultValue;
+	}
+
+	public static String getDictDetailValue(String dictValue, String dictCode){
+		return getDictDetailValue(dictValue,dictCode,"");
 	}
 
 	public static List<SysDictDetail> getDictList(String dictCode){

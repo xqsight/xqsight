@@ -34,7 +34,7 @@ public class FileUploadFTPServiceImpl implements FileUploadFTPService{
 	public List<SysFile> saveFTP(HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		String url = FileUploadConfig.FTP_UPLOADURL;
-		FtpClient.connect(FileUploadConfig.FTP_URL, FileUploadConfig.FTP_PORT, FileUploadConfig.FTP_USERNAME, FileUploadConfig.FTP_PASSWORD);
+		FtpClient.connect(FileUploadConfig.FTP_URL, Integer.valueOf(FileUploadConfig.FTP_PORT), FileUploadConfig.FTP_USERNAME, FileUploadConfig.FTP_PASSWORD);
 
 
 		// 定义允许上传的文件扩展名z
@@ -120,7 +120,7 @@ public class FileUploadFTPServiceImpl implements FileUploadFTPService{
 	public void delFTP(List<String> delurl)throws Exception 
 	{
 		try{
-			FtpClient.connect(FileUploadConfig.FTP_URL, FileUploadConfig.FTP_PORT, FileUploadConfig.FTP_USERNAME, FileUploadConfig.FTP_PASSWORD);
+			FtpClient.connect(FileUploadConfig.FTP_URL, Integer.valueOf(FileUploadConfig.FTP_PORT), FileUploadConfig.FTP_USERNAME, FileUploadConfig.FTP_PASSWORD);
 			for(String url : delurl)
 			{
 				FtpClient.deleteFile(url);

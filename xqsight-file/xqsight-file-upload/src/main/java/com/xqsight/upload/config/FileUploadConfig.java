@@ -1,21 +1,32 @@
 package com.xqsight.upload.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.xqsight.common.constants.FileConstants;
+import com.xqsight.sys.support.DictSupport;
 
 /**
  * Created by user on 2016/5/20.
  */
 public class FileUploadConfig {
 
+	static{
+		SAVE_TYPE = DictSupport.getDictDetailValue(FileConstants.FTP_CONFIGER,FileConstants.SAVE_TYPE);
+		FTP_URL = DictSupport.getDictDetailValue(FileConstants.FTP_CONFIGER,FileConstants.FTP_URL);
+		FTP_PORT = DictSupport.getDictDetailValue(FileConstants.FTP_CONFIGER,FileConstants.FTP_PORT);
+		FTP_USERNAME = DictSupport.getDictDetailValue(FileConstants.FTP_CONFIGER,FileConstants.FTP_USERNAME);
+		FTP_PASSWORD = DictSupport.getDictDetailValue(FileConstants.FTP_CONFIGER,FileConstants.FTP_PASSWORD);
+		FTP_UPLOADURL = DictSupport.getDictDetailValue(FileConstants.FTP_CONFIGER,FileConstants.FTP_UPLOADURL);
+		LOCAL_UPLOADURL = DictSupport.getDictDetailValue(FileConstants.FTP_CONFIGER,FileConstants.LOCAL_UPLOADURL);
+	}
+
     /**
      * LOCAL : 本地
      * FTP : ftp 服务器
      */
-	public static String SAVE_TYPE="LOCAL";
+	public static String SAVE_TYPE = "LOCAL";
 
     public static String FTP_URL;
 
-    public static int FTP_PORT;
+    public static String FTP_PORT;
 
     public static String FTP_USERNAME;
 
@@ -37,10 +48,10 @@ public class FileUploadConfig {
 	public static void setFTP_URL(String fTP_URL) {
 		FTP_URL = fTP_URL;
 	}
-	public static int getFTP_PORT() {
+	public static String getFTP_PORT() {
 		return FTP_PORT;
 	}
-	public static void setFTP_PORT(int fTP_PORT) {
+	public static void setFTP_PORT(String fTP_PORT) {
 		FTP_PORT = fTP_PORT;
 	}
 	public static String getFTP_USERNAME() {
