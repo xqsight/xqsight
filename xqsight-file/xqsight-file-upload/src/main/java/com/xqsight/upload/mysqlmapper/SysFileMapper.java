@@ -26,13 +26,13 @@ public interface SysFileMapper {
 	void saveSysFile(SysFile sysFile);
 	
 	@Delete(" DELETE FROM SYS_FILE WHERE FILE_ID=#{fileId,jdbcType=NUMERIC}")
-	void deleteSysFileByFileId(@Param("fileId") Long fileId);
+	void deleteSysFileById(@Param("fileId") long fileId);
 	
 	@Delete(" DELETE FROM SYS_FILE WHERE FILE_ID IN (${fileId})")
 	void deleteSysFileByFileIds(@Param("fileId") String fileId);
 
 	@Select(" SELECT FILE_ID,FILE_DOMAIN,FILE_NAME,FILE_URL,FILE_EXT,FILE_SIZE,ATTACHMENT_TYPE,FILE_KIND,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM SYS_FILE WHERE FILE_ID=#{fileId,jdbcType=NUMERIC}")
-	SysFile querySysFileById(@Param("fileId") Long fileId);
+	SysFile querySysFileById(@Param("fileId") long fileId);
 	
 	@Select(" SELECT FILE_ID,FILE_DOMAIN,FILE_NAME,FILE_URL,FILE_EXT,FILE_SIZE,ATTACHMENT_TYPE,FILE_KIND,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM SYS_FILE WHERE FILE_ID IN (${fileId})")
 	List<SysFile> querySysFileByIds(@Param("fileId") String fileId);

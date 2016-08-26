@@ -12,23 +12,12 @@ import java.util.Map;
  */
 public interface UploadService {
 
-    /**
-     * 上传文件
-     *
-     * @param multipartFileMap
-     * @return
-     * @throws IOException
-     */
-    List<SysFile> uploadFile(Map<String, MultipartFile> multipartFileMap) throws IOException;
+    void saveSysFile(SysFile sysFile);
 
-    /**
-     * 删除文件
-     * @param path
-     * @throws IOException
-     */
-    void deleteFileByPath(String path) throws IOException;
+    void deleteSysFile(long fileId);
 
-    void deleteFileByFileId(String fileId) throws IOException;
 
-    List<SysFile> queryFileByFileId(String FileId);
+    SysFile querySysFile(long fileId);
+
+    List<SysFile> queryFileByFileId(String fileIds);
 }

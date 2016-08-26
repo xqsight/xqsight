@@ -72,10 +72,10 @@ public class FileUploadSupport {
 
                 localUploadVidio(projectPath + separator + filePath.toString(),newFullFileName);
 
-                sysFile.setFileThumbnails(FileUploadConfig.LOCAL_UPLOADURL + filePath.append(separator).append(newFileName).append(Dot).append("jpg").toString());
-                sysFile.setFileUrl(FileUploadConfig.LOCAL_UPLOADURL + filePath.append(separator).append(newFileName).append(Dot).append("flv").toString());
+                sysFile.setFileThumbnails(filePath.append(separator).append(newFileName).append(Dot).append("jpg").toString());
+                sysFile.setFileUrl(filePath.append(separator).append(newFileName).append(Dot).append("flv").toString());
             } else {
-                sysFile.setFileUrl(FileUploadConfig.LOCAL_UPLOADURL + filePath.append(sysFile).append(newFullFileName).toString());
+                sysFile.setFileUrl(filePath.append(sysFile).append(newFullFileName).toString());
             }
             sysFile.setFileDomain(FileUploadConfig.LOCAL_UPLOADURL);
         } else {
@@ -93,11 +93,11 @@ public class FileUploadSupport {
                 ftpUloadFile(filePath.toString(), fileBaseName + Dot + "flv", FileUtil.getInputStream(fileUploadFtp));
                 ftpUloadFile(filePath.toString(), fileBaseName + Dot + "jpg", FileUtil.getInputStream(fileUploadFtpPic));
 
-                sysFile.setFileThumbnails(FileUploadConfig.FTP_UPLOADURL + filePath.append(separator).append(newFileName).append(Dot).append("jpg"));
-                sysFile.setFileUrl(FileUploadConfig.FTP_UPLOADURL + filePath.append(separator).append(newFileName).append(Dot).append("flv"));
+                sysFile.setFileThumbnails(filePath.append(separator).append(newFileName).append(Dot).append("jpg").toString());
+                sysFile.setFileUrl(filePath.append(separator).append(newFileName).append(Dot).append("flv").toString());
             } else {
                 ftpUloadFile(filePath.toString(), newFullFileName, file.getInputStream());
-                sysFile.setFileUrl(FileUploadConfig.FTP_UPLOADURL + filePath.toString());
+                sysFile.setFileUrl(filePath.toString());
             }
             sysFile.setFileDomain(FileUploadConfig.FTP_UPLOADURL);
         }
@@ -150,7 +150,11 @@ public class FileUploadSupport {
      */
     public static void deleteFile(String filePath) throws IOException {
         if (StringUtils.equalsIgnoreCase(FileUploadConfig.SAVE_TYPE, "LOCAL")) {
-            FileUtils.deleteDirectory(new File(filePath));
+            /** 获取当前请求 request**/
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+            /** 当前项目的根目录 **/
+            String projectPath = request.getSession().getServletContext().getRealPath(separator);
+            FileUtils.deleteDirectory(new File(projectPath + filePath));
         } else {
             FlashFtpUtils.FlashFtpConfig flashFtpConfig = new FlashFtpUtils.FlashFtpConfig(FileUploadConfig.FTP_URL, Integer.valueOf(FileUploadConfig.FTP_PORT), FileUploadConfig.FTP_USERNAME, FileUploadConfig.FTP_PASSWORD, false);
             FlashFtpUtils.deleteFile(filePath, flashFtpConfig);

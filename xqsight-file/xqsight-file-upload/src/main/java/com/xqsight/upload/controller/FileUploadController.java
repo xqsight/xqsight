@@ -9,12 +9,14 @@ import com.xqsight.common.support.MessageSupport;
 import com.xqsight.upload.model.SysFile;
 import com.xqsight.upload.service.FileUploadFTPService;
 import com.xqsight.upload.service.UploadService;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -23,19 +25,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author wangganggang
- * @Description: TODO
  * @date 2016年5月9日 下午1:27:58
  */
-@Controller
+@RestController
 @RequestMapping("/file/manage/")
-public class FileUploadController {
-
-    protected Logger logger = LogManager.getLogger(FileUploadController.class);
+public class FileUploadController extends AbstractFileUploadController{
 
     @Autowired
     private UploadService uploadService;
@@ -43,22 +43,25 @@ public class FileUploadController {
     private FileUploadFTPService fileUploadFTPService;
 
     @RequestMapping("upload")
-    @ResponseBody
-    public Object uploadFile(HttpServletRequest request) {
+    public Object uploadFile(HttpServletRequest request) throws IOException {
+        if (!ServletFileUpload.isMultipartContent(request))
+            return MessageSupport.failureMsg("请选择上传文件");
+
         MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> multipartFileMap = mRequest.getFileMap();
+
         List<SysFile> sysFiles = null;
-        try {
-            sysFiles = uploadService.uploadFile(multipartFileMap);
-        } catch (IOException e) {
-            logger.error("上传出错，错误原因:{}", e.getMessage());
-            e.printStackTrace();
-            MessageSupport.failureMsg("上传失败");
+        Iterator<String> iterator = multipartFileMap.keySet().iterator();
+        while(iterator.hasNext()){
+            MultipartFile multipartFile = multipartFileMap.get(iterator.next());
+            SysFile sysFile = uploadFile(multipartFile);
+            uploadService.saveSysFile(sysFile);
+            sysFiles.add(sysFile);
         }
+
         return MessageSupport.successDataMsg(sysFiles, "上传成功");
     }
 
-    @ResponseBody
     @RequestMapping(value = "uploadftp", produces = "text/html;charset=UTF-8")
     public Object saveUploadFtp(HttpServletRequest request, HttpServletResponse response) {
 
@@ -80,15 +83,15 @@ public class FileUploadController {
 
 
     @RequestMapping("delete")
-    @ResponseBody
-    public Object deleteFile(String fileId) {
+    public Object deleteFile(Long fileId) throws IOException {
         logger.debug("删除上传文件 ,参数:fileId={}", fileId);
-        try {
-            uploadService.deleteFileByFileId(fileId);
-        } catch (IOException e) {
-            logger.error("删除文件失败，原因:{}", e.getMessage(), e);
-            return MessageSupport.failureMsg("删除文件失败");
-        }
+        if(fileId == null)
+            return MessageSupport.failureMsg("请传递要删除文件的fileId");
+
+        SysFile sysFile = uploadService.querySysFile(fileId);
+        deleteFile(sysFile.getFileUrl());
+        uploadService.deleteSysFile(fileId);
+
         return MessageSupport.successMsg("删除成功");
     }
 
