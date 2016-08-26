@@ -821,6 +821,10 @@
         <module>xqsight-file</module>
         <module>xqsight-chonic</module>
         <module>xqsight-shiro</module>
+        <module>xqsight-wechat</module>
+        <module>xqsight-rpc</module>
+        <module>xqsight-mq</module>
+        <module>xqsight-pay</module>
     </modules>
 
 

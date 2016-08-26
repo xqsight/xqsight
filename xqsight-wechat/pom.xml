@@ -9,10 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>xqsight-data</artifactId>
+    <artifactId>xqsight-wechat</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>xqsight-data-redis</module>
+        <module>xqsight-wechat-common</module>
+        <module>xqsight-wechat-mp</module>
+        <module>xqsight-wechat-cp</module>
+        <module>xqsight-wechat-bxs</module>
     </modules>
 
 

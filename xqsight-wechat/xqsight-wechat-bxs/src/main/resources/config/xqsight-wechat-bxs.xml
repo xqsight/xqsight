@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jms="http://www.springframework.org/schema/jms"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-3.0.xsd">
+
+	<bean id="banxiaoshiWechatPropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="true" />
+		<property name="locations">
+			<list>
+				<value>file:///config/appconfig/xqsight/xqsight.wechat.bxs.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="wxBxsMpConfigStorage" class="me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage">
+		<property name="appId" value="${xqsight.wechat.banxiaoshi.appid}"></property>
+		<property name="secret" value="${xqsight.wechat.banxiaoshi.secret}"></property>
+		<property name="token" value="${xqsight.wechat.banxiaoshi.token}"></property>
+		<property name="aesKey" value="${xqsight.wechat.banxiaoshi.aeskey}"></property>
+	</bean>
+	
+	<bean id="wxBxsMpService" class="me.chanjar.weixin.mp.api.WxMpServiceImpl">
+		<property name="wxMpConfigStorage" ref="wxBxsMpConfigStorage"></property>
+	</bean>
+
+	<bean id="wxBxsMpMessageRouter" class="me.chanjar.weixin.mp.api.WxMpMessageRouter">
+		<constructor-arg>
+			<ref bean="wxBxsMpService"/>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="wxBxsCommonConfig" class="com.xqsight.wechat.bxs.common.WechatCommonConfig">
+		<property name="serverDomain" value="${xqsight.wechat.banxiaoshi.serverDomain}"></property>
+		<property name="loginUrl" value="${xqsight.wechat.banxiaoshi.loginUrl}"></property>
+		<property name="permiseUrl" value="${xqsight.wechat.banxiaoshi.permiseUrl}"></property>
+		<property name="personCenter" value="${xqsight.wechat.banxiaoshi.personCenter}"></property>
+		<property name="myPromise" value="${xqsight.wechat.banxiaoshi.myPromise}"></property>
+	</bean>
+</beans>
