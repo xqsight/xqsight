@@ -1,10 +1,4 @@
-/**
- * 新启工作室
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
- 
 package com.xqsight.sys.service;
-
 
 import com.xqsight.sys.model.SysLog;
 

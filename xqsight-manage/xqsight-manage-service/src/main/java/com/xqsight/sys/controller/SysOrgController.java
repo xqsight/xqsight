@@ -1,23 +1,16 @@
-/**
- * 新启工作室
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
  package com.xqsight.sys.controller;
 
-import com.github.pagehelper.Page;
-import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
-import com.xqsight.common.support.XqsightPageHelper;
 import com.xqsight.sso.utils.SSOUtils;
+import com.xqsight.sys.model.SysOrg;
+import com.xqsight.sys.service.SysOrgService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.xqsight.sys.model.SysOrg;
-import com.xqsight.sys.service.SysOrgService;
-
 import java.util.List;
+
 
 /**
  * <p>组织机构表 controller</p>
@@ -32,6 +25,7 @@ public class SysOrgController{
 	private SysOrgService sysOrgService;
 
 	@RequestMapping("save")
+	@RequiresPermissions("sys:org:save")
 	public Object saveSysOrg(SysOrg sysOrg) {
 		sysOrg.setCreateOprId(SSOUtils.getCurrentUserId().toString());
 		sysOrgService.saveSysOrg(sysOrg);
@@ -39,6 +33,7 @@ public class SysOrgController{
 	}
 	
 	@RequestMapping("update")
+	@RequiresPermissions("sys:org:update")
 	public Object updateSysOrg(SysOrg sysOrg) {
 		sysOrg.setUpdOprId(SSOUtils.getCurrentUserId().toString());
 		sysOrgService.updateSysOrg(sysOrg);
@@ -46,29 +41,30 @@ public class SysOrgController{
 	}
 	
 	@RequestMapping("delete")
-	public Object deleteSysOrg(Long orgId) {
+	@RequiresPermissions("sys:org:delete")
+	public Object deleteSysOrg(long orgId) {
 		sysOrgService.deleteSysOrg(orgId);
 		return MessageSupport.successMsg("删除成功");
 	}
-	
-	@RequestMapping("querybyid")
-	public Object querySysOrgById(Long orgId) {
-		SysOrg sysOrg = sysOrgService.querySysOrgById(orgId);
-		return MessageSupport.successDataMsg(sysOrg, "查询成功");
-	}
 
 	@RequestMapping("query")
+	@RequiresPermissions("sys:org:query")
 	public Object querySysOrg(String orgName,String orgCode,String customCode,Long parentId) {
 		List<SysOrg> sysOrgs = sysOrgService.querySysOrgByOrgNameAndOrgCodeAndCustomCodeAndParentId(orgName,orgCode,customCode,parentId);
 		return MessageSupport.successDataMsg(sysOrgs, "查询成功");
 	}
 
+	@RequestMapping("querybyid")
+	@RequiresPermissions("sys:org:querybyid")
+	public Object querySysOrgById(long orgId) {
+		SysOrg sysOrg = sysOrgService.querySysOrgById(orgId);
+		return MessageSupport.successDataMsg(sysOrg, "查询成功");
+	}
+
 	@RequestMapping("querytree")
+	@RequiresPermissions("sys:org:querytree")
 	public Object querySysOrgToTree() {
 		SysOrg sysOrg = sysOrgService.querySysOrgToTree();
 		return MessageSupport.successDataMsg(sysOrg, "查询成功");
 	}
-
-
-
 }

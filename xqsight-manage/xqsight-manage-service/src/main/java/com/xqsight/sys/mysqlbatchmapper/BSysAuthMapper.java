@@ -19,14 +19,14 @@ import com.xqsight.common.dao.batch.MysqlBatchAnnotation;
 public interface BSysAuthMapper {
 
 	@Insert("INSERT INTO SYS_MENU_ROLE (MENU_ID,ROLE_ID)values(#{menuId, jdbcType=NUMERIC},#{roleId, jdbcType=NUMERIC})")
-	void saveMenuRole(@Param("menuId") int menuId, @Param("roleId") int roleId);
+	void saveMenuRole(@Param("menuId") long menuId, @Param("roleId") long roleId);
 	
 	@Delete("DELETE FROM SYS_MENU_ROLE WHERE ROLE_ID =#{roleId, jdbcType=NUMERIC}")
-	void deleMenuRole(@Param("roleId") int roleId);
+	void deleMenuRole(@Param("roleId") long roleId);
 	
 	@Insert("INSERT INTO SYS_USER_ROLE (ID,ROLE_ID)values(#{id, jdbcType=NUMERIC},#{roleId, jdbcType=NUMERIC})")
-	void saveUserRole(@Param("id") int id, @Param("roleId") int roleId);
+	void saveUserRole(@Param("id") long id, @Param("roleId") long roleId);
 	
 	@Delete("DELETE FROM SYS_USER_ROLE WHERE ROLE_ID =#{roleId, jdbcType=NUMERIC}")
-	void deleUserRole(@Param("roleId") int roleId);
+	void deleUserRole(@Param("roleId") long roleId);
 }

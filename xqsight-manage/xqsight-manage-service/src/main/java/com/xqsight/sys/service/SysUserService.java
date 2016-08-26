@@ -1,13 +1,9 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sys.service;
+
+import com.xqsight.sys.model.SysLogin;
 
 import java.util.List;
 
-import com.xqsight.sso.model.UserBaseModel;
-import com.xqsight.sys.model.SysLogin;
 
 /**
  * @Description: TODO
@@ -36,7 +32,7 @@ public interface SysUserService {
 	 * @return void    返回类型
 	 * @throws
 	 */
-	void  updateSysLoginPwd(String password, Long id);
+	void  updateSysLoginPwd(String password, long id);
 	
 	/**
 	 * 修改用户名，年龄，性别
@@ -58,7 +54,7 @@ public interface SysUserService {
 	 * @return void    返回类型
 	 * @throws
 	 */
-	void updUserImg(String imgUrl, Long id);
+	void updUserImg(String imgUrl, long id);
 	
 	/**
 	 * 
@@ -70,7 +66,7 @@ public interface SysUserService {
 	 * @return void    返回类型
 	 * @throws
 	 */
-	void deleteSysLogin(Long id);
+	void deleteSysLogin(long id);
 	
 	/**
 	 * 
@@ -82,7 +78,7 @@ public interface SysUserService {
 	 * @return List<SysLogin>    返回类型
 	 * @throws
 	 */
-	List<SysLogin> querySysLoginByUserNameAndLoginIdAndOrgId(String userName, String loginId, Long orgId);
+	List<SysLogin> querySysLoginByLoginId(String loginId);
 	
 	/**
 	 * 
@@ -95,7 +91,7 @@ public interface SysUserService {
 	 * @return SysLogin    返回类型
 	 * @throws
 	 */
-	SysLogin querySysLoginById(Long id);
+	SysLogin querySysLoginById(long id);
 	
 	
 	/**

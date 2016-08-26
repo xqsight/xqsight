@@ -1,22 +1,20 @@
 /**
- * 上海汽车集团财务有限责任公司
  * Copyright (c) 1994-2015 All Rights Reserved.
  */
 package com.xqsight.sys.service.impl;
-
-import java.util.List;
-
-import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.xqsight.sys.model.SysDict;
 import com.xqsight.sys.model.SysDictDetail;
 import com.xqsight.sys.mysqlmapper.SysDictMapper;
 import com.xqsight.sys.service.SysDictService;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @Description: TODO
@@ -35,7 +33,6 @@ public class SysDictServiceImpl implements SysDictService {
 	 * <p>Title: saveSysDict</p>
 	 * <p>Description: </p>
 	 * @param sysDict
-	 * @see com.xqsight.sys.service.SysDictService#saveSysDict(SysDict)
 	 */
 	@Override
 	public void saveSysDict(SysDict sysDict) {
@@ -47,7 +44,6 @@ public class SysDictServiceImpl implements SysDictService {
 	 * <p>Title: updateSysDict</p>
 	 * <p>Description: </p>
 	 * @param sysDict
-	 * @see com.xqsight.sys.service.SysDictService#updateSysDict(SysDict)
 	 */
 	@Override
 	public void updateSysDict(SysDict sysDict) {
@@ -58,11 +54,9 @@ public class SysDictServiceImpl implements SysDictService {
 	/**
 	 * <p>Title: deleteSysDict</p>
 	 * <p>Description: </p>
-	 * @param DictId
-	 * @see com.xqsight.sys.service.SysDictService#deleteSysDict(int)
 	 */
 	@Override
-	public void deleteSysDict(int dictId) {
+	public void deleteSysDict(long dictId) {
 		logger.debug("出入参数:{}", dictId);
 		sysDictMapper.deleteSysDict(dictId);
 		sysDictMapper.deleteSysDictDetailByDictId(dictId);
@@ -71,9 +65,7 @@ public class SysDictServiceImpl implements SysDictService {
 	/**
 	 * <p>Title: querySysDictByDictName</p>
 	 * <p>Description: </p>
-	 * @param DictName
 	 * @return
-	 * @see com.xqsight.sys.service.SysDictService#querySysDictByDictName(String)
 	 */
 	@Override
 	public List<SysDict> querySysDictByDictName(String dictName) {
@@ -93,10 +85,9 @@ public class SysDictServiceImpl implements SysDictService {
 	 * <p>Description: </p>
 	 * @param dictCode
 	 * @return
-	 * @see com.xqsight.sys.service.SysDictService#querySysDictByDictCode(String)
 	 */
 	@Override
-	public SysDict querySysDictByDictCode(String dictCode) {
+	public List<SysDict> querySysDictByDictCode(String dictCode) {
 		return sysDictMapper.querySysDictByDictCode(dictCode);
 	}
 
@@ -105,10 +96,9 @@ public class SysDictServiceImpl implements SysDictService {
 	 * <p>Description: </p>
 	 * @param DictId
 	 * @return
-	 * @see com.xqsight.sys.service.SysDictService#querySysDictByDictId(int)
 	 */
 	@Override
-	public SysDict querySysDictByDictId(int DictId) {
+	public SysDict querySysDictByDictId(long DictId) {
 		return sysDictMapper.querySysDictByDictId(DictId);
 	}
 
@@ -116,7 +106,6 @@ public class SysDictServiceImpl implements SysDictService {
 	 * <p>Title: saveSysDictDetail</p>
 	 * <p>Description: </p>
 	 * @param sysDictDetail
-	 * @see com.xqsight.sys.service.SysDictService#saveSysDictDetail(SysDictDetail)
 	 */
 	@Override
 	public void saveSysDictDetail(SysDictDetail sysDictDetail) {
@@ -128,7 +117,6 @@ public class SysDictServiceImpl implements SysDictService {
 	 * <p>Title: updateSysDictDetail</p>
 	 * <p>Description: </p>
 	 * @param sysDictDetail
-	 * @see com.xqsight.sys.service.SysDictService#updateSysDictDetail(SysDictDetail)
 	 */
 	@Override
 	public void updateSysDictDetail(SysDictDetail sysDictDetail) {
@@ -139,11 +127,9 @@ public class SysDictServiceImpl implements SysDictService {
 	/**
 	 * <p>Title: deleteSysDictDetail</p>
 	 * <p>Description: </p>
-	 * @param DictDetailId
-	 * @see com.xqsight.sys.service.SysDictService#deleteSysDictDetail(int)
 	 */
 	@Override
-	public void deleteSysDictDetail(int dictDetailId) {
+	public void deleteSysDictDetail(long dictDetailId) {
 		logger.debug("出入参数:{}", dictDetailId);
 		sysDictMapper.deleteSysDictDetail(dictDetailId);
 	}
@@ -151,12 +137,10 @@ public class SysDictServiceImpl implements SysDictService {
 	/**
 	 * <p>Title: querySysDictDetailByDictId</p>
 	 * <p>Description: </p>
-	 * @param dictid
 	 * @return
-	 * @see com.xqsight.sys.service.SysDictService#querySysDictDetailByDictId(int)
 	 */
 	@Override
-	public List<SysDictDetail> querySysDictDetailByDictId(int dictId) {
+	public List<SysDictDetail> querySysDictDetailByDictId(long dictId) {
 		logger.debug("出入参数:{}", dictId);
 		return sysDictMapper.querySysDictDetailByDictId(dictId);
 	}
@@ -164,12 +148,10 @@ public class SysDictServiceImpl implements SysDictService {
 	/**
 	 * <p>Title: querySysDictDetailByDictDetailId</p>
 	 * <p>Description: </p>
-	 * @param DictDetailId
 	 * @return
-	 * @see com.xqsight.sys.service.SysDictService#querySysDictDetailByDictDetailId(int)
 	 */
 	@Override
-	public SysDictDetail querySysDictDetailByDictDetailId(int dictDetailId) {
+	public SysDictDetail querySysDictDetailByDictDetailId(long dictDetailId) {
 		return sysDictMapper.querySysDictDetailByDictDetailId(dictDetailId);
 	}
 }

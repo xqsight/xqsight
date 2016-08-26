@@ -1,22 +1,16 @@
-/**
- * 新启工作室
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
  package com.xqsight.sys.service.impl;
 
-import java.util.List;
-
+import com.alibaba.fastjson.JSON;
 import com.xqsight.common.support.TreeSupport;
-import org.apache.commons.lang3.StringUtils;
+import com.xqsight.sys.model.SysOrg;
+import com.xqsight.sys.mysqlmapper.SysOrgMapper;
+import com.xqsight.sys.service.SysOrgService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSON;
-import com.xqsight.sys.model.SysOrg;
-import com.xqsight.sys.mysqlmapper.SysOrgMapper;
-import com.xqsight.sys.service.SysOrgService;
+import java.util.List;
 
 
 /**
@@ -45,7 +39,7 @@ public class SysOrgServiceImpl implements SysOrgService {
 	}
 	
 	@Override
-	public void deleteSysOrg(Long orgId) {
+	public void deleteSysOrg(long orgId) {
 		logger.debug("出入参数:orgId＝{}", orgId);
 		sysOrgMapper.deleteSysOrg(orgId);
 	}
@@ -57,7 +51,7 @@ public class SysOrgServiceImpl implements SysOrgService {
 	}
 	
 	@Override
-	public SysOrg querySysOrgById(Long orgId ){
+	public SysOrg querySysOrgById(long orgId ){
 		return sysOrgMapper.querySysOrgById(orgId);
 	}
 

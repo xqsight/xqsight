@@ -1,7 +1,3 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sys.controller;
 
 import com.github.pagehelper.Page;
@@ -48,12 +44,13 @@ public class SysRoleController {
 
     @RequestMapping("delete")
     @RequiresPermissions("sys:role:delete")
-    public Object deleteRole(int roleId) {
+    public Object deleteRole(long roleId) {
         sysRoleService.deleteSysRole(roleId);
         return MessageSupport.successMsg("删除成功");
     }
 
     @RequestMapping("query")
+    @RequiresPermissions("sys:role:query")
     public Object queryRoleByName(XqsightPage xqsightPage, String roleName) {
         Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
         List<SysRole> sysRoles = sysRoleService.querySysRoleByRoleName(roleName);
@@ -62,13 +59,15 @@ public class SysRoleController {
     }
 
     @RequestMapping("queryall")
+    @RequiresPermissions("sys:role:queryall")
     public Object queryRole() {
         List<SysRole> sysRoles = sysRoleService.querySysRoleByRoleName("");
         return MessageSupport.successDataMsg(sysRoles,"查询成功");
     }
 
     @RequestMapping("querybyid")
-    public Object queryRoleById(int roleId) {
+    @RequiresPermissions("sys:role:querybyid")
+    public Object queryRoleById(long roleId) {
         SysRole sysRoles = sysRoleService.querySysRoleByRoleId(roleId);
         return MessageSupport.successDataMsg(sysRoles, "查询成功");
     }

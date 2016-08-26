@@ -1,13 +1,11 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sys.service;
 
-import java.util.List;
 
 import com.xqsight.sys.model.SysDict;
 import com.xqsight.sys.model.SysDictDetail;
+
+import java.util.List;
+
 
 /**
  * @Description: TODO
@@ -70,7 +68,7 @@ public interface SysDictService {
 	 * @return void    返回类型
 	 * @throws
 	 */
-	void deleteSysDict(int dictId);
+	void deleteSysDict(long dictId);
 	
 	
 	/**
@@ -82,7 +80,7 @@ public interface SysDictService {
 	 * @return void    返回类型
 	 * @throws
 	 */
-	void deleteSysDictDetail(int dictDetailId);
+	void deleteSysDictDetail(long dictDetailId);
 	
 	/**
 	 * 
@@ -108,7 +106,7 @@ public interface SysDictService {
 	 * @return List<SysDict>    返回类型
 	 * @throws
 	 */
-	SysDict querySysDictByDictCode(String dictCode);
+	List<SysDict> querySysDictByDictCode(String dictCode);
 	
 	/**
 	 * 
@@ -121,9 +119,8 @@ public interface SysDictService {
 	 * @return SysDict    返回类型
 	 * @throws
 	 */
-	SysDict querySysDictByDictId(int dictId);
+	SysDict querySysDictByDictId(long dictId);
 
-	
 	
 	/**
 	 * 
@@ -136,7 +133,7 @@ public interface SysDictService {
 	 * @return List<SysDictDetail>    返回类型
 	 * @throws
 	 */
-	List<SysDictDetail> querySysDictDetailByDictId(int dictId);
+	List<SysDictDetail> querySysDictDetailByDictId(long dictId);
 	
 	/**
 	 * 
@@ -149,5 +146,5 @@ public interface SysDictService {
 	 * @return SysDictDetail    返回类型
 	 * @throws
 	 */
-	SysDictDetail querySysDictDetailByDictDetailId(int dictDetailId);
+	SysDictDetail querySysDictDetailByDictDetailId(long dictDetailId);
 }

@@ -1,7 +1,3 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sys.controller;
 
 import com.xqsight.common.support.MessageSupport;
@@ -45,46 +41,50 @@ public class SysMenuController {
 
     @RequestMapping("delete")
     @RequiresPermissions("sys:menu:delete")
-    public Object deleteMenu(Long menuId) {
+    public Object deleteMenu(long menuId) {
         sysMenuService.deleteSysMenu(menuId);
         return MessageSupport.successMsg("删除成功");
     }
 
+    @RequestMapping("query")
+    @RequiresPermissions("sys:menu:query")
+    public Object querySysMenuByMenuNameAndParentId(String menuName,long parentId) {
+        List<SysMenu> sysMenus = sysMenuService.querySysMenuByMenuNameAndParentId(menuName,parentId);
+        return MessageSupport.successDataMsg(sysMenus, "查询成功");
+    }
+
     @RequestMapping("querymenubyrole")
-    public Object querySyeMenuByRoleId(Long roleId) {
+    @RequiresPermissions("sys:menu:querymenubyrole")
+    public Object querySyeMenuByRoleId(long roleId) {
         List<SysMenu> sysMenus = sysMenuService.querySyeMenuByRoleId(roleId);
         return MessageSupport.successDataMsg(sysMenus,"查询成功");
     }
 
     @RequestMapping("querymenubyuser")
+    @RequiresPermissions("sys:menu:querymenubyuser")
     public Object querySysMenuByUser() {
         List<SysMenu> sysMenus = sysMenuService.querySysMenuByUser(SSOUtils.getCurrentUserId());
         return MessageSupport.successDataMsg(sysMenus,"查询成功");
     }
 
     @RequestMapping("querybyid")
-    public Object queryMenuById(Long menuId) {
+    @RequiresPermissions("sys:menu:querybyid")
+    public Object queryMenuById(long menuId) {
         SysMenu sysMenu = sysMenuService.querySysMenuByMenuId(menuId);
         return MessageSupport.successDataMsg(sysMenu, "查询成功");
     }
 
     @RequestMapping("querytree")
+    @RequiresPermissions("sys:menu:querytree")
     public Object queryMenuCovertTree() {
         SysMenu sysMenu = sysMenuService.querySysMenuForTree();
         return MessageSupport.successDataMsg(sysMenu, "查询成功");
     }
 
     @RequestMapping("queryalltree")
+    @RequiresPermissions("sys:menu:queryalltree")
     public Object queryMenuAllConvertTree() {
         SysMenu sysMenu = sysMenuService.queryMenuAllConvertTree();
         return MessageSupport.successDataMsg(sysMenu, "查询成功");
     }
-
-    @RequestMapping("query")
-    public Object querySysMenuByMenuNameAndParentId(String menuName,Long parentId) {
-        List<SysMenu> sysMenus = sysMenuService.querySysMenuByMenuNameAndParentId(menuName,parentId);
-        return MessageSupport.successDataMsg(sysMenus, "查询成功");
-    }
-
-
 }

@@ -1,12 +1,9 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sys.service;
+
+import com.xqsight.sys.model.SysMenu;
 
 import java.util.List;
 
-import com.xqsight.sys.model.SysMenu;
 
 /**
  * @Description: TODO
@@ -47,7 +44,7 @@ public interface SysMenuService {
 	 * @return void    返回类型
 	 * @throws
 	 */
-	void deleteSysMenu(Long menuId);
+	void deleteSysMenu(long menuId);
 
 	/**
 	 *
@@ -60,7 +57,7 @@ public interface SysMenuService {
 	 * @return SysMenu    返回类型
 	 * @throws
 	 */
-	SysMenu querySysMenuByMenuId(Long menuId);
+	SysMenu querySysMenuByMenuId(long menuId);
 
 	/**
 	 * 查询菜单
@@ -68,20 +65,18 @@ public interface SysMenuService {
 	 * @param parentId
      * @return
      */
-	List<SysMenu> querySysMenuByMenuNameAndParentId(String menuName, Long parentId);
-	
+	List<SysMenu> querySysMenuByMenuNameAndParentId(String menuName, long parentId);
+
 	/**
-	 * 
 	 * querySysMenu 查询菜单
-	 *
-	 * @Title: querySysMenu
-	 * @Description: TODO
-	 * @param @return    设定文件
-	 * @return SysMenu    返回类型
-	 * @throws
-	 */
+	 * @return
+     */
 	SysMenu querySysMenuForTree();
 
+	/**
+	 * 所有菜单转成树
+	 * @return
+     */
 	SysMenu queryMenuAllConvertTree();
 
 	/**
@@ -89,7 +84,7 @@ public interface SysMenuService {
 	 * @param roleId
 	 * @return
      */
-	List<SysMenu> querySyeMenuByRoleId(Long roleId);
+	List<SysMenu> querySyeMenuByRoleId(long roleId);
 
 	/**
 	 * 根据用户查询菜单
@@ -97,12 +92,11 @@ public interface SysMenuService {
 	 * @param userId
 	 * @return
      */
-	List<SysMenu> querySysMenuByUser(Long userId);
+	List<SysMenu> querySysMenuByUser(long userId);
 
 	/**
 	 * querySysMenu 查询菜单
 	 * @return
 	 */
 	List<SysMenu> querySysMenu();
-
 }

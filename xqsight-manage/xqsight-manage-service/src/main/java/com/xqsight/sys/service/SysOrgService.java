@@ -1,12 +1,8 @@
-/**
- * 新启工作室
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
  package com.xqsight.sys.service;
 
-import java.util.List;
-
 import com.xqsight.sys.model.SysOrg;
+
+import java.util.List;
 
 /**
  * <p>组织机构表接口类service</p>
@@ -22,25 +18,15 @@ public interface SysOrgService {
 	void updateSysOrg(SysOrg sysOrg);
 	
 	/** 删除 **/
-	void deleteSysOrg(Long orgId);
+	void deleteSysOrg(long orgId);
 
 	/** 根据Id查询 **/
-	SysOrg querySysOrgById(Long orgId);
-
+	SysOrg querySysOrgById(long orgId);
 
 	/** 查询 **/
 	SysOrg querySysOrgToTree();
 
-
-	/**
-	 * 查询列表
-	 *
-	 * @param orgName
-	 * @param orgCode
-	 * @param customCode
-	 * @param parentId
-     * @return
-     */
+	/** 查询列表 **/
 	List<SysOrg> querySysOrgByOrgNameAndOrgCodeAndCustomCodeAndParentId(String orgName, String orgCode, String customCode, Long parentId);
 	
 }

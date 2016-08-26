@@ -1,10 +1,4 @@
-/**
- * 新启工作室
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
- 
 package com.xqsight.sys.service.impl;
-
 
 import com.alibaba.fastjson.JSON;
 import com.xqsight.sys.model.SysLog;
@@ -16,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 /**
  * <p>系统日志接口实现类service</p>

@@ -820,6 +820,7 @@
         <module>xqsight-cms</module>
         <module>xqsight-file</module>
         <module>xqsight-chonic</module>
+        <module>xqsight-shiro</module>
     </modules>
 
 

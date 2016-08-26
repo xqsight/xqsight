@@ -1,7 +1,3 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sys.mysqlmapper;
 
 import com.xqsight.sys.model.SysDict;
@@ -44,7 +40,7 @@ public interface SysDictMapper {
 	List<SysDict> querySysDictByDictName(@Param("dictName") String dictName);
 	
 	@Select("select * from sys_dict where dict_code=#{dictCode, jdbcType=VARCHAR} order by dict_name desc")
-	SysDict querySysDictByDictCode(@Param("dictCode") String dictCode);
+	List<SysDict> querySysDictByDictCode(@Param("dictCode") String dictCode);
 
 	@Select("select * from sys_dict where dict_id=#{dictId, jdbcType=NUMERIC}")
 	SysDict querySysDictByDictId(@Param("dictId") long dictId);

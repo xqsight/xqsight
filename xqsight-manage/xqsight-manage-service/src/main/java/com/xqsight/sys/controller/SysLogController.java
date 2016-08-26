@@ -1,8 +1,3 @@
-/**
- * 新启工作室
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
- 
 package com.xqsight.sys.controller;
 
 import com.github.pagehelper.Page;
@@ -25,7 +20,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/sys/log/")
-public class SysLogController {
+public class SysLogController{
 
 	@Autowired
 	private SysLogService sysLogService;

@@ -30,7 +30,7 @@
         </dependency>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-common-authc</artifactId>
+            <artifactId>xqsight-shiro-authc</artifactId>
             <version>${project.version}</version>
         </dependency>
 

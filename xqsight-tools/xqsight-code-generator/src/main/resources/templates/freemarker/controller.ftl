@@ -6,7 +6,7 @@ import com.github.pagehelper.Page;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.common.support.XqsightPageHelper;
-import com.xqsight.sso.utils.SSOUtils;
+import com.xqsight.SSOUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

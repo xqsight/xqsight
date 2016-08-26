@@ -1,6 +1,5 @@
 package com.xqsight.sys.mysqlmapper;
 
-
 import com.xqsight.sys.model.SysLog;
 import org.apache.ibatis.annotations.*;
 
