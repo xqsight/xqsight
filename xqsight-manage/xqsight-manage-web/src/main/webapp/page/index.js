@@ -211,7 +211,7 @@ saicfc.nameSpace.reg("sys");
         this.addTabFun = function(id,title){
             var tabHtml = '<li role="presentation" class="active" id="tab_' + id + '">';
             tabHtml += '<a href="#tab_content_' + id + '" aria-controls="' + id + '" menuid="' + id + '" role="tab" data-toggle="tab">';
-            tabHtml += title + '<span class=""><i class="ace-icon fa fa-remove"></i></span></a></li>';
+            tabHtml += '<span class="">' + title + '</span><span class=""><i class="ace-icon fa fa-remove"></i></span></a></li>';
 
             $("#portal_tabs").append(tabHtml);
         }

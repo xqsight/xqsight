@@ -1,13 +1,13 @@
 /**
  * Copyright &copy; 2012-2016 <a href="https://github.com/thinkgem/jeesite">JeeSite</a> All rights reserved.
  */
-package com.xqsight.commons.support;
+package com.xqsight.data.ehcache.core;
 
-import com.xqsight.commons.web.SpringContextHolder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -17,11 +17,12 @@ import java.util.Set;
  * @author ThinkGem
  * @version 2013-5-29
  */
-public class CacheUtils {
+public class CacheTemplate {
 
-	private static Logger logger = LogManager.getLogger(CacheUtils.class);
+	private static Logger logger = LogManager.getLogger(CacheTemplate.class);
 
-	private static CacheManager cacheManager = SpringContextHolder.getBean(CacheManager.class);
+	@Autowired
+	private static CacheManager cacheManager ;
 	
 	private static final String SYS_CACHE = "sysCache";
 

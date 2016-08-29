@@ -7,7 +7,9 @@ public class CacheKeyConstants {
 
     public static final String PREFIX                                                = "SYS_";
 
-    public static final String SYS_MENU_NAME_PATH_MAP                              = "SYS_MENU_NAME_MAP";
+    public static final String SYS_MENU_NAME_PATH_MAP                                = "SYS_MENU_NAME_MAP";
 
     public static final String SYS_DICT_MAP                                          = "SYS_DICT_MAP";
+
+
 }

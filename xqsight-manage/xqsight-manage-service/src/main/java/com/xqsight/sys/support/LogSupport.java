@@ -3,9 +3,9 @@ package com.xqsight.sys.support;
 import com.alibaba.fastjson.JSON;
 import com.xqsight.common.cache.CacheKeyConstants;
 import com.xqsight.commons.exception.Exceptions;
-import com.xqsight.commons.support.CacheUtils;
 import com.xqsight.commons.web.SpringContextHolder;
 import com.xqsight.commons.web.WebUtils;
+import com.xqsight.data.ehcache.core.CacheTemplate;
 import com.xqsight.sso.model.UserBaseModel;
 import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.sys.model.SysLog;
@@ -107,7 +107,7 @@ public class LogSupport {
 	public static String getMenuNamePath(String requestUri, String permission){
 		String href = requestUri;
 		@SuppressWarnings("unchecked")
-		Map<String, String> menuMap = (Map<String, String>) CacheUtils.get(CacheKeyConstants.SYS_MENU_NAME_PATH_MAP);
+		Map<String, String> menuMap = (Map<String, String>) CacheTemplate.get(CacheKeyConstants.SYS_MENU_NAME_PATH_MAP);
 		if (menuMap == null){
 			menuMap =new HashMap();
 			List<SysMenu> menuList = sysMenuService.querySysMenu();
@@ -117,7 +117,7 @@ public class LogSupport {
 					menuMap.put(menu.getUrl(), menu.getMenuName());
 				}
 			}
-			CacheUtils.put(CacheKeyConstants.SYS_MENU_NAME_PATH_MAP, menuMap);
+			CacheTemplate.put(CacheKeyConstants.SYS_MENU_NAME_PATH_MAP, menuMap);
 		}
 
 		String menuNamePath = menuMap.get(href);

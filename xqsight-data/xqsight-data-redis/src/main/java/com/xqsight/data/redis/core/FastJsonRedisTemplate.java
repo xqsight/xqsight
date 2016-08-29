@@ -30,6 +30,7 @@ import com.alibaba.fastjson.JSON;
 @Component
 public class FastJsonRedisTemplate {
 	private Logger logger = LogManager.getLogger(getClass());
+
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 

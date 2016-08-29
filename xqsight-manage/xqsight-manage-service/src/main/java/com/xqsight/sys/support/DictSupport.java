@@ -5,14 +5,14 @@ package com.xqsight.sys.support;
 
 import com.alibaba.fastjson.JSON;
 import com.xqsight.common.cache.CacheKeyConstants;
-import com.xqsight.commons.support.CacheUtils;
 import com.xqsight.commons.web.SpringContextHolder;
+import com.xqsight.data.ehcache.core.CacheTemplate;
 import com.xqsight.sys.model.SysDict;
 import com.xqsight.sys.model.SysDictDetail;
 import com.xqsight.sys.service.SysDictService;
+import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,11 +28,7 @@ public class DictSupport {
 
 	public static String getDictDetailValue(String dictValue, String dictCode, String defaultValue){
 		if (StringUtils.isNotBlank(dictCode) && StringUtils.isNotBlank(dictValue)){
-			for (SysDictDetail sysDictDetail : getDictList(dictCode)){
-				if (dictValue.equals(sysDictDetail.getDictValue())){
-					return sysDictDetail.getDictDesp();
-				}
-			}
+			return MapUtils.getString(getDictList(dictCode),dictValue,defaultValue);
 		}
 		return defaultValue;
 	}
@@ -41,22 +37,26 @@ public class DictSupport {
 		return getDictDetailValue(dictValue,dictCode,"");
 	}
 
-	public static List<SysDictDetail> getDictList(String dictCode){
-		Map<String, List<SysDictDetail>> dictMap = (Map<String, List<SysDictDetail>>) CacheUtils.get(CacheKeyConstants.SYS_DICT_MAP);
+	public static Map<String,String> getDictList(String dictCode){
+		Map<String, Map<String,String>> dictMap = (Map<String, Map<String,String>>) CacheTemplate.get(CacheKeyConstants.SYS_DICT_MAP);
 		if(dictMap == null){
 			List<SysDict> sysDicts = sysDictService.querySysDictByDictName("");
 			for (SysDict sysDict :sysDicts ){
 				List<SysDictDetail> sysDictDetails = sysDictService.querySysDictDetailByDictId(sysDict.getDictId());
-				dictMap.put(sysDict.getDictCode(),sysDictDetails);
+				Map<String,String> detailMap = new HashMap<>();
+				for(SysDictDetail sysDictDetail : sysDictDetails){
+					detailMap.put(sysDictDetail.getDictValue(),sysDictDetail.getDictDesp());
+				}
+				dictMap.put(sysDict.getDictCode(),detailMap);
 			}
-			CacheUtils.put(CacheKeyConstants.SYS_DICT_MAP, dictMap);
+			CacheTemplate.put(CacheKeyConstants.SYS_DICT_MAP, dictMap);
 		}
 
-		List<SysDictDetail> dictList = dictMap.get(dictCode);
-		if (dictList == null){
-			dictList = new ArrayList();
+		Map<String,String> detailDictMap = dictMap.get(dictCode);
+		if (detailDictMap == null){
+			detailDictMap = new HashMap<>();
 		}
-		return dictList;
+		return detailDictMap;
 	}
 
 	/**

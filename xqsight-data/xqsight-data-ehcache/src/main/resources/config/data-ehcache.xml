@@ -1,0 +1,34 @@
+<ehcache name="shirocache" updateCheck="false">
+ 
+    <diskStore path="./temp"/>
+ 
+    <cache name="sysCache"
+           eternal="false" maxElementsInMemory="1000"
+           overflowToDisk="true" diskPersistent="false" timeToIdleSeconds="0"
+           timeToLiveSeconds="600">
+    </cache>
+
+    <cache name="passwordRetryCache"
+            eternal="false" maxElementsInMemory="1000"
+        overflowToDisk="true" diskPersistent="false" timeToIdleSeconds="0"
+        timeToLiveSeconds="600" memoryStoreEvictionPolicy="LRU">
+    </cache>
+ 
+    <cache name="authorizationCache"
+          eternal="false" maxElementsInMemory="1000"
+        overflowToDisk="true" diskPersistent="false" timeToIdleSeconds="0"
+        timeToLiveSeconds="600" memoryStoreEvictionPolicy="LRU">
+    </cache>
+ 
+    <cache name="authenticationCache"
+          eternal="false" maxElementsInMemory="1000"
+        overflowToDisk="true" diskPersistent="false" timeToIdleSeconds="0"
+        timeToLiveSeconds="600" memoryStoreEvictionPolicy="LRU">
+    </cache>
+    
+    <cache name="shiro-activeSessionCache"
+          eternal="true" maxElementsInMemory="1000"
+        overflowToDisk="true" diskPersistent="false" timeToIdleSeconds="0"
+        timeToLiveSeconds="1800" memoryStoreEvictionPolicy="LRU">
+    </cache>
+</ehcache>

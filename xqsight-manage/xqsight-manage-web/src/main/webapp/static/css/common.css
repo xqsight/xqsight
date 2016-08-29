@@ -110,7 +110,8 @@
     padding: 2px 4px;
 }
 
-/** IE tabÏÔÊ¾ **/
+/** IE tabï¿½ï¿½Ê¾ **/
 #portal_tabs li{
     display: inline;
+    width: 100px;
 }
