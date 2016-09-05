@@ -19,16 +19,6 @@
 		</property>
 	</bean>
 
-	<!--
-		<import resource="classpath*:config/props/xqsight-mysql-manage-props.xml" />
-		<import resource="classpath*:config/xqsight-file-manage-upload.xml" />
-	-->
-
-	<!--
-		<import resource="classpath*:config/props/xqsight-mysql-test-props.xml" />
-		<import resource="classpath*:config/xqsight-file-test-upload.xml" />
-	-->
-
 	<import resource="classpath*:config/xqsight-mysql-dao.xml" />
 	<import resource="classpath*:config/xqsight-common-sso-shiro.xml" />
 	<import resource="classpath*:config/xqsight-common-authc.xml" />

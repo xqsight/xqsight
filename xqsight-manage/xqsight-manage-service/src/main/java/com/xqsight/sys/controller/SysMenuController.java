@@ -47,42 +47,36 @@ public class SysMenuController {
     }
 
     @RequestMapping("query")
-    @RequiresPermissions("sys:menu:query")
     public Object querySysMenuByMenuNameAndParentId(String menuName,long parentId) {
         List<SysMenu> sysMenus = sysMenuService.querySysMenuByMenuNameAndParentId(menuName,parentId);
         return MessageSupport.successDataMsg(sysMenus, "查询成功");
     }
 
     @RequestMapping("querymenubyrole")
-    @RequiresPermissions("sys:menu:querymenubyrole")
     public Object querySyeMenuByRoleId(long roleId) {
         List<SysMenu> sysMenus = sysMenuService.querySyeMenuByRoleId(roleId);
         return MessageSupport.successDataMsg(sysMenus,"查询成功");
     }
 
     @RequestMapping("querymenubyuser")
-    @RequiresPermissions("sys:menu:querymenubyuser")
     public Object querySysMenuByUser() {
         List<SysMenu> sysMenus = sysMenuService.querySysMenuByUser(SSOUtils.getCurrentUserId());
         return MessageSupport.successDataMsg(sysMenus,"查询成功");
     }
 
     @RequestMapping("querybyid")
-    @RequiresPermissions("sys:menu:querybyid")
     public Object queryMenuById(long menuId) {
         SysMenu sysMenu = sysMenuService.querySysMenuByMenuId(menuId);
         return MessageSupport.successDataMsg(sysMenu, "查询成功");
     }
 
     @RequestMapping("querytree")
-    @RequiresPermissions("sys:menu:querytree")
     public Object queryMenuCovertTree() {
         SysMenu sysMenu = sysMenuService.querySysMenuForTree();
         return MessageSupport.successDataMsg(sysMenu, "查询成功");
     }
 
     @RequestMapping("queryalltree")
-    @RequiresPermissions("sys:menu:queryalltree")
     public Object queryMenuAllConvertTree() {
         SysMenu sysMenu = sysMenuService.queryMenuAllConvertTree();
         return MessageSupport.successDataMsg(sysMenu, "查询成功");

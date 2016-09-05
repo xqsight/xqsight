@@ -55,14 +55,12 @@ public class SysOrgController{
 	}
 
 	@RequestMapping("querybyid")
-	@RequiresPermissions("sys:org:querybyid")
 	public Object querySysOrgById(long orgId) {
 		SysOrg sysOrg = sysOrgService.querySysOrgById(orgId);
 		return MessageSupport.successDataMsg(sysOrg, "查询成功");
 	}
 
 	@RequestMapping("querytree")
-	@RequiresPermissions("sys:org:querytree")
 	public Object querySysOrgToTree() {
 		SysOrg sysOrg = sysOrgService.querySysOrgToTree();
 		return MessageSupport.successDataMsg(sysOrg, "查询成功");

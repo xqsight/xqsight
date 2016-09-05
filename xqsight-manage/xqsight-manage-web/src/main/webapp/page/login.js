@@ -23,19 +23,6 @@ saicfc.nameSpace.reg("sys");
 
             $("#validateCode").val("");
 
-            $(document).on('click', '.toolbar a[data-target]', function(e) {
-                e.preventDefault();
-                var target = $(this).data('target');
-
-                //验证码刷新
-                if($(target + " img").length > 0){
-                    $(target + " img").attr("src",ctxData + '/system/getCode?' + Math.floor(Math.random()*100) ).fadeIn();
-                }
-
-                $('.widget-box.visible').removeClass('visible');//hide others
-                $(target).addClass('visible');//show target
-            });
-
             $("#generateCode").on("click",function(){
                 obj.getValidateCodeFun();
 
@@ -89,8 +76,10 @@ saicfc.nameSpace.reg("sys");
                                 window.location.href = saicfc.utils.getServerPath("domain") + "/page/index.html";
                             }
                         } else {// 提示信息
-                            alert(retData.msg);
+                            saicfc.win.alert(retData.msg,retData.status);
                             obj.getValidateCodeFun();
+                            $("#validateCode").focus();
+                            $("#validateCode").select()
                         }
                     },
                     "dataType": "jsonp",

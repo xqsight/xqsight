@@ -187,20 +187,19 @@ saicfc.nameSpace.reg("xqsight.chronic");
         this.showPicFun = function(data){
         	var showPic = "";
         	$.each(data,function(index,object){
-        		showPic += "<li id='" + object.fileId + "'><a href='" + object.fileUrl + "' data-rel='colorbox' class='cboxElement'>";
-        		showPic += '<img width="120" height="120" alt="120x120" src="' + object.fileUrl + '">';
-        		showPic += '<div class="text"><div class="inner">' + object.fileName + '</div></div></a>';
+        		showPic += "<li id='" + object.fileId + "'>";
+        		showPic += '<img width="120" height="120" alt="120x120" src="' + object.fileUrl + '" layer-src="' + object.fileUrl + '">';
         		showPic += '<div class="tools tools-bottom in"><a href="javascript:void(0);">';
         		showPic += '<i class="ace-icon fa fa-times red" onclick="javascript:beautyManage.picDeleteFun(' + object.fileId + ');"></i></a></div></li>';
         	})
         	
         	$("#picShow").append(showPic);
-        	
-        	// example 2
-			$('#picShow li a').zoomimage({
-				border: 10,
-				centered: true
-			});
+
+            layer.ready(function(){ //为了layer.ext.js加载完毕再执行
+                layer.photos({
+                    photos: '#picShow'
+                });
+            });
         }
    
         /**

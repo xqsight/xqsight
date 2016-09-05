@@ -99,7 +99,7 @@ saicfc.nameSpace.reg("saicfc.pmpf");
                         "data": editArticle,
                         "type":"POST",
                         "success": function(retData){
-                            saicfc.win.alert(retData.msg);
+                            saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 var iframeContent = saicfc.tab.getIframeContent();
                                 iframeContent.articleMain.editCallBackFun({"articleId" : $.getUrlParam("articleId")});

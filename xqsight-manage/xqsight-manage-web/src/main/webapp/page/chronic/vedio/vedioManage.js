@@ -103,7 +103,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                         "url": url ,
                         "data": editvedio,
                         "success": function(retData){
-                            saicfc.win.alert(retData.msg);
+                            saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 var iframeContent = saicfc.tab.getIframeContent();
                                 iframeContent.vedioMain.editCallBackFun({"vedioId" : $.getUrlParam("id")});

@@ -27,9 +27,10 @@ saicfc.nameSpace.reg("xqsight.cms");
             /**
              * 查询
              */
-            $("#btn-query").click(function(){
+            $("#btn-search").click(function(){
                 obj.forumTable.ajax.reload();
             });
+            
             $(document).bind("keydown",".filter input",function(e){
                 var theEvent = window.event || e;
                 var code = theEvent.keyCode || theEvent.which;
@@ -39,13 +40,31 @@ saicfc.nameSpace.reg("xqsight.cms");
             });
 
             /**
+             * 重置
+             */
+            $("#btn-undo").click(function(){
+                saicfc.utils.cleanValue(".filter");
+            });
+
+            /**
+             * 修改
+             */
+            $("#btn-detail").on("click",obj.forumDetailFun);
+
+            /**
+             * 删除
+             */
+            $("#btn-remove").on("click",obj.removeFun);
+
+            
+            /**
              * 加载列表
              */
             obj.loadForumTableFun();
         };
 
         /**
-         * 回复 function
+         * 详情 function
          */
         this.forumDetailFun = function(articleId){
         	var href="cms/forum/forumManage.html?articleId=" + articleId;
@@ -55,12 +74,12 @@ saicfc.nameSpace.reg("xqsight.cms");
         /**
          * 删除 function
          */
-        this.delFun = function(articleId){
+        this.removeFun = function(articleId){
             saicfc.win.confirm("确认删除吗？",function(btn){
                 if(btn == "yes"){
                     $.ajax({
                         "url": ctxData + "/cms/article/delete?date=" + new Date().getTime(),
-                        "data": {"articleId":articleId},
+                        data: {"articleId":articleId},
                         "dataType": "jsonp",
                         "cache": false,
                         "success": function(retData){
@@ -94,7 +113,7 @@ saicfc.nameSpace.reg("xqsight.cms");
                 "fnServerData": function (sUrl, aoData, fnCallback) {
                     $.ajax({
                         "url": sUrl,
-                        "data": aoData,
+                        data: aoData,
                         "success": function(data){
                             fnCallback(data);
                             //渲染结束重新设置高度
@@ -116,19 +135,24 @@ saicfc.nameSpace.reg("xqsight.cms");
                     }
                 ],
                 "aoColumns": [{
-                    "data": "articleDescription",
+                    data: "articleTitle",
                     sWidth : "160",
                     sClass : "text-center",
                     sSort : false
                 },{
-                    "data": "createTime",
+                    data: "articleDescription",
+                    sWidth : "160",
+                    sClass : "text-center",
+                    sSort : false
+                },{
+                    data: "createTime",
                     sWidth : "120",
                     sClass : "text-center",
                     render : function(value){
                         return saicfc.moment.formatYMDHms(value);
                     }
                 },{
-                    "data": "articleId",
+                    data: "articleId",
                     sWidth : "60",
                     sClass : "text-center",
                     render : function(value){

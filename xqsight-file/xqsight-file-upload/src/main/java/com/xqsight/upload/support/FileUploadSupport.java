@@ -75,7 +75,7 @@ public class FileUploadSupport {
                 sysFile.setFileThumbnails(filePath.append(separator).append(newFileName).append(Dot).append("jpg").toString());
                 sysFile.setFileUrl(filePath.append(separator).append(newFileName).append(Dot).append("flv").toString());
             } else {
-                sysFile.setFileUrl(filePath.append(sysFile).append(newFullFileName).toString());
+                sysFile.setFileUrl(filePath.append(separator).append(newFullFileName).toString());
             }
             sysFile.setFileDomain(FileUploadConfig.LOCAL_UPLOADURL);
         } else {

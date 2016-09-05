@@ -27,9 +27,10 @@ saicfc.nameSpace.reg("xqsight.chronic");
             /**
              * 查询
              */
-            $("#btn-query").click(function(){
+            $("#btn-search").click(function(){
                 obj.askTable.ajax.reload();
             });
+
             $(document).bind("keydown",".filter input",function(e){
                 var theEvent = window.event || e;
                 var code = theEvent.keyCode || theEvent.which;
@@ -37,6 +38,15 @@ saicfc.nameSpace.reg("xqsight.chronic");
                     obj.askTable.ajax.reload();
                 }
             });
+
+            /**
+             * 重置
+             */
+            $("#btn-undo").click(function(){
+                saicfc.utils.cleanValue(".filter");
+            });
+
+            $("#btn-reply").on("click",obj.forumFun);
 
             /**
              * 加载列表
@@ -72,7 +82,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                 "fnServerData": function (sUrl, aoData, fnCallback) {
                     $.ajax({
                         "url": sUrl,
-                        "data": aoData,
+                        data: aoData,
                         "success": function(data){
                             fnCallback(data);
                             //渲染结束重新设置高度
@@ -94,19 +104,24 @@ saicfc.nameSpace.reg("xqsight.chronic");
                     }
                 ],
                 "aoColumns": [{
-                    "data": "articleDescription",
+                    data: "articleTitle",
                     sWidth : "160",
                     sClass : "text-center",
                     sSort : false
                 },{
-                    "data": "createTime",
+                    data: "articleDescription",
+                    sWidth : "160",
+                    sClass : "text-center",
+                    sSort : false
+                },{
+                    data: "createTime",
                     sWidth : "120",
                     sClass : "text-center",
                     render : function(value){
                         return saicfc.moment.formatYMDHms(value);
                     }
                 },{
-                    "data": "articleId",
+                    data: "articleId",
                     sWidth : "60",
                     sClass : "text-center",
                     render : function(value){

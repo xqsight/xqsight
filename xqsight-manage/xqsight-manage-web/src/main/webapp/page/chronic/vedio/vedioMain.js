@@ -27,7 +27,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
             /**
              * 查询
              */
-            $("#btn-query").click(function(){
+            $("#btn-search").click(function(){
                 obj.vedioTable.ajax.reload();
             });
             $(document).bind("keydown",".filter input",function(e){
@@ -37,27 +37,28 @@ saicfc.nameSpace.reg("xqsight.chronic");
                     obj.vedioTable.ajax.reload();
                 }
             });
+
             /**
              * 重置
              */
-            $("#btn-reset").click(function(){
+            $("#btn-undo").click(function(){
                 saicfc.utils.cleanValue(".filter");
             });
 
             /**
              * 新增
              */
-            $("#btn_new").on("click",obj.newFun);
+            $("#btn-plus").on("click",obj.newFun);
 
             /**
              * 修改
              */
-            $("#btn_upd").on("click",obj.updFun);
+            $("#btn-edit").on("click",obj.editFun);
 
             /**
              * 删除
              */
-            $("#btn_del").on("click",obj.delFun);
+            $("#btn-remove").on("click",obj.removeFun);
 
             /**
              * 加载列表
@@ -75,7 +76,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
         /**
          * 修改 function
          */
-        this.updFun = function(){
+        this.editFun = function(){
             var selRows = obj.vedioTable.rows(".success").data();
             if(selRows.length < 1){
                 saicfc.win.alert("请选择修改的数据");
@@ -87,7 +88,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
         /**
          * 删除 function
          */
-        this.delFun = function(){
+        this.removeFun = function(){
             var selRows = obj.vedioTable.rows(".success").data();
             if(selRows.length < 1){
                 saicfc.win.alert("请选择删除的数据");
@@ -97,11 +98,11 @@ saicfc.nameSpace.reg("xqsight.chronic");
                 if(btn == "yes"){
                     $.ajax({
                         "url": ctxData + "/gene/vedio/delete?date=" + new Date().getTime(),
-                        "data": encodeURI(encodeURI("vedioId=" + selRows[0].vedioId )),
+                        data: encodeURI(encodeURI("vedioId=" + selRows[0].vedioId )),
                         "dataType": "jsonp",
                         "cache": false,
                         "success": function(retData){
-                            saicfc.win.alert(retData.msg)
+                            saicfc.win.alert(retData.msg,retData.status)
                             if(retData.status == "0"){
                                 obj.vedioTable.ajax.reload();
                             }
@@ -131,7 +132,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                 "fnServerData": function (sUrl, aoData, fnCallback) {
                     $.ajax({
                         "url": sUrl,
-                        "data": aoData,
+                        data: aoData,
                         "success": function(data){
                             fnCallback(data);
                             //渲染结束重新设置高度
@@ -153,21 +154,31 @@ saicfc.nameSpace.reg("xqsight.chronic");
                     }
                 ],
                 "aoColumns": [{
-                    "data": "vedioName",
+                    data: "vedioName",
                     sWidth : "160",
                     sClass : "text-center",
                     sSort : false
                 },{
-                    "data": "vedioDescription",
+                    data: "vedioDescription",
                     sWidth : "160",
                     sClass : "text-center",
                     sSort : false
                 },{
-                    "data": "createTime",
+                    data: "createTime",
                     sWidth : "120",
                     sClass : "text-center",
                     render : function(value){
                         return saicfc.moment.formatYMDHms(value);
+                    }
+                },{
+                    data: "vedioId",
+                    sWidth : "80",
+                    sClass : "text-center",
+                    render : function(){
+                        return "<div class='bolder'>"
+                            + "<a class='red' href='javaScript:vedioMain.editFun()'><i class='ace-icon fa fa-edit'></i></a> | "
+                            + "<a class='red' href='javaScript:vedioMain.removeFun()'><i class='ace-icon fa fa-remove'></i></a> "
+                            + "</div> ";
                     }
                 }]
             });

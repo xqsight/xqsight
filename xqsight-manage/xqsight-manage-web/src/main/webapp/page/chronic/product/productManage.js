@@ -117,7 +117,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                         "url": url ,
                         "data": editproduct,
                         "success": function(retData){
-                            saicfc.win.alert(retData.msg);
+                            saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 var iframeContent = saicfc.tab.getIframeContent();
                                 iframeContent.productMain.editCallBackFun({"productId" : $.getUrlParam("id")});

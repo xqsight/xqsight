@@ -27,7 +27,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
             /**
              * 查询
              */
-            $("#btn-query").click(function(){
+            $("#btn-search").click(function(){
                 obj.beautyTable.ajax.reload();
             });
             $(document).bind("keydown",".filter input",function(e){
@@ -40,25 +40,24 @@ saicfc.nameSpace.reg("xqsight.chronic");
             /**
              * 重置
              */
-            $("#btn-reset").click(function(){
+            $("#btn-undo").click(function(){
                 saicfc.utils.cleanValue(".filter");
             });
 
             /**
              * 新增
              */
-            $("#btn_new").on("click",obj.newFun);
+            $("#btn-plus").on("click",obj.newFun);
 
             /**
              * 修改
              */
-            $("#btn_upd").on("click",obj.updFun);
+            $("#btn-edit").on("click",obj.editFun);
 
             /**
              * 删除
              */
-            $("#btn_del").on("click",obj.delFun);
-
+            $("#btn-remove").on("click",obj.removeFun);
             /**
              * 加载列表
              */
@@ -75,7 +74,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
         /**
          * 修改 function
          */
-        this.updFun = function(){
+        this.editFun = function(){
             var selRows = obj.beautyTable.rows(".success").data();
             if(selRows.length < 1){
                 saicfc.win.alert("请选择修改的数据");
@@ -87,7 +86,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
         /**
          * 删除 function
          */
-        this.delFun = function(){
+        this.removeFun = function(){
             var selRows = obj.beautyTable.rows(".success").data();
             if(selRows.length < 1){
                 saicfc.win.alert("请选择删除的数据");
@@ -101,7 +100,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                         "dataType": "jsonp",
                         "cache": false,
                         "success": function(retData){
-                            saicfc.win.alert(retData.msg)
+                            saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 obj.beautyTable.ajax.reload();
                             }
@@ -173,6 +172,16 @@ saicfc.nameSpace.reg("xqsight.chronic");
                     sClass : "text-center",
                     render : function(value){
                         return saicfc.moment.formatYMDHms(value);
+                    }
+                },{
+                    "data": "beautyId",
+                    sWidth : "80",
+                    sClass : "text-center",
+                    render : function(){
+                        return "<div class='bolder'>"
+                            + "<a class='red' href='javaScript:beautyMain.editFun()'><i class='ace-icon fa fa-edit'></i></a> | "
+                            + "<a class='red' href='javaScript:beautyMain.removeFun()'><i class='ace-icon fa fa-remove'></i></a> "
+                            + "</div> ";
                     }
                 }]
             });

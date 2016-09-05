@@ -13,7 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>xqsight-common-utils</module>
-        <module>xsight-common-configer</module>
+        <module>xqsight-common-configer</module>
         <module>xqsight-common-metadata</module>
     </modules>
 </project>
