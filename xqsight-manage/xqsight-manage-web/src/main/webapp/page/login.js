@@ -14,6 +14,10 @@ saicfc.nameSpace.reg("sys");
 
         // 初始化页面
         this.init = function() {
+            if(window.parent.location.href != window.location.href){
+                window.parent.location.href = window.location.href;
+            }
+
             //加载验证码
             this.getValidateCodeFun();
 
