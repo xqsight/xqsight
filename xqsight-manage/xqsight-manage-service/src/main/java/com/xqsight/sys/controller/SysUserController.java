@@ -11,6 +11,7 @@ import com.xqsight.common.support.XqsightPageHelper;
 import com.xqsight.commons.utils.DateFormatUtils;
 import com.xqsight.commons.web.WebUtils;
 import com.xqsight.sso.authc.service.PasswordHelper;
+import com.xqsight.sso.shiro.constants.WebConstants;
 import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.sys.model.SysLogin;
 import com.xqsight.sys.service.SysUserService;
@@ -80,7 +81,6 @@ public class SysUserController {
     }
 
     @RequestMapping("query")
-    @RequiresPermissions("sys:login:query")
     public Object queryLoginByName(XqsightPage xqsightPage, SysLogin sysLogin) {
         Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
         List<SysLogin> sysLogins = sysUserService.querySysLoginByLoginId(sysLogin.getLoginId());
@@ -89,14 +89,12 @@ public class SysUserController {
     }
 
     @RequestMapping("querybyid")
-    @RequiresPermissions("sys:login:querybyid")
     public Object queryLoginById(long id) {
         SysLogin sysLogins = sysUserService.querySysLoginById(id);
         return MessageSupport.successDataMsg(sysLogins, "查询成功");
     }
 
     @RequestMapping("queryuserinfo")
-    @RequiresPermissions("sys:login:queryuserinfo")
     public Object queryUserInfo(HttpServletRequest request, @RequestParam(required = false) Long id) {
         if (!WebUtils.isMobile(request))
             id = SSOUtils.getCurrentUserId();
@@ -106,7 +104,6 @@ public class SysUserController {
     }
 
     @RequestMapping("upduserinfo")
-    @RequiresPermissions("sys:login:upduserinfo")
     public Object updUserInfo(HttpServletRequest request, SysLogin sysLogin) {
         if (!WebUtils.isMobile(request))
             sysLogin.setId(SSOUtils.getCurrentUserId());
@@ -116,7 +113,6 @@ public class SysUserController {
     }
 
     @RequestMapping("updpwd")
-    @RequiresPermissions("sys:login:updpwd")
     public Object updPassword(Long id, String password) {
         SysLogin sysLogin = sysUserService.querySysLoginById(id);
         if (sysLogin == null)
@@ -129,7 +125,6 @@ public class SysUserController {
     }
 
     @RequestMapping("updimg")
-    @RequiresPermissions("sys:login:updimg")
     public Object updUserImg(HttpServletRequest request, @RequestParam(required = false) Long id) {
         if (!WebUtils.isMobile(request))
             id = SSOUtils.getCurrentUserId();
@@ -176,5 +171,52 @@ public class SysUserController {
         sysUserService.updUserImg(imgUrl, id);
 
         return MessageSupport.successDataMsg(imgUrl, "修改成功");
+    }
+
+    @RequestMapping("register")
+    public Object registerForMobile(HttpServletRequest request) {
+        String loginId = request.getParameter(WebConstants.LOGIN_ID);
+        String password = request.getParameter(WebConstants.PASSWORD);
+        SysLogin sysLogin = sysUserService.querySingleUserByLoginId(loginId);
+        if (sysLogin != null)
+            return MessageSupport.failureMsg("当前用户已经存在");
+
+        sysLogin = new SysLogin();
+        sysLogin.setLoginId(loginId);
+        sysLogin.setPassword(password);
+        sysLogin.setFromSource(UserFromSourceEnum.MOBILE.value());
+        LoginTypeEnum loginType = LoginSupport.judgeLoginType(sysLogin.getLoginId());
+        sysLogin.setLoginType(loginType.value());
+        PasswordHelper.encryptPassword(sysLogin);
+        sysUserService.saveSysLogin(sysLogin);
+        return MessageSupport.successMsg("注册成功");
+    }
+
+    @RequestMapping("login")
+    public Object loginForMobile(HttpServletRequest request) {
+        String loginId = request.getParameter(WebConstants.LOGIN_ID);
+        String password = request.getParameter(WebConstants.PASSWORD);
+        SysLogin SysLogin = sysUserService.querySingleUserByLoginId(loginId);
+        if (SysLogin == null) {
+            return MessageSupport.failureMsg("当前用户不存在！");
+        } else {
+            if (PasswordHelper.checkPassword(SysLogin, password)) {
+                return MessageSupport.successDataMsg(SysLogin, "登录成功");
+            } else {
+                return MessageSupport.failureMsg("用户名或密码不对");
+            }
+        }
+    }
+
+    @RequestMapping("findpasswd")
+    public Object findPasswd(String login_id, String pass_wd) {
+        SysLogin sysLogin = sysUserService.querySingleUserByLoginId(login_id);
+        if (sysLogin == null)
+            return MessageSupport.failureMsg("当前用户不存在");
+
+        sysLogin.setPassword(pass_wd);
+        PasswordHelper.encryptPassword(sysLogin);
+        sysUserService.updateSysLoginPwd(sysLogin.getPassword(), sysLogin.getId());
+        return MessageSupport.successMsg("密码修改成功");
     }
 }
