@@ -21,6 +21,7 @@ import com.xqsight.commons.web.WebUtils;
 import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.upload.model.SysFile;
 import com.xqsight.upload.service.UploadService;
+import com.xqsight.upload.support.FileUploadSupport;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -68,8 +69,10 @@ public class GeneAskController {
             if (ServletFileUpload.isMultipartContent(request)) {
                 MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request;
                 Map<String, MultipartFile> multipartFileMap = mRequest.getFileMap();
-                List<SysFile> sysFiles = uploadService.uploadFile(multipartFileMap);
-                for (SysFile sysFile : sysFiles) {
+                for(String mapKey : multipartFileMap.keySet()){
+                    MultipartFile multipartFile = multipartFileMap.get(mapKey);
+                    SysFile sysFile = FileUploadSupport.uploadFile(multipartFile);
+                    uploadService.saveSysFile(sysFile);
                     sbFileId.append(sysFile.getFileId()).append(",");
                 }
             }
