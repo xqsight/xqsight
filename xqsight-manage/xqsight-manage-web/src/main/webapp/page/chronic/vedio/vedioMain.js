@@ -27,7 +27,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
             /**
              * 查询
              */
-            $("#btn-search").click(function(){
+            $(".btn-search").click(function(){
                 obj.vedioTable.ajax.reload();
             });
             $(document).bind("keydown",".filter input",function(e){
@@ -102,7 +102,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                         "dataType": "jsonp",
                         "cache": false,
                         "success": function(retData){
-                            saicfc.win.alert(retData.msg,retData.status)
+                            saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 obj.vedioTable.ajax.reload();
                             }

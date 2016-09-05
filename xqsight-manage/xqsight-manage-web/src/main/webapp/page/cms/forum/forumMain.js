@@ -83,7 +83,7 @@ saicfc.nameSpace.reg("xqsight.cms");
                         "dataType": "jsonp",
                         "cache": false,
                         "success": function(retData){
-                            saicfc.win.alert(retData.msg)
+                            saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 obj.forumTable.ajax.reload();
                             }

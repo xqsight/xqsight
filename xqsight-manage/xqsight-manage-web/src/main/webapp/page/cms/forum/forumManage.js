@@ -64,7 +64,7 @@ saicfc.nameSpace.reg("xqsight.cms");
                         "dataType": "jsonp",
                         "cache": false,
                         "success": function(retData){
-                            saicfc.win.alert(retData.msg)
+                            saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 obj.loadComentFun();
                             }
@@ -148,7 +148,7 @@ saicfc.nameSpace.reg("xqsight.cms");
                  "cache": false,
                  "url": ctxData + "/file/manage/delete?fileId=" + fileId + "&date=" + new Date().getTime,
                  "success": function(retData){
-                	 saicfc.win.alert(retData.msg);
+                	 saicfc.win.alert(retData.msg,retData.status);
                 	 if(retData.status == "0"){
                 		 editarticle.fileId = saicfc.utils.replaceAll(editarticle.fileId,fileId+",","");
                 		 $("#picShow #" + fileId).remove();

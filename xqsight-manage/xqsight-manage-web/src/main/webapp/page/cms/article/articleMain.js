@@ -27,9 +27,10 @@ saicfc.nameSpace.reg("xqsight.cms");
             /**
              * 查询
              */
-            $("#btn-search").click(function(){
+            $(".btn-search").click(function(){
                 obj.artilceTable.ajax.reload();
             });
+
             $(document).bind("keydown",".filter input",function(e){
                 var theEvent = window.event || e;
                 var code = theEvent.keyCode || theEvent.which;
@@ -37,6 +38,7 @@ saicfc.nameSpace.reg("xqsight.cms");
                     obj.artilceTable.ajax.reload();
                 }
             });
+
             /**
              * 重置
              */

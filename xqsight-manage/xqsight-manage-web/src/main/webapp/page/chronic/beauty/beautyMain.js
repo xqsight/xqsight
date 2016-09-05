@@ -27,7 +27,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
             /**
              * 查询
              */
-            $("#btn-search").click(function(){
+            $(".btn-search").click(function(){
                 obj.beautyTable.ajax.reload();
             });
             $(document).bind("keydown",".filter input",function(e){

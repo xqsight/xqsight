@@ -213,7 +213,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                  "cache": false,
                  "url": ctxData + "/file/manage/deletebyid?fileId=" + fileId + "&date=" + new Date().getTime,
                  "success": function(retData){
-                	 saicfc.win.alert(retData.msg);
+                	 saicfc.win.alert(retData.msg,retData.status);
                 	 if(retData.status == "0"){
                 		 editproduct.fileId = saicfc.utils.replaceAll(editproduct.fileId,fileId+",","");
                 		 $("#picShow #" + fileId).remove();

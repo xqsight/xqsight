@@ -71,7 +71,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                         "url": url ,
                         "data": editComent,
                         "success": function(retData){
-                            saicfc.win.alert(retData.msg);
+                            saicfc.win.alert(retData.msg,etData.status);
                             if(retData.status == 0)
                                 obj.loadComentFun();
                         },
