@@ -5,11 +5,11 @@ package com.xqsight.common.cache;
  */
 public class CacheKeyConstants {
 
-    public static final String PREFIX                                                = "SYS_";
+    public final static String PREFIX                               = "SYS_";
 
-    public static final String SYS_MENU_NAME_PATH_MAP                                = "SYS_MENU_NAME_MAP";
+    public final static String SYS_MENU_NAME_PATH_MAP               = "SYS_MENU_NAME_MAP";
 
-    public static final String SYS_DICT_MAP                                          = "SYS_DICT_MAP";
+    public final static String SYS_DICT_MAP                         = "SYS_DICT_MAP";
 
 
 }

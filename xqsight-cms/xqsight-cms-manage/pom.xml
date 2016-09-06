@@ -24,12 +24,12 @@
         </dependency>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>xsight-common-configer</artifactId>
+            <artifactId>xqsight-common-configer</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-common-authc</artifactId>
+            <artifactId>xqsight-shiro-authc</artifactId>
             <version>${project.version}</version>
         </dependency>
 

@@ -45,8 +45,7 @@ public class CommonLoginContoller extends AbstractLoginContoller {
 	}
 
 	/**
-	 * @see com.saicfc.pmpf.sso.shiro.appcontroller.AbstractLoginContoller#chooseTokenInstance(String,
-	 *      String, boolean)
+	 *
 	 */
 	@Override
 	protected SSOUsernamePasswordToken chooseTokenInstance(String username, String password, boolean isRememberMe) {

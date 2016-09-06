@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>xsight-common-configer</artifactId>
+            <artifactId>xqsight-common-configer</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

@@ -18,15 +18,15 @@
 	</bean>
 
 	<!-- 系统管理 -->
-	<bean id="systemUserSecurityManager" class="com.xqsight.CustomWebSecurityManager">
+	<bean id="systemUserSecurityManager" class="com.xqsight.sso.shiro.mgt.CustomWebSecurityManager">
 		<!-- cacheManager -->
 		<property name="cacheManager" ref="shiroCacheManager" />
 		<!-- sessionManager -->
 		<property name="sessionManager" ref="sessionManager" />
 		<property name="authenticator">
-			<bean class="com.xqsight.SingleSupportModularRealmAuthenticator">
+			<bean class="com.xqsight.sso.shiro.authc.pam.SingleSupportModularRealmAuthenticator">
 				<property name="authenticationStrategy">
-					<bean class="com.xqsight.CustomAuthenticationStrategy" />
+					<bean class="com.xqsight.sso.shiro.authc.pam.CustomAuthenticationStrategy" />
 				</property>
 			</bean>
 		</property>
@@ -35,13 +35,6 @@
 				<ref bean="systemUserRealm" />
 			</list>
 		</property>
-	</bean>
-	
-
-	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager" />
-
-	<bean id="ehCacheManagerFactory" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:config/ehcache-shiro.xml" />
 	</bean>
 
 	<bean id="sessionManager"
@@ -53,16 +46,16 @@
 	</bean>
 	
 	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">   
-        <property name="cacheManager" ref="shiroCacheManager" />
+        <property name="cacheManager" ref="cacheManager" />
 	</bean>  
 
 	<!-- <bean id="redisSessionDAO" class="com.xqsight.sso.shiro.cache.RedisSessionDAO" />
 	<bean id="cacheManager" class="com.xqsight.sso.shiro.cache.RedisCacheManager" /> -->
 
-	<bean id="personalUserRealm" class="com.xqsight.PersonalUserRealm"
+	<bean id="personalUserRealm" class="com.xqsight.sso.shiro.realm.PersonalUserRealm"
 		p:name="personalUserRealm" p:credentialsMatcher-ref="credentialsMatcher" />
 
-	<bean id="systemUserRealm" class="com.xqsight.SysUserRealm"
+	<bean id="systemUserRealm" class="com.xqsight.sso.shiro.realm.SysUserRealm"
 		p:name="systemUserRealm" p:credentialsMatcher-ref="credentialsMatcher" />
 
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
