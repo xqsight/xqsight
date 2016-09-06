@@ -12,6 +12,8 @@ import com.xqsight.sys.model.SysDictDetail;
 import com.xqsight.sys.service.SysDictService;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +25,12 @@ import java.util.Map;
  * @version 2013-5-29
  */
 public class DictSupport {
-	
+
+	private static Logger logger = LogManager.getLogger(DictSupport.class);
+
 	private static SysDictService sysDictService = SpringContextHolder.getBean(SysDictService.class);
+
+	private static CacheTemplate cacheTemplate = SpringContextHolder.getBean(CacheTemplate.class);
 
 	public static String getDictDetailValue(String dictValue, String dictCode, String defaultValue){
 		if (StringUtils.isNotBlank(dictCode) && StringUtils.isNotBlank(dictValue)){
@@ -38,8 +44,9 @@ public class DictSupport {
 	}
 
 	public static Map<String,String> getDictList(String dictCode){
-		Map<String, Map<String,String>> dictMap = (Map<String, Map<String,String>>) CacheTemplate.get(CacheKeyConstants.SYS_DICT_MAP);
+		Map<String, Map<String,String>> dictMap = (Map<String, Map<String,String>>) cacheTemplate.get(CacheKeyConstants.SYS_DICT_MAP);
 		if(dictMap == null){
+			dictMap = new HashMap<>();
 			List<SysDict> sysDicts = sysDictService.querySysDictByDictName("");
 			for (SysDict sysDict :sysDicts ){
 				List<SysDictDetail> sysDictDetails = sysDictService.querySysDictDetailByDictId(sysDict.getDictId());
@@ -49,7 +56,9 @@ public class DictSupport {
 				}
 				dictMap.put(sysDict.getDictCode(),detailMap);
 			}
-			CacheTemplate.put(CacheKeyConstants.SYS_DICT_MAP, dictMap);
+			cacheTemplate.put(CacheKeyConstants.SYS_DICT_MAP, dictMap);
+
+			logger.debug("dict vale : {}",JSON.toJSONString(dictMap));
 		}
 
 		Map<String,String> detailDictMap = dictMap.get(dictCode);
@@ -67,5 +76,9 @@ public class DictSupport {
 	public static String getDictDetailListJson(String dictCode){
 		return JSON.toJSONString(getDictList(dictCode));
 	}
-	
+
+	public static void reload(){
+		cacheTemplate.remove(CacheKeyConstants.SYS_DICT_MAP);
+		getDictDetailListJson("");
+	}
 }

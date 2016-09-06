@@ -2,10 +2,13 @@ package com.xqsight.upload.config;
 
 import com.xqsight.common.cache.CacheKeyConstants;
 import com.xqsight.common.constants.FileConstants;
+import com.xqsight.commons.web.SpringContextHolder;
 import com.xqsight.data.ehcache.core.CacheTemplate;
+import com.xqsight.upload.exceptions.UploadConfigerException;
 import org.apache.commons.collections.MapUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 
@@ -16,8 +19,10 @@ public class FileUploadConfig {
 
     private static Logger logger = LogManager.getLogger(FileUploadConfig.class);
 
+    private static CacheTemplate cacheTemplate = SpringContextHolder.getBean(CacheTemplate.class);
+
     static {
-        Map<String, Map<String, String>> dictMap = (Map<String, Map<String, String>>) CacheTemplate.get(CacheKeyConstants.SYS_DICT_MAP);
+        Map<String, Map<String, String>> dictMap = (Map<String, Map<String, String>>) cacheTemplate.get(CacheKeyConstants.SYS_DICT_MAP);
 
         if (dictMap == null) {
             logger.error("当前系统缓存为空");
@@ -28,7 +33,7 @@ public class FileUploadConfig {
             logger.error("没有配置文件上传信息");
         }
 
-        SAVE_TYPE = MapUtils.getString(detailDictMap, FileConstants.SAVE_TYPE, "");
+        SAVE_TYPE = MapUtils.getString(detailDictMap, FileConstants.SAVE_TYPE, "local");
         FTP_URL = MapUtils.getString(detailDictMap, FileConstants.FTP_URL, "");
         FTP_PORT = MapUtils.getString(detailDictMap, FileConstants.FTP_PORT, "0");
         FTP_USERNAME = MapUtils.getString(detailDictMap, FileConstants.FTP_USERNAME, "");
@@ -41,7 +46,7 @@ public class FileUploadConfig {
      * LOCAL : 本地
      * FTP : ftp 服务器
      */
-    public static String SAVE_TYPE = "LOCAL";
+    public static String SAVE_TYPE = "local";
 
     public static String FTP_URL;
 

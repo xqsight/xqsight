@@ -35,7 +35,7 @@ public class SysLog extends BaseModel {
     private String reqMethod;
 	/** req_data - 请求数据 */
     private String reqData;
-	/** exception - 请求异常 */
+	/** exceptions - 请求异常 */
     private String exception;
 	/** agent_user - 用户代理 */
     private String agentUser;

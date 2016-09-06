@@ -5,6 +5,7 @@ import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.sys.model.SysDict;
 import com.xqsight.sys.model.SysDictDetail;
 import com.xqsight.sys.service.SysDictService;
+import com.xqsight.sys.support.DictSupport;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -141,4 +142,10 @@ public class SysDictController {
         return MessageSupport.successDataMsg(sysDictDetails, "查询成功");
     }
 
+    @RequestMapping("reload")
+    @RequiresPermissions("sys:dict:reload")
+    public Object reloadDict(){
+        DictSupport.reload();
+        return MessageSupport.successMsg("同步成功");
+    }
 }

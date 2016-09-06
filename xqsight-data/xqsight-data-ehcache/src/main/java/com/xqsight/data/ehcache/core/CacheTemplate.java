@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.shiro.cache.Cache;
 import org.apache.shiro.cache.CacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Iterator;
 import java.util.Set;
@@ -17,12 +18,13 @@ import java.util.Set;
  * @author ThinkGem
  * @version 2013-5-29
  */
+@Component
 public class CacheTemplate {
 
-	private static Logger logger = LogManager.getLogger(CacheTemplate.class);
+	private Logger logger = LogManager.getLogger(CacheTemplate.class);
 
 	@Autowired
-	private static CacheManager cacheManager ;
+	private CacheManager cacheManager ;
 	
 	private static final String SYS_CACHE = "sysCache";
 
@@ -31,7 +33,7 @@ public class CacheTemplate {
 	 * @param key
 	 * @return
 	 */
-	public static Object get(String key) {
+	public Object get(String key) {
 		return get(SYS_CACHE, key);
 	}
 	
@@ -41,7 +43,7 @@ public class CacheTemplate {
 	 * @param defaultValue
 	 * @return
 	 */
-	public static Object get(String key, Object defaultValue) {
+	public Object get(String key, Object defaultValue) {
 		Object value = get(key);
 		return value != null ? value : defaultValue;
 	}
@@ -51,7 +53,7 @@ public class CacheTemplate {
 	 * @param key
 	 * @return
 	 */
-	public static void put(String key, Object value) {
+	public void put(String key, Object value) {
 		put(SYS_CACHE, key, value);
 	}
 	
@@ -60,7 +62,7 @@ public class CacheTemplate {
 	 * @param key
 	 * @return
 	 */
-	public static void remove(String key) {
+	public void remove(String key) {
 		remove(SYS_CACHE, key);
 	}
 	
@@ -70,7 +72,7 @@ public class CacheTemplate {
 	 * @param key
 	 * @return
 	 */
-	public static Object get(String cacheName, String key) {
+	public Object get(String cacheName, String key) {
 		return getCache(cacheName).get(getKey(key));
 	}
 	
@@ -81,7 +83,7 @@ public class CacheTemplate {
 	 * @param defaultValue
 	 * @return
 	 */
-	public static Object get(String cacheName, String key, Object defaultValue) {
+	public Object get(String cacheName, String key, Object defaultValue) {
 		Object value = get(cacheName, getKey(key));
 		return value != null ? value : defaultValue;
 	}
@@ -92,7 +94,7 @@ public class CacheTemplate {
 	 * @param key
 	 * @param value
 	 */
-	public static void put(String cacheName, String key, Object value) {
+	public void put(String cacheName, String key, Object value) {
 		getCache(cacheName).put(getKey(key), value);
 	}
 
@@ -101,7 +103,7 @@ public class CacheTemplate {
 	 * @param cacheName
 	 * @param key
 	 */
-	public static void remove(String cacheName, String key) {
+	public void remove(String cacheName, String key) {
 		getCache(cacheName).remove(getKey(key));
 	}
 
@@ -109,7 +111,7 @@ public class CacheTemplate {
 	 * 从缓存中移除所有
 	 * @param cacheName
 	 */
-	public static void removeAll(String cacheName) {
+	public void removeAll(String cacheName) {
 		Cache<String, Object> cache = getCache(cacheName);
 		Set<String> keys = cache.keys();
 		for (Iterator<String> it = keys.iterator(); it.hasNext();){
@@ -123,7 +125,7 @@ public class CacheTemplate {
 	 * @param key
 	 * @return
 	 */
-	private static String getKey(String key){
+	private String getKey(String key){
 //		String dsName = DataSourceHolder.getDataSourceName();
 //		if (StringUtils.isNotBlank(dsName)){
 //			return dsName + "_" + key;
@@ -136,7 +138,7 @@ public class CacheTemplate {
 	 * @param cacheName
 	 * @return
 	 */
-	private static Cache<String, Object> getCache(String cacheName){
+	private Cache<String, Object> getCache(String cacheName){
 		Cache<String, Object> cache = cacheManager.getCache(cacheName);
 		if (cache == null){
 			throw new RuntimeException("当前系统中没有定义“"+cacheName+"”这个缓存。");

@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +32,7 @@ public class LogSupport {
 
 	private static SysLogService sysLogService = SpringContextHolder.getBean(SysLogService.class);
 	private static SysMenuService sysMenuService = SpringContextHolder.getBean(SysMenuService.class);
-
+	private static CacheTemplate cacheTemplate = SpringContextHolder.getBean(CacheTemplate.class);
 	/**
 	 * 保存日志
 	 */
@@ -53,6 +54,7 @@ public class LogSupport {
 			sysLog.setReqMethod(request.getMethod());
 			sysLog.setReqUrl(request.getRequestURI());
 			sysLog.setAgentUser(request.getHeader("user-agent"));
+			sysLog.setCreateOprId(SSOUtils.getCurrentUserId().toString());
 			// 异步保存日志
 			new SaveLogThread(sysLog, handler, ex).start();
 		}
@@ -107,7 +109,7 @@ public class LogSupport {
 	public static String getMenuNamePath(String requestUri, String permission){
 		String href = requestUri;
 		@SuppressWarnings("unchecked")
-		Map<String, String> menuMap = (Map<String, String>) CacheTemplate.get(CacheKeyConstants.SYS_MENU_NAME_PATH_MAP);
+		Map<String, String> menuMap = (Map<String, String>) cacheTemplate.get(CacheKeyConstants.SYS_MENU_NAME_PATH_MAP);
 		if (menuMap == null){
 			menuMap =new HashMap();
 			List<SysMenu> menuList = sysMenuService.querySysMenu();
@@ -117,7 +119,7 @@ public class LogSupport {
 					menuMap.put(menu.getUrl(), menu.getMenuName());
 				}
 			}
-			CacheTemplate.put(CacheKeyConstants.SYS_MENU_NAME_PATH_MAP, menuMap);
+			cacheTemplate.put(CacheKeyConstants.SYS_MENU_NAME_PATH_MAP, menuMap);
 		}
 
 		String menuNamePath = menuMap.get(href);

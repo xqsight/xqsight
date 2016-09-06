@@ -25,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -50,15 +51,13 @@ public class FileUploadController extends AbstractFileUploadController{
         MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request;
         Map<String, MultipartFile> multipartFileMap = mRequest.getFileMap();
 
-        List<SysFile> sysFiles = null;
-        Iterator<String> iterator = multipartFileMap.keySet().iterator();
-        while(iterator.hasNext()){
-            MultipartFile multipartFile = multipartFileMap.get(iterator.next());
+        List<SysFile> sysFiles = new ArrayList<>();
+        for(String key : multipartFileMap.keySet()){
+            MultipartFile multipartFile = multipartFileMap.get(key);
             SysFile sysFile = uploadFile(multipartFile);
             uploadService.saveSysFile(sysFile);
             sysFiles.add(sysFile);
         }
-
         return MessageSupport.successDataMsg(sysFiles, "上传成功");
     }
 

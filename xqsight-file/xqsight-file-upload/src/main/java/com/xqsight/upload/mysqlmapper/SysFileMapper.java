@@ -21,7 +21,7 @@ import com.xqsight.upload.model.SysFile;
  */
 public interface SysFileMapper {
 
-	@Insert(" INSERT INTO SYS_FILE(FILE_NAME,FILE_DOMAIN,FILE_URL,FILE_EXT,FILE_SIZE,ATTACHMENT_TYPE,FILE_KIND,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK)VALUES(#{fileName,jdbcType=VARCHAR},#{fileDomain,jdbcType=VARCHAR},#{fileUrl,jdbcType=VARCHAR},#{fileExt,jdbcType=VARCHAR},#{fileSize,jdbcType=VARCHAR},#{attachmentType,jdbcType=VARCHAR},#{fileKind,jdbcType=VARCHAR},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP},#{updOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
+	@Insert(" INSERT INTO SYS_FILE(FILE_NAME,FILE_DOMAIN,FILE_URL,UPLOAD_URL,FILE_EXT,FILE_SIZE,ATTACHMENT_TYPE,FILE_KIND,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK)VALUES(#{fileName,jdbcType=VARCHAR},#{fileDomain,jdbcType=VARCHAR},#{fileUrl,jdbcType=VARCHAR},#{uploadUrl,jdbcType=VARCHAR},#{fileExt,jdbcType=VARCHAR},#{fileSize,jdbcType=VARCHAR},#{attachmentType,jdbcType=VARCHAR},#{fileKind,jdbcType=VARCHAR},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP},#{updOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
 	@Options(useGeneratedKeys = true, keyProperty = "fileId")
 	void saveSysFile(SysFile sysFile);
 	
@@ -31,9 +31,9 @@ public interface SysFileMapper {
 	@Delete(" DELETE FROM SYS_FILE WHERE FILE_ID IN (${fileId})")
 	void deleteSysFileByFileIds(@Param("fileId") String fileId);
 
-	@Select(" SELECT FILE_ID,FILE_DOMAIN,FILE_NAME,FILE_URL,FILE_EXT,FILE_SIZE,ATTACHMENT_TYPE,FILE_KIND,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM SYS_FILE WHERE FILE_ID=#{fileId,jdbcType=NUMERIC}")
+	@Select(" SELECT FILE_ID,FILE_DOMAIN,FILE_NAME,FILE_URL,UPLOAD_URL,FILE_EXT,FILE_SIZE,ATTACHMENT_TYPE,FILE_KIND,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM SYS_FILE WHERE FILE_ID=#{fileId,jdbcType=NUMERIC}")
 	SysFile querySysFileById(@Param("fileId") long fileId);
 	
-	@Select(" SELECT FILE_ID,FILE_DOMAIN,FILE_NAME,FILE_URL,FILE_EXT,FILE_SIZE,ATTACHMENT_TYPE,FILE_KIND,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM SYS_FILE WHERE FILE_ID IN (${fileId})")
+	@Select(" SELECT FILE_ID,FILE_DOMAIN,FILE_NAME,FILE_URL,UPLOAD_URL,FILE_EXT,FILE_SIZE,ATTACHMENT_TYPE,FILE_KIND,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM SYS_FILE WHERE FILE_ID IN (${fileId})")
 	List<SysFile> querySysFileByIds(@Param("fileId") String fileId);
 }

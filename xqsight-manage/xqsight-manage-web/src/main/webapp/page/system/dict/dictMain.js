@@ -68,6 +68,9 @@ saicfc.nameSpace.reg("sys.dict");
             $("#btn-remove").on("click",obj.removeFun);
             $("#btn-detail-remove").on("click",obj.removeDetailFun);
 
+            /** 同步 **/
+            $('#btn-retweet').on("click",obj.retweetFun);
+
             /**
              * 加载列表
              */
@@ -229,6 +232,20 @@ saicfc.nameSpace.reg("sys.dict");
             });
         }
 
+        this.retweetFun = function(){
+            saicfc.win.confirm("确认同步吗？",function(btn){
+                if(btn == "yes"){
+                    $.ajax({
+                        "url": ctxData + "/sys/dict/reload?date=" + new Date().getTime(),
+                        "dataType": "jsonp",
+                        "cache": false,
+                        "success": function(retData){
+                            saicfc.win.alert(retData.msg,retData.status);
+                        }
+                    });
+                }
+            });
+        }
         /**
          * 加载数据表 function
          */
@@ -269,18 +286,18 @@ saicfc.nameSpace.reg("sys.dict");
                     }
                 ],
                 "aoColumns": [{
-                    "data": "dictDesp",
-                    sWidth : "160",
-                    sClass : "text-center",
-                    sSort : false
-                },{
                     "data": "dictValue",
                     sWidth : "120",
                     sClass : "text-center",
                     sSort : false
                 },{
+                    "data": "dictDesp",
+                    sWidth : "160",
+                    sClass : "text-center",
+                    sSort : false
+                },{
                     "data": "active",
-                    sWidth : "120",
+                    sWidth : "80",
                     sClass : "text-center",
                     sSort : false,
                     render : function(value){
@@ -291,7 +308,7 @@ saicfc.nameSpace.reg("sys.dict");
                     }
                 },{
                     "data": "editable",
-                    sWidth : "120",
+                    sWidth : "80",
                     sClass : "text-center",
                     sSort : false,
                     render : function(value){
@@ -302,7 +319,7 @@ saicfc.nameSpace.reg("sys.dict");
                     }
                 },{
                     "data": "remark",
-                    sWidth : "200",
+                    sWidth : "100",
                     sClass : "text-left"
                 }]
             });

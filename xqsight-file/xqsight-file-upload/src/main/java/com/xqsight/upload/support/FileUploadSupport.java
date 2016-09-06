@@ -51,17 +51,19 @@ public class FileUploadSupport {
         String fileBaseName = FilenameUtils.getBaseName(fileName);
 
         /**  文件保存路径 upload + 文件类型 + 日期 **/
-        StringBuffer filePath = new StringBuffer("upload").append(separator).append(FileExtSupport.fileKind(ext)).append(separator).append(DateFormatUtils.yyyyMMdd.format(new Date()));
+        String filePath = new StringBuffer("upload").append(separator).append(FileExtSupport.fileKind(ext)).append(separator).append(DateFormatUtils.yyyyMMdd.format(new Date())).toString();
         /**  上传文件的名称 ：原文件名 + 大小 + 随机数**/
-        StringBuffer newFileName = new StringBuffer(fileBaseName).append("-").append(fileSize).append("-").append(RandomUtil.randomString(6));
+        String newFileName = new StringBuffer(fileBaseName).append("-").append(fileSize).append("-").append(RandomUtil.randomString(6)).toString();
         /**  上传文件的名称 ：原文件名 + 大小 + 随机数 + 扩展名  **/
-        String newFullFileName = newFileName.append(Dot).append(ext).toString();
+        String newFullFileName = newFileName + Dot + ext;
+        /** 上传完整路径：保存路径 + 处理后文件名 **/
+        String fileFulPath = filePath + separator + newFileName + newFullFileName;
         /** 获取当前请求 request**/
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         /** 当前项目的根目录 **/
         String projectPath = request.getSession().getServletContext().getRealPath(separator);
         /** 本地上传文件处理 **/
-        String localFilePath = projectPath + separator + filePath.append(separator).append(newFullFileName).toString();
+        String localFilePath = projectPath + separator + fileFulPath;
 
         if (StringUtils.equalsIgnoreCase(FileUploadConfig.SAVE_TYPE, "LOCAL")) {
             File newFile = new File(localFilePath);
@@ -69,13 +71,14 @@ public class FileUploadSupport {
             //传送文件
             file.transferTo(newFile);
             if (FileExtSupport.checkIsConvertVedio(ext) != 9) {//视频文件
+                localUploadVidio(projectPath + separator + filePath,newFullFileName);
 
-                localUploadVidio(projectPath + separator + filePath.toString(),newFullFileName);
-
-                sysFile.setFileThumbnails(filePath.append(separator).append(newFileName).append(Dot).append("jpg").toString());
-                sysFile.setFileUrl(filePath.append(separator).append(newFileName).append(Dot).append("flv").toString());
+                sysFile.setFileThumbnails(filePath + separator + newFileName + Dot + "jpg");
+                sysFile.setUploadUrl(filePath + separator + newFileName + Dot + "flv");
+                sysFile.setFileUrl(FileUploadConfig.LOCAL_UPLOADURL + filePath + separator + newFileName + Dot + "flv");
             } else {
-                sysFile.setFileUrl(filePath.append(separator).append(newFullFileName).toString());
+                sysFile.setUploadUrl(fileFulPath);
+                sysFile.setFileUrl(FileUploadConfig.LOCAL_UPLOADURL + fileFulPath);
             }
             sysFile.setFileDomain(FileUploadConfig.LOCAL_UPLOADURL);
         } else {
@@ -85,19 +88,21 @@ public class FileUploadSupport {
                 //传送文件
                 file.transferTo(newFile);
 
-                localUploadVidio(projectPath + separator + filePath.toString(),newFullFileName);
+                localUploadVidio(projectPath + separator + filePath ,newFullFileName);
 
-                File fileUploadFtpPic = new File(projectPath + separator + filePath.append(separator).append(newFileName).append(Dot).append("jpg"));
-                File fileUploadFtp = new File(projectPath + separator + filePath.append(separator).append(newFileName).append(Dot).append("flv"));
+                File fileUploadFtpPic = new File(projectPath + separator + filePath + separator + newFileName + Dot + "jpg");
+                File fileUploadFtp = new File(projectPath + separator + filePath + separator + newFileName + Dot + "flv");
 
-                ftpUloadFile(filePath.toString(), fileBaseName + Dot + "flv", FileUtil.getInputStream(fileUploadFtp));
-                ftpUloadFile(filePath.toString(), fileBaseName + Dot + "jpg", FileUtil.getInputStream(fileUploadFtpPic));
+                ftpUloadFile(filePath , fileBaseName + Dot + "flv", FileUtil.getInputStream(fileUploadFtp));
+                ftpUloadFile(filePath , fileBaseName + Dot + "jpg", FileUtil.getInputStream(fileUploadFtpPic));
 
-                sysFile.setFileThumbnails(filePath.append(separator).append(newFileName).append(Dot).append("jpg").toString());
-                sysFile.setFileUrl(filePath.append(separator).append(newFileName).append(Dot).append("flv").toString());
+                sysFile.setFileThumbnails(filePath + separator + fileBaseName + Dot + "jpg");
+                sysFile.setUploadUrl(filePath + separator + fileBaseName + Dot + "flv");
+                sysFile.setFileUrl(FileUploadConfig.FTP_UPLOADURL + filePath + separator + fileBaseName + Dot + "flv");
             } else {
-                ftpUloadFile(filePath.toString(), newFullFileName, file.getInputStream());
-                sysFile.setFileUrl(filePath.toString());
+                ftpUloadFile(filePath, newFullFileName, file.getInputStream());
+                sysFile.setUploadUrl(fileFulPath);
+                sysFile.setFileUrl(FileUploadConfig.FTP_UPLOADURL + fileFulPath);
             }
             sysFile.setFileDomain(FileUploadConfig.FTP_UPLOADURL);
         }

@@ -21,6 +21,9 @@
 	<listener>
 		<listener-class>com.xqsight.commons.web.RequestContextListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>com.xqsight.sys.init.SystemInitListener</listener-class>
+	</listener>
 	<filter>
 		<filter-name>log4jServletFilter</filter-name>
 		<filter-class>org.apache.logging.log4j.web.Log4jServletFilter</filter-class>

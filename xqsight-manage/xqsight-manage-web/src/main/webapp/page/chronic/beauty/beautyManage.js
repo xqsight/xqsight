@@ -39,7 +39,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
 
             $("#fileId").on("fileuploaded", function (event, data, previewId, index) {
                 var retData = data.response;
-                saicfc.win.alert(retData.msg);
+                saicfc.win.alert(retData.msg,retData.status);
                 if(retData.status == "0"){
                 	if(editbeauty.fileId == undefined)
             			editbeauty.fileId ="";

@@ -5,7 +5,7 @@ package com.xqsight.common.constants;
  */
 public class FileConstants {
 
-    public final static String FTP_CONFIGER         = "ftpConfiger";
+    public final static String FTP_CONFIGER         = "uploadConfiger";
 
     public final static String SAVE_TYPE            = "saveType";
 
