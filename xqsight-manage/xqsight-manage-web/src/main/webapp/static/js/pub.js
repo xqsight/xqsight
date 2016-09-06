@@ -184,40 +184,26 @@ saicfc.utils = {
      */
     getServerPath : function(reqType){
         var serverPath = "";
-       /* switch (reqType){
-            case "dataTableLocal" :
-                serverPath = "http://182.61.6.205/system/static/ace/js/dataTables/language/zn_ch.json";
-                break;
-            case "domain" :
-                serverPath = "/gene";
-            default:
-                serverPath = "http://182.61.6.205/system";
-        }
-        return serverPath;*/
-
         switch (reqType){
             case "system" :  //系统管理
-                serverPath = "http://localhost:8080/portal";
+                serverPath = saicfc.utils.getContextPath();
                 break;
-            case "cms" :     //cms
-                serverPath = "http://localhost:8080/portal";
-                break;
-            case "survey" :  //调研问卷
-                serverPath = "http://localhost:8080/portal";
-                break;
-            case "recon" :  //对账
-                serverPath = "http://localhost:8080/portal";
+            case "anti" :
+                serverPath = saicfc.utils.getContextPath();
                 break;
             case "dataTableLocal" :
-                serverPath = "/portal/static/ace/js/dataTables/language/zn_ch.json";
-                break;
-            case "domain" :
-                serverPath = "/portal";
+                serverPath = saicfc.utils.getContextPath() + "/static/ace/js/dataTables/language/zn_ch.json";
                 break;
             default:
-                serverPath = "http://localhost:8080/portal";
+                serverPath = saicfc.utils.getContextPath();
         }
         return serverPath;
+    },
+    getContextPath : function() {
+        var contextPath = document.location.pathname;
+        var index =contextPath.substr(1).indexOf("/"); //这个地方可能有问题，要根据具体项目适当修改
+        contextPath = contextPath.substr(0,index+1);
+        return contextPath == "/page" ? "" : contextPath;
     }
 
 };
