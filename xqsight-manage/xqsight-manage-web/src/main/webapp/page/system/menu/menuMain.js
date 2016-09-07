@@ -156,6 +156,12 @@ saicfc.nameSpace.reg("sys.menu");
                     }
                 ],
                 "aoColumns": [{
+                    data : "menuName",
+                    sWidth : "2",
+                    render : function(value){
+                        return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
+                    }
+                },{
                     "data": "menuName",
                     sWidth : "100",
                     sClass : "text-center",
@@ -205,8 +211,16 @@ saicfc.nameSpace.reg("sys.menu");
 
             //单选事件
             $("#menu-table tbody").on("click","tr",function() {
+                $.each($("#menu-table tbody").find("input[type='checkbox']"),function(index,object){
+                    object.checked = false;
+                });
+                $(this).find("input[type='checkbox']").get(0).checked = true;
                 $("#menu-table>tbody>tr").removeClass("info");
                 $(this).addClass("info");
+            });
+
+            $("#menu-table tbody").on("dblclick","tr",function() {
+                obj.editFun();
             });
         }
 

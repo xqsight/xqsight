@@ -20,7 +20,7 @@
 	<!-- 系统管理 -->
 	<bean id="systemUserSecurityManager" class="com.xqsight.sso.shiro.mgt.CustomWebSecurityManager">
 		<!-- cacheManager -->
-		<property name="cacheManager" ref="shiroCacheManager" />
+		<property name="cacheManager" ref="cacheManager" />
 		<!-- sessionManager -->
 		<property name="sessionManager" ref="sessionManager" />
 		<property name="authenticator">

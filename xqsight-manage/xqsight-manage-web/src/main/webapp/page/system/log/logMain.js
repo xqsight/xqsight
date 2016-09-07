@@ -124,6 +124,12 @@ saicfc.nameSpace.reg("sys.log");
 
                 ],
                 "aoColumns": [{
+                    data : "logId",
+                    sWidth : "2",
+                    render : function(value){
+                        return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
+                    }
+                },{
                     data: "logTitle",
                     sWidth : "120",
                     sClass : "text-center",
@@ -176,8 +182,16 @@ saicfc.nameSpace.reg("sys.log");
 
             //单选事件
             $("#data-table tbody").on("click","tr",function() {
+                $.each($("#data-table tbody").find("input[type='checkbox']"),function(index,object){
+                    object.checked = false;
+                });
+                $(this).find("input[type='checkbox']").get(0).checked = true;
                 $("#data-table>tbody>tr").removeClass("info");
                 $(this).addClass("info");
+            });
+
+            $("#data-table tbody").on("dblclick","tr",function() {
+                obj.viewFun();
             });
         }
 

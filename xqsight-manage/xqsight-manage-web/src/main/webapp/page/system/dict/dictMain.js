@@ -286,6 +286,12 @@ saicfc.nameSpace.reg("sys.dict");
                     }
                 ],
                 "aoColumns": [{
+                    data : "dictValue",
+                    sWidth : "2",
+                    render : function(value){
+                        return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
+                    }
+                },{
                     "data": "dictValue",
                     sWidth : "120",
                     sClass : "text-center",
@@ -321,6 +327,16 @@ saicfc.nameSpace.reg("sys.dict");
                     "data": "remark",
                     sWidth : "100",
                     sClass : "text-left"
+                },{
+                    "data": "dictId",
+                    sWidth : "80",
+                    sClass : "text-center",
+                    render : function(){
+                        return "<div class='bolder'>"
+                            + "<a class='red' href='javaScript:dictMain.editDetailFun()'><i class='ace-icon fa fa-edit'></i></a> | "
+                            + "<a class='red' href='javaScript:dictMain.removeDetailFun()'><i class='ace-icon fa fa-remove'></i></a> "
+                            + "</div> ";
+                    }
                 }]
             });
 
@@ -329,8 +345,16 @@ saicfc.nameSpace.reg("sys.dict");
 
             //单选事件
             $("#detail-table tbody").on("click","tr",function() {
+                $.each($("#detail-table tbody").find("input[type='checkbox']"),function(index,object){
+                    object.checked = false;
+                });
+                $(this).find("input[type='checkbox']").get(0).checked = true;
                 $("#detail-table>tbody>tr").removeClass("info");
                 $(this).addClass("info");
+            });
+
+            $("#detail-table tbody").on("dblclick","tr",function() {
+                obj.editDetailFun();
             });
         }
         this.loadDictFun = function(){

@@ -157,6 +157,12 @@ saicfc.nameSpace.reg("sys.org");
                     }
                 ],
                 "aoColumns": [{
+                    data : "orgId",
+                    sWidth : "2",
+                    render : function(value){
+                        return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
+                    }
+                },{
                     "data": "orgName",
                     sWidth : "100",
                     sClass : "text-center",
@@ -197,8 +203,16 @@ saicfc.nameSpace.reg("sys.org");
 
             //单选事件
             $("#org-table tbody").on("click","tr",function() {
+                $.each($("#org-table tbody").find("input[type='checkbox']"),function(index,object){
+                    object.checked = false;
+                });
+                $(this).find("input[type='checkbox']").get(0).checked = true;
                 $("#org-table>tbody>tr").removeClass("info");
                 $(this).addClass("info");
+            });
+
+            $("#org-table tbody").on("dblclick","tr",function() {
+                obj.editFun();
             });
         }
 
