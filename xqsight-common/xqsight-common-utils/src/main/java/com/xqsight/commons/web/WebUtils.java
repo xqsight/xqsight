@@ -81,7 +81,7 @@ public class WebUtils {
             List<MediaType> mediaTypes = MediaType.parseMediaTypes(accept);
             MediaType.sortBySpecificityAndQuality(mediaTypes);
             String fullType = mediaTypes.get(0).getType() + "/" + mediaTypes.get(0).getSubtype();
-            logger.info("full Type is {}", fullType);
+            logger.debug("full Type is {}", fullType);
             switch(fullType){
                 case "text/html":
                 case "text/xml":

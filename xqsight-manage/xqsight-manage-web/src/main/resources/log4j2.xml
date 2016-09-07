@@ -19,6 +19,7 @@
 		</RollingFile>
 	</Appenders>
 	<Loggers>
+		<logger name="org.apache.shiro.cache.ehcache" level="ERROR" />
 		<logger name="com.alibaba.druid" level="ERROR" />
 		<logger name="com.alibaba.dubbo" level="ERROR" />
 		<logger name="org.springframework" level="ERROR" />
