@@ -20,6 +20,8 @@ drop table if exists CMS_COMMENT;
 
 drop table if exists CMS_MODEL;
 
+drop table if exists CMS_ARTICLE_REPORT;
+
 drop table if exists ECG;
 
 drop table if exists FAT;
@@ -177,6 +179,27 @@ create table CMS_ATTENTION
 );
 
 alter table CMS_ATTENTION comment '用户收藏表';
+
+/*==============================================================*/
+/* Table: CMS_ARTICLE_REPORT                                         */
+/*==============================================================*/
+create table CMS_ARTICLE_REPORT
+(
+   REPORT_ID            bigint not null auto_increment comment '举报主键',
+   ASSOCICATION_ID      bigint not null comment '收藏的ID',
+   REPORT_TYPE          int comment '举报类型',
+   DEAL_STATUS          int default -1 comment '处理状态 0:已处理 -1:未处理',
+   ACTIVE               int not null default 0 comment '是否有效 0:有效 -1:无效',
+   CREATE_TIME          datetime comment '创建时间',
+   CREATE_OPR_ID        varchar(40) comment '创建人ID',
+   UPDATE_TIME          datetime comment '修改时间',
+   UPD_OPR_ID           varchar(40) comment '修改人ID',
+   REMARK               varchar(200) comment '备注',
+   primary key (REPORT_ID)
+);
+
+alter table CMS_ARTICLE_REPORT comment '帖子举报表';
+
 
 /*==============================================================*/
 /* Table: CMS_COMMENT                                           */
