@@ -78,7 +78,7 @@ saicfc.nameSpace.reg("xqsight.cms");
          * 修改 function
          */
         this.editFun = function(){
-            var selRows = obj.artilceTable.rows(".success").data();
+            var selRows = obj.artilceTable.rows(".info").data();
             if(selRows.length < 1){
                 saicfc.win.alert("请选择修改的数据");
                 return;
@@ -90,7 +90,7 @@ saicfc.nameSpace.reg("xqsight.cms");
          * 删除 function
          */
         this.removeFun = function(){
-            var selRows = obj.artilceTable.rows(".success").data();
+            var selRows = obj.artilceTable.rows(".info").data();
             if(selRows.length < 1){
                 saicfc.win.alert("请选择删除的数据");
                 return;
@@ -157,6 +157,12 @@ saicfc.nameSpace.reg("xqsight.cms");
                     }
                 ],
                 "aoColumns": [{
+                    data : "articleId",
+                    sWidth : "2",
+                    render : function(value){
+                        return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
+                    }
+                },{
                     data: "articleTitle",
                     sWidth : "250",
                     sClass : "text-center",
@@ -191,8 +197,16 @@ saicfc.nameSpace.reg("xqsight.cms");
             obj.artilceTable = record_table;
             //单选事件
             $("#article-table tbody").on("click","tr",function() {
-                $("#article-table>tbody>tr").removeClass("success");
-                $(this).addClass("success");
+                $.each($("#article-table tbody").find("input[type='checkbox']"),function(index,object){
+                    object.checked = false;
+                });
+                $(this).find("input[type='checkbox']").get(0).checked = true;
+                $("#article-table>tbody>tr").removeClass("info");
+                $(this).addClass("info");
+            });
+
+            $("#article-table tbody").on("dblclick","tr",function() {
+                obj.editFun();
             });
         }
 

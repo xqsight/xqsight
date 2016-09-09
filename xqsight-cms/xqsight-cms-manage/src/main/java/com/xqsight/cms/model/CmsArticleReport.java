@@ -26,6 +26,8 @@ public class CmsArticleReport extends BaseModel{
     private Integer reportType;
 	/** DEAL_STATUS - 处理状态 0:已处理 -1:未处理 */
     private Integer dealStatus;
+    /** REPORT_CONTENT - 举报内容 */
+    private String reportContent;
 
     public Long getReportId(){
         return this.reportId;
@@ -50,5 +52,13 @@ public class CmsArticleReport extends BaseModel{
     }
     public void setDealStatus(Integer dealStatus){
         this.dealStatus = dealStatus;
+    }
+
+    public String getReportContent() {
+        return reportContent;
+    }
+
+    public void setReportContent(String reportContent) {
+        this.reportContent = reportContent;
     }
 }

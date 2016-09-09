@@ -189,7 +189,8 @@ saicfc.nameSpace.reg("sys");
         }
 
         /** 添加tab function */
-        this.addTabPageFun = function(id,title,href){
+        this.addTabPageFun = function(id,title,href,reload){
+            reload = (reload == undefined) ? false : reload;
             //移除选中样式
             $("#portal_tabs li").removeClass("active");
             $("#portal_tab_content div").removeClass("active");
@@ -198,6 +199,9 @@ saicfc.nameSpace.reg("sys");
             if($("#portal_tabs #tab_" + id).length > 0){
                 $("#tab_" + id).addClass("active");
                 $("#tab_content_" + id).addClass("active");
+                if(reload && $("#iframe_" + id) != undefined)
+                    $("#iframe_" + id).document.location=href;
+
                 return;
             }
             var joinChar = (href.indexOf("?") > 0) ? "&" : "?";

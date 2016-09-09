@@ -188,6 +188,7 @@ create table CMS_ARTICLE_REPORT
    REPORT_ID            bigint not null auto_increment comment '举报主键',
    ASSOCICATION_ID      bigint not null comment '收藏的ID',
    REPORT_TYPE          int comment '举报类型',
+   REPORT_CONTENT          varchar(400) comment '举报内容',
    DEAL_STATUS          int default -1 comment '处理状态 0:已处理 -1:未处理',
    ACTIVE               int not null default 0 comment '是否有效 0:有效 -1:无效',
    CREATE_TIME          datetime comment '创建时间',

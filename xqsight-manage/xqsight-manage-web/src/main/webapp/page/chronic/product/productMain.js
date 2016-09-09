@@ -79,7 +79,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
          * 修改 function
          */
         this.editFun = function(){
-            var selRows = obj.productTable.rows(".success").data();
+            var selRows = obj.productTable.rows(".info").data();
             if(selRows.length < 1){
                 saicfc.win.alert("请选择修改的数据");
                 return;
@@ -91,7 +91,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
          * 删除 function
          */
         this.removeFun = function(){
-            var selRows = obj.productTable.rows(".success").data();
+            var selRows = obj.productTable.rows(".info").data();
             if(selRows.length < 1){
                 saicfc.win.alert("请选择删除的数据");
                 return;
@@ -156,6 +156,12 @@ saicfc.nameSpace.reg("xqsight.chronic");
                     }
                 ],
                 "aoColumns": [{
+                    data : "productId",
+                    sWidth : "2",
+                    render : function(value){
+                        return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
+                    }
+                },{
                     "data": "productName",
                     sWidth : "160",
                     sClass : "text-center",
@@ -194,8 +200,16 @@ saicfc.nameSpace.reg("xqsight.chronic");
 
             //单选事件
             $("#product-table tbody").on("click","tr",function() {
-                $("#product-table>tbody>tr").removeClass("success");
-                $(this).addClass("success");
+                $.each($("#product-table tbody").find("input[type='checkbox']"),function(index,object){
+                    object.checked = false;
+                });
+                $(this).find("input[type='checkbox']").get(0).checked = true;
+                $("#product-table>tbody>tr").removeClass("info");
+                $(this).addClass("info");
+            });
+
+            $("#product-table tbody").on("dblclick","tr",function() {
+                obj.editFun();
             });
         }
 

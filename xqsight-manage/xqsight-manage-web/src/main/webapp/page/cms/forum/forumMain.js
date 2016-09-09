@@ -67,22 +67,32 @@ saicfc.nameSpace.reg("xqsight.cms");
          * 详情 function
          */
         this.forumDetailFun = function(articleId){
-        	var href="cms/forum/forumManage.html?articleId=" + articleId;
-        	window.top.index.addTabPageFun(articleId,"查看详情",href);
+            var selRows = obj.forumTable.rows(".info").data();
+            if(selRows.length < 1){
+                saicfc.win.alert("请选择查看的数据");
+                return;
+            }
+        	var href="cms/forum/forumManage.html?articleId=" + selRows[0].articleId;
+        	window.top.index.addTabPageFun("forum_window","查看详情",href,true);
         }
 
         /**
          * 删除 function
          */
-        this.removeFun = function(articleId){
+        this.removeFun = function(){
+            var selRows = obj.forumTable.rows(".info").data();
+            if(selRows.length < 1){
+                saicfc.win.alert("请选择删除的数据");
+                return;
+            }
             saicfc.win.confirm("确认删除吗？",function(btn){
                 if(btn == "yes"){
                     $.ajax({
-                        "url": ctxData + "/cms/article/delete?date=" + new Date().getTime(),
-                        data: {"articleId":articleId},
-                        "dataType": "jsonp",
-                        "cache": false,
-                        "success": function(retData){
+                        url: ctxData + "/cms/article/delete?date=" + new Date().getTime(),
+                        data: {"articleId":selRows[0].articleId},
+                        dataType: "jsonp",
+                        cache: false,
+                        success: function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 obj.forumTable.ajax.reload();
@@ -135,6 +145,12 @@ saicfc.nameSpace.reg("xqsight.cms");
                     }
                 ],
                 "aoColumns": [{
+                    data : "articleId",
+                    sWidth : "2",
+                    render : function(value){
+                        return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
+                    }
+                },{
                     data: "articleTitle",
                     sWidth : "160",
                     sClass : "text-center",
@@ -155,10 +171,9 @@ saicfc.nameSpace.reg("xqsight.cms");
                     data: "articleId",
                     sWidth : "60",
                     sClass : "text-center",
-                    render : function(value){
-                         return '<button class="btn btn-xs btn-default" onclick="forumMain.forumDetailFun('
-                             + value + ')">详情</button><button class="btn btn-xs btn-default" onclick="forumMain.delFun('
-                             + value + ')">删除</button>';
+                    render : function(){
+                        return "<div class='bolder'> <a class='red' href='javaScript:forumMain.forumDetailFun();'><i class='ace-icon fa fa-search'></i></a> | " +
+                            "<a class='red' href='javaScript:forumMain.delFun();'><i class='ace-icon fa fa-remove'></i></a></div> ";
                     }
                 }]
             });
@@ -167,8 +182,16 @@ saicfc.nameSpace.reg("xqsight.cms");
 
             //单选事件
             $("#ask-table tbody").on("click","tr",function() {
-                $("#ask-table>tbody>tr").removeClass("success");
-                $(this).addClass("success");
+                $.each($("#ask-table tbody").find("input[type='checkbox']"),function(index,object){
+                    object.checked = false;
+                });
+                $(this).find("input[type='checkbox']").get(0).checked = true;
+                $("#ask-table>tbody>tr").removeClass("info");
+                $(this).addClass("info");
+            });
+
+            $("#ask-table tbody").on("dblclick","tr",function() {
+                obj.forumDetailFun();
             });
         }
 

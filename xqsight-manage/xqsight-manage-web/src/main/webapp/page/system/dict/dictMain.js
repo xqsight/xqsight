@@ -32,9 +32,6 @@ saicfc.nameSpace.reg("sys.dict");
             $("#btn-search").click(function(){
                 obj.loadDictFun();
             });
-            $("#btn-refresh").click(function(){
-                obj.dictDetailTable.ajax.reload();
-            });
             $(document).bind("keydown",".filter input",function(e){
                 var theEvent = window.event || e;
                 var code = theEvent.keyCode || theEvent.which;

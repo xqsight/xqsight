@@ -57,9 +57,14 @@ saicfc.nameSpace.reg("xqsight.chronic");
         /**
          * 回复 function
          */
-        this.forumFun = function(articleId){
-        	var href="chronic/ask/askManage.html?articleId=" + articleId;
-        	window.top.index.addTabPageFun(articleId,"咨询回复",href);
+        this.forumFun = function(){
+            var selRows = obj.askTable.rows(".info").data();
+            if(selRows.length < 1){
+                saicfc.win.alert("请选择回复的数据");
+                return;
+            }
+        	var href="chronic/ask/askManage.html?articleId=" + selRows[0].articleId;
+        	window.top.index.addTabPageFun("forum_window","咨询回复",href,true);
         }
 
         /**
@@ -104,6 +109,12 @@ saicfc.nameSpace.reg("xqsight.chronic");
                     }
                 ],
                 "aoColumns": [{
+                    data : "articleId",
+                    sWidth : "2",
+                    render : function(value){
+                        return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
+                    }
+                },{
                     data: "articleTitle",
                     sWidth : "160",
                     sClass : "text-center",
@@ -124,8 +135,8 @@ saicfc.nameSpace.reg("xqsight.chronic");
                     data: "articleId",
                     sWidth : "60",
                     sClass : "text-center",
-                    render : function(value){
-                         return '<button class="btn btn-xs btn-danger" onclick="askMain.forumFun(' + value + ')">回复</button>';
+                    render : function(){
+                        return "<div class='bolder'> <a class='red' href='javaScript:askMain.forumFun()'><i class='ace-icon fa fa-reply'></i> 回复</a></div> ";
                     }
                 }]
             });
@@ -134,8 +145,16 @@ saicfc.nameSpace.reg("xqsight.chronic");
 
             //单选事件
             $("#ask-table tbody").on("click","tr",function() {
-                $("#ask-table>tbody>tr").removeClass("success");
-                $(this).addClass("success");
+                $.each($("#ask-table tbody").find("input[type='checkbox']"),function(index,object){
+                    object.checked = false;
+                });
+                $(this).find("input[type='checkbox']").get(0).checked = true;
+                $("#ask-table>tbody>tr").removeClass("info");
+                $(this).addClass("info");
+            });
+
+            $("#user-table tbody").on("dblclick","tr",function() {
+                obj.forumFun();
             });
         }
 

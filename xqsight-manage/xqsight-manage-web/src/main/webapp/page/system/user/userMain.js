@@ -146,9 +146,7 @@ saicfc.nameSpace.reg("sys.user");
                         orgId = obj.curSelTree.id;
                     }
                     aoData.push(
-                        { "name": "loginId", "value": $("#loginId").val() },
-                        { "name": "userName", "value": $("#userName").val() },
-                        { "name": "orgId", "value": orgId }
+                        { "name": "loginId", "value": $("#loginId").val() }
                     );
                 },
                 "aoColumnDefs": [
