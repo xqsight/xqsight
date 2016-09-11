@@ -24,7 +24,7 @@ public interface ProductService {
 
 	Product queryProductById(Long productId);
 
-	List<Map<String,Object>> queryProductWithFirstPic();
+	List<Map<String,Object>> queryProductWithFirstPic(String productName);
 
 	List<Product> queryProduct();
 }

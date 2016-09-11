@@ -20,6 +20,9 @@ public interface CmsArticleViewMapper {
 	@Select(" SELECT * FROM VIEW_ARTICLE WHERE MODEL_ID = #{modelId,jdbcType=NUMERIC} ORDER BY CREATE_TIME DESC")
 	List<Map<String, Object>> queryCmsArticleViewByModelId(@Param("modelId") int modelId);
 
+	@Select(" SELECT * FROM VIEW_ARTICLE WHERE MODEL_ID = #{modelId,jdbcType=NUMERIC} AND ARTICLE_TITLE LIKE '%${articleTitle}%' ORDER BY CREATE_TIME DESC")
+	List<Map<String, Object>> queryCmsArticleViewByModelIdAndLikeArticleTitle(@Param("modelId") int modelId,@Param("articleTitle") String articleTitle);
+
 	@Select(" SELECT * FROM VIEW_ARTICLE WHERE ARTICLE_ID = #{articleId,jdbcType=NUMERIC} ORDER BY CREATE_TIME DESC")
 	Map<String, Object> queryCmsArticleViewByArticleId(@Param("articleId") Long articleId);
 

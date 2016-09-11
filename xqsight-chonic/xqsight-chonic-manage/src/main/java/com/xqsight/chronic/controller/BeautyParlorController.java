@@ -61,9 +61,9 @@ public class BeautyParlorController {
     }
 
     @RequestMapping("query")
-    public Object queryBeautyParlor(XqsightPage xqsightPage) {
+    public Object queryBeautyParlor(XqsightPage xqsightPage,String beautyName) {
         Page<?> page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
-        List<BeautyParlor> beautyParlors = beautyParlorService.queryBeautyParlor();
+        List<BeautyParlor> beautyParlors = beautyParlorService.queryBeautyParlor(beautyName);
         xqsightPage.setTotalCount(page.getTotal());
         return MessageSupport.successDataTableMsg(xqsightPage, beautyParlors);
     }

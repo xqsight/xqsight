@@ -145,7 +145,6 @@ saicfc.nameSpace.reg("xqsight.cms");
                 },
                 "fnServerParams": function (aoData) {
                     aoData.push(
-                        { "name": "articleTitle", "value": $("#articleTitle").val()},
                         { "name": "modelId", "value": $("#modelId").val()},
                         { "name": "appId","value" : appId}
                     );

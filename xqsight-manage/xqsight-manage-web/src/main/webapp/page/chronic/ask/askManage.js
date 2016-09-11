@@ -135,6 +135,8 @@ saicfc.nameSpace.reg("xqsight.chronic");
                             commentHtml += '</div></div></div>';
                         });
                         $("#comment").html("").html(commentHtml);
+
+                        parent.saicfc.common.setIframeHeight($.getUrlParam(saicfc.iframeId));
                     }
                 }
             });

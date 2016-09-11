@@ -45,7 +45,7 @@ public class FileUploadFTPServiceImpl implements FileUploadFTPService{
 		extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
 
 		// 最大文件大小
-		long maxSize = 1000000;
+		long maxSize = 100000000;
 
 		if (!ServletFileUpload.isMultipartContent(request))
 		{

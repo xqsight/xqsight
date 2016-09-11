@@ -63,7 +63,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                 saicfc.win.alert("请选择回复的数据");
                 return;
             }
-        	var href="chronic/ask/askManage.html?articleId=" + selRows[0].articleId;
+        	var href=ctxData + "/page/chronic/ask/askManage.html?articleId=" + selRows[0].articleId;
         	window.top.index.addTabPageFun("forum_window","咨询回复",href,true);
         }
 
@@ -153,7 +153,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                 $(this).addClass("info");
             });
 
-            $("#user-table tbody").on("dblclick","tr",function() {
+            $("#ask-table tbody").on("dblclick","tr",function() {
                 obj.forumFun();
             });
         }

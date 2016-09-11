@@ -50,8 +50,8 @@ public class BeautyParlorServiceImpl implements BeautyParlorService {
 	}
 	
 	@Override
-	public List<BeautyParlor> queryBeautyParlor() {
-		return beautyParlorMapper.queryBeautyParlor();
+	public List<BeautyParlor> queryBeautyParlor(String beautyName) {
+		return beautyParlorMapper.queryBeautyParlor(beautyName);
 	}
 	
 	@Override

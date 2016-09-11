@@ -8,6 +8,7 @@ package com.xqsight.cms.service;
 import java.util.List;
 
 import com.xqsight.cms.model.CmsArticleReport;
+import com.xqsight.cms.model.vo.CmsArticleReportVo;
 
 /**
  * <p>接口类service</p>
@@ -29,5 +30,5 @@ public interface CmsArticleReportService {
 	CmsArticleReport queryCmsArticleReportById(Long reportId);
 	
 	/** 查询列表 **/
-	List<CmsArticleReport> queryCmsArticleReport();
+	List<CmsArticleReportVo> queryCmsArticleReport(String reportContent);
 }

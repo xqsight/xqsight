@@ -164,6 +164,16 @@ public interface CmsArticleService {
      */
 	List<Map<String, Object>> queryCmsArticleViewWithFirstPicByModelIdAndUserId(Long modelId, String createOprId);
 
+
+	/**
+	 * 查询文章根据模块和标题
+	 *
+	 * @param modelId
+	 * @param articleTitle
+     * @return
+     */
+	List<Map<String, Object>> queryCmsArticleViewByModelIdAndLikeArticleTitle(int modelId, String articleTitle);
+
 	/**
 	 * 修改文章展示情况
 	 *
@@ -179,5 +189,6 @@ public interface CmsArticleService {
 	 * @param articleId
      */
 	void updateCmsArticleActiveByArticleId(int active, Long articleId);
+
 
 }

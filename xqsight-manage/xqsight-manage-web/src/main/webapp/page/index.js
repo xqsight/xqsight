@@ -199,8 +199,8 @@ saicfc.nameSpace.reg("sys");
             if($("#portal_tabs #tab_" + id).length > 0){
                 $("#tab_" + id).addClass("active");
                 $("#tab_content_" + id).addClass("active");
-                if(reload && $("#iframe_" + id) != undefined)
-                    $("#iframe_" + id).document.location=href;
+                if(reload)
+                    $("#iframe_" + id).attr("src",href);
 
                 return;
             }
@@ -209,6 +209,17 @@ saicfc.nameSpace.reg("sys");
             //添加
             obj.addTabFun(id,title);
             obj.addTabContentFun(id,href + joinChar + "iframeId=iframe_" +id);
+        }
+
+        /** tab reload function **/
+        this.tabReloadFun = function(){
+            var currentTabContentId = $("#portal_tabs .active>a").attr("href"),
+                currentTabContentIframe = $(currentTabContentId + ">iframe")[0];
+            $(currentTabContentIframe).attr("src",currentTabContentIframe.src);
+            obj.tabToolsFun("hide");
+        }
+        this.tabReloadByIdFun = function(id){
+            $("#iframe_" + id).attr("src",$("#iframe_" + id).attr("src"));
         }
 
         /** 添加tab */
@@ -371,9 +382,7 @@ saicfc.nameSpace.reg("sys");
 
             // 刷新
             $('#tabtool_refresh').click(function() {
-                var currentTabContentId = $("#portal_tabs .active>a").attr("href"),
-                currentTabContentIframe = $(currentTabContentId + ">iframe")[0];
-                $(currentTabContentIframe).attr("src",currentTabContentIframe.src);
+                obj.tabReloadFun();
                 obj.tabToolsFun("hide");
             });
 

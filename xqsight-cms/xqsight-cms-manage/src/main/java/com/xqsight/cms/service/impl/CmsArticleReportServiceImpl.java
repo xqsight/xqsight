@@ -7,6 +7,7 @@ package com.xqsight.cms.service.impl;
 
 import java.util.List;
 
+import com.xqsight.cms.model.vo.CmsArticleReportVo;
 import com.xqsight.cms.mysqlmapper.CmsArticleReportMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -55,7 +56,7 @@ public class CmsArticleReportServiceImpl implements CmsArticleReportService {
 	}
 	
 	@Override
-	public List<CmsArticleReport> queryCmsArticleReport() {
-		return cmsArticleReportMapper.queryCmsArticleReport();
+	public List<CmsArticleReportVo> queryCmsArticleReport(String reportContent) {
+		return cmsArticleReportMapper.queryCmsArticleReport(reportContent);
 	}
 }

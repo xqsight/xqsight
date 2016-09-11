@@ -18,7 +18,7 @@ saicfc.nameSpace.reg("cms.report");
          *
          * @type {{}}
          */
-        this.appTable = {};
+        this.dataTable = {};
 
         /**
          * 初始化调用 function
@@ -28,13 +28,13 @@ saicfc.nameSpace.reg("cms.report");
              * 查询
              */
             $(".btn-search").click(function(){
-                obj.appTable.ajax.reload();
+                obj.dataTable.ajax.reload();
             });
             $(document).bind("keydown",".filter input",function(e){
                 var theEvent = window.event || e;
                 var code = theEvent.keyCode || theEvent.which;
                 if (code == 13) {
-                    obj.appTable.ajax.reload();
+                    obj.dataTable.ajax.reload();
                 }
             });
             /**
@@ -51,6 +51,11 @@ saicfc.nameSpace.reg("cms.report");
             $("#btn-edit").on("click",obj.viewFun);
 
             /**
+             * 处理
+             */
+            $("#btn-deal").on("click",obj.dealFun);
+
+            /**
              * 删除
              */
             $("#btn-remove").on("click",obj.removeFun);
@@ -58,27 +63,61 @@ saicfc.nameSpace.reg("cms.report");
             /**
              * 加载列表
              */
-            obj.loadAppTableFun();
+            obj.loaddataTableFun();
         };
         
 
         /**
-         * 修改 function
+         * 查看 function
          */
         this.viewFun = function(){
-            var selRows = obj.appTable.rows(".info").data();
+            var selRows = obj.dataTable.rows(".info").data();
             if(selRows.length < 1){
                 saicfc.win.alert("请选择查看的数据");
                 return;
             }
-            saicfc.win.show("应用修改","cms/report/reportManage.html?reportId=" + selRows[0].reportId,600,300,true);
+            saicfc.win.show("举报查看","cms/report/reportManage.html?reportId=" + selRows[0].reportId,600,300,true);
+        }
+
+        this.viewArticleFun = function(){
+            var selRows = obj.dataTable.rows(".info").data();
+            if(selRows.length < 1){
+                saicfc.win.alert("请选择查看的数据");
+                return;
+            }
+            var href= ctxData + "/page/cms/forum/forumManage.html?articleId=" + selRows[0].articleId;
+            window.top.index.addTabPageFun("forum_window","查看详情",href,true);
+        }
+
+        this.dealFun = function(){
+            var selRows = obj.dataTable.rows(".info").data();
+            if(selRows.length < 1){
+                saicfc.win.alert("请选择处理的数据");
+                return;
+            }
+            saicfc.win.confirm("确认处理吗？",function(btn){
+                if(btn == "yes"){
+                    $.ajax({
+                        "url": ctxData + "/cms/article/report/update?date=" + new Date().getTime(),
+                        data: encodeURI(encodeURI("reportId=" + selRows[0].reportId )),
+                        "dataType": "jsonp",
+                        "cache": false,
+                        "success": function(retData){
+                            saicfc.win.alert(retData.msg,retData.status)
+                            if(retData.status == "0"){
+                                obj.dataTable.ajax.reload();
+                            }
+                        }
+                    });
+                }
+            });
         }
 
         /**
          * 删除 function
          */
         this.removeFun = function(){
-            var selRows = obj.appTable.rows(".info").data();
+            var selRows = obj.dataTable.rows(".info").data();
             if(selRows.length < 1){
                 saicfc.win.alert("请选择删除的数据");
                 return;
@@ -87,13 +126,13 @@ saicfc.nameSpace.reg("cms.report");
                 if(btn == "yes"){
                     $.ajax({
                         "url": ctxData + "/cms/article/report/delete?date=" + new Date().getTime(),
-                        "data": encodeURI(encodeURI("reportId=" + selRows[0].reportId )),
+                        data: encodeURI(encodeURI("reportId=" + selRows[0].reportId )),
                         "dataType": "jsonp",
                         "cache": false,
                         "success": function(retData){
                             saicfc.win.alert(retData.msg,retData.status)
                             if(retData.status == "0"){
-                                obj.appTable.ajax.reload();
+                                obj.dataTable.ajax.reload();
                             }
                         }
                     });
@@ -104,7 +143,7 @@ saicfc.nameSpace.reg("cms.report");
         /**
          * 加载数据表 function
          */
-        this.loadAppTableFun = function(){
+        this.loaddataTableFun = function(){
             var record_table = $("#data-table").DataTable({
                 "oLanguage" : { // 汉化
                     sUrl : saicfc.utils.getServerPath("dataTableLocal")
@@ -121,7 +160,7 @@ saicfc.nameSpace.reg("cms.report");
                 "fnServerData": function (sUrl, aoData, fnCallback) {
                     $.ajax({
                         "url": sUrl,
-                        "data": aoData,
+                        data: aoData,
                         "success": function(data){
                             fnCallback(data);
                             //渲染结束重新设置高度
@@ -133,7 +172,7 @@ saicfc.nameSpace.reg("cms.report");
                 },
                 "fnServerParams": function (aoData) {
                     aoData.push(
-                        { "name": "articleTitle", "value": $("#articleTitle").val() }
+                        { "name": "reportContent", "value": $("#reportContent").val() }
                     );
                 },
                 "aoColumnDefs": [
@@ -149,39 +188,49 @@ saicfc.nameSpace.reg("cms.report");
                         return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
                     }
                 },{
-                    "data": "articleTitle",
+                    data: "articleTitle",
                     sWidth : "120",
                     sClass : "text-center",
-                    sSort : false
+                    sSort : false,
+                    render : function(value){
+                        if(value == undefined || value == "")
+                            return "帖子不存在";
+                        else
+                            return "<a href='javaScript:reportMain.viewArticleFun();'>" + value + "</a>";
+                    }
                 },{
-                    "data": "reportType",
+                    data: "reportContent",
                     sWidth : "100",
                     sClass : "text-center",
                     sSort : false
                 },{
-                    "data": "dealStatus",
+                    data: "dealStatus",
                     sWidth : "160",
                     sClass : "text-center",
-                    sSort : false
+                    sSort : false,
+                    render : function(value){
+                        return value == 0 ? "已处理" : "未处理";
+                    }
                 },{
-                    "data": "createTime",
+                    data: "createTime",
                     sWidth : "80",
                     sClass : "text-center",
                     render : function(value){
                         return saicfc.moment.formatYMD(value);
                     }
                 },{
-                    "data": "reportId",
+                    data: "reportId",
                     sWidth : "80",
                     sClass : "text-center",
                     render : function(){
-                        return "<div class='bolder'> <a class='red' href='javaScript:reportMain.viewFun()'><i class='ace-icon fa fa-eye'></i></a> | " +
-                            "<a class='red' href='javaScript:reportMain.removeFun()'><i class='ace-icon fa fa-remove'></i></a></div> ";
+                        return "<div class='bolder'> <a class='red' href='javaScript:reportMain.viewFun();'><i class='ace-icon fa fa-eye'></i></a> | " +
+                            "<a class='red' href='javaScript:reportMain.dealFun();'><i class='ace-icon fa fa-reply'></i></a> | " +
+                            "<a class='red' href='javaScript:reportMain.removeFun();'><i class='ace-icon fa fa-remove'></i></a></div> ";
                     }
                 }]
             });
 
-            obj.appTable = record_table;
+            obj.dataTable = record_table;
 
             //单选事件
             $("#data-table tbody").on("click","tr",function() {
@@ -194,7 +243,7 @@ saicfc.nameSpace.reg("cms.report");
             });
 
             $("#data-table tbody").on("dblclick","tr",function() {
-                obj.editFun();
+                obj.viewFun();
             });
         }
 
@@ -205,7 +254,7 @@ saicfc.nameSpace.reg("cms.report");
          */
         this.editCallBackFun = function(params){
             //加载数据
-            obj.appTable.ajax.reload();
+            obj.dataTable.ajax.reload();
             if(params.appId== undefined || params.appId =="" ){
                 return;
             }

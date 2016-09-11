@@ -102,6 +102,9 @@ saicfc.nameSpace.reg("xqsight.cms");
                             commentHtml += '</div></div>';
                         });
                         $("#comment").html("").html(commentHtml);
+
+                        parent.saicfc.common.setIframeHeight($.getUrlParam(saicfc.iframeId));
+                        
                     }
                 }
             });

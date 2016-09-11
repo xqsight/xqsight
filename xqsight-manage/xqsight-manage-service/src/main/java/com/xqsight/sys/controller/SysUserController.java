@@ -162,7 +162,7 @@ public class SysUserController {
                 FileUtils.touch(newFile);
                 //传送文件
                 multipartFile.transferTo(newFile);
-                imgUrl = filePath.toString();
+                imgUrl = request.getContextPath() + filePath.toString();
             } catch (IOException e) {
                 e.printStackTrace();
                 return MessageSupport.failureMsg("上传失败");

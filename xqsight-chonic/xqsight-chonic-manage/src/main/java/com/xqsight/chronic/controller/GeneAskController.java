@@ -114,10 +114,10 @@ public class GeneAskController {
     }
 
     @RequestMapping("query")
-    public Object queryCmsArticle(XqsightPage xqsightPage,String modelCode) {
+    public Object queryCmsArticle(XqsightPage xqsightPage,String modelCode,String articleTitle) {
         int modelId = ModelCodeEnums.getEnum(modelCode).getModelId();
         Page<?> page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayLength(), xqsightPage.getiDisplayLength());
-        List<Map<String, Object>> dataList = cmsArticleService.queryCmsArticleViewByModelId(modelId);
+        List<Map<String, Object>> dataList = cmsArticleService.queryCmsArticleViewByModelIdAndLikeArticleTitle(modelId,articleTitle);
         xqsightPage.setTotalCount(page.getTotal());
         return MessageSupport.successDataTableMsg(xqsightPage, MapKeyHandle.keyToJavaProperty(dataList));
     }

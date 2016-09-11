@@ -38,7 +38,7 @@ public interface BeautyParlorService {
 	 * 查询
 	 * @return
      */
-	List<BeautyParlor> queryBeautyParlor();
+	List<BeautyParlor> queryBeautyParlor(String beautyName);
 
 	/**
 	 * 查询

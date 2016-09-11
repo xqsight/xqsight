@@ -72,7 +72,7 @@ saicfc.nameSpace.reg("xqsight.cms");
                 saicfc.win.alert("请选择查看的数据");
                 return;
             }
-        	var href="cms/forum/forumManage.html?articleId=" + selRows[0].articleId;
+        	var href= ctxData + "/page/cms/forum/forumManage.html?articleId=" + selRows[0].articleId;
         	window.top.index.addTabPageFun("forum_window","查看详情",href,true);
         }
 

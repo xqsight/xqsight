@@ -165,6 +165,13 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 	}
 
 	@Override
+	public List<Map<String, Object>> queryCmsArticleViewByModelIdAndLikeArticleTitle(int modelId,String articleTitle) {
+		logger.debug("传入参数:modelId={},articleTitle={}",modelId,articleTitle);
+		return cmsArticleViewMapper.queryCmsArticleViewByModelIdAndLikeArticleTitle(modelId,articleTitle);
+	}
+
+
+	@Override
 	public List<Map<String, Object>> queryCmsArticleViewByModelIds(String... modelId) {
 		logger.debug("传入参数:modelId={}",JSON.toJSONString(modelId));
 		String modelIds = StringUtils.join(modelId,",");

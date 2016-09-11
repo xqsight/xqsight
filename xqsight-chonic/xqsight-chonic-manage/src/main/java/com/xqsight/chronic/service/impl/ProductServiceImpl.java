@@ -60,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<Map<String,Object>> queryProductWithFirstPic() {
-		return productMapper.queryProductWithFirstPic();
+	public List<Map<String,Object>> queryProductWithFirstPic(String productName) {
+		return productMapper.queryProductWithFirstPic(productName);
 	}
 }

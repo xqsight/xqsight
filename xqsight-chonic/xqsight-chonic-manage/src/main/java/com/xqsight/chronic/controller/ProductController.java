@@ -63,9 +63,9 @@ public class ProductController{
 	}
 	
 	@RequestMapping("query")
-	public Object queryProduct(XqsightPage xqsightPage) {
+	public Object queryProduct(XqsightPage xqsightPage,String productName) {
 		Page<?> page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
-		List<Map<String,Object>> products = productService.queryProductWithFirstPic();
+		List<Map<String,Object>> products = productService.queryProductWithFirstPic(productName);
 		xqsightPage.setTotalCount(page.getTotal());
 		return MessageSupport.successDataTableMsg(xqsightPage, MapKeyHandle.keyToJavaProperty(products));
 	}

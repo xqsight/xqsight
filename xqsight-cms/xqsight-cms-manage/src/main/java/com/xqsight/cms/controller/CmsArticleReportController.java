@@ -6,6 +6,7 @@
 package com.xqsight.cms.controller;
 
 import com.github.pagehelper.Page;
+import com.xqsight.cms.model.vo.CmsArticleReportVo;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.common.support.XqsightPageHelper;
@@ -61,9 +62,9 @@ public class CmsArticleReportController{
 	}
 	
 	@RequestMapping("query")
-	public Object queryCmsArticleReport(XqsightPage xqsightPage) {
+	public Object queryCmsArticleReport(XqsightPage xqsightPage,String reportContent) {
 		Page<?> page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
-		List<CmsArticleReport> cmsArticleReports = cmsArticleReportService.queryCmsArticleReport();
+		List<CmsArticleReportVo> cmsArticleReports = cmsArticleReportService.queryCmsArticleReport(reportContent);
 		 xqsightPage.setTotalCount(page.getTotal());
         return MessageSupport.successDataTableMsg(xqsightPage, cmsArticleReports);
 	}
