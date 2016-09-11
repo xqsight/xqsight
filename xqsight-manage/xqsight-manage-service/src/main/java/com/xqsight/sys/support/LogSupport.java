@@ -54,7 +54,6 @@ public class LogSupport {
 			sysLog.setReqMethod(request.getMethod());
 			sysLog.setReqUrl(request.getRequestURI());
 			sysLog.setAgentUser(request.getHeader("user-agent"));
-			sysLog.setCreateOprId(SSOUtils.getCurrentUserId().toString());
 			// 异步保存日志
 			new SaveLogThread(sysLog, handler, ex).start();
 		}
@@ -98,7 +97,7 @@ public class LogSupport {
 			}
 
 			logger.debug("sysLog={}", JSON.toJSONString(sysLog));
-
+			sysLog.setCreateOprId(SSOUtils.getCurrentUserId().toString());
 			sysLogService.saveSysLog(sysLog);
 		}
 	}

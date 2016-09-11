@@ -209,7 +209,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
         	 $.ajax({
                  "dataType": "jsonp",
                  "cache": false,
-                 "url": ctxData + "/file/manage/deletebyid?fileId=" + fileId + "&date=" + new Date().getTime,
+                 "url": ctxData + "/file/manage/delete?fileId=" + fileId + "&date=" + new Date().getTime,
                  "success": function(retData){
                 	 saicfc.win.alert(retData.msg,retData.status);
                 	 if(retData.status == "0"){

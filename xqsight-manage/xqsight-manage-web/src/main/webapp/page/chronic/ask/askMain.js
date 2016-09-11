@@ -64,7 +64,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                 return;
             }
         	var href=ctxData + "/page/chronic/ask/askManage.html?articleId=" + selRows[0].articleId;
-        	window.top.index.addTabPageFun("forum_window","咨询回复",href,true);
+        	window.top.index.addTabPageFun("forum_window","提问回复",href,true);
         }
 
         /**

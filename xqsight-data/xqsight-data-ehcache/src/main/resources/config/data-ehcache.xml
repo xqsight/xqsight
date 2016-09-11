@@ -2,7 +2,7 @@
          xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
          updateCheck="false" monitoring="autodetect" dynamicConfig="true">
  
-    <diskStore path="./temp"/>
+    <diskStore path="temp"/>
  
     <cache name="sysCache"
            eternal="false" maxElementsInMemory="1000"

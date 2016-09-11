@@ -76,7 +76,7 @@ saicfc.nameSpace.reg("cms.report");
                 saicfc.win.alert("请选择查看的数据");
                 return;
             }
-            saicfc.win.show("举报查看","cms/report/reportManage.html?reportId=" + selRows[0].reportId,600,300,true);
+            //saicfc.win.show("举报查看","cms/report/reportManage.html?reportId=" + selRows[0].reportId,600,300,true);
         }
 
         this.viewArticleFun = function(){
@@ -86,13 +86,18 @@ saicfc.nameSpace.reg("cms.report");
                 return;
             }
             var href= ctxData + "/page/cms/forum/forumManage.html?articleId=" + selRows[0].articleId;
-            window.top.index.addTabPageFun("forum_window","查看详情",href,true);
+            window.top.index.addTabPageFun("view_article_window","查看详情",href,true);
         }
 
         this.dealFun = function(){
             var selRows = obj.dataTable.rows(".info").data();
             if(selRows.length < 1){
                 saicfc.win.alert("请选择处理的数据");
+                return;
+            }
+
+            if(selRows[0].dealStatus == "0"){
+                saicfc.win.alert("该投诉已经处理");
                 return;
             }
             saicfc.win.confirm("确认处理吗？",function(btn){

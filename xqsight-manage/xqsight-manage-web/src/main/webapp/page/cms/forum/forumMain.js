@@ -173,7 +173,7 @@ saicfc.nameSpace.reg("xqsight.cms");
                     sClass : "text-center",
                     render : function(){
                         return "<div class='bolder'> <a class='red' href='javaScript:forumMain.forumDetailFun();'><i class='ace-icon fa fa-search'></i></a> | " +
-                            "<a class='red' href='javaScript:forumMain.delFun();'><i class='ace-icon fa fa-remove'></i></a></div> ";
+                            "<a class='red' href='javaScript:forumMain.removeFun();'><i class='ace-icon fa fa-remove'></i></a></div> ";
                     }
                 }]
             });
