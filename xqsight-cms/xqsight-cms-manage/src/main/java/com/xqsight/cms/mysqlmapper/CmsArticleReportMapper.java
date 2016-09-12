@@ -23,7 +23,7 @@ import com.xqsight.cms.model.CmsArticleReport;
  */
 public interface CmsArticleReportMapper {
 
-	@Insert(" INSERT INTO CMS_ARTICLE_REPORT(ASSOCICATION_ID,REPORT_TYPE,REPORT_CONTENT,DEAL_STATUS,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK)VALUES(#{associcationId,jdbcType=NUMERIC},#{reportType,jdbcType=NUMERIC},#{reportContent,jdbcType=VARCHAR},#{dealStatus,jdbcType=NUMERIC},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
+	@Insert(" INSERT INTO CMS_ARTICLE_REPORT(ASSOCICATION_ID,REPORT_TYPE,REPORT_CONTENT,DEAL_STATUS,ACTIVE,CREATE_TIME,CREATE_OPR_ID,REMARK)VALUES(#{associcationId,jdbcType=NUMERIC},#{reportType,jdbcType=NUMERIC},#{reportContent,jdbcType=VARCHAR},#{dealStatus,jdbcType=NUMERIC},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
 	void saveCmsArticleReport(CmsArticleReport cmsArticleReport);
 	
 	@Update(" UPDATE CMS_ARTICLE_REPORT SET DEAL_STATUS=0,UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},UPD_OPR_ID=#{updOprId,jdbcType=VARCHAR},REMARK=#{remark,jdbcType=VARCHAR} WHERE REPORT_ID=#{reportId,jdbcType=NUMERIC}")
