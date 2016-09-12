@@ -9,6 +9,7 @@ public class CmsArticleReportVo extends CmsArticleReport {
 
     /** 标题 **/
     private String articleTitle;
+    private String articleId;
 
     public String getArticleTitle() {
         return articleTitle;
@@ -16,5 +17,13 @@ public class CmsArticleReportVo extends CmsArticleReport {
 
     public void setArticleTitle(String articleTitle) {
         this.articleTitle = articleTitle;
+    }
+
+    public String getArticleId() {
+        return articleId;
+    }
+
+    public void setArticleId(String articleId) {
+        this.articleId = articleId;
     }
 }
