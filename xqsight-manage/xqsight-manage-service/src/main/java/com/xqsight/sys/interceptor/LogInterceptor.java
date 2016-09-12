@@ -1,6 +1,7 @@
 package com.xqsight.sys.interceptor;
 
 import com.xqsight.commons.utils.DateParseUtils;
+import com.xqsight.commons.web.WebUtils;
 import com.xqsight.sys.support.LogSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -42,7 +43,8 @@ public class LogInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 
         // 保存日志
-        LogSupport.saveLog(request, handler, ex, null);
+        if(!WebUtils.isMobile(request))
+            LogSupport.saveLog(request, handler, ex, null);
 
         // 打印JVM信息。
         if (logger.isDebugEnabled()){
