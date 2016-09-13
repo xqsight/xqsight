@@ -14,6 +14,7 @@ import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.sys.model.SysLogin;
 import com.xqsight.sys.service.SysUserService;
 import com.xqsight.upload.model.SysFile;
+import com.xqsight.upload.model.vo.SysFileVo;
 import com.xqsight.upload.support.FileUploadSupport;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -140,7 +141,7 @@ public class SysUserController {
             MultipartFile multipartFile = multipartFileMap.get(mapKey);
 
             try {
-                SysFile sysFile = FileUploadSupport.uploadFile(multipartFile);
+                SysFileVo sysFile = FileUploadSupport.uploadFile(multipartFile);
                 imgUrl = sysFile.getFileUrl();
             } catch (IOException e) {
                 e.printStackTrace();

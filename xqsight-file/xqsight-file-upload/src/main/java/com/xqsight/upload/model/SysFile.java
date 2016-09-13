@@ -16,15 +16,10 @@ public class SysFile extends BaseModel {
 
 	/** 主键 */
     private Long fileId;
-
 	/** FILE_NAME - 文件名称 */
     private String fileName;
 	/** FILE_URL - 附件URL */
     private String fileUrl;
-    /** FILE_THUMBNAILS - 缩略图 */
-    private String fileThumbnails;
-    /** FILE_DESCRITION - 描述 */
-    private String fileDescription;
     /** FILE_DEMAIN - 文件前缀 */
     private String fileDomain;
 	/** FILE_EXT - 扩展名 */
@@ -35,6 +30,8 @@ public class SysFile extends BaseModel {
     private String attachmentType;
 	/** FILE_KIND - 附件种类  */
     private String fileKind;
+
+    private String fullPath;
 
     public Long getFileId(){
         return this.fileId;
@@ -84,17 +81,10 @@ public class SysFile extends BaseModel {
 	public void setFileDomain(String fileDomain) {
 		this.fileDomain = fileDomain;
 	}
-    public String getFileThumbnails() {
-        return fileThumbnails;
+    public String getFullPath() {
+        return fileUrl;
     }
-    public void setFileThumbnails(String fileThumbnails) {
-        this.fileThumbnails = fileThumbnails;
+    public void setFullPath(String fullPath) {
+        this.fullPath = fileUrl;
     }
-    public String getFileDescription() {
-        return fileDescription;
-    }
-    public void setFileDescription(String fileDescription) {
-        this.fileDescription = fileDescription;
-    }
-
-   }
+}

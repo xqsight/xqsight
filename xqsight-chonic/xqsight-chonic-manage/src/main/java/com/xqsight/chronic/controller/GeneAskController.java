@@ -20,6 +20,7 @@ import com.xqsight.commons.utils.MapKeyHandle;
 import com.xqsight.commons.web.WebUtils;
 import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.upload.model.SysFile;
+import com.xqsight.upload.model.vo.SysFileVo;
 import com.xqsight.upload.service.UploadService;
 import com.xqsight.upload.support.FileUploadSupport;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -71,7 +72,7 @@ public class GeneAskController {
                 Map<String, MultipartFile> multipartFileMap = mRequest.getFileMap();
                 for(String mapKey : multipartFileMap.keySet()){
                     MultipartFile multipartFile = multipartFileMap.get(mapKey);
-                    SysFile sysFile = FileUploadSupport.uploadFile(multipartFile);
+                    SysFileVo sysFile = FileUploadSupport.uploadFile(multipartFile);
                     uploadService.saveSysFile(sysFile);
                     sbFileId.append(sysFile.getFileId()).append(",");
                 }
