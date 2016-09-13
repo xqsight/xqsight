@@ -117,7 +117,7 @@ public class GeneAskController {
     @RequestMapping("query")
     public Object queryCmsArticle(XqsightPage xqsightPage,String modelCode,String articleTitle) {
         int modelId = ModelCodeEnums.getEnum(modelCode).getModelId();
-        Page<?> page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayLength(), xqsightPage.getiDisplayLength());
+        Page<?> page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
         List<Map<String, Object>> dataList = cmsArticleService.queryCmsArticleViewByModelIdAndLikeArticleTitle(modelId,articleTitle);
         xqsightPage.setTotalCount(page.getTotal());
         return MessageSupport.successDataTableMsg(xqsightPage, MapKeyHandle.keyToJavaProperty(dataList));
@@ -126,7 +126,7 @@ public class GeneAskController {
     @RequestMapping("querybyuser")
     public Object queryCmsArticleByUser(XqsightPage xqsightPage,String modelCode,String createOprId) {
         int modelId = ModelCodeEnums.getEnum(modelCode).getModelId();
-        Page<?> page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayLength(), xqsightPage.getiDisplayLength());
+        Page<?> page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
         List<Map<String, Object>> dataList = cmsArticleService.queryCmsArticleViewByModelIdAndCreateOprId(modelId,createOprId);
         xqsightPage.setTotalCount(page.getTotal());
         return MessageSupport.successDataTableMsg(xqsightPage, MapKeyHandle.keyToJavaProperty(dataList));
