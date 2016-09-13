@@ -33,6 +33,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.xqsight</groupId>
+            <artifactId>xqsight-file-upload</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- Spring START -->
         <dependency>
             <groupId>org.springframework</groupId>

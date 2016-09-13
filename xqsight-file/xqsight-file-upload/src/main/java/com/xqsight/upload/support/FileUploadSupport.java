@@ -11,6 +11,7 @@ import com.xqsight.commons.utils.DateFormatUtils;
 import com.xqsight.commons.utils.FlashFtpUtils;
 import com.xqsight.upload.config.FileUploadConfig;
 import com.xqsight.upload.model.SysFile;
+import com.xqsight.upload.model.vo.SysFileVo;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -42,8 +43,8 @@ public class FileUploadSupport {
      * @return
      * @throws IOException
      */
-    public static SysFile uploadFile(MultipartFile file) throws IOException {
-        SysFile sysFile = new SysFile();
+    public static SysFileVo uploadFile(MultipartFile file) throws IOException {
+        SysFileVo sysFile = new SysFileVo();
 
         String fileName = file.getOriginalFilename();
         String ext = FilenameUtils.getExtension(fileName);

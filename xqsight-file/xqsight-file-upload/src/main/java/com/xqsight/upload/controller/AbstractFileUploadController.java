@@ -1,6 +1,7 @@
 package com.xqsight.upload.controller;
 
 import com.xqsight.upload.model.SysFile;
+import com.xqsight.upload.model.vo.SysFileVo;
 import com.xqsight.upload.support.FileUploadSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +16,7 @@ public class AbstractFileUploadController {
 
     protected Logger logger = LogManager.getLogger(getClass());
 
-    public SysFile uploadFile(MultipartFile multipartFile) throws IOException {
+    public SysFileVo uploadFile(MultipartFile multipartFile) throws IOException {
         return FileUploadSupport.uploadFile(multipartFile);
     }
 

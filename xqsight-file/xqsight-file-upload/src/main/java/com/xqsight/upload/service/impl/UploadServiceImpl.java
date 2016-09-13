@@ -1,6 +1,7 @@
 package com.xqsight.upload.service.impl;
 
 import com.xqsight.upload.model.SysFile;
+import com.xqsight.upload.model.vo.SysFileVo;
 import com.xqsight.upload.mysqlmapper.SysFileMapper;
 import com.xqsight.upload.service.UploadService;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +24,7 @@ public class UploadServiceImpl implements UploadService {
     private SysFileMapper sysFileMapper;
 
     @Override
-    public void saveSysFile(SysFile sysFile) {
+    public void saveSysFile(SysFileVo sysFile) {
         sysFileMapper.saveSysFile(sysFile);
     }
 

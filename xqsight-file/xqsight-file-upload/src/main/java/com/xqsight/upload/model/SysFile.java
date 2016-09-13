@@ -21,8 +21,6 @@ public class SysFile extends BaseModel {
     private String fileName;
 	/** FILE_URL - 附件URL */
     private String fileUrl;
-    /** UPLOAD_URL - 上传URL */
-    private String uploadUrl;
     /** FILE_THUMBNAILS - 缩略图 */
     private String fileThumbnails;
     /** FILE_DESCRITION - 描述 */
@@ -99,11 +97,4 @@ public class SysFile extends BaseModel {
         this.fileDescription = fileDescription;
     }
 
-    public String getUploadUrl() {
-        return uploadUrl;
-    }
-
-    public void setUploadUrl(String uploadUrl) {
-        this.uploadUrl = uploadUrl;
-    }
-}
+   }

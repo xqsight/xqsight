@@ -1,6 +1,7 @@
 package com.xqsight.upload.service;
 
 import com.xqsight.upload.model.SysFile;
+import com.xqsight.upload.model.vo.SysFileVo;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -12,7 +13,7 @@ import java.util.Map;
  */
 public interface UploadService {
 
-    void saveSysFile(SysFile sysFile);
+    void saveSysFile(SysFileVo sysFile);
 
     void deleteSysFile(long fileId);
 

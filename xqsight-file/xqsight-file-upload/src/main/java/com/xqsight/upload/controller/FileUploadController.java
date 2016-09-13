@@ -7,6 +7,7 @@ package com.xqsight.upload.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.upload.model.SysFile;
+import com.xqsight.upload.model.vo.SysFileVo;
 import com.xqsight.upload.service.FileUploadFTPService;
 import com.xqsight.upload.service.UploadService;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -54,7 +55,7 @@ public class FileUploadController extends AbstractFileUploadController{
         List<SysFile> sysFiles = new ArrayList<>();
         for(String key : multipartFileMap.keySet()){
             MultipartFile multipartFile = multipartFileMap.get(key);
-            SysFile sysFile = uploadFile(multipartFile);
+            SysFileVo sysFile = uploadFile(multipartFile);
             uploadService.saveSysFile(sysFile);
             sysFiles.add(sysFile);
         }
