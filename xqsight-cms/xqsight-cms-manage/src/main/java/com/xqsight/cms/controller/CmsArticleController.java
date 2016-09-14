@@ -98,7 +98,7 @@ public class CmsArticleController{
 		Page<?> page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
 		List<CmsArticle> cmsArticles;
 		if(StringUtils.equalsIgnoreCase(modelCode,"BEST_NEW")){//推荐
-			String[] modelIds = StrUtil.split("15,17,6,7,8,9,10,11,12,13",",");
+			String[] modelIds = StrUtil.split("15,6,7,8,9,10,11,12,13",",");
 			cmsArticles = cmsArticleService.queryCmsArticleByModelIds(modelIds);
 		}else{
 			int modelId = ModelCodeEnums.getEnum(modelCode).getModelId();

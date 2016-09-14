@@ -29,12 +29,12 @@ saicfc.nameSpace.reg("xqsight.chronic");
                     before : function(){},
                     items: ["source", "|", "undo", "redo", "|", "preview", "template", "cut", "copy", "paste", "plainpaste", "wordpaste", "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist", "insertunorderedlist", "indent", "outdent", "subscript", "superscript", "clearhtml", "quickformat", "selectall", "|", "fullscreen", "/", "formatblock", "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic", "underline", "strikethrough", "lineheight", "removeformat", "table", "hr", "emoticons", "pagebreak", "link"]
                 });
+                obj.formSetValue();
             });
             //绑定事件
             $("#btn_save").bind("click",obj.validateFun);
             $("#btn_cancel").bind("click",obj.cancelFun);
 
-            obj.formSetValue();
             obj.loadComentFun();
 
         };
@@ -104,8 +104,9 @@ saicfc.nameSpace.reg("xqsight.chronic");
                 "url": ctxData + "/ask/querybyid?articleId=" + articleId + "&date=" + new Date().getTime,
                 "success": function(retData){
                     if(retData.status == "0"){
+                        $("#articleTitle").html(retData.data.articleTitle);
                         $("#articleComent").html(retData.data.articleContent);
-                        
+                        obj.loadImgFun(retData.data.fileId);
                     }
                 }
             });
@@ -146,6 +147,8 @@ saicfc.nameSpace.reg("xqsight.chronic");
          * 加载图片
          */
         this.loadImgFun = function(fileId){
+            if(fileId == undefined || fileId == "")
+                return;
         	 $.ajax({
                  "dataType": "jsonp",
                  "cache": false,
@@ -162,16 +165,19 @@ saicfc.nameSpace.reg("xqsight.chronic");
          * 渲染图片
          */
         this.showPicFun = function(data){
-        	var showPic = "";
-        	$.each(data,function(index,object){
-        		showPic += "<li id='" + object.fileId + "'><a href='" + ctxData + object.fileUrl + "' data-rel='colorbox' class='cboxElement'>";
-        		showPic += '<img width="120" height="120" alt="120x120" src="' + ctxData + object.fileUrl + '">';
-        		showPic += '<div class="text"><div class="inner">' + object.fileName + '</div></div></a>';
-        		showPic += '<div class="tools tools-bottom in"><a href="javascript:void(0);">';
-        		showPic += '<i class="ace-icon fa fa-times red" onclick="javascript:articleManage.picDeleteFun(' + object.fileId + ');"></i></a></div></li>';
-        	})
-        	
-        	$("#picShow").append(showPic);
+            var showPic = "";
+            $.each(data,function(index,object){
+                showPic += "<li id='" + object.fileId + "'>";
+                showPic += '<img width="120" height="120" alt="120x120" src="' + object.fileUrl + '" layer-src="' + object.fileUrl + '"></li>';
+            })
+
+            $("#picShow").append(showPic);
+
+            layer.ready(function(){ //为了layer.ext.js加载完毕再执行
+                layer.photos({
+                    photos: '#picShow'
+                });
+            });
         }
    
         /**

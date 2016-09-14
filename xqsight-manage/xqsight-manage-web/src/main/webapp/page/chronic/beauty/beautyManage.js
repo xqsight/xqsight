@@ -29,13 +29,12 @@ saicfc.nameSpace.reg("xqsight.chronic");
                 	before : function(){},
                 	items: ["source", "|", "undo", "redo", "|", "preview", "template", "cut", "copy", "paste", "plainpaste", "wordpaste", "justifyleft", "justifycenter", "justifyright", "justifyfull", "insertorderedlist", "insertunorderedlist", "indent", "outdent", "subscript", "superscript", "clearhtml", "quickformat", "selectall", "|", "fullscreen", "/", "formatblock", "fontname", "fontsize", "|", "forecolor", "hilitecolor", "bold", "italic", "underline", "strikethrough", "lineheight", "removeformat", "table", "hr", "emoticons", "pagebreak", "link"]
                 });
+                obj.formSetValue();
        		});
        		
             //绑定事件
             $("#btn_save").bind("click",obj.validateFun);
             $("#btn_cancel").bind("click",obj.cancelFun);
-
-            obj.formSetValue();
 
             $("#fileId").on("fileuploaded", function (event, data, previewId, index) {
                 var retData = data.response;

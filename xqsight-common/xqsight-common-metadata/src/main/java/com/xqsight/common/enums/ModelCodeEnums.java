@@ -70,7 +70,7 @@ public enum ModelCodeEnums {
 	/**
 	 * 失眠
 	 */
-	LOSE_SLEEP(2,11),
+	LOSE_SLEEP(2,12),
 	
 	/**
 	 * 慢阻肺

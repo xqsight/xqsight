@@ -5,6 +5,7 @@
  package com.xqsight.cms.controller;
 
 import com.github.pagehelper.Page;
+import com.xiaoleilu.hutool.util.HtmlUtil;
 import com.xqsight.cms.model.CmsAttention;
 import com.xqsight.cms.service.CmsAttentionService;
 import com.xqsight.common.model.XqsightPage;
@@ -75,11 +76,8 @@ public class CmsAttentionController{
 			cmsAttentions = cmsAttentionService.queryCmsAttentionToStoreByUser(createOprId);
 			//循环获取帖子对应的图片
 			for(Map<String, Object> map : cmsAttentions){
-				if(StringUtils.isBlank(MapUtils.getString(map,"FILE_ID")))
-					continue;
-
-				List<SysFile> sysFiles = uploadService.queryFileByFileId(MapUtils.getString(map,"FILE_ID"));
-				map.put("sysFiles",sysFiles);
+				List<String> imgList = HtmlUtil.pickImg(MapUtils.getString(map,"ARTICLE_CONTENT"));
+				map.put("imgFile",(imgList != null && imgList.size() > 0) ? imgList.get(0) : "");
 			}
 		}else if(attentionType == 3){//关注
 			cmsAttentions = cmsAttentionService.queryCmsAttentionToAttenionByUser(createOprId);
