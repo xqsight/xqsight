@@ -34,13 +34,11 @@
         <dependency>
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>
-            <version>${thumbnailator.version}</version>
         </dependency>
         <!-- 中文拼音 -->
         <dependency>
             <groupId>com.belerweb</groupId>
             <artifactId>pinyin4j</artifactId>
-            <version>${pinyin4j.version}</version>
         </dependency>
         <!-- commons start -->
         <dependency>
@@ -75,7 +73,6 @@
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
         </dependency>
-
         <!-- other -->
         <dependency>
             <groupId>dom4j</groupId>
@@ -100,6 +97,5 @@
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
         </dependency>
-
     </dependencies>
 </project>
