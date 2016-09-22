@@ -9,8 +9,20 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.4.0.RELEASE</version>
+    </parent>
+
     <properties>
         <java.version>1.8</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <!-- spring -->
+        <spring.data.redis.version>1.6.1.RELEASE</spring.data.redis.version>
+        <spring.data.neo4j.version>4.1.0.RC1</spring.data.neo4j.version>
+
         <maven-jetty-plugin.version>6.1.10</maven-jetty-plugin.version>
         <jetty.version>8.1.15.v20140411</jetty.version>
         <jetty9.version>9.3.6.v20151106</jetty9.version>
@@ -42,6 +54,7 @@
         <!-- database -->
         <db.jedis.version>2.7.0</db.jedis.version>
         <mysql.connection.version>5.1.36</mysql.connection.version>
+        <neo4j.ogm.version>1.1.5</neo4j.ogm.version>
         <!-- logging -->
         <log4j.version>1.2.17</log4j.version>
         <log4j2.version>2.3</log4j2.version>
@@ -59,6 +72,8 @@
         <alibaba.druid.version>1.0.9</alibaba.druid.version>
         <alibaba.fastjson.version>1.2.6</alibaba.fastjson.version>
         <alibaba.dubbo.version>2.5.3</alibaba.dubbo.version>
+        <!--baidu-->
+        <baidu.disconf.version>2.6.32</baidu.disconf.version>
         <!-- mybatis -->
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis.spring.version>1.2.3</mybatis.spring.version>
@@ -236,7 +251,6 @@
             </dependency>
             <!-- mysql connection end -->
             <!-- apache start -->
-
             <dependency>
                 <groupId>com.github.axet</groupId>
                 <artifactId>kaptcha</artifactId>
@@ -536,6 +550,25 @@
             </dependency>
             <dependency>
                 <groupId>org.springframework.data</groupId>
+                <artifactId>spring-data-neo4j</artifactId>
+                <version>${spring.data.neo4j.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.slf4j</groupId>
+                        <artifactId>jcl-over-slf4j</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-classic</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>ch.qos.logback</groupId>
+                        <artifactId>logback-access</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.data</groupId>
                 <artifactId>spring-data-mongodb</artifactId>
                 <version>${spring.data.mongodb.version}</version>
                 <exclusions>
@@ -557,6 +590,45 @@
                 </exclusions>
             </dependency>
             <!-- Spring Data end -->
+            <!-- Spring AMQP start -->
+            <dependency>
+                <groupId>org.springframework.amqp</groupId>
+                <artifactId>spring-amqp</artifactId>
+                <version>${spring-amqp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.amqp</groupId>
+                <artifactId>spring-rabbit</artifactId>
+                <version>${spring-amqp.version}</version>
+            </dependency>
+            <!-- Spring AMQP end -->
+            <!-- test start -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${spring.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <!-- test end -->
+            <!--google start-->
+            <dependency>
+                <groupId>com.google.collections</groupId>
+                <artifactId>google-collections</artifactId>
+                <version>${google.collections.version}</version>
+            </dependency>
+            <!--google end-->
             <!-- alibaba start -->
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -584,6 +656,23 @@
                 </exclusions>
             </dependency>
             <!-- alibaba end -->
+            <!--baidu start-->
+            <dependency>
+                <groupId>com.baidu.disconf</groupId>
+                <artifactId>disconf-client</artifactId>
+                <version>${baidu.disconf.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.guava</groupId>
+                        <artifactId>guava</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>dom4j</groupId>
+                        <artifactId>dom4j</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!--baidu end-->
             <!-- database start -->
             <dependency>
                 <groupId>redis.clients</groupId>
@@ -804,6 +893,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
@@ -815,6 +909,7 @@
             <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <modules>
