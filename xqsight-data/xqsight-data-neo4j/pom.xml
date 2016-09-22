@@ -52,7 +52,6 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-neo4j</artifactId>
-            <version>4.1.1.RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>
