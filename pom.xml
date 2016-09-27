@@ -1020,6 +1020,7 @@
         <module>xqsight-rpc</module>
         <module>xqsight-mq</module>
         <module>xqsight-pay</module>
+        <module>xqsight-boot</module>
     </modules>
 
 
