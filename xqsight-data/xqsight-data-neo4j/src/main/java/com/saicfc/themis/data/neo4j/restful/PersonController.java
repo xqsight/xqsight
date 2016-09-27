@@ -1,10 +1,10 @@
 package com.saicfc.themis.data.neo4j.restful;
 
-import com.saicfc.themis.api.constants.CertType;
-import com.saicfc.themis.api.models.PersonalInfo;
 import com.saicfc.themis.data.neo4j.domain.Transformer;
 import com.saicfc.themis.data.neo4j.domain.fact.BankCard;
 import com.saicfc.themis.data.neo4j.domain.fact.Person;
+import com.saicfc.themis.data.neo4j.model.CertType;
+import com.saicfc.themis.data.neo4j.model.PersonalInfo;
 import com.saicfc.themis.data.neo4j.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

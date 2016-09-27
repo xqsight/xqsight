@@ -1,11 +1,11 @@
 package com.saicfc.themis.data.neo4j.domain;
 
-import com.saicfc.themis.api.models.PersonalInfo;
-import com.saicfc.themis.api.models.SocialRelationType;
 import com.saicfc.themis.data.neo4j.domain.fact.BankCard;
 import com.saicfc.themis.data.neo4j.domain.fact.Location;
 import com.saicfc.themis.data.neo4j.domain.fact.Person;
 import com.saicfc.themis.data.neo4j.domain.fact.Phone;
+import com.saicfc.themis.data.neo4j.model.PersonalInfo;
+import com.saicfc.themis.data.neo4j.model.SocialRelationType;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
