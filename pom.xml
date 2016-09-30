@@ -1021,6 +1021,7 @@
         <module>xqsight-mq</module>
         <module>xqsight-pay</module>
         <module>xqsight-boot</module>
+        <module>xqsight-company</module>
     </modules>
 
 

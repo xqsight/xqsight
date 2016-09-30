@@ -1,0 +1,10 @@
+#!/bin/sh
+printf "%-15s: %s\n" "provider" "`sudo service themis-provider status`"
+printf "%-15s: %s\n" "http" "`sudo service themis-http status`"
+printf "%-15s: %s\n" "daemon" "`sudo service themis-daemon status`"
+printf "%-15s: %s\n" "99bill" "`sudo service themis-99bill status`"
+printf "%-15s: %s\n" "fraudmetrix" "`sudo service themis-fraudmetrix status`"
+printf "%-15s: %s\n" "creditchina" "`sudo service themis-creditchina status`"
+printf "%-15s: %s\n" "sms" "`sudo service themis-sms status`"
+printf "%-15s: %s\n" "manage" "`sudo service themis-manage status | head -n 1`"
+printf "%-15s: %s\n" "test" "`sudo service themis-test status`"
