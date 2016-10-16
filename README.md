@@ -1,5 +1,7 @@
 ace spring  mybatis shiro 后台管理框架
 
+大家学习和接单的有力武器，支持代码生成。
+
 兼容IE8及以上浏览器。支持前后端分离，使用jsonp处理跨域请求。
 
 js文件使用闭包模块化开发，便于修改和维护
@@ -33,6 +35,8 @@ ace template ＋ layer ＋ selector ＋ html validate ＋ ztree
 7.基本的内容管理系统（应用管理 ＋ 模块管理 ＋ 内容管理）待完善
 
 8.图片，视屏上传（本地上传 ＋ ftp文件上传）
+
+9.代码生成器集成
 
 登录页面
 
