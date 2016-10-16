@@ -55,5 +55,9 @@ http://182.61.6.205/portal/page/login.html
 
 登陆用户名／密码 jerry/!password
 
+最新更新版本请关注github
+
+https://github.com/xqsight-manage-org/xqsight
+
 联系方式
 QQ群：106320003
