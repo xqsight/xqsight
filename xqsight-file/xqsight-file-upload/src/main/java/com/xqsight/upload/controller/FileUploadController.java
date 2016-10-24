@@ -62,12 +62,29 @@ public class FileUploadController extends AbstractFileUploadController{
         return MessageSupport.successDataMsg(sysFiles, "上传成功");
     }
 
-    @RequestMapping(value = "uploadftp", produces = "text/html;charset=UTF-8")
-    public Object saveUploadFtp(HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = "uploadftp")
+    public Object saveUploadFtp(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        if (!ServletFileUpload.isMultipartContent(request))
+            return MessageSupport.failureMsg("请选择上传文件");
 
-        JSONObject obj = new JSONObject();
+        MultipartHttpServletRequest mRequest = (MultipartHttpServletRequest) request;
+        Map<String, MultipartFile> multipartFileMap = mRequest.getFileMap();
+
+        for(String key : multipartFileMap.keySet()){
+            MultipartFile multipartFile = multipartFileMap.get(key);
+            SysFileVo sysFile = uploadFile(multipartFile);
+            uploadService.saveSysFile(sysFile);
+            JSONObject obj = new JSONObject();
+            obj.put("url", sysFile.getFileUrl());
+            obj.put("error", 0);
+            return obj.toJSONString();
+        }
+        /*return MessageSupport.successDataMsg(sysFiles, "上传成功");*/
+
+       /* JSONObject obj = new JSONObject();
         try {
             List<SysFile> ls = fileUploadFTPService.saveFTP(request, response);
+
             for (SysFile sys : ls) {
                 obj.put("url", sys.getFileUrl());
             }
@@ -78,7 +95,8 @@ public class FileUploadController extends AbstractFileUploadController{
             obj.put("error", 1);
             obj.put("message", e.getMessage());
         }
-        return obj.toJSONString();
+        return obj.toJSONString();*/
+        return null;
     }
 
 

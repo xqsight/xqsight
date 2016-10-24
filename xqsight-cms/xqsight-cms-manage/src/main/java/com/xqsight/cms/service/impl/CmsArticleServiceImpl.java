@@ -53,7 +53,7 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 	@Override
 	public void saveCmsArticle(CmsArticle cmsArticle,String img){
 		logger.debug("出入参数:{}", JSON.toJSONString(cmsArticle));
-		List<String> delurl = new ArrayList<String>();
+		/*List<String> delurl = new ArrayList<String>();
 		if(StringUtils.isNotBlank(img)) {
 			List<String> imgList = HtmlUtil.pickImg(cmsArticle.getArticleContent());
 			String[] imgs = new String[imgList.size()];
@@ -73,7 +73,7 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 		cmsArticleMapper.saveCmsArticle(cmsArticle);
 	}
 
@@ -81,7 +81,7 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 	@Override
 	public void updateCmsArticle(CmsArticle cmsArticle,String img) {
 		logger.debug("出入参数:{}", JSON.toJSONString(cmsArticle));
-		List<String> delurl = new ArrayList<String>();
+		/*List<String> delurl = new ArrayList<String>();
 
 		if(StringUtils.isNotBlank(img)) {
 			List<String> imgList = HtmlUtil.pickImg(cmsArticle.getArticleContent());
@@ -102,7 +102,7 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 		cmsArticleMapper.updateCmsArticle(cmsArticle);
 	}
 
@@ -111,7 +111,7 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 	public void deleteCmsArticle(Long articleId) {
 		logger.debug("出入参数:articleId={}", articleId);
 		//2016-05-24  删除文章时删除ftp图片
-		CmsArticle cmsArticle = cmsArticleMapper.queryCmsArticleById(articleId);
+		/*CmsArticle cmsArticle = cmsArticleMapper.queryCmsArticleById(articleId);
 		//提取文档中的img
 		Pattern p = Pattern.compile("(?:src=\"?)(.*?)\"?\\s");
 		Matcher m = p.matcher(cmsArticle.getArticleContent());
@@ -127,7 +127,7 @@ public class CmsArticleServiceImpl implements CmsArticleService {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}*/
 		cmsArticleMapper.deleteCmsArticle(articleId);
 		cmsCommentMapper.deleteCmsCommentByAssocicationId(articleId);
 	}
