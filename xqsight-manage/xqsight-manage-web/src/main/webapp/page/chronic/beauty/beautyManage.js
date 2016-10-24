@@ -114,6 +114,7 @@ saicfc.nameSpace.reg("xqsight.chronic");
                     $.ajax({
                         "url": url ,
                         "data": editbeauty,
+                        "method" : "post",
                         "success": function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
