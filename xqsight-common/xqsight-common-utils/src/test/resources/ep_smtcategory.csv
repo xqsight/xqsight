@@ -1,0 +1,1001 @@
+id#cat#cat_en#pid
+1#服装/服饰配件#"Apparel & Accessories"#0
+2#汽车、摩托车#"Automobiles & Motorcycles"#0
+3#美容健康#"Beauty & Health"#0
+4#电脑和办公#"Computer & Office"#0
+5#消费电子#"Consumer Electronics"#0
+6#电子元器件#"Electronic Components & Supplies"#0
+7#食品#Food#0
+8#家具和室内装饰品#Furniture#0
+9#假发及周边#"Hair & Accessories"#0
+10#家居用品#"Home & Garden"#0
+11#家用电器#"Home Appliances"#0
+12#家装（硬装）#"Home Improvement"#0
+13#珠宝饰品及配件#"Jewelry & Accessories"#0
+14#照明灯饰#"Lights & Lighting"#0
+15#箱包#"Luggage & Bags"#0
+16#孕婴童#"Mother & Kids"#0
+17#办公文教用品#"Office & School Supplies"#0
+18#电话和通讯#"Phones & Telecommunications"#0
+19#安全防护#"Security & Protection"#0
+20#鞋子#Shoes#0
+21#其他特殊类#"Special Category"#0
+22#运动及娱乐#"Sports & Entertainment"#0
+23#工具#Tools#0
+24#玩具#"Toys & Hobbies"#0
+25#旅游及代金券#"Travel and Coupon Services"#0
+26#手表#Watches#0
+27#婚礼及重要场合#"Weddings & Events"#0
+28#服饰配饰（男/女/儿童配件、婴儿配饰发到婴儿服装）#"Apparel Accessories"#1
+29#扮演服及配件（不要发布情趣制服）#"Costumes &amp; Accessories"#1
+30#男装#"Men's Clothing"#1
+31#新奇特及特殊用途服装#"Novelty &amp; Special Use"#1
+32#女装#"Women's Clothing"#1
+33#世界民族服装#"World Apparel"#1
+34#专业零配件#"Auto Replacement Parts"#2
+35#力帆汽车销售#"Auto Sale"#2
+36#汽车电子#"Car Electronics"#2
+37#车外饰/防护#"Exterior Accessories"#2
+38#内饰/汽车用品#"Interior Accessories"#2
+39#摩托车配件#"Motorcycle Accessories &amp; Parts"#2
+40#其它机动车零配件#"Other Vehicle Parts &amp; Accessories"#2
+41#交通安全#"Roadway Safety"#2
+42#汽车工具/维修/保养#"Tools, Maintenance &amp; Care"#2
+43#沐浴用品#"Bath &amp; Shower"#3
+44#香水/除臭芳香用品#"Fragrances &amp; Deodorants"#3
+45#头发护理/造型#"Hair Care &amp; Styling"#3
+46#健康保健#"Health Care"#3
+47#彩妆#Makeup#3
+48#美甲用品及修甲工具#"Nail Art &amp; Tools"#3
+49#口腔清洁#"Oral Hygiene"#3
+50#卫生用纸#"Sanitary Paper"#3
+51#成人用品#"Sex Products"#3
+52#剃须及脱毛产品#"Shaving &amp; Hair Removal"#3
+53#护肤品#"Skin Care"#3
+54#护肤工具#"Skin Care Tool"#3
+55#纹身及身体彩绘#"Tattoo &amp; Body Art"#3
+56#工具/配件#"Tools &amp; Accessories"#3
+57#电脑连线及接插件#"Computer Cables &amp; Connectors"#4
+58#电脑清洁用品#"Computer Cleaners"#4
+59#电脑组件和硬件#"Computer Components"#4
+60#电脑外设#"Computer Peripherals"#4
+61#DIY电脑#"DIY Computer"#4
+62#开发板#"Demo Board"#4
+63#台式电脑#Desktops#4
+64#"移动硬盘、U盘、刻录盘"#"External Storage"#4
+65#工控产品#"Industrial Computer &amp; Accessories"#4
+66#切换器#"KVM Switches"#4
+67#笔记本电脑附件#"Laptop Accessories"#4
+68#笔记本与上网本#"Laptops &amp; Netbooks"#4
+69#存储卡&amp;配件#"Memory Cards &amp; Accessories"#4
+70#mini电脑#"Mini PC"#4
+71#网络产品#Networking#4
+72#办公电子#"Office Electronics"#4
+73#服务器#Servers#4
+74#软件#Software#4
+75#平板电脑#Tablets#4
+76#平板电脑、PDA、MID配件#"Tablets &amp; PDAs Accessories"#4
+77#工作站#Workstations#4
+78#零配件#"Accessories &amp; Parts"#5
+79#摄影摄像#"Camera &amp; Photo"#5
+80#DIY电子产品#"DIY Parts"#5
+81#电子烟#"Electronic Cigarettes"#5
+82#游戏及配附件#"Games &amp; Accessories"#5
+83#家用音视频设备#"Home Audio &amp; Video Equipments"#5
+84#便携音视频设备#"Portable Audio &amp; Video"#5
+85#便携HiFi#"Portable HiFi"#5
+86#电池、电源#"Power Source"#5
+87#智能电子#"Smart Electronics"#5
+88#电子器件/有源元件#"Active Components"#6
+89#电子发光产品#"EL Products"#6
+90#电子材料和附件#"Electronic Accessories &amp; Supplies"#6
+91#电子数据系统#"Electronic Data Systems"#6
+92#电子标识#"Electronic Signs"#6
+93#电子元器件制造设备#"Electronics Production Machinery"#6
+94#电子库存#"Electronics Stocks"#6
+95#显示器件#"Optoelectronic Displays"#6
+96#电子元件/无源元件#"Passive Components"#6
+97#咖啡#Coffee#7
+98#干果#"Dried Fruit"#7
+99#干货/土特产#"Dried Goods / Local Specialties"#7
+100#谷物制品#"Grain Products"#7
+101#枸杞#Medlar#7
+102#坚果#"Nut &amp; Kernel"#7
+103#茶叶#Tea#7
+104#儿童家具#"Children Furniture"#8
+105#商用家具#"Commercial Furniture"#8
+106#家具附件#"Furniture Accessories"#8
+107#家具部件#"Furniture Parts"#8
+108#家用、民用家具#"Home Furniture"#8
+109#办公家具#"Office Furniture"#8
+110#户外家具#"Outdoor Furniture"#8
+111#配件及工具#"Accessory &amp; Tools"#9
+112#混合发#"Blended Hair"#9
+113#经鉴定真人发#"Certified Human Hair"#9
+114#羽毛发#"Feather Hair"#9
+115#化纤发#"Synthetic Hair"#9
+116#手工艺品&amp;缝纫用品（半成品）#"Arts,Crafts &amp; Sewing"#10
+117#浴室用品#"Bathroom Products"#10
+118#收藏品#Collectibles#10
+119#节庆派对用品#"Festive &amp; Party Supplies"#10
+120#园艺用品#"Garden Supplies"#10
+121#家庭装饰品#"Home Decor"#10
+122#家用储存收藏用具#"Home Storage &amp; Organization"#10
+123#家纺成品#"Home Textile"#10
+124#家庭清洁用具及附件#"Household Cleaning Tools &amp; Accessories"#10
+125#家居日用品#"Household Merchandises"#10
+126#厨房吧台用品#"Kitchen,Dining &amp; bar"#10
+127#宠物用品#"Pet Products"#10
+128#空气处理家电#"Air Conditioning Appliances"#11
+129#清洁家电#"Cleaning Appliances"#11
+130#干手机#"Hand Dryers"#11
+131#家电零部件#"Home Appliance Parts"#11
+132#家电库存#"Home Appliances Stocks"#11
+133#家用取暖器#"Home Heaters"#11
+134#厨房家电#"Kitchen Appliances"#11
+135#洗熨家电#"Laundry Appliances"#11
+136#冷冻家电#"Refrigerators &amp; Freezers"#11
+137#干鞋机#"Shoe Dryer"#11
+138#擦鞋机#"Shoe Polishing Equipment"#11
+139#热水器#"Water Heaters"#11
+140#水处理家电#"Water Treatment Appliances"#11
+141#湿巾机#"Wet Towel Dispensers"#11
+142#卫浴设施#"Bathroom Fixture"#12
+143#板材#Boards#12
+144#建筑玻璃#"Building Glass"#12
+145#吊顶、天花板#Ceilings#12
+146#台面#"Countertops,Vanity Tops &amp; Table Tops"#12
+147#幕墙及附件#"Curtain Walls &amp; Accessories"#12
+148#门、窗#"Doors, Gates &amp; Windows"#12
+149#土工材料#"Earthwork Products"#12
+150#电气设备和产品#"Electrical Equipment &amp; Supplies"#12
+151#壁炉、火炉#"Fireplaces,Stoves"#12
+152#地暖系统及部件#"Floor Heating Systems &amp; Parts"#12
+153#地板及附件#"Flooring &amp; Accessories"#12
+154#功能性材料#"Functional Material"#12
+155#园林景观与装饰#"Garden Landscaping &amp; Decking"#12
+156#冷暖通风系统及部件#"HVAC Systems &amp; Parts"#12
+157#五金#Hardware#12
+158#厨房和浴室设施#"Kitchen &amp; Bath Fixtures"#12
+159#厨房设施#"Kitchen Fixture"#12
+160#梯子和脚手架#"Ladders &amp; Scaffoldings"#12
+161#环境石材#"Landscaping Stone"#12
+162#金属建材#"Metal Building Materials"#12
+163#塑料建筑材料#"Plastic Building Materials"#12
+164#荒料及石板材#"Quarry Stone &amp; Slabs"#12
+165#楼梯及部件#"Stairs &amp; Stair Parts"#12
+166#石雕石刻#"Stone Carvings and Sculptures"#12
+167#阳光房、玻璃房#"Sunrooms &amp; Glass Houses"#12
+168#瓷砖及附件#"Tiles &amp; Accessories"#12
+169#木材#Timber#12
+170#墙纸#Wallpapers#12
+171#流行饰品#"Fashion Jewelry"#13
+172#精品珠宝#"Fine Jewelry"#13
+173#首饰配件和部件#"Jewelry Findings &amp; Components"#13
+174#首饰包装和展示用具#"Jewelry Packaging &amp; Display"#13
+175#首饰工具#"Jewelry Tools &amp; Equipments"#13
+186#商业照明#"Commercial Lighting"#14
+187#节日照明#"Holiday Lighting"#14
+188#室内灯饰灯具#"Indoor Lighting"#14
+189#LED照明#"LED Lighting"#14
+190#照明附件#"Lighting Accessories"#14
+191#灯泡、灯管#"Lighting Bulbs &amp; Tubes"#14
+192#新奇特灯#"Novelty Lighting"#14
+193#室外照明#"Outdoor Lighting"#14
+194#便携式照明#"Portable Lighting"#14
+195#专业灯具#"Professional Light"#14
+196#双肩背包#Backpacks#15
+197#箱包配件#"Bag Parts &amp; Accessories"#15
+198#公文包#Briefcases#15
+199#手提/单肩/斜跨包#Handbags#15
+200#休闲包#"Leisure Bags"#15
+201#旅行箱、旅行包#"Luggage &amp; Travel Bags"#15
+202#特殊用途箱包#"Special Purpose Bags"#15
+203#旅行配件#"Travel Accessories"#15
+204#腰包#"Waist Packs"#15
+205#钱包&amp;卡包#"Wallets &amp; Holders"#15
+206#婴儿活动用品#"Activity &amp; Gear"#16
+207#婴儿护理#"Baby Care"#16
+208#婴儿服装/配件（0-2岁）#"Baby Clothing"#16
+209#婴儿鞋#"Baby Shoes"#16
+210#婴儿寝具床品#Bedding#16
+211#儿童服装（2岁以上）#"Children's Clothing"#16
+212#童鞋#"Children's Shoes"#16
+213#婴儿喂养用品#Feeding#16
+214#孕妇装#Maternity#16
+215#婴儿安全防护#Safety#16
+216#书籍#Books#17
+217#"日历,名片,明信片"#"Calendars, Planner &amp; Cards"#17
+218#修正用品#"Correction Supplies"#17
+219#办公裁剪用品#"Cutting Supplies"#17
+220#桌上收纳用品#"Desk Accessories &amp; Organizer"#17
+221#文件夹附件#"File Folder Accessories"#17
+222#文件夹、文件袋等#"Filing Products"#17
+223#"徽章,标签,工牌,印章"#"Labels, Indexes &amp; Stamps"#17
+224#杂志#Magazines#17
+225#笔记本、拍纸本等书写用品#"Notebooks &amp; Writing Pads"#17
+226#办公胶水、胶带等#"Office Adhesives &amp; Tapes"#17
+227#办公装订用品#"Office Binding Supplies"#17
+228#"办公用纸、纸制品"#Paper#17
+229#"钢笔、铅笔及书写工具"#"Pens, Pencils &amp; Writing Supplies"#17
+230#书写板、公告板等#"Presentation Boards"#17
+231#文具和教具#"School &amp; Educational Supplies"#17
+232#文具贴纸/儿童贴纸#"Stationery Sticker"#17
+233#通信设备#"Communication Equipment"#18
+234#手机配件和零件#"Mobile Phone Accessories &amp; Parts"#18
+235#手机#"Mobile Phones"#18
+236#集团电话#PBX#18
+237#寻呼机#Pagers#18
+238#固定电话#Telephones#18
+239#电话和附件#"Telephones &amp; Accessories"#18
+240#VoIP产品#"VoIP Products"#18
+241#步谈机#"Walkie Talkie"#18
+242#门禁#"Access Control"#19
+243#楼宇对讲系统#"Door Intercom"#19
+244#急救箱#"Emergency Kits"#19
+245#消防器材#"Fire Protection"#19
+246#智能家居系统#"Home Automation"#19
+247#防雷装备#"Lightning Protection"#19
+248#保险柜#Safes#19
+249#防盗报警设备#"Security Alarm"#19
+250#自卫防身用品#"Self Defense Supplies"#19
+251#智能卡系统#"Smart Card System"#19
+252#传输设备及电缆#"Transmission &amp; Cables"#19
+253#视频监控#"Video Surveillance"#19
+254#劳动保护用品#"Workplace Safety Supplies"#19
+255#靴子#Boots#20
+256#休闲鞋#"Casual Shoes"#20
+257#平跟鞋#Flats#20
+258#花园鞋#"Mules &amp; Clogs"#20
+259#高跟鞋#Pumps#20
+260#凉鞋&amp;人字拖#"Sandals &amp; Flip Flops"#20
+261#鞋附件#"Shoe Accessories"#20
+262#室内拖鞋/家居鞋#Slippers#20
+273#补邮费/差价#"Additional Pay on Your Order"#21
+274#鑫校园（试发类目）#"Beginner for XinXiaoYuan"#21
+275#结账专用链#"Checkout Link"#21
+276#优惠券#Coupon#21
+277#定金#"Down payment/ Purchasing Agent"#21
+278#AE礼品卡#Giftcard#21
+279#赠品#Giveaways#21
+280#手机充值#"Mobile Phone Recharge"#21
+281#测试（请勿发布）#Test#21
+282#预售品#"Upcoming Products"#21
+283#棒球运动#Baseball#22
+284#篮球用品#Basketball#22
+285#野营及徒步旅行#"Camping &amp; Hiking"#22
+286#啦啦队用品及纪念品#"Cheerleading &amp; Souvenirs"#22
+287#骑行#Cycling#22
+288#娱乐#Entertainment#22
+289#钓鱼用品#Fishing#22
+290#健身及塑形#"Fitness &amp; Body Building"#22
+291#高尔夫用品#Golf#22
+292#曲棍球#Hockey#22
+293#马术运动#"Horse Riding"#22
+294#狩猎用品#Hunting#22
+295#儿童运动鞋#"Kids' Sneakers"#22
+296#乐器#"Musical Instruments"#22
+297#其它体育娱乐用品#"Other Sports &amp; Entertainment Product"#22
+298#球拍运动#"Racquet Sports"#22
+299#轮滑与滑板运动#"Roller,Skateboard &amp;Scooters"#22
+300#橄榄球#Rugby#22
+301#射击用品#Shooting#22
+302#滑雪用品#"Skiing &amp; Snowboarding"#22
+303#成人运动鞋#Sneakers#22
+304#足球用品#Soccer#22
+305#运动包#"Sport Bags"#22
+306#运动服及配件#"Sportswear &amp; Accessories"#22
+307#排球用品#Volleyball#22
+308#水上运动#"Water Sports"#22
+309#磨具#"Abrasive Tools"#23
+310#磨料#Abrasives#23
+311#建筑工具#"Construction Tools"#23
+312#手工具#"Hand Tools"#23
+313#起重工具#"Lifting Tools"#23
+314#机床及配件#"Machine Tools &amp; Accessories"#23
+315#仪器仪表#"Measurement &amp; Analysis Instruments"#23
+316#动力工具配件#"Power Tool Accessories"#23
+317#动力工具#"Power Tools"#23
+318#工具零件#"Tool Parts"#23
+319#组合工具#"Tool Sets"#23
+320#工具收纳整理#"Tools Packaging"#23
+321#焊接配套用品#"Welding &amp; Soldering Supplies"#23
+322#焊接设备#"Welding Equipment"#23
+323#木工机械#"Woodworking Machinery"#23
+324#木工机械零部件#"Woodworking Machinery Parts"#23
+325#手办/可动人形/机器人#"Action &amp; Toy Figures"#24
+326#婴儿玩具#"Baby Toys"#24
+327#经典玩具#"Classic Toys"#24
+328#非遥控类交通工具玩具#"Diecasts &amp; Toy Vehicles"#24
+329#娃娃/填充及毛绒玩具#"Dolls &amp; Stuffed Toys"#24
+330#电子玩具#"Electronic Toys"#24
+331#益智玩具#"Learning &amp; Education"#24
+332#模型、积木和拼插玩具#"Models &amp; Building Toy"#24
+333#新奇搞怪玩具#"Novelty &amp; Gag Toys"#24
+334#户外玩具#"Outdoor Fun &amp; Sports"#24
+335#拼图/立体拼图/七巧板/数独/魔方#"Puzzles &amp; Magic Cubes"#24
+336#遥控玩具#"Remote Control"#24
+337#携程#Ctrip#25
+338#交通卡券#"Public Transport Discount Cards"#25
+339#预定#Rentals#25
+340#俄罗斯本地代金券#"Russia Coupon Service"#25
+341#旅游优惠卡券#"Travel Discount Coupons"#25
+342#旅游相关商品#"Travel Products"#25
+343#电子腕表#"Digital Wristwatches"#26
+344#双显腕表#"Dual Display Wristwatches"#26
+345#机械腕表#"Mechanical Wristwatches"#26
+346#怀表#"Pocket &amp; Fob Watches"#26
+347#石英腕表#"Quartz Wristwatches"#26
+348#表附件#"Watches Accessories"#26
+349#特殊场合服装#"Special Occasion Dresses"#27
+350#婚庆配饰#"Wedding Accessories"#27
+351#婚纱#"Wedding Dresses"#27
+352#婚宴礼服#"Wedding Party Dress"#27
+353#手臂套#"Arm Warmers"#28
+354#腰带/皮带#Belts#28
+355#腰封#Cummerbunds#28
+356#耳罩#Earmuffs#28
+357#眼镜及配件#"Eyewear &amp; Accessories"#28
+358#手套#"Gloves &amp; Mittens"#28
+359#手帕#Handkerchiefs#28
+360#帽子#"Hats &amp; Caps"#28
+361#头饰（非首饰类头发饰品）#Headwear#28
+362#多件套（围巾帽子手套）#"Scarf, Hat &amp; Glove Sets"#28
+363#围巾/披肩#"Scarves &amp; Wraps"#28
+364#吊裤带#Suspenders#28
+365#领带#Ties#28
+366#动漫配件#Accessories#29
+367#动漫服饰#Cosplay#29
+368#洛丽塔裙装#"Lolita Dresses"#29
+369#卡通人偶#Mascot#29
+370#恐怖扮演服#"Scary Costumes"#29
+371#性感扮演服#"Sexy Costumes"#29
+372#紧身衣#Zentai#29
+373#动漫配件#Accessories#29
+374#动漫服饰#Cosplay#29
+375#洛丽塔裙装#"Lolita Dresses"#29
+376#卡通人偶#Mascot#29
+377#恐怖扮演服#"Scary Costumes"#29
+378#性感扮演服#"Sexy Costumes"#29
+379#紧身衣#Zentai#29
+380#外套/大衣#"Coats &amp; Jackets"#30
+381#卫衣帽衫#"Hoodies &amp; Sweatshirts"#30
+382#牛仔裤#Jeans#30
+383#男士套装#"Men's Sets"#30
+384#睡衣、家居服#"Men's Sleep &amp; Lounge"#30
+385#长裤#Pants#30
+386#衬衫#Shirts#30
+387#短裤(外穿)#Shorts#30
+388#袜子#Socks#30
+389#西服#"Suits &amp; Blazer"#30
+390#毛衣#Sweaters#30
+391#上衣、T恤#"Tops &amp; Tees"#30
+392#内衣#Underwears#30
+393#情趣服装（不要发布日常穿着的性感内衣）#"Exotic Apparel"#31
+394#舞台表演服和舞蹈服#"Stage &amp; Dance Wear"#31
+395#工作服/制服（不要发布cosplay/情趣制服）#"Work Wear &amp; Uniforms"#31
+396#休闲西装/正装西服#"Blazer &amp; Suits"#32
+397#雪纺衫/衬衫#"Blouses &amp; Shirts"#32
+398#外套/大衣#"Coats &amp; Jackets"#32
+399#连衣裙#Dresses#32
+400#卫衣帽衫#"Hoodies &amp; Sweatshirts"#32
+401#贴身衣物#Intimates#32
+402#牛仔裤#Jeans#32
+403#连体裤#"Jumpsuits, Playsuits &amp; Bodysuits"#32
+404#打底裤#Leggings#32
+405#长裤/九分七分五分裤#"Pants &amp; Capris"#32
+406#短裤#Shorts#32
+407#半身裙#Skirts#32
+408#袜子#"Socks &amp; Hosiery"#32
+409#毛衣#Sweaters#32
+410#上衣、T恤#"Tops &amp; Tees"#32
+411#女士套装#"Women's Sets"#32
+412#睡衣、家居服#"Women's Sleep &amp; Lounge"#32
+413#非洲服装#"Africa Clothing"#33
+414#亚洲及太平洋群岛服装#"Asia &amp; Pacific Islands Clothing"#33
+415#印巴服装#"India &amp; Pakistan Clothing"#33
+416#穆斯林服饰#"Muslim Fashion"#33
+417#传统中国服装#"Traditional Chinese Clothing"#33
+418#空调和加热器#"Air Conditioning &amp; Heat"#34
+419#进气系统#"Air Intake System"#34
+420#空调设备#"Air-conditioning Installation"#34
+421#刹车系统#"Brake System"#34
+422#车灯#"Car Lights"#34
+423#电源及启动系统#"Charging &amp; Starting Systems"#34
+424#电脑、芯片、自动巡航控制#"Computer, Chip, Cruise Control"#34
+425#冷却系统#"Cooling System"#34
+426#发动机及零部件#"Engines &amp; Components"#34
+427#排气系统#"Exhaust Systems"#34
+428#车外部件#"Exterior Parts"#34
+429#滤清器#Filters#34
+430#前裙板#"Front Skirt"#34
+431#燃油供应系统#"Fuel Supply System"#34
+432#电路保险#Fuses#34
+433#垫片#Gaskets#34
+434#仪表#Gauges#34
+435#车窗及玻璃#"Glasses &amp; Windows"#34
+436#点火系统#"Ignition System"#34
+437#车内部件#"Interior Parts"#34
+438#润滑系统#"Lubrication System"#34
+439#车喇叭#"Multi-tone &amp; Claxon Horns"#34
+440#螺钉帽/螺栓#"Nuts &amp; Bolts"#34
+441#传感器#Sensors#34
+442#悬挂和转向系统#"Suspension &amp; Steering"#34
+443#传动与动力系统#"Transmission &amp; Drivetrain"#34
+444#增压器、氮、增压#"Turbos, Nitrous, Superchargers"#34
+445#轮毂、轮胎及配件#"Wheels Tires &amp; Parts"#34
+446#轮胎/配件#"Wheels, Rims &amp; Accessories"#34
+447#汽车电子附件#Accessories#36
+448#安全报警系统#"Alarm Systems &amp; Security"#36
+449#汽车功放#Amplifiers#36
+450#音频播放器#Audio#36
+451#电瓶搭线#"Battery Jump Cable"#36
+452#车内空气净化器#"Car Air Purifiers"#36
+453#车载电器#"Car Electrical Appliances"#36
+454#车载电脑#"Car PC"#36
+455#汽车收音机#"Car Radios"#36
+456#视频播放器#"Car Video Players"#36
+457#行车记录仪/车载录像机#DVR/Camera#36
+458#均衡器#Equalizers#36
+459#GPS及配件#"GPS &amp; Accessories"#36
+460#接收器和天线#"GPS Receiver &amp; Antenna"#36
+461#应急电源#"Jump Starter"#36
+462#车用对讲机#"Mobile Radio"#36
+463#倒车雷达#"Parking Sensors"#36
+464#测速雷达(仅有测速功能)#"Radar Detectors"#36
+465#扬声器#Speakers#36
+466#低音音箱#Subwoofers#36
+467#车载数字电视盒#"TV Receiver for Car"#36
+468#机动车摄像头#"Vehicle Camera"#36
+469#晴雨挡#"Awnings &amp; Shelters"#37
+470#车衣#"Car Covers"#37
+471#车贴#"Car Stickers"#37
+472#年检贴#"Car Tax Disc Holders"#37
+473#汽车牌照架#"License Plate"#37
+474#反光条#"Reflective Strips"#37
+475#防爆膜/太阳膜#"Window Foils &amp; Solar Protection"#37
+476#空气清新用品#"Air Freshener"#38
+477#防滑垫(固定手机等设备)#"Anti-Slip Mat"#38
+478#车用夹子、扣件#"Auto Fastener &amp; Clip"#38
+479#后备箱垫#"Cargo Liner"#38
+480#门槽垫#"Door Groove Mat"#38
+481#脚垫#"Floor Mats"#38
+482#车载行李车#"Folding Luggage Cart"#38
+483#排挡套#"Gear Shift Collars"#38
+484#眼镜架#"Glasses Case"#38
+485#手刹套#"Handbrake Grips"#38
+486#车内镜#"Interior Mirrors"#38
+487#车内装饰条#"Interior Mouldings"#38
+488#汽车钥匙包#"Key Case for Car"#38
+489#钥匙环#"Key Rings"#38
+490#车载支架#"Mounts &amp; Holder"#38
+491#杂物袋#Nets#38
+492#车用挂饰/摆件#Ornaments#38
+493#停车辅助(非电子类产品)#"Parking Assistance"#38
+494#后备箱储物/支架#"Rear Racks &amp; Accessories"#38
+495#安全带/安全带套#"Seat Belts &amp; Padding"#38
+496#座套/坐垫#"Seat Covers"#38
+497#车用靠垫#"Seat Supports"#38
+498#防瞌睡提醒器#"Sleepy Reminder for Car"#38
+499#方向盘套#"Steering Covers"#38
+500#收纳整理#"Stowing Tidying"#38
+501#张力绳#"Tensioning Belts"#38
+502#附件#Accessories#39
+503#摩托车保险杠/底盘#"Bumpers &amp; Chassis"#39
+504#摩托车传动系统/齿轮#"Drive &amp; Gears"#39
+505#电气系统#"Electrical System"#39
+506#摩托车发动机/部件#"Engines &amp; Engine Parts"#39
+507#摩托车排气系统#"Exhaust &amp; Exhaust Systems"#39
+508#过滤器#Filters#39
+509#摩托车框架/配件#"Frames &amp; Fittings"#39
+510#摩托车燃料系统#"Fuel Supply"#39
+511#摩托车点火装置#Ignition#39
+512#摩托车仪表#Instruments#39
+513#摩托车照明#Lighting#39
+514#摩托车刹车#"Motorbike Brakes"#39
+515#摩托车润滑油#"Motorcycle Engine Oil"#39
+516#摩托车防护用具#"Protective Gears"#39
+517#摩托车座垫#"Seat Covers"#39
+518#摩托车车轮/轮圈#"Wheels &amp; Rims"#39
+519#沙滩车配件和附件#"ATV Parts &amp; Accessories"#40
+520#航空器零配件#"Aviation Parts &amp; Accessories"#40
+521#船舶零配件#"Boat Parts &amp; Accessories"#40
+522#巴士配件#"Bus Parts"#40
+523#敞篷车附件#"Convertible Accessoires"#40
+524#电动车配件#"Electric Vehicle Parts"#40
+525#电动车#Electromobile#40
+526#卡丁车配件#"Go Kart Parts &amp; Accessories"#40
+527#高尔夫球车配件#"Golf Car Parts &amp; Accessories"#40
+528#水上摩托零配件#"Personal Watercraft Parts &amp; Accessories"#40
+529#房车配件和附件#"RV Parts &amp; Accessories"#40
+530#救助车零配件#"Salvage Parts Cars"#40
+531#雪地车零配件#"Snowmobile Parts"#40
+532#运输和储藏#"Transporting &amp; Storage"#40
+533#卡车配件#"Truck Parts"#40
+534#古董机动车配件#"Vintage Car &amp; Truck Parts"#40
+535#酒精检测仪#"Alcohol Tester"#41
+536#安全凸面镜#"Convex Mirror"#41
+537#反光背心#"High Visibility Jackets"#41
+538#除雪铲#"Ice Scraper"#41
+539#反光材料#"Reflective Material"#41
+540#反光安全服#"Reflective Safety Clothing"#41
+541#道钉#"Road Stud"#41
+542#防滑链#"Snow Chains"#41
+543#道路减速设施#"Speed Bump"#41
+544#交通护栏#"Traffic Barrier"#41
+545#交通警示灯#"Traffic Light"#41
+546#交通安全标志#"Traffic Signal"#41
+547#三角警示牌#"Warning Triangles"#41
+548#添加剂#Additives#42
+549#千斤顶#"Car Jacks"#42
+550#汽车清洗器#"Car Washer"#42
+551#冲头#"Coarse Crowbar"#42
+552#驾驶舱保养#"Cockpit Care"#42
+553#读码器/扫描工具#"Code Readers &amp; Scan Tools"#42
+554#诊断工具#"Diagnostic Tools"#42
+555#救生锤#"Emergency Hammer"#42
+556#发动机保养#"Engine Care"#42
+557#密封条/粘合剂#"Fillers, Adhesives &amp; Sealants"#42
+558#防冻液#"Frost Protection"#42
+559#节油用品#"Fuel Saver"#42
+560#注油枪#"Grease Guns"#42
+561#防冻膜#"Ice Protection Foil"#42
+562#充气泵#"Inflatable Pump"#42
+563#皮革/地毯清洁#"Leather &amp; Upholstery Cleaner"#42
+564#润滑剂#Lubricants#42
+565#漆面保养#"Paint Care"#42
+566#塑料/橡胶制品保养#"Plastic &amp; Rubber Care"#42
+567#轮毂保养#"Rim Care"#42
+568#防锈/除锈#"Rust Converter, Rust Remover &amp; Rust Prevention"#42
+569#钣金工具#"Sheet Metal Tools"#42
+570#海绵/抹布/刷子#"Sponges, Cloths &amp; Brushes"#42
+571#车胎维修工具#"Tire Repair Tools"#42
+572#拖车杆#"Towing Bars"#42
+573#拖车绳#"Towing Ropes"#42
+574#轮胎上光#"Tyre Gloss"#42
+575#车窗清洁#"Window Cleaning"#42
+576#泡澡用品（婴儿的请发布到婴儿洗浴用品下）#Bath#43
+577#浴盐#"Bath Salts"#43
+578#沐浴工具#"Bathing Accessories"#43
+579#身体磨砂/修复#"Scrubs &amp; Bodys Treatments"#43
+580#套装#Sets#43
+581#沐浴乳#"Shower Gels"#43
+582#沐浴油#"Shower Oils"#43
+583#香皂#Soap#43
+584#除臭#Antiperspirants#44
+585#止汗#Deodorants#44
+586#护发素#Conditioners#45
+587#头发头皮修复#"Hair &amp; Scalp Treatments"#45
+588#护发套装#"Hair Care Sets"#45
+589#染发剂#"Hair Color"#45
+590#防脱发#"Hair Loss Products"#45
+591#烫发剂#"Hair Perms &amp; Texturizers"#45
+592#直发膏#"Hair Relaxers"#45
+593#洗发水#Shampoos#45
+594#造型用品#"Styling Products"#45
+595#造型工具#"Styling Tools"#45
+596#护具#"Braces &amp; Supports"#46
+597#丰胸膏#"Breast Enhancement Cream"#46
+598#义乳#"Breast Form"#46
+599#耳部护理（婴儿的请发布到婴儿耳勺下）#"Ear Care"#46
+600#女生卫生护理#"Feminine Hygiene Product"#46
+601#家用健康监测器#"Household Health Monitors"#46
+602#口罩#Masks#46
+603#按摩#"Massage &amp; Relaxation"#46
+604#药盒/分药器#"Pill Cases &amp; Splitters"#46
+605#睡眠/止鼾#"Sleep &amp; Snoring"#46
+606#瘦身产品#"Slimming Product"#46
+607#温度计#Thermometers#46
+608#身体彩妆#Body#47
+609#眼部彩妆#Eyes#47
+610#脸部彩妆#Face#47
+611#唇部彩妆#Lips#47
+612#卸妆产品#"Makeup Remover"#47
+613#彩妆套装#"Makeup Sets"#47
+614#化妆工具/附件#"Makeup Tools &amp; Accessories"#47
+615#美甲艺术#"Nail Art"#48
+616#卸甲相关#"Nail Polish Remover"#48
+617#修甲工具#"Nail Tools"#48
+618#指甲修复用品#"Nail Treatments"#48
+619#美甲展示架#"Showing Shelf"#48
+620#模板#Templates#48
+621#牙线#"Dental Flosser"#49
+622#电动牙刷#"Electric Toothbrush"#49
+623#牙间刷#"Interdental brush"#49
+624#冲牙器#"Oral Irrigator"#49
+625#牙齿矫形器#"Orthodontic Braces"#49
+626#牙齿美白产品#"Teeth Whitening"#49
+627#牙刷（婴儿的请发布到婴儿牙刷下）#Toothbrush#49
+628#牙刷杀菌器#"Toothbrush Sanitizer"#49
+629#牙刷头#"Toothbrushes Head"#49
+630#牙膏（婴儿的请发布到婴儿牙膏下）#Toothpaste#49
+631#成人尿布#"Adult Diapers"#50
+632#面巾纸#"Facial Tissue"#50
+633#餐巾纸#"Paper Napkins &amp; Serviettes"#50
+634#卫生纸#"Toilet Tissue"#50
+635#湿巾（婴儿用的请发布到婴儿湿巾下）#"Wet Wipes"#50
+636#成人游戏（骰子、扑克等）#"Adult Games"#51
+637#后庭玩具#"Anal Sex Toys"#51
+638#导管#"Catheters &amp; Sounds"#51
+639#人造阴茎#Dildos#51
+640#性爱绑带#"Erotic Positioning Bandage"#51
+641#持久产品#"Lasting Products"#51
+642#男性自慰器#Masturbators#51
+643#医疗玩具#"Medical Themed Toys"#51
+644#阴茎环#"Penis Rings"#51
+645#阴茎增大#"Pumps &amp; Enlargers"#51
+646#安全/避孕#"Safer Sex"#51
+647#性玩偶#"Sex Dolls"#51
+648#性交家具#"Sex Furnitures"#51
+649#性玩具#"Sex Toys"#51
+650#震动器#Vibrators#51
+651#须后膏#Aftershave#52
+652#电动剃须刀#"Electric Shavers"#52
+653#脱毛器#Epilator#52
+654#脱毛膏#"Hair Removal Cream"#52
+655#耳鼻毛器#"Nose &amp; Ear Trimmer"#52
+656#剃须刀#Razor#52
+657#剃须刀片#"Razor Blade"#52
+658#剃须刷#"Shaving Brush"#52
+659#剃须膏#"Shaving Cream"#52
+660#剃须泡#"Shaving Foam"#52
+661#蜡纸#"Wax Strip"#52
+662#身体护理#Body#53
+663#精油#"Essential Oil"#53
+664#眼部护理#Eyes#53
+665#脸部护理#Face#53
+666#足部皮肤护理#Feet#53
+667#手部护理#"Hands &amp; Nails"#53
+668#唇部护理#Lips#53
+669#孕妇皮肤护理#Maternity#53
+670#颈部护理#Neck#53
+671#套装#Sets#53
+672#防晒/助晒#Sun#53
+673#面部护肤工具#"Face Skin Care Tool"#54
+674#蜡疗机#"Paraffin Heater"#54
+675#纹身手柄#"Tattoo Grips"#55
+676#纹身机#"Tattoo Guns"#55
+677#纹身色料#"Tattoo Inks"#55
+678#纹身器具套件#"Tattoo Kits"#55
+679#纹身针#"Tattoo Needles"#55
+680#纹身电源#"Tattoo Power Supply"#55
+681#纹身模版#"Tattoo Stencils"#55
+682#纹身针嘴#"Tattoo Tips"#55
+683#纹身配件#"Tattoo accesories"#55
+684#一次性纹身#"Temporary Tattoos"#55
+685#化妆棉#"Cotton Pads"#56
+686#棉签（婴儿的请发布到婴儿棉签下）#"Cotton Swabs"#56
+687#足部护理工具#"Foot Care Tool"#56
+688#镜子#Mirrors#56
+689#分装瓶及配件#"Refillable Bottles &amp; Accessories"#56
+690#工具套装#"Toiletry Kits"#56
+691#扩展卡#"Add On Cards"#59
+692#中央处理器#CPUs#59
+693#台式机机箱#"Computer Cases &amp; Towers"#59
+694#散热系统#"Fans &amp; Cooling"#59
+695#软驱#"Floppy Drives"#59
+696#显卡#"Graphics Cards"#59
+697#内置机械硬盘#"Internal Hard Drives"#59
+698#内置读卡器#"Internal Memory Card Readers"#59
+699#内置固态硬盘#"Internal Solid State Drives"#59
+700#主板#Motherboards#59
+701#光驱#"Optical Drives"#59
+702#外置光驱盒#"Optical Drives Cases"#59
+703#电脑电源#"PC Power Supplies"#59
+704#内存#RAMs#59
+705#声卡#"Sound Cards"#59
+706#采集卡和电视卡#"Video &amp; TV Tuner Cards"#59
+707#电脑音箱#"Computer Speakers"#60
+708#鼠标键盘及配件#"Mice &amp; Keyboards"#60
+709#显示器#Monitors#60
+710#电脑游戏外设#"PC Game Hardware"#60
+711#USB新奇特#"USB Gadgets"#60
+712#"USB Hub"#"USB Hubs"#60
+713#摄像头#Webcams#60
+714#DIY一体机#"DIY All-In-One"#61
+715#DIY兼容机#"DIY Desktop"#61
+716#刻录盘#"Blank Disks"#64
+717#外置机械移动硬盘#"External Hard Drives"#64
+718#外置固态硬盘#"External Solid State Drives"#64
+719#硬盘盒#"HDD Enclosure"#64
+720#硬盘壳包#"Hard Drive Bags &amp; Cases"#64
+721#U盘#"USB Flash Drives"#64
+722#键盘保护膜#"Keyboard Covers"#67
+723#LCD转轴#"LCD Hinges"#67
+724#笔记本桌和支架#Lapdesks#67
+725#笔记本电源适配器#"Laptop Adapter"#67
+726#电脑包和壳#"Laptop Bags &amp; Cases"#67
+727#笔记本电池#"Laptop Batteries"#67
+728#笔记本散热器#"Laptop Cooling Pads"#67
+729#扩展坞#"Laptop Docking Stations"#67
+730#笔记本LCD高压条#"Laptop LCD Inverter"#67
+731#笔记本液晶显示屏#"Laptop LCD Screen"#67
+732#笔记本美容贴纸#"Laptop Skins"#67
+733#笔记本锁#"Laptop lock"#67
+734#笔记本替换键盘#"Replacement Keyboards"#67
+735#笔记本电脑屏保贴膜#"Screen Protectors"#67
+736#指点帽#"Trackpoint Caps"#67
+737#笔记本电脑#Laptops#68
+738#上网本#Netbook#68
+739#读卡器#"Card Readers"#69
+740#存储卡卡套/适配器/转卡器#"Memory Card Adapters"#69
+741#内存卡盒#"Memory Card Cases"#69
+742#储存卡#"Memory Cards"#69
+743#3G上网卡#"3G Modems"#71
+744#3G/4G路由器#"3G/4G Routers"#71
+745#无线热点#"Access Points"#71
+746#防火墙和VPN#"Firewall &amp; VPN"#71
+747#调制解调器#Modems#71
+748#网络机柜#"Network Cabinets"#71
+749#网卡#"Network Cards"#71
+750#网络集线器#"Network Hubs"#71
+751#数据交换机#"Network Switches"#71
+752#网络存储#"Networking Storage"#71
+753#网络用工具#"Networking Tools"#71
+754#电力线网络适配器#"Powerline Network Adapters"#71
+755#打印服务器#"Print Servers"#71
+756#路由器#Routers#71
+757#蓝牙适配器/加密狗#"USB Bluetooth Adapters/Dongles"#71
+758#WiFi信号探测器#"WiFi Finder"#71
+759#3D打印和3D扫描#"3D Printers &amp; 3D Scanners"#72
+760#打印复印扫描一体机#"All in One Printer"#72
+761#装订机#"Binding Machine"#72
+762#计算器#Calculators#72
+763#会议系统#"Conference System"#72
+764#电子词典#"Electronic Dictionary"#72
+765#传真及复印#"Fax machines &amp; Copiers"#72
+766#塑封机#Laminator#72
+767#激光笔#"Laser Pens"#72
+768#打印服务器#"Network Print Servers"#72
+769#裁纸器#"Paper Trimmer"#72
+770#绘图仪#Plotters#72
+771#打印机耗材和部件#"Printer Supplies"#72
+772#打印机#Printers#72
+773#扫描设备#Scanners#72
+774#碎纸机#Shredder#72
+775#考勤机#"Time Recording"#72
+776#高拍仪#"Visual Presenter"#72
+777#儿童专用平板#"Kids Tablet"#76
+778#平板\PDA屏保贴膜#"Screen Protectors"#76
+779#触摸屏手套#"Screen Touch Gloves"#76
+780#平板电脑装饰贴纸#"Tablet Decals"#76
+781#平板电脑显示屏与面板#"Tablet LCDs &amp; Panels"#76
+782#平板电脑支架#"Tablet PC Stands"#76
+783#平板电脑和电子书保护套#"Tablets &amp; e-Books Case"#76
+784#平板电脑电池和备用电源#"Tablets Batteries &amp; Backup Power"#76
+785#平板电脑充电器#"Tablets Battery Chargers"#76
+786#触摸笔#"Tablets Pen"#76
+805#3D眼镜/VR眼镜#"3D Glasses/VR Glasses"#78
+806#电池#Batteries#78
+807#电池收纳盒#"Battery Storage Boxes"#78
+808#空白磁带和卡带#"Blank Records &amp; Tapes"#78
+809#CD包、CD盒#"CD Bags &amp; Cases"#78
+810#CD/DVD播放器箱包#"CD/DVD Player Bags"#78
+811#绕线器#"Cable Winder"#78
+812#相机背带#"Camera Strap"#78
+813#"照相机、摄像机包/袋"#"Camera/Video Bags"#78
+814#充电器#Chargers#78
+815#数码线材#"Digital Cables"#78
+816#插线板/电插头/插头转换#"Electrical Plugs &amp; Adaptors"#78
+817#MP3/MP4播放器保护套#"MP3/MP4 Bags &amp; Cases"#78
+818#遥控器#"Remote Control"#78
+819#屏幕清洁器#"Screen Cleaners"#78
+820#屏幕保护膜#"Screen Protectors"#78
+821#电视机支架#"TV Mounts"#78
+822#游戏机包、保护套#"Video Game Player Cases"#78
+823#360º全景相机#"360° Video Camera"#79
+824#摄影背景#Backgrounds#79
+825#相机电池手柄#"Battery Grip"#79
+826#摄像镜头#"Camcorder Lens"#79
+827#相机清洁用品#"Camera Cleaning"#79
+828#航拍飞行器和配件#"Camera Drones &amp; Accessories"#79
+829#相机滤镜#"Camera Filters"#79
+830#镜头遮光罩#"Camera Lens Hoods"#79
+831#相机镜头#"Camera Lenses"#79
+832#数码相机#"Digital Cameras"#79
+833#数码显微镜#"Digital Microscope"#79
+834#数码伴侣#"Digital Photo Banks"#79
+835#数码相框#"Digital Photo Frames"#79
+836#胶片相机#"Film Cameras"#79
+837#胶卷#Films#79
+838#柔光罩#"Flash Diffuser"#79
+839#闪光灯#Flashes#79
+840#即拍即得相机#"Instant Camera"#79
+841#镜头盖#"Len Caps"#79
+842#镜头转接环#"Lens Adapter"#79
+843#微型摄像机#"Mini Camcorders"#79
+844#摄影工作室用品#"Photo Studio Accessories"#79
+845#摄影灯#"Photographic Lighting"#79
+846#自拍杆#"Selfie Sticks"#79
+847#快门线和遥控器#"Shutter Release"#79
+848#运动摄像机#"Sports &amp; Action Video Cameras"#79
+849#运动摄像机配件#"Sports Camcorder Accessories"#79
+850#三脚架和配件#"Tripod &amp; Accessories"#79
+851#摄像机#"Video Cameras"#79
+852#集成电路#"Integrated Circuits"#80
+853#LCD显示屏#"LCD Displays"#80
+854#LED显示屏#"LED Displays"#80
+855#传感器#Sensors#80
+856#雾化器芯#"Eletronic Cigarette Atomizer Core"#81
+857#雾化器#"Electronic Cigarette Atomizers"#81
+858#电源&amp;供电模块#"Electronic Cigarette Battery"#81
+859#充电器#"Elctronic Cigarette Chargers"#81
+860#电子烟配件#"Electronic Cigarette Accessories"#81
+861#电子烟套装#"Electronic Cigarette Kits"#81
+862#电池仓#"Electronic Cigarette Mods"#81
+863#游戏小配件#Accessories#82
+864#包#Bags#82
+865#电池#Batteries#82
+866#各类线材#Cables#82
+867#外壳#Cases#82
+868#充电器#Chargers#82
+869#耳机#Earphones#82
+870#风扇#Fans#82
+871#游戏光盘#"Game Deals"#82
+872#游戏外设工具#"Game Peripherals"#82
+873#游戏手柄#Gamepads#82
+874#掌上游戏机#"Handheld Game Players"#82
+875#硬盘及硬盘盒#"Harddisk &amp; Boxs"#82
+876#游戏摇杆#Joysticks#82
+877#记忆卡#"Memery Cards"#82
+878#模块/元器件#Modules#82
+879#加速器#"Motion Plus"#82
+880#Kinect体感器#"Movement Sensors"#82
+881#Wii控制器(右手)#Nunchucks#82
+882#电源及适配器#"Power Supplys"#82
+883#Wii控制器(左手)#Remotes#82
+884#屏幕贴膜#"Screen Protectors"#82
+885#屏幕#Screens#82
+886#底座#Stands#82
+887#贴纸#Stickers#82
+888#触笔#Stylus#82
+889#USB适配器#"USB Receiver Adapter"#82
+890#游戏主机#"Video Game Consoles"#82
+891#游戏方向盘#Wheels#82
+892#"功率放大器、扩音机"#Amplifiers#83
+893#蓝光播放机#"Blu-ray Players"#83
+894#磁带录音播放机#"Cassette Recorders &amp; Players"#83
+895#"DVD、VCD 播放机"#"DVD, VCD Players"#83
+896#硬盘播放机#"HDD Players"#83
+897#家庭影院系统#"Home Theatre System"#83
+898#卡拉OK播放机#"Karaoke Players"#83
+899#投影及配件#"Projects &amp; Accessories"#83
+900#电视棒#"TV Stick"#83
+901#电视机#Televisions#83
+902#电视接收#"Tv Receivers"#83
+903#"CD 播放机"#"CD Players"#84
+904#数码录音笔#"Digital Voice Recorders"#84
+905#耳机配件#"Earphone Accessories"#84
+906#耳机#"Earphones &amp; Headphones"#84
+907#耳机功率放大器#"Headphone Amplifier"#84
+908#"MP3 播放器"#"MP3 Players"#84
+909#"MP4 播放器"#"MP4 Players"#84
+910#麦克风#Microphones#84
+911#古兰经播放器#"Quran Players"#84
+912#收音机#Radio#84
+913#扬声器#Speakers#84
+914#视频眼镜#"Video Glasses"#84
+915#无线音视频适配器#"Wireless Adapter"#84
+916#电子书阅读器#"e-Book Readers"#84
+917#HiFi配件#"HiFi Accessories"#85
+918#HiFi功放#"HiFi Amplifiers"#85
+919#HiFi播放器#"HiFi Players"#85
+920#电源适配器#Adapers#86
+921#电池组#"Battery Packs"#86
+922#变频器#Converters#86
+923#充电电池#"Rechargeable Batteries"#86
+924#太阳能电池#"Solar Panel"#86
+925#开关电源#"Switching Power Supply"#86
+926#智能健康#"Smart Health"#87
+927#智能家庭#"Smart Home"#87
+928#智能遥控产品#"Smart Remote Control"#87
+929#智能穿戴设备#"Wearable Devices"#87
+930#晶体二极管#Diodes#88
+931#滤波器#Filters#88
+932#集成电路#"Integrated Circuits"#88
+933#振荡器#Oscillators#88
+934#整流器#Rectifiers#88
+935#共振器、谐振器#Resonators#88
+936#传感器#Sensors#88
+937#半导体闸流管#Thyristors#88
+938#晶体管#Transistors#88
+939#电工陶瓷#"Electrical Ceramics"#90
+940#电触点及材料#"Electrical Contacts and Contact Materials"#90
+941#绝缘材料#"Insulation Materials &amp; Elements"#90
+942#按键和键盘#"Keypads &amp; Keyboards"#90
+943#半导体#Semiconductors#90
+944#LCD液晶模块#"LCD Modules"#95
+945#LED显示屏#"LED Displays"#95
+946#电声器件#"Acoustic Components"#96
+947#电容器#Capacitors#96
+948#电梯及部件#"Elevators &amp; Elevator Parts"#96
+949#自动扶梯及零部件#"Escalators &amp; Escalator Parts"#96
+950#印制（刷）电路板和印制（刷）电路板组件#"PCB &amp; PCBA"#96
+951#电位器#Potentiometers#96
+952#电阻器#Resistors#96
+953#红茶#"Black Tea"#103
+954#水果茶#"Fruit Tea"#103
+955#谷物茶#"Grain Tea"#103
+956#绿茶#"Green Tea"#103
+957#草本茶#"Herbal Tea"#103
+958#乌龙茶#"Oolong Tea"#103
+959#普洱茶#"Pu'Er Tea"#103
+960#白茶#"White Tea"#103
+961#黄茶#"Yellow Tea"#103
+962#花茶#"flower tea"#103
+963#儿童床#"Children Beds"#104
+964#儿童柜#"Children Cabinets"#104
+965#儿童椅#"Children Chairs"#104
+966#儿童家具套装#"Children Furniture Sets"#104
+967#儿童桌#"Children Tables"#104
+968#酒吧家具#"Bar Furniture"#105
+969#酒店家具#"Hotel Furniture"#105
+970#实验室家具#"Laboratory Furniture"#105
+971#图书馆家具#"Library Furniture"#105
+972#饭店家具、餐馆家具#"Restaurant Furniture"#105
+973#沙龙家具#"Salon Furniture"#105
+974#学校家具#"School Furniture"#105
+975#影剧院礼堂家具#"Theater Furniture"#105
+976#等待坐椅#"Waiting Chairs"#105
+977#（坐具类）机械伸展装置#"Chair Mechanisms"#107
+978#家具构架#"Furniture Frames"#107
+979#家具腿脚#"Furniture Legs"#107
+980#转盘#"Swivel Plates"#107
+981#浴室家具#"Bathroom Furniture"#108
+982#卧室家具#"Bedroom Furniture"#108
+983#餐厅家具#"Dining Room Furniture"#108
+984#厨房家具#"Kitchen Furniture"#108
+985#客厅家具#"Living Room Furniture"#108
+986#电脑桌#"Computer Desks"#109
+987#会议椅#"Conference Chairs"#109
+988#会议桌#"Conference Tables"#109
+989#文件柜#"Filing Cabinets"#109
+990#杂志架、书报架#"Magazine Racks"#109
+991#办公椅#"Office Chairs"#109
+992#办公桌#"Office Desks"#109
+993#办公隔断#"Office Partitions"#109
+994#办公室沙发#"Office Sofas"#109
+995#接待台#"Reception Desks"#109
+996#沙滩椅、户外椅#"Beach Chairs"#110
+997#花园椅#"Garden Chairs"#110
+998#花园套装、户外套装#"Garden Sets"#110
+999#花园沙发、户外沙发#"Garden Sofas"#110
+1000#吊床#Hammocks#110
+1001#户外桌、花园桌、野餐桌#"Outdoor Tables"#110
+1002#户外长椅#"Patio Benches"#110
+1003#户外秋千#"Patio Swings"#110
+1004#户外伞、基座#"Patio Umbrellas &amp; Bases"#110
+1005#户外躺椅#"Sun Loungers"#110
+1006#粘合剂#Adhesives#111
+1007#接发卡子#Clips#111
+1008#色板#"Color Rings"#111
+1009#接发器#Connectors#111
+1010#胶棒#"Glue Sticks"#111
+1011#发网#Hairnets#111
+1012#钩针#"Hook Needle"#111
+1013#蕾丝网帽#"Lace cap"#111
+1014#接发环#"Links, Rings &amp; Tubes"#111
+1015#梳子#"Loop brushes"#111
+1016#接发钳#Pliers#111
+1017#教习头#"Training Head"#111
+1018#假发支架#"Wig Stands"#111
+1019#刘海#Bangs#112
+1020#发髻#Chignon#112
+1021#接发#"Hair Extension"#112
+1022#蕾丝小头#"Lace Closure"#112
+1023#蕾丝前头#"Lace Frontal"#112
+1024#马尾#Ponytails#112
+1025#顶髻#Toupees#112
+1026#头套#Wigs#112
+1028#发把#"Bulk Hair"#113
+1029#发髻#Chignon#113
+1030#卡子发束#"Clip-In Hair Extensions"#113
+1031#小头#Closure#113
+1032#挂胶发束#"Fusion Hair Extensions"#113
+1033#织发#"Hair Weaving"#113
+1034#发帘和配件#"Hair Weft &amp; Closure ( &amp; Bang)"#113
+1035#蕾丝前头#"Lace Front"#113
+1036#拉环接发#"Loop Micro Ring Hair Extensions"#113
+1037#马尾#Ponytails#113
+1038#皮条发#"Skin Weft Hair Extensions"#113
+1039#顶髻/男子假发#Toupees#113
