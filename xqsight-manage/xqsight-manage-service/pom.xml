@@ -39,6 +39,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <!-- chronicle-map -->
+        <!--<dependency>
+            <groupId>net.openhft</groupId>
+            <artifactId>chronicle-map</artifactId>
+        </dependency>-->
+
         <!-- Spring START -->
         <dependency>
             <groupId>org.springframework</groupId>

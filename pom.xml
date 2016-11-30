@@ -947,6 +947,13 @@
                 <version>${ant.version}</version>
             </dependency>
 
+            <!-- chronicle-map -->
+            <dependency>
+                <groupId>net.openhft</groupId>
+                <artifactId>chronicle-map</artifactId>
+                <version>2.0.13b</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -1021,7 +1028,6 @@
         <module>xqsight-mq</module>
         <module>xqsight-pay</module>
         <module>xqsight-boot</module>
-        <module>xqsight-company</module>
     </modules>
 
 

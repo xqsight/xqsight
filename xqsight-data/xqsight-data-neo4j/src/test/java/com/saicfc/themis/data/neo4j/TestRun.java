@@ -1,20 +1,11 @@
 package com.saicfc.themis.data.neo4j;
 
-import com.alibaba.fastjson.JSONObject;
-import com.saicfc.common.lite.utils.http.HttpConfig;
-import com.saicfc.common.lite.utils.http.HttpURLConnectionsUtils;
-import com.saicfc.themis.api.constants.CertType;
-import com.saicfc.themis.api.models.PersonalInfo;
-
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by GTaurus on 2016/4/5.
  */
 public class TestRun {
 
-    public final static String URL = "http://10.116.1.98:8080/person/save";
+   /* public final static String URL = "http://10.116.1.98:8080/person/save";
 
     public final static Map<String, String> HEADER = new HashMap<String, String>() {{
         put("Accept", "application/json");
@@ -92,5 +83,5 @@ public class TestRun {
         System.out.println(JSONObject.toJSONString(info, true));
         String resp = HttpURLConnectionsUtils.sendStringForString(URL, content, HEADER, HttpConfig.getDefaultPostConf());
         System.out.println(resp);
-    }
+    }*/
 }
