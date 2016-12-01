@@ -113,6 +113,8 @@
         <imgscalr.version>4.2</imgscalr.version>
         <ant.version>1.9.6</ant.version>
 
+        <weixin.version>2.4.0</weixin.version>
+
     </properties>
 
     <build>
@@ -954,6 +956,18 @@
                 <version>2.0.13b</version>
             </dependency>
 
+            <!-- 微信 公众号（订阅号、服务号）-->
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-mp</artifactId>
+                <version>${weixin.version}</version>
+            </dependency>
+            <!-- 微信  企业号-->
+            <dependency>
+                <groupId>com.github.binarywang</groupId>
+                <artifactId>weixin-java-cp</artifactId>
+                <version>${weixin.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -1024,9 +1038,6 @@
         <module>xqsight-chonic</module>
         <module>xqsight-shiro</module>
         <module>xqsight-wechat</module>
-        <module>xqsight-rpc</module>
-        <module>xqsight-mq</module>
-        <module>xqsight-pay</module>
         <module>xqsight-boot</module>
     </modules>
 
