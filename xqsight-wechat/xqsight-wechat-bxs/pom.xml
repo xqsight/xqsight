@@ -35,11 +35,6 @@
             <artifactId>xqsight-common-utils</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-wechat-mp</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
 
 </project>

@@ -12,9 +12,6 @@
     <artifactId>xqsight-wechat</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>xqsight-wechat-common</module>
-        <module>xqsight-wechat-mp</module>
-        <module>xqsight-wechat-cp</module>
         <module>xqsight-wechat-bxs</module>
     </modules>
 
