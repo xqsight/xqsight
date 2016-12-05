@@ -11,12 +11,14 @@ import com.xqsight.commons.web.WebUtils;
 import com.xqsight.sso.authc.service.PasswordHelper;
 import com.xqsight.sso.shiro.constants.WebConstants;
 import com.xqsight.sso.utils.SSOUtils;
+import com.xqsight.sys.model.SysLog;
 import com.xqsight.sys.model.SysLogin;
 import com.xqsight.sys.service.SysUserService;
 import com.xqsight.upload.model.SysFile;
 import com.xqsight.upload.model.vo.SysFileVo;
 import com.xqsight.upload.support.FileUploadSupport;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,14 +46,18 @@ public class SysUserController {
 
     @RequestMapping("save")
     @RequiresPermissions("sys:login:save")
-    public Object saveLogin(SysLogin sysLogin) {
+    public Object saveLogin(HttpServletRequest request, SysLogin sysLogin) {
         SysLogin sysLogins = sysUserService.querySingleUserByLoginId(sysLogin.getLoginId());
         if (sysLogins != null)
             return MessageSupport.failureMsg("保存失败，登录名已存在");
 
         sysLogin.setCreateOprId(SSOUtils.getCurrentUserId().toString());
         sysLogin.setPassword("!password");
-        sysLogin.setFromSource(UserFromSourceEnum.MOBILE.value());
+        if (WebUtils.isMobile(request)) {
+            sysLogin.setFromSource(UserFromSourceEnum.MOBILE.value());
+        } else {
+            sysLogin.setFromSource(UserFromSourceEnum.PC.value());
+        }
         LoginTypeEnum loginType = LoginSupport.judgeLoginType(sysLogin.getLoginId());
         sysLogin.setLoginType(loginType.value());
         PasswordHelper.encryptPassword(sysLogin);
@@ -77,10 +83,25 @@ public class SysUserController {
         return MessageSupport.successMsg("删除成功");
     }
 
+    @RequestMapping("updpwd")
+    public Object updPassword(Long id, String oldPwd, String password) {
+        SysLogin sysLogin = sysUserService.querySysLoginById(id);
+        if (sysLogin == null)
+            return MessageSupport.failureMsg("当前用户不存在");
+
+        if (!PasswordHelper.checkPassword(sysLogin, oldPwd))
+            return MessageSupport.failureMsg("原始密码不正确");
+
+        sysLogin.setPassword(password);
+        PasswordHelper.encryptPassword(sysLogin);
+        sysUserService.updateSysLoginPwd(sysLogin.getPassword(), id);
+        return MessageSupport.successMsg("密码修改成功");
+    }
+
     @RequestMapping("query")
     public Object queryLoginByName(XqsightPage xqsightPage, SysLogin sysLogin) {
         Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
-        List<SysLogin> sysLogins = sysUserService.querySysLoginByLoginId(sysLogin.getLoginId());
+        List<SysLogin> sysLogins = sysUserService.querySysLoginByLoginIdAndOrgId(sysLogin.getLoginId(), sysLogin.getOrgId());
         xqsightPage.setTotalCount(page.getTotal());
         return MessageSupport.successDataTableMsg(xqsightPage, sysLogins);
     }
@@ -106,18 +127,6 @@ public class SysUserController {
             sysLogin.setId(SSOUtils.getCurrentUserId());
 
         sysUserService.updSysLogin(sysLogin);
-        return MessageSupport.successMsg("修改成功");
-    }
-
-    @RequestMapping("updpwd")
-    public Object updPassword(Long id, String password) {
-        SysLogin sysLogin = sysUserService.querySysLoginById(id);
-        if (sysLogin == null)
-            return MessageSupport.failureMsg("当前用户不存在");
-
-        sysLogin.setPassword(password);
-        PasswordHelper.encryptPassword(sysLogin);
-        sysUserService.updateSysLoginPwd(sysLogin.getPassword(), id);
         return MessageSupport.successMsg("修改成功");
     }
 

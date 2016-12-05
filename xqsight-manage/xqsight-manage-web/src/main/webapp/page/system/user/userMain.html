@@ -40,7 +40,27 @@
         try{ace.settings.check('main-container' , 'fixed')}catch(e){}
     </script>
     <!-- /section:basics/sidebar -->
-    <div class="main-content">
+    <div class="sidebar widget-box widget-color-green" style="width: 230px;">
+        <div class="widget-header widget-header-flat">
+            <h4 class="widget-title">
+                <i class="ace-icon fa fa-filter"></i>
+                组织结构树
+            </h4>
+        </div>
+        <div class="widget-body">
+            <div class="widget-main no-padding">
+                <!-- start condition -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul id="orgTree" class="ztree"></ul>
+                    </div>
+                </div>
+                <!-- end condition -->
+            </div><!-- /.widget-main -->
+        </div><!-- /.widget-body -->
+    </div>
+
+    <div class="main-content" style="margin-left: 230px;">
         <div class="main-content-inner">
             <div class="page-content">
                 <div class="row">

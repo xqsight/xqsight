@@ -12,8 +12,8 @@ import java.util.List;
  */
 public interface SysUserMapper {
 
-	@Insert("insert into sys_login (login_id,user_name, password, login_type, from_source, img_url, salt, locked,age,sex, active, create_time, create_opr_id, remark) values("
-	+ "#{loginId, jdbcType=VARCHAR},#{userName, jdbcType=VARCHAR},#{password, jdbcType=VARCHAR},#{loginType, jdbcType=NUMERIC},#{fromSource, jdbcType=VARCHAR},#{imgUrl, jdbcType=VARCHAR},#{salt, jdbcType=VARCHAR},#{locked, jdbcType=NUMERIC},#{age, jdbcType=NUMERIC},#{sex, jdbcType=NUMERIC},#{active, jdbcType=NUMERIC},#{createTime, jdbcType=TIMESTAMP} ,#{createOprId, jdbcType=VARCHAR} , #{remark, jdbcType=VARCHAR})")
+	@Insert("insert into sys_login (org_id,login_id,user_name, password, login_type, from_source, img_url, salt, locked,age,sex, active, create_time, create_opr_id, remark) values("
+	+ "#{orgId, jdbcType=NUMERIC},#{loginId, jdbcType=VARCHAR},#{userName, jdbcType=VARCHAR},#{password, jdbcType=VARCHAR},#{loginType, jdbcType=NUMERIC},#{fromSource, jdbcType=VARCHAR},#{imgUrl, jdbcType=VARCHAR},#{salt, jdbcType=VARCHAR},#{locked, jdbcType=NUMERIC},#{age, jdbcType=NUMERIC},#{sex, jdbcType=NUMERIC},#{active, jdbcType=NUMERIC},#{createTime, jdbcType=TIMESTAMP} ,#{createOprId, jdbcType=VARCHAR} , #{remark, jdbcType=VARCHAR})")
 	void saveSysLogin(SysLogin sysLogin);
 	
 	@Update("update  sys_login set password=#{password, jdbcType=VARCHAR}  where  id=#{id, jdbcType=NUMERIC}")
@@ -39,5 +39,8 @@ public interface SysUserMapper {
 
 	@Select("select sl.*,sl.login_id userid from sys_login sl where sl.login_id=#{loginId,jdbcType=VARCHAR}")
 	SysLogin querySingleUserByLoginId(@Param("loginId") String loginId);
+
+	@Select("select * from sys_login where login_id like '%${loginId}%' and org_id=#{orgId,jdbcType=NUMERIC} order by create_time desc")
+	List<SysLogin> querySingleUserByLoginIdAndOrgId(@Param("loginId") String loginId,@Param("orgId") long orgId);
 
 }

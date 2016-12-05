@@ -4,29 +4,26 @@
  */
 package com.xqsight.wechat.bxs.controller;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import com.alibaba.fastjson.JSON;
+import com.xqsight.wechat.bxs.component.BxsEventComponent;
+import com.xqsight.wechat.bxs.component.BxsLinkComponent;
+import com.xqsight.wechat.bxs.component.BxsMessageComponent;
 import me.chanjar.weixin.common.api.WxConsts;
-import me.chanjar.weixin.common.util.StringUtils;
 import me.chanjar.weixin.mp.api.WxMpConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
-import me.chanjar.weixin.mp.bean.WxMpXmlMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutMessage;
-
+import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.alibaba.fastjson.JSON;
-import com.xqsight.wechat.bxs.component.BxsEventComponent;
-import com.xqsight.wechat.bxs.component.BxsLinkComponent;
-import com.xqsight.wechat.bxs.component.BxsMessageComponent;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
   * @Description: this is use for 

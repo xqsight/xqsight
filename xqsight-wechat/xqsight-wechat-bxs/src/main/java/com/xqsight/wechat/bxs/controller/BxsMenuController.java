@@ -4,22 +4,20 @@
  */
 package com.xqsight.wechat.bxs.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
 import com.xqsight.common.support.MessageSupport;
-import me.chanjar.weixin.common.bean.WxMenu;
-import me.chanjar.weixin.common.bean.WxMenu.WxMenuButton;
+import me.chanjar.weixin.common.bean.menu.WxMenu;
+import me.chanjar.weixin.common.bean.menu.WxMenuButton;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.mp.api.WxMpService;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Description: this is use for 
@@ -83,7 +81,7 @@ public class BxsMenuController {
 	    button3.getSubButtons().add(button33);
 		    
 		try {
-			wxBxsMpService.menuCreate(menu);
+			wxBxsMpService.getMenuService().menuCreate(menu);
 			logger.debug("发布成功！");
 			return MessageSupport.successMsg("发布成功");
 

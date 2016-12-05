@@ -87,6 +87,11 @@ public class SysUserServiceImpl implements SysUserService {
         return sysLoginMapper.querySysLoginByLoginId(loginId);
     }
 
+    @Override
+    public List<SysLogin> querySysLoginByLoginIdAndOrgId(String loginId, long orgId) {
+        logger.debug("出入参数:loginId={},orgId={}", loginId,orgId);
+        return sysLoginMapper.querySingleUserByLoginIdAndOrgId(loginId,orgId);
+    }
 
     /**
      * <p>Title: querySysLoginById</p>

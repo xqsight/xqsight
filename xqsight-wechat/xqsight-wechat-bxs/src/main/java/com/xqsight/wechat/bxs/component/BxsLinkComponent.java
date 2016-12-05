@@ -4,23 +4,21 @@
  */
 package com.xqsight.wechat.bxs.component;
 
-import java.util.Map;
-
+import com.alibaba.fastjson.JSON;
+import com.xqsight.wechat.bxs.service.WxUserInfoService;
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 import me.chanjar.weixin.mp.api.WxMpMessageMatcher;
 import me.chanjar.weixin.mp.api.WxMpService;
-import me.chanjar.weixin.mp.bean.WxMpXmlMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutMessage;
-
+import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.alibaba.fastjson.JSON;
-import com.xqsight.wechat.bxs.service.WxUserInfoService;
+import java.util.Map;
 
 /**
  * @Description: this is use for 
@@ -48,23 +46,8 @@ public class BxsLinkComponent implements WxMpMessageHandler, WxMpMessageMatcher{
 		return true;
 	}
 
-	/**
-	 * <p>Title: handle</p>
-	 * <p>Description: </p>
-	 * @param wxMessage
-	 * @param context
-	 * @param wxMpService
-	 * @param sessionManager
-	 * @return
-	 * @throws WxErrorException
-	 * @see WxMpMessageHandler#handle(WxMpXmlMessage, Map, WxMpService, WxSessionManager)
-	 */
 	@Override
-	public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
-			Map<String, Object> context, WxMpService wxMpService,
-			WxSessionManager sessionManager) throws WxErrorException {
-		
-		
+	public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> map, WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
 		return null;
 	}
 }

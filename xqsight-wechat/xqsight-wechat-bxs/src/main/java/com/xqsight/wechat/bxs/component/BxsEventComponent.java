@@ -11,11 +11,12 @@ import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 import me.chanjar.weixin.mp.api.WxMpMessageMatcher;
 import me.chanjar.weixin.mp.api.WxMpService;
-import me.chanjar.weixin.mp.bean.WxMpXmlMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutNewsMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutTextMessage;
 
+
+import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlOutNewsMessage;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlOutTextMessage;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,42 +53,28 @@ public class BxsEventComponent implements WxMpMessageHandler, WxMpMessageMatcher
 		return true;
 	}
 
-	/**
-	 * <p>Title: handle</p>
-	 * <p>Description: </p>
-	 * @param wxMessage
-	 * @param context
-	 * @param wxMpService
-	 * @param sessionManager
-	 * @return
-	 * @throws WxErrorException
-	 * @see WxMpMessageHandler#handle(WxMpXmlMessage, Map, WxMpService, WxSessionManager)
-	 */
 	@Override
-	public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
-			Map<String, Object> context, WxMpService wxMpService,
-			WxSessionManager sessionManager) throws WxErrorException {
-		if(StringUtils.equalsIgnoreCase(wxMessage.getEventKey(), "V1001_TODAY_FOCUS")){
+	public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> map, WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
+		if(StringUtils.equalsIgnoreCase(wxMpXmlMessage.getEventKey(), "V1001_TODAY_FOCUS")){
 			WxMpXmlOutNewsMessage.Item item = new WxMpXmlOutNewsMessage.Item();
 			item.setDescription("这个图片好看吗，好看就点击哦！");
 			item.setPicUrl("http://img12.360buyimg.com/n3/g10/M00/0A/1F/rBEQWVFCkSQIAAAAAACyLqnAnzIAACJRwLI63gAALJG863.jpg");
 			item.setTitle("好看的妹妹图片");
 			item.setUrl("www.baidu.com");
 			WxMpXmlOutNewsMessage m = WxMpXmlOutMessage.NEWS()
-					.fromUser(wxMessage.getToUserName())
-					.toUser(wxMessage.getFromUserName())
+					.fromUser(wxMpXmlMessage.getToUser())
+					.toUser(wxMpXmlMessage.getFromUser())
 					.addArticle(item)
 					.addArticle(item)
 					.build();
 			return m;
-		}else if(StringUtils.equalsIgnoreCase(wxMessage.getEventKey(), "V3003_CONTACT_US")){
+		}else if(StringUtils.equalsIgnoreCase(wxMpXmlMessage.getEventKey(), "V3003_CONTACT_US")){
 			WxMpXmlOutTextMessage m = WxMpXmlOutMessage.TEXT()
-		    		.fromUser(wxMessage.getToUserName())
-		    		.toUser(wxMessage.getFromUserName()).build();
-		    	m.setContent("客服专线：18621509689");
+					.fromUser(wxMpXmlMessage.getToUser())
+					.toUser(wxMpXmlMessage.getFromUser()).build();
+			m.setContent("客服专线：18621509689");
 			return m;
 		}
 		return null;
 	}
-		
 }

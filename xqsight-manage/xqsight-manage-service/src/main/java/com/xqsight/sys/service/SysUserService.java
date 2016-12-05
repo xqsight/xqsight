@@ -79,6 +79,14 @@ public interface SysUserService {
 	 * @throws
 	 */
 	List<SysLogin> querySysLoginByLoginId(String loginId);
+
+	/**
+	 * 根据组织结构和登录ID查询
+	 * @param loginId
+	 * @param orgId
+	 * @return
+	 */
+	List<SysLogin> querySysLoginByLoginIdAndOrgId(String loginId,long orgId);
 	
 	/**
 	 * 

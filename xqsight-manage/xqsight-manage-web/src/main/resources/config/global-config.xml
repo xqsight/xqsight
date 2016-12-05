@@ -15,7 +15,6 @@
 		<property name="locations">
 			<list>
 				<value>classpath:global.cfg.properties</value>
-				<value>classpath:xqsight.jdbc.mysql.cfg.properties</value>
 			</list>
 		</property>
 	</bean>

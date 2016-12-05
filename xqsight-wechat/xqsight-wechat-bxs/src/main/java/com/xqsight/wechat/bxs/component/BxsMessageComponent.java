@@ -4,21 +4,20 @@
  */
 package com.xqsight.wechat.bxs.component;
 
-import java.util.Map;
-import java.util.Random;
-import java.util.regex.Pattern;
-
-import org.springframework.stereotype.Component;
-
 import me.chanjar.weixin.common.exception.WxErrorException;
 import me.chanjar.weixin.common.session.WxSession;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpMessageHandler;
 import me.chanjar.weixin.mp.api.WxMpMessageMatcher;
 import me.chanjar.weixin.mp.api.WxMpService;
-import me.chanjar.weixin.mp.bean.WxMpXmlMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutMessage;
-import me.chanjar.weixin.mp.bean.WxMpXmlOutTextMessage;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import me.chanjar.weixin.mp.bean.message.WxMpXmlOutTextMessage;
+import org.springframework.stereotype.Component;
+
+import java.util.Map;
+import java.util.Random;
+import java.util.regex.Pattern;
 
 /**
   * @Description: this is use for 
@@ -53,35 +52,11 @@ public class BxsMessageComponent implements WxMpMessageHandler, WxMpMessageMatch
 		return pattern.matcher(message.getContent()).matches();
 	}
 
-	/**
-	 * <p>Title: handle</p>
-	 * <p>Description: </p>
-	 * @param wxMessage
-	 * @param context
-	 * @param wxMpService
-	 * @param sessionManager
-	 * @return
-	 * @throws WxErrorException
-	 * @see WxMpMessageHandler#handle(WxMpXmlMessage, Map, WxMpService, WxSessionManager)
-	 */
-	@Override
-	public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage, Map<String, Object> context, WxMpService wxMpService, WxSessionManager sessionManager) throws WxErrorException {
-		if (isUserWantGuessNum(wxMessage)) {
-	      return letsGo(wxMessage, wxMpService, sessionManager);
-	    }
-
-	    if (isUserAnswering(wxMessage)) {
-	      return giveHint(wxMessage, wxMpService, sessionManager);
-	    }
-	    return null;
-	}
-	
-	
 	protected WxMpXmlOutMessage letsGo(WxMpXmlMessage wxMessage, WxMpService wxMpService, WxSessionManager sessionManager) throws WxErrorException {
-	    WxSession session = sessionManager.getSession(wxMessage.getFromUserName());
-	    WxMpXmlOutTextMessage m = WxMpXmlOutMessage.TEXT()
-	    		.fromUser(wxMessage.getToUserName())
-	    		.toUser(wxMessage.getFromUserName()).build();
+	    WxSession session = sessionManager.getSession(wxMessage.getFromUser());
+		WxMpXmlOutTextMessage m = WxMpXmlOutMessage.TEXT()
+	    		.fromUser(wxMessage.getToUser())
+	    		.toUser(wxMessage.getFromUser()).build();
 	    if (session.getAttribute("guessing") == null) {
 	    	m.setContent("请猜一个100以内的数字");
 	    } else {
@@ -95,10 +70,10 @@ public class BxsMessageComponent implements WxMpMessageHandler, WxMpMessageMatch
 
 	protected WxMpXmlOutMessage giveHint(WxMpXmlMessage wxMessage, WxMpService wxMpService, WxSessionManager sessionManager) throws WxErrorException {
 
-	    WxSession session = sessionManager.getSession(wxMessage.getFromUserName());
+	    WxSession session = sessionManager.getSession(wxMessage.getFromUser());
 	    WxMpXmlOutTextMessage m = WxMpXmlOutMessage.TEXT()
-	    		.fromUser(wxMessage.getToUserName())
-	    		.toUser(wxMessage.getFromUserName()).build();
+	    		.fromUser(wxMessage.getToUser())
+	    		.toUser(wxMessage.getFromUser()).build();
 	    if (session.getAttribute("guessing") == null) {
 	      return null;
 	    }
@@ -120,4 +95,15 @@ public class BxsMessageComponent implements WxMpMessageHandler, WxMpMessageMatch
 	    return m;
 	  }
 
+	@Override
+	public WxMpXmlOutMessage handle(WxMpXmlMessage wxMpXmlMessage, Map<String, Object> map, WxMpService wxMpService, WxSessionManager wxSessionManager) throws WxErrorException {
+		if (isUserWantGuessNum(wxMpXmlMessage)) {
+			return letsGo(wxMpXmlMessage, wxMpService, wxSessionManager);
+		}
+
+		if (isUserAnswering(wxMpXmlMessage)) {
+			return giveHint(wxMpXmlMessage, wxMpService, wxSessionManager);
+		}
+		return null;
+	}
 }
