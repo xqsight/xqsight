@@ -33,6 +33,14 @@ saicfc.nameSpace.reg("sys.user");
             $(".btn-search").click(function(){
                 obj.userTable.ajax.reload();
             });
+            $(document).bind("keydown",".filter input",function(e){
+                var theEvent = window.event || e;
+                var code = theEvent.keyCode || theEvent.which;
+                if (code == 13) {
+                    obj.userTable.ajax.reload();
+                }
+            });
+
             /**
              * 重置
              */
