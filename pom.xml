@@ -78,6 +78,8 @@
         <mybatis.version>3.3.0</mybatis.version>
         <mybatis.spring.version>1.2.3</mybatis.spring.version>
         <mybatis.pagehelper.version>3.7.5</mybatis.pagehelper.version>
+        <mybatis.mybatis-types.version>0.3</mybatis.mybatis-types.version>
+        <mybatis.ehcache.version>1.0.3</mybatis.ehcache.version>
         <!-- zookeeper -->
         <zookeeper.version>3.4.6</zookeeper.version>
         <zkclient.sgroschupf.version>0.1</zkclient.sgroschupf.version>
@@ -310,6 +312,14 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -821,6 +831,16 @@
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
                 <version>${mybatis.pagehelper.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.javaplugs</groupId>
+                <artifactId>mybatis-types</artifactId>
+                <version>${mybatis.mybatis-types.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.caches</groupId>
+                <artifactId>mybatis-ehcache</artifactId>
+                <version>${mybatis.ehcache.version}</version>
             </dependency>
             <!-- Mybatis End -->
             <!-- Zookeeper start -->
