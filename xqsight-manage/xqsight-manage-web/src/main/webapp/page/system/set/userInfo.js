@@ -108,7 +108,7 @@ saicfc.nameSpace.reg("sys.set");
                     url = ctxData + "/sys/login/updpwd?date=" + new Date().getTime();
                     $.ajax({
                         "url": url,
-                        "data": "password=" + $("#password").val(),
+                        "data": "oldPassword=" + $("#oldPassword").val() + "&password=" + $("#password").val(),
                         "success": function (retData) {
                             saicfc.win.alert(retData.msg,retData.status);
                         },

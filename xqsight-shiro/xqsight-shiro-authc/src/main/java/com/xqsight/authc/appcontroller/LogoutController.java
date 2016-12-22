@@ -1,7 +1,3 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.authc.appcontroller;
 
 import com.alibaba.fastjson.JSON;
@@ -16,8 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 
- * @author linhaoran
- * @version SignUpController.java, v 0.1 2015年9月29日 下午11:20:53 linhaoran
+ * @version SignUpController.java, v 0.1 2015年9月29日 下午11:20:53
  */
 @Controller
 @RequestMapping("/authc")
