@@ -1,7 +1,3 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sys.mysqlbatchmapper;
 
 import org.apache.ibatis.annotations.Delete;
@@ -18,15 +14,15 @@ import com.xqsight.common.dao.batch.MysqlBatchAnnotation;
 @MysqlBatchAnnotation
 public interface BSysAuthMapper {
 
-	@Insert("INSERT INTO SYS_MENU_ROLE (MENU_ID,ROLE_ID)values(#{menuId, jdbcType=NUMERIC},#{roleId, jdbcType=NUMERIC})")
+	@Insert("insert into sys_menu_role (menu_id,role_id)values(#{menuId, jdbcType=NUMERIC},#{roleId, jdbcType=NUMERIC})")
 	void saveMenuRole(@Param("menuId") long menuId, @Param("roleId") long roleId);
 	
-	@Delete("DELETE FROM SYS_MENU_ROLE WHERE ROLE_ID =#{roleId, jdbcType=NUMERIC}")
+	@Delete("delete from sys_menu_role where role_id =#{roleId, jdbcType=NUMERIC}")
 	void deleMenuRole(@Param("roleId") long roleId);
 	
-	@Insert("INSERT INTO SYS_USER_ROLE (ID,ROLE_ID)values(#{id, jdbcType=NUMERIC},#{roleId, jdbcType=NUMERIC})")
+	@Insert("insert into sys_user_role (id,role_id)values(#{id, jdbcType=NUMERIC},#{roleId, jdbcType=NUMERIC})")
 	void saveUserRole(@Param("id") long id, @Param("roleId") long roleId);
 	
-	@Delete("DELETE FROM SYS_USER_ROLE WHERE ROLE_ID =#{roleId, jdbcType=NUMERIC}")
+	@Delete("delete from sys_user_role where role_id =#{roleId, jdbcType=NUMERIC}")
 	void deleUserRole(@Param("roleId") long roleId);
 }

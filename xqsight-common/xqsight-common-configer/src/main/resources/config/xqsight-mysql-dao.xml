@@ -9,16 +9,6 @@
 	http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 	http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<!-- 加载jdbc属性文件 -->
-	<bean id="mysqlPropertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="ignoreUnresolvablePlaceholders" value="true" />
-		<property name="locations">
-			<list>
-				<value>file:///config/appconfig/xqsight/xqsight.jdbc.mysql.cfg.properties</value>
-			</list>
-		</property>
-	</bean>
-
 	<!-- =================== 平台数据源配置 ================== -->
 	<!-- Alibaba Druid 数据源 -->
 	<bean id="dataSourceMysql" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
