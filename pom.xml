@@ -1055,7 +1055,6 @@
         <module>xqsight-tools</module>
         <module>xqsight-cms</module>
         <module>xqsight-file</module>
-        <module>xqsight-chonic</module>
         <module>xqsight-shiro</module>
         <module>xqsight-wechat</module>
         <module>xqsight-boot</module>
