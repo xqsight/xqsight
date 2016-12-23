@@ -111,6 +111,7 @@ saicfc.nameSpace.reg("sys.set");
                         "data": "oldPassword=" + $("#oldPassword").val() + "&password=" + $("#password").val(),
                         "success": function (retData) {
                             saicfc.win.alert(retData.msg,retData.status);
+                            saicfc.utils.cleanValue("#updForm");
                         },
                         "dataType": "jsonp",
                         "cache": false

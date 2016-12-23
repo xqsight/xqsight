@@ -23,18 +23,18 @@ import com.xqsight.cms.model.CmsArticleReport;
  */
 public interface CmsArticleReportMapper {
 
-	@Insert(" INSERT INTO CMS_ARTICLE_REPORT(ASSOCICATION_ID,REPORT_TYPE,REPORT_CONTENT,DEAL_STATUS,ACTIVE,CREATE_TIME,CREATE_OPR_ID,REMARK)VALUES(#{associcationId,jdbcType=NUMERIC},#{reportType,jdbcType=NUMERIC},#{reportContent,jdbcType=VARCHAR},#{dealStatus,jdbcType=NUMERIC},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
+	@Insert(" insert into cms_article_report(assocication_id,report_type,report_content,deal_status,active,create_time,create_opr_id,remark)values(#{associcationId,jdbcType=NUMERIC},#{reportType,jdbcType=NUMERIC},#{reportContent,jdbcType=VARCHAR},#{dealStatus,jdbcType=NUMERIC},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
 	void saveCmsArticleReport(CmsArticleReport cmsArticleReport);
 	
-	@Update(" UPDATE CMS_ARTICLE_REPORT SET DEAL_STATUS=0,UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},UPD_OPR_ID=#{updOprId,jdbcType=VARCHAR},REMARK=#{remark,jdbcType=VARCHAR} WHERE REPORT_ID=#{reportId,jdbcType=NUMERIC}")
+	@Update(" update cms_article_report set deal_status=0,update_time=#{updateTime,jdbcType=TIMESTAMP},upd_opr_id=#{updOprId,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where report_id=#{reportId,jdbcType=NUMERIC}")
 	void updateCmsArticleReport(CmsArticleReport cmsArticleReport);
 	
-	@Delete(" DELETE FROM CMS_ARTICLE_REPORT WHERE REPORT_ID=#{reportId,jdbcType=NUMERIC}")
+	@Delete(" delete from cms_article_report where report_id =#{reportId,jdbcType=NUMERIC}")
 	void deleteCmsArticleReport(@Param("reportId") Long reportId);
 	
-	@Select(" SELECT REPORT_ID,REPORT_CONTENT,ASSOCICATION_ID,REPORT_TYPE,DEAL_STATUS,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM CMS_ARTICLE_REPORT WHERE REPORT_ID=#{reportId,jdbcType=NUMERIC}")
+	@Select(" select report_id,report_content,assocication_id,report_type,deal_status,active,create_time,create_opr_id,update_time,upd_opr_id,remark from cms_article_report where report_id=#{reportId,jdbcType=NUMERIC}")
 	CmsArticleReport queryCmsArticleReportById(@Param("reportId") Long reportId);
 
-	@Select(" SELECT CAR.REPORT_ID,CAR.REPORT_CONTENT,CAR.ASSOCICATION_ID,CAR.DEAL_STATUS,CAR.CREATE_TIME,CAR.REMARK,CR.ARTICLE_TITLE,CR.ARTICLE_ID FROM CMS_ARTICLE_REPORT CAR LEFT JOIN CMS_ARTICLE CR ON CAR.ASSOCICATION_ID = CR.ARTICLE_ID  WHERE CAR.REPORT_CONTENT LIKE '%${reportContent}%' ORDER BY CAR.CREATE_TIME DESC")
+	@Select(" select car.report_id,car.report_content,car.assocication_id,car.deal_status,car.create_time,car.remark,cr.article_title,cr.article_id from cms_article_report car left join cms_article cr on car.assocication_id = cr.article_id  where car.report_content like '%${reportContent}%' order by car.create_time desc")
 	List<CmsArticleReportVo> queryCmsArticleReport(@Param("reportContent") String reportContent);
 }

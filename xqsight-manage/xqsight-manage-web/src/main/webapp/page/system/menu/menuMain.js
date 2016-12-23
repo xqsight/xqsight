@@ -39,7 +39,7 @@ saicfc.nameSpace.reg("sys.menu");
             /**
              * 重置
              */
-            $("#btn-reset").click(function(){
+            $("#btn-undo").click(function(){
                 saicfc.utils.cleanValue(".filter");
             });
 

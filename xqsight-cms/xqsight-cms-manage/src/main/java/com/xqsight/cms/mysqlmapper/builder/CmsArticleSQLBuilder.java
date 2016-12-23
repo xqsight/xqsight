@@ -27,31 +27,31 @@ public class CmsArticleSQLBuilder {
 				: (Map<String, Object>) paramsMap.get("paramsMap"));
 		String sql = new SQL(){
 			{
-				SELECT("cart.ARTICLE_TITLE,cart.ARTICLE_ID,cart.ARTICLE_DESCRIPTION,cart.CREATE_TIME");
-				SELECT("sl.IMG_URL,sl.USER_NAME,sl.LOGIN_ID");
-				SELECT("sf.FILE_NAME,sf.FILE_URL,sf.FILE_ID");
-				SELECT("(SELECT COUNT(*) FROM CMS_ATTENTION WHERE ATTENTION_TYPE=2 and ASSOCICATION_ID=cart.ARTICLE_ID)ATTENTION_COUNT");
-				SELECT("(SELECT COUNT(*) FROM CMS_COMMENT WHERE ASSOCICATION_ID=cart.ARTICLE_ID)COMMENT_COUNT");
-				FROM("CMS_ARTICLE cart ");
-				LEFT_OUTER_JOIN("CMS_MODEL cmo ON cart.MODEL_ID = cmo.MODEL_ID");
-				LEFT_OUTER_JOIN("CMS_APP capp ON cmo.APP_ID = capp.APP_ID");
-				LEFT_OUTER_JOIN("SYS_LOGIN sl ON cart.CREATE_OPR_ID = sl.ID");
-				LEFT_OUTER_JOIN("SYS_FILE_ASSOCICATION sfa ON cart.ARTICLE_ID = sfa.ASSOCICATION_ID");
-				LEFT_OUTER_JOIN("SYS_FILE sf ON sf.FILE_ID = sfa.FILE_ID");
+				SELECT("cart.article_title,cart.article_id,cart.article_description,cart.create_time");
+				SELECT("sl.img_url,sl.user_name,sl.login_id");
+				SELECT("sf.file_name,sf.file_url,sf.file_id");
+				SELECT("(select count(*) from cms_attention where attention_type=2 and assocication_id=cart.article_id)attention_count");
+				SELECT("(select count(*) from cms_comment where assocication_id=cart.article_id)comment_count");
+				FROM("cms_article cart ");
+				LEFT_OUTER_JOIN("cms_model cmo on cart.model_id = cmo.model_id");
+				LEFT_OUTER_JOIN("cms_app capp on cmo.app_id = capp.app_id");
+				LEFT_OUTER_JOIN("sys_login sl on cart.create_opr_id = sl.id");
+				LEFT_OUTER_JOIN("sys_file_assocication sfa on cart.article_id = sfa.assocication_id");
+				LEFT_OUTER_JOIN("sys_file sf on sf.file_id = sfa.file_id");
 				
 				if(StringUtils.isNoneBlank(MapUtils.getString(paramMap, "createOprId")))
-					WHERE("cart.CREATE_OPR_ID = #{paramsMap.createOprId,jdbcType=VARCHAR}");
+					WHERE("cart.create_opr_id = #{paramsMap.createOprId,jdbcType=VARCHAR}");
 				
 				if(StringUtils.isNoneBlank(MapUtils.getString(paramMap, "modelCode")))
-					WHERE("cmo.MODEL_CODE=#{paramsMap.modelCode,jdbcType=VARCHAR}");
+					WHERE("cmo.model_code=#{paramsMap.modelCode,jdbcType=VARCHAR}");
 				
 				if(StringUtils.isNoneBlank(MapUtils.getString(paramMap, "appCode")))
-					WHERE("capp.APP_CODE = #{paramsMap.appCode,jdbcType=VARCHAR}");
+					WHERE("capp.app_code = #{paramsMap.appCode,jdbcType=VARCHAR}");
 				
 				if(StringUtils.isNoneBlank(MapUtils.getString(paramMap, "orderBy")))
 					ORDER_BY("${paramsMap.orderBy} ${paramsMap.sortType}");
 				
-				GROUP_BY("cart.ARTICLE_ID");
+				GROUP_BY("cart.article_id");
 			}
 		}.toString();
 		return sql;
@@ -69,20 +69,20 @@ public class CmsArticleSQLBuilder {
 				: (Map<String, Object>) paramsMap.get("paramsMap");
 		String sql = new SQL(){
 			{
-				SELECT(" MODEL_ID,FILE_ID,ARTICLE_ID,ARTICLE_TITLE,ARTICLE_AUTHOR,ARTICLE_DESCRIPTION,ARTICLE_CONTENT,ARTICLE_TYPE,ARTICLE_URL,ARTICLE_KEYWORD,ARTICLE_SOURCLE,ARTICLE_HIT,ARTICLE_HAS_PIC,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK ");
-				FROM ("CMS_ARTICLE article");
+				SELECT(" model_id,file_id,article_id,article_title,article_author,article_description,article_content,article_type,article_url,article_keyword,article_sourcle,article_hit,article_has_pic,active,create_time,create_opr_id,update_time,upd_opr_id,remark ");
+				FROM ("cms_article article");
 				if(paramMap.get("appId").equals("1"))
 				{
-					WHERE("article.MODEL_ID in (3,4,5,14)");
+					WHERE("article.model_id in (3,4,5,14)");
 				}
 				else if(paramMap.get("appId").equals("2"))
 				{
-					WHERE("article.MODEL_ID not in (3,4,5,14)");
+					WHERE("article.model_id not in (3,4,5,14)");
 				}
 				if(!((CmsArticle) paramMap.get("cmsArticle")).getArticleTitle().equals(""))
-						WHERE("article.ARTICLE_TITLE like '%"+((CmsArticle) paramMap.get("cmsArticle")).getArticleTitle()+"%'");
+						WHERE("article.article_title like '%"+((CmsArticle) paramMap.get("cmsArticle")).getArticleTitle()+"%'");
 						
-				ORDER_BY("article.ARTICLE_ID");
+				ORDER_BY("article.article_id");
 			}
 		}.toString();
 		return sql;

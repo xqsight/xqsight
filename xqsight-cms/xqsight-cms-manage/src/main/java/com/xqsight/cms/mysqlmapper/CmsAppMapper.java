@@ -22,26 +22,26 @@ import com.xqsight.cms.model.CmsApp;
  */
 public interface CmsAppMapper {
 
-	@Insert(" INSERT INTO CMS_APP(APP_CODE,APP_NAME,APP_DOMAIN,APP_LOGO,APP_KEYWORD,APP_COPYRIGHT,APP_STYLE,APP_MANAGERID,APP_DESCRIPTION,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK)VALUES(#{appCode,jdbcType=VARCHAR},#{appName,jdbcType=VARCHAR},#{appDomain,jdbcType=VARCHAR},#{appLogo,jdbcType=VARCHAR},#{appKeyword,jdbcType=VARCHAR},#{appCopyright,jdbcType=VARCHAR},#{appStyle,jdbcType=VARCHAR},#{appManagerid,jdbcType=VARCHAR},#{appDescription,jdbcType=VARCHAR},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP},#{updOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
+	@Insert(" insert into cms_app(app_code,app_name,app_domain,app_logo,app_keyword,app_copyright,app_style,app_managerid,app_description,active,create_time,create_opr_id,update_time,upd_opr_id,remark)values(#{appCode,jdbcType=VARCHAR},#{appName,jdbcType=VARCHAR},#{appDomain,jdbcType=VARCHAR},#{appLogo,jdbcType=VARCHAR},#{appKeyword,jdbcType=VARCHAR},#{appCopyright,jdbcType=VARCHAR},#{appStyle,jdbcType=VARCHAR},#{appManagerid,jdbcType=VARCHAR},#{appDescription,jdbcType=VARCHAR},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP},#{updOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
 	@Options(useGeneratedKeys = true, keyProperty = "appId")
 	void saveCmsApp(CmsApp cmsApp);
 	
-	@Update(" UPDATE CMS_APP SET APP_CODE=#{appCode,jdbcType=VARCHAR},APP_NAME=#{appName,jdbcType=VARCHAR},APP_DOMAIN=#{appDomain,jdbcType=VARCHAR},APP_LOGO=#{appLogo,jdbcType=VARCHAR},APP_KEYWORD=#{appKeyword,jdbcType=VARCHAR},APP_COPYRIGHT=#{appCopyright,jdbcType=VARCHAR},APP_STYLE=#{appStyle,jdbcType=VARCHAR},APP_MANAGERID=#{appManagerid,jdbcType=VARCHAR},APP_DESCRIPTION=#{appDescription,jdbcType=VARCHAR},ACTIVE=#{active,jdbcType=NUMERIC},UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},UPD_OPR_ID=#{updOprId,jdbcType=VARCHAR},REMARK=#{remark,jdbcType=VARCHAR} WHERE APP_ID=#{appId,jdbcType=NUMERIC}")
+	@Update(" update cms_app set app_code=#{appCode,jdbcType=VARCHAR},app_name=#{appName,jdbcType=VARCHAR},app_domain=#{appDomain,jdbcType=VARCHAR},app_logo=#{appLogo,jdbcType=VARCHAR},app_keyword=#{appKeyword,jdbcType=VARCHAR},app_copyright=#{appCopyright,jdbcType=VARCHAR},app_style=#{appStyle,jdbcType=VARCHAR},app_managerid=#{appManagerid,jdbcType=VARCHAR},app_description=#{appDescription,jdbcType=VARCHAR},active=#{active,jdbcType=NUMERIC},update_time=#{updateTime,jdbcType=TIMESTAMP},upd_opr_id=#{updOprId,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where app_id=#{appId,jdbcType=NUMERIC}")
 	void updateCmsApp(CmsApp cmsApp);
 	
-	@Delete(" DELETE FROM CMS_APP WHERE APP_ID=#{appId,jdbcType=NUMERIC}")
+	@Delete(" delete from cms_app where app_id=#{appId,jdbcType=NUMERIC}")
 	void deleteCmsApp(@Param("appId") Long appId);
 	
-	@Select(" SELECT APP_ID,APP_NAME,APP_CODE,APP_DOMAIN,APP_LOGO,APP_KEYWORD,APP_COPYRIGHT,APP_STYLE,APP_MANAGERID,APP_DESCRIPTION,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM CMS_APP")
+	@Select(" select app_id,app_name,app_code,app_domain,app_logo,app_keyword,app_copyright,app_style,app_managerid,app_description,active,create_time,create_opr_id,update_time,upd_opr_id,remark from cms_app")
 	List<CmsApp> queryCmsApp();
 
-	@Select(" SELECT APP_ID,APP_NAME,APP_CODE,APP_DOMAIN,APP_LOGO,APP_KEYWORD,APP_COPYRIGHT,APP_STYLE,APP_MANAGERID,APP_DESCRIPTION,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM CMS_APP WHERE APP_CODE LIKE '%${appCode,jdbcType=VARCHAR}%'")
+	@Select(" select app_id,app_name,app_code,app_domain,app_logo,app_keyword,app_copyright,app_style,app_managerid,app_description,active,create_time,create_opr_id,update_time,upd_opr_id,remark from cms_app where app_code like '%${appCode,jdbcType=VARCHAR}%'")
 	List<CmsApp> queryCmsAppByLikeAppCode(@Param("appCode") String appCode);
 	
-	@Select(" SELECT APP_ID,APP_NAME,APP_CODE,APP_DOMAIN,APP_LOGO,APP_KEYWORD,APP_COPYRIGHT,APP_STYLE,APP_MANAGERID,APP_DESCRIPTION,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM CMS_APP WHERE APP_ID=#{appId,jdbcType=NUMERIC}")
+	@Select(" select app_id,app_name,app_code,app_domain,app_logo,app_keyword,app_copyright,app_style,app_managerid,app_description,active,create_time,create_opr_id,update_time,upd_opr_id,remark from cms_app where app_id=#{appId,jdbcType=NUMERIC}")
 	CmsApp queryCmsAppById(@Param("appId") Long appId);
 	
-	@Select(" SELECT APP_id FROM CMS_APP WHERE APP_CODE=#{appCode,jdbcType=VARCHAR}")
+	@Select(" select app_id from cms_app where app_code =#{appCode,jdbcType=VARCHAR}")
 	Long queryExistByCode(@Param("appCode") String appCode);
 
 }

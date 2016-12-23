@@ -30,8 +30,6 @@ saicfc.nameSpace.reg("cms.article");
             $("#btn_save").bind("click",obj.validateFun);
             $("#btn_cancel").bind("click",obj.cancelFun);
 
-            obj.loadModeCodeFun();
-
             obj.Editor();
 
         };
@@ -56,6 +54,8 @@ saicfc.nameSpace.reg("cms.article");
                         'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
                         'anchor', 'link', 'unlink', '|', 'about']
                 });
+
+                obj.formSetValue();
             });
         }
 
@@ -64,8 +64,12 @@ saicfc.nameSpace.reg("cms.article");
          * @returns {string}
          */
         this.setParamFun = function(){
+            editArticle.articleId = $.getUrlParam("articleId");
             editArticle.articleTitle = $("#articleTitle").val();
+            editArticle.articleAuthor = $("#articleAuthor").val();
             editArticle.articleDescription = $("#articleDescription").val();
+            editArticle.articleSource = $("#articleSource").val();
+            editArticle.articleType = $("#articleType").val();
             editArticle.articleContent=artileEditor.html();
         };
 
@@ -138,35 +142,17 @@ saicfc.nameSpace.reg("cms.article");
                 "url": ctxData + "/cms/article/querybyid?articleId=" + articleId + "&date=" + new Date().getTime(),
                 "success": function(retData){
                     if(retData.status == "0"){
-                        var data = retData.data;
-                        editArticle.articleId = data.cmsArticld;
+                        var data = retData.data.cmsArticle;
                         editArticle.modelId = data.modelId;
 
                         $("#articleTitle").val(data.articleTitle);
+                        $("#articleAuthor").val(data.articleAuthor);
                         $("#articleDescription").val(data.articleDescription);
+                        $("#articleSource").val(data.articleSource);
+                        $("#articleType").val(data.articleType);
                         artileEditor.html(data.articleContent);
                         artileEditor.sync();
                     }
-                }
-            });
-        }
-
-        /**
-         * 渲染 模块
-         */
-        this.loadModeCodeFun = function(){
-            $.ajax({
-                "url": "modeData.json",
-                "dataType": "json",
-                "cache": true,
-                "success": function(retData){
-                    var data = ($.getUrlParam("appId") == "1") ? retData.CHRONIC_GENE : retData.CHRONIC_MANAGE;
-                    $.each(data,function(index,object){
-                        $("#modelId").append("<option value='" + object.modelId +"'>" + object.modelName + "</option>");
-                    });
-                    $('#modelId').selectpicker('refresh');
-
-                    obj.formSetValue();
                 }
             });
         }

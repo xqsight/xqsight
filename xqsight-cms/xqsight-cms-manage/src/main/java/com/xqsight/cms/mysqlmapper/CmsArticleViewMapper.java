@@ -17,30 +17,30 @@ import java.util.Map;
  */
 public interface CmsArticleViewMapper {
 
-	@Select(" SELECT * FROM VIEW_ARTICLE WHERE MODEL_ID = #{modelId,jdbcType=NUMERIC} ORDER BY CREATE_TIME DESC")
+	@Select(" select * from view_article where model_id = #{modelId,jdbcType=NUMERIC} order by create_time desc")
 	List<Map<String, Object>> queryCmsArticleViewByModelId(@Param("modelId") int modelId);
 
-	@Select(" SELECT * FROM VIEW_ARTICLE WHERE MODEL_ID = #{modelId,jdbcType=NUMERIC} AND ARTICLE_TITLE LIKE '%${articleTitle}%' ORDER BY CREATE_TIME DESC")
+	@Select(" select * from view_article where model_id = #{modelId,jdbcType=NUMERIC} and article_title like '%${articleTitle}%' order by create_time desc")
 	List<Map<String, Object>> queryCmsArticleViewByModelIdAndLikeArticleTitle(@Param("modelId") int modelId,@Param("articleTitle") String articleTitle);
 
-	@Select(" SELECT * FROM VIEW_ARTICLE WHERE ARTICLE_ID = #{articleId,jdbcType=NUMERIC} ORDER BY CREATE_TIME DESC")
+	@Select(" select * from view_article where article_id = #{articleId,jdbcType=NUMERIC} order by create_time desc")
 	Map<String, Object> queryCmsArticleViewByArticleId(@Param("articleId") Long articleId);
 
-	@Select(" SELECT * FROM VIEW_ARTICLE WHERE MODEL_ID IN (${modelIds,jdbcType=VARCHAR}) ORDER BY CREATE_TIME DESC")
+	@Select(" select * from view_article where model_id in (${modelIds,jdbcType=VARCHAR}) order by create_time desc")
 	List<Map<String, Object>> queryCmsArticleViewByModelIds(@Param("modelIds") String modelIds);
 
-	@Select(" SELECT * FROM VIEW_ARTICLE WHERE MODEL_ID = #{modelId,jdbcType=NUMERIC} AND ACTIVE = #{active,jdbcType=NUMERIC}  ORDER BY CREATE_TIME DESC")
+	@Select(" select * from view_article where model_id = #{modelId,jdbcType=NUMERIC} and active = #{active,jdbcType=NUMERIC}  order by create_time desc")
 	List<Map<String, Object>> queryCmsArticleViewByModelIdAndActive(@Param("modelId") int modelId, @Param("active") int active);
 
-	@Select(" SELECT * FROM VIEW_ARTICLE WHERE MODEL_ID = #{modelId,jdbcType=NUMERIC} AND CREATE_OPR_ID = #{createOprId,jdbcType=VARCHAR} ORDER BY CREATE_TIME DESC")
+	@Select(" select * from view_article where model_id = #{modelId,jdbcType=NUMERIC} and create_opr_id = #{createOprId,jdbcType=VARCHAR} order by create_time desc")
 	List<Map<String, Object>> queryCmsArticleViewByModelIdAndCreateOprId(@Param("modelId") int modelId, @Param("createOprId") String createOprId);
 
-	@Select(" SELECT * FROM VIEW_ARTICLE WHERE MODEL_ID = #{modelId,jdbcType=NUMERIC} AND CREATE_OPR_ID = #{createOprId,jdbcType=VARCHAR} AND ACTIVE = #{active,jdbcType=NUMERIC} ORDER BY CREATE_TIME DESC")
+	@Select(" select * from view_article where model_id = #{modelId,jdbcType=NUMERIC} and create_opr_id = #{createOprId,jdbcType=VARCHAR} and active = #{active,jdbcType=NUMERIC} order by create_time desc")
 	List<Map<String, Object>> queryCmsArticleViewByModelIdAndCreateOprIdAndActive(@Param("modelId") int modelId, @Param("createOprId") String createOprId, @Param("active") int active);
 
-	@Select(" SELECT VAR.*,ifnull(SF.FILE_URL,' ') IMG_PATH FROM VIEW_ARTICLE VAR LEFT JOIN SYS_FILE SF ON SF.FILE_ID = SUBSTRING_INDEX(VAR.FILE_ID,',',1)  WHERE VAR.MODEL_ID = #{modelId,jdbcType=NUMERIC} ORDER BY ${orderType} DESC")
+	@Select(" select var.*,ifnull(sf.file_url,' ') img_path from view_article var left join sys_file sf on sf.file_id = substring_index(var.file_id,',',1)  where var.model_id = #{modelId,jdbcType=NUMERIC} order by ${orderType} desc")
 	List<Map<String, Object>> queryCmsArticleViewWithFirstPicByModelIdAndOrderBy(@Param("modelId") Long modelId, @Param("orderType") String orderType);
 
-	@Select(" SELECT VAR.*,ifnull(SF.FILE_URL,' ') IMG_PATH FROM VIEW_ARTICLE VAR LEFT JOIN SYS_FILE SF ON SF.FILE_ID = SUBSTRING_INDEX(VAR.FILE_ID,',',1)  WHERE VAR.MODEL_ID = #{modelId,jdbcType=NUMERIC} AND VAR.CREATE_OPR_ID = #{createOprId,jdbcType=VARCHAR} ORDER BY VAR.CREATE_TIME DESC ")
+	@Select(" select var.*,ifnull(sf.file_url,' ') img_path from view_article var left join sys_file sf on sf.file_id = substring_index(var.file_id,',',1)  where var.model_id = #{modelId,jdbcType=NUMERIC} and var.create_opr_id = #{createOprId,jdbcType=VARCHAR} order by var.create_time desc ")
 	List<Map<String, Object>> queryCmsArticleViewWithFirstPicByModelIdAndUserId(@Param("modelId") Long modelId, @Param("createOprId") String createOprId);
 }

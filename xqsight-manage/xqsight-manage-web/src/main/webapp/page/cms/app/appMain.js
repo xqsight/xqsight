@@ -153,6 +153,12 @@ saicfc.nameSpace.reg("cms.app");
                     }
                 ],
                 "aoColumns": [{
+                    data : "appId",
+                    sWidth : "2",
+                    render : function(value){
+                        return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
+                    }
+                },{
                     "data": "appName",
                     sWidth : "120",
                     sClass : "text-center",
@@ -199,8 +205,16 @@ saicfc.nameSpace.reg("cms.app");
 
             //单选事件
             $("#app-table tbody").on("click","tr",function() {
+                $.each($("#app-table tbody").find("input[type='checkbox']"),function(index,object){
+                    object.checked = false;
+                });
+                $(this).find("input[type='checkbox']").get(0).checked = true;
                 $("#app-table>tbody>tr").removeClass("info");
                 $(this).addClass("info");
+            });
+
+            $("#app-table tbody").on("dblclick","tr",function() {
+                obj.editFun();
             });
         }
 

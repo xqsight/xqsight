@@ -7,7 +7,6 @@ saicfc.nameSpace.reg("cms.article");
 (function(){
     cms.article.articleMain = function(){
         var ctxData = saicfc.utils.getServerPath("cms");
-        var appId= $.getUrlParam("appId");
         /**
          * 申明内部对象 
          * @type {xqsight.cms}
@@ -76,7 +75,7 @@ saicfc.nameSpace.reg("cms.article");
                 saicfc.win.alert("请选择修改的数据");
                 return;
             }
-            saicfc.win.show("修改文章","cms/articles/articleManage.html",600,300,true);
+            saicfc.win.show("修改文章","cms/articles/articleManage.html?articleId=" + selRows[0].articleId,600,300,true);
         }
 
         /**
@@ -139,7 +138,7 @@ saicfc.nameSpace.reg("cms.article");
                 "fnServerParams": function (aoData) {
                     aoData.push(
                         { "name": "articleTitle", "value": $("#articleTitle").val()},
-                        { "name": "modelId", "value": $("#modelId").val()}
+                        { "name": "modelId", "value": obj.curSelTree.id}
                     );
                 },
                 "aoColumnDefs": [
@@ -149,7 +148,18 @@ saicfc.nameSpace.reg("cms.article");
                     }
                 ],
                 "aoColumns": [{
+                    data : "articleId",
+                    sWidth : "2",
+                    render : function(value){
+                        return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
+                    }
+                },{
                     data: "articleTitle",
+                    sWidth : "250",
+                    sClass : "text-center",
+                    sSort : false
+                },{
+                    data: "articleAuthor",
                     sWidth : "250",
                     sClass : "text-center",
                     sSort : false
@@ -161,11 +171,32 @@ saicfc.nameSpace.reg("cms.article");
                         return saicfc.win.tipShow(value,400,100);
                     }
                 },{
+                    data: "articleSource",
+                    sWidth : "250",
+                    sClass : "text-center",
+                    sSort : false
+                },{
+                    data: "articleType",
+                    sWidth : "250",
+                    sClass : "text-center",
+                    sSort : false,
+                    render : function(value){
+                        return value == "01" ? "普通" : "要闻";
+                    }
+                },{
                     data: "createTime",
                     sWidth : "200",
                     sClass : "text-center",
                     render : function(value){
                         return saicfc.moment.formatYMD(value);
+                    }
+                },{
+                    "data": "articleId",
+                    sWidth : "80",
+                    sClass : "text-center",
+                    render : function(){
+                        return "<div class='bolder'> <a class='red' href='javaScript:articleMain.editFun()'><i class='ace-icon fa fa-edit'></i></a> | " +
+                            "<a class='red' href='javaScript:articleMain.removeFun()'><i class='ace-icon fa fa-remove'></i></a></div> ";
                     }
                 }]
             });
@@ -173,8 +204,16 @@ saicfc.nameSpace.reg("cms.article");
             obj.artilceTable = record_table;
             //单选事件
             $("#article-table tbody").on("click","tr",function() {
+                $.each($("#article-table tbody").find("input[type='checkbox']"),function(index,object){
+                    object.checked = false;
+                });
+                $(this).find("input[type='checkbox']").get(0).checked = true;
                 $("#article-table>tbody>tr").removeClass("info");
                 $(this).addClass("info");
+            });
+
+            $("#article-table tbody").on("dblclick","tr",function() {
+                obj.editFun();
             });
         }
 

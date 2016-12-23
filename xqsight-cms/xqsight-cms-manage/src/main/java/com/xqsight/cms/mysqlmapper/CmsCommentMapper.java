@@ -23,37 +23,37 @@ import com.xqsight.cms.model.CmsComment;
  */
 public interface CmsCommentMapper {
 
-	@Insert(" INSERT INTO CMS_COMMENT(ASSOCICATION_ID,COMMENT,COMMENT_HAS_PIC,COMMENT_HIT,COMMENT_POINTS,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK)VALUES(#{associcationId,jdbcType=NUMERIC},#{comment,jdbcType=VARCHAR},#{commentHasPic,jdbcType=NUMERIC},#{commentHit,jdbcType=NUMERIC},#{commentPoints,jdbcType=NUMERIC},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP},#{updOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
+	@Insert(" insert into cms_comment(assocication_id,comment,comment_has_pic,comment_hit,comment_points,active,create_time,create_opr_id,update_time,upd_opr_id,remark)values(#{associcationId,jdbcType=NUMERIC},#{comment,jdbcType=VARCHAR},#{commentHasPic,jdbcType=NUMERIC},#{commentHit,jdbcType=NUMERIC},#{commentPoints,jdbcType=NUMERIC},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{updateTime,jdbcType=TIMESTAMP},#{updOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
 	@Options(useGeneratedKeys = true, keyProperty = "commentId")
 	void saveCmsComment(CmsComment cmsComment);
 	
-	@Update(" UPDATE CMS_COMMENT SET ASSOCICATION_ID=#{associcationId,jdbcType=NUMERIC},COMMENT=#{comment,jdbcType=VARCHAR},COMMENT_HAS_PIC=#{commentHasPic,jdbcType=NUMERIC},COMMENT_HIT=#{commentHit,jdbcType=NUMERIC},COMMENT_POINTS=#{commentPoints,jdbcType=NUMERIC},ACTIVE=#{active,jdbcType=NUMERIC},UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},UPD_OPR_ID=#{updOprId,jdbcType=VARCHAR},REMARK=#{remark,jdbcType=VARCHAR} WHERE COMMENT_ID=#{commentId,jdbcType=NUMERIC}")
+	@Update(" update cms_comment set assocication_id=#{associcationId,jdbcType=NUMERIC},comment=#{comment,jdbcType=VARCHAR},comment_has_pic=#{commentHasPic,jdbcType=NUMERIC},comment_hit=#{commentHit,jdbcType=NUMERIC},comment_points=#{commentPoints,jdbcType=NUMERIC},active=#{active,jdbcType=NUMERIC},update_time=#{updateTime,jdbcType=TIMESTAMP},upd_opr_id=#{updOprId,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where comment_id=#{commentId,jdbcType=NUMERIC}")
 	void updateCmsComment(CmsComment cmsComment);
 	
-	@Delete(" DELETE FROM CMS_COMMENT WHERE COMMENT_ID=#{commentId,jdbcType=NUMERIC}")
+	@Delete(" delete from cms_comment where comment_id=#{commentId,jdbcType=NUMERIC}")
 	void deleteCmsComment(@Param("commentId") Long commentId);
 
-	@Select(" SELECT COMMENT_ID,ASSOCICATION_ID,COMMENT,COMMENT_HAS_PIC,COMMENT_HIT,COMMENT_POINTS,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM CMS_COMMENT ORDER BY CREATE_TIME DESC")
+	@Select(" select comment_id,assocication_id,comment,comment_has_pic,comment_hit,comment_points,active,create_time,create_opr_id,update_time,upd_opr_id,remark from cms_comment order by create_time desc")
 	List<CmsComment> queryCmsComment();
 
-	@Delete(" DELETE FROM CMS_COMMENT WHERE ASSOCICATION_ID=#{associcationId,jdbcType=NUMERIC}")
+	@Delete(" delete from cms_comment where assocication_id=#{associcationId,jdbcType=NUMERIC}")
 	void deleteCmsCommentByAssocicationId(@Param("associcationId") Long associcationId);
 
-	@Select(" SELECT COMMENT_ID,ASSOCICATION_ID,COMMENT,COMMENT_HAS_PIC,COMMENT_HIT,COMMENT_POINTS,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM CMS_COMMENT WHERE COMMENT_ID=#{commentId,jdbcType=NUMERIC}")
+	@Select(" select comment_id,assocication_id,comment,comment_has_pic,comment_hit,comment_points,active,create_time,create_opr_id,update_time,upd_opr_id,remark from cms_comment where comment_id=#{commentId,jdbcType=NUMERIC}")
 	CmsComment queryCmsCommentByCommentId(@Param("commentId") Long commentId);
 	
-	@Select(" SELECT COMMENT_ID,ASSOCICATION_ID,COMMENT,COMMENT_HAS_PIC,COMMENT_HIT,COMMENT_POINTS,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM CMS_COMMENT WHERE ASSOCICATION_ID = #{associcationId,jdbcType=NUMERIC} ORDER BY CREATE_TIME DESC")
+	@Select(" select comment_id,assocication_id,comment,comment_has_pic,comment_hit,comment_points,active,create_time,create_opr_id,update_time,upd_opr_id,remark from cms_comment where assocication_id = #{associcationId,jdbcType=NUMERIC} order by create_time desc")
 	List<CmsComment> queryCmsCommentByAssocicationId(@Param("associcationId") Long associcationId);
 
-	@Select(" SELECT CCO.COMMENT_ID,CCO.COMMENT,CCO.ASSOCICATION_ID,CCO.COMMENT_HIT,CCO.CREATE_TIME,SLO.ID,SLO.IMG_URL,SLO.USER_NAME,SLO.LOGIN_ID,SLO.AGE,SLO.SEX FROM CMS_COMMENT CCO LEFT JOIN SYS_LOGIN SLO ON CCO.CREATE_OPR_ID = SLO.ID WHERE CCO.ASSOCICATION_ID = #{associcationId,jdbcType=NUMERIC} ORDER BY CCO.CREATE_TIME DESC")
+	@Select(" select cco.comment_id,cco.comment,cco.assocication_id,cco.comment_hit,cco.create_time,slo.id,slo.img_url,slo.user_name,slo.login_id,slo.age,slo.sex from cms_comment cco left join sys_login slo on cco.create_opr_id = slo.id where cco.assocication_id = #{associcationId,jdbcType=NUMERIC} order by cco.create_time desc")
 	List<Map<String,Object>> queryCmsCommentWithUserByAssocicationId(@Param("associcationId") Long associcationId);
 
-	@Update(" UPDATE CMS_COMMENT SET COMMENT_HIT = #{commentHit,jdbcType=NUMERIC} WHERE COMMENT_ID=#{commentId,jdbcType=NUMERIC}")
+	@Update(" update cms_comment set comment_hit = #{commentHit,jdbcType=NUMERIC} where comment_id=#{commentId,jdbcType=NUMERIC}")
 	void updateCmsCommentHitByCommentId(@Param("commentHit") int commentHit, @Param("commentId") Long commentId);
 
-	@Update(" UPDATE CMS_COMMENT SET ACTIVE = #{active,jdbcType=NUMERIC} WHERE COMMENT_ID=#{commentId,jdbcType=NUMERIC}")
+	@Update(" update cms_comment set active = #{active,jdbcType=NUMERIC} where comment_id=#{commentId,jdbcType=NUMERIC}")
 	void updateCmsCommentActiveByCommentId(@Param("active") int active, @Param("commentId") Long commentId);
 
-	@Update(" UPDATE CMS_COMMENT SET COMMENT_HIT = #{commentHit,jdbcType=NUMERIC} WHERE ASSOCICATION_ID=#{associcationId,jdbcType=NUMERIC}")
+	@Update(" update cms_comment set comment_hit = #{commentHit,jdbcType=NUMERIC} where assocication_id=#{associcationId,jdbcType=NUMERIC}")
 	void updateCmsCommentHitByAssocicationId(@Param("commentHit") int commentHit, @Param("associcationId") Long associcationId);
 }

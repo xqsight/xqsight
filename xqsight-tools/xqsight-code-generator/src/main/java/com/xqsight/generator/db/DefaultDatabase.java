@@ -93,12 +93,12 @@ public class DefaultDatabase extends Database {
 	private void introspectSql(Table table) {
 		final List<Column> columns = table.getColumns();
 		final String tableName = table.getTableName().toUpperCase();
-		final StringBuffer insertSql = new StringBuffer(" INSERT INTO ").append(tableName).append("("),
-				updateSql = new StringBuffer(" UPDATE ").append(tableName).append(" SET "),
-				deleteSql = new StringBuffer(" DELETE FROM ").append(tableName),
-				querySql = new StringBuffer(" SELECT "),
-				querySqlById = new StringBuffer(" SELECT "),
-				whereSql = new StringBuffer(" WHERE "),
+		final StringBuffer insertSql = new StringBuffer(" insert into ").append(tableName).append("("),
+				updateSql = new StringBuffer(" update ").append(tableName).append(" set "),
+				deleteSql = new StringBuffer(" delete from ").append(tableName),
+				querySql = new StringBuffer(" select "),
+				querySqlById = new StringBuffer(" select "),
+				whereSql = new StringBuffer(" where "),
 				columnSql = new StringBuffer(),
 				valueSql = new StringBuffer();
 		 int startIndex=0,endIndex=columns.size();
@@ -129,11 +129,11 @@ public class DefaultDatabase extends Database {
         		updateSql.append(column.getColumnName()).append("=").append("#{" + column.getJavaProperty() + ",jdbcType=" + column.getMybatisJdbcType() + "}");
             }
         }
-        insertSql.append(columnSql).append(")VALUES(").append(valueSql).append(")");
+        insertSql.append(columnSql).append(")values(").append(valueSql).append(")");
         updateSql.append(whereSql);
         deleteSql.append(whereSql);
-        querySql.append(columnSql).append(" FROM ").append(tableName);
-        querySqlById.append(columnSql).append(" FROM ").append(tableName).append(whereSql);
+        querySql.append(columnSql).append(" from ").append(tableName);
+        querySqlById.append(columnSql).append(" from ").append(tableName).append(whereSql);
         
 		table.setInsertSql(insertSql.toString());
 		table.setUpdateSql(updateSql.toString());

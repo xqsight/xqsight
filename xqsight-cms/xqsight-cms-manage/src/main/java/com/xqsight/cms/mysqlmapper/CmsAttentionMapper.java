@@ -23,31 +23,31 @@ import com.xqsight.cms.model.CmsAttention;
  */
 public interface CmsAttentionMapper {
 
-	@Insert(" INSERT INTO CMS_ATTENTION(ASSOCICATION_ID,ATTENTION_TYPE,ACTIVE,CREATE_TIME,CREATE_OPR_ID,REMARK)VALUES(#{associcationId,jdbcType=NUMERIC},#{attentionType,jdbcType=NUMERIC},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
+	@Insert(" insert into cms_attention(assocication_id,attention_type,active,create_time,create_opr_id,remark)values(#{associcationId,jdbcType=NUMERIC},#{attentionType,jdbcType=NUMERIC},#{active,jdbcType=NUMERIC},#{createTime,jdbcType=TIMESTAMP},#{createOprId,jdbcType=VARCHAR},#{remark,jdbcType=VARCHAR})")
 	@Options(useGeneratedKeys = true, keyProperty = "attentionId")
 	void saveCmsAttention(CmsAttention cmsAttention);
 	
-	@Update(" UPDATE CMS_ATTENTION SET ASSOCICATION_ID=#{associcationId,jdbcType=NUMERIC},ATTENTION_TYPE=#{attentionType,jdbcType=NUMERIC},ACTIVE=#{active,jdbcType=NUMERIC},UPDATE_TIME=#{updateTime,jdbcType=TIMESTAMP},UPD_OPR_ID=#{updOprId,jdbcType=VARCHAR},REMARK=#{remark,jdbcType=VARCHAR} WHERE ATTENTION_ID=#{attentionId,jdbcType=NUMERIC}")
+	@Update(" update cms_attention set assocication_id=#{associcationId,jdbcType=NUMERIC},attention_type=#{attentionType,jdbcType=NUMERIC},active=#{active,jdbcType=NUMERIC},update_time=#{updateTime,jdbcType=TIMESTAMP},upd_opr_id=#{updOprId,jdbcType=VARCHAR},remark=#{remark,jdbcType=VARCHAR} where attention_id=#{attentionId,jdbcType=NUMERIC}")
 	void updateCmsAttention(CmsAttention cmsAttention);
 
-	@Delete(" DELETE FROM CMS_ATTENTION WHERE ASSOCICATION_ID=#{associcationId,jdbcType=NUMERIC} AND ATTENTION_TYPE=#{attentionType,jdbcType=NUMERIC} AND CREATE_OPR_ID=#{createOprId,jdbcType=VARCHAR}")
+	@Delete(" delete from cms_attention where assocication_id=#{associcationId,jdbcType=NUMERIC} AND attention_type=#{attentionType,jdbcType=NUMERIC} AND create_opr_id=#{createOprId,jdbcType=VARCHAR}")
 	void deleteCmsAttentionByAssocicationIdAndAttentionTypeAndCreateOprId(@Param("associcationId") Long associcationId, @Param("attentionType") int attentionType, @Param("createOprId") String createOprId);
 
-	@Delete(" DELETE FROM CMS_ATTENTION WHERE ASSOCICATION_ID=#{associcationId,jdbcType=NUMERIC} AND ATTENTION_TYPE=#{attentionType,jdbcType=NUMERIC}")
+	@Delete(" delete from cms_attention where assocication_id=#{associcationId,jdbcType=NUMERIC} AND attention_type=#{attentionType,jdbcType=NUMERIC}")
 	void deleteCmsAttentionByAssocicationIdAndAttentionType(@Param("associcationId") Long associcationId, @Param("attentionType") int attentionType);
 
-	@Select(" SELECT ATTENTION_ID,ASSOCICATION_ID,ATTENTION_TYPE,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM CMS_ATTENTION WHERE ATTENTION_ID=#{attentionId,jdbcType=NUMERIC}")
+	@Select(" select attention_id,assocication_id,attention_type,active,create_time,create_opr_id,update_time,upd_opr_id,remark from cms_attention where attention_id=#{attentionId,jdbcType=NUMERIC}")
 	CmsAttention queryCmsAttentionByAttentionId(@Param("attentionId") Long attentionId);
 
-	@Select(" SELECT ATTENTION_ID,ASSOCICATION_ID,ATTENTION_TYPE,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM CMS_ATTENTION WHERE ASSOCICATION_ID=#{associcationId,jdbcType=NUMERIC} AND ATTENTION_TYPE=#{attentionType,jdbcType=NUMERIC} AND CREATE_OPR_ID=#{createOprId,jdbcType=VARCHAR} ORDER BY CREATE_TIME DESC")
+	@Select(" select attention_id,assocication_id,attention_type,active,create_time,create_opr_id,update_time,upd_opr_id,remark from cms_attention where assocication_id=#{associcationId,jdbcType=NUMERIC} AND attention_type=#{attentionType,jdbcType=NUMERIC} AND create_opr_id=#{createOprId,jdbcType=VARCHAR} ORDER BY create_time DESC")
 	CmsAttention queryCmsAttentionByAssocicationIdAndAttentionTypeAndCreateOprId(@Param("associcationId") Long associcationId, @Param("attentionType") int attentionType, @Param("createOprId") String createOprId);
 
-	@Select(" SELECT ATTENTION_ID,ASSOCICATION_ID,ATTENTION_TYPE,ACTIVE,CREATE_TIME,CREATE_OPR_ID,UPDATE_TIME,UPD_OPR_ID,REMARK FROM CMS_ATTENTION WHERE ATTENTION_TYPE=#{attentionType,jdbcType=NUMERIC} ORDER BY CREATE_TIME DESC")
+	@Select(" select attention_id,assocication_id,attention_type,active,create_time,create_opr_id,update_time,upd_opr_id,remark from cms_attention where attention_type=#{attentionType,jdbcType=NUMERIC} order by create_time desc")
 	List<CmsAttention> queryCmsAttentionByAttentionType(@Param("attentionType") int attentionType);
 
-	@Select(" SELECT VAR.`*`,CAT.ATTENTION_ID,CAT.ASSOCICATION_ID,CAT.ATTENTION_TYPE FROM CMS_ATTENTION CAT LEFT JOIN VIEW_ARTICLE VAR ON CAT.ASSOCICATION_ID =VAR.ARTICLE_ID  WHERE CAT.ATTENTION_TYPE=1 AND CAT.CREATE_OPR_ID = #{createOprId,jdbcType=VARCHAR} ORDER BY CAT.CREATE_TIME DESC")
+	@Select(" select var.`*`,cat.attention_id,cat.assocication_id,cat.attention_type from cms_attention cat left join view_article var on cat.assocication_id =var.article_id  where cat.attention_type=1 and cat.create_opr_id = #{createOprId,jdbcType=VARCHAR} order by cat.create_time desc")
 	List<Map<String, Object>> queryCmsAttentionToStoreByUser(@Param("createOprId") String createOprId);
 
-	@Select(" SELECT SL.USER_NAME,SL.IMG_URL,SL.LOGIN_ID,CAT.ATTENTION_ID,CAT.ASSOCICATION_ID,CAT.ATTENTION_TYPE FROM CMS_ATTENTION CAT LEFT JOIN SYS_LOGIN SL ON CAT.ASSOCICATION_ID = SL.Id WHERE CAT.ATTENTION_TYPE=3 AND CAT.CREATE_OPR_ID = #{createOprId,jdbcType=VARCHAR} ORDER BY CAT.CREATE_TIME DESC")
+	@Select(" select sl.user_name,sl.img_url,sl.login_id,cat.attention_id,cat.assocication_id,cat.attention_type from cms_attention cat left join sys_login sl on cat.assocication_id = sl.id where cat.attention_type=3 and cat.create_opr_id = #{createOprId,jdbcType=VARCHAR} order by cat.create_time desc")
 	List<Map<String, Object>> queryCmsAttentionToAttenionByUser(@Param("createOprId") String createOprId);
 }
