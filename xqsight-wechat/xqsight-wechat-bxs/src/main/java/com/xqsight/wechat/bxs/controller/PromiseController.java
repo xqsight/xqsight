@@ -42,10 +42,8 @@ public class PromiseController {
 
 	@RequestMapping("save")
 	@ResponseBody
-	private Object save(HttpServletRequest request, WxPromise wxPromise) {
+	private Object save(WxPromise wxPromise) {
 		logger.debug("传入的参数wxPromise:{}", JSON.toJSONString(wxPromise));
-		wxPromise.setCreateTime(new Date());
-		wxPromise.setUpdateTime(new Date());
 		wxUserInfoService.updateBase(wxPromise);
 		promiseService.save(wxPromise);
 		return MessageSupport.successMsg("保存成功");
@@ -53,7 +51,7 @@ public class PromiseController {
 
 	@RequestMapping("delete")
 	@ResponseBody
-	public Object delete(HttpServletRequest request, long promiseId) {
+	public Object delete(long promiseId) {
 		logger.debug("传入的参数promiseId:{}", promiseId);
 		promiseService.delete(promiseId);
 		return MessageSupport.successMsg("删除成功");
@@ -62,7 +60,7 @@ public class PromiseController {
 	
 	@RequestMapping("cancel")
 	@ResponseBody
-	public Object cancel(HttpServletRequest request, WxPromise wxPromise) {
+	public Object cancel(WxPromise wxPromise) {
 		logger.debug("传入的参数wxPromise:{}", JSON.toJSONString(wxPromise));
 		promiseService.updateStatus(wxPromise);
 		return MessageSupport.successMsg("修改成功");

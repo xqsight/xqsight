@@ -46,11 +46,8 @@ public class WxUserInfoController {
 
 		WxUserInfo wxUserInfos = wxUserInfoService.queryByWxUserCode(wxUserInfo.getWxUserCode());
 		if (wxUserInfos != null && StringUtils.isNotBlank(wxUserInfos.getTelPhone())) {
-			wxUserInfo.setUpdateTime(new Date());
 			wxUserInfoService.update(wxUserInfo);
 		}else {
-			wxUserInfo.setCreateTime(new Date());
-			wxUserInfo.setUpdateTime(new Date());
 			wxUserInfoService.save(wxUserInfo);
 		}
 
