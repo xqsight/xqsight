@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 
-import com.xqsight.common.dao.batch.MysqlBatchAnnotation;
+import com.xqsight.common.dao.annotation.MysqlBatchAnnotation;
 
 /**
  * @Description: 系统收权限分派

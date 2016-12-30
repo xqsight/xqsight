@@ -4,23 +4,26 @@
  */
 package com.xqsight.common.model;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * @Description: this is use for 
  * @author xqsight-jerry
  * @date 2016年3月31日 下午9:26:18
  */
-public class BaseModel {
+public class BaseModel  implements Serializable {
+
+	private static final long serialVersionUID = 5859337383077120660L;
 
 	/** 是否有效 0:有效 -1:无效  **/
 	private int active = 0;
 	/** 创建时间 **/
-	private Date createTime = new Date();
+	private LocalDateTime createTime = LocalDateTime.now();
 	/** 创建人ID **/
 	private String createOprId;
 	/** 修改时间 **/
-	private Date updateTime = new Date();
+	private LocalDateTime updateTime = LocalDateTime.now();
 	/** 修改人ID **/
 	private String updOprId;
 	/** 备注 **/
@@ -42,22 +45,19 @@ public class BaseModel {
 	public void setActive(int active) {
 		this.active = active;
 	}
-	/**
-	 * getter method
-	 * @return the createTime
-	 */
-	
-	public Date getCreateTime() {
+
+	public LocalDateTime getCreateTime() {
 		return createTime;
 	}
-	/**
-	 * setter method
-	 * @param createTime the createTime to set
-	 */
-	
-	public void setCreateTime(Date createTime) {
+
+	public void setCreateTime(LocalDateTime createTime) {
 		this.createTime = createTime;
 	}
+
+	public void setUpdateTime(LocalDateTime updateTime) {
+		this.updateTime = updateTime;
+	}
+
 	/**
 	 * getter method
 	 * @return the createOprId
@@ -73,22 +73,6 @@ public class BaseModel {
 	
 	public void setCreateOprId(String createOprId) {
 		this.createOprId = createOprId;
-	}
-	/**
-	 * getter method
-	 * @return the updateTime
-	 */
-	
-	public Date getUpdateTime() {
-		return updateTime;
-	}
-	/**
-	 * setter method
-	 * @param updateTime the updateTime to set
-	 */
-	
-	public void setUpdateTime(Date updateTime) {
-		this.updateTime = updateTime;
 	}
 	/**
 	 * getter method

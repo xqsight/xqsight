@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.xqsight.common.dao.batch;
+package com.xqsight.common.dao.annotation;
 
 /**
  * @author wangganggang

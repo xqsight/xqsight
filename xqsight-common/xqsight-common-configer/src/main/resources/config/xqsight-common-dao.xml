@@ -73,7 +73,7 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
 		<property name="basePackage" value="com.xqsight.**.batchmapper"/>
 		<property name="sqlSessionTemplateBeanName" value="sqlSessionBatchTemplate" />  
-		<property name="annotationClass" value="com.xqsight.common.dao.batch.BatchAnnotation"/>
+		<property name="annotationClass" value="com.xqsight.common.dao.annotation.BatchAnnotation"/>
 	</bean>
 	
 	<!-- 配置扫描Mapper接口的包路径 -->

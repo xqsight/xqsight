@@ -67,7 +67,7 @@
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" >
 		<property name="basePackage" value="com.xqsight.**.mysqlbatchmapper"/>
 		<property name="sqlSessionTemplateBeanName" value="sqlSessionBatchTemplateMysql" />  
-		<property name="annotationClass" value="com.xqsight.common.dao.batch.MysqlBatchAnnotation"/>
+		<property name="annotationClass" value="com.xqsight.common.dao.annotation.MysqlBatchAnnotation"/>
 	</bean>
 	
 	<!-- 配置扫描Mapper接口的包路径 -->

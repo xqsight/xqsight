@@ -13,7 +13,19 @@ import java.math.BigDecimal;
  */
 public class Constants {
 public final static BigDecimal THOUSAND_BIGDECIMAL = new BigDecimal("1000");
-	
+
+
+    public static final String ACS = "ACS";
+    public static final String DESC = "DESC";
+
+    public static final String MYSQL_LONG_TIME_FORMAT    =  "%Y-%m-%d %H:%i:%s";
+
+    /**
+     * , 符号
+     */
+    public static final String COMMA_SIGN_SPLIT_NAME = ",";
+
+
 	public final static int YES 			= 0;
 	public final static int NO 				= -1;
 	
