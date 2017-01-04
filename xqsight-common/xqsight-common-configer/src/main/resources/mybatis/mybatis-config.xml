@@ -16,8 +16,7 @@
 	<typeAliases>
 	</typeAliases>
 	<plugins>
-		<!-- com.saicfc.pmpf.common.utils为PageHelper类所在包名 -->
-		<plugin interceptor="com.xqsight.common.support.XqsightPageHelper">
+		<plugin interceptor="com.github.pagehelper.PageHelper">
 			<property name="dialect" value="mysql" />
 			<!-- 该参数默认为false -->
 			<!-- 设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用 -->

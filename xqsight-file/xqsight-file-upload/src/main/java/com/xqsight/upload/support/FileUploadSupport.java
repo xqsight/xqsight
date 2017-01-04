@@ -4,7 +4,7 @@
  */
 package com.xqsight.upload.support;
 
-import com.xiaoleilu.hutool.util.FileUtil;
+import com.xiaoleilu.hutool.io.FileUtil;
 import com.xiaoleilu.hutool.util.RandomUtil;
 import com.xqsight.commons.support.FileExtSupport;
 import com.xqsight.commons.utils.DateFormatUtils;

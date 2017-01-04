@@ -105,6 +105,7 @@
         <java.mail.version>1.4.7</java.mail.version>
         <thumbnailator.version>0.4.2</thumbnailator.version>
         <pinyin4j.version>2.5.0</pinyin4j.version>
+        <hutool.version>2.16.0</hutool.version>
         <!-- 模板文件 -->
         <freemarker.version>2.3.20</freemarker.version>
         <velocity.version>1.7</velocity.version>
@@ -987,6 +988,13 @@
                 <groupId>com.github.binarywang</groupId>
                 <artifactId>weixin-java-cp</artifactId>
                 <version>${weixin.version}</version>
+            </dependency>
+
+            <!--工具包-->
+            <dependency>
+                <groupId>com.xiaoleilu</groupId>
+                <artifactId>hutool</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

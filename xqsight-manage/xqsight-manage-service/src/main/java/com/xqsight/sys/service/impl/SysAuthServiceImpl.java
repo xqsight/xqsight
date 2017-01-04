@@ -2,8 +2,8 @@ package com.xqsight.sys.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.xqsight.sys.model.SysLogin;
-import com.xqsight.sys.mysqlbatchmapper.BSysAuthMapper;
-import com.xqsight.sys.mysqlmapper.SysAuthMapper;
+import com.xqsight.sys.mapper.batch.BSysAuthMapper;
+import com.xqsight.sys.mapper.SysAuthMapper;
 import com.xqsight.sys.service.SysAuthService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

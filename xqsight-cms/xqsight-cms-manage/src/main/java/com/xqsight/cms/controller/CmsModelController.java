@@ -32,7 +32,7 @@ public class CmsModelController{
 
 	@RequestMapping("save")
 	public Object saveCmsModel(CmsModel cmsModel) {
-		cmsModel.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+		cmsModel.setCreateUserId(SSOUtils.getCurrentUserId().toString());
 		Long modelId = cmsModelService.queryExistByCode(cmsModel.getModelCode());
 		if(modelId != null && modelId > 0){
 			return MessageSupport.failureMsg("模块编号已经存在");
@@ -43,7 +43,7 @@ public class CmsModelController{
 	
 	@RequestMapping("update")
 	public Object updateCmsModel(CmsModel cmsModel) {
-		cmsModel.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+		cmsModel.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
 		Long modelId = cmsModelService.queryExistByCode(cmsModel.getModelCode());
 		if(modelId != null && modelId != cmsModel.getModelId()){
 			return MessageSupport.failureMsg("模块编号已经存在");

@@ -55,7 +55,11 @@
             <artifactId>spring-webmvc</artifactId>
         </dependency>
         <!-- Spring END -->
-
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
 </project>

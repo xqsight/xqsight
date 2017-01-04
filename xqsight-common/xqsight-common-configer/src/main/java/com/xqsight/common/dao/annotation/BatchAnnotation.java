@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.xqsight.common.dao.annotation;
 
 /**

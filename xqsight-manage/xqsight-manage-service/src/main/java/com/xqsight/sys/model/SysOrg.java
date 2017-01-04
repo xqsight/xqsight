@@ -2,6 +2,8 @@ package com.xqsight.sys.model;
 
 import com.xqsight.common.model.TreeBaseModel;
 
+import java.io.Serializable;
+
 /**
  * Created by wangganggang on 16/6/16.
  */
@@ -69,12 +71,17 @@ public class SysOrg extends TreeBaseModel<SysOrg>{
     }
 
     @Override
-    public Long getId() {
-        return orgId;
+    public String getId() {
+        return "" + orgId;
     }
 
     @Override
     public String getName() {
         return orgName;
+    }
+
+    @Override
+    public Serializable getPK() {
+        return this.orgId;
     }
 }

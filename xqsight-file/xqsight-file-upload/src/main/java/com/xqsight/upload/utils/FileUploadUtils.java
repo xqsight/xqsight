@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.xiaoleilu.hutool.io.FileUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.xiaoleilu.hutool.util.FileUtil;
 import com.xiaoleilu.hutool.util.RandomUtil;
 import com.xqsight.commons.utils.DateFormatUtils;
 import com.xqsight.upload.model.SysFile;
@@ -68,7 +68,7 @@ public class FileUploadUtils {
 		StringBuffer filePath = new StringBuffer();
 		//文件路径
 		filePath.append("/upload/").append(DateFormatUtils.yyyyMMdd.format(new Date()));
-		filePath.append("/").append(RandomUtil.getUnique()).append(".").append(ext);
+		filePath.append("/").append(RandomUtil.randomUUID()).append(".").append(ext);
 		
 		File newFile = FileUtil.touch(savePath + filePath.toString());
 		

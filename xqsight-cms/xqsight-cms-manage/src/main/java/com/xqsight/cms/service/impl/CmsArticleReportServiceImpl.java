@@ -8,7 +8,7 @@ package com.xqsight.cms.service.impl;
 import java.util.List;
 
 import com.xqsight.cms.model.vo.CmsArticleReportVo;
-import com.xqsight.cms.mysqlmapper.CmsArticleReportMapper;
+import com.xqsight.cms.mapper.CmsArticleReportMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

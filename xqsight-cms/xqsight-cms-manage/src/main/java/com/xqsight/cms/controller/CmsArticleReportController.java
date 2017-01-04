@@ -37,14 +37,14 @@ public class CmsArticleReportController{
 	@RequestMapping("save")
 	public Object saveCmsArticleReport(HttpServletRequest request, CmsArticleReport cmsArticleReport) {
 		if(!WebUtils.isMobile(request))
-			cmsArticleReport.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+			cmsArticleReport.setCreateUserId(SSOUtils.getCurrentUserId().toString());
 		cmsArticleReportService.saveCmsArticleReport(cmsArticleReport);
 		return MessageSupport.successMsg("保存成功");
 	}
 	
 	@RequestMapping("update")
 	public Object updateCmsArticleReport(CmsArticleReport cmsArticleReport) {
-		cmsArticleReport.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+		cmsArticleReport.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
 		cmsArticleReportService.updateCmsArticleReport(cmsArticleReport);
 		return MessageSupport.successMsg("修改成功");
 	}

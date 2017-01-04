@@ -5,9 +5,10 @@
  
 package com.xqsight.sys.model;
 
-import com.xqsight.common.model.BaseModel;
+import com.xqsight.common.model.Model;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -16,7 +17,9 @@ import java.util.Map;
  * <p>系统日志</p>
  * @since 2016-08-24 05:17:09
  */
-public class SysLog extends BaseModel {
+public class SysLog extends Model implements Serializable {
+
+    private static final long serialVersionUID = 7204277315878190079L;
 
 	/** 主键 */
     private Long logId;
@@ -119,5 +122,10 @@ public class SysLog extends BaseModel {
             params.append(StringUtils.endsWithIgnoreCase(param.getKey(), "password") ? "" : paramValue);
         }
         this.reqData = params.toString();
+    }
+
+    @Override
+    public Serializable getPK() {
+        return this.logId;
     }
 }

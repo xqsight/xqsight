@@ -5,26 +5,21 @@
 package com.xqsight.cms.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.xiaoleilu.hutool.util.HtmlUtil;
 import com.xqsight.cms.model.CmsArticle;
-import com.xqsight.cms.mysqlmapper.CmsArticleMapper;
-import com.xqsight.cms.mysqlmapper.CmsArticleViewMapper;
-import com.xqsight.cms.mysqlmapper.CmsCommentMapper;
+import com.xqsight.cms.mapper.CmsArticleMapper;
+import com.xqsight.cms.mapper.CmsArticleViewMapper;
+import com.xqsight.cms.mapper.CmsCommentMapper;
 import com.xqsight.cms.service.CmsArticleService;
 import com.xqsight.upload.service.FileUploadFTPService;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 /**

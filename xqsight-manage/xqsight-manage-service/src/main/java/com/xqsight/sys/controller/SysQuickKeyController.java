@@ -34,7 +34,7 @@ public class SysQuickKeyController{
 		List<SysQuickKey> sysQuickKeys = new ArrayList<SysQuickKey>();
 		for(int i = 0;i < funOrders.length; i++){
 			SysQuickKey sysQuickKey = new SysQuickKey();
-			sysQuickKey.setCreateOprId("" + id);
+			sysQuickKey.setCreateUserId("" + id);
 			sysQuickKey.setId(id);
 			sysQuickKey.setFunOrder(Integer.valueOf(funOrders[i]));
 			sysQuickKey.setKeyIcon(keyIcons[i]);

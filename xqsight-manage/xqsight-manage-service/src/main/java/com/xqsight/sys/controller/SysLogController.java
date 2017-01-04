@@ -27,14 +27,14 @@ public class SysLogController{
 
 	@RequestMapping("save")
 	public Object saveSysLog(SysLog sysLog) {
-		sysLog.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+		sysLog.setCreateUserId(SSOUtils.getCurrentUserId().toString());
 		sysLogService.saveSysLog(sysLog);
 		return MessageSupport.successMsg("保存成功");
 	}
 	
 	@RequestMapping("update")
 	public Object updateSysLog(SysLog sysLog) {
-		sysLog.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+		sysLog.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
 		sysLogService.updateSysLog(sysLog);
 		return MessageSupport.successMsg("修改成功");
 	}

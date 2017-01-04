@@ -5,15 +5,14 @@
  package com.xqsight.cms.controller;
 
 import com.github.pagehelper.Page;
-import com.xiaoleilu.hutool.util.HtmlUtil;
 import com.xqsight.cms.model.CmsAttention;
 import com.xqsight.cms.service.CmsAttentionService;
+import com.xqsight.cms.utils.HtmlUtil;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.common.support.XqsightPageHelper;
 import com.xqsight.commons.utils.MapKeyHandle;
 import com.xqsight.sso.utils.SSOUtils;
-import com.xqsight.upload.model.SysFile;
 import com.xqsight.upload.service.UploadService;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -42,8 +41,8 @@ public class CmsAttentionController{
 
 	@RequestMapping("save")
 	public Object saveCmsAttention(CmsAttention cmsAttention) {
-		cmsAttention.setCreateOprId(SSOUtils.getCurrentUserId().toString());
-		CmsAttention attention = cmsAttentionService.queryCmsAttentionByAssocicationIdAndAttentionTypeAndCreateOprId(cmsAttention.getAssocicationId(),cmsAttention.getAttentionType(),cmsAttention.getCreateOprId());
+		cmsAttention.setCreateUserId(SSOUtils.getCurrentUserId().toString());
+		CmsAttention attention = cmsAttentionService.queryCmsAttentionByAssocicationIdAndAttentionTypeAndCreateOprId(cmsAttention.getAssocicationId(),cmsAttention.getAttentionType(),cmsAttention.getCreateUserId());
 		if(attention != null)
 			return MessageSupport.failureMsg("你已经对该帖子有处理，不能重复处理");
 
@@ -53,7 +52,7 @@ public class CmsAttentionController{
 	
 	@RequestMapping("update")
 	public Object updateCmsAttention(CmsAttention cmsAttention) {
-		cmsAttention.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+		cmsAttention.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
 
 		cmsAttentionService.updateCmsAttention(cmsAttention);
 		return MessageSupport.successMsg("修改成功");
@@ -89,13 +88,13 @@ public class CmsAttentionController{
 	@RequestMapping("operate")
 	public Object operateCmsAttention(CmsAttention cmsAttention,String oprType){
 		if(StringUtils.equalsIgnoreCase(oprType,"add")){
-			CmsAttention attention = cmsAttentionService.queryCmsAttentionByAssocicationIdAndAttentionTypeAndCreateOprId(cmsAttention.getAssocicationId(),cmsAttention.getAttentionType(),cmsAttention.getCreateOprId());
+			CmsAttention attention = cmsAttentionService.queryCmsAttentionByAssocicationIdAndAttentionTypeAndCreateOprId(cmsAttention.getAssocicationId(),cmsAttention.getAttentionType(),cmsAttention.getCreateUserId());
 			if(attention != null)
 				return MessageSupport.failureMsg("你已经对该帖子有处理，不能重复处理");
 
 			cmsAttentionService.saveCmsAttention(cmsAttention);
 		}else if(StringUtils.equalsIgnoreCase(oprType,"del")){
-			cmsAttentionService.deleteCmsAttentionByAssocicationIdAndAttentionTypeAndCreateOprId(cmsAttention.getAssocicationId(),cmsAttention.getAttentionType(),cmsAttention.getCreateOprId());
+			cmsAttentionService.deleteCmsAttentionByAssocicationIdAndAttentionTypeAndCreateOprId(cmsAttention.getAssocicationId(),cmsAttention.getAttentionType(),cmsAttention.getCreateUserId());
 		}
 		return MessageSupport.successMsg("处理成功");
 	}

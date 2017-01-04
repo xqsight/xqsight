@@ -1,14 +1,12 @@
 package com.xqsight.upload.config;
 
-import com.xqsight.common.cache.CacheKeyConstants;
-import com.xqsight.common.constants.FileConstants;
+import com.xqsight.common.constants.CacheKeyConstants;
+import com.xqsight.upload.FileConstants;
 import com.xqsight.commons.web.SpringContextHolder;
 import com.xqsight.data.ehcache.core.CacheTemplate;
-import com.xqsight.upload.exceptions.UploadConfigerException;
 import org.apache.commons.collections.MapUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Map;
 

@@ -6,7 +6,7 @@ package com.xqsight.sys.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.xqsight.sys.model.SysDict;
 import com.xqsight.sys.model.SysDictDetail;
-import com.xqsight.sys.mysqlmapper.SysDictMapper;
+import com.xqsight.sys.mapper.SysDictMapper;
 import com.xqsight.sys.service.SysDictService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;

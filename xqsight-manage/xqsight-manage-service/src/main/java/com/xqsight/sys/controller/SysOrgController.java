@@ -27,7 +27,7 @@ public class SysOrgController{
 	@RequestMapping("save")
 	@RequiresPermissions("sys:org:save")
 	public Object saveSysOrg(SysOrg sysOrg) {
-		sysOrg.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+		sysOrg.setCreateUserId(SSOUtils.getCurrentUserId().toString());
 		sysOrgService.saveSysOrg(sysOrg);
 		return MessageSupport.successMsg("保存成功");
 	}
@@ -35,7 +35,7 @@ public class SysOrgController{
 	@RequestMapping("update")
 	@RequiresPermissions("sys:org:update")
 	public Object updateSysOrg(SysOrg sysOrg) {
-		sysOrg.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+		sysOrg.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
 		sysOrgService.updateSysOrg(sysOrg);
 		return MessageSupport.successMsg("修改成功");
 	}

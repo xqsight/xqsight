@@ -26,7 +26,7 @@ public class SysMenuController {
     @RequestMapping("save")
     @RequiresPermissions("sys:menu:save")
     public Object saveMenu(SysMenu sysMenu) {
-        sysMenu.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+        sysMenu.setCreateUserId(SSOUtils.getCurrentUserId().toString());
         sysMenuService.saveSysMenu(sysMenu);
         return MessageSupport.successMsg("保存成功");
     }
@@ -34,7 +34,7 @@ public class SysMenuController {
     @RequestMapping("update")
     @RequiresPermissions("sys:menu:update")
     public Object updateMenu(SysMenu sysMenu) {
-        sysMenu.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+        sysMenu.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
         sysMenuService.updateSysMenu(sysMenu);
         return MessageSupport.successMsg("修改成功");
     }

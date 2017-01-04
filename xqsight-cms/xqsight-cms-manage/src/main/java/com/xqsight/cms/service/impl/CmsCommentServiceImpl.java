@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.xqsight.cms.model.CmsComment;
-import com.xqsight.cms.mysqlmapper.CmsCommentMapper;
+import com.xqsight.cms.mapper.CmsCommentMapper;
 import com.xqsight.cms.service.CmsCommentService;
 
 

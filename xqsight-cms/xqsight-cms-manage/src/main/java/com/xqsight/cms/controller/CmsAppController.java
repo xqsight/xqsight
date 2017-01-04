@@ -32,7 +32,7 @@ public class CmsAppController{
 
 	@RequestMapping("save")
 	public Object saveCmsApp(CmsApp cmsApp) {
-		cmsApp.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+		cmsApp.setCreateUserId(SSOUtils.getCurrentUserId().toString());
 		Long appId = cmsAppService.queryExistByCode(cmsApp.getAppCode());
 		if(appId != null && appId > 0){
 			return MessageSupport.failureMsg("应用编号已经存在");
@@ -44,7 +44,7 @@ public class CmsAppController{
 	
 	@RequestMapping("update")
 	public Object updateCmsApp(CmsApp cmsApp) {
-		cmsApp.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+		cmsApp.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
 		Long appId = cmsAppService.queryExistByCode(cmsApp.getAppCode());
 		if(appId != null && appId != cmsApp.getAppId()){
 			return MessageSupport.failureMsg("应用编号已经存在");

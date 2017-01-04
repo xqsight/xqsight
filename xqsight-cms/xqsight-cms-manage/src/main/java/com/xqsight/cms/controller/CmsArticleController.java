@@ -5,10 +5,10 @@
 package com.xqsight.cms.controller;
 
 import com.github.pagehelper.Page;
-import com.xiaoleilu.hutool.util.HtmlUtil;
-import com.xiaoleilu.hutool.util.StrUtil;
 import com.xqsight.cms.model.CmsArticle;
 import com.xqsight.cms.service.CmsArticleService;
+import com.xqsight.cms.utils.HtmlUtil;
+import com.xqsight.cms.utils.StrUtil;
 import com.xqsight.common.enums.ModelCodeEnums;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
@@ -43,7 +43,7 @@ public class CmsArticleController{
 	
 	@RequestMapping("save")
 	public Object saveCmsArticle(CmsArticle cmsArticle,String img) {
-		cmsArticle.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+		cmsArticle.setCreateUserId(SSOUtils.getCurrentUserId().toString());
 
 		/** 描述为空，获取前20个字符 **/
 		if (StringUtils.isBlank(cmsArticle.getArticleDescription()))
@@ -55,7 +55,7 @@ public class CmsArticleController{
 
 	@RequestMapping("update")
 	public Object updateCmsArticle(CmsArticle cmsArticle,String img) {
-		cmsArticle.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+		cmsArticle.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
 
 		/** 描述为空，获取前20个字符 **/
 		if (StringUtils.isBlank(cmsArticle.getArticleDescription()))

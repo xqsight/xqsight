@@ -14,6 +14,5 @@
     <modules>
         <module>xqsight-common-utils</module>
         <module>xqsight-common-configer</module>
-        <module>xqsight-common-metadata</module>
     </modules>
 </project>

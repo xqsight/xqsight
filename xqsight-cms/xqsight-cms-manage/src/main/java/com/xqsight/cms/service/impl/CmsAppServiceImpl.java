@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 import com.xqsight.cms.model.CmsApp;
-import com.xqsight.cms.mysqlmapper.CmsAppMapper;
+import com.xqsight.cms.mapper.CmsAppMapper;
 import com.xqsight.cms.service.CmsAppService;
 
 

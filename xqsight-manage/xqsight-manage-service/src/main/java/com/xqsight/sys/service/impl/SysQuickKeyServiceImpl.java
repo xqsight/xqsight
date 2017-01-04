@@ -2,7 +2,7 @@ package com.xqsight.sys.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.xqsight.sys.model.SysQuickKey;
-import com.xqsight.sys.mysqlmapper.SysQuickKeyMapper;
+import com.xqsight.sys.mapper.SysQuickKeyMapper;
 import com.xqsight.sys.service.SysQuickKeyService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

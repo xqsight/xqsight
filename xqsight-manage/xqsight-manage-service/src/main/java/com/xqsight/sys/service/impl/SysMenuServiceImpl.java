@@ -3,7 +3,7 @@ package com.xqsight.sys.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.xqsight.common.support.TreeSupport;
 import com.xqsight.sys.model.SysMenu;
-import com.xqsight.sys.mysqlmapper.SysMenuMapper;
+import com.xqsight.sys.mapper.SysMenuMapper;
 import com.xqsight.sys.service.SysMenuService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

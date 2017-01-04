@@ -29,7 +29,7 @@ public class SysRoleController {
     @RequestMapping("save")
     @RequiresPermissions("sys:role:save")
     public Object saveRole(SysRole sysRole) {
-        sysRole.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+        sysRole.setCreateUserId(SSOUtils.getCurrentUserId().toString());
         sysRoleService.saveSysRole(sysRole);
         return MessageSupport.successMsg("保存成功");
     }
@@ -37,7 +37,7 @@ public class SysRoleController {
     @RequestMapping("update")
     @RequiresPermissions("sys:role:update")
     public Object updateRole(SysRole sysRole) {
-        sysRole.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+        sysRole.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
         sysRoleService.updateSysRole(sysRole);
         return MessageSupport.successMsg("修改成功");
     }

@@ -28,7 +28,7 @@ public class SysDictController {
     @RequestMapping("save")
     @RequiresPermissions("sys:dict:save")
     public Object saveDict(SysDict sysDict) {
-        sysDict.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+        sysDict.setCreateUserId(SSOUtils.getCurrentUserId().toString());
         List<SysDict> sysDicts = sysDictService.querySysDictByDictCode(sysDict.getDictCode());
         if (sysDicts != null && sysDicts.size() > 0) {
             return MessageSupport.failureMsg("字典编号[" + sysDict.getDictCode() + "]已经存在，请修改后保存");
@@ -41,7 +41,7 @@ public class SysDictController {
     @RequestMapping("savedetail")
     @RequiresPermissions("sys:dict:savedetail")
     public Object saveDictDetail(SysDictDetail sysDictDetail) {
-        sysDictDetail.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+        sysDictDetail.setCreateUserId(SSOUtils.getCurrentUserId().toString());
         sysDictService.saveSysDictDetail(sysDictDetail);
         return MessageSupport.successMsg("保存成功");
     }
@@ -49,7 +49,7 @@ public class SysDictController {
     @RequestMapping("update")
     @RequiresPermissions("sys:dict:update")
     public Object updateDict(SysDict sysDict) {
-        sysDict.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+        sysDict.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
         List<SysDictDetail> sysDictDetails = sysDictService.querySysDictDetailByDictId(sysDict.getDictId());
         boolean booUpd = true;
         if (sysDictDetails != null && sysDictDetails.size() > 0) {
@@ -71,7 +71,7 @@ public class SysDictController {
     @RequestMapping("updatedetail")
     @RequiresPermissions("sys:dict:updatedetail")
     public Object updateDictDetail(SysDictDetail sysDictDetail) {
-        sysDictDetail.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+        sysDictDetail.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
         SysDictDetail sysDictDetails = sysDictService.querySysDictDetailByDictDetailId(sysDictDetail.getDictDetailId());
         if (sysDictDetails.getEditable() == -1) {
             return MessageSupport.failureMsg("该条明细是系统内置数据不可修改的，请修改其他记录");

@@ -26,6 +26,7 @@ public class ${table.className} extends BaseModel{
 
 <#list table.baseColumns as column>
 	/** ${column.columnName} - ${column.remarks} */
+
     private ${column.javaType} ${column.javaProperty};
 </#list>
 
@@ -37,6 +38,7 @@ public class ${table.className} extends BaseModel{
         this.${key.javaProperty} = ${key.javaProperty};
     }
 </#list>
+
 <#list table.baseColumns as column>
 	public ${column.javaType} ${column.getterMethodName}(){
         return this.${column.javaProperty};

@@ -97,5 +97,9 @@
             <groupId>com.jcraft</groupId>
             <artifactId>jsch</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.xiaoleilu</groupId>
+            <artifactId>hutool</artifactId>
+        </dependency>
     </dependencies>
 </project>

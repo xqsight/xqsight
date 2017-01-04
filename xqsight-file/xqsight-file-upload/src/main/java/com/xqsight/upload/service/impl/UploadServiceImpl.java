@@ -2,7 +2,7 @@ package com.xqsight.upload.service.impl;
 
 import com.xqsight.upload.model.SysFile;
 import com.xqsight.upload.model.vo.SysFileVo;
-import com.xqsight.upload.mysqlmapper.SysFileMapper;
+import com.xqsight.upload.mapper.SysFileMapper;
 import com.xqsight.upload.service.UploadService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;

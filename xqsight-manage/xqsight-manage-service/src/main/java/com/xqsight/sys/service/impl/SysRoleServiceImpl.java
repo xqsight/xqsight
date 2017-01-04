@@ -2,7 +2,7 @@ package com.xqsight.sys.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.xqsight.sys.model.SysRole;
-import com.xqsight.sys.mysqlmapper.SysRoleMapper;
+import com.xqsight.sys.mapper.SysRoleMapper;
 import com.xqsight.sys.service.SysRoleService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;

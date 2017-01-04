@@ -4,7 +4,9 @@
  */
  package com.xqsight.upload.model;
 
-import com.xqsight.common.model.BaseModel;
+import com.xqsight.common.model.Model;
+
+import java.io.Serializable;
 
 /**
  * <p>文件表实体类</p>
@@ -12,7 +14,7 @@ import com.xqsight.common.model.BaseModel;
  * <p>文件表</p>
  * @since 2016-05-09 08:16:30
  */
-public class SysFile extends BaseModel {
+public class SysFile extends Model {
 
 	/** 主键 */
     private Long fileId;
@@ -86,5 +88,10 @@ public class SysFile extends BaseModel {
     }
     public void setFullPath(String fullPath) {
         this.fullPath = fileUrl;
+    }
+
+    @Override
+    public Serializable getPK() {
+        return this.fileId;
     }
 }

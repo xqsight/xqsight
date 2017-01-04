@@ -5,9 +5,9 @@
  
 package com.xqsight.cms.model;
 
-import com.xqsight.common.model.BaseModel;
+import com.xqsight.common.model.Model;
 
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * <p>实体类</p>
@@ -15,7 +15,7 @@ import java.util.Date;
  * <p></p>
  * @since 2016-09-08 08:42:11
  */
-public class CmsArticleReport extends BaseModel{
+public class CmsArticleReport extends Model{
 
 	/** 主键 */
     private Long reportId;
@@ -60,5 +60,10 @@ public class CmsArticleReport extends BaseModel{
 
     public void setReportContent(String reportContent) {
         this.reportContent = reportContent;
+    }
+
+    @Override
+    public Serializable getPK() {
+        return this.reportId;
     }
 }

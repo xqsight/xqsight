@@ -5,27 +5,27 @@ import java.util.List;
 /**
  * Created by wangganggang on 16/6/15.
  */
-public class TreeBaseModel<T> extends BaseModel {
+public abstract class TreeBaseModel<T> extends Model {
 
-    private Long id;
-    private Long parentId;
+    private String id;
+    private String parentId;
     private String name;
     private String icon;
     private List<T> children;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public Long getParentId() {
+    public String getParentId() {
         return parentId;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(String parentId) {
         this.parentId = parentId;
     }
 

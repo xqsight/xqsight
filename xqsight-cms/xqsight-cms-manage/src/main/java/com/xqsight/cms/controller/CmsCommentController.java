@@ -33,14 +33,14 @@ public class CmsCommentController{
 
 	@RequestMapping("save")
 	public Object saveCmsComment(CmsComment cmsComment) {
-		cmsComment.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+		cmsComment.setCreateUserId(SSOUtils.getCurrentUserId().toString());
 		cmsCommentService.saveCmsComment(cmsComment);
 		return MessageSupport.successMsg("保存成功");
 	}
 	
 	@RequestMapping("update")
 	public Object updateCmsComment(CmsComment cmsComment) {
-		cmsComment.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+		cmsComment.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
 		cmsCommentService.updateCmsComment(cmsComment);
 		return MessageSupport.successMsg("修改成功");
 	}

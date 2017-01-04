@@ -3,7 +3,7 @@
 import com.alibaba.fastjson.JSON;
 import com.xqsight.common.support.TreeSupport;
 import com.xqsight.sys.model.SysOrg;
-import com.xqsight.sys.mysqlmapper.SysOrgMapper;
+import com.xqsight.sys.mapper.SysOrgMapper;
 import com.xqsight.sys.service.SysOrgService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
