@@ -2,11 +2,11 @@ package com.xqsight.sys.support;
 
 import com.alibaba.fastjson.JSON;
 import com.xqsight.common.cache.CacheKeyConstants;
+import com.xqsight.common.model.UserBaseModel;
 import com.xqsight.commons.exception.Exceptions;
 import com.xqsight.commons.web.SpringContextHolder;
 import com.xqsight.commons.web.WebUtils;
 import com.xqsight.data.ehcache.core.CacheTemplate;
-import com.xqsight.sso.model.UserBaseModel;
 import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.sys.model.SysLog;
 import com.xqsight.sys.model.SysMenu;
@@ -16,7 +16,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 
 import javax.servlet.http.HttpServletRequest;

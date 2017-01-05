@@ -1066,6 +1066,7 @@
         <module>xqsight-shiro</module>
         <module>xqsight-wechat</module>
         <module>xqsight-boot</module>
+        <module>xqsight-service</module>
     </modules>
 
 

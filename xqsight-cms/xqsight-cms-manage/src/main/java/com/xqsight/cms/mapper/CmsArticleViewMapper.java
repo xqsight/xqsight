@@ -32,15 +32,15 @@ public interface CmsArticleViewMapper {
 	@Select(" select * from view_article where model_id = #{modelId,jdbcType=NUMERIC} and active = #{active,jdbcType=NUMERIC}  order by create_time desc")
 	List<Map<String, Object>> queryCmsArticleViewByModelIdAndActive(@Param("modelId") int modelId, @Param("active") int active);
 
-	@Select(" select * from view_article where model_id = #{modelId,jdbcType=NUMERIC} and create_opr_id = #{createOprId,jdbcType=VARCHAR} order by create_time desc")
-	List<Map<String, Object>> queryCmsArticleViewByModelIdAndCreateOprId(@Param("modelId") int modelId, @Param("createOprId") String createOprId);
+	@Select(" select * from view_article where model_id = #{modelId,jdbcType=NUMERIC} and create_user_id = #{createUserId,jdbcType=VARCHAR} order by create_time desc")
+	List<Map<String, Object>> queryCmsArticleViewByModelIdAndCreateOprId(@Param("modelId") int modelId, @Param("createUserId") String createUserId);
 
-	@Select(" select * from view_article where model_id = #{modelId,jdbcType=NUMERIC} and create_opr_id = #{createOprId,jdbcType=VARCHAR} and active = #{active,jdbcType=NUMERIC} order by create_time desc")
-	List<Map<String, Object>> queryCmsArticleViewByModelIdAndCreateOprIdAndActive(@Param("modelId") int modelId, @Param("createOprId") String createOprId, @Param("active") int active);
+	@Select(" select * from view_article where model_id = #{modelId,jdbcType=NUMERIC} and create_user_id = #{createUserId,jdbcType=VARCHAR} and active = #{active,jdbcType=NUMERIC} order by create_time desc")
+	List<Map<String, Object>> queryCmsArticleViewByModelIdAndCreateOprIdAndActive(@Param("modelId") int modelId, @Param("createUserId") String createUserId, @Param("active") int active);
 
 	@Select(" select var.*,ifnull(sf.file_url,' ') img_path from view_article var left join sys_file sf on sf.file_id = substring_index(var.file_id,',',1)  where var.model_id = #{modelId,jdbcType=NUMERIC} order by ${orderType} desc")
 	List<Map<String, Object>> queryCmsArticleViewWithFirstPicByModelIdAndOrderBy(@Param("modelId") Long modelId, @Param("orderType") String orderType);
 
-	@Select(" select var.*,ifnull(sf.file_url,' ') img_path from view_article var left join sys_file sf on sf.file_id = substring_index(var.file_id,',',1)  where var.model_id = #{modelId,jdbcType=NUMERIC} and var.create_opr_id = #{createOprId,jdbcType=VARCHAR} order by var.create_time desc ")
-	List<Map<String, Object>> queryCmsArticleViewWithFirstPicByModelIdAndUserId(@Param("modelId") Long modelId, @Param("createOprId") String createOprId);
+	@Select(" select var.*,ifnull(sf.file_url,' ') img_path from view_article var left join sys_file sf on sf.file_id = substring_index(var.file_id,',',1)  where var.model_id = #{modelId,jdbcType=NUMERIC} and var.create_user_id = #{createUserId,jdbcType=VARCHAR} order by var.create_time desc ")
+	List<Map<String, Object>> queryCmsArticleViewWithFirstPicByModelIdAndUserId(@Param("modelId") Long modelId, @Param("createUserId") String createUserId);
 }

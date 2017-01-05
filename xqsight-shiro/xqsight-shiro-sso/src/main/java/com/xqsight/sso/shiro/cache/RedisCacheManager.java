@@ -1,7 +1,5 @@
-package com.xqsight.sso.shiro.cache;///**
-// * 上海汽车集团财务有限责任公司
-// * Copyright (c) 1994-2015 All Rights Reserved.
-// */
+package com.xqsight.sso.shiro.cache;
+///**
 //package com.xqsight.sso.shiro.cache;
 //
 //import java.util.concurrent.ConcurrentHashMap;
@@ -15,11 +13,6 @@ package com.xqsight.sso.shiro.cache;///**
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.data.redis.core.RedisTemplate;
 //
-///**
-// * 
-// * @author linhaoran
-// * @version RedisCacheManager.java, v 0.1 2015年7月3日 上午10:08:16 linhaoran
-// */
 //public class RedisCacheManager implements CacheManager {
 //    
 //    private Log logger = LogFactory.getLog(getClass());

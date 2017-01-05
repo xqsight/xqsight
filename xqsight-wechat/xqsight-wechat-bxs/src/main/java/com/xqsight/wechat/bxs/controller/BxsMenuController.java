@@ -4,7 +4,7 @@
  */
 package com.xqsight.wechat.bxs.controller;
 
-import com.xqsight.common.support.MessageSupport;
+import com.xqsight.commons.support.MessageSupport;
 import me.chanjar.weixin.common.bean.menu.WxMenu;
 import me.chanjar.weixin.common.bean.menu.WxMenuButton;
 import me.chanjar.weixin.common.exception.WxErrorException;

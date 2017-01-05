@@ -17,18 +17,18 @@ public interface SysOrgMapper {
 	@Options(useGeneratedKeys = true, keyProperty = "orgId")
 	void saveSysOrg(SysOrg sysOrg);
 	
-	@Update(" update sys_org set parent_id=#{parentId,jdbcType=NUMERIC},org_name=#{orgName,jdbcType=VARCHAR},org_type=#{orgType,jdbcType=VARCHAR},org_code=#{orgCode,jdbcType=VARCHAR},custom_code=#{customCode,jdbcType=VARCHAR},sort=#{sort,jdbcType=NUMERIC},icon=#{icon,jdbcType=VARCHAR},active=#{active,jdbcType=NUMERIC},upd_opr_id=#{updOprId,jdbcType=VARCHAR},update_time=#{updateTime,jdbcType=TIMESTAMP},remark=#{remark,jdbcType=VARCHAR} where org_id=#{orgId,jdbcType=NUMERIC}")
+	@Update(" update sys_org set parent_id=#{parentId,jdbcType=NUMERIC},org_name=#{orgName,jdbcType=VARCHAR},org_type=#{orgType,jdbcType=VARCHAR},org_code=#{orgCode,jdbcType=VARCHAR},custom_code=#{customCode,jdbcType=VARCHAR},sort=#{sort,jdbcType=NUMERIC},icon=#{icon,jdbcType=VARCHAR},active=#{active,jdbcType=NUMERIC},update_user_id=#{updateUserId,jdbcType=VARCHAR},update_time=#{updateTime,jdbcType=TIMESTAMP},remark=#{remark,jdbcType=VARCHAR} where org_id=#{orgId,jdbcType=NUMERIC}")
 	void updateSysOrg(SysOrg sysOrg);
 	
 	@Delete(" delete from sys_org where org_id=#{orgId,jdbcType=NUMERIC}")
 	void deleteSysOrg(@Param("orgId") long orgId);
 	
-	@Select(" select org_id,parent_id,org_name,org_type,org_code,custom_code,sort,active,create_opr_id,create_time,upd_opr_id,update_time,remark from sys_org where org_id=#{orgId,jdbcType=NUMERIC}")
+	@Select(" select org_id,parent_id,org_name,org_type,org_code,custom_code,sort,active,create_opr_id,create_time,update_user_id,update_time,remark from sys_org where org_id=#{orgId,jdbcType=NUMERIC}")
 	SysOrg querySysOrgById(@Param("orgId") long orgId);
 
-	@Select(" select org_id,parent_id,org_name,org_type,org_code,custom_code,sort,active,create_opr_id,create_time,upd_opr_id,update_time,remark from sys_org order by sort asc")
+	@Select(" select org_id,parent_id,org_name,org_type,org_code,custom_code,sort,active,create_opr_id,create_time,update_user_id,update_time,remark from sys_org order by sort asc")
 	List<SysOrg> querySysOrg();
 
-	@Select(" select org_id,parent_id,org_name,org_type,org_code,custom_code,sort,active,create_opr_id,create_time,upd_opr_id,update_time,remark from sys_org where org_name like '%${orgName}%' and org_code like '%${orgCode}%' and custom_code like '%${customCode}%' and parent_id=#{parentId,jdbcType=NUMERIC} order by sort asc")
+	@Select(" select org_id,parent_id,org_name,org_type,org_code,custom_code,sort,active,create_opr_id,create_time,update_user_id,update_time,remark from sys_org where org_name like '%${orgName}%' and org_code like '%${orgCode}%' and custom_code like '%${customCode}%' and parent_id=#{parentId,jdbcType=NUMERIC} order by sort asc")
 	List<SysOrg> querySysOrgByOrgNameAndOrgCodeAndCustomCodeAndParentId(@Param("orgName") String orgName, @Param("orgCode") String orgCode, @Param("customCode") String customCode, @Param("parentId") long parentId);
 }

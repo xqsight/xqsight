@@ -1,7 +1,3 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sso.shiro.authc.pam;
 
 import com.xqsight.sso.authc.CustomAuthenticationInfo;
@@ -14,11 +10,6 @@ import org.apache.shiro.realm.Realm;
 
 import java.util.Collection;
 
-/**
- * 
- * @author linhaoran
- * @version CustomAuthenticationStrategy.java, v 0.1 2015年9月29日 下午5:10:20 linhaoran
- */
 public class CustomAuthenticationStrategy extends AbstractAuthenticationStrategy implements AuthenticationStrategy {
 
     @Override

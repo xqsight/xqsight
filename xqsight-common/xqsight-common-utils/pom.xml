@@ -12,13 +12,18 @@
     <artifactId>xqsight-common-utils</artifactId>
 
     <dependencies>
-        <!-- provided start -->
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <scope>provided</scope>
+            <groupId>com.xqsight</groupId>
+            <artifactId>xqsight-common-model</artifactId>
+            <version>${project.version}</version>
         </dependency>
-        <!-- provided end -->
+        <!-- sprint start -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <!-- spring end -->
+
         <dependency>
             <groupId>javax.mail</groupId>
             <artifactId>mail</artifactId>
@@ -58,16 +63,6 @@
             <artifactId>commons-beanutils</artifactId>
         </dependency>
         <!-- commons end -->
-        <!-- sprint start -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-        </dependency>
-        <!-- spring end -->
         <!-- alibaba -->
         <dependency>
             <groupId>com.alibaba</groupId>

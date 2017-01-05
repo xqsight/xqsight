@@ -1,7 +1,3 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sso.subject;
 
 import com.xqsight.sso.authc.SSOUsernamePasswordToken;
@@ -17,11 +13,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-/**
- * 
- * @author linhaoran
- * @version SSOSubject.java, v 0.1 2015年9月29日 下午11:34:52 linhaoran
- */
 public class SSOSubject {
     
     private Subject subject;

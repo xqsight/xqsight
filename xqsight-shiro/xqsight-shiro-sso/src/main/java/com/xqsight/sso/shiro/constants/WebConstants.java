@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 1994-2015 All Rights Reserved.
- * 上海汽车集团财务有限责任公司
- */
 package com.xqsight.sso.shiro.constants;
 
 import java.util.Arrays;
@@ -9,11 +5,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * 
- * @author linhaoran
- * @version WebConstants.java, v 0.1 2015年8月4日 下午4:59:29 linhaoran
- */
 public class WebConstants {
     
     public final static String LOGIN_ID = "login_id";

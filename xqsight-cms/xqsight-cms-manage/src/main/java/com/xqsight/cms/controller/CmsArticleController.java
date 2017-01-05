@@ -11,7 +11,7 @@ import com.xqsight.cms.utils.HtmlUtil;
 import com.xqsight.cms.utils.StrUtil;
 import com.xqsight.common.enums.ModelCodeEnums;
 import com.xqsight.common.model.XqsightPage;
-import com.xqsight.common.support.MessageSupport;
+import com.xqsight.commons.support.MessageSupport;
 import com.xqsight.common.support.XqsightPageHelper;
 import com.xqsight.sso.utils.SSOUtils;
 import org.apache.commons.lang3.StringUtils;

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.xqsight.data.redis.core;
 
 import java.util.ArrayList;

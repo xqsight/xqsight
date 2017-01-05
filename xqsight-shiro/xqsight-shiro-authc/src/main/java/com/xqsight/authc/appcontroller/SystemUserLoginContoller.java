@@ -19,7 +19,7 @@ public class SystemUserLoginContoller extends AbstractLoginContoller {
     private String default_goto_url;
 
     /** 
-     * @see com.saicfc.pmpf.sso.shiro.appcontroller.AbstractLoginContoller#chooseTokenInstance(String, String, boolean)
+     * @see com.xqsight.authc.appcontroller.AbstractLoginContoller#chooseTokenInstance(String, String, boolean)
      */
     @Override
     protected SSOUsernamePasswordToken chooseTokenInstance(String username, String password, boolean isRememberMe) {

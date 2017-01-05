@@ -6,7 +6,7 @@
 
 import java.util.List;
 
-import com.xqsight.common.support.TreeSupport;
+import com.xqsight.commons.support.TreeSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

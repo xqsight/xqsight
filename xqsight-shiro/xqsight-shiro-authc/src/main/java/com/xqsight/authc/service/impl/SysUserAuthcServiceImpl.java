@@ -1,14 +1,10 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.authc.service.impl;
 
-import com.xqsight.authc.mysqlmapper.SysUserAuthcMapper;
+import com.xqsight.authc.mapper.SysUserAuthcMapper;
+import com.xqsight.common.model.UserBaseModel;
+import com.xqsight.common.model.shiro.Resource;
+import com.xqsight.common.model.shiro.Role;
 import com.xqsight.sso.authc.service.UserAuthcService;
-import com.xqsight.sso.model.UserBaseModel;
-import com.xqsight.sso.shiro.model.Resource;
-import com.xqsight.sso.shiro.model.Role;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,7 +18,7 @@ import java.util.Set;
  * @author wangganggang
  * @date 2015年12月30日 下午4:35:18
  */
-@Service("sysUserAuthcService")
+@Service
 public class SysUserAuthcServiceImpl implements UserAuthcService {
 
 	@Autowired(required=false)

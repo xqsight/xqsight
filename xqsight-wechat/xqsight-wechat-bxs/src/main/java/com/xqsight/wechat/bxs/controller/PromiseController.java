@@ -7,7 +7,7 @@ package com.xqsight.wechat.bxs.controller;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.xqsight.common.model.XqsightPage;
-import com.xqsight.common.support.MessageSupport;
+import com.xqsight.commons.support.MessageSupport;
 import com.xqsight.common.support.XqsightPageHelper;
 import com.xqsight.wechat.bxs.model.WxPromise;
 import com.xqsight.wechat.bxs.service.PromiseService;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 import java.util.List;
 
 /**

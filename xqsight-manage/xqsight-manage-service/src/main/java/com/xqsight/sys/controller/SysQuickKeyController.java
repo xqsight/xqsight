@@ -1,6 +1,6 @@
 package com.xqsight.sys.controller;
 
-import com.xqsight.common.support.MessageSupport;
+import com.xqsight.commons.support.MessageSupport;
 import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.sys.model.SysQuickKey;
 import com.xqsight.sys.service.SysQuickKeyService;

@@ -1,7 +1,7 @@
 package com.xqsight.common.orm;
 
 
-import com.xqsight.common.constants.Constants;
+import com.xqsight.common.model.constants.Constants;
 
 import java.util.Date;
 

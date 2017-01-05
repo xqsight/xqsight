@@ -20,7 +20,7 @@
 		</property>
 	</bean>
 
-	<import resource="classpath*:config/xqsight-mysql-dao.xml" />
+	<import resource="classpath*:config/xqsight-common-dao.xml" />
 	<import resource="classpath*:config/xqsight-common-data-ehcache.xml" />
 	<import resource="classpath*:config/xqsight-common-sso-shiro.xml" />
 	<import resource="classpath*:config/xqsight-common-authc.xml" />

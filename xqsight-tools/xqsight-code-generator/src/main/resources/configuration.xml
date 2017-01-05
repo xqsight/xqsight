@@ -7,31 +7,17 @@
         <entry>lib/postgresql-8.2-505.jdbc2.jar</entry>
     </classpath>
     <connections>
-        <database name="pmpf">
+        <database name="portal">
             <driverClass>com.mysql.jdbc.Driver</driverClass>
-            <url>jdbc:mysql://10.116.15.114:3306/test</url>
-            <username>root</username>
-            <password>root</password>
-            <schema/>
-        </database>
-        <database name="sample">
-            <driverClass>com.mysql.jdbc.Driver</driverClass>
-            <url>jdbc:mysql://10.116.15.114:3306/sample</url>
-            <username>root</username>
-            <password>root</password>
-            <schema/>
-        </database>
-        <database name="root">
-            <driverClass>com.mysql.jdbc.Driver</driverClass>
-            <url>jdbc:mysql://182.61.6.205:3306/test</url>
+            <url>jdbc:mysql://10.99.66.13:3306/portal</url>
             <username>root</username>
             <password>root</password>
             <schema/>
         </database>
     </connections>
     <tagertProject>temp</tagertProject>
-    <basePackage>com.saicfc.system</basePackage>
-    <moduleName>log</moduleName>
+    <basePackage>com.xqsight</basePackage>
+    <moduleName>system</moduleName>
     <templates>
         <template engine="freemarker" name="控制类" selected="true">
             <templateFile>controller.ftl</templateFile>
@@ -40,15 +26,9 @@
             <encoding>UTF-8</encoding>
         </template>
         <template engine="freemarker" name="服务类" selected="true">
-            <templateFile>Service.ftl</templateFile>
-            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\Service\</targetPath>
-            <targetFileName>${table.className}Service.java</targetFileName>
-            <encoding>UTF-8</encoding>
-        </template>
-        <template engine="freemarker" name="服务实现类" selected="true">
-            <templateFile>Serviceimpl.ftl</templateFile>
-            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\Service\impl\</targetPath>
-            <targetFileName>${table.className}ServiceImpl.java</targetFileName>
+            <templateFile>service.ftl</templateFile>
+            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\service\</targetPath>
+            <targetFileName>${table.className}Service.java</targetFileName>ut
             <encoding>UTF-8</encoding>
         </template>
         <template engine="freemarker" name="实体类" selected="true">
@@ -59,20 +39,14 @@
         </template>
         <template engine="freemarker" name="Mapping类" selected="true">
             <templateFile>mapper.ftl</templateFile>
-            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\mysqlmapper\</targetPath>
+            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\mapper\</targetPath>
             <targetFileName>${table.className}Mapper.java</targetFileName>
             <encoding>UTF-8</encoding>
         </template>
-        <template engine="freemarker" name="主页面" selected="false">
-            <templateFile>mainhtml.ftl</templateFile>
-            <targetPath>${tagertProject}\page\${moduleName}\</targetPath>
-            <targetFileName>${table.className}Main.html</targetFileName>
-            <encoding>UTF-8</encoding>
-        </template>
-        <template engine="freemarker" name="编辑页面 " selected="false">
-            <templateFile>edithtml.ftl</templateFile>
-            <targetPath>${tagertProject}\page\${moduleName}\</targetPath>
-            <targetFileName>${table.className}Edit.html</targetFileName>
+        <template engine="freemarker" name="MappingSql类" selected="true">
+            <templateFile>mappersql.ftl</templateFile>
+            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\mapper\</targetPath>
+            <targetFileName>${table.className}Mapper.xml</targetFileName>
             <encoding>UTF-8</encoding>
         </template>
     </templates>

@@ -1,12 +1,12 @@
 package com.xqsight.common.service;
 
-import com.xqsight.common.constants.Constants;
+import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.dao.Dao;
 import com.xqsight.common.model.Model;
 import com.xqsight.common.orm.Criterion;
 import com.xqsight.common.orm.PropertyFilter;
 import com.xqsight.common.orm.Sort;
-import com.xqsight.common.support.ParamSupport;
+import com.xqsight.commons.support.ParamSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;

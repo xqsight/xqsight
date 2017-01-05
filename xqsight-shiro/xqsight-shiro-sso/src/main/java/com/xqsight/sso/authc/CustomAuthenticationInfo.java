@@ -1,19 +1,10 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sso.authc;
 
-import com.xqsight.sso.model.UserBaseModel;
+import com.xqsight.common.model.UserBaseModel;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.util.ByteSource;
 
-/**
- * 
- * @author linhaoran
- * @version CustomAuthenticationInfo.java, v 0.1 2015年9月28日 上午10:47:39 linhaoran
- */
 public class CustomAuthenticationInfo extends SimpleAuthenticationInfo {
 
     /**  */

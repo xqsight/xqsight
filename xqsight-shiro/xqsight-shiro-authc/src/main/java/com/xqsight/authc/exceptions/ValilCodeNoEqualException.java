@@ -1,7 +1,3 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.authc.exceptions;
 
 import org.apache.shiro.authc.AuthenticationException;

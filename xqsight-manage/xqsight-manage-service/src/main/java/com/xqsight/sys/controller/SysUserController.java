@@ -5,10 +5,10 @@ import com.xqsight.authc.enums.LoginTypeEnum;
 import com.xqsight.authc.support.LoginSupport;
 import com.xqsight.common.enums.UserFromSourceEnum;
 import com.xqsight.common.model.XqsightPage;
-import com.xqsight.common.support.MessageSupport;
+import com.xqsight.commons.support.MessageSupport;
 import com.xqsight.common.support.XqsightPageHelper;
 import com.xqsight.commons.web.WebUtils;
-import com.xqsight.sso.authc.service.PasswordHelper;
+import com.xqsight.sso.utils.PasswordHelper;
 import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.sys.model.SysLogin;
 import com.xqsight.sys.service.SysUserService;
@@ -46,7 +46,7 @@ public class SysUserController {
         if (sysLogins != null)
             return MessageSupport.failureMsg("保存失败，登录名已存在");
 
-        sysLogin.setCreateOprId(SSOUtils.getCurrentUserId().toString());
+        sysLogin.setCreateUserId(SSOUtils.getCurrentUserId().toString());
         sysLogin.setPassword("!password");
         if (WebUtils.isMobile(request)) {
             sysLogin.setFromSource(UserFromSourceEnum.MOBILE.value());
@@ -64,7 +64,7 @@ public class SysUserController {
     @RequiresPermissions("sys:login:resetpwd")
     public Object resetPwd(long id) {
         SysLogin sysLogin = sysUserService.querySysLoginById(id);
-        sysLogin.setUpdOprId(SSOUtils.getCurrentUserId().toString());
+        sysLogin.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
         sysLogin.setPassword("!password");
         PasswordHelper.encryptPassword(sysLogin);
         sysUserService.updateSysLoginPwd(sysLogin.getPassword(), sysLogin.getId());

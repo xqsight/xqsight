@@ -1,7 +1,7 @@
 package com.xqsight.authc.appcontroller;
 
 import com.xqsight.authc.exceptions.ValilCodeNoEqualException;
-import com.xqsight.common.constants.Constants;
+import com.xqsight.common.model.constants.Constants;
 import com.xqsight.commons.web.WebUtils;
 import com.xqsight.sso.authc.SSOUsernamePasswordToken;
 import com.xqsight.sso.shiro.constants.WebConstants;

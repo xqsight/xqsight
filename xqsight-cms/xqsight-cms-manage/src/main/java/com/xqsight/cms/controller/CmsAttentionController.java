@@ -9,7 +9,7 @@ import com.xqsight.cms.model.CmsAttention;
 import com.xqsight.cms.service.CmsAttentionService;
 import com.xqsight.cms.utils.HtmlUtil;
 import com.xqsight.common.model.XqsightPage;
-import com.xqsight.common.support.MessageSupport;
+import com.xqsight.commons.support.MessageSupport;
 import com.xqsight.common.support.XqsightPageHelper;
 import com.xqsight.commons.utils.MapKeyHandle;
 import com.xqsight.sso.utils.SSOUtils;

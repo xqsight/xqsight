@@ -1,7 +1,3 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sso.shiro.mgt;
 
 import com.xqsight.sso.authc.CustomAuthenticationInfo;
@@ -14,11 +10,6 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 
-/**
- * 
- * @author linhaoran
- * @version CustomWebSecurityManager.java, v 0.1 2015年9月28日 上午10:51:50 linhaoran
- */
 public class CustomWebSecurityManager extends DefaultWebSecurityManager {
 
     private Logger logger = LogManager.getLogger(getClass());

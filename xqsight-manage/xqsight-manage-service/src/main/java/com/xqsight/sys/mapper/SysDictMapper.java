@@ -13,18 +13,18 @@ import java.util.List;
  */
 public interface SysDictMapper {
 
-	@Insert("insert into sys_dict (dict_name,dict_code, active, create_time, create_opr_id, remark) values("
-			+ "#{dictName, jdbcType=VARCHAR},#{dictCode, jdbcType=VARCHAR},#{active, jdbcType=NUMERIC},#{createTime, jdbcType=TIMESTAMP} ,#{createOprId, jdbcType=VARCHAR} , #{remark, jdbcType=VARCHAR})")
+	@Insert("insert into sys_dict (dict_name,dict_code, active, create_time, create_user_id, remark) values("
+			+ "#{dictName, jdbcType=VARCHAR},#{dictCode, jdbcType=VARCHAR},#{active, jdbcType=NUMERIC},#{createTime, jdbcType=TIMESTAMP} ,#{createUserId, jdbcType=VARCHAR} , #{remark, jdbcType=VARCHAR})")
 	void saveSysDict(SysDict sysDict);
 
-	@Insert("insert into sys_dict_detail (dict_id,dict_value,dict_desp,dict_lang, active,editable, create_time, create_opr_id, remark) values("
-			+ "#{dictId, jdbcType=VARCHAR},#{dictValue, jdbcType=VARCHAR},#{dictDesp, jdbcType=VARCHAR},#{dictLang, jdbcType=VARCHAR},#{active, jdbcType=NUMERIC},#{editable, jdbcType=NUMERIC},#{createTime, jdbcType=TIMESTAMP} ,#{createOprId, jdbcType=VARCHAR}, #{remark, jdbcType=VARCHAR})")
+	@Insert("insert into sys_dict_detail (dict_id,dict_value,dict_desp,dict_lang, active,editable, create_time, create_user_id, remark) values("
+			+ "#{dictId, jdbcType=VARCHAR},#{dictValue, jdbcType=VARCHAR},#{dictDesp, jdbcType=VARCHAR},#{dictLang, jdbcType=VARCHAR},#{active, jdbcType=NUMERIC},#{editable, jdbcType=NUMERIC},#{createTime, jdbcType=TIMESTAMP} ,#{createUserId, jdbcType=VARCHAR}, #{remark, jdbcType=VARCHAR})")
 	void saveSysDictDetail(SysDictDetail sysDictDetail);
 
-	@Update("update  sys_dict set dict_name=#{dictName, jdbcType=VARCHAR},dict_code=#{dictCode, jdbcType=VARCHAR}, update_time= #{updateTime, jdbcType=TIMESTAMP}, upd_opr_id=#{updOprId, jdbcType=VARCHAR}, remark=#{remark, jdbcType=VARCHAR} WHERE  dict_id=#{dictId, jdbcType=NUMERIC}")
+	@Update("update  sys_dict set dict_name=#{dictName, jdbcType=VARCHAR},dict_code=#{dictCode, jdbcType=VARCHAR}, update_time= #{updateTime, jdbcType=TIMESTAMP}, update_user_id=#{updateUserId, jdbcType=VARCHAR}, remark=#{remark, jdbcType=VARCHAR} WHERE  dict_id=#{dictId, jdbcType=NUMERIC}")
 	void updateSysDict(SysDict sysDict);
 	
-	@Update("update  sys_dict_detail SET dict_value=#{dictValue, jdbcType=VARCHAR},dict_desp=#{dictDesp, jdbcType=VARCHAR},dict_lang=#{dictLang, jdbcType=VARCHAR},ACTIVE=#{active, jdbcType=NUMERIC},editable=#{editable, jdbcType=NUMERIC}, update_time= #{updateTime, jdbcType=TIMESTAMP}, upd_opr_id=#{updOprId, jdbcType=VARCHAR}, remark=#{remark, jdbcType=VARCHAR} WHERE  dict_detail_id=#{dictDetailId, jdbcType=NUMERIC}")
+	@Update("update  sys_dict_detail SET dict_value=#{dictValue, jdbcType=VARCHAR},dict_desp=#{dictDesp, jdbcType=VARCHAR},dict_lang=#{dictLang, jdbcType=VARCHAR},ACTIVE=#{active, jdbcType=NUMERIC},editable=#{editable, jdbcType=NUMERIC}, update_time= #{updateTime, jdbcType=TIMESTAMP}, update_user_id=#{updateUserId, jdbcType=VARCHAR}, remark=#{remark, jdbcType=VARCHAR} WHERE  dict_detail_id=#{dictDetailId, jdbcType=NUMERIC}")
 	void updateSysDictDetail(SysDictDetail sysDictDetail);
 
 	@Delete("delete from sys_dict where  dict_id=#{dictId, jdbcType=NUMERIC}")

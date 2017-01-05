@@ -3,6 +3,7 @@ package com.xqsight.common.support;
 import com.xqsight.common.orm.MatchType;
 import com.xqsight.common.orm.PropertyFilter;
 import com.xqsight.common.orm.PropertyType;
+import com.xqsight.commons.support.ParamSupport;
 import com.xqsight.commons.utils.DateFormatUtils;
 import com.xqsight.commons.utils.ReflectionUtils;
 import org.apache.commons.beanutils.PropertyUtils;

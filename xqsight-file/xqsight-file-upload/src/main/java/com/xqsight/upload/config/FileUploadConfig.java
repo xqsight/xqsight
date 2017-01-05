@@ -1,6 +1,6 @@
 package com.xqsight.upload.config;
 
-import com.xqsight.common.constants.CacheKeyConstants;
+import com.xqsight.common.model.constants.CacheKeyConstants;
 import com.xqsight.upload.FileConstants;
 import com.xqsight.commons.web.SpringContextHolder;
 import com.xqsight.data.ehcache.core.CacheTemplate;

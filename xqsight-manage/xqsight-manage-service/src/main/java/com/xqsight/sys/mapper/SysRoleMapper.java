@@ -16,7 +16,7 @@ public interface SysRoleMapper {
 	+ "#{roleName, jdbcType=VARCHAR},#{roleCode, jdbcType=VARCHAR},#{roleType, jdbcType=NUMERIC},#{active, jdbcType=NUMERIC},#{createTime, jdbcType=TIMESTAMP} ,#{createOprId, jdbcType=VARCHAR} , #{remark, jdbcType=VARCHAR})")
 	void saveSysRole(SysRole sysRole);
 
-	@Update("update  sys_role set role_name=#{roleName, jdbcType=VARCHAR},role_code=#{roleCode, jdbcType=VARCHAR},active=#{active, jdbcType=NUMERIC}, update_time= #{updateTime, jdbcType=TIMESTAMP}, upd_opr_id=#{updOprId, jdbcType=VARCHAR}, remark=#{remark, jdbcType=VARCHAR} WHERE  ROLE_ID=#{roleId, jdbcType=NUMERIC}")
+	@Update("update  sys_role set role_name=#{roleName, jdbcType=VARCHAR},role_code=#{roleCode, jdbcType=VARCHAR},active=#{active, jdbcType=NUMERIC}, update_time= #{updateTime, jdbcType=TIMESTAMP}, update_user_id=#{updateUserId, jdbcType=VARCHAR}, remark=#{remark, jdbcType=VARCHAR} WHERE  ROLE_ID=#{roleId, jdbcType=NUMERIC}")
 	void updateSysRole(SysRole sysRole);
 
 	@Delete("delete from sys_role where role_id=#{roleId, jdbcType=NUMERIC}")

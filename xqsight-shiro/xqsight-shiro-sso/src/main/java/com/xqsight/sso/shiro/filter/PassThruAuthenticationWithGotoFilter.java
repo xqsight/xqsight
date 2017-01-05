@@ -1,7 +1,3 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.sso.shiro.filter;
 
 import com.xqsight.sso.shiro.constants.WebConstants;
@@ -21,11 +17,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Enumeration;
 
-/**
- * 
- * @author linhaoran
- * @version PassThruAuthenticationWithGotoFilter.java, v 0.1 2015年8月4日 下午6:14:45 linhaoran
- */
 public class PassThruAuthenticationWithGotoFilter extends PassThruAuthenticationFilter {
     
     private static final Logger logger = LogManager.getLogger(PassThruAuthenticationWithGotoFilter.class);

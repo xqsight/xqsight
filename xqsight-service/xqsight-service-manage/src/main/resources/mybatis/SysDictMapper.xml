@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xqsight.system.mapper.SysDictMapper">
+
+    <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysDict">
+		<result column="dict_id" property="dictId" jdbcType="NUMERIC"/>
+		<result column="dict_code" property="dictCode" jdbcType="VARCHAR"/>
+		<result column="dict_name" property="dictName" jdbcType="VARCHAR"/>
+		<result column="active" property="active" jdbcType="NUMERIC"/>
+		<result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+		<result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+		<result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		 dict_id,dict_code,dict_name,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
+
+    <insert id="insert" parameterType="com.xqsight.system.model.SysDict"  useGeneratedKeys="true" keyProperty="dictId">
+        insert into sys_dict (
+		dict_code,dict_name,active,create_user_id,create_time,update_user_id,update_time,remark
+		) values (
+		#{dictCode,jdbcType=VARCHAR},
+		#{dictName,jdbcType=VARCHAR},
+		#{active,jdbcType=NUMERIC},
+		#{createUserId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateUserId,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=TIMESTAMP},
+		#{remark,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.xqsight.system.model.SysDict">
+        insert into sys_dict (
+        <if test="dictCode!=null">
+		dict_code,
+		</if>
+        <if test="dictName!=null">
+		dict_name,
+		</if>
+        <if test="active!=null">
+		active,
+		</if>
+        <if test="createUserId!=null">
+		create_user_id,
+		</if>
+        <if test="createTime!=null">
+		create_time,
+		</if>
+        <if test="updateUserId!=null">
+		update_user_id,
+		</if>
+        <if test="updateTime!=null">
+		update_time,
+		</if>
+        <if test="remark!=null">
+		remark
+		</if>
+		)
+		values (
+        <if test="dictCode!=null">
+		#{dictCode,jdbcType=VARCHAR},
+		</if>
+        <if test="dictName!=null">
+		#{dictName,jdbcType=VARCHAR},
+		</if>
+        <if test="active!=null">
+		#{active,jdbcType=NUMERIC},
+		</if>
+        <if test="createUserId!=null">
+		#{createUserId,jdbcType=VARCHAR},
+		</if>
+        <if test="createTime!=null">
+		#{createTime,jdbcType=TIMESTAMP},
+		</if>
+        <if test="updateUserId!=null">
+		#{updateUserId,jdbcType=VARCHAR},
+		</if>
+        <if test="updateTime!=null">
+		#{updateTime,jdbcType=TIMESTAMP},
+		</if>
+        <if test="remark!=null">
+		#{remark,jdbcType=VARCHAR}
+		</if>
+		)
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysDict">
+		update from sys_dict set
+		dict_code = #{dictCode,jdbcType=VARCHAR},
+		dict_name = #{dictName,jdbcType=VARCHAR},
+		active = #{active,jdbcType=NUMERIC},
+		update_user_id = #{updateUserId,jdbcType=VARCHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR}
+        where  #{dictId,jdbcType=NUMERIC} 
+    </update>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysDict">
+        update from sys_dict set
+        <if test="dictCode!=null">
+		dict_code = #{dictCode,jdbcType=VARCHAR},
+		</if>
+        <if test="dictName!=null">
+		dict_name = #{dictName,jdbcType=VARCHAR},
+		</if>
+        <if test="active!=null">
+		active = #{active,jdbcType=NUMERIC},
+		</if>
+        <if test="updateUserId!=null">
+		update_user_id = #{updateUserId,jdbcType=VARCHAR},
+		</if>
+        <if test="updateTime!=null">
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		</if>
+        <if test="remark!=null">
+		remark = #{remark,jdbcType=VARCHAR}
+		</if>
+        where  #{dictId,jdbcType=NUMERIC} 
+	</update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from  sys_dict
+        where  #{dictId,jdbcType=NUMERIC} 
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from sys_dict
+        where  #{dictId,jdbcType=NUMERIC} 
+    </select>
+
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.orm">
+        select <include refid="Base_Column_List"/> from sys_role
+		WHERE 1=1
+		${whereSqlString}
+        <if test="orderBy != null">
+			${orderBySqlString}
+        </if>
+    </select>
+</mapper>

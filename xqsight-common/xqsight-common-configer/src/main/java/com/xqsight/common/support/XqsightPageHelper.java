@@ -1,7 +1,3 @@
-/**
- * 新启工作室
- * Copyright (c) 1994-2015 All Rights Reserved.
- */
 package com.xqsight.common.support;
 
 import java.math.BigDecimal;
@@ -32,7 +28,7 @@ public class XqsightPageHelper extends PageHelper {
     @SuppressWarnings("rawtypes")
     public static Page startPageWithPageIndex(int firstRecordIdx, int pageSize) {
         int pageNum = BigDecimal.valueOf(firstRecordIdx).divide(BigDecimal.valueOf(pageSize), BigDecimal.ROUND_UP).intValue() + 1;
-        return com.github.pagehelper.PageHelper.startPage(pageNum, pageSize);
+        return startPage(pageNum, pageSize);
     }
 
 }

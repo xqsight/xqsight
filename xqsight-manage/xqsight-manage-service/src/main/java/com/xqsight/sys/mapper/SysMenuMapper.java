@@ -12,11 +12,11 @@ import java.util.List;
  */
 public interface SysMenuMapper {
 
-	@Insert("insert into sys_menu (menu_name, url, type ,icon, permission, parent_id,sort,active, create_time, create_opr_id, update_time, upd_opr_id, remark) values("
-	+ "#{menuName, jdbcType=VARCHAR},#{url, jdbcType=VARCHAR},#{type, jdbcType=NUMERIC},#{icon, jdbcType=VARCHAR},#{permission, jdbcType=VARCHAR},#{parentId, jdbcType=NUMERIC},#{sort, jdbcType=NUMERIC},#{active, jdbcType=NUMERIC},#{createTime, jdbcType=TIMESTAMP} ,#{createOprId, jdbcType=VARCHAR} , #{updateTime, jdbcType=TIMESTAMP} , #{updOprId, jdbcType=VARCHAR} , #{remark, jdbcType=VARCHAR})")
+	@Insert("insert into sys_menu (menu_name, url, type ,icon, permission, parent_id,sort,active, create_time, create_user_id, update_time, update_user_id, remark) values("
+	+ "#{menuName, jdbcType=VARCHAR},#{url, jdbcType=VARCHAR},#{type, jdbcType=NUMERIC},#{icon, jdbcType=VARCHAR},#{permission, jdbcType=VARCHAR},#{parentId, jdbcType=NUMERIC},#{sort, jdbcType=NUMERIC},#{active, jdbcType=NUMERIC},#{createTime, jdbcType=TIMESTAMP} ,#{createUserId, jdbcType=VARCHAR} , #{updateTime, jdbcType=TIMESTAMP} , #{updateUserId, jdbcType=VARCHAR} , #{remark, jdbcType=VARCHAR})")
 	void saveSysMenu(SysMenu sysMenu);
 
-	@Update("update  sys_menu set type=#{type, jdbcType=NUMERIC}, menu_name=#{menuName, jdbcType=VARCHAR},url=#{url, jdbcType=VARCHAR}, icon=#{icon, jdbcType=VARCHAR}, permission=#{permission, jdbcType=VARCHAR},sort=#{sort, jdbcType=NUMERIC},active=#{active, jdbcType=NUMERIC}, update_time= #{updateTime, jdbcType=TIMESTAMP}, upd_opr_id=#{updOprId, jdbcType=VARCHAR}, REMARK=#{remark, jdbcType=VARCHAR} where  menu_id=#{menuId, jdbcType=NUMERIC}")
+	@Update("update  sys_menu set type=#{type, jdbcType=NUMERIC}, menu_name=#{menuName, jdbcType=VARCHAR},url=#{url, jdbcType=VARCHAR}, icon=#{icon, jdbcType=VARCHAR}, permission=#{permission, jdbcType=VARCHAR},sort=#{sort, jdbcType=NUMERIC},active=#{active, jdbcType=NUMERIC}, update_time= #{updateTime, jdbcType=TIMESTAMP}, update_user_id=#{updateUserId, jdbcType=VARCHAR}, REMARK=#{remark, jdbcType=VARCHAR} where  menu_id=#{menuId, jdbcType=NUMERIC}")
 	void updateSysMenu(SysMenu sysMenu);
 
 	@Delete("delete from sys_menu where  menu_id=#{menuId, jdbcType=NUMERIC}")

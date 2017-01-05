@@ -38,6 +38,7 @@ public class Table implements java.io.Serializable {
     private List<Key>         exportedKeys     = new ArrayList<Key>();
     
     private String            controllerPath;
+    private String            permissions;
     private String            jsNameSpace;
     
     private String            insertSql;
@@ -56,6 +57,7 @@ public class Table implements java.io.Serializable {
         this.className = StringUtil.getCamelCaseString(tableAlias, true);
         this.javaProperty = StringUtil.getCamelCaseString(tableAlias, false);
         this.controllerPath = StringUtil.join("/", tableName.split("_")).toLowerCase();
+        this.permissions = StringUtil.join(":", tableName.split("_")).toLowerCase();
         this.jsNameSpace = StringUtil.join(".", tableName.split("_")).toLowerCase();
     }
 
@@ -344,7 +346,15 @@ public class Table implements java.io.Serializable {
 		this.controllerPath = controllerPath;
 	}
 
-	/**
+    public String getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(String permissions) {
+        this.permissions = permissions;
+    }
+
+    /**
 	 * getter method
 	 * @return the jsNameSpace
 	 */

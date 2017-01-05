@@ -4,12 +4,9 @@
  */
  package com.xqsight.cms.controller;
 
-import com.github.pagehelper.Page;
 import com.xqsight.cms.model.CmsModel;
 import com.xqsight.cms.service.CmsModelService;
-import com.xqsight.common.model.XqsightPage;
-import com.xqsight.common.support.MessageSupport;
-import com.xqsight.common.support.XqsightPageHelper;
+import com.xqsight.commons.support.MessageSupport;
 import com.xqsight.sso.utils.SSOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

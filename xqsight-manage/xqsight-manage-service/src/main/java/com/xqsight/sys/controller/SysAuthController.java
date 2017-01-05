@@ -1,6 +1,6 @@
 package com.xqsight.sys.controller;
 
-import com.xqsight.common.support.MessageSupport;
+import com.xqsight.commons.support.MessageSupport;
 import com.xqsight.sys.model.SysLogin;
 import com.xqsight.sys.service.SysAuthService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

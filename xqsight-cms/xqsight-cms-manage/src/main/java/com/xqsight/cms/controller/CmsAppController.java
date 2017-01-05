@@ -8,7 +8,7 @@ import com.github.pagehelper.Page;
 import com.xqsight.cms.model.CmsApp;
 import com.xqsight.cms.service.CmsAppService;
 import com.xqsight.common.model.XqsightPage;
-import com.xqsight.common.support.MessageSupport;
+import com.xqsight.commons.support.MessageSupport;
 import com.xqsight.common.support.XqsightPageHelper;
 import com.xqsight.sso.utils.SSOUtils;
 import org.springframework.beans.factory.annotation.Autowired;

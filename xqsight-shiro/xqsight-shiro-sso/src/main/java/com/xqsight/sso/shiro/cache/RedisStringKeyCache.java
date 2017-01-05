@@ -1,7 +1,4 @@
 package com.xqsight.sso.shiro.cache;///**
-// * 上海汽车集团财务有限责任公司
-// * Copyright (c) 1994-2015 All Rights Reserved.
-// */
 //package com.xqsight.sso.shiro.cache;
 //
 //import java.util.Collection;
@@ -15,11 +12,6 @@ package com.xqsight.sso.shiro.cache;///**
 //import org.apache.shiro.cache.CacheException;
 //import org.springframework.data.redis.core.RedisTemplate;
 //
-///**
-// * 
-// * @author linhaoran
-// * @version RedisStringKeyCache.java, v 0.1 2015年7月6日 上午9:52:07 linhaoran
-// */
 //public class RedisStringKeyCache<K, V> implements Cache<String, V> {
 //
 //    private Logger logger = LogManager.getLogger(getClass());

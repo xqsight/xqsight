@@ -35,12 +35,12 @@ public class CmsArticleSQLBuilder {
 				FROM("cms_article cart ");
 				LEFT_OUTER_JOIN("cms_model cmo on cart.model_id = cmo.model_id");
 				LEFT_OUTER_JOIN("cms_app capp on cmo.app_id = capp.app_id");
-				LEFT_OUTER_JOIN("sys_login sl on cart.create_opr_id = sl.id");
+				LEFT_OUTER_JOIN("sys_login sl on cart.create_user_id = sl.id");
 				LEFT_OUTER_JOIN("sys_file_assocication sfa on cart.article_id = sfa.assocication_id");
 				LEFT_OUTER_JOIN("sys_file sf on sf.file_id = sfa.file_id");
 				
-				if(StringUtils.isNoneBlank(MapUtils.getString(paramMap, "createOprId")))
-					WHERE("cart.create_opr_id = #{paramsMap.createOprId,jdbcType=VARCHAR}");
+				if(StringUtils.isNoneBlank(MapUtils.getString(paramMap, "createUserId")))
+					WHERE("cart.create_user_id = #{paramsMap.createUserId,jdbcType=VARCHAR}");
 				
 				if(StringUtils.isNoneBlank(MapUtils.getString(paramMap, "modelCode")))
 					WHERE("cmo.model_code=#{paramsMap.modelCode,jdbcType=VARCHAR}");
@@ -69,7 +69,7 @@ public class CmsArticleSQLBuilder {
 				: (Map<String, Object>) paramsMap.get("paramsMap");
 		String sql = new SQL(){
 			{
-				SELECT(" model_id,file_id,article_id,article_title,article_author,article_description,article_content,article_type,article_url,article_keyword,article_sourcle,article_hit,article_has_pic,active,create_time,create_opr_id,update_time,upd_opr_id,remark ");
+				SELECT(" model_id,file_id,article_id,article_title,article_author,article_description,article_content,article_type,article_url,article_keyword,article_sourcle,article_hit,article_has_pic,active,create_time,create_user_id,update_time,upd_opr_id,remark ");
 				FROM ("cms_article article");
 				if(paramMap.get("appId").equals("1"))
 				{

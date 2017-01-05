@@ -8,7 +8,7 @@ package com.xqsight.cms.controller;
 import com.github.pagehelper.Page;
 import com.xqsight.cms.model.vo.CmsArticleReportVo;
 import com.xqsight.common.model.XqsightPage;
-import com.xqsight.common.support.MessageSupport;
+import com.xqsight.commons.support.MessageSupport;
 import com.xqsight.common.support.XqsightPageHelper;
 import com.xqsight.commons.web.WebUtils;
 import com.xqsight.sso.utils.SSOUtils;

@@ -1,11 +1,7 @@
-/**
- * 上海汽车集团财务有限责任公司
- * Copyright (c) 1994-2016 All Rights Reserved.
- */
 package com.xqsight.sso.shiro.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.xqsight.sso.model.UserBaseModel;
+import com.xqsight.common.model.UserBaseModel;
 import com.xqsight.sso.shiro.constants.WebConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

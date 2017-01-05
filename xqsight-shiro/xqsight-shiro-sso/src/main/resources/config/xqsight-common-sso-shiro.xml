@@ -52,9 +52,6 @@
 	<!-- <bean id="redisSessionDAO" class="com.xqsight.sso.shiro.cache.RedisSessionDAO" />
 	<bean id="cacheManager" class="com.xqsight.sso.shiro.cache.RedisCacheManager" /> -->
 
-	<bean id="personalUserRealm" class="com.xqsight.sso.shiro.realm.PersonalUserRealm"
-		p:name="personalUserRealm" p:credentialsMatcher-ref="credentialsMatcher" />
-
 	<bean id="systemUserRealm" class="com.xqsight.sso.shiro.realm.SysUserRealm"
 		p:name="systemUserRealm" p:credentialsMatcher-ref="credentialsMatcher" />
 

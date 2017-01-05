@@ -1,18 +1,18 @@
 
-insert into `sys_dict` (`dict_id`, `dict_code`, `dict_name`, `active`, `create_time`, `create_opr_id`, `update_time`, `upd_opr_id`, `remark`) values
+insert into `sys_dict` (`dict_id`, `dict_code`, `dict_name`, `active`, `create_time`, `create_user_id`, `update_time`, `update_user_id`, `remark`) values
 	(1, 'active', '是否有效', 0, '2016-01-26 15:21:36', '2', '2016-01-26 15:21:36', '2', ''),
 	(2, 'jobGroup', '任务组', 0, '2016-01-26 15:23:51', '2', '2016-01-26 15:28:57', '2', '');
 
-insert into `sys_dict_detail` (`dict_detail_id`, `dict_id`, `dict_value`, `dict_desp`, `editable`, `dict_lang`, `active`, `create_time`, `create_opr_id`, `update_time`, `upd_opr_id`, `remark`) values
+insert into `sys_dict_detail` (`dict_detail_id`, `dict_id`, `dict_value`, `dict_desp`, `editable`, `dict_lang`, `active`, `create_time`, `create_user_id`, `update_time`, `update_user_id`, `remark`) values
 	(1, 1, '0', '有效', -1, 'chinese', 0, '2016-01-26 15:29:52', '2', '2016-01-26 15:29:52', '2', ''),
 	(2, 1, '-1', '无效', -1, 'chinese', 0, '2016-01-26 15:30:12', '2', '2016-01-26 15:30:12', '2', ''),
 	(3, 2, 'default', '默认组', 0, 'chinese', 0, '2016-01-26 15:34:49', '2', '2016-05-17 11:46:16', '1', '');
 
-insert into `sys_login` (`id`, `org_id`,`login_id`, `user_name`, `password`, `login_type`, `from_source`, `img_url`, `salt`, `locked`, `sex`, `age`, `active`, `create_time`, `create_opr_id`, `update_time`, `upd_opr_id`, `remark`) values
+insert into `sys_login` (`id`, `org_id`,`login_id`, `user_name`, `password`, `login_type`, `from_source`, `img_url`, `salt`, `locked`, `sex`, `age`, `active`, `create_time`, `create_user_id`, `update_time`, `update_user_id`, `remark`) values
 	(1, '2','admin', '管理员', '487dfa8e448a55606364964e73016104c55a226fb0f489655e016334a072f0fd', 3, NULL, '/upload/20160531/2016053114171100001.jpg', '201406e096abed6f1dfee2028f4ad914', 0, NULL, 0, 0, '2016-01-12 11:55:43', 'test', '2016-01-12 11:55:43', 'test', NULL),
 	(2, '2','jerry', 'jerry', 'f66baef8bef93e45c0453e1b18b1a838f0f55fad57a3b0c1d3c83dbb6d1e9fb5', 1, NULL, NULL, 'ab6addd8c9ea9741baa0cb7c69a3f52f', 0, NULL, 0, 0, '2016-01-12 10:24:29', 'test', '2016-01-12 10:24:29', 'test', NULL);
 
-insert into `sys_menu` (`menu_id`, `menu_name`, `url`, `icon`, `type`, `permission`, `sort`, `parent_id`, `active`, `create_time`, `create_opr_id`, `update_time`, `upd_opr_id`, `remark`) values
+insert into `sys_menu` (`menu_id`, `menu_name`, `url`, `icon`, `type`, `permission`, `sort`, `parent_id`, `active`, `create_time`, `create_user_id`, `update_time`, `update_user_id`, `remark`) values
 	(1, '系统菜单', '', '', 0, '', 0, 0, 0, '2015-12-30 13:25:14', '1', '2015-12-30 13:25:23', '1', '1'),
 
 	(2, '系统管理', '', '', 0, '', 0, 1, 0, '2015-12-30 13:25:14', '1', '2015-12-30 13:25:23', '1', '1'),
@@ -49,12 +49,12 @@ insert into `sys_menu_role` (`menu_id`, `role_id`) values
 	(9, 1), (10, 1), (11, 1), (12, 1), (13, 1), (14, 1),
 	(15, 1), (16, 1), (17, 1), (18, 1), (19, 1), (20, 1), (21, 1),(22, 1),(23, 1);
 
-insert into `sys_role` (`role_id`, `role_name`, `role_code`, `role_type`, `active`, `create_time`, `create_opr_id`, `update_time`, `upd_opr_id`, `remark`) values
+insert into `sys_role` (`role_id`, `role_name`, `role_code`, `role_type`, `active`, `create_time`, `create_user_id`, `update_time`, `update_user_id`, `remark`) values
 	(1, '系统管理', 'admin', '', 0, '2016-01-07 14:41:06', 'test', '2016-01-20 11:35:54', '2', '主要维护系统权限');
 
 insert into `sys_user_role` (`id`, `role_id`) values
 	(1, 1);
 
-	insert into `sys_org` (`org_id`, `parent_id`, `org_name`, `org_type`, `org_code`, `custom_code`, `sort`, `icon`, `active`, `create_opr_id`, `create_time`, `upd_opr_id`, `update_time`, `remark`) values
+	insert into `sys_org` (`org_id`, `parent_id`, `org_name`, `org_type`, `org_code`, `custom_code`, `sort`, `icon`, `active`, `create_user_id`, `create_time`, `update_user_id`, `update_time`, `remark`) values
 	(1, 0, '系统组织', NULL, 'SYS_ORG_', 'SYS_ORG_', 0, NULL, 0, NULL, NULL, NULL, NULL, NULL),
 	(2, 1, '系统管理', '01', 'SYSTEM_MANAGE', '', 1, '', 0, '1', '2016-06-20 21:12:35', '1', '2016-06-21 16:11:28', '');
