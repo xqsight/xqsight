@@ -1,4 +1,4 @@
-package com.xqsight.cms.enums;
+package com.xqsight.common.model.enums;
 
 /**
  * Created by user on 2016/6/3.

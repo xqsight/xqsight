@@ -5,11 +5,11 @@
 package com.xqsight.cms.controller;
 
 import com.github.pagehelper.Page;
+import com.xqsight.cms.enums.ModelCodeEnums;
 import com.xqsight.cms.model.CmsArticle;
 import com.xqsight.cms.service.CmsArticleService;
 import com.xqsight.cms.utils.HtmlUtil;
 import com.xqsight.cms.utils.StrUtil;
-import com.xqsight.common.enums.ModelCodeEnums;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.commons.support.MessageSupport;
 import com.xqsight.common.support.XqsightPageHelper;

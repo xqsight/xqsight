@@ -1,7 +1,7 @@
 package com.xqsight.sys.init;
 
 import com.alibaba.fastjson.JSON;
-import com.xqsight.common.cache.CacheKeyConstants;
+import com.xqsight.common.model.constants.CacheKeyConstants;
 import com.xqsight.data.ehcache.core.CacheTemplate;
 import com.xqsight.sys.model.SysDict;
 import com.xqsight.sys.model.SysDictDetail;

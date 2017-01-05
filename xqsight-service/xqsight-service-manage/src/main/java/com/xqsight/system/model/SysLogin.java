@@ -7,6 +7,7 @@ package com.xqsight.system.model;
 import com.xqsight.common.model.Model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 
 /**
@@ -36,7 +37,7 @@ public class SysLogin extends Model{
     /** sex - 性别 0:未知 1:男 2:女 */
     private Integer sex;
     /** user_born - 生日 */
-    private Date userBorn;
+    private LocalDate userBorn;
     /** age - 年龄 */
     private Integer age;
     /** from_source - 来源 WECHAT  PC  MOBILE */
@@ -96,10 +97,10 @@ public class SysLogin extends Model{
     public void setSex(Integer sex){
         this.sex = sex;
     }
-	public Date getUserBorn(){
+	public LocalDate getUserBorn(){
         return this.userBorn;
     }
-    public void setUserBorn(Date userBorn){
+    public void setUserBorn(LocalDate userBorn){
         this.userBorn = userBorn;
     }
 	public Integer getAge(){

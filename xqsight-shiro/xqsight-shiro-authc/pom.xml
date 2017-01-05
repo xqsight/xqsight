@@ -14,16 +14,6 @@
     <dependencies>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-common-metadata</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-common-utils</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xqsight</groupId>
             <artifactId>xqsight-common-configer</artifactId>
             <version>${project.version}</version>
         </dependency>
