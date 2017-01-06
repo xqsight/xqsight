@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.xqsight.system.model.SysRole;
 import com.xqsight.system.mapper.SysRoleMapper;
+import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -21,6 +22,7 @@ import com.xqsight.system.mapper.SysRoleMapper;
  * @author wangganggang
  */
 @Service
+@Transactional
 public class SysRoleService extends DefaultEntityService<SysRole, Long> {
 
 	@Autowired

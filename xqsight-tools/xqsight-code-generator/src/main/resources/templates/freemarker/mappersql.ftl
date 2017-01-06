@@ -47,7 +47,7 @@
 		${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}}<#if column_has_next>,</#if>
 		</#if>
 		</#list>
-        where <#list table.primaryKeys as column> ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} </#list>
+        where <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
     </update>
 
 	<update id="updateByPrimaryKeySelective" parameterType="${basePackage}.${moduleName}.model.${table.className}">
@@ -59,20 +59,20 @@
 		</if>
 			</#if>
 		</#list>
-        where <#list table.primaryKeys as column> ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} </#list>
+        where <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
 	</update>
 
     <delete id="deleteByPrimaryKey" parameterType="<#list table.primaryKeys as key>${key.fullJavaType}</#list>">
         delete from  ${table.tableName}
-        where <#list table.primaryKeys as column> ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} </#list>
+        where <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
     </delete>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="<#list table.primaryKeys as key>${key.fullJavaType}</#list>">
         select <include refid="Base_Column_List"/> from ${table.tableName}
-        where <#list table.primaryKeys as column> ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} </#list>
+        where <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
     </select>
 
-    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.orm">
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.orm.Criterion">
         select <include refid="Base_Column_List"/> from sys_role
 		WHERE 1=1
 		${r'${whereSqlString}'}

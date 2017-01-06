@@ -97,7 +97,7 @@
 
 	<aop:config>
 		<aop:pointcut id="interceptorPointCuts"
-			expression="execution(* com.xqsight.**.service.*.*(..))" />
+			expression="execution(* com.xqsight.**.service.**(..))" />
 		<aop:advisor advice-ref="txAdvice"
 			pointcut-ref="interceptorPointCuts" />
 	</aop:config>

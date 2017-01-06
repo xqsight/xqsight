@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xqsight.system.mapper.SysUserMapper">
+
+    <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysUser">
+		<result column="id" property="id" jdbcType="NUMERIC"/>
+		<result column="user_code" property="userCode" jdbcType="VARCHAR"/>
+		<result column="cell_phone" property="cellPhone" jdbcType="VARCHAR"/>
+		<result column="email" property="email" jdbcType="VARCHAR"/>
+		<result column="qq" property="qq" jdbcType="VARCHAR"/>
+		<result column="wechat" property="wechat" jdbcType="VARCHAR"/>
+		<result column="alipay" property="alipay" jdbcType="VARCHAR"/>
+		<result column="interest" property="interest" jdbcType="VARCHAR"/>
+		<result column="country" property="country" jdbcType="NUMERIC"/>
+		<result column="province" property="province" jdbcType="NUMERIC"/>
+		<result column="city" property="city" jdbcType="NUMERIC"/>
+		<result column="adress" property="adress" jdbcType="VARCHAR"/>
+		<result column="active" property="active" jdbcType="NUMERIC"/>
+		<result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+		<result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
+		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+		<result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+		 id,user_code,cell_phone,email,qq,wechat,alipay,interest,country,province,city,adress,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
+
+    <insert id="insert" parameterType="com.xqsight.system.model.SysUser"  useGeneratedKeys="true" keyProperty="id">
+        insert into sys_user (
+		user_code,cell_phone,email,qq,wechat,alipay,interest,country,province,city,adress,active,create_user_id,create_time,update_user_id,update_time,remark
+		) values (
+		#{userCode,jdbcType=VARCHAR},
+		#{cellPhone,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR},
+		#{qq,jdbcType=VARCHAR},
+		#{wechat,jdbcType=VARCHAR},
+		#{alipay,jdbcType=VARCHAR},
+		#{interest,jdbcType=VARCHAR},
+		#{country,jdbcType=NUMERIC},
+		#{province,jdbcType=NUMERIC},
+		#{city,jdbcType=NUMERIC},
+		#{adress,jdbcType=VARCHAR},
+		#{active,jdbcType=NUMERIC},
+		#{createUserId,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateUserId,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=TIMESTAMP},
+		#{remark,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.xqsight.system.model.SysUser">
+        insert into sys_user (
+        <if test="userCode!=null">
+		user_code,
+		</if>
+        <if test="cellPhone!=null">
+		cell_phone,
+		</if>
+        <if test="email!=null">
+		email,
+		</if>
+        <if test="qq!=null">
+		qq,
+		</if>
+        <if test="wechat!=null">
+		wechat,
+		</if>
+        <if test="alipay!=null">
+		alipay,
+		</if>
+        <if test="interest!=null">
+		interest,
+		</if>
+        <if test="country!=null">
+		country,
+		</if>
+        <if test="province!=null">
+		province,
+		</if>
+        <if test="city!=null">
+		city,
+		</if>
+        <if test="adress!=null">
+		adress,
+		</if>
+        <if test="active!=null">
+		active,
+		</if>
+        <if test="createUserId!=null">
+		create_user_id,
+		</if>
+        <if test="createTime!=null">
+		create_time,
+		</if>
+        <if test="updateUserId!=null">
+		update_user_id,
+		</if>
+        <if test="updateTime!=null">
+		update_time,
+		</if>
+        <if test="remark!=null">
+		remark
+		</if>
+		)
+		values (
+        <if test="userCode!=null">
+		#{userCode,jdbcType=VARCHAR},
+		</if>
+        <if test="cellPhone!=null">
+		#{cellPhone,jdbcType=VARCHAR},
+		</if>
+        <if test="email!=null">
+		#{email,jdbcType=VARCHAR},
+		</if>
+        <if test="qq!=null">
+		#{qq,jdbcType=VARCHAR},
+		</if>
+        <if test="wechat!=null">
+		#{wechat,jdbcType=VARCHAR},
+		</if>
+        <if test="alipay!=null">
+		#{alipay,jdbcType=VARCHAR},
+		</if>
+        <if test="interest!=null">
+		#{interest,jdbcType=VARCHAR},
+		</if>
+        <if test="country!=null">
+		#{country,jdbcType=NUMERIC},
+		</if>
+        <if test="province!=null">
+		#{province,jdbcType=NUMERIC},
+		</if>
+        <if test="city!=null">
+		#{city,jdbcType=NUMERIC},
+		</if>
+        <if test="adress!=null">
+		#{adress,jdbcType=VARCHAR},
+		</if>
+        <if test="active!=null">
+		#{active,jdbcType=NUMERIC},
+		</if>
+        <if test="createUserId!=null">
+		#{createUserId,jdbcType=VARCHAR},
+		</if>
+        <if test="createTime!=null">
+		#{createTime,jdbcType=TIMESTAMP},
+		</if>
+        <if test="updateUserId!=null">
+		#{updateUserId,jdbcType=VARCHAR},
+		</if>
+        <if test="updateTime!=null">
+		#{updateTime,jdbcType=TIMESTAMP},
+		</if>
+        <if test="remark!=null">
+		#{remark,jdbcType=VARCHAR}
+		</if>
+		)
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysUser">
+		update from sys_user set
+		user_code = #{userCode,jdbcType=VARCHAR},
+		cell_phone = #{cellPhone,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARCHAR},
+		qq = #{qq,jdbcType=VARCHAR},
+		wechat = #{wechat,jdbcType=VARCHAR},
+		alipay = #{alipay,jdbcType=VARCHAR},
+		interest = #{interest,jdbcType=VARCHAR},
+		country = #{country,jdbcType=NUMERIC},
+		province = #{province,jdbcType=NUMERIC},
+		city = #{city,jdbcType=NUMERIC},
+		adress = #{adress,jdbcType=VARCHAR},
+		active = #{active,jdbcType=NUMERIC},
+		update_user_id = #{updateUserId,jdbcType=VARCHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR}
+        where  id = #{id,jdbcType=NUMERIC}  
+    </update>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysUser">
+        update from sys_user set
+        <if test="userCode!=null">
+		user_code = #{userCode,jdbcType=VARCHAR},
+		</if>
+        <if test="cellPhone!=null">
+		cell_phone = #{cellPhone,jdbcType=VARCHAR},
+		</if>
+        <if test="email!=null">
+		email = #{email,jdbcType=VARCHAR},
+		</if>
+        <if test="qq!=null">
+		qq = #{qq,jdbcType=VARCHAR},
+		</if>
+        <if test="wechat!=null">
+		wechat = #{wechat,jdbcType=VARCHAR},
+		</if>
+        <if test="alipay!=null">
+		alipay = #{alipay,jdbcType=VARCHAR},
+		</if>
+        <if test="interest!=null">
+		interest = #{interest,jdbcType=VARCHAR},
+		</if>
+        <if test="country!=null">
+		country = #{country,jdbcType=NUMERIC},
+		</if>
+        <if test="province!=null">
+		province = #{province,jdbcType=NUMERIC},
+		</if>
+        <if test="city!=null">
+		city = #{city,jdbcType=NUMERIC},
+		</if>
+        <if test="adress!=null">
+		adress = #{adress,jdbcType=VARCHAR},
+		</if>
+        <if test="active!=null">
+		active = #{active,jdbcType=NUMERIC},
+		</if>
+        <if test="updateUserId!=null">
+		update_user_id = #{updateUserId,jdbcType=VARCHAR},
+		</if>
+        <if test="updateTime!=null">
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		</if>
+        <if test="remark!=null">
+		remark = #{remark,jdbcType=VARCHAR}
+		</if>
+        where  id = #{id,jdbcType=NUMERIC}  
+	</update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from  sys_user
+        where  id = #{id,jdbcType=NUMERIC}  
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from sys_user
+        where  id = #{id,jdbcType=NUMERIC}  
+    </select>
+
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.orm.Criterion">
+        select <include refid="Base_Column_List"/> from sys_role
+		WHERE 1=1
+		${whereSqlString}
+        <if test="orderBy != null">
+			${orderBySqlString}
+        </if>
+    </select>
+</mapper>

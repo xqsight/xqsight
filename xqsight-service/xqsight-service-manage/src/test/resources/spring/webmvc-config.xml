@@ -15,6 +15,9 @@
 	<mvc:resources location="/page/" mapping="/page/**"/>
 	<mvc:resources location="/static/" mapping="/static/**"/>
 
+	<!-- 启用注解 -->
+	<context:annotation-config />
+
 	<context:component-scan base-package="com.xqsight.*.controller,com.xqsight.authc.appcontroller">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />

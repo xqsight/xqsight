@@ -9,12 +9,6 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.0.RELEASE</version>
-    </parent>
-
     <properties>
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -1038,11 +1032,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${junit.version}</version>
@@ -1061,11 +1050,9 @@
         <module>xqsight-data</module>
         <module>xqsight-manage</module>
         <module>xqsight-tools</module>
-        <module>xqsight-cms</module>
         <module>xqsight-file</module>
         <module>xqsight-shiro</module>
         <module>xqsight-wechat</module>
-        <module>xqsight-boot</module>
         <module>xqsight-service</module>
     </modules>
 

@@ -1,7 +1,5 @@
 package com.saicfc.themis.data.neo4j.domain;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.voodoodyne.jackson.jsog.JSOGGenerator;
 import org.neo4j.ogm.annotation.GraphId;
 
 /**

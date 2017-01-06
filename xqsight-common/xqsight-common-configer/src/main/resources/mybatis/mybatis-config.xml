@@ -2,7 +2,7 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<settings>
-		<setting name="cacheEnabled" value="false" />
+		<setting name="cacheEnabled" value="true" />
 		<setting name="lazyLoadingEnabled" value="true" />
 		<setting name="aggressiveLazyLoading" value="false" />
 		<setting name="localCacheScope" value="STATEMENT" />
@@ -13,11 +13,12 @@
 		<!-- 是否使用插入数据后自增主键的值，需要配合keyProperty使用 -->
 		<setting name="useGeneratedKeys" value="false" />
 	</settings>
-	<typeAliases>
-	</typeAliases>
+	<typeHandlers>
+		<package name="com.github.javaplugs.mybatis"/>
+	</typeHandlers>
 	<plugins>
 		<plugin interceptor="com.github.pagehelper.PageHelper">
-			<property name="dialect" value="mysql" />
+			<property name="dialect" value="oracle" />
 			<!-- 该参数默认为false -->
 			<!-- 设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用 -->
 			<!-- 和startPage中的pageNum效果一样 -->

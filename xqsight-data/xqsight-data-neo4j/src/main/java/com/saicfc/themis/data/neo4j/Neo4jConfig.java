@@ -5,8 +5,6 @@ import org.apache.logging.log4j.Logger;
 import org.neo4j.ogm.session.Session;
 import org.neo4j.ogm.session.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.data.neo4j.config.Neo4jConfiguration;
@@ -17,7 +15,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * Created by GTaurus on 2016/4/5.
  */
 @Configuration
-@EnableAutoConfiguration
 @ComponentScan(basePackages = "com.saicfc.themis")
 @EnableNeo4jRepositories(basePackages = "com.saicfc.themis.data.neo4j.repository")
 @EnableTransactionManagement
@@ -51,11 +48,6 @@ public class Neo4jConfig extends Neo4jConfiguration {
     @Bean
     public SessionFactory getSessionFactory() {
         return new SessionFactory("com.saicfc.themis.data.neo4j.domain");
-    }
-
-    public static void main(String... args) {
-        SpringApplication sba = new SpringApplication(Neo4jConfig.class);
-        sba.run(args);
     }
 
 }

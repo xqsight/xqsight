@@ -45,6 +45,10 @@
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.github.javaplugs</groupId>
+            <artifactId>mybatis-types</artifactId>
+        </dependency>
         <!-- Mybatis End -->
 
         <!-- Spring START -->
