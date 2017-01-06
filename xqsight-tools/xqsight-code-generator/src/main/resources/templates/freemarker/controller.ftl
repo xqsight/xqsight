@@ -30,7 +30,7 @@ public class ${table.className}Controller{
 	@RequestMapping("save")
 	@RequiresPermissions("${table.permissions}:save")
 	public Object save(${table.className} ${table.javaProperty}) {
-		${table.javaProperty}Service.save(${table.javaProperty});
+		${table.javaProperty}Service.save(${table.javaProperty},true);
 		return MessageSupport.successMsg("保存成功");
 	}
 	

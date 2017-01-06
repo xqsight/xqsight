@@ -40,8 +40,12 @@ public abstract class DefaultEntityService<T extends Model, PK extends Serializa
     }
 
     @Transactional(timeout = 30)
-    public void save(T entity) {
-        getDao().insert(entity);
+    public void save(T entity,boolean selective) {
+        if (selective) {
+            getDao().insertSelective(entity);
+        }else{
+            getDao().insert(entity);
+        }
     }
 
     @Transactional(timeout = 30)
