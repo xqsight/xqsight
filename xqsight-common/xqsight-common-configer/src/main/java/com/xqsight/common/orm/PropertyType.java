@@ -1,13 +1,13 @@
 package com.xqsight.common.orm;
 
 
-import com.xqsight.common.model.constants.Constants;
-
 import java.util.Date;
 
 
 public enum PropertyType {
     S(String.class), I(Integer.class), L(Long.class), N(Double.class), D(Date.class), B(Boolean.class), A(String.class);
+
+    private static final String MYSQL_LONG_TIME_FORMAT    =  "%Y-%m-%d %H:%i:%s";
 
     private Class<?> clazz;
 
@@ -34,7 +34,7 @@ public enum PropertyType {
             return "'";
         }
         if ("D".equals(this.name())) {
-            return "','" + Constants.MYSQL_LONG_TIME_FORMAT + "')";
+            return "','" + MYSQL_LONG_TIME_FORMAT + "')";
         }
         return "";
     }

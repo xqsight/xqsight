@@ -12,7 +12,7 @@
     <artifactId>xqsight-service</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>xqsight-service-manage</module>
+        <module>xqsight-service-system</module>
     </modules>
 
 

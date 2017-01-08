@@ -12,13 +12,8 @@ import java.math.BigDecimal;
  * @date 2016年1月8日 下午7:39:21
  */
 public class Constants {
-public final static BigDecimal THOUSAND_BIGDECIMAL = new BigDecimal("1000");
 
-
-    public static final String ACS = "ACS";
-    public static final String DESC = "DESC";
-
-    public static final String MYSQL_LONG_TIME_FORMAT    =  "%Y-%m-%d %H:%i:%s";
+    public final static BigDecimal THOUSAND_BIGDECIMAL = new BigDecimal("1000");
 
     /**
      * , 符号

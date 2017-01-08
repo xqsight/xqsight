@@ -112,6 +112,9 @@
 
         <weixin.version>2.4.0</weixin.version>
 
+        <springfox.swagger2.version>2.6.1</springfox.swagger2.version>
+        <springfox.swagger.ui.version>2.2.2</springfox.swagger.ui.version>
+        <springfox.staticdocs.version>2.4.0</springfox.staticdocs.version>
     </properties>
 
     <build>
@@ -989,6 +992,23 @@
                 <groupId>com.xiaoleilu</groupId>
                 <artifactId>hutool</artifactId>
                 <version>${hutool.version}</version>
+            </dependency>
+
+            <!--swagger 文档-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${springfox.swagger2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${springfox.swagger.ui.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-staticdocs</artifactId>
+                <version>${springfox.staticdocs.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

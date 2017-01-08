@@ -167,7 +167,7 @@ alter table sys_menu_role comment '菜单角色表';
 /*==============================================================*/
 create table sys_quick_key
 (
-   Id                   bigint not null comment '登陆内码',
+   id                   bigint not null comment '登陆内码',
    fun_order            int not null comment '功能序号',
    key_icon             varchar(120) comment '图标',
    key_title            varchar(120) comment '标题',

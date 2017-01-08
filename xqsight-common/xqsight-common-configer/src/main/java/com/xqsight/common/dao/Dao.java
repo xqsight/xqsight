@@ -26,7 +26,7 @@ public interface Dao<T, PK extends Serializable> {
     int updateByPrimaryKey(final T t);
 
     /**
-     * 根据分页获取数据, rowBounds如果为空，则没有分页
+     * 多条件查询
      */
     List<T> find(Criterion criterion);
 

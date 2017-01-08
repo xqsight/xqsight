@@ -1,8 +1,8 @@
 package com.xqsight.common.service;
 
-import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.dao.Dao;
 import com.xqsight.common.model.Model;
+import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.orm.Criterion;
 import com.xqsight.common.orm.PropertyFilter;
 import com.xqsight.common.orm.Sort;
@@ -122,4 +122,5 @@ public abstract class DefaultEntityService<T extends Model, PK extends Serializa
 
         return getDao().find(criterion);
     }
+
 }

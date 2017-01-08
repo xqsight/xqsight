@@ -1,13 +1,13 @@
 package com.xqsight.common.orm;
 
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.List;
-
 import com.xqsight.common.model.constants.Constants;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.List;
 
 
 /**
@@ -18,7 +18,7 @@ public class Criterion implements Serializable {
 
     private static Logger logger = LogManager.getLogger(Criterion.class);
 
-    private String order = Constants.DESC;
+    private String order = Sort.DESC;
     private String orderBy;
 
     @SuppressWarnings("unchecked")
@@ -36,6 +36,27 @@ public class Criterion implements Serializable {
 
     public Criterion(List<PropertyFilter> criteria) {
         this.criteria = criteria;
+    }
+
+    public Criterion(List<PropertyFilter> criteria,List<Sort> sorts) {
+        this.criteria = criteria;
+        if (sorts != null) {
+            StringBuilder orderBySb = new StringBuilder();
+            StringBuilder orderSb = new StringBuilder();
+
+            int i = 0;
+            for (Sort sort : sorts) {
+                if (i != 0) {
+                    orderBySb.append(Constants.COMMA_SIGN_SPLIT_NAME);
+                    orderSb.append(Constants.COMMA_SIGN_SPLIT_NAME);
+                }
+                i++;
+                orderBySb.append(sort.getOrderBy());
+                orderSb.append(sort.getOrder());
+            }
+            this.setOrderBy(orderBySb.toString());
+            this.setOrder(orderSb.toString());
+        }
     }
 
     public Criterion(List<PropertyFilter> criteria, String orderBy) {
@@ -119,23 +140,23 @@ public class Criterion implements Serializable {
             StringBuilder sb = new StringBuilder(" ORDER BY ");
             String[] orderBys = StringUtils.split(orderBy, ',');
             if (StringUtils.isBlank(order)) {
-                order = Constants.DESC;
+                order = Sort.DESC;
             }
             String[] orders = StringUtils.split(order, ',');
 
             int i = 0;
             for (String orderBy : orderBys) {
                 if (i != 0) {
-                    sb.append(" " + Constants.MYSQL_LONG_TIME_FORMAT + " ");
+                    sb.append(" " + Constants.COMMA_SIGN_SPLIT_NAME + " ");
                 }
                 sb.append(orderBy);
 
-                String curOrder = Constants.DESC;
+                String curOrder = Sort.DESC;
                 if (orders.length == 1) {
                     curOrder = orders[0];
                 } else {
                     if ((i + 1) > orders.length) {
-                        curOrder = Constants.DESC;
+                        curOrder = Sort.DESC;
                     } else {
                         curOrder = orders[i];
                     }
