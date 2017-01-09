@@ -12,7 +12,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -24,7 +25,7 @@ public class SysUserRealm extends AuthorizingRealm {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Autowired
+    @Resource(name = "userAuthcService")
     private UserAuthcService userAuthcService;
 
     @Override

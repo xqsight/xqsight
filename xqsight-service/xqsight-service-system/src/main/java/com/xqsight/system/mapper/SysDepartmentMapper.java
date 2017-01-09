@@ -6,7 +6,6 @@ package com.xqsight.system.mapper;
 
 
 import com.xqsight.common.dao.Dao;
-
 import com.xqsight.system.model.SysDepartment;
 
 

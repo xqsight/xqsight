@@ -16,11 +16,10 @@ import java.util.List;
 /**
  * <p>角色信息表实现类service</p>
  * <p>Table: sys_role - 角色信息表</p>
- * @since 2017-01-07 11:58:03
+ *
  * @author wangganggang
-*/
-public interface SysRoleMapper extends Dao<SysRole,Long>{
+ * @since 2017-01-07 11:58:03
+ */
+public interface SysRoleMapper extends Dao<SysRole, Long> {
 
-    @Select("select role_id from sys_user_role where id = #{userId, jdbcType=NUMERIC}")
-    List<String> queryRoleByUser(long userId);
 }

@@ -4,7 +4,7 @@
  */
 package com.xqsight.system.model;
 
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.UserBaseModel;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * @since 2017-01-07 11:57:26
  * @author wangganggang
  */
-public class SysLogin extends Model{
+public class SysLogin extends UserBaseModel{
 
 	/** 主键 */
     private Long id;
@@ -32,8 +32,6 @@ public class SysLogin extends Model{
     private String realName;
     /** password - 登陆密码 */
     private String password;
-    /** login_type - 登陆类型 1:编号 2:邮箱 3:电话 */
-    private Integer loginType;
     /** sex - 性别 0:未知 1:男 2:女 */
     private Integer sex;
     /** user_born - 生日 */
@@ -46,8 +44,6 @@ public class SysLogin extends Model{
     private String imgUrl;
     /** salt - 随机数 */
     private String salt;
-    /** locked - 是否锁定 0-未锁定 -1-锁定 */
-    private Integer locked;
 
     public Long getId(){
         return this.id;
@@ -85,12 +81,6 @@ public class SysLogin extends Model{
     public void setPassword(String password){
         this.password = password;
     }
-	public Integer getLoginType(){
-        return this.loginType;
-    }
-    public void setLoginType(Integer loginType){
-        this.loginType = loginType;
-    }
 	public Integer getSex(){
         return this.sex;
     }
@@ -126,12 +116,6 @@ public class SysLogin extends Model{
     }
     public void setSalt(String salt){
         this.salt = salt;
-    }
-	public Integer getLocked(){
-        return this.locked;
-    }
-    public void setLocked(Integer locked){
-        this.locked = locked;
     }
 
     @Override

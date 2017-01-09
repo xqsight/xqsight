@@ -5,52 +5,62 @@
 package com.xqsight.system.service;
 
 import com.xqsight.common.dao.Dao;
-import com.xqsight.common.orm.Criterion;
-import com.xqsight.common.orm.PropertyFilter;
-import com.xqsight.common.orm.Sort;
+import com.xqsight.common.orm.*;
+import com.xqsight.common.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.service.DefaultEntityService;
+import com.xqsight.system.mapper.SysAuthMapper;
 import com.xqsight.system.mapper.SysMenuMapper;
 import com.xqsight.system.model.SysMenu;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 /**
  * <p>菜单信息表实现类service</p>
  * <p>Table: sys_menu - 菜单信息表</p>
- * @since 2017-01-07 11:57:32
+ *
  * @author wangganggang
+ * @since 2017-01-07 11:57:32
  */
 @Service
 public class SysMenuService extends DefaultEntityService<SysMenu, Long> {
 
-	@Autowired
-	private SysMenuMapper sysMenuMapper;
+    @Autowired
+    private SysMenuMapper sysMenuMapper;
 
-	@Override
-	protected Dao<SysMenu, Long> getDao() {
-		return sysMenuMapper;
-	}
+    @Autowired
+    private SysAuthMapper sysAuthMapper;
 
-	/**
-	 * 查询当前用
-	 * @param userId
-	 * @param propertyFilters
-	 * @param sorts
-	 * @return
-	 */
-	public List<SysMenu> querySubByUserId(Long userId, List<PropertyFilter> propertyFilters, List<Sort> sorts){
-		List<String> menuIds = sysMenuMapper.queryMenuByUser(userId);
-		Criterion criterion = new Criterion(propertyFilters,sorts);
-		StringBuffer customSql = new StringBuffer();
-		menuIds.stream().distinct().forEach(menuId -> {
-			customSql.append(" ' ").append(menuId).append(" ' ")
-					.append(" in(parent_ids) ").append(" or ");
-		});
-		criterion.setCustomCriteria(StringUtils.substringBeforeLast(customSql.toString(),"or"));
-		return sysMenuMapper.find(criterion);
-	}
+    @Override
+    protected Dao<SysMenu, Long> getDao() {
+        return sysMenuMapper;
+    }
+
+    /**
+     *查询当前用户的所有菜单
+     * @param userId
+     * @param propertyFilters
+     * @param sorts
+     * @return
+     */
+    public List<SysMenu> querySubByUserId(Long userId, List<PropertyFilter> propertyFilters, List<Sort> sorts) {
+        List<String> roleIds = sysAuthMapper.queryRoleIdByuser(userId);
+        List<String> menuIds = new ArrayList<>();
+        roleIds.stream().forEach(roleId -> {
+            menuIds.addAll(sysAuthMapper.queryMenuIdByRole(Long.valueOf(roleId)));
+        });
+
+        StringBuffer menuIdSb = new StringBuffer();
+        menuIds.stream().forEach(menuId -> {
+            menuIdSb.append(menuId).append(",");
+        });
+        List<PropertyFilter> propertyFilterList = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
+                .add("menu_id", StringUtils.substringBeforeLast(menuIdSb.toString(), ",")).end();
+        propertyFilterList.addAll(propertyFilters);
+        return sysMenuMapper.find(new Criterion(propertyFilterList,sorts));
+    }
 }

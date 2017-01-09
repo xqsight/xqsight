@@ -10,6 +10,7 @@ import com.xqsight.common.orm.PropertyFilter;
 import com.xqsight.common.orm.Sort;
 import com.xqsight.common.service.DefaultEntityService;
 
+import com.xqsight.system.mapper.SysAuthMapper;
 import com.xqsight.system.model.SysDepartment;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,9 @@ public class SysRoleService extends DefaultEntityService<SysRole, Long> {
 	@Autowired
 	private SysRoleMapper sysRoleMapper;
 
+	@Autowired
+	private SysAuthMapper sysAuthMapper;
+
 	@Override
 	protected Dao<SysRole, Long> getDao() {
 		return sysRoleMapper;
@@ -46,7 +50,7 @@ public class SysRoleService extends DefaultEntityService<SysRole, Long> {
 	 * @return
 	 */
 	public List<SysRole> querySubByUserId(Long userId, List<PropertyFilter> propertyFilters, List<Sort> sorts){
-		List<String> roleIds = sysRoleMapper.queryRoleByUser(userId);
+		List<String> roleIds = sysAuthMapper.queryRoleIdByuser(userId);
 		Criterion criterion = new Criterion(propertyFilters,sorts);
 		StringBuffer customSql = new StringBuffer();
 		roleIds.stream().distinct().forEach(roleId -> {
