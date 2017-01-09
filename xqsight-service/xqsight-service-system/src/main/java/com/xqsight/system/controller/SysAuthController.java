@@ -5,6 +5,7 @@ import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.model.SysMenu;
 import com.xqsight.system.service.SysAuthService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,7 @@ import java.util.List;
 @RequestMapping("/sys/auth/")
 public class SysAuthController {
 
-    @Resource(name = "userAuthcService")
+    @Autowired
     private SysAuthService sysAuthService;
 
     @RequestMapping("saveroleuser")
