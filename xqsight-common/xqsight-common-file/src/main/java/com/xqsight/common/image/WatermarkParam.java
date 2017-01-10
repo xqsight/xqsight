@@ -1,4 +1,4 @@
-package com.xqsight.common.upload.image;
+package com.xqsight.common.image;
 
 import org.apache.commons.lang3.StringUtils;
 

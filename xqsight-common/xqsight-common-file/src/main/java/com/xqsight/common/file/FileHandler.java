@@ -1,6 +1,6 @@
-package com.xqsight.common.upload.file;
+package com.xqsight.common.file;
 
-import com.xqsight.common.upload.resolver.PathResolver;
+import com.xqsight.common.resolver.PathResolver;
 import freemarker.template.Template;
 import org.springframework.web.multipart.MultipartFile;
 

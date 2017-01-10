@@ -1,4 +1,4 @@
-package com.xqsight.common.upload.resolver;
+package com.xqsight.common.resolver;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.context.ServletContextAware;

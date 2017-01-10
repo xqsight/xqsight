@@ -1,4 +1,4 @@
-package com.xqsight.common.upload.resolver;
+package com.xqsight.common.resolver;
 
 /**
  * 路径获取接口

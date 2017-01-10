@@ -1,4 +1,4 @@
-package com.xqsight.common.upload.file;
+package com.xqsight.common.file;
 
 public interface CommonFileFilter {
 	boolean accept(CommonFile file);

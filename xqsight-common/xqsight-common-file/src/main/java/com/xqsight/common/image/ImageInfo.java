@@ -10,7 +10,7 @@
  *
  * Contributed to the Public Domain.
  */
-package com.xqsight.common.upload.image;
+package com.xqsight.common.image;
 
 import java.io.DataInput;
 import java.io.FileInputStream;

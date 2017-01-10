@@ -1,4 +1,4 @@
-package com.xqsight.common.upload.file;
+package com.xqsight.common.file;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;

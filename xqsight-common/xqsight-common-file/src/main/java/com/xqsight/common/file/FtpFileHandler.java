@@ -1,6 +1,6 @@
-package com.xqsight.common.upload.file;
+package com.xqsight.common.file;
 
-import com.xqsight.common.upload.image.Images;
+import com.xqsight.common.image.Images;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;

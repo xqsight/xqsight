@@ -1,4 +1,4 @@
-package com.xqsight.common.upload.file;
+package com.xqsight.common.file;
 
 public class DirCommonFileFilter implements CommonFileFilter {
 	public boolean accept(CommonFile webFile) {

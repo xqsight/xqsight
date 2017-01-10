@@ -1,4 +1,4 @@
-package com.xqsight.common.upload.image;
+package com.xqsight.common.image;
 
 /**
  * 图片裁剪信息

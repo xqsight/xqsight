@@ -1,6 +1,6 @@
-package com.xqsight.common.upload.file;
+package com.xqsight.common.file;
 
-import com.xqsight.common.upload.image.Images;
+import com.xqsight.common.image.Images;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.ArrayUtils;
