@@ -85,6 +85,9 @@
         <snmp4j.version>2.2.3</snmp4j.version>
         <!-- activemq -->
         <activemq.version>5.13.0</activemq.version>
+        <!--google-->
+        <google.collections.version>1.0</google.collections.version>
+        <google.guava.version>20.0</google.guava.version>
         <!-- other -->
         <cglib.version>3.1</cglib.version>
         <dom4j.version>1.6.1</dom4j.version>
@@ -109,6 +112,7 @@
 
         <imgscalr.version>4.2</imgscalr.version>
         <ant.version>1.9.6</ant.version>
+        <im4java.version>1.4.0</im4java.version>
 
         <weixin.version>2.4.0</weixin.version>
 
@@ -548,6 +552,18 @@
                 <version>${activemq.version}</version>
             </dependency>
             <!-- activemq end -->
+            <!--google start-->
+            <dependency>
+                <groupId>com.google.collections</groupId>
+                <artifactId>google-collections</artifactId>
+                <version>${google.collections.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${google.guava.version}</version>
+            </dependency>
+            <!--google end-->
             <!-- Log start -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
@@ -965,6 +981,11 @@
                 <groupId>org.apache.ant</groupId>
                 <artifactId>ant</artifactId>
                 <version>${ant.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.im4java</groupId>
+                <artifactId>im4java</artifactId>
+                <version>${im4java.version}</version>
             </dependency>
 
             <!-- chronicle-map -->

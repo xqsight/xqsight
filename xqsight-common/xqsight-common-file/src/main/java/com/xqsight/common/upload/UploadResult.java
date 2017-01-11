@@ -25,8 +25,7 @@ public class UploadResult {
     public UploadResult() {
     }
 
-    public UploadResult(String fileUrl, String fileName, String fileExtension,
-                        long fileLength) {
+    public UploadResult(String fileUrl, String fileName, String fileExtension, long fileLength) {
         set(fileUrl, fileName, fileExtension, fileLength);
     }
 

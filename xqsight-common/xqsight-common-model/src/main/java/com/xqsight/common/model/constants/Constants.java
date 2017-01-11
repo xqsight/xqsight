@@ -20,6 +20,26 @@ public class Constants {
      */
     public static final String COMMA_SIGN_SPLIT_NAME = ",";
 
+    /**
+     * 身份识别COOKIE名称
+     */
+    public static final String IDENTITY_COOKIE_NAME = "_xqsight_cookie";
+
+    /**
+     * 使用http访问网络资源时使用的USER_ANGENT
+     */
+    public static final String USER_ANGENT = "Mozilla/5.0";
+
+    /**
+     * 模版存储路径。
+     *
+     * 模版路径在应用内，以/开头。如：/template。
+     *
+     * 模版路径在应用外，以file:开头。可以实现程序与模版分开部署（配合上传文件发布点和全文索引位置fsDirectory.location）。 如：file:d:\\jspxcms\\template 或
+     * file:/home/mysite/template。 因模版内含有图片，该路径应能通过同一域名访问，通常单独作为一个应用部署。
+     */
+    public static String TEMPLATE_STORE_PATH = "/template";
+
 
 	public final static int YES 			= 0;
 	public final static int NO 				= -1;

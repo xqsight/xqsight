@@ -19,6 +19,10 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.im4java</groupId>
+            <artifactId>im4java</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.imgscalr</groupId>
             <artifactId>imgscalr-lib</artifactId>
         </dependency>
