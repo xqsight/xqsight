@@ -35,7 +35,7 @@
         <jackson.version>2.8.1</jackson.version>
         <jackson.mapper.version>1.9.13</jackson.mapper.version>
         <jstl.version>1.2</jstl.version>
-        <!-- commons -->
+        <!-- common -->
         <commons.logging.version>1.2</commons.logging.version>
         <commons.lang.version>2.6</commons.lang.version>
         <commons.lang3.version>3.4</commons.lang3.version>
@@ -492,7 +492,7 @@
                 <version>${jstl.version}</version>
             </dependency>
             <!-- web end -->
-            <!-- commons start -->
+            <!-- common start -->
             <dependency>
                 <groupId>commons-lang</groupId>
                 <artifactId>commons-lang</artifactId>
@@ -534,7 +534,7 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.lang3.version}</version>
             </dependency>
-            <!-- commons end -->
+            <!-- common end -->
             <!-- activemq start -->
             <dependency>
                 <groupId>org.apache.active.mq</groupId>
@@ -582,7 +582,7 @@
                 <artifactId>log4j-slf4j-impl</artifactId>
                 <version>${log4j2.version}</version>
             </dependency>
-            <!-- commons-logging bridge -->
+            <!-- common-logging bridge -->
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-jcl</artifactId>
@@ -1050,7 +1050,7 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-slf4j-impl</artifactId>
         </dependency>
-        <!-- commons-logging bridge -->
+        <!-- common-logging bridge -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-jcl</artifactId>

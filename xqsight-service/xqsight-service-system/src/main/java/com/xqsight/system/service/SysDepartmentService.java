@@ -4,13 +4,12 @@
  */
 package com.xqsight.system.service;
 
-import com.xqsight.common.dao.Dao;
-import com.xqsight.common.orm.Criterion;
-import com.xqsight.common.orm.PropertyFilter;
-import com.xqsight.common.orm.Sort;
-import com.xqsight.common.service.DefaultEntityService;
+import com.xqsight.common.core.dao.Dao;
+import com.xqsight.common.core.orm.Criterion;
+import com.xqsight.common.core.orm.PropertyFilter;
+import com.xqsight.common.core.orm.Sort;
+import com.xqsight.common.core.service.DefaultEntityService;
 
-import com.xqsight.commons.support.TreeSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,6 @@ import com.xqsight.system.model.SysDepartment;
 import com.xqsight.system.mapper.SysDepartmentMapper;
 
 import java.util.List;
-
-import static com.xqsight.common.orm.builder.PropertyFilterBuilder.propertyFilters;
 
 
 /**

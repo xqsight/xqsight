@@ -19,7 +19,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 	<listener>
-		<listener-class>com.xqsight.commons.web.RequestContextListener</listener-class>
+		<listener-class>com.xqsight.common.web.RequestContextListener</listener-class>
 	</listener>
 	<listener>
 		<listener-class>com.xqsight.sys.init.SystemInitListener</listener-class>

@@ -2,7 +2,7 @@ package com.xqsight.upload.support;
 
 import com.alibaba.fastjson.JSON;
 import com.xiaoleilu.hutool.io.FileUtil;
-import com.xqsight.commons.support.FileExtSupport;
+import com.xqsight.common.support.FileExtSupport;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

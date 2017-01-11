@@ -5,7 +5,7 @@
 package com.xqsight.upload.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.xqsight.commons.support.MessageSupport;
+import com.xqsight.common.support.MessageSupport;
 import com.xqsight.upload.model.SysFile;
 import com.xqsight.upload.model.vo.SysFileVo;
 import com.xqsight.upload.service.FileUploadFTPService;

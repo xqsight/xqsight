@@ -78,7 +78,7 @@
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
 			<!-- 配置Fastjson支持 -->
-			<bean class="com.xqsight.commons.web.FastJsonHttpMessageConverter">
+			<bean class="com.xqsight.common.web.FastJsonHttpMessageConverter">
 				<property name="supportedMediaTypes">
 					<list>
 						<value>application/json</value>

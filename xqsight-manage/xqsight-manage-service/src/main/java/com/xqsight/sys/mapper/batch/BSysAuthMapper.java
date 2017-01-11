@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 
-import com.xqsight.common.dao.annotation.BatchAnnotation;
+import com.xqsight.common.core.dao.annotation.BatchAnnotation;
 
 /**
  * @Description: 系统收权限分派

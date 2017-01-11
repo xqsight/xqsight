@@ -4,8 +4,8 @@
  */
 package com.xqsight.system.service;
 
-import com.xqsight.common.dao.Dao;
-import com.xqsight.common.service.DefaultEntityService;
+import com.xqsight.common.core.dao.Dao;
+import com.xqsight.common.core.service.DefaultEntityService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

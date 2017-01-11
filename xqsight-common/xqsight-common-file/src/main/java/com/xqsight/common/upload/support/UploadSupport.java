@@ -6,7 +6,7 @@ import com.xqsight.common.upload.handler.FileHandler;
 import com.xqsight.common.upload.file.FtpTemplate;
 import com.xqsight.common.upload.image.WatermarkParam;
 import com.xqsight.common.upload.service.PathResolver;
-import com.xqsight.commons.web.WebUtils;
+import com.xqsight.common.web.WebUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 

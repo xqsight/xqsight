@@ -72,7 +72,7 @@
         where <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
     </select>
 
-    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.orm.Criterion">
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
         select <include refid="Base_Column_List"/> from sys_role
 		WHERE 1=1
 		${r'${whereSqlString}'}

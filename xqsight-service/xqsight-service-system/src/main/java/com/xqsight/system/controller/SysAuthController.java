@@ -1,6 +1,6 @@
 package com.xqsight.system.controller;
 
-import com.xqsight.commons.support.MessageSupport;
+import com.xqsight.common.support.MessageSupport;
 import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.model.SysMenu;
 import com.xqsight.system.service.SysAuthService;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**

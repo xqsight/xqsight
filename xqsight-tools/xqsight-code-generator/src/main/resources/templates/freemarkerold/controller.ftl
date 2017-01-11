@@ -4,8 +4,8 @@ package ${basePackage}.${moduleName}.controller;
 
 import com.github.pagehelper.Page;
 import com.xqsight.common.model.XqsightPage;
-import com.xqsight.common.support.MessageSupport;
-import com.xqsight.common.support.XqsightPageHelper;
+import com.xqsight.common.core.support.MessageSupport;
+import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.SSOUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;

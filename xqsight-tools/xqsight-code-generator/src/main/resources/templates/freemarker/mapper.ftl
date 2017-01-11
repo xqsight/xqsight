@@ -2,7 +2,7 @@
 package ${basePackage}.${moduleName}.mapper;
 
 
-import com.xqsight.common.dao.Dao;
+import com.xqsight.common.core.dao.Dao;
 
 import ${basePackage}.${moduleName}.model.${table.className};
 

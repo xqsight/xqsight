@@ -16,7 +16,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.xiaoleilu.hutool.util.RandomUtil;
-import com.xqsight.commons.utils.DateFormatUtils;
+import com.xqsight.common.utils.DateFormatUtils;
 import com.xqsight.upload.model.SysFile;
 
 /**

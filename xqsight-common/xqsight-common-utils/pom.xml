@@ -49,7 +49,7 @@
             <groupId>com.belerweb</groupId>
             <artifactId>pinyin4j</artifactId>
         </dependency>
-        <!-- commons start -->
+        <!-- common start -->
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
@@ -78,7 +78,7 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
         </dependency>
-        <!-- commons end -->
+        <!-- common end -->
         <!-- alibaba -->
         <dependency>
             <groupId>com.alibaba</groupId>

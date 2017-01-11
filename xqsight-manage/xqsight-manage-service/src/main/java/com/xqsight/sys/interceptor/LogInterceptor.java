@@ -1,7 +1,7 @@
 package com.xqsight.sys.interceptor;
 
-import com.xqsight.commons.utils.DateParseUtils;
-import com.xqsight.commons.web.WebUtils;
+import com.xqsight.common.utils.DateParseUtils;
+import com.xqsight.common.web.WebUtils;
 import com.xqsight.sys.support.LogSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

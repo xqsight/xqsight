@@ -3,7 +3,7 @@ package com.xqsight.authc.appcontroller;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import com.xqsight.authc.exceptions.ValilCodeNoEqualException;
-import com.xqsight.commons.web.WebUtils;
+import com.xqsight.common.web.WebUtils;
 import com.xqsight.sso.shiro.constants.WebConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

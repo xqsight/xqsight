@@ -4,14 +4,14 @@
  */
 package com.xqsight.system.controller;
 
-import com.xqsight.common.orm.MatchType;
-import com.xqsight.common.orm.PropertyFilter;
-import com.xqsight.common.orm.PropertyType;
-import com.xqsight.common.orm.Sort;
-import com.xqsight.common.orm.builder.PropertyFilterBuilder;
-import com.xqsight.common.orm.builder.SortBuilder;
-import com.xqsight.commons.support.MessageSupport;
-import com.xqsight.commons.support.TreeSupport;
+import com.xqsight.common.core.orm.MatchType;
+import com.xqsight.common.core.orm.PropertyFilter;
+import com.xqsight.common.core.orm.PropertyType;
+import com.xqsight.common.core.orm.Sort;
+import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
+import com.xqsight.common.core.orm.builder.SortBuilder;
+import com.xqsight.common.support.MessageSupport;
+import com.xqsight.common.support.TreeSupport;
 import com.xqsight.system.model.SysRole;
 import com.xqsight.system.service.SysRoleService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

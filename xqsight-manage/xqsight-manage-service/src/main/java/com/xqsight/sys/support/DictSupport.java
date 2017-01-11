@@ -5,7 +5,7 @@ package com.xqsight.sys.support;
 
 import com.alibaba.fastjson.JSON;
 import com.xqsight.common.model.constants.CacheKeyConstants;
-import com.xqsight.commons.web.SpringContextHolder;
+import com.xqsight.common.web.SpringContextHolder;
 import com.xqsight.data.ehcache.core.CacheTemplate;
 import com.xqsight.sys.model.SysDict;
 import com.xqsight.sys.model.SysDictDetail;

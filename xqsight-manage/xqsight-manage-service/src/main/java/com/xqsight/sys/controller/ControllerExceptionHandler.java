@@ -1,7 +1,7 @@
 package com.xqsight.sys.controller;
 
 import com.xqsight.common.model.constants.ErrorMessageConstants;
-import com.xqsight.commons.support.MessageSupport;
+import com.xqsight.common.support.MessageSupport;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.authz.AuthorizationException;

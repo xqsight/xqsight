@@ -6,7 +6,7 @@ import com.xqsight.common.upload.handler.LocalFileHandler;
 import com.xqsight.common.upload.service.PathResolver;
 import com.xqsight.common.upload.support.Validations;
 import com.xqsight.common.upload.file.*;
-import com.xqsight.commons.web.Servlets;
+import com.xqsight.common.web.Servlets;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

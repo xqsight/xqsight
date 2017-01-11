@@ -4,10 +4,10 @@
  */
 package com.xqsight.system.service;
 
-import com.xqsight.common.dao.Dao;
-import com.xqsight.common.orm.*;
-import com.xqsight.common.orm.builder.PropertyFilterBuilder;
-import com.xqsight.common.service.DefaultEntityService;
+import com.xqsight.common.core.dao.Dao;
+import com.xqsight.common.core.orm.*;
+import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
+import com.xqsight.common.core.service.DefaultEntityService;
 import com.xqsight.system.mapper.SysAuthMapper;
 import com.xqsight.system.mapper.SysMenuMapper;
 import com.xqsight.system.model.SysMenu;

@@ -2,8 +2,8 @@ package com.xqsight.sys.controller;
 
 import com.github.pagehelper.Page;
 import com.xqsight.common.model.XqsightPage;
-import com.xqsight.commons.support.MessageSupport;
-import com.xqsight.common.support.XqsightPageHelper;
+import com.xqsight.common.support.MessageSupport;
+import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.sys.model.SysLog;
 import com.xqsight.sys.service.SysLogService;

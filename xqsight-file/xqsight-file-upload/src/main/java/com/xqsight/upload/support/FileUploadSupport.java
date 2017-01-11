@@ -6,11 +6,10 @@ package com.xqsight.upload.support;
 
 import com.xiaoleilu.hutool.io.FileUtil;
 import com.xiaoleilu.hutool.util.RandomUtil;
-import com.xqsight.commons.support.FileExtSupport;
-import com.xqsight.commons.utils.DateFormatUtils;
-import com.xqsight.commons.utils.FlashFtpUtils;
+import com.xqsight.common.support.FileExtSupport;
+import com.xqsight.common.utils.DateFormatUtils;
+import com.xqsight.common.utils.FlashFtpUtils;
 import com.xqsight.upload.config.FileUploadConfig;
-import com.xqsight.upload.model.SysFile;
 import com.xqsight.upload.model.vo.SysFileVo;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;

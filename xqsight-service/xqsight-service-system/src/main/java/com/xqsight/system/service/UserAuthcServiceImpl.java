@@ -1,10 +1,10 @@
 package com.xqsight.system.service;
 
 import com.xqsight.common.model.UserBaseModel;
-import com.xqsight.common.orm.MatchType;
-import com.xqsight.common.orm.PropertyFilter;
-import com.xqsight.common.orm.PropertyType;
-import com.xqsight.common.orm.builder.PropertyFilterBuilder;
+import com.xqsight.common.core.orm.MatchType;
+import com.xqsight.common.core.orm.PropertyFilter;
+import com.xqsight.common.core.orm.PropertyType;
+import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.sso.authc.service.UserAuthcService;
 import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.model.SysMenu;

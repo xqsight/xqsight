@@ -6,7 +6,7 @@ import com.xqsight.authc.exceptions.ValilCodeNoEqualException;
 import com.xqsight.authc.support.LoginSupport;
 import com.xqsight.common.model.UserBaseModel;
 import com.xqsight.common.model.constants.Constants;
-import com.xqsight.commons.web.WebUtils;
+import com.xqsight.common.web.WebUtils;
 import com.xqsight.sso.authc.SSOUsernamePasswordToken;
 import com.xqsight.sso.utils.PasswordHelper;
 import com.xqsight.sso.authc.service.UserAuthcService;

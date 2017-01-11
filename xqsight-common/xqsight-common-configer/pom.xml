@@ -70,7 +70,7 @@
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
         </dependency>
-        <!-- commons Start -->
+        <!-- common Start -->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
@@ -85,7 +85,7 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- commons End -->
+        <!-- common End -->
 
     </dependencies>
 

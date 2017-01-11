@@ -1,7 +1,7 @@
 package com.xqsight.sys.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.xqsight.commons.support.TreeSupport;
+import com.xqsight.common.support.TreeSupport;
 import com.xqsight.sys.model.SysMenu;
 import com.xqsight.sys.mapper.SysMenuMapper;
 import com.xqsight.sys.service.SysMenuService;
