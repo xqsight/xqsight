@@ -1,11 +1,11 @@
 package com.xqsight.common.upload.support;
 
 import com.xqsight.common.upload.GlobalUpload;
-import com.xqsight.common.upload.service.UploadConfige;
-import com.xqsight.common.upload.handler.FileHandler;
 import com.xqsight.common.upload.file.FtpTemplate;
+import com.xqsight.common.upload.handler.FileHandler;
 import com.xqsight.common.upload.image.WatermarkParam;
 import com.xqsight.common.upload.service.PathResolver;
+import com.xqsight.common.upload.service.UploadConfige;
 import com.xqsight.common.web.WebUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UploadSupport {
 
     @Autowired
-    private static UploadConfige sysUploadInfo;
+    private static UploadConfige uploadConfige = new UploadConfige();
 
     public static WatermarkParam getWatermarkParam(Boolean watermark) {
         return new WatermarkParam(watermark);
@@ -30,13 +30,13 @@ public class UploadSupport {
     }
 
     public static FtpTemplate getFtpTemplate() {
-        return new FtpTemplate(sysUploadInfo.getFtpHostName(), sysUploadInfo.getFtpPort(), sysUploadInfo.getFtpUserName(), sysUploadInfo.getFtpPassword());
+        return new FtpTemplate(uploadConfige.getFtpHostName(), uploadConfige.getFtpPort(), uploadConfige.getFtpUserName(), uploadConfige.getFtpPassword());
     }
 
     public static FileHandler getFileHandler(PathResolver pathResolver) {
-        String prefix = sysUploadInfo.getStorePath();
+        String prefix = uploadConfige.getStorePath();
         FileHandler fileHandler;
-        if (sysUploadInfo.isFtpMethod()) {
+        if (uploadConfige.isFtpMethod()) {
             fileHandler = FileHandler.getFileHandler(getFtpTemplate(), prefix);
         } else {
             fileHandler = FileHandler.getLocalFileHandler(pathResolver, prefix);
@@ -46,13 +46,13 @@ public class UploadSupport {
 
     public static String getUrlPrefix() {
         StringBuilder sb = new StringBuilder();
-        if (!sysUploadInfo.isFtpMethod() && !StringUtils.startsWith(sysUploadInfo.getStorePath(), "file:")) {
+        if (!uploadConfige.isFtpMethod() && !StringUtils.startsWith(uploadConfige.getStorePath(), "files:")) {
             String ctx = WebUtils.getCtx();
             if (StringUtils.isNotBlank(ctx)) {
                 sb.append(ctx);
             }
         }
-        String displayPath = sysUploadInfo.getDisplayPath();
+        String displayPath = uploadConfige.getDisplayPath();
         if (StringUtils.isNotBlank(displayPath)) {
             sb.append(displayPath);
         }
@@ -76,6 +76,6 @@ public class UploadSupport {
     }
 
     public boolean isFtp() {
-        return sysUploadInfo.isFtpMethod();
+        return uploadConfige.isFtpMethod();
     }
 }

@@ -1,5 +1,6 @@
 package com.xqsight.common.upload.service;
 
+
 import com.xqsight.common.upload.image.ScaleParam;
 import com.xqsight.common.upload.image.WatermarkParam;
 

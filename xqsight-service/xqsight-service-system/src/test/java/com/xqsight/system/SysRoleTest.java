@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"classpath:config/global-config.xml","classpath:spring/webmvc-config.xml"})
-
 public class SysRoleTest {
 
     @Autowired

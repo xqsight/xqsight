@@ -1,6 +1,6 @@
 package com.xqsight.common.upload;
 
-import com.xqsight.common.upload.image.ScaleParam;
+import com.eju.micro.common.upload.image.ScaleParam;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;

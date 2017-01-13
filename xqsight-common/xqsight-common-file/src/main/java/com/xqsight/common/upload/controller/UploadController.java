@@ -15,7 +15,7 @@ import java.io.IOException;
  * @author wangganggang
  */
 @Controller
-@RequestMapping("/file/core/")
+@RequestMapping("/files/core/")
 public class UploadController extends UploadControllerAbstract {
 
     @RequestMapping(value = "upload_image", method = RequestMethod.POST)
@@ -48,7 +48,7 @@ public class UploadController extends UploadControllerAbstract {
     @RequestMapping(value = "/ueditor")
     public void ueditor(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String action = request.getParameter("action");
-        if ("config".equals(action)) {
+        if ("core".equals(action)) {
             super.ueditorConfig(request, response);
         } else if ("uploadimage".equals(action)) {
             uploadImage(null, null, null, null, null, null, null, null, request, response);

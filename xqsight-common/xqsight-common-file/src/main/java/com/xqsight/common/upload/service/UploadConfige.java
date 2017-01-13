@@ -12,26 +12,26 @@ public class UploadConfige {
     /** **/
     private String storePath = "/";
     /** **/
-    private String uploadMethod = "local";
+    private String uploadMethod = "ftp";
     /** **/
-    private String displayPath = "/";
+    private String displayPath = "/display";
 
     /**
      * ftp IP
      **/
-    private String ftpHostName;
+    private String ftpHostName="182.61.6.205";
     /**
      * ftp 端口
      **/
-    private Integer ftpPort;
+    private Integer ftpPort=21;
     /**
      * ftp 用户
      **/
-    private String ftpUserName;
+    private String ftpUserName="ftpuser";
     /**
      * ftp 密码
      **/
-    private String ftpPassword;
+    private String ftpPassword="!wgg2016";
 
 
     public String getStorePath() {

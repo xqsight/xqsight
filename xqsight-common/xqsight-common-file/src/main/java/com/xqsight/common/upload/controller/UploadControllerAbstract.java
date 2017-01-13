@@ -1,12 +1,15 @@
 package com.xqsight.common.upload.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.xqsight.common.upload.GlobalUpload;
 import com.xqsight.common.upload.UploadResult;
 import com.xqsight.common.upload.Uploader;
 import com.xqsight.common.upload.handler.FileHandler;
-import com.xqsight.common.upload.service.UploadService;
 import com.xqsight.common.upload.service.PathResolver;
+import com.xqsight.common.upload.service.UploadService;
 import com.xqsight.common.upload.support.UploadSupport;
+import com.xqsight.common.web.Servlets;
+import com.xqsight.common.web.WebUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -39,13 +42,15 @@ public abstract class UploadControllerAbstract {
 
 	@Autowired
 	protected MessageSource messageSource;
+
 	@Autowired
 	protected PathResolver pathResolver;
+
 	@Autowired
 	protected UploadService uploadService;
 
 	/**
-	 * ueditor config action，返回空配置，全部配置在前端完整。
+	 * ueditor core action，返回空配置，全部配置在前端完整。
 	 * 
 	 * @param request
 	 * @param response
@@ -95,7 +100,7 @@ public abstract class UploadControllerAbstract {
 			sb.append(",\"+uploadsDomain+\"");
 		}
 		sb.append("]}");
-		logger.debug("ueditor config:" + sb.toString());
+		logger.debug("ueditor core:" + sb.toString());
 		response.setHeader("Content-Type", "text/html");
 		response.getWriter().print(sb.toString());
 		response.flushBuffer();
@@ -120,6 +125,13 @@ public abstract class UploadControllerAbstract {
 		return sb.toString();
 	}
 
+
+    /**
+     * ueditor 抓取图片
+	 * @param request
+     * @param response
+     * @throws IOException
+	 */
 	protected void ueditorCatchImage(HttpServletRequest request,HttpServletResponse response) throws IOException {
 		UploadSupport uploadSupport = new UploadSupport();
 		GlobalUpload globalUpload = uploadSupport.getGlobalUpload();
@@ -137,11 +149,13 @@ public abstract class UploadControllerAbstract {
 		for (int i = 0; i < source.length; i++) {
 			String src = source[i];
 			String extension = FilenameUtils.getExtension(src);
+
 			// 格式验证
 			if (!globalUpload.isExtensionValid(extension, Uploader.IMAGE)) {
 				// state = "Extension Invalid";
 				continue;
 			}
+
 			HttpURLConnection.setFollowRedirects(false);
 			HttpURLConnection conn = (HttpURLConnection) new URL(src).openConnection();
 			if (conn.getContentType().indexOf("image") == -1) {
@@ -187,7 +201,7 @@ public abstract class UploadControllerAbstract {
 		result.setMessageSource(messageSource, locale);
 
 		Integer userId = 1;//Context.getCurrentUserId();
-		String ip = "";//Servlets.getRemoteAddr(request);
+		String ip = WebUtils.getUserIp(request);//Servlets.getRemoteAddr(request);
 		MultipartFile partFile = getMultipartFile(request);
 
 		uploadService.upload(partFile, type,userId, ip, result, scale, exact, width, height, thumbnail,thumbnailWidth, thumbnailHeight, watermark);
@@ -216,10 +230,10 @@ public abstract class UploadControllerAbstract {
 			umap.put("original", result.getFileName());
 			umap.put("url", result.getFileUrl());
 			umap.put("fileType", "." + result.getFileExtension());
-			/*JsonMapper mapper = new JsonMapper();
-			String json = mapper.toJson(umap);
+			//JsonMapper mapper = new JsonMapper();
+			String json = JSON.toJSON(umap).toString();
 			logger.debug(json);
-			Servlets.writeHtml(response, json);*/
+			Servlets.writeHtml(response, json);
 		} else if (request.getParameter("editormd") != null) {
 			// {
 			// success : 0 | 1, // 0 表示上传失败，1 表示上传成功
@@ -230,11 +244,17 @@ public abstract class UploadControllerAbstract {
 			umap.put("success", result.isSuccess() ? 1 : 0);
 			umap.put("message", result.getMessage());
 			umap.put("url", result.getFileUrl());
+			String json = JSON.toJSON(umap).toString();
+			logger.debug(json);
+			Servlets.writeHtml(response, json);
 			/*JsonMapper mapper = new JsonMapper();
 			String json = mapper.toJson(umap);
 			logger.debug(json);
 			Servlets.writeHtml(response, json);*/
 		} else {
+			String json = JSON.toJSON(result).toString();
+			logger.debug(json);
+			Servlets.writeHtml(response, json);
 			/*JsonMapper mapper = new JsonMapper();
 			String json = mapper.toJson(result);
 			logger.debug(json);
@@ -246,7 +266,7 @@ public abstract class UploadControllerAbstract {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
 		Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
 		if (CollectionUtils.isEmpty(fileMap)) {
-			throw new IllegalStateException("No upload file found!");
+			throw new IllegalStateException("No upload files found!");
 		}
 		return fileMap.entrySet().iterator().next().getValue();
 	}

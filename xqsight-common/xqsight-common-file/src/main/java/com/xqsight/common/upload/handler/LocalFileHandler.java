@@ -199,7 +199,7 @@ public class LocalFileHandler extends FileHandler {
 			try {
 				commonFile.setText(FileUtils.readFileToString(file, "UTF-8"));
 			} catch (IOException e) {
-				logger.error("read file error!", e);
+				logger.error("read files error!", e);
 			}
 		}
 		return commonFile;
@@ -212,7 +212,7 @@ public class LocalFileHandler extends FileHandler {
 		try {
 			is = new FileInputStream(file);
 		} catch (FileNotFoundException e) {
-			logger.error("file not found!", e);
+			logger.error("files not found!", e);
 		}
 		return is;
 	}

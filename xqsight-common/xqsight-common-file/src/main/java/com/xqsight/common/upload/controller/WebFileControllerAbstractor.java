@@ -1,11 +1,11 @@
 package com.xqsight.common.upload.controller;
 
 import com.xqsight.common.upload.FileUploadException;
+import com.xqsight.common.upload.file.*;
 import com.xqsight.common.upload.handler.FileHandler;
 import com.xqsight.common.upload.handler.LocalFileHandler;
 import com.xqsight.common.upload.service.PathResolver;
 import com.xqsight.common.upload.support.Validations;
-import com.xqsight.common.upload.file.*;
 import com.xqsight.common.web.Servlets;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -178,7 +178,7 @@ public abstract class WebFileControllerAbstractor {
         FileHandler fileHandler = getFileHandler();
         boolean success = fileHandler.mkdir(dir, parentId);
         if (success) {
-            logger.info("mkdir file, name={}.", parentId + "/" + dir);
+            logger.info("mkdir files, name={}.", parentId + "/" + dir);
         }
         ra.addFlashAttribute("refreshLeft", true);
         ra.addAttribute("parentId", parentId);
@@ -196,7 +196,7 @@ public abstract class WebFileControllerAbstractor {
         }
         FileHandler fileHandler = getFileHandler();
         fileHandler.store(text, name, parentId);
-        logger.info("save file, name={}.", parentId + "/" + name);
+        logger.info("save files, name={}.", parentId + "/" + name);
         ra.addFlashAttribute("refreshLeft", true);
         ra.addAttribute("parentId", parentId);
         return "redirect:edit.do";
@@ -219,7 +219,7 @@ public abstract class WebFileControllerAbstractor {
         if (!origName.equals(name)) {
             fileHandler.rename(name, parentId + "/" + origName);
         }
-        logger.info("update file, name={}.", parentId + "/" + origName);
+        logger.info("update files, name={}.", parentId + "/" + origName);
         Servlets.writeHtml(response, "true");
     }
 
@@ -238,10 +238,10 @@ public abstract class WebFileControllerAbstractor {
             for (String id : ids) {
 
             }
-            logger.info("delete file success, name={}.",
+            logger.info("delete files success, name={}.",
                     StringUtils.join(ids, ','));
         } else {
-            logger.info("delete file failure, name={}.",
+            logger.info("delete files failure, name={}.",
                     StringUtils.join(ids, ','));
         }
         String parentId = Servlets.getParam(request, "parentId");
@@ -261,7 +261,7 @@ public abstract class WebFileControllerAbstractor {
         }
         boolean success = fileHandler.rename(name, id);
         if (success) {
-            logger.info("rename file success, name={}.", id);
+            logger.info("rename files success, name={}.", id);
         }
         String parentId = Servlets.getParam(request, "parentId");
         ra.addAttribute("parentId", parentId);
@@ -287,7 +287,7 @@ public abstract class WebFileControllerAbstractor {
         for (String id : ids) {
 
         }
-        logger.info("move file success, name={}.", StringUtils.join(ids, ','));
+        logger.info("move files success, name={}.", StringUtils.join(ids, ','));
 
         String parentId = Servlets.getParam(request, "parentId");
         ra.addAttribute("parentId", parentId);
@@ -360,7 +360,7 @@ public abstract class WebFileControllerAbstractor {
             File file = localFileHandler.getFile(ids[i]);
             if (AntZipUtils.isZipFile(file)) {
                 AntZipUtils.unzip(file, file.getParentFile());
-                logger.info("unzip file, name={}.", ids[i]);
+                logger.info("unzip files, name={}.", ids[i]);
             }
         }
 
@@ -379,7 +379,7 @@ public abstract class WebFileControllerAbstractor {
         }
         FileHandler fileHandler = getFileHandler();
         fileHandler.store(file, parentId);
-        logger.info("upload file, name={}.", parentId + "/" + file.getOriginalFilename());
+        logger.info("upload files, name={}.", parentId + "/" + file.getOriginalFilename());
         Servlets.writeHtml(response, "true");
     }
 
@@ -404,7 +404,7 @@ public abstract class WebFileControllerAbstractor {
         AntZipUtils.unzip(tempFile, parentFile);
         tempFile.delete();
 
-        logger.info("zip upload file, name={}.", parentId + "/" + file.getOriginalFilename());
+        logger.info("zip upload files, name={}.", parentId + "/" + file.getOriginalFilename());
         Servlets.writeHtml(response, "true");
     }
 

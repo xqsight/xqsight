@@ -108,13 +108,13 @@ public abstract class FilesEx {
 	}
 
 	/**
-	 * Iterates over a base name and returns the first non-existent file.<br />
-	 * This method extracts a file's base name, iterates over it until the first non-existent appearance with
+	 * Iterates over a base name and returns the first non-existent files.<br />
+	 * This method extracts a files's base name, iterates over it until the first non-existent appearance with
 	 * <code>basename(n).ext</code>. Where n is a positive integer starting from one.
 	 * 
 	 * @param file
-	 *            base file
-	 * @return first non-existent file
+	 *            base files
+	 * @return first non-existent files
 	 */
 	public static File getUniqueFile(final File file) {
 		if (!file.exists())

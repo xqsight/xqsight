@@ -54,7 +54,7 @@ public class Uploader {
         filename.append(df.format(new Date()));
         filename.append(RandomStringUtils.random(10, '0', 'Z', true, true).toLowerCase());
         if (StringUtils.isNotBlank(extension)) {
-            filename.append("").append(extension.toLowerCase());
+            filename.append(".").append(extension.toLowerCase());
         }
         return filename.toString();
     }

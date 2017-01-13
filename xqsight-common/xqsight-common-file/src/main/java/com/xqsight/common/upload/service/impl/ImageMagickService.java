@@ -1,9 +1,9 @@
 package com.xqsight.common.upload.service.impl;
 
 import com.xqsight.common.upload.file.FilesEx;
-import com.xqsight.common.upload.service.ImageServices;
 import com.xqsight.common.upload.image.ScaleParam;
 import com.xqsight.common.upload.image.WatermarkParam;
+import com.xqsight.common.upload.service.ImageServices;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.im4java.core.*;

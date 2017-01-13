@@ -1,22 +1,22 @@
 package com.xqsight.common.upload.service.impl;
 
-import com.xqsight.common.model.constants.Constants;
-import com.xqsight.common.upload.GlobalUpload;
-import com.xqsight.common.upload.UploadDoc;
-import com.xqsight.common.upload.UploadResult;
-import com.xqsight.common.upload.Uploader;
-import com.xqsight.common.upload.file.FilesEx;
-import com.xqsight.common.upload.handler.FileHandler;
-import com.xqsight.common.upload.handler.LocalFileHandler;
-import com.xqsight.common.upload.image.Images;
-import com.xqsight.common.upload.image.ScaleParam;
-import com.xqsight.common.upload.image.ThumbnailParam;
-import com.xqsight.common.upload.image.WatermarkParam;
-import com.xqsight.common.upload.service.ImageServices;
-import com.xqsight.common.upload.service.PathResolver;
-import com.xqsight.common.upload.service.UploadService;
-import com.xqsight.common.upload.support.UploadSupport;
-import com.xqsight.common.upload.support.UploadUtils;
+import com.eju.micro.common.model.constants.Constants;
+import com.eju.micro.common.upload.GlobalUpload;
+import com.eju.micro.common.upload.UploadDoc;
+import com.eju.micro.common.upload.UploadResult;
+import com.eju.micro.common.upload.Uploader;
+import com.eju.micro.common.upload.file.FilesEx;
+import com.eju.micro.common.upload.handler.FileHandler;
+import com.eju.micro.common.upload.handler.LocalFileHandler;
+import com.eju.micro.common.upload.image.Images;
+import com.eju.micro.common.upload.image.ScaleParam;
+import com.eju.micro.common.upload.image.ThumbnailParam;
+import com.eju.micro.common.upload.image.WatermarkParam;
+import com.eju.micro.common.upload.service.ImageServices;
+import com.eju.micro.common.upload.service.PathResolver;
+import com.eju.micro.common.upload.service.UploadService;
+import com.eju.micro.common.upload.support.UploadSupport;
+import com.eju.micro.common.upload.support.UploadUtils;
 import com.google.common.net.HttpHeaders;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -39,7 +39,7 @@ import java.net.URL;
 @Component
 public class UploadServiceImpl implements UploadService {
 
-    protected final Logger logger = LogManager.getLogger(UploadServiceImpl.class);
+    protected static Logger logger = LogManager.getLogger(UploadServiceImpl.class);
 
     @Resource(name = "imageScalrService")
     protected ImageServices imageScalrService;
@@ -130,7 +130,7 @@ public class UploadServiceImpl implements UploadService {
                        Integer height, Boolean thumbnail, Integer thumbnailWidth, Integer thumbnailHeight, Boolean watermark) {
         try {
             URL source = new URL(url);
-            // file（下载）支持重定向支持，其他的不支持。
+            // files（下载）支持重定向支持，其他的不支持。
             if (Uploader.FILE.equals(type)) {
                 HttpURLConnection.setFollowRedirects(true);
             } else {
@@ -231,7 +231,7 @@ public class UploadServiceImpl implements UploadService {
                 } else {
                     pdfUrl = fileUrl;
                 }
-                //UploadDoc.exec(attachmentService, fileHandler, pathname, ext, pdfPathname, swfPathname, file, ip,userId, siteId);
+                //UploadDoc.exec(attachmentService, fileHandler, pathname, ext, pdfPathname, swfPathname, files, ip,userId, siteId);
                 UploadDoc.exec(fileHandler, pathname, ext, pdfPathname, swfPathname, file, ip, userId, siteId);
             } else {
                 swfUrl = fileUrl;
@@ -314,8 +314,8 @@ public class UploadServiceImpl implements UploadService {
 
     private boolean validateFile(MultipartFile partFile, UploadResult result) {
         if (partFile == null || partFile.isEmpty()) {
-            logger.debug("file is empty");
-            result.setError("no file upload!");
+            logger.debug("files is empty");
+            result.setError("no files upload!");
             return false;
         }
         return true;

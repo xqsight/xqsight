@@ -1,6 +1,6 @@
 package com.xqsight.common.upload.service.impl;
 
-import com.xqsight.common.upload.service.PathResolver;
+import com.eju.micro.common.upload.service.PathResolver;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
@@ -35,7 +35,7 @@ public class ServletContextPathResolver implements PathResolver, ServletContextA
     public String getPath(String uri, String prefix) {
         uri = uri == null ? "" : uri;
         StringBuilder sb = new StringBuilder();
-        if (StringUtils.startsWith(prefix, "file:")) {
+        if (StringUtils.startsWith(prefix, "files:")) {
             sb.append(prefix.substring(5));
         } else {
             sb.append(servletContext.getRealPath(""));

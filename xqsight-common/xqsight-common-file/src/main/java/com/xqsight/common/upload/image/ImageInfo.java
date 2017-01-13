@@ -14,13 +14,13 @@ package com.xqsight.common.upload.image;
 
 import java.io.DataInput;
 import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.Vector;
 
 /**
- * Get file format, image resolution, number of bits per pixel and optionally
+ * Get files format, image resolution, number of bits per pixel and optionally
  * number of images, comments and physical resolution from
  * JPEG, GIF, BMP, PCX, PNG, IFF, RAS, PBM, PGM, PPM and PSD files
  * (or input streams).
@@ -32,7 +32,7 @@ import java.util.Vector;
  * ii.setDetermineImageNumber(true); // default is false
  * ii.setCollectComments(true); // default is false
  * if (!ii.check()) {
- *   System.err.println("Not a supported image file format.");
+ *   System.err.println("Not a supported image files format.");
  *   return;
  * }
  * System.out.println(ii.getFormatName() + ", " + ii.getMimeType() +
@@ -42,7 +42,7 @@ import java.util.Vector;
  *  // there are other properties, check out the API documentation
  * </pre>
  * You can also use this class as a command line program.
- * Call it with a number of image file names and URLs as parameters:
+ * Call it with a number of image files names and URLs as parameters:
  * <pre>
  *   java ImageInfo *.jpg *.png *.gif http://somesite.tld/image.jpg
  * </pre>
@@ -58,7 +58,7 @@ import java.util.Vector;
  *  For some GIFs, local palettes change this to a typically larger
  *  value. To be certain to get the correct color depth, call
  *  setDetermineImageNumber(true) before calling check().
- *  The complete scan over the GIF file will take additional time.</li>
+ *  The complete scan over the GIF files will take additional time.</li>
  * <li>Transparency information is not included in the bits per pixel count.
  *  Actually, it was my decision not to include those bits, so it's a feature! ;-)</li>
  * </ul>
@@ -78,12 +78,12 @@ import java.util.Vector;
  * <a name="history">History</a>:
  * <ul>
  * <li><strong>2001-08-24</strong> Initial version.</li>
- * <li><strong>2001-10-13</strong> Added support for the file formats BMP and PCX.</li>
+ * <li><strong>2001-10-13</strong> Added support for the files formats BMP and PCX.</li>
  * <li><strong>2001-10-16</strong> Fixed bug in read(int[], int, int) that returned
- * <li><strong>2002-01-22</strong> Added support for file formats Amiga IFF and Sun Raster (RAS).</li>
- * <li><strong>2002-01-24</strong> Added support for file formats Portable Bitmap / Graymap / Pixmap (PBM, PGM, PPM) and Adobe Photoshop (PSD).
- *   Added new method getMimeType() to return the MIME type associated with a particular file format.</li>
- * <li><strong>2002-03-15</strong> Added support to recognize number of images in file. Only works with GIF.
+ * <li><strong>2002-01-22</strong> Added support for files formats Amiga IFF and Sun Raster (RAS).</li>
+ * <li><strong>2002-01-24</strong> Added support for files formats Portable Bitmap / Graymap / Pixmap (PBM, PGM, PPM) and Adobe Photoshop (PSD).
+ *   Added new method getMimeType() to return the MIME type associated with a particular files format.</li>
+ * <li><strong>2002-03-15</strong> Added support to recognize number of images in files. Only works with GIF.
  *   Use {@link #setDetermineImageNumber} with <code>true</code> as argument to identify animated GIFs
  *   ({@link #getNumberOfImages()} will return a value larger than <code>1</code>).</li>
  * <li><strong>2002-04-10</strong> Fixed a bug in the feature 'determine number of images in animated GIF' introduced with version 1.1.
@@ -91,7 +91,7 @@ import java.util.Vector;
  *   Released as 1.1.1.</li>
  * <li><strong>2002-04-18</strong> Added {@link #setCollectComments(boolean)}.
  *  That new method lets the user specify whether textual comments are to be
- *  stored in an internal list when encountered in an input image file / stream.
+ *  stored in an internal list when encountered in an input image files / stream.
  *  Added two methods to return the physical width and height of the image in dpi:
  *   {@link #getPhysicalWidthDpi()} and {@link #getPhysicalHeightDpi()}.
  *  If the physical resolution could not be retrieved, these methods return <code>-1</code>.
@@ -116,7 +116,7 @@ import java.util.Vector;
  *   pointing this out). Now it should work, but only if the number of images is determined.
  *  This is because information on interlacing is stored in a local image header.
  *  In theory, different images could be stored interlaced and non-interlaced in one
- *  file. However, I think  that's unlikely. Right now, the last image in the GIF file
+ *  files. However, I think  that's unlikely. Right now, the last image in the GIF files
  *  that is examined by ImageInfo is used for the "progressive" status.</li>
  * <li><strong>2005-01-02</strong> Some code clean up (unused methods and variables
  *  commented out, missing javadoc comments, etc.). Thanks to George Sexton for a long list.
@@ -154,7 +154,7 @@ public class ImageInfo {
 	 * Return value of {@link #getFormat()} for JPEG streams.
 	 * ImageInfo can extract physical resolution and comments
 	 * from JPEGs (only from APP0 headers).
-	 * Only one image can be stored in a file.
+	 * Only one image can be stored in a files.
 	 * It is determined whether the JPEG stream is progressive
 	 * (see {@link #isProgressive()}).
 	 */
@@ -170,7 +170,7 @@ public class ImageInfo {
 
 	/**
 	 * Return value of {@link #getFormat()} for PNG streams.
-	 * PNG only supports one image per file.
+	 * PNG only supports one image per files.
 	 * Both physical resolution and comments can be stored with PNG,
 	 * but ImageInfo is currently not able to extract those.
 	 * It is determined whether the PNG stream is interlaced (see {@link #isProgressive()}).
@@ -179,7 +179,7 @@ public class ImageInfo {
 
 	/**
 	 * Return value of {@link #getFormat()} for BMP streams.
-	 * BMP only supports one image per file.
+	 * BMP only supports one image per files.
 	 * BMP does not allow for comments.
 	 * The physical resolution can be stored.
 	 */
@@ -187,7 +187,7 @@ public class ImageInfo {
 
 	/**
 	 * Return value of {@link #getFormat()} for PCX streams.
-	 * PCX does not allow for comments or more than one image per file.
+	 * PCX does not allow for comments or more than one image per files.
 	 * However, the physical resolution can be stored.
 	 */
 	public static final int FORMAT_PCX = 4;
@@ -199,7 +199,7 @@ public class ImageInfo {
 
 	/**
 	 * Return value of {@link #getFormat()} for RAS streams.
-	 * Sun Raster allows for one image per file only and is not able to
+	 * Sun Raster allows for one image per files only and is not able to
 	 * store physical resolution or comments.
 	 */
 	public static final int FORMAT_RAS = 6;
@@ -223,7 +223,7 @@ public class ImageInfo {
 	public static final int COLOR_TYPE_BLACK_AND_WHITE = 3;*/
 
 	/**
-	 * The names of all supported file formats.
+	 * The names of all supported files formats.
 	 * The FORMAT_xyz int constants can be used as index values for
 	 * this array.
 	 */
@@ -233,7 +233,7 @@ public class ImageInfo {
 					"PSD"};
 
 	/**
-	 * The names of the MIME types for all supported file formats.
+	 * The names of the MIME types for all supported files formats.
 	 * The FORMAT_xyz int constants can be used as index values for
 	 * this array.
 	 */
@@ -265,10 +265,10 @@ public class ImageInfo {
 	}
 
 	/**
-	 * Call this method after you have provided an input stream or file
+	 * Call this method after you have provided an input stream or files
 	 * using {@link #setInput(InputStream)} or {@link #setInput(DataInput)}.
-	 * If true is returned, the file format was known and information
-	 * on the file's content can be retrieved using the various getXyz methods.
+	 * If true is returned, the files format was known and information
+	 * on the files's content can be retrieved using the various getXyz methods.
 	 * @return if information could be retrieved from input
 	 */
 	public boolean check() {
@@ -460,7 +460,7 @@ public class ImageInfo {
 					}
 					break;
 				}
-				case(0x3b): // end of file
+				case(0x3b): // end of files
 				{
 					break;
 				}
@@ -476,7 +476,7 @@ public class ImageInfo {
 
 	private boolean checkIff() throws IOException {
 		byte[] a = new byte[10];
-		// read remaining 2 bytes of file id, 4 bytes file size
+		// read remaining 2 bytes of files id, 4 bytes files size
 		// and 4 bytes IFF subformat
 		if (read(a, 0, 10) != 10) {
 			return false;
@@ -783,7 +783,7 @@ public class ImageInfo {
 	}
 
 	/**
-	 * Returns the index'th comment retrieved from the file.
+	 * Returns the index'th comment retrieved from the files.
 	 * @param index int index of comment to return
 	 * @throws IllegalArgumentException if index is smaller than 0 or larger than or equal
 	 * to the number of comments retrieved
@@ -799,8 +799,8 @@ public class ImageInfo {
 	/**
 	 * If {@link #check()} was successful, returns the image format as one
 	 * of the FORMAT_xyz constants from this class.
-	 * Use {@link #getFormatName()} to get a textual description of the file format.
-	 * @return file format as a FORMAT_xyz constant
+	 * Use {@link #getFormatName()} to get a textual description of the files format.
+	 * @return files format as a FORMAT_xyz constant
 	 */
 	public int getFormat() {
 		return format;
@@ -809,7 +809,7 @@ public class ImageInfo {
 	/**
 	 * If {@link #check()} was successful, returns the image format's name.
 	 * Use {@link #getFormat()} to get a unique number.
-	 * @return file format name
+	 * @return files format name
 	 */
 	public String getFormatName() {
 		if (format >= 0 && format < FORMAT_NAMES.length) {
@@ -864,7 +864,7 @@ public class ImageInfo {
 	/**
 	 * If {@link #check()} was successful and {@link #setCollectComments(boolean)} was called with
 	 * <code>true</code> as argument, returns the number of comments retrieved
-	 * from the input image stream / file.
+	 * from the input image stream / files.
 	 * Any number &gt;= 0 and smaller than this number of comments is then a
 	 * valid argument for the {@link #getComment(int)} method.
 	 * @return number of comments retrieved from input image
@@ -879,11 +879,11 @@ public class ImageInfo {
 	}
 
 	/**
-	 * Returns the number of images in the examined file.
+	 * Returns the number of images in the examined files.
 	 * Assumes that <code>setDetermineImageNumber(true);</code> was called before
 	 * a successful call to {@link #check()}.
 	 * This value can currently be only different from <code>1</code> for GIF images.
-	 * @return number of images in file
+	 * @return number of images in files
 	 */
 	public int getNumberOfImages()
 	{
@@ -980,11 +980,11 @@ public class ImageInfo {
 
 	/**
 	 * To use this class as a command line application, give it either
-	 * some file names as parameters (information on them will be
-	 * printed to standard output, one line per file) or call
+	 * some files names as parameters (information on them will be
+	 * printed to standard output, one line per files) or call
 	 * it with no parameters. It will then check data given to it
 	 * via standard input.
-	 * @param args the program arguments which must be file names
+	 * @param args the program arguments which must be files names
 	 */
 	public static void main(String[] args) {
 		ImageInfo imageInfo = new ImageInfo();
@@ -1159,12 +1159,12 @@ public class ImageInfo {
 	}
 
 	/**
-	 * Specify whether the number of images in a file is to be
+	 * Specify whether the number of images in a files is to be
 	 * determined - default is <code>false</code>.
-	 * This is a special option because some file formats require running over
-	 * the entire file to find out the number of images, a rather time-consuming
+	 * This is a special option because some files formats require running over
+	 * the entire files to find out the number of images, a rather time-consuming
 	 * task.
-	 * Not all file formats support more than one image.
+	 * Not all files formats support more than one image.
 	 * If this method is called with <code>true</code> as argument,
 	 * the actual number of images can be queried via
 	 * {@link #getNumberOfImages()} after a successful call to
@@ -1178,7 +1178,7 @@ public class ImageInfo {
 	}
 
 	/**
-	 * Set the input stream to the argument stream (or file).
+	 * Set the input stream to the argument stream (or files).
 	 * Note that {@link java.io.RandomAccessFile} implements
 	 * {@link DataInput}.
 	 * @param dataInput the input stream to read from
@@ -1189,7 +1189,7 @@ public class ImageInfo {
 	}
 
 	/**
-	 * Set the input stream to the argument stream (or file).
+	 * Set the input stream to the argument stream (or files).
 	 * @param inputStream the input stream to read from
 	 */
 	public void setInput(InputStream inputStream) {

@@ -3,6 +3,9 @@ package com.xqsight.common.upload.support;
 import com.xqsight.common.upload.Uploader;
 import org.apache.commons.lang3.StringUtils;
 
+import static com.xqsight.common.upload.Uploader.QUICK_UPLOAD;
+import static com.xqsight.common.upload.Uploader.THUMBNAIL;
+
 /**
  * UploadUtils
  *
@@ -14,7 +17,7 @@ public class UploadUtils {
         StringBuilder name = new StringBuilder();
         name.append('/').append(appId);
         name.append('/').append(type);
-        name.append('/').append(Uploader.QUICK_UPLOAD);
+        name.append('/').append(QUICK_UPLOAD);
         name.append(Uploader.randomPathname(extension));
         return name.toString();
     }
@@ -25,7 +28,7 @@ public class UploadUtils {
 
         int index = path.lastIndexOf('.');
         if (index != -1) {
-            return path.substring(0, index) + Uploader.THUMBNAIL + path.substring(index);
+            return path.substring(0, index) + THUMBNAIL + path.substring(index);
         } else {
             return path;
         }
