@@ -11,12 +11,13 @@ import java.util.List;
  * Created by wangganggang on 2017/1/3.
  */
 public class PropertyFilterBuilder {
-    public static List<PropertyFilter> propertyFilters = new ArrayList<>();
+    public List<PropertyFilter> propertyFilters;
 
     private MatchType matchType;
     private PropertyType propertyType;
 
     private PropertyFilterBuilder() {
+        propertyFilters = new ArrayList<>();
     }
 
     public static PropertyFilterBuilder create() {

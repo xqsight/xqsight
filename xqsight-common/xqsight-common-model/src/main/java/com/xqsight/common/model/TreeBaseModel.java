@@ -7,7 +7,7 @@ import java.util.List;
  */
 public abstract class TreeBaseModel<T> extends Model {
 
-    private String id;
+    private String id = (String) getPK();
     private String parentId;
     private String name;
     private String icon;

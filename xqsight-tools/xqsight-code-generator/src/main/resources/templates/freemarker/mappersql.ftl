@@ -56,9 +56,9 @@
         <set>
 		<#list table.baseColumns as column>
 			<#if updNotNeed?seq_contains(column.javaProperty)><#else>
-                <if test="${column.javaProperty}!=null">
-				${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}},
-                </if>
+            <if test="${column.javaProperty}!=null">
+            ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}},
+            </if>
 			</#if>
 		</#list>
         </set>
@@ -66,7 +66,7 @@
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="<#list table.primaryKeys as key>${key.fullJavaType}</#list>">
-        delete from  ${table.tableName}
+        delete  ${table.tableName}
         where <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
     </delete>
 
@@ -78,7 +78,14 @@
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
         select <include refid="Base_Column_List"/> from ${table.tableName}
         WHERE 1=1
-	${r'${whereSqlString}'}
+	    ${r'${whereSqlString}'}
+
+        <trim prefix=" and " suffix="" suffixOverrides="" >
+        <if test="customSql != null">
+        ${r'${customSqlString}'}
+        </if>
+        </trim>
+
         <if test="orderBy != null">
 		${r'${orderBySqlString}'}
         </if>

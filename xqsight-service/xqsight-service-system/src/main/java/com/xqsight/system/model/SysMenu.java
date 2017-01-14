@@ -41,6 +41,7 @@ public class SysMenu extends TreeBaseModel<SysMenu> {
     }
     public void setMenuId(Long menuId){
         this.menuId = menuId;
+        super.setId("" + menuId);
     }
 	public String getParentIds(){
         return this.parentIds;

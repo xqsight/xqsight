@@ -3,109 +3,110 @@
 <mapper namespace="com.xqsight.system.mapper.SysStationMapper">
 
     <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysStation">
-		<result column="station_id" property="stationId" jdbcType="NUMERIC"/>
-		<result column="department_id" property="departmentId" jdbcType="NUMERIC"/>
-		<result column="station_name" property="stationName" jdbcType="VARCHAR"/>
-		<result column="station_code" property="stationCode" jdbcType="VARCHAR"/>
-		<result column="station_type" property="stationType" jdbcType="VARCHAR"/>
-		<result column="active" property="active" jdbcType="NUMERIC"/>
-		<result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
-		<result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-		<result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
-		<result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-		<result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="station_id" property="stationId" jdbcType="NUMERIC"/>
+        <result column="department_id" property="departmentId" jdbcType="NUMERIC"/>
+        <result column="station_name" property="stationName" jdbcType="VARCHAR"/>
+        <result column="station_code" property="stationCode" jdbcType="VARCHAR"/>
+        <result column="station_type" property="stationType" jdbcType="VARCHAR"/>
+        <result column="active" property="active" jdbcType="NUMERIC"/>
+        <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-		 station_id,department_id,station_name,station_code,station_type,active,create_user_id,create_time,update_user_id,update_time,remark
+	 station_id,department_id,station_name,station_code,station_type,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
 
-    <insert id="insert" parameterType="com.xqsight.system.model.SysStation"  useGeneratedKeys="true" keyProperty="stationId">
+    <insert id="insert" parameterType="com.xqsight.system.model.SysStation" useGeneratedKeys="true" keyProperty="stationId">
         insert into sys_station (
-		department_id,station_name,station_code,station_type,active,create_user_id,create_time,update_user_id,update_time,remark
-		) values (
-		#{departmentId,jdbcType=NUMERIC},
-		#{stationName,jdbcType=VARCHAR},
-		#{stationCode,jdbcType=VARCHAR},
-		#{stationType,jdbcType=VARCHAR},
-		#{active,jdbcType=NUMERIC},
-		#{createUserId,jdbcType=VARCHAR},
-		#{createTime,jdbcType=TIMESTAMP},
-		#{updateUserId,jdbcType=VARCHAR},
-		#{updateTime,jdbcType=TIMESTAMP},
-		#{remark,jdbcType=VARCHAR}
+	department_id,station_name,station_code,station_type,active,create_user_id,create_time,update_user_id,update_time,remark
+        ) values (
+	#{departmentId,jdbcType=NUMERIC},
+	#{stationName,jdbcType=VARCHAR},
+	#{stationCode,jdbcType=VARCHAR},
+	#{stationType,jdbcType=VARCHAR},
+	#{active,jdbcType=NUMERIC},
+	#{createUserId,jdbcType=VARCHAR},
+	#{createTime,jdbcType=TIMESTAMP},
+	#{updateUserId,jdbcType=VARCHAR},
+	#{updateTime,jdbcType=TIMESTAMP},
+	#{remark,jdbcType=VARCHAR}
         )
     </insert>
 
-    <insert id="insertSelective" parameterType="com.xqsight.system.model.SysStation">
-        insert into sys_station (
-        <if test="departmentId!=null">
-		department_id,
-		</if>
-        <if test="stationName!=null">
-		station_name,
-		</if>
-        <if test="stationCode!=null">
-		station_code,
-		</if>
-        <if test="stationType!=null">
-		station_type,
-		</if>
-        <if test="active!=null">
-		active,
-		</if>
-        <if test="createUserId!=null">
-		create_user_id,
-		</if>
-        <if test="createTime!=null">
-		create_time,
-		</if>
-        <if test="updateUserId!=null">
-		update_user_id,
-		</if>
-        <if test="updateTime!=null">
-		update_time,
-		</if>
-        <if test="remark!=null">
-		remark
-		</if>
-		)
-		values (
-        <if test="departmentId!=null">
-		#{departmentId,jdbcType=NUMERIC},
-		</if>
-        <if test="stationName!=null">
-		#{stationName,jdbcType=VARCHAR},
-		</if>
-        <if test="stationCode!=null">
-		#{stationCode,jdbcType=VARCHAR},
-		</if>
-        <if test="stationType!=null">
-		#{stationType,jdbcType=VARCHAR},
-		</if>
-        <if test="active!=null">
-		#{active,jdbcType=NUMERIC},
-		</if>
-        <if test="createUserId!=null">
-		#{createUserId,jdbcType=VARCHAR},
-		</if>
-        <if test="createTime!=null">
-		#{createTime,jdbcType=TIMESTAMP},
-		</if>
-        <if test="updateUserId!=null">
-		#{updateUserId,jdbcType=VARCHAR},
-		</if>
-        <if test="updateTime!=null">
-		#{updateTime,jdbcType=TIMESTAMP},
-		</if>
-        <if test="remark!=null">
-		#{remark,jdbcType=VARCHAR}
-		</if>
-		)
+    <insert id="insertSelective" parameterType="com.xqsight.system.model.SysStation" useGeneratedKeys="true" keyProperty="stationId">
+        insert into sys_station
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="departmentId!=null">
+			department_id,
+            </if>
+            <if test="stationName!=null">
+			station_name,
+            </if>
+            <if test="stationCode!=null">
+			station_code,
+            </if>
+            <if test="stationType!=null">
+			station_type,
+            </if>
+            <if test="active!=null">
+			active,
+            </if>
+            <if test="createUserId!=null">
+			create_user_id,
+            </if>
+            <if test="createTime!=null">
+			create_time,
+            </if>
+            <if test="updateUserId!=null">
+			update_user_id,
+            </if>
+            <if test="updateTime!=null">
+			update_time,
+            </if>
+            <if test="remark!=null">
+			remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="departmentId!=null">
+			#{departmentId,jdbcType=NUMERIC},
+            </if>
+            <if test="stationName!=null">
+			#{stationName,jdbcType=VARCHAR},
+            </if>
+            <if test="stationCode!=null">
+			#{stationCode,jdbcType=VARCHAR},
+            </if>
+            <if test="stationType!=null">
+			#{stationType,jdbcType=VARCHAR},
+            </if>
+            <if test="active!=null">
+			#{active,jdbcType=NUMERIC},
+            </if>
+            <if test="createUserId!=null">
+			#{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime!=null">
+			#{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUserId!=null">
+			#{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+			#{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+			#{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysStation">
-		update from sys_station set
+        update from sys_station set
 		department_id = #{departmentId,jdbcType=NUMERIC},
 		station_name = #{stationName,jdbcType=VARCHAR},
 		station_code = #{stationCode,jdbcType=VARCHAR},
@@ -117,37 +118,39 @@
         where  station_id = #{stationId,jdbcType=NUMERIC}  
     </update>
 
-	<update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysStation">
-        update from sys_station set
-        <if test="departmentId!=null">
-		department_id = #{departmentId,jdbcType=NUMERIC},
-		</if>
-        <if test="stationName!=null">
-		station_name = #{stationName,jdbcType=VARCHAR},
-		</if>
-        <if test="stationCode!=null">
-		station_code = #{stationCode,jdbcType=VARCHAR},
-		</if>
-        <if test="stationType!=null">
-		station_type = #{stationType,jdbcType=VARCHAR},
-		</if>
-        <if test="active!=null">
-		active = #{active,jdbcType=NUMERIC},
-		</if>
-        <if test="updateUserId!=null">
-		update_user_id = #{updateUserId,jdbcType=VARCHAR},
-		</if>
-        <if test="updateTime!=null">
-		update_time = #{updateTime,jdbcType=TIMESTAMP},
-		</if>
-        <if test="remark!=null">
-		remark = #{remark,jdbcType=VARCHAR}
-		</if>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysStation">
+        update from sys_station
+        <set>
+                <if test="departmentId!=null">
+				department_id = #{departmentId,jdbcType=NUMERIC},
+                </if>
+                <if test="stationName!=null">
+				station_name = #{stationName,jdbcType=VARCHAR},
+                </if>
+                <if test="stationCode!=null">
+				station_code = #{stationCode,jdbcType=VARCHAR},
+                </if>
+                <if test="stationType!=null">
+				station_type = #{stationType,jdbcType=VARCHAR},
+                </if>
+                <if test="active!=null">
+				active = #{active,jdbcType=NUMERIC},
+                </if>
+                <if test="updateUserId!=null">
+				update_user_id = #{updateUserId,jdbcType=VARCHAR},
+                </if>
+                <if test="updateTime!=null">
+				update_time = #{updateTime,jdbcType=TIMESTAMP},
+                </if>
+                <if test="remark!=null">
+				remark = #{remark,jdbcType=VARCHAR},
+                </if>
+        </set>
         where  station_id = #{stationId,jdbcType=NUMERIC}  
-	</update>
+    </update>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete from  sys_station
+        delete  sys_station
         where  station_id = #{stationId,jdbcType=NUMERIC}  
     </delete>
 
@@ -157,11 +160,18 @@
     </select>
 
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
-        select <include refid="Base_Column_List"/> from sys_role
-		WHERE 1=1
-		${whereSqlString}
+        select <include refid="Base_Column_List"/> from sys_station
+        WHERE 1=1
+	    ${whereSqlString}
+
+        <trim prefix=" and " suffix="" suffixOverrides="" >
+        <if test="customSql != null">
+        ${customSqlString}
+        </if>
+        </trim>
+
         <if test="orderBy != null">
-			${orderBySqlString}
+		${orderBySqlString}
         </if>
     </select>
 </mapper>
