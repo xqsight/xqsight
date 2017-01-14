@@ -13,7 +13,7 @@
 		<!-- 是否使用插入数据后自增主键的值，需要配合keyProperty使用 -->
 		<setting name="useGeneratedKeys" value="false" />
 	</settings>
-	<typeHandlers>
+	<!--<typeHandlers>
 		<typeHandler handler="org.apache.ibatis.type.InstantTypeHandler" />
 		<typeHandler handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
 		<typeHandler handler="org.apache.ibatis.type.LocalDateTypeHandler" />
@@ -21,7 +21,7 @@
 		<typeHandler handler="org.apache.ibatis.type.OffsetDateTimeTypeHandler" />
 		<typeHandler handler="org.apache.ibatis.type.OffsetTimeTypeHandler" />
 		<typeHandler handler="org.apache.ibatis.type.ZonedDateTimeTypeHandler" />
-	</typeHandlers>
+	</typeHandlers>-->
 	<!--<typeAliases>
 	</typeAliases>-->
 	<plugins>
