@@ -1,6 +1,6 @@
 package com.xqsight.common.upload.file;
 
-import com.eju.micro.common.upload.image.Images;
+import com.xqsight.common.upload.image.Images;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTPFile;

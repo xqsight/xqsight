@@ -1,6 +1,6 @@
 package com.xqsight.common.upload.service.impl;
 
-import com.eju.micro.common.upload.service.PathResolver;
+import com.xqsight.common.upload.service.PathResolver;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;

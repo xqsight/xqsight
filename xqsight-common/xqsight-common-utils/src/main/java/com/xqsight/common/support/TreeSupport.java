@@ -19,7 +19,7 @@ public class TreeSupport<T extends TreeBaseModel<T>> {
      * @return
      */
     public T getRoot(List<T> list){
-        return list.stream().collect(Collectors.maxBy(Comparator.comparing(T :: getId))).get();
+        return list.stream().collect(Collectors.minBy(Comparator.comparing(T :: getParentId))).get();
     }
 
 
