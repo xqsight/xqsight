@@ -87,7 +87,7 @@ public class SysAuthService {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
                 .add("id", StringUtils.substringBeforeLast(userIdSb.toString(), ",")).end();
 
-        return sysLoginMapper.find(new Criterion(propertyFilters));
+        return sysLoginMapper.search(new Criterion(propertyFilters));
     }
 
     /**
@@ -105,7 +105,7 @@ public class SysAuthService {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
                 .add("menu_id", StringUtils.substringBeforeLast(menuIdSb.toString(), ",")).end();
 
-        return sysMenuMapper.find(new Criterion(propertyFilters));
+        return sysMenuMapper.search(new Criterion(propertyFilters));
     }
 
     /**
@@ -124,7 +124,7 @@ public class SysAuthService {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
                 .add("role_id", StringUtils.substringBeforeLast(roleIdSb.toString(), ",")).end();
 
-        return sysRoleMapper.find(new Criterion(propertyFilters));
+        return sysRoleMapper.search(new Criterion(propertyFilters));
     }
 
     /**
@@ -146,6 +146,6 @@ public class SysAuthService {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
                 .add("menu_id", StringUtils.substringBeforeLast(menuIdSb.toString(), ",")).end();
 
-        return sysMenuMapper.find(new Criterion(propertyFilters));
+        return sysMenuMapper.search(new Criterion(propertyFilters));
     }
 }

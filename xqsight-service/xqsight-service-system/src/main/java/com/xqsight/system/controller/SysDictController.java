@@ -15,6 +15,7 @@ import com.xqsight.common.support.MessageSupport;
 import com.xqsight.common.support.TreeSupport;
 import com.xqsight.system.model.SysDict;
 import com.xqsight.system.service.SysDictService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,8 +85,8 @@ public class SysDictController {
     @RequiresPermissions("sys:dict:query")
     public Object query(String dictName, String dictCode) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("dict_name", dictName)
-                .add("dict_code", dictCode).end();
+                .propertyType(PropertyType.S).add("dict_name", StringUtils.trimToEmpty(dictName))
+                .add("dict_code", StringUtils.trimToEmpty(dictCode)).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
         List<SysDict> sysDicts = sysDictService.search(propertyFilters, sorts);
         return MessageSupport.successDataMsg(sysDicts, "查询成功");
@@ -102,8 +103,8 @@ public class SysDictController {
     @RequiresPermissions("sys:dict:query")
     public Object queryAllTotTree(String dictName, String dictCode) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("dict_name", dictName)
-                .add("dict_code", dictCode).end();
+                .propertyType(PropertyType.S).add("dict_name", StringUtils.trimToEmpty(dictName))
+                .add("dict_code", StringUtils.trimToEmpty(dictCode)).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
         List<SysDict> sysDicts = sysDictService.search(propertyFilters, sorts);
         SysDict sysDict = new TreeSupport<SysDict>().generateFullTree(sysDicts);

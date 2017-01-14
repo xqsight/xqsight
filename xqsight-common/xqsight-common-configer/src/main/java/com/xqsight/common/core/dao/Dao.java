@@ -28,7 +28,7 @@ public interface Dao<T, PK extends Serializable> {
     /**
      * 多条件查询
      */
-    List<T> find(Criterion criterion);
+    List<T> search(Criterion criterion);
 
     /**
      * 计算总记录数

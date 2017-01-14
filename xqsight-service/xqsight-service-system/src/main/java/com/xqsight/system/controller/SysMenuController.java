@@ -16,6 +16,7 @@ import com.xqsight.common.support.TreeSupport;
 import com.xqsight.system.enums.MenuTypeEnum;
 import com.xqsight.system.model.SysMenu;
 import com.xqsight.system.service.SysMenuService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,7 +72,7 @@ public class SysMenuController {
     @RequiresPermissions("sys:menu:query")
     public Object query(String menuName, String parentId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("menu_name", menuName)
+                .propertyType(PropertyType.S).add("menu_name", StringUtils.trimToEmpty(menuName))
                 .matchTye(MatchType.EQ).propertyType(PropertyType.L)
                 .add("parent_id", parentId).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").addAsc("menu_name").end();
@@ -90,7 +91,7 @@ public class SysMenuController {
     @RequestMapping("querytree")
     @RequiresPermissions("sys:menu:query")
     public Object queryToTree(Long currentUserId) {
-        List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
+        List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.I).add("type", "" + MenuTypeEnum.MENU.getValuel()).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
         List<SysMenu> sysMenus = sysMenuService.querySubByUserId(currentUserId,propertyFilters, sorts);

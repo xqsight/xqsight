@@ -1,5 +1,6 @@
 package com.xqsight.common.support;
 
+import com.google.common.collect.Lists;
 import com.xqsight.common.model.TreeBaseModel;
 
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public class TreeSupport<T extends TreeBaseModel<T>> {
      * @return
      */
     public T getRoot(List<T> list){
+        if(list.isEmpty()) return null;
         return list.stream().collect(Collectors.minBy(Comparator.comparing(T :: getParentId))).get();
     }
 

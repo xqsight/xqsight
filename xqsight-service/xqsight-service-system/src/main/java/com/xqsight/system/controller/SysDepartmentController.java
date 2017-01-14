@@ -17,6 +17,7 @@ import com.xqsight.system.model.SysDepartment;
 import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.service.SysDepartmentService;
 import com.xqsight.system.service.SysLoginService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -85,8 +86,8 @@ public class SysDepartmentController {
     @RequiresPermissions("sys:department:query")
     public Object query(String departmentName, String departmentCode, String customCode, String parentId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("department_name", departmentName)
-                .add("department_code", departmentCode).add("custom_code", customCode)
+                .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))
+                .add("department_code", StringUtils.trimToEmpty(departmentCode)).add("custom_code", StringUtils.trimToEmpty(customCode))
                 .matchTye(MatchType.EQ).propertyType(PropertyType.L).add("parent_id", parentId).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").addAsc("department_name").end();
         List<SysDepartment> sysDepartments = sysDepartmentService.search(propertyFilters, sorts);
@@ -105,8 +106,8 @@ public class SysDepartmentController {
     public Object queryAllTotTree(String departmentName, String departmentCode, Long currentUserId) {
         SysLogin sysLogin = sysLoginService.get(currentUserId);
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("department_name", departmentName)
-                .add("department_code", departmentCode).end();
+                .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))
+                .add("department_code", StringUtils.trimToEmpty(departmentCode)).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
         List<SysDepartment> sysDepartments = sysDepartmentService.querySubById(sysLogin.getDepartmentId(), propertyFilters, sorts);
         SysDepartment sysDepartment = new TreeSupport<SysDepartment>().generateFullTree(sysDepartments);

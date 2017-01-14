@@ -61,6 +61,6 @@ public class SysMenuService extends DefaultEntityService<SysMenu, Long> {
         List<PropertyFilter> propertyFilterList = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
                 .add("menu_id", StringUtils.substringBeforeLast(menuIdSb.toString(), ",")).end();
         propertyFilterList.addAll(propertyFilters);
-        return sysMenuMapper.find(new Criterion(propertyFilterList,sorts));
+        return sysMenuMapper.search(new Criterion(propertyFilterList,sorts));
     }
 }

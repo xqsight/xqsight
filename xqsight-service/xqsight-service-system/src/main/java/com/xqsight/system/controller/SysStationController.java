@@ -16,6 +16,7 @@ import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.system.model.SysDepartment;
 import com.xqsight.system.service.SysDepartmentService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,7 +83,7 @@ public class SysStationController {
                 .collect(Collectors.joining(","));
         Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("station_name", stationName).add("station_code", stationCode)
+                .propertyType(PropertyType.S).add("station_name", StringUtils.trimToEmpty(stationName)).add("station_code", StringUtils.trimToEmpty(stationCode))
                 .matchTye(MatchType.IN).propertyType(PropertyType.L).add("department_id", departmentIds).end();
         List<Sort> sorts = SortBuilder.create().addAsc("station_name").end();
         List<SysStation> sysStations = sysStationService.search(propertyFilters,sorts);

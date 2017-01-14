@@ -86,7 +86,7 @@ public abstract class DefaultEntityService<T extends Model, PK extends Serializa
     @Transactional(readOnly = true, timeout = 30)
     public List<T> getAll() {
         Criterion criterion = new Criterion();
-        return getDao().find(criterion);
+        return getDao().search(criterion);
     }
 
 
@@ -95,7 +95,7 @@ public abstract class DefaultEntityService<T extends Model, PK extends Serializa
         Criterion criterion = new Criterion();
         criterion.setCriteria(filters);
         //开始查询
-        return getDao().find(criterion);
+        return getDao().search(criterion);
     }
 
     @Transactional(readOnly = true)
@@ -120,7 +120,7 @@ public abstract class DefaultEntityService<T extends Model, PK extends Serializa
             criterion.setOrder(orderSb.toString());
         }
 
-        return getDao().find(criterion);
+        return getDao().search(criterion);
     }
 
 }

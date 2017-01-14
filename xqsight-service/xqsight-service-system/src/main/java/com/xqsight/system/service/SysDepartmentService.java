@@ -48,7 +48,7 @@ public class SysDepartmentService extends DefaultEntityService<SysDepartment, Lo
 		StringBuffer customSql = new StringBuffer(" ' ");
 		customSql.append(departmentId).append(" ' ").append(" in (parent_ids)");
 		criterion.setCustomCriteria(customSql.toString());
-		List<SysDepartment> sysDepartments = sysDepartmentMapper.find(criterion);
+		List<SysDepartment> sysDepartments = sysDepartmentMapper.search(criterion);
 		return sysDepartments;
 	}
 }

@@ -138,14 +138,14 @@
         where  Id = #{id,jdbcType=NUMERIC} and  fun_order = #{funOrder,jdbcType=NUMERIC}  
     </update>
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Longjava.lang.Integer">
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete  sys_quick_key
-        where  Id = #{id,jdbcType=NUMERIC} and  fun_order = #{funOrder,jdbcType=NUMERIC}  
+        where  Id = #{id,jdbcType=NUMERIC}
     </delete>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Longjava.lang.Integer">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select <include refid="Base_Column_List"/> from sys_quick_key
-        where  Id = #{id,jdbcType=NUMERIC} and  fun_order = #{funOrder,jdbcType=NUMERIC}  
+        where  Id = #{id,jdbcType=NUMERIC}
     </select>
 
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">

@@ -14,6 +14,7 @@ import com.xqsight.common.support.MessageSupport;
 import com.xqsight.common.support.TreeSupport;
 import com.xqsight.system.model.SysRole;
 import com.xqsight.system.service.SysRoleService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,8 +68,8 @@ public class SysRoleController {
     @RequiresPermissions("sys:role:query")
     public Object query(String parentId, String roleName, String roleCode) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("role_name", roleName)
-                .add("role_code", roleCode).matchTye(MatchType.EQ)
+                .propertyType(PropertyType.S).add("role_name", StringUtils.trimToEmpty(roleName))
+                .add("role_code", StringUtils.trimToEmpty(roleCode)).matchTye(MatchType.EQ)
                 .propertyType(PropertyType.L).add("parent_id", parentId).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").addAsc("role_name").end();
         List<SysRole> sysRoles = sysRoleService.search(propertyFilters, sorts);
@@ -86,8 +87,8 @@ public class SysRoleController {
     @RequiresPermissions("sys:department:query")
     public Object queryAllTotTree(String roleName, String roleCode, Long currentUserId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("role_name", roleName)
-                .add("role_code", roleCode).end();
+                .propertyType(PropertyType.S).add("role_name", StringUtils.trimToEmpty(roleName))
+                .add("role_code", StringUtils.trimToEmpty(roleCode)).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
         List<SysRole> sysRoles = sysRoleService.querySubByUserId(currentUserId, propertyFilters, sorts);
         SysRole sysRole = new TreeSupport<SysRole>().generateFullTree(sysRoles);

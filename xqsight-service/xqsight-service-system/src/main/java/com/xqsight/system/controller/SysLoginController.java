@@ -16,6 +16,7 @@ import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.system.model.SysDepartment;
 import com.xqsight.system.service.SysDepartmentService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,7 +83,7 @@ public class SysLoginController {
                 .collect(Collectors.joining(","));
         Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("login_id", loginId).add("user_name", userName)
+                .propertyType(PropertyType.S).add("login_id", StringUtils.trimToEmpty(loginId)).add("user_name", StringUtils.trimToEmpty(userName))
                 .matchTye(MatchType.IN).propertyType(PropertyType.L).add("department_id", departmentIds).end();
         List<Sort> sorts = SortBuilder.create().addAsc("user_name").end();
         List<SysLogin> sysLogins = sysLoginService.search(propertyFilters, sorts);

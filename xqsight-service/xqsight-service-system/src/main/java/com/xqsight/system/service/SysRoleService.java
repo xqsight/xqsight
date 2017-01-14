@@ -57,6 +57,6 @@ public class SysRoleService extends DefaultEntityService<SysRole, Long> {
 					.append(" in(parent_ids) ").append(" or ");
 		});
 		criterion.setCustomCriteria(StringUtils.substringBeforeLast(customSql.toString(),"or"));
-		return sysRoleMapper.find(criterion);
+		return sysRoleMapper.search(criterion);
 	}
 }
