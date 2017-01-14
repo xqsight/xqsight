@@ -14,10 +14,18 @@
 		<setting name="useGeneratedKeys" value="false" />
 	</settings>
 	<typeHandlers>
-		<package name="com.github.javaplugs.mybatis"/>
+		<typeHandler handler="org.apache.ibatis.type.InstantTypeHandler" />
+		<typeHandler handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
+		<typeHandler handler="org.apache.ibatis.type.LocalDateTypeHandler" />
+		<typeHandler handler="org.apache.ibatis.type.LocalTimeTypeHandler" />
+		<typeHandler handler="org.apache.ibatis.type.OffsetDateTimeTypeHandler" />
+		<typeHandler handler="org.apache.ibatis.type.OffsetTimeTypeHandler" />
+		<typeHandler handler="org.apache.ibatis.type.ZonedDateTimeTypeHandler" />
 	</typeHandlers>
+	<!--<typeAliases>
+	</typeAliases>-->
 	<plugins>
-		<plugin interceptor="com.github.pagehelper.PageHelper">
+		<plugin interceptor="com.xqsight.common.core.support.XqsightPageHelper">
 			<property name="dialect" value="mysql" />
 			<!-- 该参数默认为false -->
 			<!-- 设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用 -->
