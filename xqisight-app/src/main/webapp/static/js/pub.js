@@ -7,7 +7,7 @@
         complete : function(xhr) {
             saicfc.progress.hide(_progress_index);
             if (xhr.status == 302) {
-                window.location.reload(true);
+                //window.location.reload(true);
             }
             if( xhr.responseJSON != undefined && xhr.responseJSON.errCode == "ERR_MSG_0001"){
                 saicfc.win.alert(xhr.responseJSON.msg);
@@ -16,8 +16,10 @@
         },
         error : function(data){
         	saicfc.progress.hide(_progress_index);
-            if(data.status != 404)
-                window.location.reload(true);
+            if(data.status != 404){
+                //window.location.reload(true);
+            }
+
         }
     });
 

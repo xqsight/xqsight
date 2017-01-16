@@ -91,7 +91,7 @@ public class SysMenuController {
 
     @RequestMapping("querytree")
     @RequiresPermissions("sys:menu:query")
-    public Object queryToTree(@RequestParam Long currentUserId) {
+    public Object queryToTree( Long currentUserId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.I).add("type", "" + MenuTypeEnum.MENU.getValuel()).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();

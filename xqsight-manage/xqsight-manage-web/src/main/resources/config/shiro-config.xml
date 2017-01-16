@@ -42,7 +42,7 @@
 				/**/login = anon
 				/**/ajaxlogin = anon
 				/file/manage/** = anon
-				/** = authc
+				/** = anon
 			</value>
 		</property>
 	</bean>

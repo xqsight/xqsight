@@ -25,10 +25,13 @@ public class RequestParamsHandlerInterceptor implements HandlerInterceptor {
 
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        if(SSOUtils.isAuthenticated()){
+        if(SSOUtils.isAuthenticated() && modelAndView !=null){
             request.setAttribute("currentUserId",SSOUtils.getCurrentUser().getId());
             request.setAttribute("createUserId",SSOUtils.getCurrentUser().getId());
             request.setAttribute("updateUserId", SSOUtils.getCurrentUser().getId());
+            modelAndView.addObject("updateUserId", SSOUtils.getCurrentUser().getId());
+            modelAndView.addObject("createUserId", SSOUtils.getCurrentUser().getId());
+            modelAndView.addObject("updateUserId", SSOUtils.getCurrentUser().getId());
         }
         logger.debug(".....");
     }
