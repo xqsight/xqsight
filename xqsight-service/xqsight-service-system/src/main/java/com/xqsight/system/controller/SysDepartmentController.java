@@ -21,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -103,7 +104,7 @@ public class SysDepartmentController {
 
     @RequestMapping("queryalltree")
     @RequiresPermissions("sys:department:query")
-    public Object queryAllTotTree(String departmentName, String departmentCode, Long currentUserId) {
+    public Object queryAllTotTree(String departmentName, String departmentCode, @RequestParam Long currentUserId) {
         SysLogin sysLogin = sysLoginService.get(currentUserId);
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))

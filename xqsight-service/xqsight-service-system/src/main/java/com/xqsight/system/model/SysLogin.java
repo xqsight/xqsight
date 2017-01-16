@@ -19,19 +19,10 @@ import java.time.LocalDateTime;
  */
 public class SysLogin extends UserBaseModel{
 
-	/** 主键 */
-    private Long id;
-
     /** 所属部门 */
     private Long departmentId;
-    /** login_id - 登陆名称 */
-    private String loginId;
-    /** user_name - 昵称 */
-    private String userName;
     /** real_name - 真实姓名 */
     private String realName;
-    /** password - 登陆密码 */
-    private String password;
     /** sex - 性别 0:未知 1:男 2:女 */
     private Integer sex;
     /** user_born - 生日 */
@@ -42,44 +33,18 @@ public class SysLogin extends UserBaseModel{
     private String fromSource;
     /** img_url - 图片地址 */
     private String imgUrl;
-    /** salt - 随机数 */
-    private String salt;
 
-    public Long getId(){
-        return this.id;
-    }
-    public void setId(Long id){
-        this.id = id;
-    }
     public Long getDepartmentId() {
         return departmentId;
     }
     public void setDepartmentId(Long departmentId) {
         this.departmentId = departmentId;
     }
-    public String getLoginId(){
-        return this.loginId;
-    }
-    public void setLoginId(String loginId){
-        this.loginId = loginId;
-    }
-	public String getUserName(){
-        return this.userName;
-    }
-    public void setUserName(String userName){
-        this.userName = userName;
-    }
 	public String getRealName(){
         return this.realName;
     }
     public void setRealName(String realName){
         this.realName = realName;
-    }
-	public String getPassword(){
-        return this.password;
-    }
-    public void setPassword(String password){
-        this.password = password;
     }
 	public Integer getSex(){
         return this.sex;
@@ -111,15 +76,9 @@ public class SysLogin extends UserBaseModel{
     public void setImgUrl(String imgUrl){
         this.imgUrl = imgUrl;
     }
-	public String getSalt(){
-        return this.salt;
-    }
-    public void setSalt(String salt){
-        this.salt = salt;
-    }
 
     @Override
     public Serializable getPK() {
-        return this.id;
+        return super.getId();
     }
 }

@@ -20,6 +20,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -90,7 +91,7 @@ public class SysMenuController {
 
     @RequestMapping("querytree")
     @RequiresPermissions("sys:menu:query")
-    public Object queryToTree(Long currentUserId) {
+    public Object queryToTree(@RequestParam Long currentUserId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.I).add("type", "" + MenuTypeEnum.MENU.getValuel()).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();

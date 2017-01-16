@@ -98,6 +98,13 @@ public class SysLoginController {
         return MessageSupport.successDataMsg(sysLogin, "查询成功");
     }
 
+    @RequestMapping("queryuserinfo")
+    @RequiresPermissions("sys:login:query")
+    public Object queryUserInfo(Long currentUserId) {
+        SysLogin sysLogin = sysLoginService.get(currentUserId);
+        return MessageSupport.successDataMsg(sysLogin, "查询成功");
+    }
+
     @RequestMapping("queryall")
     @RequiresPermissions("sys:login:query")
     public Object queryall() {

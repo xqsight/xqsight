@@ -41,4 +41,9 @@ public class SSOUtils {
         session.setAttribute(key, value);
     }
 
+    public static boolean isAuthenticated(){
+        Subject subject = SecurityUtils.getSubject();
+        return subject.isAuthenticated();
+    }
+
 }
