@@ -12,6 +12,7 @@ import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.common.support.TreeSupport;
+import com.xqsight.sso.shiro.annotation.CurrentUser;
 import com.xqsight.system.model.SysRole;
 import com.xqsight.system.service.SysRoleService;
 import org.apache.commons.lang3.StringUtils;
@@ -85,7 +86,7 @@ public class SysRoleController {
 
     @RequestMapping("queryalltree")
     @RequiresPermissions("sys:department:query")
-    public Object queryAllTotTree(String roleName, String roleCode, Long currentUserId) {
+    public Object queryAllTotTree(String roleName, String roleCode,@CurrentUser Long currentUserId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("role_name", StringUtils.trimToEmpty(roleName))
                 .add("role_code", StringUtils.trimToEmpty(roleCode)).end();

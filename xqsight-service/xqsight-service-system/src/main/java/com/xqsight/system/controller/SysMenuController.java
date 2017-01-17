@@ -104,7 +104,7 @@ public class SysMenuController {
 
     @RequestMapping("queryalltree")
     @RequiresPermissions("sys:menu:query")
-    public Object queryAllToTree(Long currentUserId) {
+    public Object queryAllToTree(@CurrentUser Long currentUserId) {
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
         List<SysMenu> sysMenus = sysMenuService.querySubByUserId(currentUserId,null, sorts);
         SysMenu sysMenu = new TreeSupport<SysMenu>().generateFullTree(sysMenus);
