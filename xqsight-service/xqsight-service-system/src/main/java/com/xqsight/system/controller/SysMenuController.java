@@ -13,6 +13,7 @@ import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.common.support.TreeSupport;
+import com.xqsight.sso.shiro.annotation.CurrentUser;
 import com.xqsight.system.enums.MenuTypeEnum;
 import com.xqsight.system.model.SysMenu;
 import com.xqsight.system.service.SysMenuService;
@@ -91,11 +92,12 @@ public class SysMenuController {
 
     @RequestMapping("querytree")
     @RequiresPermissions("sys:menu:query")
-    public Object queryToTree( Long currentUserId) {
+    public Object queryToTree(@CurrentUser Long currentUserId) {
+
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.I).add("type", "" + MenuTypeEnum.MENU.getValuel()).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
-        List<SysMenu> sysMenus = sysMenuService.querySubByUserId(currentUserId,propertyFilters, sorts);
+        List<SysMenu> sysMenus = sysMenuService.querySubByUserId(currentUserId, propertyFilters, sorts);
         SysMenu sysMenu = new TreeSupport<SysMenu>().generateFullTree(sysMenus);
         return MessageSupport.successDataMsg(sysMenu, "查询成功");
     }

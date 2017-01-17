@@ -45,7 +45,7 @@ public class SysDepartmentController {
 
     @RequestMapping("save")
     @RequiresPermissions("sys:department:save")
-    public Object save(SysDepartment sysDepartment) {
+    public Object save(@RequestParam SysDepartment sysDepartment) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.S).add("department_code", sysDepartment.getDepartmentCode()).end();
         List<SysDepartment> sysDepartments = sysDepartmentService.search(propertyFilters);
