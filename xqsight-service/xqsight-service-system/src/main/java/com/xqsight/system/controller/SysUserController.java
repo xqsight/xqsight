@@ -8,6 +8,7 @@ import com.github.pagehelper.Page;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.common.support.MessageSupport;
+import com.xqsight.sso.shiro.annotation.CurrentUser;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,11 +75,18 @@ public class SysUserController{
 		return MessageSupport.successDataMsg(sysUser, "查询成功");
 	}
 
+
 	@RequestMapping("queryall")
 	@RequiresPermissions("sys:user:query")
 	public Object queryall() {
 		List<SysUser> sysUsers = sysUserService.search(null);
 		return MessageSupport.successDataMsg(sysUsers, "查询成功");
     }
+
+	@RequestMapping("queryuserinfo")
+	public Object queryUserInfo(@CurrentUser  Long id) {
+		SysUser sysUser = sysUserService.get(id);
+		return MessageSupport.successDataMsg(sysUser, "查询成功");
+	}
 
 }

@@ -101,6 +101,7 @@ alter table sys_file comment ' 文件表';
 create table sys_login
 (
    id                   bigint not null auto_increment comment '登陆内码',
+   department_id        bigint not null comment '部门内码',
    login_id             varchar(120) comment '登陆名称',
    user_name            varchar(120) comment '昵称',
    real_name            varchar(120) comment '真实姓名',

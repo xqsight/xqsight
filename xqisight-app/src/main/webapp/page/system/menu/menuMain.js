@@ -59,7 +59,7 @@ saicfc.nameSpace.reg("sys.menu");
             $("#btn-remove").on("click",obj.removeFun);
 
             obj.loadMenuTreeFun();
-            obj.loadMenuTableFun();
+            //obj.loadMenuTableFun();
 
         };
 

@@ -69,7 +69,7 @@ saicfc.nameSpace.reg("sys");
                 "url": ctxData + "/sys/menu/querytree?date=" + new Date().getTime() ,
                 "success": function(retData){
                     var menuHtml = "";
-                    menuHtml =  obj.foreachFun(menuHtml,retData.data) + "</ul></li>";
+                    menuHtml =  obj.foreachFun(menuHtml,retData.data.children) + "</ul></li>";
                     $("#portal_menus").append(menuHtml);
                 },
                 "dataType": "jsonp",

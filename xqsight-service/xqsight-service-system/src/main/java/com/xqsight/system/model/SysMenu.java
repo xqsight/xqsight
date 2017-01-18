@@ -54,6 +54,7 @@ public class SysMenu extends TreeBaseModel<SysMenu> {
     }
     public void setMenuName(String menuName){
         this.menuName = menuName;
+        super.setName(menuName);
     }
 	public String getUrl(){
         return this.url;

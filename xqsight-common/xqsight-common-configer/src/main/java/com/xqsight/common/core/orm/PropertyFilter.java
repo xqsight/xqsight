@@ -1,6 +1,7 @@
 package com.xqsight.common.core.orm;
 
 import com.xqsight.common.core.support.PropertyFilterSupport;
+import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.utils.ReflectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -53,7 +54,11 @@ public class PropertyFilter {
             throw new IllegalArgumentException("filter name of " + filterName + "is illegal");
 
         //按entity property中的类型将字符串转化为实际类型.
-        this.propertyValue = ReflectionUtils.convertStringToObject(value, propertyType);
+        if(StringUtils.equalsIgnoreCase(matchTypeCode,"in")){
+            this.propertyValue = value;
+        }else{
+            this.propertyValue = ReflectionUtils.convertStringToObject(value, propertyType);
+        }
     }
 
     /**
