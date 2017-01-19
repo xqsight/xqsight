@@ -9,6 +9,10 @@
     <!-- bootstrap & fonts -->
     <link rel="stylesheet" href="../../../static/ace/css/bootstrap.css" />
     <link rel="stylesheet" href="../../../static/ace/css/font-awesome.css" />
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="../../../static/ztree/css/metroStyle/metroStyle.css"/>
+
     <!-- ace styles & fonts & common-->
     <link rel="stylesheet" href="../../../static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
     <link rel="stylesheet" href="../../../static/ace/css/ace-fonts.css" />
@@ -34,7 +38,26 @@
         try{ace.settings.check('main-container' , 'fixed')}catch(e){}
     </script>
     <!-- /section:basics/sidebar -->
-    <div class="main-content">
+    <div class="sidebar widget-box widget-color-green" style="width: 230px;">
+        <div class="widget-header widget-header-flat">
+            <h4 class="widget-title">
+                <i class="ace-icon fa fa-filter"></i>
+                角色树
+            </h4>
+        </div>
+        <div class="widget-body">
+            <div class="widget-main no-padding">
+                <!-- start condition -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <ul id="roleTree" class="ztree"></ul>
+                    </div>
+                </div>
+                <!-- end condition -->
+            </div><!-- /.widget-main -->
+        </div><!-- /.widget-body -->
+    </div>
+    <div class="main-content" style="margin-left: 230px;">
         <div class="main-content-inner">
             <div class="page-content">
                 <div class="row">

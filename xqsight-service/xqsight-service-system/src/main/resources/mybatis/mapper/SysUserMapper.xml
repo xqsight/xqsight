@@ -162,7 +162,7 @@
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysUser">
-        update from sys_user set
+        update sys_user set
 		user_code = #{userCode,jdbcType=VARCHAR},
 		cell_phone = #{cellPhone,jdbcType=VARCHAR},
 		email = #{email,jdbcType=VARCHAR},
@@ -182,53 +182,53 @@
     </update>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysUser">
-        update from sys_user
+        update sys_user
         <set>
-                <if test="userCode!=null">
-				user_code = #{userCode,jdbcType=VARCHAR},
-                </if>
-                <if test="cellPhone!=null">
-				cell_phone = #{cellPhone,jdbcType=VARCHAR},
-                </if>
-                <if test="email!=null">
-				email = #{email,jdbcType=VARCHAR},
-                </if>
-                <if test="qq!=null">
-				qq = #{qq,jdbcType=VARCHAR},
-                </if>
-                <if test="wecaht!=null">
-				wecaht = #{wecaht,jdbcType=VARCHAR},
-                </if>
-                <if test="alipay!=null">
-				alipay = #{alipay,jdbcType=VARCHAR},
-                </if>
-                <if test="interest!=null">
-				interest = #{interest,jdbcType=VARCHAR},
-                </if>
-                <if test="country!=null">
-				country = #{country,jdbcType=NUMERIC},
-                </if>
-                <if test="province!=null">
-				province = #{province,jdbcType=NUMERIC},
-                </if>
-                <if test="city!=null">
-				city = #{city,jdbcType=NUMERIC},
-                </if>
-                <if test="address!=null">
-				address = #{address,jdbcType=VARCHAR},
-                </if>
-                <if test="active!=null">
-				active = #{active,jdbcType=NUMERIC},
-                </if>
-                <if test="updateUserId!=null">
-				update_user_id = #{updateUserId,jdbcType=VARCHAR},
-                </if>
-                <if test="updateTime!=null">
-				update_time = #{updateTime,jdbcType=TIMESTAMP},
-                </if>
-                <if test="remark!=null">
-				remark = #{remark,jdbcType=VARCHAR},
-                </if>
+            <if test="userCode!=null">
+            user_code = #{userCode,jdbcType=VARCHAR},
+            </if>
+            <if test="cellPhone!=null">
+            cell_phone = #{cellPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="email!=null">
+            email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="qq!=null">
+            qq = #{qq,jdbcType=VARCHAR},
+            </if>
+            <if test="wecaht!=null">
+            wecaht = #{wecaht,jdbcType=VARCHAR},
+            </if>
+            <if test="alipay!=null">
+            alipay = #{alipay,jdbcType=VARCHAR},
+            </if>
+            <if test="interest!=null">
+            interest = #{interest,jdbcType=VARCHAR},
+            </if>
+            <if test="country!=null">
+            country = #{country,jdbcType=NUMERIC},
+            </if>
+            <if test="province!=null">
+            province = #{province,jdbcType=NUMERIC},
+            </if>
+            <if test="city!=null">
+            city = #{city,jdbcType=NUMERIC},
+            </if>
+            <if test="address!=null">
+            address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="active!=null">
+            active = #{active,jdbcType=NUMERIC},
+            </if>
+            <if test="updateUserId!=null">
+            update_user_id = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+            remark = #{remark,jdbcType=VARCHAR},
+            </if>
         </set>
         where  ID = #{id,jdbcType=NUMERIC}  
     </update>

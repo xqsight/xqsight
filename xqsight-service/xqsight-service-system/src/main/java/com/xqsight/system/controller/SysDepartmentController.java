@@ -91,7 +91,7 @@ public class SysDepartmentController {
                 .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))
                 .add("department_code", StringUtils.trimToEmpty(departmentCode)).add("custom_code", StringUtils.trimToEmpty(customCode))
                 .matchTye(MatchType.EQ).propertyType(PropertyType.L).add("parent_id", parentId).end();
-        List<Sort> sorts = SortBuilder.create().addAsc("sort").addAsc("department_name").end();
+        List<Sort> sorts = SortBuilder.create().addAsc("department_name").addAsc("department_name").end();
         List<SysDepartment> sysDepartments = sysDepartmentService.search(propertyFilters, sorts);
         return MessageSupport.successDataMsg(sysDepartments, "查询成功");
     }
@@ -110,7 +110,7 @@ public class SysDepartmentController {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))
                 .add("department_code", StringUtils.trimToEmpty(departmentCode)).end();
-        List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
+        List<Sort> sorts = SortBuilder.create().addAsc("department_name").end();
         List<SysDepartment> sysDepartments = sysDepartmentService.querySubById(sysLogin.getDepartmentId(), propertyFilters, sorts);
         SysDepartment sysDepartment = new TreeSupport<SysDepartment>().generateFullTree(sysDepartments);
         return MessageSupport.successDataMsg(sysDepartment, "查询成功");

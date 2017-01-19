@@ -138,7 +138,7 @@
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysDepartment">
-        update from sys_department set
+        update sys_department set
 		parent_id = #{parentId,jdbcType=NUMERIC},
 		parent_ids = #{parentIds,jdbcType=VARCHAR},
 		department_name = #{departmentName,jdbcType=VARCHAR},
@@ -155,44 +155,44 @@
     </update>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysDepartment">
-        update from sys_department
+        update sys_department
         <set>
-                <if test="parentId!=null">
-				parent_id = #{parentId,jdbcType=NUMERIC},
-                </if>
-                <if test="parentIds!=null">
-				parent_ids = #{parentIds,jdbcType=VARCHAR},
-                </if>
-                <if test="departmentName!=null">
-				department_name = #{departmentName,jdbcType=VARCHAR},
-                </if>
-                <if test="departmentType!=null">
-				department_type = #{departmentType,jdbcType=VARCHAR},
-                </if>
-                <if test="active!=null">
-				active = #{active,jdbcType=NUMERIC},
-                </if>
-                <if test="departmentCode!=null">
-				department_code = #{departmentCode,jdbcType=VARCHAR},
-                </if>
-                <if test="customCode!=null">
-				custom_code = #{customCode,jdbcType=VARCHAR},
-                </if>
-                <if test="icon!=null">
-				icon = #{icon,jdbcType=VARCHAR},
-                </if>
-                <if test="sort!=null">
-				sort = #{sort,jdbcType=NUMERIC},
-                </if>
-                <if test="updateUserId!=null">
-				update_user_id = #{updateUserId,jdbcType=VARCHAR},
-                </if>
-                <if test="updateTime!=null">
-				update_time = #{updateTime,jdbcType=TIMESTAMP},
-                </if>
-                <if test="remark!=null">
-				remark = #{remark,jdbcType=VARCHAR},
-                </if>
+            <if test="parentId!=null">
+            parent_id = #{parentId,jdbcType=NUMERIC},
+            </if>
+            <if test="parentIds!=null">
+            parent_ids = #{parentIds,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentName!=null">
+            department_name = #{departmentName,jdbcType=VARCHAR},
+            </if>
+            <if test="departmentType!=null">
+            department_type = #{departmentType,jdbcType=VARCHAR},
+            </if>
+            <if test="active!=null">
+            active = #{active,jdbcType=NUMERIC},
+            </if>
+            <if test="departmentCode!=null">
+            department_code = #{departmentCode,jdbcType=VARCHAR},
+            </if>
+            <if test="customCode!=null">
+            custom_code = #{customCode,jdbcType=VARCHAR},
+            </if>
+            <if test="icon!=null">
+            icon = #{icon,jdbcType=VARCHAR},
+            </if>
+            <if test="sort!=null">
+            sort = #{sort,jdbcType=NUMERIC},
+            </if>
+            <if test="updateUserId!=null">
+            update_user_id = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+            remark = #{remark,jdbcType=VARCHAR},
+            </if>
         </set>
         where  department_id = #{departmentId,jdbcType=NUMERIC}  
     </update>

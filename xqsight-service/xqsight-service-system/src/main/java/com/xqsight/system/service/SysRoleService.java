@@ -53,8 +53,9 @@ public class SysRoleService extends DefaultEntityService<SysRole, Long> {
 		Criterion criterion = new Criterion(propertyFilters,sorts);
 		StringBuffer customSql = new StringBuffer();
 		roleIds.stream().distinct().forEach(roleId -> {
-			customSql.append(" ' ").append(roleId).append(" ' ")
-					.append(" in(parent_ids) ").append(" or ");
+			customSql.append("(").append(roleId).append(" ' ")
+					.append(" in(parent_ids) ").append(" or ")
+			.append(" role_id = " ).append(roleId).append(" ) or ");
 		});
 		criterion.setCustomCriteria(StringUtils.substringBeforeLast(customSql.toString(),"or"));
 		return sysRoleMapper.search(criterion);

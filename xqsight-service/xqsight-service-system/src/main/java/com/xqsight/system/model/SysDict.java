@@ -39,6 +39,7 @@ public class SysDict extends TreeBaseModel<SysDict>{
     }
     public void setDictId(Long dictId){
         this.dictId = dictId;
+        super.setId("" + dictId);
     }
 	public String getParentIds(){
         return this.parentIds;
@@ -63,6 +64,7 @@ public class SysDict extends TreeBaseModel<SysDict>{
     }
     public void setDictName(String dictName){
         this.dictName = dictName;
+        super.setName(dictName);
     }
 	public String getDictValue(){
         return this.dictValue;

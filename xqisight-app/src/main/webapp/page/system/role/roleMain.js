@@ -13,12 +13,15 @@ saicfc.nameSpace.reg("sys.role");
          * @type {saicfc.pmpf}
          */
         var obj = this;
+
         /**
          * 列表对象
          *
          * @type {{}}
          */
         this.roleTable = {};
+        this.roleTree = {};
+        this.curSelTree={};
 
         /**
          * 初始化调用 function
@@ -63,6 +66,7 @@ saicfc.nameSpace.reg("sys.role");
             /**
              * 加载列表
              */
+            obj.loadRoleTreeFun();
             obj.loadRoleTableFun();
         };
 
@@ -70,7 +74,7 @@ saicfc.nameSpace.reg("sys.role");
          * 新增 function
          */
         this.newFun = function(){
-            saicfc.win.show("角色新增","system/role/roleManage.html",600,300,false);
+            saicfc.win.show("角色新增","system/role/roleManage.html?parentId=" + obj.curSelTree.id,600,300,false);
         }
 
         /**
@@ -104,7 +108,7 @@ saicfc.nameSpace.reg("sys.role");
                         "success": function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
-                                obj.roleTable.ajax.reload();
+                                obj.loadRoleTreeFun();
                             }
                         }
                     });
@@ -143,8 +147,13 @@ saicfc.nameSpace.reg("sys.role");
                     });
                 },
                 "fnServerParams": function (aoData) {
+                    var parentId = 0;
+                    if(obj.curSelTree.id != undefined ){
+                        parentId = obj.curSelTree.id;
+                    }
                     aoData.push(
-                        { "name": "roleName", "value": $("#roleName").val() }
+                        { "name": "roleName", "value": $("#roleName").val() },
+                        { "name": "parentId", "value": parentId }
                     );
                 },
                 "aoColumnDefs": [
@@ -231,6 +240,54 @@ saicfc.nameSpace.reg("sys.role");
             saicfc.win.show("添加权限","system/role/addMenu.html?roleId=" + selRows[0].roleId,400,$(window).height(),false);
         }
 
+        /*** 加载 tree **/
+        this.loadRoleTreeFun = function () {
+            $.ajax({
+                url: ctxData + "/sys/role/queryalltree?date="+new Date().getTime(),
+                dataType: "jsonp",
+                success: function(retData){
+                    if(retData.status == 0){
+                        $.fn.zTree.init($("#roleTree"),{
+                            check: {
+                                enable: false,
+                            },
+                            data: {
+                                simpleData: {
+                                    enable: true
+                                }
+                            },
+                            callback: {
+                                onClick: function onClick(event, treeId, treeNode) {
+                                    obj.roleTree.selectNode(treeNode);
+                                    obj.curSelTree = treeNode;
+                                    obj.roleTree.ajax.reload();
+
+                                    return false;
+                                }
+                            }
+                        }, retData.data);
+
+                        obj.roleTree = $.fn.zTree.getZTreeObj("roleTree");
+
+                        if(obj.curSelTree.id != undefined ){
+                            obj.roleTree.selectNode(obj.curSelTree);
+                        }else{
+                            var nodes = obj.menuTree.getNodes();
+                            if (nodes.length>0) {
+                                obj.roleTree.selectNode(nodes[0]);
+                                obj.curSelTree = nodes[0];
+                            }
+                        }
+
+                        obj.roleTree.expandAll(true);
+
+                        obj.roleTree.ajax.reload();
+                    }
+                    //渲染结束重新设置高度
+                    parent.saicfc.common.setIframeHeight($.getUrlParam(saicfc.iframeId));
+                }
+            });
+        }
 
         /**
          *
