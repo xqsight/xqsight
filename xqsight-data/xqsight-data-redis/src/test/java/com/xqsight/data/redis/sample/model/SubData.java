@@ -6,7 +6,6 @@ package com.xqsight.data.redis.sample.model;
 import java.io.Serializable;
 
 /**
- * @author linhaoran
  *
  */
 public class SubData implements Serializable{

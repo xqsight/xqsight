@@ -29,7 +29,6 @@ import com.xqsight.data.redis.sample.model.SubData;
 import com.xqsight.data.redis.serializer.FastJsonRedisSerializer;
 
 /**
- * @author linhaoran
  *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
