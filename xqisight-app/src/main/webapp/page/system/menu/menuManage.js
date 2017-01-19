@@ -68,10 +68,11 @@ saicfc.nameSpace.reg("sys.menu");
                         url = ctxData + "/sys/menu/update?date=" + new Date().getTime();
                     }
                     $.ajax({
-                        "dataType": "jsonp",
-                        "url": url,
-                        "data": editMenu,
-                        "success": function(retData){
+                        dataType: "jsonp",
+                        url: url,
+                        method : "post",
+                        data: editMenu,
+                        success: function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 var iframeContent = saicfc.tab.getIframeContent();
@@ -102,10 +103,10 @@ saicfc.nameSpace.reg("sys.menu");
                 return;
             }
             $.ajax({
-                "dataType": "jsonp",
-                "cache": false,
-                "url": ctxData + "/sys/menu/querybyid?menuId=" + menuId + "&date=" + new Date().getTime(),
-                "success": function(retData){
+                dataType : "jsonp",
+                cache : false,
+                url : ctxData + "/sys/menu/querybyid?menuId=" + menuId + "&date=" + new Date().getTime(),
+                success : function(retData){
                     if(retData.status == "0"){
                         var data = retData.data;
                         editMenu.menuId = data.menuId;

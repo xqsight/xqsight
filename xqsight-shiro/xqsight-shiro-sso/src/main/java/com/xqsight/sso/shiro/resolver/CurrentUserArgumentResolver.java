@@ -19,18 +19,19 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(CurrentUser.class) ||
-                Model.class.isAssignableFrom(parameter.getParameterType());
+        return parameter.hasParameterAnnotation(CurrentUser.class) ;//|| Model.class.isAssignableFrom(parameter.getParameterType());
     }
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         long currentUserId = SSOUtils.isAuthenticated() ? SSOUtils.getCurrentUserId() : 0;
-        /*** 注解获取当前用户ID **/
+
+        return currentUserId;
+       /* *//*** 注解获取当前用户ID **//*
         if (parameter.hasParameterAnnotation(CurrentUser.class)) {
             return currentUserId;
         }
-        /** 给当前对象注入用户登录信息 **/
+        *//** 给当前对象注入用户登录信息 **//*
         else if (Model.class.isAssignableFrom(parameter.getParameterType())) {
             Object target = BeanUtils.instantiate(parameter.getParameterType());
             Field[] fields = parameter.getParameterType().getDeclaredFields();
@@ -41,6 +42,6 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
             }
             return target;
         }
-        return null;
+        return null;*/
     }
 }

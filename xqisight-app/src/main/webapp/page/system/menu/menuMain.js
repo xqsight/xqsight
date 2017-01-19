@@ -59,7 +59,7 @@ saicfc.nameSpace.reg("sys.menu");
             $("#btn-remove").on("click",obj.removeFun);
 
             obj.loadMenuTreeFun();
-            //obj.loadMenuTableFun();
+            obj.loadMenuTableFun();
 
         };
 
@@ -241,10 +241,14 @@ saicfc.nameSpace.reg("sys.menu");
                                 }
                             },
                             callback: {
-                                onClick: function onClick(e, treeId, treeNode) {
+                                onClick: function onClick(event, treeId, treeNode) {
                                     obj.menuTree.selectNode(treeNode);
                                     obj.curSelTree = treeNode;
                                     obj.menuTable.ajax.reload();
+                                    //阻止事件冒泡
+                                    event.stopPropagation();
+                                    //阻止事件执行
+                                    event.preventDefault();
                                     return false;
                                 }
                             }
