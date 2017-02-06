@@ -53,7 +53,7 @@ public class SysDepartmentController {
         if (sysDepartments != null || sysDepartments.size() > 0)
             return MessageSupport.failureMsg("部门编号[" + sysDepartment.getDepartmentCode() + "]已经存在,请重新修改");
         SysDepartment parentDep = sysDepartmentService.get(Long.valueOf(sysDepartment.getParentId()));
-        sysDepartment.setParentIds(parentDep.getDepartmentId() + Constants.COMMA_SIGN_SPLIT_NAME + parentDep.getParentIds());
+        sysDepartment.setParentIds(parentDep.getParentIds() + parentDep.getDepartmentId() + Constants.COMMA_SIGN_SPLIT_NAME );
         sysDepartmentService.save(sysDepartment, true);
         return MessageSupport.successMsg("保存成功");
     }
@@ -109,9 +109,10 @@ public class SysDepartmentController {
         SysLogin sysLogin = sysLoginService.get(currentUserId);
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))
-                .add("department_code", StringUtils.trimToEmpty(departmentCode)).end();
+                .add("department_code", StringUtils.trimToEmpty(departmentCode))
+                .add("parent_ids","," + sysLogin.getDepartmentId() + ",").end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
-        List<SysDepartment> sysDepartments = sysDepartmentService.querySubById(sysLogin.getDepartmentId(), propertyFilters, sorts);
+        List<SysDepartment> sysDepartments = sysDepartmentService.search(propertyFilters, sorts);
         SysDepartment sysDepartment = new TreeSupport<SysDepartment>().generateFullTree(sysDepartments);
         return MessageSupport.successDataMsg(sysDepartment, "查询成功");
     }

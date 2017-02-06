@@ -41,7 +41,7 @@ public class SysDictController {
     @RequiresPermissions("sys:dict:save")
     public Object save(SysDict sysDict) {
         SysDict parentDict = sysDictService.get(Long.valueOf(sysDict.getParentId()));
-        sysDict.setParentIds(parentDict.getDictId() + Constants.COMMA_SIGN_SPLIT_NAME + parentDict.getParentIds());
+        sysDict.setParentIds(parentDict.getParentIds() + parentDict.getDictId() + Constants.COMMA_SIGN_SPLIT_NAME);
         sysDictService.save(sysDict, true);
         return MessageSupport.successMsg("保存成功");
     }

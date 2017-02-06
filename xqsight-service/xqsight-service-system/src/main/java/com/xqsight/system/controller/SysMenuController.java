@@ -44,7 +44,7 @@ public class SysMenuController {
     @RequiresPermissions("sys:menu:save")
     public Object save(SysMenu sysMenu) {
         SysMenu parentMenu = sysMenuService.get(Long.valueOf(sysMenu.getParentId()));
-        sysMenu.setParentIds(parentMenu.getMenuId() + Constants.COMMA_SIGN_SPLIT_NAME + parentMenu.getParentIds());
+        sysMenu.setParentIds(parentMenu.getParentIds() + parentMenu.getMenuId() + Constants.COMMA_SIGN_SPLIT_NAME);
         sysMenuService.save(sysMenu, true);
         return MessageSupport.successMsg("保存成功");
     }
@@ -106,7 +106,7 @@ public class SysMenuController {
     @RequiresPermissions("sys:menu:query")
     public Object queryAllToTree(@CurrentUser Long currentUserId) {
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
-        List<SysMenu> sysMenus = sysMenuService.querySubByUserId(currentUserId,null, sorts);
+        List<SysMenu> sysMenus = sysMenuService.querySubByUserId(currentUserId, null, sorts);
         SysMenu sysMenu = new TreeSupport<SysMenu>().generateFullTree(sysMenus);
         return MessageSupport.successDataMsg(sysMenu, "查询成功");
     }

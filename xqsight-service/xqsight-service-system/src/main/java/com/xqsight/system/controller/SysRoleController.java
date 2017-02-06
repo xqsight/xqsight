@@ -10,6 +10,7 @@ import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
+import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.common.support.TreeSupport;
 import com.xqsight.sso.shiro.annotation.CurrentUser;
@@ -40,6 +41,8 @@ public class SysRoleController {
     @RequestMapping("save")
     @RequiresPermissions("sys:role:save")
     public Object save(SysRole sysRole) {
+        SysRole parentRole = sysRoleService.get(Long.valueOf(sysRole.getParentId()));
+        sysRole.setParentIds(parentRole.getParentIds() + parentRole.getRoleId() + Constants.COMMA_SIGN_SPLIT_NAME);
         sysRoleService.save(sysRole, true);
         return MessageSupport.successMsg("保存成功");
     }
