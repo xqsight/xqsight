@@ -109,10 +109,9 @@ public class SysDepartmentController {
         SysLogin sysLogin = sysLoginService.get(currentUserId);
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))
-                .add("department_code", StringUtils.trimToEmpty(departmentCode))
-                .add("parent_ids","," + sysLogin.getDepartmentId() + ",").end();
+                .add("department_code", StringUtils.trimToEmpty(departmentCode)).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
-        List<SysDepartment> sysDepartments = sysDepartmentService.search(propertyFilters, sorts);
+        List<SysDepartment> sysDepartments = sysDepartmentService.querySubById(sysLogin.getDepartmentId(), propertyFilters, sorts);
         SysDepartment sysDepartment = new TreeSupport<SysDepartment>().generateFullTree(sysDepartments);
         return MessageSupport.successDataMsg(sysDepartment, "查询成功");
     }

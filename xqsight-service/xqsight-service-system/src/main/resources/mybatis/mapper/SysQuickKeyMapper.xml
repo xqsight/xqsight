@@ -99,7 +99,7 @@
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysQuickKey">
-        update from sys_quick_key set
+        update sys_quick_key set
 		key_icon = #{keyIcon,jdbcType=VARCHAR},
 		key_title = #{keyTitle,jdbcType=VARCHAR},
 		key_value = #{keyValue,jdbcType=VARCHAR},
@@ -111,29 +111,29 @@
     </update>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysQuickKey">
-        update from sys_quick_key
+        update sys_quick_key
         <set>
-                <if test="keyIcon!=null">
-				key_icon = #{keyIcon,jdbcType=VARCHAR},
-                </if>
-                <if test="keyTitle!=null">
-				key_title = #{keyTitle,jdbcType=VARCHAR},
-                </if>
-                <if test="keyValue!=null">
-				key_value = #{keyValue,jdbcType=VARCHAR},
-                </if>
-                <if test="active!=null">
-				active = #{active,jdbcType=NUMERIC},
-                </if>
-                <if test="updateUserId!=null">
-				update_user_id = #{updateUserId,jdbcType=VARCHAR},
-                </if>
-                <if test="updateTime!=null">
-				update_time = #{updateTime,jdbcType=TIMESTAMP},
-                </if>
-                <if test="remark!=null">
-				remark = #{remark,jdbcType=VARCHAR},
-                </if>
+            <if test="keyIcon!=null">
+            key_icon = #{keyIcon,jdbcType=VARCHAR},
+            </if>
+            <if test="keyTitle!=null">
+            key_title = #{keyTitle,jdbcType=VARCHAR},
+            </if>
+            <if test="keyValue!=null">
+            key_value = #{keyValue,jdbcType=VARCHAR},
+            </if>
+            <if test="active!=null">
+            active = #{active,jdbcType=NUMERIC},
+            </if>
+            <if test="updateUserId!=null">
+            update_user_id = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+            remark = #{remark,jdbcType=VARCHAR},
+            </if>
         </set>
         where  Id = #{id,jdbcType=NUMERIC} and  fun_order = #{funOrder,jdbcType=NUMERIC}  
     </update>

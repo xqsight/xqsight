@@ -87,7 +87,7 @@ public class SysDictController {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("dict_name", StringUtils.trimToEmpty(dictName))
                 .add("dict_code", StringUtils.trimToEmpty(dictCode)).end();
-        List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
+        List<Sort> sorts = SortBuilder.create().addAsc("dict_name").end();
         List<SysDict> sysDicts = sysDictService.search(propertyFilters, sorts);
         return MessageSupport.successDataMsg(sysDicts, "查询成功");
     }
@@ -105,7 +105,7 @@ public class SysDictController {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("dict_name", StringUtils.trimToEmpty(dictName))
                 .add("dict_code", StringUtils.trimToEmpty(dictCode)).end();
-        List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
+        List<Sort> sorts = SortBuilder.create().addAsc("dict_name").end();
         List<SysDict> sysDicts = sysDictService.search(propertyFilters, sorts);
         SysDict sysDict = new TreeSupport<SysDict>().generateFullTree(sysDicts);
         return MessageSupport.successDataMsg(sysDict, "查询成功");

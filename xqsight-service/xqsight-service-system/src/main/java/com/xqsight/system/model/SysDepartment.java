@@ -31,8 +31,6 @@ public class SysDepartment extends TreeBaseModel<SysDepartment>{
     private String departmentCode;
     /** custom_code - 自定义编号 */
     private String customCode;
-    /** icon - 图标 */
-    private String icon;
     /** sort - 排序 */
     private Integer sort;
 
@@ -41,6 +39,7 @@ public class SysDepartment extends TreeBaseModel<SysDepartment>{
     }
     public void setDepartmentId(Long departmentId){
         this.departmentId = departmentId;
+        super.setId("" + departmentId);
     }
 	public String getParentIds(){
         return this.parentIds;
@@ -53,6 +52,7 @@ public class SysDepartment extends TreeBaseModel<SysDepartment>{
     }
     public void setDepartmentName(String departmentName){
         this.departmentName = departmentName;
+        super.setName(departmentName);
     }
 	public String getDepartmentType(){
         return this.departmentType;
@@ -71,12 +71,6 @@ public class SysDepartment extends TreeBaseModel<SysDepartment>{
     }
     public void setCustomCode(String customCode){
         this.customCode = customCode;
-    }
-	public String getIcon(){
-        return this.icon;
-    }
-    public void setIcon(String icon){
-        this.icon = icon;
     }
 	public Integer getSort(){
         return this.sort;

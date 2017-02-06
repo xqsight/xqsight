@@ -75,7 +75,7 @@ public class SysRoleController {
                 .propertyType(PropertyType.S).add("role_name", StringUtils.trimToEmpty(roleName))
                 .add("role_code", StringUtils.trimToEmpty(roleCode)).matchTye(MatchType.EQ)
                 .propertyType(PropertyType.L).add("parent_id", parentId).end();
-        List<Sort> sorts = SortBuilder.create().addAsc("sort").addAsc("role_name").end();
+        List<Sort> sorts = SortBuilder.create().addAsc("role_name").end();
         List<SysRole> sysRoles = sysRoleService.search(propertyFilters, sorts);
         return MessageSupport.successDataMsg(sysRoles, "查询成功");
     }
@@ -93,7 +93,7 @@ public class SysRoleController {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("role_name", StringUtils.trimToEmpty(roleName))
                 .add("role_code", StringUtils.trimToEmpty(roleCode)).end();
-        List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
+        List<Sort> sorts = SortBuilder.create().addAsc("role_name").end();
         List<SysRole> sysRoles = sysRoleService.querySubByUserId(currentUserId, propertyFilters, sorts);
         SysRole sysRole = new TreeSupport<SysRole>().generateFullTree(sysRoles);
         return MessageSupport.successDataMsg(sysRole, "查询成功");

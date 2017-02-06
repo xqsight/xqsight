@@ -114,7 +114,7 @@
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysRole">
-        update from sys_role set
+        update sys_role set
 		parent_id = #{parentId,jdbcType=NUMERIC},
 		parent_ids = #{parentIds,jdbcType=VARCHAR},
 		role_name = #{roleName,jdbcType=VARCHAR},
@@ -128,35 +128,35 @@
     </update>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysRole">
-        update from sys_role
+        update sys_role
         <set>
-                <if test="parentId!=null">
-				parent_id = #{parentId,jdbcType=NUMERIC},
-                </if>
-                <if test="parentIds!=null">
-				parent_ids = #{parentIds,jdbcType=VARCHAR},
-                </if>
-                <if test="roleName!=null">
-				role_name = #{roleName,jdbcType=VARCHAR},
-                </if>
-                <if test="roleCode!=null">
-				role_code = #{roleCode,jdbcType=VARCHAR},
-                </if>
-                <if test="roleType!=null">
-				role_type = #{roleType,jdbcType=VARCHAR},
-                </if>
-                <if test="active!=null">
-				active = #{active,jdbcType=NUMERIC},
-                </if>
-                <if test="updateUserId!=null">
-				update_user_id = #{updateUserId,jdbcType=VARCHAR},
-                </if>
-                <if test="updateTime!=null">
-				update_time = #{updateTime,jdbcType=TIMESTAMP},
-                </if>
-                <if test="remark!=null">
-				remark = #{remark,jdbcType=VARCHAR},
-                </if>
+            <if test="parentId!=null">
+            parent_id = #{parentId,jdbcType=NUMERIC},
+            </if>
+            <if test="parentIds!=null">
+            parent_ids = #{parentIds,jdbcType=VARCHAR},
+            </if>
+            <if test="roleName!=null">
+            role_name = #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="roleCode!=null">
+            role_code = #{roleCode,jdbcType=VARCHAR},
+            </if>
+            <if test="roleType!=null">
+            role_type = #{roleType,jdbcType=VARCHAR},
+            </if>
+            <if test="active!=null">
+            active = #{active,jdbcType=NUMERIC},
+            </if>
+            <if test="updateUserId!=null">
+            update_user_id = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+            remark = #{remark,jdbcType=VARCHAR},
+            </if>
         </set>
         where  role_id = #{roleId,jdbcType=NUMERIC}  
     </update>

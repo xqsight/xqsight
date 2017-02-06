@@ -130,7 +130,7 @@
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysFile">
-        update from sys_file set
+        update sys_file set
 		file_name = #{fileName,jdbcType=VARCHAR},
 		file_url = #{fileUrl,jdbcType=VARCHAR},
 		file_domain = #{fileDomain,jdbcType=VARCHAR},
@@ -146,41 +146,41 @@
     </update>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysFile">
-        update from sys_file
+        update sys_file
         <set>
-                <if test="fileName!=null">
-				file_name = #{fileName,jdbcType=VARCHAR},
-                </if>
-                <if test="fileUrl!=null">
-				file_url = #{fileUrl,jdbcType=VARCHAR},
-                </if>
-                <if test="fileDomain!=null">
-				file_domain = #{fileDomain,jdbcType=VARCHAR},
-                </if>
-                <if test="fileExt!=null">
-				file_ext = #{fileExt,jdbcType=VARCHAR},
-                </if>
-                <if test="fileSize!=null">
-				file_size = #{fileSize,jdbcType=VARCHAR},
-                </if>
-                <if test="attachmentType!=null">
-				attachment_type = #{attachmentType,jdbcType=VARCHAR},
-                </if>
-                <if test="fileKind!=null">
-				file_kind = #{fileKind,jdbcType=VARCHAR},
-                </if>
-                <if test="active!=null">
-				active = #{active,jdbcType=NUMERIC},
-                </if>
-                <if test="updateUserId!=null">
-				update_user_id = #{updateUserId,jdbcType=VARCHAR},
-                </if>
-                <if test="updateTime!=null">
-				update_time = #{updateTime,jdbcType=TIMESTAMP},
-                </if>
-                <if test="remark!=null">
-				remark = #{remark,jdbcType=VARCHAR},
-                </if>
+            <if test="fileName!=null">
+            file_name = #{fileName,jdbcType=VARCHAR},
+            </if>
+            <if test="fileUrl!=null">
+            file_url = #{fileUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="fileDomain!=null">
+            file_domain = #{fileDomain,jdbcType=VARCHAR},
+            </if>
+            <if test="fileExt!=null">
+            file_ext = #{fileExt,jdbcType=VARCHAR},
+            </if>
+            <if test="fileSize!=null">
+            file_size = #{fileSize,jdbcType=VARCHAR},
+            </if>
+            <if test="attachmentType!=null">
+            attachment_type = #{attachmentType,jdbcType=VARCHAR},
+            </if>
+            <if test="fileKind!=null">
+            file_kind = #{fileKind,jdbcType=VARCHAR},
+            </if>
+            <if test="active!=null">
+            active = #{active,jdbcType=NUMERIC},
+            </if>
+            <if test="updateUserId!=null">
+            update_user_id = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+            remark = #{remark,jdbcType=VARCHAR},
+            </if>
         </set>
         where  file_id = #{fileId,jdbcType=NUMERIC}  
     </update>

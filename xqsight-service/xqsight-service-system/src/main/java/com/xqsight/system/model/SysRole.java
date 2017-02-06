@@ -35,6 +35,7 @@ public class SysRole extends TreeBaseModel<SysRole>{
     }
     public void setRoleId(Long roleId){
         this.roleId = roleId;
+        super.setId("" + roleId);
     }
 	public String getParentIds(){
         return this.parentIds;
@@ -47,6 +48,7 @@ public class SysRole extends TreeBaseModel<SysRole>{
     }
     public void setRoleName(String roleName){
         this.roleName = roleName;
+        super.setName(roleName);
     }
 	public String getRoleCode(){
         return this.roleCode;

@@ -170,7 +170,7 @@
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysLogin">
-        update from sys_login set
+        update sys_login set
 		login_id = #{loginId,jdbcType=VARCHAR},
 		user_name = #{userName,jdbcType=VARCHAR},
 		real_name = #{realName,jdbcType=VARCHAR},
@@ -191,56 +191,56 @@
     </update>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysLogin">
-        update from sys_login
+        update sys_login
         <set>
-                <if test="loginId!=null">
-				login_id = #{loginId,jdbcType=VARCHAR},
-                </if>
-                <if test="userName!=null">
-				user_name = #{userName,jdbcType=VARCHAR},
-                </if>
-                <if test="realName!=null">
-				real_name = #{realName,jdbcType=VARCHAR},
-                </if>
-                <if test="password!=null">
-				password = #{password,jdbcType=VARCHAR},
-                </if>
-                <if test="loginType!=null">
-				login_type = #{loginType,jdbcType=NUMERIC},
-                </if>
-                <if test="sex!=null">
-				sex = #{sex,jdbcType=NUMERIC},
-                </if>
-                <if test="userBorn!=null">
-				user_born = #{userBorn,jdbcType=TIMESTAMP},
-                </if>
-                <if test="age!=null">
-				age = #{age,jdbcType=NUMERIC},
-                </if>
-                <if test="fromSource!=null">
-				from_source = #{fromSource,jdbcType=VARCHAR},
-                </if>
-                <if test="imgUrl!=null">
-				img_url = #{imgUrl,jdbcType=VARCHAR},
-                </if>
-                <if test="salt!=null">
-				salt = #{salt,jdbcType=VARCHAR},
-                </if>
-                <if test="locked!=null">
-				locked = #{locked,jdbcType=NUMERIC},
-                </if>
-                <if test="active!=null">
-				active = #{active,jdbcType=NUMERIC},
-                </if>
-                <if test="updateUserId!=null">
-				update_user_id = #{updateUserId,jdbcType=VARCHAR},
-                </if>
-                <if test="updateTime!=null">
-				update_time = #{updateTime,jdbcType=TIMESTAMP},
-                </if>
-                <if test="remark!=null">
-				remark = #{remark,jdbcType=VARCHAR},
-                </if>
+            <if test="loginId!=null">
+            login_id = #{loginId,jdbcType=VARCHAR},
+            </if>
+            <if test="userName!=null">
+            user_name = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="realName!=null">
+            real_name = #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="password!=null">
+            password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="loginType!=null">
+            login_type = #{loginType,jdbcType=NUMERIC},
+            </if>
+            <if test="sex!=null">
+            sex = #{sex,jdbcType=NUMERIC},
+            </if>
+            <if test="userBorn!=null">
+            user_born = #{userBorn,jdbcType=TIMESTAMP},
+            </if>
+            <if test="age!=null">
+            age = #{age,jdbcType=NUMERIC},
+            </if>
+            <if test="fromSource!=null">
+            from_source = #{fromSource,jdbcType=VARCHAR},
+            </if>
+            <if test="imgUrl!=null">
+            img_url = #{imgUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="salt!=null">
+            salt = #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="locked!=null">
+            locked = #{locked,jdbcType=NUMERIC},
+            </if>
+            <if test="active!=null">
+            active = #{active,jdbcType=NUMERIC},
+            </if>
+            <if test="updateUserId!=null">
+            update_user_id = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+            remark = #{remark,jdbcType=VARCHAR},
+            </if>
         </set>
         where  id = #{id,jdbcType=NUMERIC}  
     </update>

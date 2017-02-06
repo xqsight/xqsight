@@ -130,7 +130,7 @@
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysDict">
-        update from sys_dict set
+        update sys_dict set
 		parent_id = #{parentId,jdbcType=NUMERIC},
 		parent_ids = #{parentIds,jdbcType=VARCHAR},
 		sort = #{sort,jdbcType=NUMERIC},
@@ -146,41 +146,41 @@
     </update>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysDict">
-        update from sys_dict
+        update sys_dict
         <set>
-                <if test="parentId!=null">
-				parent_id = #{parentId,jdbcType=NUMERIC},
-                </if>
-                <if test="parentIds!=null">
-				parent_ids = #{parentIds,jdbcType=VARCHAR},
-                </if>
-                <if test="sort!=null">
-				sort = #{sort,jdbcType=NUMERIC},
-                </if>
-                <if test="dictCode!=null">
-				dict_code = #{dictCode,jdbcType=VARCHAR},
-                </if>
-                <if test="dictName!=null">
-				dict_name = #{dictName,jdbcType=VARCHAR},
-                </if>
-                <if test="dictValue!=null">
-				dict_value = #{dictValue,jdbcType=VARCHAR},
-                </if>
-                <if test="editable!=null">
-				editable = #{editable,jdbcType=NUMERIC},
-                </if>
-                <if test="active!=null">
-				active = #{active,jdbcType=NUMERIC},
-                </if>
-                <if test="updateUserId!=null">
-				update_user_id = #{updateUserId,jdbcType=VARCHAR},
-                </if>
-                <if test="updateTime!=null">
-				update_time = #{updateTime,jdbcType=TIMESTAMP},
-                </if>
-                <if test="remark!=null">
-				remark = #{remark,jdbcType=VARCHAR},
-                </if>
+            <if test="parentId!=null">
+            parent_id = #{parentId,jdbcType=NUMERIC},
+            </if>
+            <if test="parentIds!=null">
+            parent_ids = #{parentIds,jdbcType=VARCHAR},
+            </if>
+            <if test="sort!=null">
+            sort = #{sort,jdbcType=NUMERIC},
+            </if>
+            <if test="dictCode!=null">
+            dict_code = #{dictCode,jdbcType=VARCHAR},
+            </if>
+            <if test="dictName!=null">
+            dict_name = #{dictName,jdbcType=VARCHAR},
+            </if>
+            <if test="dictValue!=null">
+            dict_value = #{dictValue,jdbcType=VARCHAR},
+            </if>
+            <if test="editable!=null">
+            editable = #{editable,jdbcType=NUMERIC},
+            </if>
+            <if test="active!=null">
+            active = #{active,jdbcType=NUMERIC},
+            </if>
+            <if test="updateUserId!=null">
+            update_user_id = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+            remark = #{remark,jdbcType=VARCHAR},
+            </if>
         </set>
         where  dict_id = #{dictId,jdbcType=NUMERIC}  
     </update>
