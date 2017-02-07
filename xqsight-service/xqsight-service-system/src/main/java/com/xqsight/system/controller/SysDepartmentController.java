@@ -13,7 +13,7 @@ import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.common.support.TreeSupport;
-import com.xqsight.sso.shiro.annotation.CurrentUser;
+import com.xqsight.sso.shiro.annotation.CurrentUserId;
 import com.xqsight.system.model.SysDepartment;
 import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.service.SysDepartmentService;
@@ -105,7 +105,7 @@ public class SysDepartmentController {
 
     @RequestMapping("queryalltree")
     @RequiresPermissions("sys:department:query")
-    public Object queryAllTotTree(String departmentName, String departmentCode, @CurrentUser Long currentUserId) {
+    public Object queryAllTotTree(String departmentName, String departmentCode, @CurrentUserId Long currentUserId) {
         SysLogin sysLogin = sysLoginService.get(currentUserId);
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))

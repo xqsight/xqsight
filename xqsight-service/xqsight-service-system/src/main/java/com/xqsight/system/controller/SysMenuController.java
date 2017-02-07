@@ -13,7 +13,7 @@ import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.common.support.TreeSupport;
-import com.xqsight.sso.shiro.annotation.CurrentUser;
+import com.xqsight.sso.shiro.annotation.CurrentUserId;
 import com.xqsight.system.enums.MenuTypeEnum;
 import com.xqsight.system.model.SysMenu;
 import com.xqsight.system.service.SysMenuService;
@@ -21,7 +21,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -92,7 +91,7 @@ public class SysMenuController {
 
     @RequestMapping("querytree")
     @RequiresPermissions("sys:menu:query")
-    public Object queryToTree(@CurrentUser Long currentUserId) {
+    public Object queryToTree(@CurrentUserId Long currentUserId) {
 
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.I).add("type", "" + MenuTypeEnum.MENU.getValuel()).end();
@@ -104,7 +103,7 @@ public class SysMenuController {
 
     @RequestMapping("queryalltree")
     @RequiresPermissions("sys:menu:query")
-    public Object queryAllToTree(@CurrentUser Long currentUserId) {
+    public Object queryAllToTree(@CurrentUserId Long currentUserId) {
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
         List<SysMenu> sysMenus = sysMenuService.querySubByUserId(currentUserId, null, sorts);
         SysMenu sysMenu = new TreeSupport<SysMenu>().generateFullTree(sysMenus);

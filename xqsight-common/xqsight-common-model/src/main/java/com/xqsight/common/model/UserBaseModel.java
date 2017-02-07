@@ -10,12 +10,13 @@ import java.io.Serializable;
 public class UserBaseModel extends AbstractUser implements Serializable {
 
     /** 用户名 **/
-    private String     userName;
+    private String  userName;
 
-    /**
-     * 登录类型
-     */
+    /**  登录类型  **/
     private int  loginType;
+
+    /** 主账户id **/
+    private long parentId;
 
     /**
      * Getter method for property <tt>username</tt>.
@@ -43,4 +44,11 @@ public class UserBaseModel extends AbstractUser implements Serializable {
         this.loginType = loginType;
     }
 
+    public long getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(long parentId) {
+        this.parentId = parentId;
+    }
 }

@@ -22,7 +22,7 @@ public interface UserAuthcService {
     void uncorrelationRoles(long id, Long... roleIds);
 
     /**
-     * 根据登陆id查找用户
+     * 根据登陆id查找用户 主账户
      * @param loginId
      * @return
      */

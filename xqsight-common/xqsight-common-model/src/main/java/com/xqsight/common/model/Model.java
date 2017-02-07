@@ -12,11 +12,11 @@ public abstract class Model implements Serializable {
 	/** 是否有效 0:有效 -1:无效  **/
 	private int active = 0;
 	/** 创建时间 **/
-	private LocalDateTime createTime = LocalDateTime.now();
+	private LocalDateTime createTime;
 	/** 创建人ID **/
 	private String createUserId;
 	/** 修改时间 **/
-	private LocalDateTime updateTime = LocalDateTime.now();
+	private LocalDateTime updateTime;
 	/** 修改人ID **/
 	private String updateUserId;
 	/** 备注 **/

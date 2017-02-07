@@ -34,7 +34,6 @@ public class SysUserRealm extends AuthorizingRealm {
         return token == null || token instanceof SysUserToken;
     }
 
-    ;
 
     /**
      * @see AuthorizingRealm#doGetAuthorizationInfo(PrincipalCollection)

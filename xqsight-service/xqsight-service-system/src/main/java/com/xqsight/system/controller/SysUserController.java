@@ -8,7 +8,7 @@ import com.github.pagehelper.Page;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.common.support.MessageSupport;
-import com.xqsight.sso.shiro.annotation.CurrentUser;
+import com.xqsight.sso.shiro.annotation.CurrentUserId;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,7 +84,7 @@ public class SysUserController{
     }
 
 	@RequestMapping("queryuserinfo")
-	public Object queryUserInfo(@CurrentUser  Long id) {
+	public Object queryUserInfo(@CurrentUserId Long id) {
 		SysUser sysUser = sysUserService.get(id);
 		return MessageSupport.successDataMsg(sysUser, "查询成功");
 	}

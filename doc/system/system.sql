@@ -101,20 +101,13 @@ alter table sys_file comment ' 文件表';
 create table sys_login
 (
    id                   bigint not null auto_increment comment '登陆内码',
-   department_id        bigint not null comment '部门内码',
+   parent_id            bigint not null default 0 comment '主账户id',
    login_id             varchar(120) comment '登陆名称',
-   user_name            varchar(120) comment '昵称',
-   real_name            varchar(120) comment '真实姓名',
    password             varchar(120) comment '登陆密码',
+   user_name            varchar(120) comment '昵称',
    login_type           int comment '登陆类型 1:编号 2:邮箱 3:电话',
-   sex                  int comment '性别 0:未知 1:男 2:女',
-   user_born            datetime comment '生日',
-   age                  int comment '年龄',
-   from_source          varchar(20) comment '来源 WECHAT  PC  MOBILE',
-   img_url              varchar(120) comment '图片地址',
    salt                 varchar(120) comment '随机数 ',
-   locked               int comment '是否锁定 0-未锁定 -1-锁定
-            ',
+   locked               int comment '是否锁定 0-未锁定 -1-锁定',
    active               int not null default 0 comment '是否有效 0:有效 -1:无效',
    create_user_id       varchar(40) comment '创建人ID',
    create_time          datetime comment '创建时间',
@@ -168,7 +161,7 @@ alter table sys_menu_role comment '菜单角色表';
 /*==============================================================*/
 create table sys_quick_key
 (
-   id                   bigint not null comment '登陆内码',
+   Id                   bigint not null comment '登陆内码',
    fun_order            int not null comment '功能序号',
    key_icon             varchar(120) comment '图标',
    key_title            varchar(120) comment '标题',
@@ -233,7 +226,14 @@ alter table sys_station comment '岗位信息表';
 create table sys_user
 (
    ID                   bigint not null auto_increment comment '登陆内码',
+   department_id        bigint not null default 0 comment '所属部门',
    user_code            varchar(40) comment '用户编号',
+   real_name            varchar(120) comment '真实姓名',
+   sex                  int comment '性别 0:未知 1:男 2:女',
+   user_born            datetime comment '生日',
+   age                  int comment '年龄',
+   from_source          varchar(20) comment '来源 WECHAT  PC  MOBILE',
+   img_url              varchar(120) comment '图片地址',
    cell_phone           varchar(40) comment '电话',
    email                varchar(40) comment '邮箱',
    qq                   varchar(40) comment 'Qq',

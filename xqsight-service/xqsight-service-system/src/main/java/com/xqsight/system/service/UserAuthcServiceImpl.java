@@ -42,7 +42,12 @@ public class UserAuthcServiceImpl implements UserAuthcService {
     public UserBaseModel findByLoginId(String loginId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.S).add("login_id", loginId).end();
-        return sysLoginService.search(propertyFilters).get(0);
+
+        UserBaseModel userBaseModel = sysLoginService.search(propertyFilters).get(0);
+        if (userBaseModel.getParentId() == 0)
+            return userBaseModel;
+
+        return sysLoginService.get(userBaseModel.getId());
     }
 
     @Override

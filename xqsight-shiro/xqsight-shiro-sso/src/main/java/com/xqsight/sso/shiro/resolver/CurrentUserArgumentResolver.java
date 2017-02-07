@@ -1,21 +1,19 @@
 package com.xqsight.sso.shiro.resolver;
 
 import com.xqsight.common.model.Model;
-import com.xqsight.sso.shiro.annotation.CurrentUser;
+import com.xqsight.sso.shiro.annotation.CurrentUserId;
 import com.xqsight.sso.utils.SSOUtils;
 import org.springframework.beans.*;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
-import org.springframework.web.method.annotation.MethodArgumentConversionNotSupportedException;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.Field;
 import java.net.URLDecoder;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +24,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(CurrentUser.class) || Model.class.isAssignableFrom(parameter.getParameterType());
+        return parameter.hasParameterAnnotation(CurrentUserId.class) || Model.class.isAssignableFrom(parameter.getParameterType());
     }
 
     @Override
@@ -34,7 +32,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
         long currentUserId = SSOUtils.isAuthenticated() ? SSOUtils.getCurrentUserId() : 0;
 
         /*** 注解获取当前用户ID **/
-        if (parameter.hasParameterAnnotation(CurrentUser.class)) {
+        if (parameter.hasParameterAnnotation(CurrentUserId.class)) {
             return currentUserId;
         }
         /** 给当前对象注入用户登录信息 **/
@@ -95,6 +93,8 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
 
         map.put("createUserId","" + currentUserId);
         map.put("updateUserId", "" + currentUserId);
+        map.put("createTime", "" + LocalDateTime.now());
+        map.put("updateTime", "" + LocalDateTime.now());
 
         PropertyValues propertyValues = new MutablePropertyValues(map);
 
