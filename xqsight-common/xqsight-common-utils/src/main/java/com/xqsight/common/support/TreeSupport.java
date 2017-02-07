@@ -1,6 +1,5 @@
 package com.xqsight.common.support;
 
-import com.google.common.collect.Lists;
 import com.xqsight.common.model.TreeBaseModel;
 
 import java.util.ArrayList;

@@ -198,7 +198,7 @@
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete  sys_department
+        delete from sys_department
         where  department_id = #{departmentId,jdbcType=NUMERIC}  
     </delete>
 

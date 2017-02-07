@@ -150,7 +150,7 @@
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete  sys_station
+        delete from sys_station
         where  station_id = #{stationId,jdbcType=NUMERIC}  
     </delete>
 

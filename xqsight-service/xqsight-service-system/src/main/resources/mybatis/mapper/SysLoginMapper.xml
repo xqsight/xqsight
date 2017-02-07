@@ -4,16 +4,11 @@
 
     <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysLogin">
         <result column="id" property="id" jdbcType="NUMERIC"/>
+        <result column="parent_id" property="parentId" jdbcType="NUMERIC"/>
         <result column="login_id" property="loginId" jdbcType="VARCHAR"/>
-        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
         <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
         <result column="login_type" property="loginType" jdbcType="NUMERIC"/>
-        <result column="sex" property="sex" jdbcType="NUMERIC"/>
-        <result column="user_born" property="userBorn" jdbcType="TIMESTAMP"/>
-        <result column="age" property="age" jdbcType="NUMERIC"/>
-        <result column="from_source" property="fromSource" jdbcType="VARCHAR"/>
-        <result column="img_url" property="imgUrl" jdbcType="VARCHAR"/>
         <result column="salt" property="salt" jdbcType="VARCHAR"/>
         <result column="locked" property="locked" jdbcType="NUMERIC"/>
         <result column="active" property="active" jdbcType="NUMERIC"/>
@@ -25,23 +20,18 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-	 id,login_id,user_name,real_name,password,login_type,sex,user_born,age,from_source,img_url,salt,locked,active,create_user_id,create_time,update_user_id,update_time,remark
+	 id,parent_id,login_id,password,user_name,login_type,salt,locked,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
 
     <insert id="insert" parameterType="com.xqsight.system.model.SysLogin" useGeneratedKeys="true" keyProperty="id">
         insert into sys_login (
-	login_id,user_name,real_name,password,login_type,sex,user_born,age,from_source,img_url,salt,locked,active,create_user_id,create_time,update_user_id,update_time,remark
+	parent_id,login_id,password,user_name,login_type,salt,locked,active,create_user_id,create_time,update_user_id,update_time,remark
         ) values (
+	#{parentId,jdbcType=NUMERIC},
 	#{loginId,jdbcType=VARCHAR},
-	#{userName,jdbcType=VARCHAR},
-	#{realName,jdbcType=VARCHAR},
 	#{password,jdbcType=VARCHAR},
+	#{userName,jdbcType=VARCHAR},
 	#{loginType,jdbcType=NUMERIC},
-	#{sex,jdbcType=NUMERIC},
-	#{userBorn,jdbcType=TIMESTAMP},
-	#{age,jdbcType=NUMERIC},
-	#{fromSource,jdbcType=VARCHAR},
-	#{imgUrl,jdbcType=VARCHAR},
 	#{salt,jdbcType=VARCHAR},
 	#{locked,jdbcType=NUMERIC},
 	#{active,jdbcType=NUMERIC},
@@ -56,35 +46,20 @@
     <insert id="insertSelective" parameterType="com.xqsight.system.model.SysLogin" useGeneratedKeys="true" keyProperty="id">
         insert into sys_login
         <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="parentId!=null">
+			parent_id,
+            </if>
             <if test="loginId!=null">
 			login_id,
-            </if>
-            <if test="userName!=null">
-			user_name,
-            </if>
-            <if test="realName!=null">
-			real_name,
             </if>
             <if test="password!=null">
 			password,
             </if>
+            <if test="userName!=null">
+			user_name,
+            </if>
             <if test="loginType!=null">
 			login_type,
-            </if>
-            <if test="sex!=null">
-			sex,
-            </if>
-            <if test="userBorn!=null">
-			user_born,
-            </if>
-            <if test="age!=null">
-			age,
-            </if>
-            <if test="fromSource!=null">
-			from_source,
-            </if>
-            <if test="imgUrl!=null">
-			img_url,
             </if>
             <if test="salt!=null">
 			salt,
@@ -112,35 +87,20 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="parentId!=null">
+			#{parentId,jdbcType=NUMERIC},
+            </if>
             <if test="loginId!=null">
 			#{loginId,jdbcType=VARCHAR},
-            </if>
-            <if test="userName!=null">
-			#{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="realName!=null">
-			#{realName,jdbcType=VARCHAR},
             </if>
             <if test="password!=null">
 			#{password,jdbcType=VARCHAR},
             </if>
+            <if test="userName!=null">
+			#{userName,jdbcType=VARCHAR},
+            </if>
             <if test="loginType!=null">
 			#{loginType,jdbcType=NUMERIC},
-            </if>
-            <if test="sex!=null">
-			#{sex,jdbcType=NUMERIC},
-            </if>
-            <if test="userBorn!=null">
-			#{userBorn,jdbcType=TIMESTAMP},
-            </if>
-            <if test="age!=null">
-			#{age,jdbcType=NUMERIC},
-            </if>
-            <if test="fromSource!=null">
-			#{fromSource,jdbcType=VARCHAR},
-            </if>
-            <if test="imgUrl!=null">
-			#{imgUrl,jdbcType=VARCHAR},
             </if>
             <if test="salt!=null">
 			#{salt,jdbcType=VARCHAR},
@@ -170,17 +130,12 @@
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysLogin">
-        update sys_login set
+        update from sys_login set
+		parent_id = #{parentId,jdbcType=NUMERIC},
 		login_id = #{loginId,jdbcType=VARCHAR},
-		user_name = #{userName,jdbcType=VARCHAR},
-		real_name = #{realName,jdbcType=VARCHAR},
 		password = #{password,jdbcType=VARCHAR},
+		user_name = #{userName,jdbcType=VARCHAR},
 		login_type = #{loginType,jdbcType=NUMERIC},
-		sex = #{sex,jdbcType=NUMERIC},
-		user_born = #{userBorn,jdbcType=TIMESTAMP},
-		age = #{age,jdbcType=NUMERIC},
-		from_source = #{fromSource,jdbcType=VARCHAR},
-		img_url = #{imgUrl,jdbcType=VARCHAR},
 		salt = #{salt,jdbcType=VARCHAR},
 		locked = #{locked,jdbcType=NUMERIC},
 		active = #{active,jdbcType=NUMERIC},
@@ -191,37 +146,22 @@
     </update>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysLogin">
-        update sys_login
+        update from sys_login
         <set>
+            <if test="parentId!=null">
+            parent_id = #{parentId,jdbcType=NUMERIC},
+            </if>
             <if test="loginId!=null">
             login_id = #{loginId,jdbcType=VARCHAR},
-            </if>
-            <if test="userName!=null">
-            user_name = #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="realName!=null">
-            real_name = #{realName,jdbcType=VARCHAR},
             </if>
             <if test="password!=null">
             password = #{password,jdbcType=VARCHAR},
             </if>
+            <if test="userName!=null">
+            user_name = #{userName,jdbcType=VARCHAR},
+            </if>
             <if test="loginType!=null">
             login_type = #{loginType,jdbcType=NUMERIC},
-            </if>
-            <if test="sex!=null">
-            sex = #{sex,jdbcType=NUMERIC},
-            </if>
-            <if test="userBorn!=null">
-            user_born = #{userBorn,jdbcType=TIMESTAMP},
-            </if>
-            <if test="age!=null">
-            age = #{age,jdbcType=NUMERIC},
-            </if>
-            <if test="fromSource!=null">
-            from_source = #{fromSource,jdbcType=VARCHAR},
-            </if>
-            <if test="imgUrl!=null">
-            img_url = #{imgUrl,jdbcType=VARCHAR},
             </if>
             <if test="salt!=null">
             salt = #{salt,jdbcType=VARCHAR},
@@ -246,7 +186,7 @@
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete  sys_login
+        delete from sys_login
         where  id = #{id,jdbcType=NUMERIC}  
     </delete>
 

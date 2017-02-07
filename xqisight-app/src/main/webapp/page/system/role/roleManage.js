@@ -65,9 +65,10 @@ saicfc.nameSpace.reg("sys.role");
                         url = ctxData + "/sys/role/update?date=" + new Date().getTime();
                     }
                     $.ajax({
-                        "url": url ,
-                        "data": editRole,
-                        "success": function(retData){
+                        url: url ,
+                        data: editRole,
+                        method : "post",
+                        success: function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 var iframeContent = saicfc.tab.getIframeContent();
@@ -75,8 +76,8 @@ saicfc.nameSpace.reg("sys.role");
                                 saicfc.win.close();
                             }
                         },
-                        "dataType": "jsonp",
-                        "cache": false
+                        dataType: "jsonp",
+                        cache: false
                     });
                 }
             };
@@ -96,13 +97,14 @@ saicfc.nameSpace.reg("sys.role");
         this.formSetValue = function(){
             var roleId = $.getUrlParam("roleId");
             if(roleId== undefined || roleId =="" ){
+                editRole.parentId = $.getUrlParam("parentId");
                 return;
             }
             $.ajax({
-                "dataType": "jsonp",
-                "cache": false,
-                "url": ctxData + "/sys/role/querybyid?roleId=" + roleId + "&date=" + new Date().getTime,
-                "success": function(retData){
+                dataType: "jsonp",
+                cache: false,
+                url: ctxData + "/sys/role/querybyid?roleId=" + roleId + "&date=" + new Date().getTime,
+                success: function(retData){
                     if(retData.status == "0"){
                         var data = retData.data;
                         editRole.roleId = data.roleId;

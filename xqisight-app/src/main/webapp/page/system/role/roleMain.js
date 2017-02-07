@@ -121,17 +121,12 @@ saicfc.nameSpace.reg("sys.role");
          */
         this.loadRoleTableFun = function(){
             var record_table = $("#role-table").DataTable({
-                "oLanguage" : { // 汉化
-                    sUrl : saicfc.utils.getServerPath("dataTableLocal")
-                },
                 "bAutoWidth" : false,
                 "bFilter" : false,// 搜索栏
-                "bLengthChange" : false,// 每行显示记录数
-                "iDisplayLength" : 15,// 每页显示行数
                 "bSort" : false,
-                "bInfo" : true,// Showing 1 to 10 of 23 entries 总记录数没也显示多少等信息
-                "sPaginationType" : "full_numbers", // 分页，一共两种样式 另一种为two_button // 是datatables默认
+                "bInfo" : false,// Showing 1 to 10 of 23 entries 总记录数没也显示多少等信息
                 "bServerSide" : true,
+                "paging":   false,
                 "sAjaxSource": ctxData + '/sys/role/query',
                 "fnServerData": function (sUrl, aoData, fnCallback) {
                     $.ajax({
@@ -260,7 +255,7 @@ saicfc.nameSpace.reg("sys.role");
                                 onClick: function onClick(event, treeId, treeNode) {
                                     obj.roleTree.selectNode(treeNode);
                                     obj.curSelTree = treeNode;
-                                    obj.roleTree.ajax.reload();
+                                    obj.roleTable.ajax.reload();
 
                                     return false;
                                 }
@@ -272,7 +267,7 @@ saicfc.nameSpace.reg("sys.role");
                         if(obj.curSelTree.id != undefined ){
                             obj.roleTree.selectNode(obj.curSelTree);
                         }else{
-                            var nodes = obj.menuTree.getNodes();
+                            var nodes = obj.roleTree.getNodes();
                             if (nodes.length>0) {
                                 obj.roleTree.selectNode(nodes[0]);
                                 obj.curSelTree = nodes[0];
@@ -281,7 +276,7 @@ saicfc.nameSpace.reg("sys.role");
 
                         obj.roleTree.expandAll(true);
 
-                        obj.roleTree.ajax.reload();
+                        obj.roleTable.ajax.reload();
                     }
                     //渲染结束重新设置高度
                     parent.saicfc.common.setIframeHeight($.getUrlParam(saicfc.iframeId));
@@ -296,7 +291,7 @@ saicfc.nameSpace.reg("sys.role");
          */
         this.editCallBackFun = function(params){
             //加载数据
-            obj.roleTable.ajax.reload();
+            obj.loadRoleTreeFun();
             if(params.roleId== undefined || params.roleId =="" ){
                 return;
             }

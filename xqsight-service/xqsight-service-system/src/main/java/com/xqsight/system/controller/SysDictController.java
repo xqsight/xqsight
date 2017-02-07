@@ -83,10 +83,11 @@ public class SysDictController {
 
     @RequestMapping("query")
     @RequiresPermissions("sys:dict:query")
-    public Object query(String dictName, String dictCode) {
+    public Object query(String dictName, String dictCode, String parentId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("dict_name", StringUtils.trimToEmpty(dictName))
-                .add("dict_code", StringUtils.trimToEmpty(dictCode)).end();
+                .add("dict_code", StringUtils.trimToEmpty(dictCode))
+                .matchTye(MatchType.EQ).propertyType(PropertyType.L).add("parent_id", parentId).end();
         List<Sort> sorts = SortBuilder.create().addAsc("dict_name").end();
         List<SysDict> sysDicts = sysDictService.search(propertyFilters, sorts);
         return MessageSupport.successDataMsg(sysDicts, "查询成功");
@@ -99,9 +100,9 @@ public class SysDictController {
         return MessageSupport.successDataMsg(sysDict, "查询成功");
     }
 
-    @RequestMapping("queryalltree")
+    @RequestMapping("querytree")
     @RequiresPermissions("sys:dict:query")
-    public Object queryAllTotTree(String dictName, String dictCode) {
+    public Object queryTotTree(String dictName, String dictCode) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("dict_name", StringUtils.trimToEmpty(dictName))
                 .add("dict_code", StringUtils.trimToEmpty(dictCode)).end();

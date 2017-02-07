@@ -186,7 +186,7 @@
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete  sys_file
+        delete from sys_file
         where  file_id = #{fileId,jdbcType=NUMERIC}  
     </delete>
 

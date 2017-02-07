@@ -1,9 +1,6 @@
 package com.xqsight.system.service;
 
-import com.xqsight.common.core.orm.Criterion;
-import com.xqsight.common.core.orm.MatchType;
-import com.xqsight.common.core.orm.PropertyFilter;
-import com.xqsight.common.core.orm.PropertyType;
+import com.xqsight.common.core.orm.*;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.system.mapper.SysAuthMapper;
 import com.xqsight.system.mapper.SysLoginMapper;
@@ -133,7 +130,7 @@ public class SysAuthService {
      * @param userId
      * @return
      */
-    public List<SysMenu> queryMenuByUser(long userId) {
+    public List<SysMenu> queryMenuByUser(long userId, List<PropertyFilter> propertyFilters,List<Sort> sorts ) {
         List<String> menuIds = new ArrayList<>();
         List<String> roleIds = sysAuthMapper.queryRoleIdByuser(userId);
         roleIds.stream().forEach(roleId -> {
@@ -143,9 +140,15 @@ public class SysAuthService {
         menuIds.stream().forEach(menuId -> {
             menuIdSb.append(menuId).append(",");
         });
-        List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
+        List<PropertyFilter> proFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
                 .add("menu_id", StringUtils.substringBeforeLast(menuIdSb.toString(), ",")).end();
 
-        return sysMenuMapper.search(new Criterion(propertyFilters));
+        if(propertyFilters == null)
+            propertyFilters = new ArrayList<>();
+
+        propertyFilters.addAll(proFilters);
+        return sysMenuMapper.search(new Criterion(propertyFilters,sorts));
     }
+
+
 }

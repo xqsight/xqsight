@@ -42,7 +42,7 @@
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="${basePackage}.${moduleName}.model.${table.className}">
-        update from ${table.tableName} set
+        update ${table.tableName} set
 	<#list table.baseColumns as column>
 		<#if updNotNeed?seq_contains(column.javaProperty)><#else>
 		${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}}<#if column_has_next>,</#if>
@@ -52,7 +52,7 @@
     </update>
 
     <update id="updateByPrimaryKeySelective" parameterType="${basePackage}.${moduleName}.model.${table.className}">
-        update from ${table.tableName}
+        update ${table.tableName}
         <set>
 		<#list table.baseColumns as column>
 			<#if updNotNeed?seq_contains(column.javaProperty)><#else>
@@ -66,7 +66,7 @@
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="<#list table.primaryKeys as key>${key.fullJavaType}</#list>">
-        delete  ${table.tableName}
+        delete from ${table.tableName}
         where <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
     </delete>
 

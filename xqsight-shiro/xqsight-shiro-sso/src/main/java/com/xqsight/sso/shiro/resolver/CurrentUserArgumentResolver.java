@@ -79,7 +79,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
 
     protected void bindRequestParameters(WebDataBinder binder, NativeWebRequest request) throws UnsupportedEncodingException {
         // 将key-value封装为map，传给bind方法进行参数值绑定
-        Map<String, String> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         Map<String, String[]> params = request.getParameterMap();
 
         for (Map.Entry<String, String[]> entry : params.entrySet()) {
@@ -93,8 +93,8 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
 
         map.put("createUserId","" + currentUserId);
         map.put("updateUserId", "" + currentUserId);
-        map.put("createTime", "" + LocalDateTime.now());
-        map.put("updateTime", "" + LocalDateTime.now());
+        map.put("createTime", LocalDateTime.now());
+        map.put("updateTime", LocalDateTime.now());
 
         PropertyValues propertyValues = new MutablePropertyValues(map);
 

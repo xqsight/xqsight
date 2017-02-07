@@ -186,7 +186,7 @@
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete  sys_dict
+        delete from sys_dict
         where  dict_id = #{dictId,jdbcType=NUMERIC}  
     </delete>
 

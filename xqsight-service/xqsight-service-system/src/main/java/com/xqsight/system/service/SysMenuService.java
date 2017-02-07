@@ -32,35 +32,9 @@ public class SysMenuService extends DefaultEntityService<SysMenu, Long> {
     @Autowired
     private SysMenuMapper sysMenuMapper;
 
-    @Autowired
-    private SysAuthMapper sysAuthMapper;
-
     @Override
     protected Dao<SysMenu, Long> getDao() {
         return sysMenuMapper;
     }
 
-    /**
-     *查询当前用户的所有菜单
-     * @param userId
-     * @param propertyFilters
-     * @param sorts
-     * @return
-     */
-    public List<SysMenu> querySubByUserId(Long userId, List<PropertyFilter> propertyFilters, List<Sort> sorts) {
-        List<String> roleIds = sysAuthMapper.queryRoleIdByuser(userId);
-        List<String> menuIds = new ArrayList<>();
-        roleIds.stream().forEach(roleId -> {
-            menuIds.addAll(sysAuthMapper.queryMenuIdByRole(Long.valueOf(roleId)));
-        });
-
-        StringBuffer menuIdSb = new StringBuffer();
-        menuIds.stream().forEach(menuId -> {
-            menuIdSb.append(menuId).append(",");
-        });
-        List<PropertyFilter> propertyFilterList = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
-                .add("menu_id", StringUtils.substringBeforeLast(menuIdSb.toString(), ",")).end();
-        propertyFilterList.addAll(propertyFilters);
-        return sysMenuMapper.search(new Criterion(propertyFilterList,sorts));
-    }
 }

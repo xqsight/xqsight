@@ -9,7 +9,14 @@
     <connections>
         <database name="portal">
             <driverClass>com.mysql.jdbc.Driver</driverClass>
-            <url>jdbc:mysql://10.99.66.13:3306/portal</url>
+            <url>jdbc:mysql://10.99.66.13:3306/portal_new</url>
+            <username>root</username>
+            <password>root</password>
+            <schema/>
+        </database>
+        <database name="portal_new">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://120.27.96.191:3306/portal</url>
             <username>root</username>
             <password>root</password>
             <schema/>

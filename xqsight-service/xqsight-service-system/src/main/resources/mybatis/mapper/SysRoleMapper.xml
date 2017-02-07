@@ -162,7 +162,7 @@
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete  sys_role
+        delete from sys_role
         where  role_id = #{roleId,jdbcType=NUMERIC}  
     </delete>
 

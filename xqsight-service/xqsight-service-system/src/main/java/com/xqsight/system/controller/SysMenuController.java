@@ -91,21 +91,20 @@ public class SysMenuController {
 
     @RequestMapping("querytree")
     @RequiresPermissions("sys:menu:query")
-    public Object queryToTree(@CurrentUserId Long currentUserId) {
-
+    public Object queryToTree() {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.I).add("type", "" + MenuTypeEnum.MENU.getValuel()).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
-        List<SysMenu> sysMenus = sysMenuService.querySubByUserId(currentUserId, propertyFilters, sorts);
+        List<SysMenu> sysMenus = sysMenuService.search(propertyFilters, sorts);
         SysMenu sysMenu = new TreeSupport<SysMenu>().generateFullTree(sysMenus);
         return MessageSupport.successDataMsg(sysMenu, "查询成功");
     }
 
     @RequestMapping("queryalltree")
     @RequiresPermissions("sys:menu:query")
-    public Object queryAllToTree(@CurrentUserId Long currentUserId) {
+    public Object queryAllToTree() {
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
-        List<SysMenu> sysMenus = sysMenuService.querySubByUserId(currentUserId, null, sorts);
+        List<SysMenu> sysMenus = sysMenuService.search(null, sorts);
         SysMenu sysMenu = new TreeSupport<SysMenu>().generateFullTree(sysMenus);
         return MessageSupport.successDataMsg(sysMenu, "查询成功");
     }

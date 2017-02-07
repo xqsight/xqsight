@@ -57,7 +57,7 @@ public class UserAuthcServiceImpl implements UserAuthcService {
 
     @Override
     public Set<String> findPermissions(long id) {
-        return sysAuthService.queryMenuByUser(id).stream().map(SysMenu::getPermission).collect(Collectors.toSet());
+        return sysAuthService.queryMenuByUser(id,null,null).stream().map(SysMenu::getPermission).collect(Collectors.toSet());
     }
 
     @Override
