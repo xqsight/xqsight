@@ -2,10 +2,10 @@
  * Created by user on 2015/12/14.
  */
 
-saicfc.nameSpace.reg("sys.org");
+saicfc.nameSpace.reg("sys.department");
 
 (function(){
-    sys.org.orgManage = function(){
+    sys.department.departmentManage = function(){
 
         var ctxData = saicfc.utils.getServerPath("cms");
 
@@ -15,7 +15,7 @@ saicfc.nameSpace.reg("sys.org");
          */
         var obj = this;
 
-        var editorg = {};
+        var editDepartment = {};
 
         /**
          * 初始化调用 function
@@ -33,20 +33,20 @@ saicfc.nameSpace.reg("sys.org");
          * @returns {string}
          */
         this.setParamFun = function(){
-            editorg.orgName = $("#orgName").val();
-            editorg.orgCode = $("#orgCode").val();
-            editorg.customCode = $("#customCode").val();
-            editorg.orgType = $("#orgType").val();
-            editorg.icon = $("#icon").val();
-            editorg.sort = $("#sort").val();
-            editorg.remark = $("#remark").val();
+            editDepartment.departmentName = $("#departmentName").val();
+            editDepartment.departmentCode = $("#departmentCode").val();
+            editDepartment.customCode = $("#customCode").val();
+            editDepartment.departmentType = $("#departmentType").val();
+            editDepartment.icon = $("#icon").val();
+            editDepartment.sort = $("#sort").val();
+            editDepartment.remark = $("#remark").val();
         };
 
         /**
          * 验证 function
          */
         this.validateFun = function(){
-            $("#orgForm").html5Validate(function() {
+            $("#departmentForm").html5Validate(function() {
                 obj.saveFun();
             }, {
                 validate : function() {
@@ -63,19 +63,19 @@ saicfc.nameSpace.reg("sys.org");
                 if(btn == "yes"){
                     obj.setParamFun();
                     var url = "";
-                    if($.getUrlParam("orgId")== undefined || $.getUrlParam("orgId") =="" ){
-                        url = ctxData + "/sys/org/save?date=" + new Date().getTime();
+                    if($.getUrlParam("departmentId")== undefined || $.getUrlParam("departmentId") =="" ){
+                        url = ctxData + "/sys/department/save?date=" + new Date().getTime();
                     }else{
-                        url = ctxData + "/sys/org/update?date=" + new Date().getTime();
+                        url = ctxData + "/sys/department/update?date=" + new Date().getTime();
                     }
                     $.ajax({
                         "url": url ,
-                        "data": editorg,
+                        "data": editDepartment,
                         "success": function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 var iframeContent = saicfc.tab.getIframeContent();
-                                iframeContent.orgMain.editCallBackFun({"orgId" : $.getUrlParam("orgId")});
+                                iframeContent.departmentMain.editCallBackFun({"departmentId" : $.getUrlParam("departmentId")});
                                 saicfc.win.close();
                             }
                         },
@@ -98,25 +98,25 @@ saicfc.nameSpace.reg("sys.org");
          * form 表单初始化数据
          */
         this.formSetValue = function(){
-            var orgId = $.getUrlParam("orgId");
-            if(orgId== undefined || orgId =="" ){
-                editorg.parentId = $.getUrlParam("parentId");
+            var departmentId = $.getUrlParam("departmentId");
+            if(departmentId== undefined || departmentId =="" ){
+                editDepartment.parentId = $.getUrlParam("parentId");
                 return;
             }
             $.ajax({
                 "dataType": "jsonp",
                 "cache": false,
-                "url": ctxData + "/sys/org/querybyid?orgId=" + orgId + "&date=" + new Date().getTime,
+                "url": ctxData + "/sys/department/querybyid?departmentId=" + departmentId + "&date=" + new Date().getTime,
                 "success": function(retData){
                     if(retData.status == "0"){
                         var data = retData.data;
-                        editorg.orgId = data.orgId;
-                        editorg.parentId = data.parentId;
+                        editDepartment.departmentId = data.departmentId;
+                        editDepartment.parentId = data.parentId;
 
-                        $("#orgName").val(data.orgName);
-                        $("#orgCode").val(data.orgCode);
+                        $("#departmentName").val(data.departmentName);
+                        $("#departmentCode").val(data.departmentCode);
                         $("#customCode").val(data.customCode);
-                        $("#orgType").val(data.orgType);
+                        $("#departmentType").val(data.departmentType);
                         $("#icon").val(data.icon);
                         $("#sort").val(data.sort);
                         $("#remark").val(data.remark);
@@ -130,8 +130,8 @@ saicfc.nameSpace.reg("sys.org");
      * 初始化数据
      */
     $(document).ready(function() {
-        orgManage.init();
+        departmentManage.init();
     });
 })();
 
-var orgManage = new sys.org.orgManage();
+var departmentManage = new sys.department.departmentManage();

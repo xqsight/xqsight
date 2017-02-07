@@ -64,7 +64,7 @@ public class SysAuthController {
     }
 
 
-    @RequestMapping("querycurentusermenu")
+    @RequestMapping("queryusermenu")
     @RequiresPermissions("sys:auth:queryusermenu")
     public Object queryUserMenu(@CurrentUserId long currentUserId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)

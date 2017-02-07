@@ -66,7 +66,7 @@ saicfc.nameSpace.reg("sys");
         /** 初始化菜单 */
         this.initMenuFun = function(){
             $.ajax({
-                "url": ctxData + "/sys/menu/querycurentusermenu?date=" + new Date().getTime() ,
+                "url": ctxData + "/sys/auth/queryusermenu?date=" + new Date().getTime() ,
                 "success": function(retData){
                     var menuHtml = "";
                     menuHtml =  obj.foreachFun(menuHtml,retData.data.children) + "</ul></li>";

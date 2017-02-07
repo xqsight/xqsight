@@ -159,30 +159,30 @@ saicfc.nameSpace.reg("sys.role");
                 ],
                 "aoColumns": [{
                     data : "roleId",
-                    sWidth : "2",
+                    sWidth : "1",
                     render : function(value){
                         return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
                     }
                 },{
                     "data": "roleName",
-                    sWidth : "120",
+                    sWidth : "100",
                     sClass : "text-center",
                     sSort : false
                 },{
                     "data": "roleCode",
-                    sWidth : "120",
+                    sWidth : "100",
                     sClass : "text-center",
                     sSort : false
                 },{
                     "data": "createTime",
-                    sWidth : "120",
+                    sWidth : "100",
                     sClass : "text-center",
                     render : function(value){
                         return saicfc.moment.formatYMD(value);
                     }
                 },{
                     "data": "remark",
-                    sWidth : "200",
+                    sWidth : "100",
                     sClass : "text-left"
                 },{
                     "data": "roleId",
@@ -201,7 +201,7 @@ saicfc.nameSpace.reg("sys.role");
                     render : function(value){
                         return "<div class='bolder'>"
                             + "<a class='red' href='javaScript:roleMain.addUserFun(\"" + value + "\")'>添加用户</a> | "
-                            + "<a class='red' href='javaScript:roleMain.addmenuFun(\"" + value + "\")'>添加权限</a> "
+                            + "<a class='red' href='javaScript:roleMain.addmenuFun(\"" + value + "\")'>分配权限</a> "
                             + "</div> ";
                     }
                 }]

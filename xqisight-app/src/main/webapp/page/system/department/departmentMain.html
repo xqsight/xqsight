@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>组织机构管理</title>
+    <title>部门管理</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <!-- bootstrap & fonts -->
@@ -41,7 +41,7 @@
         <div class="widget-header widget-header-flat">
             <h4 class="widget-title">
                 <i class="ace-icon fa fa-filter"></i>
-                组织结构树
+                部门树
             </h4>
         </div>
         <div class="widget-body">
@@ -49,7 +49,7 @@
                 <!-- start condition -->
                 <div class="row">
                     <div class="col-sm-12">
-                        <ul id="orgTree" class="ztree"></ul>
+                        <ul id="departmentTree" class="ztree"></ul>
                     </div>
                 </div>
                 <!-- end condition -->
@@ -88,12 +88,12 @@
                                     <!-- start condition -->
                                     <div class="row filter filter-item">
                                         <div class="col-sm-4 search-margin">
-                                            组织名称:
-                                            <input type="text" class="input-xlarge" id="orgName" placeholder="组织名称"/>
+                                            部门名称:
+                                            <input type="text" class="input-xlarge" id="departmentName" placeholder="部门名称"/>
                                         </div>
                                         <div class="col-sm-4  search-margin">
-                                            组织编号:
-                                            <input type="text" class="input-xlarge" id="orgCode" placeholder="组织编号"/>
+                                            部门编号:
+                                            <input type="text" class="input-xlarge" id="departmentCode" placeholder="部门编号"/>
                                         </div>
                                         <div class="col-sm-4  search-margin">
                                             定义编号:
@@ -141,7 +141,7 @@
                             </div>
                             <div class="widget-body">
                                 <div class="widget-main no-padding">
-                                    <table id="org-table" class="table table-striped table-bordered table-hover">
+                                    <table id="department-table" class="table table-striped table-bordered table-hover">
                                         <thead>
                                         <th class="left">
                                             <label class="pos-rel">
@@ -149,10 +149,9 @@
                                                 <span class="lbl"></span>
                                             </label>
                                         </th>
-                                        <th class="center">组织名称</th>
-                                        <th class="center">组织编号</th>
+                                        <th class="center">部门名称</th>
+                                        <th class="center">部门编号</th>
                                         <th class="center">自定义编号</th>
-                                        <th class="center">排序</th>
                                         <th class="center">创建时间</th>
                                         <th class="center">操作</th>
                                         </thead>
@@ -188,6 +187,6 @@
 <script src="../../../static/ace/js/dataTables/jquery.dataTables.bootstrap.js"></script>
 
 <!-- page specific plugin scripts -->
-<script src="orgMain.js"></script>
+<script src="departmentMain.js"></script>
 </body>
 </html>
