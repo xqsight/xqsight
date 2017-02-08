@@ -65,9 +65,9 @@ saicfc.nameSpace.reg("sys");
                 //loginParam.goto = redirect;
                 loginParam.is_aes = -1;
                 $.ajax({
-                    "url": ctxData + "/system/ajaxlogin?date=" + new Date().getTime() ,
-                    "data" : loginParam,
-                    "success": function(retData){
+                    url : ctxData + "/system/ajaxlogin?date=" + new Date().getTime() ,
+                    data : loginParam,
+                    success : function(retData){
                         // 登录成功
                         if (retData.status == "0") {
                             if(redirect !== null || redirect != undefined){
@@ -81,9 +81,7 @@ saicfc.nameSpace.reg("sys");
                             $("#validateCode").focus();
                             $("#validateCode").select()
                         }
-                    },
-                    "dataType": "jsonp",
-                    "cache": false
+                    }
                 });
             }, {
                 validate : function() {

@@ -66,14 +66,12 @@ saicfc.nameSpace.reg("sys");
         /** 初始化菜单 */
         this.initMenuFun = function(){
             $.ajax({
-                "url": ctxData + "/sys/auth/queryusermenu?date=" + new Date().getTime() ,
-                "success": function(retData){
+                url : ctxData + "/sys/auth/queryusermenu?date=" + new Date().getTime() ,
+                success : function(retData){
                     var menuHtml = "";
                     menuHtml =  obj.foreachFun(menuHtml,retData.data.children) + "</ul></li>";
                     $("#portal_menus").append(menuHtml);
-                },
-                "dataType": "jsonp",
-                "cache": false
+                }
             });
         };
 
@@ -249,17 +247,15 @@ saicfc.nameSpace.reg("sys");
                 },
                 error : function(){
                     window.location.reload(true);
-                },
-                dataType: "jsonp",
-                cache: false
+                }
             });
         };
 
         /** 展示用户信息  **/
         this.initUserInfoFun = function(){
             $.ajax({
-                "url": ctxData + "/sys/login/queryuserinfo?date=" + new Date().getTime(),
-                "success": function(retData){
+                url : ctxData + "/sys/login/queryuserinfo?date=" + new Date().getTime(),
+                success : function(retData){
                     if(retData.data == undefined || retData.data == null)
                         return;
                     $("#userName").html(retData.data.userName);
@@ -268,9 +264,7 @@ saicfc.nameSpace.reg("sys");
                     }else {
                         $('#userImg').attr('src', "../static/images/user.jpg").fadeIn();
                     }
-                },
-                "dataType": "jsonp",
-                "cache": false
+                }
             });
         };
 
@@ -288,8 +282,8 @@ saicfc.nameSpace.reg("sys");
         /**  加载快捷键 */
         this.loadQuickKeyFun = function(){
             $.ajax({
-                "url": ctxData + "/sys/quickkey/querybyid?date=" + new Date().getTime(),
-                "success": function(retData){
+                url : ctxData + "/sys/quickkey/querybyid?date=" + new Date().getTime(),
+                success : function(retData){
                     if(retData.data == undefined || retData.data == null || retData.data.length == 0)
                         return;
                     $("#quickKey").html("");
@@ -320,9 +314,7 @@ saicfc.nameSpace.reg("sys");
                     $("#quickKey button").on("click",function(){
                         obj.addTabPageFun($(this).attr("id"),$(this).attr("data-original-title"),$(this).attr("rel"));
                     });
-                },
-                "dataType": "jsonp",
-                "cache": false
+                }
             });
         };
 

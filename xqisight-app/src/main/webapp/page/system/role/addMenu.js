@@ -23,10 +23,6 @@ saicfc.nameSpace.reg("sys.role");
         this.init = function() {
             obj.loadMenuTreeFun();
 
-            $("#roleName").change(function(){
-                obj.loadAuthMenu( $("#roleName").val());
-            });
-
             //绑定事件
             $("#btn_save").bind("click",obj.validateFun);
             $("#btn_cancel").bind("click",obj.cancelFun);
@@ -39,7 +35,7 @@ saicfc.nameSpace.reg("sys.role");
          * @returns {string}
          */
         this.setParamFun = function(){
-            var params = "&roleId=" + $("#roleName").val();
+            var params = "&roleId=" + $.getUrlParam("roleId");
             var zTree = $.fn.zTree.getZTreeObj("menuTree");
             $.each(zTree.getCheckedNodes(),function(index,node){
                 if(node.id != 0)
@@ -71,15 +67,14 @@ saicfc.nameSpace.reg("sys.role");
         this.saveFun = function(){
             var callback = function(btn){
                 if(btn == "yes"){
-                    var url = ctxData + "/sys/auth/savemenurole?date=" + new Date().getTime();
+                    var url = ctxData + "/sys/auth/saverolemenu?date=" + new Date().getTime();
                     $.ajax({
-                        "url": url ,
-                        "data":  obj.setParamFun(),
-                        "success": function(retData){
+                        url: url ,
+                        data:  obj.setParamFun(),
+                        mothod : "post",
+                        success: function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
-                        },
-                        "dataType": "jsonp",
-                        "cache": false
+                        }
                     });
                 }
             };
@@ -93,11 +88,10 @@ saicfc.nameSpace.reg("sys.role");
             saicfc.win.close();
         };
 
-        this.loadAuthMenu = function (roleId) {
+        this.loadAuthMenu = function () {
             $.ajax({
-                url: ctxData + "/sys/menu/querymenubyrole?date="+new Date().getTime(),
-                data : { "roleId" : roleId},
-                dataType: "jsonp",
+                url: ctxData + "/sys/auth/queryauthmenu?date="+new Date().getTime(),
+                data : { "roleId" : $.getUrlParam("roleId")},
                 success: function(retData){
                     obj.menuTree.checkAllNodes(false);
                     $.each(retData.data,function(index,object){
@@ -106,7 +100,7 @@ saicfc.nameSpace.reg("sys.role");
                     });
                 }
             });
-        }
+        };
 
         /**
          *  获取树选择
@@ -114,29 +108,36 @@ saicfc.nameSpace.reg("sys.role");
         this.loadMenuTreeFun = function(){
             $.ajax({
                 url: ctxData + "/sys/menu/queryalltree?date="+new Date().getTime(),
-                dataType: "jsonp",
                 success: function(retData){
-                    $.fn.zTree.init($("#menuTree"), {
-                        check: {
-                            enable: true,
-                        },
-                        data: {
-                            simpleData: {
-                                enable:true,
-                                idKey: "id",
-                                pIdKey: "parentId",
-                                rootPId: ""
-                            }
-                        },
-                    }, retData.data);
-
-                    obj.menuTree = $.fn.zTree.getZTreeObj("menuTree");
-                    obj.loadRoleDataFun();
-
-                    obj.menuTree.expandAll(true);
+                    obj.refender(retData.data);
+                    obj.loadAuthMenu();
                 }
             });
-        }
+        };
+
+        /**
+         * 渲染菜单
+         * @param data
+         */
+        this.refender = function(data){
+            $.fn.zTree.init($("#menuTree"), {
+                check: {
+                    enable: true,
+                },
+                data: {
+                    simpleData: {
+                        enable:true,
+                        idKey: "id",
+                        pIdKey: "parentId",
+                        rootPId: ""
+                    }
+                },
+            }, data);
+
+            obj.menuTree = $.fn.zTree.getZTreeObj("menuTree");
+
+            obj.menuTree.expandAll(true);
+        };
 
         /**
          * 加载 角色 function
@@ -144,8 +145,6 @@ saicfc.nameSpace.reg("sys.role");
         this.loadRoleDataFun = function(){
             var roleId = $.getUrlParam("roleId");
             $.ajax({
-                type: "POST",
-                dataType : 'jsonp',
                 url:  ctxData + "/sys/role/queryall",
                 success: function(objMsg){
                     if(objMsg.status == "0"){
@@ -166,7 +165,7 @@ saicfc.nameSpace.reg("sys.role");
                     }
                 }
             });
-        }
+        };
 
     };
 

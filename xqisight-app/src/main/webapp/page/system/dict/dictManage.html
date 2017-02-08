@@ -52,7 +52,31 @@
                                 <div class="col-xs-9">
                                     <input type="text" class="form-control" id="dictCode" placeholder="字典编号" required>
                                 </div>
+                                <div class="col-xs-1 red">*</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="dictValue" class="col-xs-2 control-label">字典值</label>
+                                <div class="col-xs-9">
+                                    <input type="text" class="form-control" id="dictValue" placeholder="字典值" >
+                                </div>
                                 <div class="col-xs-1"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="editable" class="col-xs-2 control-label">可否编辑</label>
+                                <div class="col-xs-9">
+                                    <select id="editable" class="form-control selectpicker" data-style="btn-white" data-width="100%" title="可否编辑">
+                                        <option value="1">可编辑</option>
+                                        <option value="-1">不可编辑</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-1"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="sort" class="col-xs-2 control-label">排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序</label>
+                                <div class="col-xs-9">
+                                    <input type="number" class="form-control" value="1" id="sort" placeholder="排序" required>
+                                </div>
+                                <div class="col-xs-1 red">*</div>
                             </div>
                             <div class="form-group">
                                 <label for="remark" class="col-xs-2 control-label">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注</label>

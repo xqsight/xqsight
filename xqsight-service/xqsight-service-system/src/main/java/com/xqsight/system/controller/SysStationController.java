@@ -76,7 +76,9 @@ public class SysStationController {
     @RequestMapping("query")
     @RequiresPermissions("sys:station:query")
     public Object query(XqsightPage xqsightPage, Long departmentId, String stationName, String stationCode) {
-        List<SysDepartment> sysDepartments = sysDepartmentService.querySubById(departmentId, null, null);
+        List<PropertyFilter> deptFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
+                .propertyType(PropertyType.S).add("parent_ids", "," + departmentId + ",").end();
+        List<SysDepartment> sysDepartments = sysDepartmentService.search(deptFilters);
         String departmentIds = sysDepartments.stream()
                 .map(SysDepartment::getDepartmentId).distinct()
                 .map(x -> x.toString())

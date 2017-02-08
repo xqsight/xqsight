@@ -95,6 +95,9 @@ public class SysAuthService {
      */
     public List<SysMenu> querAuthMenuByRole(long roleId) {
         List<String> menuIds = sysAuthMapper.queryMenuIdByRole(roleId);
+        if(menuIds.size() == 0)
+            return null;
+
         StringBuffer menuIdSb = new StringBuffer();
         menuIds.stream().forEach(menuId -> {
             menuIdSb.append(menuId).append(",");

@@ -69,16 +69,12 @@ saicfc.nameSpace.reg("sys.role");
             var callback = function(btn){
                 if(btn == "yes"){
                     var url = ctxData + "/sys/auth/saveuserrole?date=" + new Date().getTime();
-                    var index = saicfc.progress.loading();
                     $.ajax({
                         "url": url ,
                         "data":  obj.setParamFun(),
                         "success": function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
-                            saicfc.progress.removeLoading(index);
-                        },
-                        "dataType": "jsonp",
-                        "cache": false
+                        }
                     });
                 }
             };
@@ -97,10 +93,7 @@ saicfc.nameSpace.reg("sys.role");
          */
         this.loadRoleDataFun = function(){
             var roleId = $.getUrlParam("roleId");
-
             $.ajax({
-                type: "POST",
-                dataType : 'jsonp',
                 url:  ctxData + "/sys/role/queryall",
                 success: function(objMsg){
                     if(objMsg.status == "0"){
@@ -128,8 +121,6 @@ saicfc.nameSpace.reg("sys.role");
          */
         this.loadUserDataFun = function(roleId){
             $.ajax({
-                type: "POST",
-                dataType : 'jsonp',
                 url:  ctxData + "/sys/auth/queryauthuser?roleId="+roleId,
                 success: function(objMsg){
                     if(objMsg.status == "0"){

@@ -101,8 +101,6 @@ saicfc.nameSpace.reg("sys.menu");
                     $.ajax({
                         "url": ctxData + "/sys/menu/delete?date=" + new Date().getTime(),
                         "data": {menuId : selRows[0].menuId },
-                        "dataType": "jsonp",
-                        "cache": false,
                         "success": function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
@@ -149,13 +147,13 @@ saicfc.nameSpace.reg("sys.menu");
                         { "name": "parentId", "value": parentId }
                     );
                 },
-                "aoColumnDefs": [
+                aoColumnDefs: [
                     {
                         sDefaultContent: '',
                         aTargets: [ '_all' ]
                     }
                 ],
-                "aoColumns": [{
+                aoColumns: [{
                     data : "menuName",
                     sWidth : "2",
                     render : function(value){

@@ -1,6 +1,8 @@
 (function ($) {
     var _progress_index=0;
     $.ajaxSetup({
+        dataType : "jsonp",
+        cache : false,
         beforeSend : function(){
             _progress_index = saicfc.progress.show();
         },
@@ -12,14 +14,12 @@
             if( xhr.responseJSON != undefined && xhr.responseJSON.errCode == "ERR_MSG_0001"){
                 saicfc.win.alert(xhr.responseJSON.msg);
             }
-
         },
         error : function(data){
         	saicfc.progress.hide(_progress_index);
             if(data.status != 404){
                 //window.location.reload(true);
             }
-
         }
     });
 

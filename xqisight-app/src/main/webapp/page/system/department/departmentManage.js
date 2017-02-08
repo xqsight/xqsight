@@ -69,18 +69,17 @@ saicfc.nameSpace.reg("sys.department");
                         url = ctxData + "/sys/department/update?date=" + new Date().getTime();
                     }
                     $.ajax({
-                        "url": url ,
-                        "data": editDepartment,
-                        "success": function(retData){
+                        url : url ,
+                        data : editDepartment,
+                        mothed : "post",
+                        success : function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 var iframeContent = saicfc.tab.getIframeContent();
                                 iframeContent.departmentMain.editCallBackFun({"departmentId" : $.getUrlParam("departmentId")});
                                 saicfc.win.close();
                             }
-                        },
-                        "dataType": "jsonp",
-                        "cache": false
+                        }
                     });
                 }
             };

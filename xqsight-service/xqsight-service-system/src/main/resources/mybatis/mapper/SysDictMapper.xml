@@ -131,8 +131,6 @@
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysDict">
         update sys_dict set
-		parent_id = #{parentId,jdbcType=NUMERIC},
-		parent_ids = #{parentIds,jdbcType=VARCHAR},
 		sort = #{sort,jdbcType=NUMERIC},
 		dict_code = #{dictCode,jdbcType=VARCHAR},
 		dict_name = #{dictName,jdbcType=VARCHAR},
@@ -148,12 +146,6 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysDict">
         update sys_dict
         <set>
-            <if test="parentId!=null">
-            parent_id = #{parentId,jdbcType=NUMERIC},
-            </if>
-            <if test="parentIds!=null">
-            parent_ids = #{parentIds,jdbcType=VARCHAR},
-            </if>
             <if test="sort!=null">
             sort = #{sort,jdbcType=NUMERIC},
             </if>

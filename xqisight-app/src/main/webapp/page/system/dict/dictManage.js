@@ -35,6 +35,9 @@ saicfc.nameSpace.reg("sys.dict");
         this.setParamFun = function(){
             editdict.dictName = $("#dictName").val();
             editdict.dictCode = $("#dictCode").val();
+            editdict.dictValue = $("#dictValue").val();
+            editdict.sort = $("#sort").val();
+            editdict.editable = $("#editable").val();
             editdict.remark = $("#remark").val();
         };
 
@@ -96,6 +99,7 @@ saicfc.nameSpace.reg("sys.dict");
         this.formSetValue = function(){
             var dictId = $.getUrlParam("dictId");
             if(dictId== undefined || dictId =="" ){
+                editdict.parentId = $.getUrlParam("parentId");
                 return;
             }
             $.ajax({

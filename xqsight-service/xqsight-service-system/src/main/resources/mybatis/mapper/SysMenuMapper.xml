@@ -139,8 +139,6 @@
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysMenu">
         update sys_menu set
-		parent_id = #{parentId,jdbcType=NUMERIC},
-		parent_ids = #{parentIds,jdbcType=VARCHAR},
 		menu_name = #{menuName,jdbcType=VARCHAR},
 		url = #{url,jdbcType=VARCHAR},
 		icon = #{icon,jdbcType=VARCHAR},
@@ -157,12 +155,6 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysMenu">
         update sys_menu
         <set>
-            <if test="parentId!=null">
-            parent_id = #{parentId,jdbcType=NUMERIC},
-            </if>
-            <if test="parentIds!=null">
-            parent_ids = #{parentIds,jdbcType=VARCHAR},
-            </if>
             <if test="menuName!=null">
             menu_name = #{menuName,jdbcType=VARCHAR},
             </if>

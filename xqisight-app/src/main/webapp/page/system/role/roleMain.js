@@ -232,7 +232,7 @@ saicfc.nameSpace.reg("sys.role");
 
         this.addmenuFun = function(roleId){
             var selRows = obj.roleTable.rows(".info").data();
-            saicfc.win.show("添加权限","system/role/addMenu.html?roleId=" + selRows[0].roleId,400,$(window).height(),false);
+            saicfc.win.show(selRows[0].roleName + "[" + selRows[0].roleCode + "]权限","system/role/addMenu.html?roleId=" + selRows[0].roleId,400,$(window).height(),false);
         }
 
         /*** 加载 tree **/

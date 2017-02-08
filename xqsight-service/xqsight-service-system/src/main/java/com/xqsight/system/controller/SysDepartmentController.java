@@ -46,14 +46,15 @@ public class SysDepartmentController {
 
     @RequestMapping("save")
     @RequiresPermissions("sys:department:save")
-    public Object save(@RequestParam SysDepartment sysDepartment) {
+    public Object save(SysDepartment sysDepartment) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.S).add("department_code", sysDepartment.getDepartmentCode()).end();
         List<SysDepartment> sysDepartments = sysDepartmentService.search(propertyFilters);
-        if (sysDepartments != null || sysDepartments.size() > 0)
+        if (sysDepartments != null && sysDepartments.size() > 0)
             return MessageSupport.failureMsg("部门编号[" + sysDepartment.getDepartmentCode() + "]已经存在,请重新修改");
+
         SysDepartment parentDep = sysDepartmentService.get(Long.valueOf(sysDepartment.getParentId()));
-        sysDepartment.setParentIds(parentDep.getParentIds() + parentDep.getDepartmentId() + Constants.COMMA_SIGN_SPLIT_NAME );
+        sysDepartment.setParentIds(parentDep.getParentIds() + parentDep.getDepartmentId() + Constants.COMMA_SIGN_SPLIT_NAME);
         sysDepartmentService.save(sysDepartment, true);
         return MessageSupport.successMsg("保存成功");
     }
@@ -61,6 +62,14 @@ public class SysDepartmentController {
     @RequestMapping("update")
     @RequiresPermissions("sys:department:update")
     public Object update(SysDepartment sysDepartment) {
+        List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
+                .propertyType(PropertyType.S).add("department_code", sysDepartment.getDepartmentCode()).end();
+        List<SysDepartment> sysDepartments = sysDepartmentService.search(propertyFilters);
+
+        if (sysDepartments != null && sysDepartments.size() > 0
+                && sysDepartments.get(0).getDepartmentId() != sysDepartment.getDepartmentId())
+            return MessageSupport.failureMsg("部门编号[" + sysDepartment.getDepartmentCode() + "]已经存在,请重新修改");
+
         sysDepartmentService.update(sysDepartment, true);
         return MessageSupport.successMsg("修改成功");
     }
@@ -71,7 +80,7 @@ public class SysDepartmentController {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.L).add("parent_id", "" + departmentId).end();
         List<SysDepartment> sysDepartments = sysDepartmentService.search(propertyFilters);
-        if (sysDepartments != null || sysDepartments.size() > 0)
+        if (sysDepartments != null && sysDepartments.size() > 0)
             return MessageSupport.failureMsg("该部门还有下级部门不可删除");
         sysDepartmentService.delete(departmentId);
         return MessageSupport.successMsg("删除成功");
@@ -103,15 +112,14 @@ public class SysDepartmentController {
         return MessageSupport.successDataMsg(sysDepartment, "查询成功");
     }
 
-    @RequestMapping("queryalltree")
+    @RequestMapping("querytree")
     @RequiresPermissions("sys:department:query")
-    public Object queryAllTotTree(String departmentName, String departmentCode, @CurrentUserId Long currentUserId) {
-        SysLogin sysLogin = sysLoginService.get(currentUserId);
+    public Object queryAllTotTree(String departmentName, String departmentCode) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))
                 .add("department_code", StringUtils.trimToEmpty(departmentCode)).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
-        List<SysDepartment> sysDepartments = sysDepartmentService.querySubById(sysLogin.getDepartmentId(), propertyFilters, sorts);
+        List<SysDepartment> sysDepartments = sysDepartmentService.search(propertyFilters, sorts);
         SysDepartment sysDepartment = new TreeSupport<SysDepartment>().generateFullTree(sysDepartments);
         return MessageSupport.successDataMsg(sysDepartment, "查询成功");
     }

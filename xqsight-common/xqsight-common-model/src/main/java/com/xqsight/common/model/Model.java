@@ -26,7 +26,7 @@ public abstract class Model implements Serializable {
 		return active;
 	}
 
-	public void setActive(int active) {
+	public void setActive(Integer active) {
 		this.active = active;
 	}
 

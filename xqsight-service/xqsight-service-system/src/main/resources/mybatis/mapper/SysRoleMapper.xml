@@ -115,8 +115,6 @@
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysRole">
         update sys_role set
-		parent_id = #{parentId,jdbcType=NUMERIC},
-		parent_ids = #{parentIds,jdbcType=VARCHAR},
 		role_name = #{roleName,jdbcType=VARCHAR},
 		role_code = #{roleCode,jdbcType=VARCHAR},
 		role_type = #{roleType,jdbcType=VARCHAR},
@@ -130,12 +128,6 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysRole">
         update sys_role
         <set>
-            <if test="parentId!=null">
-            parent_id = #{parentId,jdbcType=NUMERIC},
-            </if>
-            <if test="parentIds!=null">
-            parent_ids = #{parentIds,jdbcType=VARCHAR},
-            </if>
             <if test="roleName!=null">
             role_name = #{roleName,jdbcType=VARCHAR},
             </if>

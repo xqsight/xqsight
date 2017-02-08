@@ -67,7 +67,7 @@ public class SysDictController {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.L).add("parent_id", "" + dictId).end();
         List<SysDict> sysDicts = sysDictService.search(propertyFilters);
-        if (sysDicts != null || sysDicts.size() > 0)
+        if (sysDicts != null && sysDicts.size() > 0)
             return MessageSupport.failureMsg("该字典项还有子项不可删除");
 
         sysDictService.delete(dictId);

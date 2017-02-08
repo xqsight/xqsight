@@ -71,7 +71,7 @@ saicfc.nameSpace.reg("sys.department");
                 saicfc.win.alert("请选择要添加的节点");
                 return;
             }
-            saicfc.win.show("组织机构新增","system/department/departmentManage.html?parentId=" + obj.curSelTree.id,$(window).width()-150,500);
+            saicfc.win.show("部门新增","system/department/departmentManage.html?parentId=" + obj.curSelTree.id,$(window).width()-150,500);
         }
 
         /**
@@ -83,7 +83,7 @@ saicfc.nameSpace.reg("sys.department");
                 saicfc.win.alert("请选择修改的数据");
                 return;
             }
-            saicfc.win.show("组织结构修改","system/department/departmentManage.html?departmentId=" + selRows[0].departmentId,$(window).width()-150,500);
+            saicfc.win.show("部门修改","system/department/departmentManage.html?departmentId=" + selRows[0].departmentId,$(window).width()-150,500);
         }
 
         /**
@@ -100,8 +100,6 @@ saicfc.nameSpace.reg("sys.department");
                     $.ajax({
                         "url": ctxData + "/sys/department/delete?date=" + new Date().getTime(),
                         "data": {departmentId : selRows[0].departmentId },
-                        "dataType": "jsonp",
-                        "cache": false,
                         "success": function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
@@ -133,9 +131,7 @@ saicfc.nameSpace.reg("sys.department");
                             fnCallback(data);
                             //渲染结束重新设置高度
                             parent.saicfc.common.setIframeHeight($.getUrlParam(saicfc.iframeId));
-                        },
-                        "dataType": "jsonp",
-                        "cache": false
+                        }
                     });
                 },
                 "fnServerParams": function (aoData) {

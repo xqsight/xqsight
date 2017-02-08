@@ -76,7 +76,9 @@ public class SysLoginController {
     @RequestMapping("query")
     @RequiresPermissions("sys:login:query")
     public Object query(XqsightPage xqsightPage, Long departmentId, String loginId, String userName) {
-        List<SysDepartment> sysDepartments = sysDepartmentService.querySubById(departmentId, null, null);
+        List<PropertyFilter> deptFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
+                .propertyType(PropertyType.S).add("parent_ids", "," + departmentId + ",").end();
+        List<SysDepartment> sysDepartments = sysDepartmentService.search(deptFilters);
         String departmentIds = sysDepartments.stream()
                 .map(SysDepartment::getDepartmentId)
                 .map(x -> x.toString())

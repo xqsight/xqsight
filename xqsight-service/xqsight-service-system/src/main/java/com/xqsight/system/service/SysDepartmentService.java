@@ -36,19 +36,4 @@ public class SysDepartmentService extends DefaultEntityService<SysDepartment, Lo
 		return sysDepartmentMapper;
 	}
 
-	/**
-	 * 根据部门ID查询所属下级所有部门
-	 * @param departmentId
-	 * @param propertyFilters
-	 * @param sorts
-	 * @return
-	 */
-	public List<SysDepartment> querySubById(long departmentId,List<PropertyFilter> propertyFilters, List<Sort> sorts){
-		Criterion criterion = new Criterion(propertyFilters,sorts);
-		StringBuffer customSql = new StringBuffer(" ' ");
-		customSql.append(departmentId).append(" ' ").append(" in (parent_ids)");
-		criterion.setCustomCriteria(customSql.toString());
-		List<SysDepartment> sysDepartments = sysDepartmentMapper.search(criterion);
-		return sysDepartments;
-	}
 }

@@ -58,6 +58,11 @@ saicfc.nameSpace.reg("sys.dict");
              */
             $("#btn-remove").on("click",obj.removeFun);
 
+            /**
+             * 删除
+             */
+            $("#btn-stop").on("click",obj.stopFun);
+
             obj.loadDictTreeFun();
             obj.loadDictTableFun();
 
@@ -101,12 +106,35 @@ saicfc.nameSpace.reg("sys.dict");
                     $.ajax({
                         "url": ctxData + "/sys/dict/delete?date=" + new Date().getTime(),
                         "data": {dictId : selRows[0].dictId },
-                        "dataType": "jsonp",
-                        "cache": false,
                         "success": function(retData){
                             saicfc.win.alert(retData.msg,retData.status);
                             if(retData.status == "0"){
                                 obj.loadDictTreeFun();
+                            }
+                        }
+                    });
+                }
+            });
+        }
+
+        /**
+         * 停用 function
+         */
+        this.stopFun = function(){
+            var selRows = obj.dictTable.rows(".info").data();
+            if(selRows.length < 1){
+                saicfc.win.alert("请选择停用的数据");
+                return;
+            }
+            saicfc.win.confirm("确认停用吗？",function(btn){
+                if(btn == "yes"){
+                    $.ajax({
+                        "url": ctxData + "/sys/dict/logicDel?date=" + new Date().getTime(),
+                        "data": {dictId : selRows[0].dictId },
+                        "success": function(retData){
+                            saicfc.win.alert(retData.msg,retData.status);
+                            if(retData.status == "0"){
+                                obj.dictTable.ajax.reload();
                             }
                         }
                     });
@@ -134,9 +162,7 @@ saicfc.nameSpace.reg("sys.dict");
                             fnCallback(data);
                             //渲染结束重新设置高度
                             parent.saicfc.common.setIframeHeight($.getUrlParam(saicfc.iframeId));
-                        },
-                        "dataType": "jsonp",
-                        "cache": false
+                        }
                     });
                 },
                 "fnServerParams": function (aoData) {
@@ -157,19 +183,19 @@ saicfc.nameSpace.reg("sys.dict");
                 ],
                 "aoColumns": [{
                     data : "dictId",
-                    sWidth : "2",
+                    sWidth : "1",
                     render : function(value){
                         return '<label class="pos-rel"><input id="' + value + '" type="checkbox" class="ace" /><span class="lbl"></span></label>';
                     }
+                },{
+                    "data": "dictName",
+                    sWidth : "100",
+                    sClass : "text-center"
                 },{
                     "data": "dictCode",
                     sWidth : "100",
                     sClass : "text-center",
                     sSort : false
-                },{
-                    "data": "dictName",
-                    sWidth : "100",
-                    sClass : "text-center"
                 },{
                     "data": "dictValue",
                     sWidth : "100",

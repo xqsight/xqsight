@@ -76,11 +76,4 @@ public class SysAuthController {
         return MessageSupport.successDataMsg(sysMenu, "查询成功");
     }
 
-    @RequestMapping("queryuserpermission")
-    @RequiresPermissions("sys:auth:queryuserpermission")
-    public Object queryUserPermission(@CurrentUserId long currentUserId) {
-        List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
-        List<SysMenu> sysMenus = sysAuthService.queryMenuByUser(currentUserId, null, sorts);
-        return MessageSupport.successDataMsg(sysMenus, "查询成功");
-    }
 }
