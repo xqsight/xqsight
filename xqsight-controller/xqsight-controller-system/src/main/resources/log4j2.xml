@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="appName">${web:servletContextName}</Property>
+        <Property name="fileName">/config/logs/xqsight/${appName}-${hostName}.log</Property>
+        <Property name="filePattern">/config/logs/xqsight/${appName}-%d{yyyyMMdd}-${hostName}.log.gz</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout charset="UTF-8" pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+        </Console>
+        <RollingFile name="RollingFile" fileName="${fileName}"	filePattern="${filePattern}">
+            <PatternLayout charset="UTF-8"
+                           pattern="%d{HH:mm:ss.SSS} [%t] %-5level %class{36} %L %M - %msg%xEx%n" />
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" />
+            </Policies>
+            <DefaultRolloverStrategy max="999" />
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <logger name="org.apache.shiro.cache.ehcache" level="ERROR" />
+        <logger name="com.alibaba.druid" level="ERROR" />
+        <logger name="com.alibaba.dubbo" level="ERROR" />
+        <logger name="org.springframework" level="ERROR" />
+        <logger name="org.springframework.orm.jpa" level="ERROR" />
+        <logger name="org.springframework.transaction" level="ERROR" />
+        <Root level="trace">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+    </Loggers>
+</Configuration>
+
+
