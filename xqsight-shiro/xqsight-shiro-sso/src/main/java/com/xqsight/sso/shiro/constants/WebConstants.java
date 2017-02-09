@@ -8,8 +8,12 @@ import java.util.Set;
 public class WebConstants {
     
     public final static String LOGIN_ID = "login_id";
-    
+
     public final static String PASSWORD = "pass_wd";
+
+    public final static String USERNAME = "userName";
+
+    public final static String DEPARTMENTCODE = "departmentCode";
     
     public final static String REMEMBER_ME = "rmb_m";
     

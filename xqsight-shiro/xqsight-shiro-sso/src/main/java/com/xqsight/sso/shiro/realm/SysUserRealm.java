@@ -57,12 +57,13 @@ public class SysUserRealm extends AuthorizingRealm {
         logger.info("doGetAuthorizationInfo(AuthenticationToken authcToken):" + authcToken);
         String loginId = (String) authcToken.getPrincipal();
         UserBaseModel user = userAuthcService.findByLoginId(loginId);
-        if (user == null) {
+        if (user == null)
             throw new UnknownAccountException("用户名没有找到");// 没找到帐号
-        }
-        if (user.isUserLocked()) {
+
+        if (user.isUserLocked())
             throw new LockedAccountException("您的用户已锁定"); // 帐号锁定
-        }
+
+
         // 交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         return new CustomAuthenticationInfo(user, user.getLoginId(), // 用户名
                 user.getPassword(), // 密码

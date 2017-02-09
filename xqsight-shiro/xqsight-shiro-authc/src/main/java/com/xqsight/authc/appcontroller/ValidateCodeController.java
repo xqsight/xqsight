@@ -2,8 +2,8 @@ package com.xqsight.authc.appcontroller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
-import com.xqsight.authc.exceptions.ValilCodeNoEqualException;
 import com.xqsight.common.web.WebUtils;
+import com.xqsight.sso.exceptions.CustomAuthcException;
 import com.xqsight.sso.shiro.constants.WebConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,9 +59,9 @@ public class ValidateCodeController {
      * 验证码判断处理
      *
      * @param request
-     * @throws ValilCodeNoEqualException
+     * @throws CustomAuthcException
      */
-    protected void checkCode(HttpServletRequest request) throws ValilCodeNoEqualException {
+    protected void checkCode(HttpServletRequest request) throws CustomAuthcException {
         //如果是移动端，不验证
         if(WebUtils.isMobile(request))
             return;
@@ -72,7 +72,7 @@ public class ValidateCodeController {
         logger.debug("get validataCode:{} && session validataCode:{}", checkCode, code);
         // 判断是否相等
         if (StringUtils.isEmpty(checkCode) || StringUtils.isEmpty(code) || !checkCode.equals(code)) {
-            throw new ValilCodeNoEqualException();
+            throw new CustomAuthcException(-1,"验证码错误");
         }
     }
 

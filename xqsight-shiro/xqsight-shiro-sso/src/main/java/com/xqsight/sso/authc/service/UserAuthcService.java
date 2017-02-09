@@ -8,26 +8,12 @@ import java.util.Set;
 public interface UserAuthcService {
     
     /**
-     * 添加用户-角色关系
-     * @param id
-     * @param roleIds
-     */
-    void correlationRoles(long id, Long... roleIds);
-
-    /**
-     * 移除用户-角色关系
-     * @param id
-     * @param roleIds
-     */
-    void uncorrelationRoles(long id, Long... roleIds);
-
-    /**
-     * 根据登陆id查找用户 主账户
+     * 根据登陆id查找用户
      * @param loginId
      * @return
      */
     UserBaseModel findByLoginId(String loginId);
-    
+
     /**
      * 根据用户id查找其角色
      * @param id

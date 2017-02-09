@@ -1,14 +1,18 @@
 package com.xqsight.system.service;
 
-import com.xqsight.common.model.UserBaseModel;
+import com.xqsight.authc.enums.LoginTypeEnum;
+import com.xqsight.authc.support.LoginSupport;
 import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
+import com.xqsight.common.model.UserBaseModel;
 import com.xqsight.sso.authc.service.UserAuthcService;
-import com.xqsight.system.model.SysLogin;
-import com.xqsight.system.model.SysMenu;
-import com.xqsight.system.model.SysRole;
+import com.xqsight.sso.exceptions.CustomAuthcException;
+import com.xqsight.system.mapper.SysUserMapper;
+import com.xqsight.system.model.*;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,15 +32,11 @@ public class UserAuthcServiceImpl implements UserAuthcService {
     @Autowired
     private SysLoginService sysLoginService;
 
-    @Override
-    public void correlationRoles(long id, Long... roleIds) {
+    @Autowired
+    private SysDepartmentService sysDepartmentService;
 
-    }
-
-    @Override
-    public void uncorrelationRoles(long id, Long... roleIds) {
-
-    }
+    @Autowired
+    private SysUserMapper sysUserMapper;
 
     @Override
     public UserBaseModel findByLoginId(String loginId) {
@@ -44,10 +44,19 @@ public class UserAuthcServiceImpl implements UserAuthcService {
                 .propertyType(PropertyType.S).add("login_id", loginId).end();
 
         UserBaseModel userBaseModel = sysLoginService.search(propertyFilters).get(0);
+        if (userBaseModel == null)
+            throw new UnknownAccountException("用户名没有找到");
+
+        if (userBaseModel.isUserLocked())
+            throw new LockedAccountException("您的账户已锁定");
+
+        if (userBaseModel.isNoActive())
+            throw new CustomAuthcException("你的账户未激活");
+
         if (userBaseModel.getParentId() == 0)
             return userBaseModel;
 
-        return sysLoginService.get(userBaseModel.getId());
+        return sysLoginService.search(propertyFilters).get(0);
     }
 
     @Override
@@ -57,7 +66,7 @@ public class UserAuthcServiceImpl implements UserAuthcService {
 
     @Override
     public Set<String> findPermissions(long id) {
-        return sysAuthService.queryMenuByUser(id,null,null).stream().map(SysMenu::getPermission).collect(Collectors.toSet());
+        return sysAuthService.queryMenuByUser(id, null, null).stream().map(SysMenu::getPermission).collect(Collectors.toSet());
     }
 
     @Override
@@ -69,5 +78,33 @@ public class UserAuthcServiceImpl implements UserAuthcService {
         sysLogin.setUserName(userBaseModel.getUserName());
         sysLogin.setSalt(userBaseModel.getSalt());
         sysLoginService.save(sysLogin, true);
+
+        saveSysUser(userBaseModel);
     }
+
+    private void saveSysUser(UserBaseModel userBaseModel) {
+        List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
+                .propertyType(PropertyType.S).add("department_code", userBaseModel.getDepartmentCode()).end();
+        SysDepartment sysDepartment = sysDepartmentService.search(propertyFilters).get(0);
+        if (sysDepartment == null)
+            throw new CustomAuthcException("部门编号不存在");
+
+        SysUser sysUser = new SysUser();
+        sysUser.setId(userBaseModel.getId());
+        sysUser.setUserName(userBaseModel.getUserName());
+        sysUser.setDepartmentId(sysDepartment.getDepartmentId());
+        LoginTypeEnum loginType = LoginSupport.judgeLoginType(userBaseModel.getLoginId());
+        switch (loginType) {
+            case CELLPHONE:
+                sysUser.setCellPhone(userBaseModel.getLoginId());
+                break;
+            case EMAIL:
+                sysUser.setEmail(userBaseModel.getLoginId());
+                break;
+            default:
+                sysUser.setUserCode(userBaseModel.getLoginId());
+        }
+        sysUserMapper.insertSelective(sysUser);
+    }
+
 }

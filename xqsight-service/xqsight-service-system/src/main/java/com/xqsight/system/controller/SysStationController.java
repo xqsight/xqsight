@@ -5,7 +5,6 @@
 package com.xqsight.system.controller;
 
 import com.github.pagehelper.Page;
-import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
@@ -13,9 +12,11 @@ import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.core.support.XqsightPageHelper;
+import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
-import com.xqsight.system.model.SysDepartment;
+import com.xqsight.system.model.SysStation;
 import com.xqsight.system.service.SysDepartmentService;
+import com.xqsight.system.service.SysStationService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-import com.xqsight.system.model.SysStation;
-import com.xqsight.system.service.SysStationService;
 
 /**
  * <p>岗位信息表 controller</p>
@@ -76,19 +73,12 @@ public class SysStationController {
     @RequestMapping("query")
     @RequiresPermissions("sys:station:query")
     public Object query(XqsightPage xqsightPage, Long departmentId, String stationName, String stationCode) {
-        List<PropertyFilter> deptFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("parent_ids", "," + departmentId + ",").end();
-        List<SysDepartment> sysDepartments = sysDepartmentService.search(deptFilters);
-        String departmentIds = sysDepartments.stream()
-                .map(SysDepartment::getDepartmentId).distinct()
-                .map(x -> x.toString())
-                .collect(Collectors.joining(","));
         Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("station_name", StringUtils.trimToEmpty(stationName)).add("station_code", StringUtils.trimToEmpty(stationCode))
-                .matchTye(MatchType.IN).propertyType(PropertyType.L).add("department_id", departmentIds).end();
+                .matchTye(MatchType.EQ).propertyType(PropertyType.L).add("department_id", "" + departmentId).end();
         List<Sort> sorts = SortBuilder.create().addAsc("station_name").end();
-        List<SysStation> sysStations = sysStationService.search(propertyFilters,sorts);
+        List<SysStation> sysStations = sysStationService.search(propertyFilters, sorts);
         xqsightPage.setTotalCount(page.getTotal());
         return MessageSupport.successDataTableMsg(xqsightPage, sysStations);
     }

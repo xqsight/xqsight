@@ -5,7 +5,6 @@
 package com.xqsight.system.controller;
 
 import com.github.pagehelper.Page;
-import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
@@ -13,9 +12,13 @@ import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.core.support.XqsightPageHelper;
+import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
-import com.xqsight.system.model.SysDepartment;
-import com.xqsight.system.service.SysDepartmentService;
+import com.xqsight.sso.shiro.annotation.CurrentUserId;
+import com.xqsight.sso.utils.PasswordHelper;
+import com.xqsight.sso.utils.SSOUtils;
+import com.xqsight.system.model.SysLogin;
+import com.xqsight.system.service.SysLoginService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +26,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
-import com.xqsight.system.model.SysLogin;
-import com.xqsight.system.service.SysLoginService;
 
 /**
  * <p>用户登陆表 controller</p>
@@ -42,9 +41,6 @@ public class SysLoginController {
     @Autowired
     private SysLoginService sysLoginService;
 
-    @Autowired
-    private SysDepartmentService sysDepartmentService;
-
     @RequestMapping("save")
     @RequiresPermissions("sys:login:save")
     public Object save(SysLogin sysLogin) {
@@ -58,6 +54,33 @@ public class SysLoginController {
         sysLoginService.update(sysLogin, true);
         return MessageSupport.successMsg("修改成功");
     }
+
+    @RequestMapping("resetpwd")
+    @RequiresPermissions("sys:login:update")
+    public Object resetPwd(long id) {
+        SysLogin sysLogin = sysLoginService.get(id);
+        sysLogin.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
+        sysLogin.setPassword("!password");
+        PasswordHelper.encryptPassword(sysLogin);
+        sysLoginService.update(sysLogin, true);
+        return MessageSupport.successMsg("密码重置成功");
+    }
+
+    @RequestMapping("updpwd")
+    public Object updPassword(@CurrentUserId long id, String oldPassword, String password) {
+        SysLogin sysLogin = sysLoginService.get(id);
+        if (sysLogin == null)
+            return MessageSupport.failureMsg("当前用户不存在");
+
+        if (!PasswordHelper.checkPassword(sysLogin, oldPassword))
+            return MessageSupport.failureMsg("原始密码不正确");
+
+        sysLogin.setPassword(password);
+        PasswordHelper.encryptPassword(sysLogin);
+        sysLoginService.update(sysLogin, true);
+        return MessageSupport.successMsg("密码修改成功");
+    }
+
 
     @RequestMapping("delete")
     @RequiresPermissions("sys:login:delete")
@@ -75,18 +98,11 @@ public class SysLoginController {
 
     @RequestMapping("query")
     @RequiresPermissions("sys:login:query")
-    public Object query(XqsightPage xqsightPage, Long departmentId, String loginId, String userName) {
-        List<PropertyFilter> deptFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("parent_ids", "," + departmentId + ",").end();
-        List<SysDepartment> sysDepartments = sysDepartmentService.search(deptFilters);
-        String departmentIds = sysDepartments.stream()
-                .map(SysDepartment::getDepartmentId)
-                .map(x -> x.toString())
-                .collect(Collectors.joining(","));
+    public Object query(XqsightPage xqsightPage, String loginId, String userName) {
         Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("login_id", StringUtils.trimToEmpty(loginId)).add("user_name", StringUtils.trimToEmpty(userName))
-                .matchTye(MatchType.IN).propertyType(PropertyType.L).add("department_id", departmentIds).end();
+                .propertyType(PropertyType.S).add("login_id", StringUtils.trimToEmpty(loginId))
+                .add("user_name", StringUtils.trimToEmpty(userName)).end();
         List<Sort> sorts = SortBuilder.create().addAsc("user_name").end();
         List<SysLogin> sysLogins = sysLoginService.search(propertyFilters, sorts);
         xqsightPage.setTotalCount(page.getTotal());
@@ -98,20 +114,6 @@ public class SysLoginController {
     public Object queryById(Long id) {
         SysLogin sysLogin = sysLoginService.get(id);
         return MessageSupport.successDataMsg(sysLogin, "查询成功");
-    }
-
-    @RequestMapping("queryuserinfo")
-    @RequiresPermissions("sys:login:query")
-    public Object queryUserInfo(Long currentUserId) {
-        SysLogin sysLogin = sysLoginService.get(currentUserId);
-        return MessageSupport.successDataMsg(sysLogin, "查询成功");
-    }
-
-    @RequestMapping("queryall")
-    @RequiresPermissions("sys:login:query")
-    public Object queryall() {
-        List<SysLogin> sysLogins = sysLoginService.search(null);
-        return MessageSupport.successDataMsg(sysLogins, "查询成功");
     }
 
 }

@@ -13,13 +13,17 @@ import java.io.Serializable;
  * <p>用户信息表实体类</p>
  * <p>Table: sys_user - --> SysUser</p>
  * <p>用户信息表</p>
- * @since 2017-01-07 11:58:17
+ * @since 2017-02-09 11:28:54
  * @author wangganggang
  */
 public class SysUser extends Model{
 
 	/** 主键 */
     private Long id;
+
+    private Long departmentId;
+
+    private String userName;
 
     /** user_code - 用户编号 */
     private String userCode;
@@ -29,8 +33,8 @@ public class SysUser extends Model{
     private String email;
     /** qq - Qq */
     private String qq;
-    /** wecaht - 微信 */
-    private String wecaht;
+    /** wechat - 微信 */
+    private String wechat;
     /** alipay - 支付宝 */
     private String alipay;
     /** interest - 兴趣 */
@@ -41,8 +45,8 @@ public class SysUser extends Model{
     private Integer province;
     /** city - 县 */
     private Integer city;
-    /** address - 详细地址 */
-    private String address;
+    /** adress - 详细地址 */
+    private String adress;
 
     public Long getId(){
         return this.id;
@@ -74,11 +78,11 @@ public class SysUser extends Model{
     public void setQq(String qq){
         this.qq = qq;
     }
-	public String getWecaht(){
-        return this.wecaht;
+	public String getWechat(){
+        return this.wechat;
     }
-    public void setWecaht(String wecaht){
-        this.wecaht = wecaht;
+    public void setWechat(String wechat){
+        this.wechat = wechat;
     }
 	public String getAlipay(){
         return this.alipay;
@@ -110,11 +114,27 @@ public class SysUser extends Model{
     public void setCity(Integer city){
         this.city = city;
     }
-	public String getAddress(){
-        return this.address;
+	public String getAdress(){
+        return this.adress;
     }
-    public void setAddress(String address){
-        this.address = address;
+    public void setAdress(String adress){
+        this.adress = adress;
+    }
+
+    public Long getDepartmentId() {
+        return departmentId;
+    }
+
+    public void setDepartmentId(Long departmentId) {
+        this.departmentId = departmentId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     @Override

@@ -18,6 +18,9 @@ public class UserBaseModel extends AbstractUser implements Serializable {
     /** 主账户id **/
     private long parentId;
 
+    /*** 部门编号 **/
+    private String departmentCode;
+
     /**
      * Getter method for property <tt>username</tt>.
      *
@@ -50,5 +53,13 @@ public class UserBaseModel extends AbstractUser implements Serializable {
 
     public void setParentId(long parentId) {
         this.parentId = parentId;
+    }
+
+    public String getDepartmentCode() {
+        return departmentCode;
+    }
+
+    public void setDepartmentCode(String departmentCode) {
+        this.departmentCode = departmentCode;
     }
 }

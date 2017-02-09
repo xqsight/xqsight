@@ -129,6 +129,7 @@ public abstract class AbstractUser extends Model implements Serializable{
     public boolean isUserLocked(){
         return this.locked == -1;
     }
+
     /**
      * 
      * @return

@@ -1,6 +1,5 @@
 package com.xqsight.authc.appcontroller;
 
-import com.xqsight.authc.exceptions.ValilCodeNoEqualException;
 import com.xqsight.sso.authc.SSOUsernamePasswordToken;
 import com.xqsight.sso.enums.UserType;
 import com.xqsight.sso.subject.SSOSubject;
@@ -28,12 +27,7 @@ public class CommonLoginContoller extends AbstractLoginContoller {
 
 		if (!currentUser.isAuthenticated()) {
 			// 判断验证码
-			try {
-				checkCode(request);
-			} catch (ValilCodeNoEqualException e) {
-				logger.error("验证码错误");
-				throw new UnsupportedEncodingException();
-			}
+			checkCode(request);
 			currentUser.login(getUsernamePasswrdToken(request));
 		}
 		return getRedirectView(request);

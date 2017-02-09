@@ -1,9 +1,9 @@
 package com.xqsight.authc.appcontroller;
 
-import com.xqsight.authc.exceptions.ValilCodeNoEqualException;
 import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.web.WebUtils;
 import com.xqsight.sso.authc.SSOUsernamePasswordToken;
+import com.xqsight.sso.exceptions.CustomAuthcException;
 import com.xqsight.sso.shiro.constants.WebConstants;
 import com.xqsight.sso.subject.SSOSubject;
 import com.xqsight.sso.utils.SSOUtils;
@@ -53,8 +53,8 @@ public abstract class AbstractLoginContoller extends ValidateCodeController {
 					request.setAttribute(Constants.KEY_MESSAGE, "用户名或密码错误");
 				} else if (e instanceof LockedAccountException) {
 					request.setAttribute(Constants.KEY_MESSAGE, "用户已锁定，请联系客服");
-				}else if (e instanceof ValilCodeNoEqualException) {
-					request.setAttribute(Constants.KEY_MESSAGE, "验证码错误");
+				}else if (e instanceof CustomAuthcException) {
+					request.setAttribute(Constants.KEY_MESSAGE, e.getMessage());
 				} else {
 					logger.error("登陆发生异常", e);
 					request.setAttribute(Constants.KEY_MESSAGE, "系统繁忙，请稍后再试");
@@ -84,8 +84,8 @@ public abstract class AbstractLoginContoller extends ValidateCodeController {
 					map.put(Constants.KEY_MESSAGE, "用户名或密码错误");
 				} else if (e instanceof LockedAccountException) {
 					map.put(Constants.KEY_MESSAGE, "用户已锁定，请联系客服");
-				} else if (e instanceof ValilCodeNoEqualException){
-					map.put(Constants.KEY_MESSAGE, "验证码错误");
+				} else if (e instanceof CustomAuthcException){
+					map.put(Constants.KEY_MESSAGE, e.getMessage());
 				}else {
 					logger.error("登陆发生异常", e);
 					map.put(Constants.KEY_MESSAGE, "系统繁忙，请稍后再试");
