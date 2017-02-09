@@ -96,6 +96,12 @@
         <dependency>
             <groupId>jcifs</groupId>
             <artifactId>jcifs</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>servlet-api</artifactId>
+                    <groupId>javax.servlet</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.jcraft</groupId>
@@ -104,6 +110,11 @@
         <dependency>
             <groupId>com.xiaoleilu</groupId>
             <artifactId>hutool</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

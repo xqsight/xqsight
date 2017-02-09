@@ -9,11 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>xqsight-shiro</artifactId>
+    <artifactId>xqsight-boot</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>xqsight-shiro-sso</module>
-        <module>xqsight-shiro-authc</module>
-        <module>xqsight-shiro-cas</module>
+        <module>xqsight-boot-system</module>
     </modules>
+
+
 </project>

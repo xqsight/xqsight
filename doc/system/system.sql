@@ -128,6 +128,7 @@ create table sys_menu
    parent_id            bigint default 0 comment '父级id',
    parent_ids           varchar(200) comment '所有上级',
    menu_name            varchar(120) not null comment '菜单名称',
+   target_type          varchar(20)  comment '跳转类型 iframe-tab blank',
    url                  varchar(200) comment '菜单访问URL',
    icon                 varchar(120) comment '图标',
    type                 INT default 0 comment '类型 0：菜单1：功能',
