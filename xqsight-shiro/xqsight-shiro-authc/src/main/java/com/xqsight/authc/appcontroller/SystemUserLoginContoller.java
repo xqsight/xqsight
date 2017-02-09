@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/system")
 public class SystemUserLoginContoller extends AbstractLoginContoller {
     
-    @Value(value = "${default.system.goto.url}")
+    @Value("${default.system.goto.url}")
     private String default_goto_url;
 
     /** 

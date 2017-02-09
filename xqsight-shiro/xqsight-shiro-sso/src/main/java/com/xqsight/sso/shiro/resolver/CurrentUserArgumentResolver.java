@@ -5,6 +5,7 @@ import com.xqsight.sso.shiro.annotation.CurrentUserId;
 import com.xqsight.sso.utils.SSOUtils;
 import org.springframework.beans.*;
 import org.springframework.core.MethodParameter;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -20,6 +21,7 @@ import java.util.Map;
 /**
  * Created by wangganggang on 2017/1/17.
  */
+@Component
 public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Override
@@ -29,7 +31,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        long currentUserId = SSOUtils.isAuthenticated() ? SSOUtils.getCurrentUserId() : 0;
+        long currentUserId = SSOUtils.isAuthenticated() ? SSOUtils.getCurrentUserId() : 1;
 
         /*** 注解获取当前用户ID **/
         if (parameter.hasParameterAnnotation(CurrentUserId.class)) {
@@ -89,7 +91,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
             map.put(name, value);
         }
 
-        long currentUserId = SSOUtils.isAuthenticated() ? SSOUtils.getCurrentUserId() : 0;
+        long currentUserId = SSOUtils.isAuthenticated() ? SSOUtils.getCurrentUserId() : 1;
 
         map.put("createUserId","" + currentUserId);
         map.put("updateUserId", "" + currentUserId);

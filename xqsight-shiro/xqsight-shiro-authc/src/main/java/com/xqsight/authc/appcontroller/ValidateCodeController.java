@@ -8,6 +8,7 @@ import com.xqsight.sso.shiro.constants.WebConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,6 +28,9 @@ public class ValidateCodeController {
 
     @Autowired
     private Producer captchaProducer;
+
+    @Value("${validate.code.no.show}")
+    private boolean validateCodeNoShow = true;
 
     @RequestMapping("/getCode")
     public void generateCode(HttpServletRequest request, HttpServletResponse response) {
@@ -63,9 +67,8 @@ public class ValidateCodeController {
      */
     protected void checkCode(HttpServletRequest request) throws CustomAuthcException {
         //如果是移动端，不验证
-        if(WebUtils.isMobile(request))
+        if(WebUtils.isMobile(request) || validateCodeNoShow)
             return;
-
         HttpSession session = request.getSession();
         String checkCode = request.getParameter(WebConstants.VALIDATA_CODE);
         String code = (String) session.getAttribute(Constants.KAPTCHA_SESSION_KEY);
