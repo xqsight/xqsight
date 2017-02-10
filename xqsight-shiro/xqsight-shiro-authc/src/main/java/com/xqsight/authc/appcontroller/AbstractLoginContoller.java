@@ -29,7 +29,7 @@ import java.util.Map;
  * 
  * @version ShiroContoller.java, v 0.1 2015年7月3日 上午9:49:26
  */
-public abstract class AbstractLoginContoller extends ValidateCodeController {
+public abstract class AbstractLoginContoller  {
 
 	protected Logger logger = LogManager.getLogger(getClass());
 
@@ -41,9 +41,6 @@ public abstract class AbstractLoginContoller extends ValidateCodeController {
 		logger.info("we take u are: name={}, isAuthc={}, isRememberMe={}, isRunAs={}", currentUser.getPrincipal(), currentUser.isAuthenticated(), currentUser.isRemembered(), currentUser.isRunAs());
 		if (!currentUser.isAuthenticated()) {
 			try {
-				// 判断验证码
-				checkCode(request);
-
 				currentUser.login(getUsernamePasswrdToken(request));
 			} catch (AuthenticationException e) {
 				request.setAttribute(Constants.KEY_STATUS, Constants.FAILURE);
@@ -72,9 +69,6 @@ public abstract class AbstractLoginContoller extends ValidateCodeController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (!currentUser.isAuthenticated()) {
 			try {
-				// 验证码判断
-				checkCode(request);
-
 				currentUser.login(getUsernamePasswrdToken(request));
 			} catch (AuthenticationException e) {
 				map.put(Constants.KEY_STATUS, Constants.FAILURE);

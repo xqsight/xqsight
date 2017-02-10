@@ -31,7 +31,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/authc")
-public class SignUpController extends ValidateCodeController {
+public class SignUpController{
 
     private final static Logger logger = LogManager.getLogger(SignUpController.class);
 
@@ -44,9 +44,6 @@ public class SignUpController extends ValidateCodeController {
     public Object signUp(HttpServletRequest request) {
         String gotoUrl = request.getParameter(WebConstants.GO_TO);
         try {
-            // 判断验证码
-            checkCode(request);
-
             doSignUp(request);
         } catch (AuthenticationException e) {
             logger.error(e);
@@ -62,9 +59,6 @@ public class SignUpController extends ValidateCodeController {
     public Object ajaxSignUp(HttpServletRequest request) {
         Map<String, Object> map = new HashMap<>();
         try {
-            // 判断验证码
-            checkCode(request);
-
             SSOUsernamePasswordToken token = doSignUp(request);
             doAfterSignUp(token);
         } catch (AuthenticationException e) {

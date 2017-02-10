@@ -1,8 +1,6 @@
 package com.xqsight.common.model.shiro;
 
 import com.xqsight.common.model.Model;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
 import java.util.List;
@@ -114,7 +112,7 @@ public class Role extends Model {
     }
 
     public String getResourceIdsStr() {
-        if (CollectionUtils.isEmpty(resourceIds)) {
+        if (resourceIds == null || resourceIds.size() < 1) {
             return "";
         }
         StringBuilder s = new StringBuilder();
@@ -126,12 +124,12 @@ public class Role extends Model {
     }
 
     public void setResourceIdsStr(String resourceIdsStr) {
-        if (StringUtils.isEmpty(resourceIdsStr)) {
+        if (resourceIdsStr == null || "".equals(resourceIdsStr)) {
             return;
         }
         String[] resourceIdStrs = resourceIdsStr.split(",");
         for (String resourceIdStr : resourceIdStrs) {
-            if (StringUtils.isEmpty(resourceIdStr)) {
+            if (resourceIdStr == null || "".equals(resourceIdStr)) {
                 continue;
             }
             getResourceIds().add(Long.valueOf(resourceIdStr));

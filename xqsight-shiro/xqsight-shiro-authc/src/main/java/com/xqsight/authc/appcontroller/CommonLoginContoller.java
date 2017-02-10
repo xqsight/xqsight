@@ -26,8 +26,6 @@ public class CommonLoginContoller extends AbstractLoginContoller {
 		logger.info("we take u are: name={}, isAuthc={}, isRememberMe={}, isRunAs={}", currentUser.getPrincipal(), currentUser.isAuthenticated(), currentUser.isRemembered(), currentUser.isRunAs());
 
 		if (!currentUser.isAuthenticated()) {
-			// 判断验证码
-			checkCode(request);
 			currentUser.login(getUsernamePasswrdToken(request));
 		}
 		return getRedirectView(request);
