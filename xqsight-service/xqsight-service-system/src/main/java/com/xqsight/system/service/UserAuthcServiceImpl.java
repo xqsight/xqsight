@@ -36,7 +36,7 @@ public class UserAuthcServiceImpl implements UserAuthcService {
     private SysDepartmentService sysDepartmentService;
 
     @Autowired
-    private SysUserMapper sysUserMapper;
+    private SysUserService sysUserService;
 
     @Override
     public UserBaseModel findByLoginId(String loginId) {
@@ -52,11 +52,12 @@ public class UserAuthcServiceImpl implements UserAuthcService {
 
         if (userBaseModel.isNoActive())
             throw new CustomAuthcException("你的账户未激活");
+        SysUser sysUser = sysUserService.get(userBaseModel.getId());
 
-        if (userBaseModel.getParentId() == 0)
-            return userBaseModel;
-
-        return sysLoginService.search(propertyFilters).get(0);
+        userBaseModel.setUserName(sysUser.getUserName());
+        userBaseModel.setPassword(sysUser.getPassword());
+        userBaseModel.setSalt(sysUser.getSalt());
+        return userBaseModel;
     }
 
     @Override
@@ -77,9 +78,10 @@ public class UserAuthcServiceImpl implements UserAuthcService {
         sysLogin.setLoginType(userBaseModel.getLoginType());
         sysLogin.setUserName(userBaseModel.getUserName());
         sysLogin.setSalt(userBaseModel.getSalt());
-        sysLoginService.save(sysLogin, true);
 
         saveSysUser(userBaseModel);
+
+        sysLoginService.save(sysLogin, true);
     }
 
     private void saveSysUser(UserBaseModel userBaseModel) {
@@ -90,7 +92,6 @@ public class UserAuthcServiceImpl implements UserAuthcService {
             throw new CustomAuthcException("部门编号不存在");
 
         SysUser sysUser = new SysUser();
-        sysUser.setId(userBaseModel.getId());
         sysUser.setUserName(userBaseModel.getUserName());
         sysUser.setDepartmentId(sysDepartment.getDepartmentId());
         LoginTypeEnum loginType = LoginSupport.judgeLoginType(userBaseModel.getLoginId());
@@ -104,7 +105,8 @@ public class UserAuthcServiceImpl implements UserAuthcService {
             default:
                 sysUser.setUserCode(userBaseModel.getLoginId());
         }
-        sysUserMapper.insertSelective(sysUser);
+        sysUserService.save(sysUser,true);
+        userBaseModel.setId(sysUser.getId());
     }
 
 }

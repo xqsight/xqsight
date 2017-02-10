@@ -4,8 +4,6 @@
  */
 package com.xqsight.system.model;
 
-import com.xqsight.common.model.Model;
-
 import java.io.Serializable;
 
 
@@ -16,14 +14,15 @@ import java.io.Serializable;
  * @since 2017-02-09 11:28:54
  * @author wangganggang
  */
-public class SysUser extends Model{
+public class SysUser extends SysLogin{
 
 	/** 主键 */
     private Long id;
 
     private Long departmentId;
 
-    private String userName;
+
+    private String realName;
 
     /** user_code - 用户编号 */
     private String userCode;
@@ -129,12 +128,12 @@ public class SysUser extends Model{
         this.departmentId = departmentId;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getRealName() {
+        return realName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setRealName(String realName) {
+        this.realName = realName;
     }
 
     @Override

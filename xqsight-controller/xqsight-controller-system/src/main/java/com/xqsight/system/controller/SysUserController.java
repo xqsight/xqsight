@@ -12,10 +12,14 @@ import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.core.support.XqsightPageHelper;
+import com.xqsight.common.model.UserBaseModel;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.sso.shiro.annotation.CurrentUserId;
+import com.xqsight.sso.utils.PasswordHelper;
+import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.system.model.SysDepartment;
+import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.model.SysUser;
 import com.xqsight.system.service.SysDepartmentService;
 import com.xqsight.system.service.SysUserService;
@@ -108,5 +112,4 @@ public class SysUserController {
         SysUser sysUser = sysUserService.get(id);
         return MessageSupport.successDataMsg(sysUser, "查询成功");
     }
-
 }

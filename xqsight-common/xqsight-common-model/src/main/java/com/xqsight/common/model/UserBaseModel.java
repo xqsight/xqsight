@@ -15,9 +15,6 @@ public class UserBaseModel extends AbstractUser implements Serializable {
     /**  登录类型  **/
     private int  loginType;
 
-    /** 主账户id **/
-    private long parentId;
-
     /*** 部门编号 **/
     private String departmentCode;
 
@@ -45,14 +42,6 @@ public class UserBaseModel extends AbstractUser implements Serializable {
 
     public void setLoginType(int loginType) {
         this.loginType = loginType;
-    }
-
-    public long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(long parentId) {
-        this.parentId = parentId;
     }
 
     public String getDepartmentCode() {

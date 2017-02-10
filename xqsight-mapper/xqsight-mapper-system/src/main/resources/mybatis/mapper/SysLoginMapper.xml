@@ -4,11 +4,7 @@
 
     <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysLogin">
         <result column="id" property="id" jdbcType="NUMERIC"/>
-        <result column="parent_id" property="parentId" jdbcType="NUMERIC"/>
         <result column="login_id" property="loginId" jdbcType="VARCHAR"/>
-        <result column="password" property="password" jdbcType="VARCHAR"/>
-        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-        <result column="login_type" property="loginType" jdbcType="NUMERIC"/>
         <result column="salt" property="salt" jdbcType="VARCHAR"/>
         <result column="locked" property="locked" jdbcType="NUMERIC"/>
         <result column="active" property="active" jdbcType="NUMERIC"/>
@@ -20,18 +16,15 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-	 id,parent_id,login_id,password,user_name,login_type,salt,locked,active,create_user_id,create_time,update_user_id,update_time,remark
+	 id,login_id,salt,locked,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
 
     <insert id="insert" parameterType="com.xqsight.system.model.SysLogin" useGeneratedKeys="true" keyProperty="id">
         insert into sys_login (
-	parent_id,login_id,password,user_name,login_type,salt,locked,active,create_user_id,create_time,update_user_id,update_time,remark
+	id,login_id,salt,locked,active,create_user_id,create_time,update_user_id,update_time,remark
         ) values (
-	#{parentId,jdbcType=NUMERIC},
+	#{Id,jdbcType=NUMERIC},
 	#{loginId,jdbcType=VARCHAR},
-	#{password,jdbcType=VARCHAR},
-	#{userName,jdbcType=VARCHAR},
-	#{loginType,jdbcType=NUMERIC},
 	#{salt,jdbcType=VARCHAR},
 	#{locked,jdbcType=NUMERIC},
 	#{active,jdbcType=NUMERIC},
@@ -46,20 +39,11 @@
     <insert id="insertSelective" parameterType="com.xqsight.system.model.SysLogin" useGeneratedKeys="true" keyProperty="id">
         insert into sys_login
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="parentId!=null">
-			parent_id,
+            <if test="id!=null">
+			id,
             </if>
             <if test="loginId!=null">
 			login_id,
-            </if>
-            <if test="password!=null">
-			password,
-            </if>
-            <if test="userName!=null">
-			user_name,
-            </if>
-            <if test="loginType!=null">
-			login_type,
             </if>
             <if test="salt!=null">
 			salt,
@@ -87,20 +71,8 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="parentId!=null">
-			#{parentId,jdbcType=NUMERIC},
-            </if>
-            <if test="loginId!=null">
-			#{loginId,jdbcType=VARCHAR},
-            </if>
-            <if test="password!=null">
-			#{password,jdbcType=VARCHAR},
-            </if>
-            <if test="userName!=null">
-			#{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="loginType!=null">
-			#{loginType,jdbcType=NUMERIC},
+            <if test="id!=null">
+			#{id,jdbcType=NUMERIC},
             </if>
             <if test="salt!=null">
 			#{salt,jdbcType=VARCHAR},
@@ -131,12 +103,6 @@
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysLogin">
         update from sys_login set
-		parent_id = #{parentId,jdbcType=NUMERIC},
-		login_id = #{loginId,jdbcType=VARCHAR},
-		password = #{password,jdbcType=VARCHAR},
-		user_name = #{userName,jdbcType=VARCHAR},
-		login_type = #{loginType,jdbcType=NUMERIC},
-		salt = #{salt,jdbcType=VARCHAR},
 		locked = #{locked,jdbcType=NUMERIC},
 		active = #{active,jdbcType=NUMERIC},
 		update_user_id = #{updateUserId,jdbcType=VARCHAR},
@@ -148,21 +114,6 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysLogin">
         update from sys_login
         <set>
-            <if test="parentId!=null">
-            parent_id = #{parentId,jdbcType=NUMERIC},
-            </if>
-            <if test="loginId!=null">
-            login_id = #{loginId,jdbcType=VARCHAR},
-            </if>
-            <if test="password!=null">
-            password = #{password,jdbcType=VARCHAR},
-            </if>
-            <if test="userName!=null">
-            user_name = #{userName,jdbcType=VARCHAR},
-            </if>
-            <if test="loginType!=null">
-            login_type = #{loginType,jdbcType=NUMERIC},
-            </if>
             <if test="salt!=null">
             salt = #{salt,jdbcType=VARCHAR},
             </if>
