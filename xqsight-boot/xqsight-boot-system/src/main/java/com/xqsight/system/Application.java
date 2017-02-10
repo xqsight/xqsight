@@ -13,7 +13,6 @@ import org.springframework.context.annotation.ImportResource;
 @ImportResource({"classpath*:xqsight-common-dao.xml",
         "classpath*:xqsight-data-ehcache.xml",
         "classpath*:xqsight-sso-shiro.xml",
-        "classpath*:xqsight-authc-shiro.xml",
         "classpath:shiro-config.xml",
         "classpath:applicationContext.xml"})
 @SpringBootApplication(scanBasePackages = {"com.xqsight"})

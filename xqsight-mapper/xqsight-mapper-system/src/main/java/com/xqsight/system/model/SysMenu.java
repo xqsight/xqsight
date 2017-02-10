@@ -25,6 +25,10 @@ public class SysMenu extends TreeBaseModel<SysMenu> {
     private String parentIds;
     /** menu_name - 菜单名称 */
     private String menuName;
+    /** target_type - 跳转类型 */
+    private String targetType;
+    /** is_head - 是否是导航栏 0是 -1 否 */
+    private Integer isHead;
     /** url - 菜单访问URL */
     private String url;
     /** icon - 图标 */
@@ -55,6 +59,18 @@ public class SysMenu extends TreeBaseModel<SysMenu> {
     public void setMenuName(String menuName){
         this.menuName = menuName;
         super.setName(menuName);
+    }
+    public String getTargetType(){
+        return this.targetType;
+    }
+    public void setTargetType(String targetType){
+        this.targetType = targetType;
+    }
+    public Integer getIsHead(){
+        return this.isHead;
+    }
+    public void setIsHead(Integer isHead){
+        this.isHead = isHead;
     }
 	public String getUrl(){
         return this.url;

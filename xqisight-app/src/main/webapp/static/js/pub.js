@@ -188,7 +188,7 @@ saicfc.utils = {
         var serverPath = "";
         switch (reqType){
             case "system" :  //系统管理
-                serverPath = "http://localhost:8080/portal/";saicfc.utils.getContextPath();
+                serverPath = "http://localhost:8080/portal";saicfc.utils.getContextPath();
                 break;
             case "anti" :
                 serverPath = saicfc.utils.getContextPath();

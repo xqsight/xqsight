@@ -25,8 +25,6 @@ public class SysRole extends TreeBaseModel<SysRole>{
     private String parentIds;
     /** role_name - 角色名称 */
     private String roleName;
-    /** role_code - 角色编号 */
-    private String roleCode;
     /** role_type - 角色类型 */
     private String roleType;
 
@@ -49,12 +47,6 @@ public class SysRole extends TreeBaseModel<SysRole>{
     public void setRoleName(String roleName){
         this.roleName = roleName;
         super.setName(roleName);
-    }
-	public String getRoleCode(){
-        return this.roleCode;
-    }
-    public void setRoleCode(String roleCode){
-        this.roleCode = roleCode;
     }
 	public String getRoleType(){
         return this.roleType;

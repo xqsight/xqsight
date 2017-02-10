@@ -19,11 +19,10 @@ public class SysUser extends SysLogin{
 	/** 主键 */
     private Long id;
 
+    /** department_id - 所属部门 */
     private Long departmentId;
-
-
+    /** real_name - 真实姓名 */
     private String realName;
-
     /** user_code - 用户编号 */
     private String userCode;
     /** cell_phone - 电话 */

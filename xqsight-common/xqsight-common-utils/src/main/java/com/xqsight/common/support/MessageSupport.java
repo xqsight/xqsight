@@ -75,7 +75,8 @@ public class MessageSupport {
     }
 
     private static Object responseBody(Object objectData){
-        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-        return WebUtils.getResponseBody(request, objectData);
+        return objectData;
+       /* HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        return WebUtils.getResponseBody(request, objectData);*/
     }
 }

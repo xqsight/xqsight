@@ -29,8 +29,6 @@ public class SysDepartment extends TreeBaseModel<SysDepartment>{
     private String departmentType;
     /** department_code - 部门编号 */
     private String departmentCode;
-    /** custom_code - 自定义编号 */
-    private String customCode;
     /** sort - 排序 */
     private Integer sort;
 
@@ -65,12 +63,6 @@ public class SysDepartment extends TreeBaseModel<SysDepartment>{
     }
     public void setDepartmentCode(String departmentCode){
         this.departmentCode = departmentCode;
-    }
-	public String getCustomCode(){
-        return this.customCode;
-    }
-    public void setCustomCode(String customCode){
-        this.customCode = customCode;
     }
 	public Integer getSort(){
         return this.sort;

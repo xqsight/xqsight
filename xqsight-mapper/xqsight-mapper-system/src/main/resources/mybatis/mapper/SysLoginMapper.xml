@@ -5,7 +5,6 @@
     <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysLogin">
         <result column="id" property="id" jdbcType="NUMERIC"/>
         <result column="login_id" property="loginId" jdbcType="VARCHAR"/>
-        <result column="salt" property="salt" jdbcType="VARCHAR"/>
         <result column="locked" property="locked" jdbcType="NUMERIC"/>
         <result column="active" property="active" jdbcType="NUMERIC"/>
         <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
@@ -16,16 +15,15 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-	 id,login_id,salt,locked,active,create_user_id,create_time,update_user_id,update_time,remark
+	 id,login_id,locked,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
 
     <insert id="insert" parameterType="com.xqsight.system.model.SysLogin" useGeneratedKeys="true" keyProperty="id">
         insert into sys_login (
-	id,login_id,salt,locked,active,create_user_id,create_time,update_user_id,update_time,remark
+        id,login_id,locked,active,create_user_id,create_time,update_user_id,update_time,remark
         ) values (
-	#{Id,jdbcType=NUMERIC},
+        #{id,jdbcType=NUMERIC},
 	#{loginId,jdbcType=VARCHAR},
-	#{salt,jdbcType=VARCHAR},
 	#{locked,jdbcType=NUMERIC},
 	#{active,jdbcType=NUMERIC},
 	#{createUserId,jdbcType=VARCHAR},
@@ -40,13 +38,10 @@
         insert into sys_login
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id!=null">
-			id,
+                id,
             </if>
             <if test="loginId!=null">
 			login_id,
-            </if>
-            <if test="salt!=null">
-			salt,
             </if>
             <if test="locked!=null">
 			locked,
@@ -74,8 +69,8 @@
             <if test="id!=null">
 			#{id,jdbcType=NUMERIC},
             </if>
-            <if test="salt!=null">
-			#{salt,jdbcType=VARCHAR},
+            <if test="loginId!=null">
+                #{loginId,jdbcType=VARCHAR},
             </if>
             <if test="locked!=null">
 			#{locked,jdbcType=NUMERIC},
@@ -102,7 +97,8 @@
     </insert>
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysLogin">
-        update from sys_login set
+        update sys_login set
+		login_id = #{loginId,jdbcType=VARCHAR},
 		locked = #{locked,jdbcType=NUMERIC},
 		active = #{active,jdbcType=NUMERIC},
 		update_user_id = #{updateUserId,jdbcType=VARCHAR},
@@ -112,10 +108,10 @@
     </update>
 
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysLogin">
-        update from sys_login
+        update sys_login
         <set>
-            <if test="salt!=null">
-            salt = #{salt,jdbcType=VARCHAR},
+            <if test="loginId!=null">
+            login_id = #{loginId,jdbcType=VARCHAR},
             </if>
             <if test="locked!=null">
             locked = #{locked,jdbcType=NUMERIC},

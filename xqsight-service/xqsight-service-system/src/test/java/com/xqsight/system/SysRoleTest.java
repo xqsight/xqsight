@@ -21,6 +21,6 @@ public class SysRoleTest {
     @Test
     public void query(){
         SysRole sysRole = sysRoleService.get(1L);
-        System.out.println(sysRole.getRoleCode());
+        System.out.println(sysRole.getRoleName());
     }
 }

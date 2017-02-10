@@ -7,6 +7,8 @@
         <result column="parent_id" property="parentId" jdbcType="NUMERIC"/>
         <result column="parent_ids" property="parentIds" jdbcType="VARCHAR"/>
         <result column="menu_name" property="menuName" jdbcType="VARCHAR"/>
+        <result column="target_type" property="targetType" jdbcType="VARCHAR"/>
+        <result column="is_head" property="isHead" jdbcType="NUMERIC"/>
         <result column="url" property="url" jdbcType="VARCHAR"/>
         <result column="icon" property="icon" jdbcType="VARCHAR"/>
         <result column="type" property="type" jdbcType="NUMERIC"/>
@@ -21,16 +23,18 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-	 menu_id,parent_id,parent_ids,menu_name,url,icon,type,permission,sort,active,create_user_id,create_time,update_user_id,update_time,remark
+	 menu_id,parent_id,parent_ids,menu_name,target_type,is_head,url,icon,type,permission,sort,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
 
     <insert id="insert" parameterType="com.xqsight.system.model.SysMenu" useGeneratedKeys="true" keyProperty="menuId">
         insert into sys_menu (
-	parent_id,parent_ids,menu_name,url,icon,type,permission,sort,active,create_user_id,create_time,update_user_id,update_time,remark
+	parent_id,parent_ids,menu_name,target_type,is_head,url,icon,type,permission,sort,active,create_user_id,create_time,update_user_id,update_time,remark
         ) values (
 	#{parentId,jdbcType=NUMERIC},
 	#{parentIds,jdbcType=VARCHAR},
 	#{menuName,jdbcType=VARCHAR},
+	#{targetType,jdbcType=VARCHAR},
+	#{isHead,jdbcType=NUMERIC},
 	#{url,jdbcType=VARCHAR},
 	#{icon,jdbcType=VARCHAR},
 	#{type,jdbcType=NUMERIC},
@@ -56,6 +60,12 @@
             </if>
             <if test="menuName!=null">
 			menu_name,
+            </if>
+            <if test="targetType!=null">
+			target_type,
+            </if>
+            <if test="isHead!=null">
+			is_head,
             </if>
             <if test="url!=null">
 			url,
@@ -101,6 +111,12 @@
             <if test="menuName!=null">
 			#{menuName,jdbcType=VARCHAR},
             </if>
+            <if test="targetType!=null">
+			#{targetType,jdbcType=VARCHAR},
+            </if>
+            <if test="isHead!=null">
+			#{isHead,jdbcType=NUMERIC},
+            </if>
             <if test="url!=null">
 			#{url,jdbcType=VARCHAR},
             </if>
@@ -139,7 +155,11 @@
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysMenu">
         update sys_menu set
+		parent_id = #{parentId,jdbcType=NUMERIC},
+		parent_ids = #{parentIds,jdbcType=VARCHAR},
 		menu_name = #{menuName,jdbcType=VARCHAR},
+		target_type = #{targetType,jdbcType=VARCHAR},
+		is_head = #{isHead,jdbcType=NUMERIC},
 		url = #{url,jdbcType=VARCHAR},
 		icon = #{icon,jdbcType=VARCHAR},
 		type = #{type,jdbcType=NUMERIC},
@@ -155,8 +175,20 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysMenu">
         update sys_menu
         <set>
+            <if test="parentId!=null">
+            parent_id = #{parentId,jdbcType=NUMERIC},
+            </if>
+            <if test="parentIds!=null">
+            parent_ids = #{parentIds,jdbcType=VARCHAR},
+            </if>
             <if test="menuName!=null">
             menu_name = #{menuName,jdbcType=VARCHAR},
+            </if>
+            <if test="targetType!=null">
+            target_type = #{targetType,jdbcType=VARCHAR},
+            </if>
+            <if test="isHead!=null">
+            is_head = #{isHead,jdbcType=NUMERIC},
             </if>
             <if test="url!=null">
             url = #{url,jdbcType=VARCHAR},

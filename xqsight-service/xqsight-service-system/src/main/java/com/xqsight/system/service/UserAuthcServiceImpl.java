@@ -62,7 +62,7 @@ public class UserAuthcServiceImpl implements UserAuthcService {
 
     @Override
     public Set<String> findRoles(long id) {
-        return sysAuthService.queryRoleByUser(id).stream().map(SysRole::getRoleCode).collect(Collectors.toSet());
+        return sysAuthService.queryRoleByUser(id).stream().map(sysRole -> "" + sysRole.getRoleId()).collect(Collectors.toSet());
     }
 
     @Override
@@ -105,7 +105,7 @@ public class UserAuthcServiceImpl implements UserAuthcService {
             default:
                 sysUser.setUserCode(userBaseModel.getLoginId());
         }
-        sysUserService.save(sysUser,true);
+        sysUserService.save(sysUser, true);
         userBaseModel.setId(sysUser.getId());
     }
 
