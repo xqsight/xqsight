@@ -43,35 +43,30 @@ public class SysStationController {
     private SysDepartmentService sysDepartmentService;
 
     @RequestMapping("save")
-    @RequiresPermissions("sys:station:save")
     public Object save(SysStation sysStation) {
         sysStationService.save(sysStation, true);
         return MessageSupport.successMsg("保存成功");
     }
 
     @RequestMapping("update")
-    @RequiresPermissions("sys:station:update")
     public Object update(SysStation sysStation) {
         sysStationService.update(sysStation, true);
         return MessageSupport.successMsg("修改成功");
     }
 
     @RequestMapping("delete")
-    @RequiresPermissions("sys:station:delete")
     public Object delete(Long stationId) {
         sysStationService.delete(stationId);
         return MessageSupport.successMsg("删除成功");
     }
 
     @RequestMapping("logicDel")
-    @RequiresPermissions("sys:station:delete")
     public Object logicDel(Long stationId) {
         sysStationService.logicDel(stationId);
         return MessageSupport.successMsg("删除成功");
     }
 
     @RequestMapping("query")
-    @RequiresPermissions("sys:station:query")
     public Object query(XqsightPage xqsightPage, Long departmentId, String stationName, String stationCode) {
         Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
@@ -84,14 +79,12 @@ public class SysStationController {
     }
 
     @RequestMapping("querybyid")
-    @RequiresPermissions("sys:station:query")
     public Object queryById(Long stationId) {
         SysStation sysStation = sysStationService.get(stationId);
         return MessageSupport.successDataMsg(sysStation, "查询成功");
     }
 
     @RequestMapping("queryall")
-    @RequiresPermissions("sys:station:query")
     public Object queryall() {
         List<SysStation> sysStations = sysStationService.search(null);
         return MessageSupport.successDataMsg(sysStations, "查询成功");

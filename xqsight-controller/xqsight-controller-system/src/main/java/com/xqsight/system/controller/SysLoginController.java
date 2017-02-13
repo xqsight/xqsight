@@ -20,7 +20,6 @@ import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.service.SysLoginService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,21 +41,18 @@ public class SysLoginController {
     private SysLoginService sysLoginService;
 
     @RequestMapping("save")
-    @RequiresPermissions("sys:login:save")
     public Object save(SysLogin sysLogin) {
         sysLoginService.save(sysLogin, true);
         return MessageSupport.successMsg("保存成功");
     }
 
     @RequestMapping("update")
-    @RequiresPermissions("sys:login:update")
     public Object update(SysLogin sysLogin) {
         sysLoginService.update(sysLogin, true);
         return MessageSupport.successMsg("修改成功");
     }
 
     @RequestMapping("resetpwd")
-    @RequiresPermissions("sys:login:update")
     public Object resetPwd(long id) {
         SysLogin sysLogin = sysLoginService.get(id);
         sysLogin.setUpdateUserId(SSOUtils.getCurrentUserId().toString());
@@ -83,21 +79,18 @@ public class SysLoginController {
 
 
     @RequestMapping("delete")
-    @RequiresPermissions("sys:login:delete")
     public Object delete(Long id) {
         sysLoginService.delete(id);
         return MessageSupport.successMsg("删除成功");
     }
 
     @RequestMapping("logicDel")
-    @RequiresPermissions("sys:login:delete")
     public Object logicDel(Long id) {
         sysLoginService.logicDel(id);
         return MessageSupport.successMsg("删除成功");
     }
 
     @RequestMapping("query")
-    @RequiresPermissions("sys:login:query")
     public Object query(XqsightPage xqsightPage, String loginId, String userName) {
         Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
@@ -110,7 +103,6 @@ public class SysLoginController {
     }
 
     @RequestMapping("querybyid")
-    @RequiresPermissions("sys:login:query")
     public Object queryById(Long id) {
         SysLogin sysLogin = sysLoginService.get(id);
         return MessageSupport.successDataMsg(sysLogin, "查询成功");

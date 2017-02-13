@@ -12,19 +12,14 @@ import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.core.support.XqsightPageHelper;
-import com.xqsight.common.model.UserBaseModel;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.sso.shiro.annotation.CurrentUserId;
-import com.xqsight.sso.utils.PasswordHelper;
-import com.xqsight.sso.utils.SSOUtils;
 import com.xqsight.system.model.SysDepartment;
-import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.model.SysUser;
 import com.xqsight.system.service.SysDepartmentService;
 import com.xqsight.system.service.SysUserService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -50,35 +45,30 @@ public class SysUserController {
     private SysDepartmentService sysDepartmentService;
 
     @RequestMapping("save")
-    @RequiresPermissions("sys:user:save")
     public Object save(SysUser sysUser) {
         sysUserService.save(sysUser, true);
         return MessageSupport.successMsg("保存成功");
     }
 
     @RequestMapping("update")
-    @RequiresPermissions("sys:user:update")
     public Object update(SysUser sysUser) {
         sysUserService.update(sysUser, true);
         return MessageSupport.successMsg("修改成功");
     }
 
     @RequestMapping("delete")
-    @RequiresPermissions("sys:user:delete")
     public Object delete(Long id) {
         sysUserService.delete(id);
         return MessageSupport.successMsg("删除成功");
     }
 
     @RequestMapping("logicDel")
-    @RequiresPermissions("sys:user:delete")
     public Object logicDel(Long id) {
         sysUserService.logicDel(id);
         return MessageSupport.successMsg("删除成功");
     }
 
     @RequestMapping("query")
-    @RequiresPermissions("sys:user:query")
     public Object query(XqsightPage xqsightPage, Long departmentId, String userCode, String userName, String email, String cellPhone) {
         List<PropertyFilter> deptFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("parent_ids", "," + departmentId + ",").end();
@@ -101,7 +91,6 @@ public class SysUserController {
     }
 
     @RequestMapping("querybyid")
-    @RequiresPermissions("sys:user:query")
     public Object queryById(Long id) {
         SysUser sysUser = sysUserService.get(id);
         return MessageSupport.successDataMsg(sysUser, "查询成功");

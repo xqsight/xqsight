@@ -13,7 +13,6 @@ import com.xqsight.system.enums.MenuTypeEnum;
 import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.model.SysMenu;
 import com.xqsight.system.service.SysAuthService;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,28 +33,24 @@ public class SysAuthController {
     private SysAuthService sysAuthService;
 
     @RequestMapping("saveroleuser")
-    @RequiresPermissions("sys:auth:saveuserrole")
     public Object saveRoleUser(long roleId, @RequestParam("id") Long[] ids) {
         sysAuthService.saveUserRole(roleId, ids);
         return MessageSupport.successMsg("保存成功");
     }
 
     @RequestMapping("saverolemenu")
-    @RequiresPermissions("sys:auth:savemenurole")
     public Object saveMenuRole(long roleId, @RequestParam("menuId") Long[] menuIds) {
         sysAuthService.saveMenuRole(roleId, menuIds);
         return MessageSupport.successMsg("保存成功");
     }
 
     @RequestMapping("queryauthuser")
-    @RequiresPermissions("sys:auth:queryauthuser")
     public Object queryAuthUser(long roleId) {
         List<SysLogin> sysLogins = sysAuthService.querAuthUserByRole(roleId);
         return MessageSupport.successDataMsg(sysLogins, "查询成功");
     }
 
     @RequestMapping("queryauthmenu")
-    @RequiresPermissions("sys:auth:queryauthuser")
     public Object queryAuthMenu(long roleId) {
         List<SysMenu> sysMenus = sysAuthService.querAuthMenuByRole(roleId);
         return MessageSupport.successDataMsg(sysMenus, "查询成功");
@@ -63,7 +58,6 @@ public class SysAuthController {
 
 
     @RequestMapping("queryusermenu")
-    @RequiresPermissions("sys:auth:queryusermenu")
     public Object queryUserMenu(@CurrentUserId long currentUserId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.I).add("type", "" + MenuTypeEnum.MENU.getValuel()).end();

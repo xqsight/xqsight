@@ -16,7 +16,6 @@ import com.xqsight.common.support.TreeSupport;
 import com.xqsight.system.model.SysDict;
 import com.xqsight.system.service.SysDictService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +37,6 @@ public class SysDictController {
     private SysDictService sysDictService;
 
     @RequestMapping("save")
-    @RequiresPermissions("sys:dict:save")
     public Object save(SysDict sysDict) {
         SysDict parentDict = sysDictService.get(Long.valueOf(sysDict.getParentId()));
         sysDict.setParentIds(parentDict.getParentIds() + parentDict.getDictId() + Constants.COMMA_SIGN_SPLIT_NAME);
@@ -47,7 +45,6 @@ public class SysDictController {
     }
 
     @RequestMapping("update")
-    @RequiresPermissions("sys:dict:update")
     public Object update(SysDict sysDict) {
         SysDict subDict = sysDictService.get(sysDict.getDictId());
         if (subDict.getEditable() == Constants.DISABLE)
@@ -58,7 +55,6 @@ public class SysDictController {
     }
 
     @RequestMapping("delete")
-    @RequiresPermissions("sys:dict:delete")
     public Object delete(Long dictId) {
         SysDict subDict = sysDictService.get(dictId);
         if (subDict.getEditable() == Constants.DISABLE)
@@ -75,14 +71,12 @@ public class SysDictController {
     }
 
     @RequestMapping("logicDel")
-    @RequiresPermissions("sys:dict:delete")
     public Object logicDel(Long dictId) {
         sysDictService.logicDel(dictId);
         return MessageSupport.successMsg("删除成功");
     }
 
     @RequestMapping("query")
-    @RequiresPermissions("sys:dict:query")
     public Object query(String dictName, String dictCode, String parentId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("dict_name", StringUtils.trimToEmpty(dictName))
@@ -94,14 +88,12 @@ public class SysDictController {
     }
 
     @RequestMapping("querybyid")
-    @RequiresPermissions("sys:dict:query")
     public Object queryById(Long dictId) {
         SysDict sysDict = sysDictService.get(dictId);
         return MessageSupport.successDataMsg(sysDict, "查询成功");
     }
 
     @RequestMapping("querytree")
-    @RequiresPermissions("sys:dict:query")
     public Object queryTotTree(String dictName, String dictCode) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("dict_name", StringUtils.trimToEmpty(dictName))

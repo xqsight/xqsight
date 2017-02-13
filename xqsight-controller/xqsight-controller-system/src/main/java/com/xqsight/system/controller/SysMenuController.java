@@ -17,7 +17,6 @@ import com.xqsight.system.enums.MenuTypeEnum;
 import com.xqsight.system.model.SysMenu;
 import com.xqsight.system.service.SysMenuService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,7 +38,6 @@ public class SysMenuController {
     private SysMenuService sysMenuService;
 
     @RequestMapping("save")
-    @RequiresPermissions("sys:menu:save")
     public Object save(SysMenu sysMenu) {
         SysMenu parentMenu = sysMenuService.get(Long.valueOf(sysMenu.getParentId()));
         sysMenu.setParentIds(parentMenu.getParentIds() + parentMenu.getMenuId() + Constants.COMMA_SIGN_SPLIT_NAME);
@@ -48,28 +46,24 @@ public class SysMenuController {
     }
 
     @RequestMapping("update")
-    @RequiresPermissions("sys:menu:update")
     public Object update(SysMenu sysMenu) {
         sysMenuService.update(sysMenu, true);
         return MessageSupport.successMsg("修改成功");
     }
 
     @RequestMapping("delete")
-    @RequiresPermissions("sys:menu:delete")
     public Object delete(Long menuId) {
         sysMenuService.delete(menuId);
         return MessageSupport.successMsg("删除成功");
     }
 
     @RequestMapping("logicDel")
-    @RequiresPermissions("sys:menu:delete")
     public Object logicDel(Long menuId) {
         sysMenuService.logicDel(menuId);
         return MessageSupport.successMsg("删除成功");
     }
 
     @RequestMapping("query")
-    @RequiresPermissions("sys:menu:query")
     public Object query(String menuName, String parentId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("menu_name", StringUtils.trimToEmpty(menuName))
@@ -81,7 +75,6 @@ public class SysMenuController {
     }
 
     @RequestMapping("querybyid")
-    @RequiresPermissions("sys:menu:query")
     public Object queryById(Long menuId) {
         SysMenu sysMenu = sysMenuService.get(menuId);
         return MessageSupport.successDataMsg(sysMenu, "查询成功");
@@ -89,7 +82,6 @@ public class SysMenuController {
 
 
     @RequestMapping("querytree")
-    @RequiresPermissions("sys:menu:query")
     public Object queryToTree() {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.I).add("type", "" + MenuTypeEnum.MENU.getValuel()).end();
@@ -100,7 +92,6 @@ public class SysMenuController {
     }
 
     @RequestMapping("queryalltree")
-    @RequiresPermissions("sys:menu:query")
     public Object queryAllToTree() {
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
         List<SysMenu> sysMenus = sysMenuService.search(null, sorts);

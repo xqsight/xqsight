@@ -17,7 +17,6 @@ import com.xqsight.system.model.SysDepartment;
 import com.xqsight.system.service.SysDepartmentService;
 import com.xqsight.system.service.SysLoginService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,7 +41,6 @@ public class SysDepartmentController {
     private SysLoginService sysLoginService;
 
     @RequestMapping("save")
-    @RequiresPermissions("sys:department:save")
     public Object save(SysDepartment sysDepartment) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.S).add("department_code", sysDepartment.getDepartmentCode()).end();
@@ -57,7 +55,6 @@ public class SysDepartmentController {
     }
 
     @RequestMapping("update")
-    @RequiresPermissions("sys:department:update")
     public Object update(SysDepartment sysDepartment) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.S).add("department_code", sysDepartment.getDepartmentCode()).end();
@@ -72,7 +69,6 @@ public class SysDepartmentController {
     }
 
     @RequestMapping("delete")
-    @RequiresPermissions("sys:department:delete")
     public Object delete(Long departmentId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.L).add("parent_id", "" + departmentId).end();
@@ -84,14 +80,12 @@ public class SysDepartmentController {
     }
 
     @RequestMapping("logicDel")
-    @RequiresPermissions("sys:department:delete")
     public Object logicDel(Long departmentId) {
         sysDepartmentService.logicDel(departmentId);
         return MessageSupport.successMsg("删除成功");
     }
 
     @RequestMapping("query")
-    @RequiresPermissions("sys:department:query")
     public Object query(String departmentName, String departmentCode, String customCode, String parentId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))
@@ -103,14 +97,12 @@ public class SysDepartmentController {
     }
 
     @RequestMapping("querybyid")
-    @RequiresPermissions("sys:department:query")
     public Object queryById(Long departmentId) {
         SysDepartment sysDepartment = sysDepartmentService.get(departmentId);
         return MessageSupport.successDataMsg(sysDepartment, "查询成功");
     }
 
     @RequestMapping("querytree")
-    @RequiresPermissions("sys:department:query")
     public Object queryAllTotTree(String departmentName, String departmentCode) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))
