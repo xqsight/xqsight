@@ -1,5 +1,8 @@
 package com.xqsight.common.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -42,6 +45,8 @@ public abstract class Model implements Serializable {
         this.active = active;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     public LocalDateTime getCreateTime() {
         return createTime;
     }
@@ -58,6 +63,8 @@ public abstract class Model implements Serializable {
         this.createUserId = createUserId;
     }
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     public LocalDateTime getUpdateTime() {
         return updateTime;
     }

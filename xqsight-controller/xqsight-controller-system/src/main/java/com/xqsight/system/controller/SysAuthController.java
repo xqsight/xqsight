@@ -1,5 +1,6 @@
 package com.xqsight.system.controller;
 
+import com.xqsight.common.core.annotation.AttributeFilter;
 import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
@@ -58,6 +59,7 @@ public class SysAuthController {
 
 
     @RequestMapping("queryusermenu")
+    @AttributeFilter(type = SysMenu.class, filter = "createTime,updateTime")
     public Object queryUserMenu(@CurrentUserId long currentUserId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.I).add("type", "" + MenuTypeEnum.MENU.getValuel()).end();
