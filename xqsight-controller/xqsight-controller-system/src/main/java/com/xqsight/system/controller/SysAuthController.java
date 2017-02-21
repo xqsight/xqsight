@@ -66,8 +66,8 @@ public class SysAuthController {
         List<Sort> sorts = SortBuilder.create().addAsc("sort").end();
 
         List<SysMenu> sysMenus = sysAuthService.queryMenuByUser(currentUserId, propertyFilters, sorts);
-        SysMenu sysMenu = new TreeSupport<SysMenu>().generateFullTree(sysMenus);
-        return MessageSupport.successDataMsg(sysMenu, "查询成功");
+        List<SysMenu> sysMenuList = new TreeSupport<SysMenu>().generateTree(sysMenus);
+        return MessageSupport.successDataMsg(sysMenuList, "查询成功");
     }
 
 }

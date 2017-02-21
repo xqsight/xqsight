@@ -10,6 +10,7 @@ public abstract class TreeBaseModel<T> extends Model {
     private String id = (String) getPK();
     private String parentId;
     private String name;
+    private String text;
     private String icon;
     private List<T> children;
 
@@ -35,6 +36,15 @@ public abstract class TreeBaseModel<T> extends Model {
 
     public void setName(String name) {
         this.name = name;
+        this.text = name;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public String getIcon() {

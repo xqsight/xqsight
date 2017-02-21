@@ -89,7 +89,7 @@ public class SysDepartmentController {
     public Object query(String departmentName, String departmentCode, String customCode, String parentId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("department_name", StringUtils.trimToEmpty(departmentName))
-                .add("department_code", StringUtils.trimToEmpty(departmentCode)).add("custom_code", StringUtils.trimToEmpty(customCode))
+                .add("department_code", StringUtils.trimToEmpty(departmentCode))
                 .matchTye(MatchType.EQ).propertyType(PropertyType.L).add("parent_id", parentId).end();
         List<Sort> sorts = SortBuilder.create().addAsc("sort").addAsc("department_name").end();
         List<SysDepartment> sysDepartments = sysDepartmentService.search(propertyFilters, sorts);
