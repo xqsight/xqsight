@@ -10,7 +10,6 @@ import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
-import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.common.support.TreeSupport;
 import com.xqsight.sso.shiro.annotation.CurrentUserId;
@@ -39,8 +38,6 @@ public class SysRoleController {
 
     @RequestMapping("save")
     public Object save(SysRole sysRole) {
-        SysRole parentRole = sysRoleService.get(Long.valueOf(sysRole.getParentId()));
-        sysRole.setParentIds(parentRole.getParentIds() + parentRole.getRoleId() + Constants.COMMA_SIGN_SPLIT_NAME);
         sysRoleService.save(sysRole, true);
         return MessageSupport.successMsg("保存成功");
     }
@@ -64,10 +61,10 @@ public class SysRoleController {
     }
 
     @RequestMapping("query")
-    public Object query(String parentId, String roleName, String roleCode) {
+    public Object query(String officeId, String roleName, String roleCode) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("role_name", StringUtils.trimToEmpty(roleName))
-                .matchTye(MatchType.EQ).propertyType(PropertyType.L).add("parent_id", parentId).end();
+                .matchTye(MatchType.EQ).propertyType(PropertyType.L).add("office_id", officeId).end();
         List<Sort> sorts = SortBuilder.create().addAsc("role_name").end();
         List<SysRole> sysRoles = sysRoleService.search(propertyFilters, sorts);
         return MessageSupport.successDataMsg(sysRoles, "查询成功");
@@ -76,16 +73,6 @@ public class SysRoleController {
     @RequestMapping("querybyid")
     public Object queryById(Long roleId) {
         SysRole sysRole = sysRoleService.get(roleId);
-        return MessageSupport.successDataMsg(sysRole, "查询成功");
-    }
-
-    @RequestMapping("querytree")
-    public Object queryTotTree(String roleName, String roleCode,@CurrentUserId Long currentUserId) {
-        List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("role_name", StringUtils.trimToEmpty(roleName)).end();
-        List<Sort> sorts = SortBuilder.create().addAsc("role_name").end();
-        List<SysRole> sysRoles = sysRoleService.querySubByUserId(currentUserId, propertyFilters, sorts);
-        SysRole sysRole = new TreeSupport<SysRole>().generateFullTree(sysRoles);
         return MessageSupport.successDataMsg(sysRole, "查询成功");
     }
 

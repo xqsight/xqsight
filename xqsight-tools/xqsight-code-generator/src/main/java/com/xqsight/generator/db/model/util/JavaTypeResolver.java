@@ -138,6 +138,8 @@ public class JavaTypeResolver {
             case Types.DOUBLE:
             case Types.BIGINT:
             case Types.INTEGER:
+            case Types.SMALLINT:
+            case Types.TINYINT:
                 answer = "NUMERIC";
                 break;
             case Types.NVARCHAR:

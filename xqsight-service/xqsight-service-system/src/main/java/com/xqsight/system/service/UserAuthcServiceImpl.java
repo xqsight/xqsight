@@ -9,8 +9,9 @@ import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.model.UserBaseModel;
 import com.xqsight.sso.authc.service.UserAuthcService;
 import com.xqsight.sso.exceptions.CustomAuthcException;
-import com.xqsight.system.mapper.SysUserMapper;
-import com.xqsight.system.model.*;
+import com.xqsight.system.model.SysLogin;
+import com.xqsight.system.model.SysMenu;
+import com.xqsight.system.model.SysUser;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class UserAuthcServiceImpl implements UserAuthcService {
     private SysLoginService sysLoginService;
 
     @Autowired
-    private SysDepartmentService sysDepartmentService;
+    private SysOfficeService sysOfficeService;
 
     @Autowired
     private SysUserService sysUserService;
@@ -87,13 +88,13 @@ public class UserAuthcServiceImpl implements UserAuthcService {
     private void saveSysUser(UserBaseModel userBaseModel) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.S).add("department_code", userBaseModel.getDepartmentCode()).end();
-        SysDepartment sysDepartment = sysDepartmentService.search(propertyFilters).get(0);
+      /*  SysDepartment sysDepartment = sysDepartmentService.search(propertyFilters).get(0);
         if (sysDepartment == null)
-            throw new CustomAuthcException("部门编号不存在");
+            throw new CustomAuthcException("部门编号不存在");*/
 
         SysUser sysUser = new SysUser();
         sysUser.setUserName(userBaseModel.getUserName());
-        sysUser.setDepartmentId(sysDepartment.getDepartmentId());
+        //sysUser.setDepartmentId(sysDepartment.getDepartmentId());
         LoginTypeEnum loginType = LoginSupport.judgeLoginType(userBaseModel.getLoginId());
         switch (loginType) {
             case CELLPHONE:

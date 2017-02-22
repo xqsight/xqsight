@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xqsight.system.mapper.SysDepartmentMapper">
+<mapper namespace="com.xqsight.system.mapper.SysAreaMapper">
 
-    <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysDepartment">
-        <result column="department_id" property="departmentId" jdbcType="NUMERIC"/>
+    <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysArea">
+        <result column="area_id" property="areaId" jdbcType="NUMERIC"/>
         <result column="parent_id" property="parentId" jdbcType="NUMERIC"/>
         <result column="parent_ids" property="parentIds" jdbcType="VARCHAR"/>
-        <result column="department_name" property="departmentName" jdbcType="VARCHAR"/>
-        <result column="department_type" property="departmentType" jdbcType="VARCHAR"/>
-        <result column="active" property="active" jdbcType="NUMERIC"/>
-        <result column="department_code" property="departmentCode" jdbcType="VARCHAR"/>
+        <result column="area_name" property="areaName" jdbcType="VARCHAR"/>
+        <result column="area_code" property="areaCode" jdbcType="VARCHAR"/>
+        <result column="area_type" property="areaType" jdbcType="NUMERIC"/>
         <result column="icon" property="icon" jdbcType="VARCHAR"/>
         <result column="sort" property="sort" jdbcType="NUMERIC"/>
+        <result column="active" property="active" jdbcType="NUMERIC"/>
         <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
@@ -20,21 +20,21 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-	 department_id,parent_id,parent_ids,department_name,department_type,active,department_code,icon,sort,create_user_id,create_time,update_user_id,update_time,remark
+	 area_id,parent_id,parent_ids,area_name,area_code,area_type,icon,sort,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
 
-    <insert id="insert" parameterType="com.xqsight.system.model.SysDepartment" useGeneratedKeys="true" keyProperty="departmentId">
-        insert into sys_department (
-	parent_id,parent_ids,department_name,department_type,active,department_code,icon,sort,create_user_id,create_time,update_user_id,update_time,remark
+    <insert id="insert" parameterType="com.xqsight.system.model.SysArea" useGeneratedKeys="true" keyProperty="areaId">
+        insert into sys_area (
+	parent_id,parent_ids,area_name,area_code,area_type,icon,sort,active,create_user_id,create_time,update_user_id,update_time,remark
         ) values (
 	#{parentId,jdbcType=NUMERIC},
 	#{parentIds,jdbcType=VARCHAR},
-	#{departmentName,jdbcType=VARCHAR},
-	#{departmentType,jdbcType=VARCHAR},
-	#{active,jdbcType=NUMERIC},
-	#{departmentCode,jdbcType=VARCHAR},
+	#{areaName,jdbcType=VARCHAR},
+	#{areaCode,jdbcType=VARCHAR},
+	#{areaType,jdbcType=NUMERIC},
 	#{icon,jdbcType=VARCHAR},
 	#{sort,jdbcType=NUMERIC},
+	#{active,jdbcType=NUMERIC},
 	#{createUserId,jdbcType=VARCHAR},
 	#{createTime,jdbcType=TIMESTAMP},
 	#{updateUserId,jdbcType=VARCHAR},
@@ -43,8 +43,8 @@
         )
     </insert>
 
-    <insert id="insertSelective" parameterType="com.xqsight.system.model.SysDepartment" useGeneratedKeys="true" keyProperty="departmentId">
-        insert into sys_department
+    <insert id="insertSelective" parameterType="com.xqsight.system.model.SysArea" useGeneratedKeys="true" keyProperty="areaId">
+        insert into sys_area
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="parentId!=null">
 			parent_id,
@@ -52,23 +52,23 @@
             <if test="parentIds!=null">
 			parent_ids,
             </if>
-            <if test="departmentName!=null">
-			department_name,
+            <if test="areaName!=null">
+			area_name,
             </if>
-            <if test="departmentType!=null">
-			department_type,
+            <if test="areaCode!=null">
+			area_code,
             </if>
-            <if test="active!=null">
-			active,
-            </if>
-            <if test="departmentCode!=null">
-			department_code,
+            <if test="areaType!=null">
+			area_type,
             </if>
             <if test="icon!=null">
 			icon,
             </if>
             <if test="sort!=null">
 			sort,
+            </if>
+            <if test="active!=null">
+			active,
             </if>
             <if test="createUserId!=null">
 			create_user_id,
@@ -93,23 +93,23 @@
             <if test="parentIds!=null">
 			#{parentIds,jdbcType=VARCHAR},
             </if>
-            <if test="departmentName!=null">
-			#{departmentName,jdbcType=VARCHAR},
+            <if test="areaName!=null">
+			#{areaName,jdbcType=VARCHAR},
             </if>
-            <if test="departmentType!=null">
-			#{departmentType,jdbcType=VARCHAR},
+            <if test="areaCode!=null">
+			#{areaCode,jdbcType=VARCHAR},
             </if>
-            <if test="active!=null">
-			#{active,jdbcType=NUMERIC},
-            </if>
-            <if test="departmentCode!=null">
-			#{departmentCode,jdbcType=VARCHAR},
+            <if test="areaType!=null">
+			#{areaType,jdbcType=NUMERIC},
             </if>
             <if test="icon!=null">
 			#{icon,jdbcType=VARCHAR},
             </if>
             <if test="sort!=null">
 			#{sort,jdbcType=NUMERIC},
+            </if>
+            <if test="active!=null">
+			#{active,jdbcType=NUMERIC},
             </if>
             <if test="createUserId!=null">
 			#{createUserId,jdbcType=VARCHAR},
@@ -129,24 +129,24 @@
         </trim>
     </insert>
 
-    <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysDepartment">
-        update sys_department set
+    <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysArea">
+        update sys_area set
 		parent_id = #{parentId,jdbcType=NUMERIC},
 		parent_ids = #{parentIds,jdbcType=VARCHAR},
-		department_name = #{departmentName,jdbcType=VARCHAR},
-		department_type = #{departmentType,jdbcType=VARCHAR},
-		active = #{active,jdbcType=NUMERIC},
-		department_code = #{departmentCode,jdbcType=VARCHAR},
+		area_name = #{areaName,jdbcType=VARCHAR},
+		area_code = #{areaCode,jdbcType=VARCHAR},
+		area_type = #{areaType,jdbcType=NUMERIC},
 		icon = #{icon,jdbcType=VARCHAR},
 		sort = #{sort,jdbcType=NUMERIC},
+		active = #{active,jdbcType=NUMERIC},
 		update_user_id = #{updateUserId,jdbcType=VARCHAR},
 		update_time = #{updateTime,jdbcType=TIMESTAMP},
 		remark = #{remark,jdbcType=VARCHAR}
-        where  department_id = #{departmentId,jdbcType=NUMERIC}  
+        where  area_id = #{areaId,jdbcType=NUMERIC}  
     </update>
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysDepartment">
-        update sys_department
+    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysArea">
+        update sys_area
         <set>
             <if test="parentId!=null">
             parent_id = #{parentId,jdbcType=NUMERIC},
@@ -154,23 +154,23 @@
             <if test="parentIds!=null">
             parent_ids = #{parentIds,jdbcType=VARCHAR},
             </if>
-            <if test="departmentName!=null">
-            department_name = #{departmentName,jdbcType=VARCHAR},
+            <if test="areaName!=null">
+            area_name = #{areaName,jdbcType=VARCHAR},
             </if>
-            <if test="departmentType!=null">
-            department_type = #{departmentType,jdbcType=VARCHAR},
+            <if test="areaCode!=null">
+            area_code = #{areaCode,jdbcType=VARCHAR},
             </if>
-            <if test="active!=null">
-            active = #{active,jdbcType=NUMERIC},
-            </if>
-            <if test="departmentCode!=null">
-            department_code = #{departmentCode,jdbcType=VARCHAR},
+            <if test="areaType!=null">
+            area_type = #{areaType,jdbcType=NUMERIC},
             </if>
             <if test="icon!=null">
             icon = #{icon,jdbcType=VARCHAR},
             </if>
             <if test="sort!=null">
             sort = #{sort,jdbcType=NUMERIC},
+            </if>
+            <if test="active!=null">
+            active = #{active,jdbcType=NUMERIC},
             </if>
             <if test="updateUserId!=null">
             update_user_id = #{updateUserId,jdbcType=VARCHAR},
@@ -182,21 +182,21 @@
             remark = #{remark,jdbcType=VARCHAR},
             </if>
         </set>
-        where  department_id = #{departmentId,jdbcType=NUMERIC}  
+        where  area_id = #{areaId,jdbcType=NUMERIC}  
     </update>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete from sys_department
-        where  department_id = #{departmentId,jdbcType=NUMERIC}  
+        delete from sys_area
+        where  area_id = #{areaId,jdbcType=NUMERIC}  
     </delete>
 
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select <include refid="Base_Column_List"/> from sys_department
-        where  department_id = #{departmentId,jdbcType=NUMERIC}  
+        select <include refid="Base_Column_List"/> from sys_area
+        where  area_id = #{areaId,jdbcType=NUMERIC}  
     </select>
 
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
-        select <include refid="Base_Column_List"/> from sys_department
+        select <include refid="Base_Column_List"/> from sys_area
         WHERE 1=1
 	    ${whereSqlString}
 

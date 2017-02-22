@@ -15,7 +15,7 @@ public abstract class Model implements Serializable {
     /**
      * 是否有效 0:有效 -1:无效
      **/
-    private int active = 0;
+    private byte active = 0;
     /**
      * 创建时间
      **/
@@ -37,11 +37,11 @@ public abstract class Model implements Serializable {
      **/
     private String remark;
 
-    public int getActive() {
+    public byte getActive() {
         return active;
     }
 
-    public void setActive(Integer active) {
+    public void setActive(byte active) {
         this.active = active;
     }
 

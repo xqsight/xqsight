@@ -8,10 +8,14 @@ import java.util.List;
 public abstract class TreeBaseModel<T> extends Model {
 
     private String id = (String) getPK();
+    /** parent_id - 父级id */
     private String parentId;
     private String name;
     private String text;
+    /** icon - 图标 */
     private String icon;
+    /** sort - 排序 */
+    private Short sort;
     private List<T> children;
 
     public String getId() {
@@ -53,6 +57,14 @@ public abstract class TreeBaseModel<T> extends Model {
 
     public void setIcon(String icon) {
         this.icon = icon;
+    }
+
+    public Short getSort() {
+        return sort;
+    }
+
+    public void setSort(Short sort) {
+        this.sort = sort;
     }
 
     public List<T> getChildren() {

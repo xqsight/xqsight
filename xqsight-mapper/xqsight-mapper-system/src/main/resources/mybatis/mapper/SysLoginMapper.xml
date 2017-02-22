@@ -5,7 +5,7 @@
     <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysLogin">
         <result column="id" property="id" jdbcType="NUMERIC"/>
         <result column="login_id" property="loginId" jdbcType="VARCHAR"/>
-        <result column="locked" property="locked" jdbcType="NUMERIC"/>
+        <result column="status" property="status" jdbcType="NUMERIC"/>
         <result column="active" property="active" jdbcType="NUMERIC"/>
         <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
@@ -15,16 +15,15 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-	 id,login_id,locked,active,create_user_id,create_time,update_user_id,update_time,remark
+	 id,login_id,status,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
 
     <insert id="insert" parameterType="com.xqsight.system.model.SysLogin" useGeneratedKeys="true" keyProperty="id">
         insert into sys_login (
-        id,login_id,locked,active,create_user_id,create_time,update_user_id,update_time,remark
+	login_id,status,active,create_user_id,create_time,update_user_id,update_time,remark
         ) values (
-        #{id,jdbcType=NUMERIC},
 	#{loginId,jdbcType=VARCHAR},
-	#{locked,jdbcType=NUMERIC},
+	#{status,jdbcType=NUMERIC},
 	#{active,jdbcType=NUMERIC},
 	#{createUserId,jdbcType=VARCHAR},
 	#{createTime,jdbcType=TIMESTAMP},
@@ -37,14 +36,11 @@
     <insert id="insertSelective" parameterType="com.xqsight.system.model.SysLogin" useGeneratedKeys="true" keyProperty="id">
         insert into sys_login
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="id!=null">
-                id,
-            </if>
             <if test="loginId!=null">
 			login_id,
             </if>
-            <if test="locked!=null">
-			locked,
+            <if test="status!=null">
+			status,
             </if>
             <if test="active!=null">
 			active,
@@ -66,14 +62,11 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="id!=null">
-			#{id,jdbcType=NUMERIC},
-            </if>
             <if test="loginId!=null">
-                #{loginId,jdbcType=VARCHAR},
+			#{loginId,jdbcType=VARCHAR},
             </if>
-            <if test="locked!=null">
-			#{locked,jdbcType=NUMERIC},
+            <if test="status!=null">
+			#{status,jdbcType=NUMERIC},
             </if>
             <if test="active!=null">
 			#{active,jdbcType=NUMERIC},
@@ -99,7 +92,7 @@
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysLogin">
         update sys_login set
 		login_id = #{loginId,jdbcType=VARCHAR},
-		locked = #{locked,jdbcType=NUMERIC},
+		status = #{status,jdbcType=NUMERIC},
 		active = #{active,jdbcType=NUMERIC},
 		update_user_id = #{updateUserId,jdbcType=VARCHAR},
 		update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -113,8 +106,8 @@
             <if test="loginId!=null">
             login_id = #{loginId,jdbcType=VARCHAR},
             </if>
-            <if test="locked!=null">
-            locked = #{locked,jdbcType=NUMERIC},
+            <if test="status!=null">
+            status = #{status,jdbcType=NUMERIC},
             </if>
             <if test="active!=null">
             active = #{active,jdbcType=NUMERIC},

@@ -15,10 +15,8 @@ import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.system.model.SysStation;
-import com.xqsight.system.service.SysDepartmentService;
 import com.xqsight.system.service.SysStationService;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,9 +36,6 @@ public class SysStationController {
 
     @Autowired
     private SysStationService sysStationService;
-
-    @Autowired
-    private SysDepartmentService sysDepartmentService;
 
     @RequestMapping("save")
     public Object save(SysStation sysStation) {
@@ -67,11 +62,11 @@ public class SysStationController {
     }
 
     @RequestMapping("query")
-    public Object query(XqsightPage xqsightPage, Long departmentId, String stationName, String stationCode) {
+    public Object query(XqsightPage xqsightPage, Long officeId, String stationName, String stationCode) {
         Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
                 .propertyType(PropertyType.S).add("station_name", StringUtils.trimToEmpty(stationName)).add("station_code", StringUtils.trimToEmpty(stationCode))
-                .matchTye(MatchType.EQ).propertyType(PropertyType.L).add("department_id", "" + departmentId).end();
+                .matchTye(MatchType.EQ).propertyType(PropertyType.L).add("office_id", "" + officeId).end();
         List<Sort> sorts = SortBuilder.create().addAsc("station_name").end();
         List<SysStation> sysStations = sysStationService.search(propertyFilters, sorts);
         xqsightPage.setTotalCount(page.getTotal());

@@ -10,24 +10,24 @@ import com.xqsight.common.core.service.DefaultEntityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xqsight.system.model.SysDict;
-import com.xqsight.system.mapper.SysDictMapper;
+import com.xqsight.system.model.SysOffice;
+import com.xqsight.system.mapper.SysOfficeMapper;
 
 
 /**
- * <p>系统字典表实现类service</p>
- * <p>Table: sys_dict - 系统字典表</p>
- * @since 2017-02-22 04:29:34
+ * <p>机构表实现类service</p>
+ * <p>Table: sys_office - 机构表</p>
+ * @since 2017-02-22 04:29:58
  * @author wangganggang
  */
 @Service
-public class SysDictService extends DefaultEntityService<SysDict, Long> {
+public class SysOfficeService extends DefaultEntityService<SysOffice, Long> {
 
 	@Autowired
-	private SysDictMapper sysDictMapper;
+	private SysOfficeMapper sysOfficeMapper;
 
 	@Override
-	protected Dao<SysDict, Long> getDao() {
-		return sysDictMapper;
+	protected Dao<SysOffice, Long> getDao() {
+		return sysOfficeMapper;
 	}
 }

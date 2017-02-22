@@ -4,10 +4,11 @@
 
     <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysRole">
         <result column="role_id" property="roleId" jdbcType="NUMERIC"/>
-        <result column="parent_id" property="parentId" jdbcType="NUMERIC"/>
-        <result column="parent_ids" property="parentIds" jdbcType="VARCHAR"/>
+        <result column="office_id" property="officeId" jdbcType="NUMERIC"/>
         <result column="role_name" property="roleName" jdbcType="VARCHAR"/>
+        <result column="role_enname" property="roleEnname" jdbcType="VARCHAR"/>
         <result column="role_type" property="roleType" jdbcType="VARCHAR"/>
+        <result column="sys_flag" property="sysFlag" jdbcType="NUMERIC"/>
         <result column="active" property="active" jdbcType="NUMERIC"/>
         <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
@@ -17,17 +18,18 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-	 role_id,parent_id,parent_ids,role_name,role_type,active,create_user_id,create_time,update_user_id,update_time,remark
+	 role_id,office_id,role_name,role_enname,role_type,sys_flag,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
 
     <insert id="insert" parameterType="com.xqsight.system.model.SysRole" useGeneratedKeys="true" keyProperty="roleId">
         insert into sys_role (
-	parent_id,parent_ids,role_name,role_type,active,create_user_id,create_time,update_user_id,update_time,remark
+	office_id,role_name,role_enname,role_type,sys_flag,active,create_user_id,create_time,update_user_id,update_time,remark
         ) values (
-	#{parentId,jdbcType=NUMERIC},
-	#{parentIds,jdbcType=VARCHAR},
+	#{officeId,jdbcType=NUMERIC},
 	#{roleName,jdbcType=VARCHAR},
+	#{roleEnname,jdbcType=VARCHAR},
 	#{roleType,jdbcType=VARCHAR},
+	#{sysFlag,jdbcType=NUMERIC},
 	#{active,jdbcType=NUMERIC},
 	#{createUserId,jdbcType=VARCHAR},
 	#{createTime,jdbcType=TIMESTAMP},
@@ -40,17 +42,20 @@
     <insert id="insertSelective" parameterType="com.xqsight.system.model.SysRole" useGeneratedKeys="true" keyProperty="roleId">
         insert into sys_role
         <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="parentId!=null">
-			parent_id,
-            </if>
-            <if test="parentIds!=null">
-			parent_ids,
+            <if test="officeId!=null">
+			office_id,
             </if>
             <if test="roleName!=null">
 			role_name,
             </if>
+            <if test="roleEnname!=null">
+			role_enname,
+            </if>
             <if test="roleType!=null">
 			role_type,
+            </if>
+            <if test="sysFlag!=null">
+			sys_flag,
             </if>
             <if test="active!=null">
 			active,
@@ -72,17 +77,20 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="parentId!=null">
-			#{parentId,jdbcType=NUMERIC},
-            </if>
-            <if test="parentIds!=null">
-			#{parentIds,jdbcType=VARCHAR},
+            <if test="officeId!=null">
+			#{officeId,jdbcType=NUMERIC},
             </if>
             <if test="roleName!=null">
 			#{roleName,jdbcType=VARCHAR},
             </if>
+            <if test="roleEnname!=null">
+			#{roleEnname,jdbcType=VARCHAR},
+            </if>
             <if test="roleType!=null">
 			#{roleType,jdbcType=VARCHAR},
+            </if>
+            <if test="sysFlag!=null">
+			#{sysFlag,jdbcType=NUMERIC},
             </if>
             <if test="active!=null">
 			#{active,jdbcType=NUMERIC},
@@ -107,10 +115,11 @@
 
     <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysRole">
         update sys_role set
-		parent_id = #{parentId,jdbcType=NUMERIC},
-		parent_ids = #{parentIds,jdbcType=VARCHAR},
+		office_id = #{officeId,jdbcType=NUMERIC},
 		role_name = #{roleName,jdbcType=VARCHAR},
+		role_enname = #{roleEnname,jdbcType=VARCHAR},
 		role_type = #{roleType,jdbcType=VARCHAR},
+		sys_flag = #{sysFlag,jdbcType=NUMERIC},
 		active = #{active,jdbcType=NUMERIC},
 		update_user_id = #{updateUserId,jdbcType=VARCHAR},
 		update_time = #{updateTime,jdbcType=TIMESTAMP},
@@ -121,17 +130,20 @@
     <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysRole">
         update sys_role
         <set>
-            <if test="parentId!=null">
-            parent_id = #{parentId,jdbcType=NUMERIC},
-            </if>
-            <if test="parentIds!=null">
-            parent_ids = #{parentIds,jdbcType=VARCHAR},
+            <if test="officeId!=null">
+            office_id = #{officeId,jdbcType=NUMERIC},
             </if>
             <if test="roleName!=null">
             role_name = #{roleName,jdbcType=VARCHAR},
             </if>
+            <if test="roleEnname!=null">
+            role_enname = #{roleEnname,jdbcType=VARCHAR},
+            </if>
             <if test="roleType!=null">
             role_type = #{roleType,jdbcType=VARCHAR},
+            </if>
+            <if test="sysFlag!=null">
+            sys_flag = #{sysFlag,jdbcType=NUMERIC},
             </if>
             <if test="active!=null">
             active = #{active,jdbcType=NUMERIC},

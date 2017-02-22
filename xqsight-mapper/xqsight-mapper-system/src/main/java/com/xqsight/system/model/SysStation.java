@@ -13,7 +13,7 @@ import java.io.Serializable;
  * <p>岗位信息表实体类</p>
  * <p>Table: sys_station - --> SysStation</p>
  * <p>岗位信息表</p>
- * @since 2017-01-07 11:58:11
+ * @since 2017-02-22 04:31:36
  * @author wangganggang
  */
 public class SysStation extends Model{
@@ -21,14 +21,14 @@ public class SysStation extends Model{
 	/** 主键 */
     private Long stationId;
 
-    /** department_id - 部门内码 */
-    private Long departmentId;
+    /** office_id - 机构内码 */
+    private Long officeId;
     /** station_name - 岗位名称 */
     private String stationName;
     /** station_code - 岗位编号 */
     private String stationCode;
     /** station_type - 岗位类型 */
-    private String stationType;
+    private Byte stationType;
 
     public Long getStationId(){
         return this.stationId;
@@ -36,11 +36,11 @@ public class SysStation extends Model{
     public void setStationId(Long stationId){
         this.stationId = stationId;
     }
-	public Long getDepartmentId(){
-        return this.departmentId;
+	public Long getOfficeId(){
+        return this.officeId;
     }
-    public void setDepartmentId(Long departmentId){
-        this.departmentId = departmentId;
+    public void setOfficeId(Long officeId){
+        this.officeId = officeId;
     }
 	public String getStationName(){
         return this.stationName;
@@ -54,10 +54,10 @@ public class SysStation extends Model{
     public void setStationCode(String stationCode){
         this.stationCode = stationCode;
     }
-	public String getStationType(){
+	public Byte getStationType(){
         return this.stationType;
     }
-    public void setStationType(String stationType){
+    public void setStationType(Byte stationType){
         this.stationType = stationType;
     }
 

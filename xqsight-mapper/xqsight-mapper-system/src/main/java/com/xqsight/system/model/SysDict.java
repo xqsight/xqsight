@@ -23,8 +23,6 @@ public class SysDict extends TreeBaseModel<SysDict>{
 
     /** parent_ids - 所有上级 */
     private String parentIds;
-    /** sort - 排序 */
-    private Integer sort;
     /** dict_code - 字典编号 */
     private String dictCode;
     /** dict_name - 字典名称 */
@@ -46,12 +44,6 @@ public class SysDict extends TreeBaseModel<SysDict>{
     }
     public void setParentIds(String parentIds){
         this.parentIds = parentIds;
-    }
-	public Integer getSort(){
-        return this.sort;
-    }
-    public void setSort(Integer sort){
-        this.sort = sort;
     }
 	public String getDictCode(){
         return this.dictCode;

@@ -15,9 +15,9 @@ import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
 import com.xqsight.sso.shiro.annotation.CurrentUserId;
-import com.xqsight.system.model.SysDepartment;
+import com.xqsight.system.model.SysOffice;
 import com.xqsight.system.model.SysUser;
-import com.xqsight.system.service.SysDepartmentService;
+import com.xqsight.system.service.SysOfficeService;
 import com.xqsight.system.service.SysUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class SysUserController {
     private SysUserService sysUserService;
 
     @Autowired
-    private SysDepartmentService sysDepartmentService;
+    private SysOfficeService sysOfficeService;
 
     @RequestMapping("save")
     public Object save(SysUser sysUser) {
@@ -69,12 +69,12 @@ public class SysUserController {
     }
 
     @RequestMapping("query")
-    public Object query(XqsightPage xqsightPage, Long departmentId, String userCode, String userName, String email, String cellPhone) {
+    public Object query(XqsightPage xqsightPage, Long officeId, String userCode, String userName, String email, String cellPhone) {
         List<PropertyFilter> deptFilters = PropertyFilterBuilder.create().matchTye(MatchType.LIKE)
-                .propertyType(PropertyType.S).add("parent_ids", "," + departmentId + ",").end();
-        List<SysDepartment> sysDepartments = sysDepartmentService.search(deptFilters);
-        String departmentIds = sysDepartments.stream()
-                .map(SysDepartment::getDepartmentId)
+                .propertyType(PropertyType.S).add("parent_ids", "," + officeId + ",").end();
+        List<SysOffice> sysOffices = sysOfficeService.search(deptFilters);
+        String officeIds = sysOffices.stream()
+                .map(SysOffice::getOfficeId)
                 .map(x -> x.toString())
                 .collect(Collectors.joining(","));
         Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
@@ -83,7 +83,7 @@ public class SysUserController {
                 .propertyType(PropertyType.S).add("user_name", StringUtils.trimToEmpty(userName))
                 .propertyType(PropertyType.S).add("email", StringUtils.trimToEmpty(email))
                 .propertyType(PropertyType.S).add("cell_phone", StringUtils.trimToEmpty(cellPhone))
-                .matchTye(MatchType.IN).propertyType(PropertyType.L).add("department_id", departmentIds).end();
+                .matchTye(MatchType.IN).propertyType(PropertyType.L).add("office_id", officeIds).end();
         List<Sort> sorts = SortBuilder.create().addAsc("user_name").end();
         List<SysUser> sysUsers = sysUserService.search(propertyFilters, sorts);
         xqsightPage.setTotalCount(page.getTotal());

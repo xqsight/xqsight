@@ -31,14 +31,10 @@ public class SysMenu extends TreeBaseModel<SysMenu> {
     private Integer isHead;
     /** url - 菜单访问URL */
     private String url;
-    /** icon - 图标 */
-    private String icon;
     /** type - 类型 0：菜单1：功能 */
     private Integer type;
     /** permission - 允许字符串 */
     private String permission;
-    /** sort - 排序 */
-    private Integer sort;
 
     public Long getMenuId(){
         return this.menuId;
@@ -78,12 +74,6 @@ public class SysMenu extends TreeBaseModel<SysMenu> {
     public void setUrl(String url){
         this.url = url;
     }
-	public String getIcon(){
-        return this.icon;
-    }
-    public void setIcon(String icon){
-        this.icon = icon;
-    }
 	public Integer getType(){
         return this.type;
     }
@@ -95,12 +85,6 @@ public class SysMenu extends TreeBaseModel<SysMenu> {
     }
     public void setPermission(String permission){
         this.permission = permission;
-    }
-	public Integer getSort(){
-        return this.sort;
-    }
-    public void setSort(Integer sort){
-        this.sort = sort;
     }
 
     @Override

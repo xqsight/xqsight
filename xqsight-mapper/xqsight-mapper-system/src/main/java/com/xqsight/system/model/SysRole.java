@@ -4,7 +4,7 @@
  */
 package com.xqsight.system.model;
 
-import com.xqsight.common.model.TreeBaseModel;
+import com.xqsight.common.model.Model;
 
 import java.io.Serializable;
 
@@ -13,46 +13,60 @@ import java.io.Serializable;
  * <p>角色信息表实体类</p>
  * <p>Table: sys_role - --> SysRole</p>
  * <p>角色信息表</p>
- * @since 2017-01-07 11:58:03
+ * @since 2017-02-22 04:30:04
  * @author wangganggang
  */
-public class SysRole extends TreeBaseModel<SysRole>{
+public class SysRole extends Model{
 
 	/** 主键 */
     private Long roleId;
 
-    /** parent_ids - 所有上级 */
-    private String parentIds;
+    /** office_id - 归属机构 */
+    private Long officeId;
     /** role_name - 角色名称 */
     private String roleName;
+    /** role_enname - 英文名称 */
+    private String roleEnname;
     /** role_type - 角色类型 */
     private String roleType;
+    /** sys_flag - 是否系统数据 0:是-1:否 */
+    private Byte sysFlag;
 
     public Long getRoleId(){
         return this.roleId;
     }
     public void setRoleId(Long roleId){
         this.roleId = roleId;
-        super.setId("" + roleId);
     }
-	public String getParentIds(){
-        return this.parentIds;
+	public Long getOfficeId(){
+        return this.officeId;
     }
-    public void setParentIds(String parentIds){
-        this.parentIds = parentIds;
+    public void setOfficeId(Long officeId){
+        this.officeId = officeId;
     }
 	public String getRoleName(){
         return this.roleName;
     }
     public void setRoleName(String roleName){
         this.roleName = roleName;
-        super.setName(roleName);
+    }
+	public String getRoleEnname(){
+        return this.roleEnname;
+    }
+    public void setRoleEnname(String roleEnname){
+        this.roleEnname = roleEnname;
     }
 	public String getRoleType(){
         return this.roleType;
     }
     public void setRoleType(String roleType){
         this.roleType = roleType;
+    }
+	public Byte getSysFlag(){
+        return this.sysFlag;
+    }
+    public void setSysFlag(Byte sysFlag){
+        this.sysFlag = sysFlag;
     }
 
     @Override

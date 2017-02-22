@@ -17,7 +17,7 @@ import com.xqsight.system.mapper.SysUserMapper;
 /**
  * <p>用户信息表实现类service</p>
  * <p>Table: sys_user - 用户信息表</p>
- * @since 2017-01-07 11:58:17
+ * @since 2017-02-22 04:31:43
  * @author wangganggang
  */
 @Service

@@ -4,6 +4,7 @@ import com.xqsight.common.core.CustomerJsonSerializer;
 import com.xqsight.common.core.annotation.AttributeFilter;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
 import org.springframework.web.method.support.ModelAndViewContainer;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 /**
  * Created by wangganggang on 2017/2/15.
  */
+@Component
 public class AttributeFilterResolver implements HandlerMethodReturnValueHandler {
     @Override
     public boolean supportsReturnType(MethodParameter returnType) {
