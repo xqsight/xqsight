@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xqsight.cms.mapper.CmsPositionMapper">
+
+    <resultMap id="BaseResultMap"  type="com.xqsight.cms.model.CmsPosition">
+        <result column="position_id" property="positionId" jdbcType="NUMERIC"/>
+        <result column="parent_id" property="parentId" jdbcType="NUMERIC"/>
+        <result column="parent_ids" property="parentIds" jdbcType="VARCHAR"/>
+        <result column="position_name" property="positionName" jdbcType="VARCHAR"/>
+        <result column="position_code" property="positionCode" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="NUMERIC"/>
+        <result column="active" property="active" jdbcType="NUMERIC"/>
+        <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+	 position_id,parent_id,parent_ids,position_name,position_code,sort,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
+
+    <insert id="insert" parameterType="com.xqsight.cms.model.CmsPosition" useGeneratedKeys="true" keyProperty="positionId">
+        insert into cms_position (
+	parent_id,parent_ids,position_name,position_code,sort,active,create_user_id,create_time,update_user_id,update_time,remark
+        ) values (
+	#{parentId,jdbcType=NUMERIC},
+	#{parentIds,jdbcType=VARCHAR},
+	#{positionName,jdbcType=VARCHAR},
+	#{positionCode,jdbcType=VARCHAR},
+	#{sort,jdbcType=NUMERIC},
+	#{active,jdbcType=NUMERIC},
+	#{createUserId,jdbcType=VARCHAR},
+	#{createTime,jdbcType=TIMESTAMP},
+	#{updateUserId,jdbcType=VARCHAR},
+	#{updateTime,jdbcType=TIMESTAMP},
+	#{remark,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.xqsight.cms.model.CmsPosition" useGeneratedKeys="true" keyProperty="positionId">
+        insert into cms_position
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="parentId!=null">
+			parent_id,
+            </if>
+            <if test="parentIds!=null">
+			parent_ids,
+            </if>
+            <if test="positionName!=null">
+			position_name,
+            </if>
+            <if test="positionCode!=null">
+			position_code,
+            </if>
+            <if test="sort!=null">
+			sort,
+            </if>
+            <if test="active!=null">
+			active,
+            </if>
+            <if test="createUserId!=null">
+			create_user_id,
+            </if>
+            <if test="createTime!=null">
+			create_time,
+            </if>
+            <if test="updateUserId!=null">
+			update_user_id,
+            </if>
+            <if test="updateTime!=null">
+			update_time,
+            </if>
+            <if test="remark!=null">
+			remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="parentId!=null">
+			#{parentId,jdbcType=NUMERIC},
+            </if>
+            <if test="parentIds!=null">
+			#{parentIds,jdbcType=VARCHAR},
+            </if>
+            <if test="positionName!=null">
+			#{positionName,jdbcType=VARCHAR},
+            </if>
+            <if test="positionCode!=null">
+			#{positionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sort!=null">
+			#{sort,jdbcType=NUMERIC},
+            </if>
+            <if test="active!=null">
+			#{active,jdbcType=NUMERIC},
+            </if>
+            <if test="createUserId!=null">
+			#{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime!=null">
+			#{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUserId!=null">
+			#{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+			#{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+			#{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.xqsight.cms.model.CmsPosition">
+        update cms_position set
+		parent_id = #{parentId,jdbcType=NUMERIC},
+		parent_ids = #{parentIds,jdbcType=VARCHAR},
+		position_name = #{positionName,jdbcType=VARCHAR},
+		position_code = #{positionCode,jdbcType=VARCHAR},
+		sort = #{sort,jdbcType=NUMERIC},
+		active = #{active,jdbcType=NUMERIC},
+		update_user_id = #{updateUserId,jdbcType=VARCHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR}
+        where  position_id = #{positionId,jdbcType=NUMERIC}  
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.cms.model.CmsPosition">
+        update cms_position
+        <set>
+            <if test="parentId!=null">
+            parent_id = #{parentId,jdbcType=NUMERIC},
+            </if>
+            <if test="parentIds!=null">
+            parent_ids = #{parentIds,jdbcType=VARCHAR},
+            </if>
+            <if test="positionName!=null">
+            position_name = #{positionName,jdbcType=VARCHAR},
+            </if>
+            <if test="positionCode!=null">
+            position_code = #{positionCode,jdbcType=VARCHAR},
+            </if>
+            <if test="sort!=null">
+            sort = #{sort,jdbcType=NUMERIC},
+            </if>
+            <if test="active!=null">
+            active = #{active,jdbcType=NUMERIC},
+            </if>
+            <if test="updateUserId!=null">
+            update_user_id = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+            remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where  position_id = #{positionId,jdbcType=NUMERIC}  
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from cms_position
+        where  position_id = #{positionId,jdbcType=NUMERIC}  
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from cms_position
+        where  position_id = #{positionId,jdbcType=NUMERIC}  
+    </select>
+
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
+        select <include refid="Base_Column_List"/> from cms_position
+        WHERE 1=1
+	    ${whereSqlString}
+
+        <trim prefix=" and " suffix="" suffixOverrides="" >
+        <if test="customSql != null">
+        ${customSqlString}
+        </if>
+        </trim>
+
+        <if test="orderBy != null">
+		${orderBySqlString}
+        </if>
+    </select>
+</mapper>

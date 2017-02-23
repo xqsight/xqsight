@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xqsight.cms.mapper.CmsJobMapper">
+
+    <resultMap id="BaseResultMap"  type="com.xqsight.cms.model.CmsJob">
+        <result column="job_id" property="jobId" jdbcType="NUMERIC"/>
+        <result column="position_id" property="positionId" jdbcType="NUMERIC"/>
+        <result column="job_name" property="jobName" jdbcType="VARCHAR"/>
+        <result column="job_start_time" property="jobStartTime" jdbcType="TIMESTAMP"/>
+        <result column="job_end_time" property="jobEndTime" jdbcType="TIMESTAMP"/>
+        <result column="job_content" property="jobContent" jdbcType="VARCHAR"/>
+        <result column="job_phone" property="jobPhone" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="NUMERIC"/>
+        <result column="job_address" property="jobAddress" jdbcType="VARCHAR"/>
+        <result column="active" property="active" jdbcType="NUMERIC"/>
+        <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+	 job_id,position_id,job_name,job_start_time,job_end_time,job_content,job_phone,status,job_address,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
+
+    <insert id="insert" parameterType="com.xqsight.cms.model.CmsJob" useGeneratedKeys="true" keyProperty="jobId">
+        insert into cms_job (
+	position_id,job_name,job_start_time,job_end_time,job_content,job_phone,status,job_address,active,create_user_id,create_time,update_user_id,update_time,remark
+        ) values (
+	#{positionId,jdbcType=NUMERIC},
+	#{jobName,jdbcType=VARCHAR},
+	#{jobStartTime,jdbcType=TIMESTAMP},
+	#{jobEndTime,jdbcType=TIMESTAMP},
+	#{jobContent,jdbcType=VARCHAR},
+	#{jobPhone,jdbcType=VARCHAR},
+	#{status,jdbcType=NUMERIC},
+	#{jobAddress,jdbcType=VARCHAR},
+	#{active,jdbcType=NUMERIC},
+	#{createUserId,jdbcType=VARCHAR},
+	#{createTime,jdbcType=TIMESTAMP},
+	#{updateUserId,jdbcType=VARCHAR},
+	#{updateTime,jdbcType=TIMESTAMP},
+	#{remark,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.xqsight.cms.model.CmsJob" useGeneratedKeys="true" keyProperty="jobId">
+        insert into cms_job
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="positionId!=null">
+			position_id,
+            </if>
+            <if test="jobName!=null">
+			job_name,
+            </if>
+            <if test="jobStartTime!=null">
+			job_start_time,
+            </if>
+            <if test="jobEndTime!=null">
+			job_end_time,
+            </if>
+            <if test="jobContent!=null">
+			job_content,
+            </if>
+            <if test="jobPhone!=null">
+			job_phone,
+            </if>
+            <if test="status!=null">
+			status,
+            </if>
+            <if test="jobAddress!=null">
+			job_address,
+            </if>
+            <if test="active!=null">
+			active,
+            </if>
+            <if test="createUserId!=null">
+			create_user_id,
+            </if>
+            <if test="createTime!=null">
+			create_time,
+            </if>
+            <if test="updateUserId!=null">
+			update_user_id,
+            </if>
+            <if test="updateTime!=null">
+			update_time,
+            </if>
+            <if test="remark!=null">
+			remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="positionId!=null">
+			#{positionId,jdbcType=NUMERIC},
+            </if>
+            <if test="jobName!=null">
+			#{jobName,jdbcType=VARCHAR},
+            </if>
+            <if test="jobStartTime!=null">
+			#{jobStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="jobEndTime!=null">
+			#{jobEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="jobContent!=null">
+			#{jobContent,jdbcType=VARCHAR},
+            </if>
+            <if test="jobPhone!=null">
+			#{jobPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="status!=null">
+			#{status,jdbcType=NUMERIC},
+            </if>
+            <if test="jobAddress!=null">
+			#{jobAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="active!=null">
+			#{active,jdbcType=NUMERIC},
+            </if>
+            <if test="createUserId!=null">
+			#{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime!=null">
+			#{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUserId!=null">
+			#{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+			#{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+			#{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.xqsight.cms.model.CmsJob">
+        update cms_job set
+		position_id = #{positionId,jdbcType=NUMERIC},
+		job_name = #{jobName,jdbcType=VARCHAR},
+		job_start_time = #{jobStartTime,jdbcType=TIMESTAMP},
+		job_end_time = #{jobEndTime,jdbcType=TIMESTAMP},
+		job_content = #{jobContent,jdbcType=VARCHAR},
+		job_phone = #{jobPhone,jdbcType=VARCHAR},
+		status = #{status,jdbcType=NUMERIC},
+		job_address = #{jobAddress,jdbcType=VARCHAR},
+		active = #{active,jdbcType=NUMERIC},
+		update_user_id = #{updateUserId,jdbcType=VARCHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR}
+        where  job_id = #{jobId,jdbcType=NUMERIC}  
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.cms.model.CmsJob">
+        update cms_job
+        <set>
+            <if test="positionId!=null">
+            position_id = #{positionId,jdbcType=NUMERIC},
+            </if>
+            <if test="jobName!=null">
+            job_name = #{jobName,jdbcType=VARCHAR},
+            </if>
+            <if test="jobStartTime!=null">
+            job_start_time = #{jobStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="jobEndTime!=null">
+            job_end_time = #{jobEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="jobContent!=null">
+            job_content = #{jobContent,jdbcType=VARCHAR},
+            </if>
+            <if test="jobPhone!=null">
+            job_phone = #{jobPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="status!=null">
+            status = #{status,jdbcType=NUMERIC},
+            </if>
+            <if test="jobAddress!=null">
+            job_address = #{jobAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="active!=null">
+            active = #{active,jdbcType=NUMERIC},
+            </if>
+            <if test="updateUserId!=null">
+            update_user_id = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+            remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where  job_id = #{jobId,jdbcType=NUMERIC}  
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from cms_job
+        where  job_id = #{jobId,jdbcType=NUMERIC}  
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from cms_job
+        where  job_id = #{jobId,jdbcType=NUMERIC}  
+    </select>
+
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
+        select <include refid="Base_Column_List"/> from cms_job
+        WHERE 1=1
+	    ${whereSqlString}
+
+        <trim prefix=" and " suffix="" suffixOverrides="" >
+        <if test="customSql != null">
+        ${customSqlString}
+        </if>
+        </trim>
+
+        <if test="orderBy != null">
+		${orderBySqlString}
+        </if>
+    </select>
+</mapper>

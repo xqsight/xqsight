@@ -4,8 +4,6 @@
  */
 package com.xqsight.system.model;
 
-import com.xqsight.common.model.Model;
-
 import java.io.Serializable;
 import java.util.Date;
 

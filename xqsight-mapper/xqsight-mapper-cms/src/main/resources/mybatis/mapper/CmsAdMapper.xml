@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xqsight.cms.mapper.CmsAdMapper">
+
+    <resultMap id="BaseResultMap"  type="com.xqsight.cms.model.CmsAd">
+        <result column="ad_id" property="adId" jdbcType="NUMERIC"/>
+        <result column="site_id" property="siteId" jdbcType="NUMERIC"/>
+        <result column="ad_name" property="adName" jdbcType="VARCHAR"/>
+        <result column="ad_url" property="adUrl" jdbcType="VARCHAR"/>
+        <result column="ad_text" property="adText" jdbcType="VARCHAR"/>
+        <result column="ad_script" property="adScript" jdbcType="VARCHAR"/>
+        <result column="ad_image" property="adImage" jdbcType="VARCHAR"/>
+        <result column="ad_flash" property="adFlash" jdbcType="VARCHAR"/>
+        <result column="ad_begin_time" property="adBeginTime" jdbcType="TIMESTAMP"/>
+        <result column="ad_end_time" property="adEndTime" jdbcType="TIMESTAMP"/>
+        <result column="type" property="type" jdbcType="NUMERIC"/>
+        <result column="sort" property="sort" jdbcType="NUMERIC"/>
+        <result column="active" property="active" jdbcType="NUMERIC"/>
+        <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+	 ad_id,site_id,ad_name,ad_url,ad_text,ad_script,ad_image,ad_flash,ad_begin_time,ad_end_time,type,sort,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
+
+    <insert id="insert" parameterType="com.xqsight.cms.model.CmsAd" useGeneratedKeys="true" keyProperty="adId">
+        insert into cms_ad (
+	site_id,ad_name,ad_url,ad_text,ad_script,ad_image,ad_flash,ad_begin_time,ad_end_time,type,sort,active,create_user_id,create_time,update_user_id,update_time,remark
+        ) values (
+	#{siteId,jdbcType=NUMERIC},
+	#{adName,jdbcType=VARCHAR},
+	#{adUrl,jdbcType=VARCHAR},
+	#{adText,jdbcType=VARCHAR},
+	#{adScript,jdbcType=VARCHAR},
+	#{adImage,jdbcType=VARCHAR},
+	#{adFlash,jdbcType=VARCHAR},
+	#{adBeginTime,jdbcType=TIMESTAMP},
+	#{adEndTime,jdbcType=TIMESTAMP},
+	#{type,jdbcType=NUMERIC},
+	#{sort,jdbcType=NUMERIC},
+	#{active,jdbcType=NUMERIC},
+	#{createUserId,jdbcType=VARCHAR},
+	#{createTime,jdbcType=TIMESTAMP},
+	#{updateUserId,jdbcType=VARCHAR},
+	#{updateTime,jdbcType=TIMESTAMP},
+	#{remark,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <insert id="insertSelective" parameterType="com.xqsight.cms.model.CmsAd" useGeneratedKeys="true" keyProperty="adId">
+        insert into cms_ad
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="siteId!=null">
+			site_id,
+            </if>
+            <if test="adName!=null">
+			ad_name,
+            </if>
+            <if test="adUrl!=null">
+			ad_url,
+            </if>
+            <if test="adText!=null">
+			ad_text,
+            </if>
+            <if test="adScript!=null">
+			ad_script,
+            </if>
+            <if test="adImage!=null">
+			ad_image,
+            </if>
+            <if test="adFlash!=null">
+			ad_flash,
+            </if>
+            <if test="adBeginTime!=null">
+			ad_begin_time,
+            </if>
+            <if test="adEndTime!=null">
+			ad_end_time,
+            </if>
+            <if test="type!=null">
+			type,
+            </if>
+            <if test="sort!=null">
+			sort,
+            </if>
+            <if test="active!=null">
+			active,
+            </if>
+            <if test="createUserId!=null">
+			create_user_id,
+            </if>
+            <if test="createTime!=null">
+			create_time,
+            </if>
+            <if test="updateUserId!=null">
+			update_user_id,
+            </if>
+            <if test="updateTime!=null">
+			update_time,
+            </if>
+            <if test="remark!=null">
+			remark,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="siteId!=null">
+			#{siteId,jdbcType=NUMERIC},
+            </if>
+            <if test="adName!=null">
+			#{adName,jdbcType=VARCHAR},
+            </if>
+            <if test="adUrl!=null">
+			#{adUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="adText!=null">
+			#{adText,jdbcType=VARCHAR},
+            </if>
+            <if test="adScript!=null">
+			#{adScript,jdbcType=VARCHAR},
+            </if>
+            <if test="adImage!=null">
+			#{adImage,jdbcType=VARCHAR},
+            </if>
+            <if test="adFlash!=null">
+			#{adFlash,jdbcType=VARCHAR},
+            </if>
+            <if test="adBeginTime!=null">
+			#{adBeginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="adEndTime!=null">
+			#{adEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="type!=null">
+			#{type,jdbcType=NUMERIC},
+            </if>
+            <if test="sort!=null">
+			#{sort,jdbcType=NUMERIC},
+            </if>
+            <if test="active!=null">
+			#{active,jdbcType=NUMERIC},
+            </if>
+            <if test="createUserId!=null">
+			#{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime!=null">
+			#{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateUserId!=null">
+			#{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+			#{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+			#{remark,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateByPrimaryKey" parameterType="com.xqsight.cms.model.CmsAd">
+        update cms_ad set
+		site_id = #{siteId,jdbcType=NUMERIC},
+		ad_name = #{adName,jdbcType=VARCHAR},
+		ad_url = #{adUrl,jdbcType=VARCHAR},
+		ad_text = #{adText,jdbcType=VARCHAR},
+		ad_script = #{adScript,jdbcType=VARCHAR},
+		ad_image = #{adImage,jdbcType=VARCHAR},
+		ad_flash = #{adFlash,jdbcType=VARCHAR},
+		ad_begin_time = #{adBeginTime,jdbcType=TIMESTAMP},
+		ad_end_time = #{adEndTime,jdbcType=TIMESTAMP},
+		type = #{type,jdbcType=NUMERIC},
+		sort = #{sort,jdbcType=NUMERIC},
+		active = #{active,jdbcType=NUMERIC},
+		update_user_id = #{updateUserId,jdbcType=VARCHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR}
+        where  ad_id = #{adId,jdbcType=NUMERIC}  
+    </update>
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.cms.model.CmsAd">
+        update cms_ad
+        <set>
+            <if test="siteId!=null">
+            site_id = #{siteId,jdbcType=NUMERIC},
+            </if>
+            <if test="adName!=null">
+            ad_name = #{adName,jdbcType=VARCHAR},
+            </if>
+            <if test="adUrl!=null">
+            ad_url = #{adUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="adText!=null">
+            ad_text = #{adText,jdbcType=VARCHAR},
+            </if>
+            <if test="adScript!=null">
+            ad_script = #{adScript,jdbcType=VARCHAR},
+            </if>
+            <if test="adImage!=null">
+            ad_image = #{adImage,jdbcType=VARCHAR},
+            </if>
+            <if test="adFlash!=null">
+            ad_flash = #{adFlash,jdbcType=VARCHAR},
+            </if>
+            <if test="adBeginTime!=null">
+            ad_begin_time = #{adBeginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="adEndTime!=null">
+            ad_end_time = #{adEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="type!=null">
+            type = #{type,jdbcType=NUMERIC},
+            </if>
+            <if test="sort!=null">
+            sort = #{sort,jdbcType=NUMERIC},
+            </if>
+            <if test="active!=null">
+            active = #{active,jdbcType=NUMERIC},
+            </if>
+            <if test="updateUserId!=null">
+            update_user_id = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateTime!=null">
+            update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark!=null">
+            remark = #{remark,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where  ad_id = #{adId,jdbcType=NUMERIC}  
+    </update>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from cms_ad
+        where  ad_id = #{adId,jdbcType=NUMERIC}  
+    </delete>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from cms_ad
+        where  ad_id = #{adId,jdbcType=NUMERIC}  
+    </select>
+
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
+        select <include refid="Base_Column_List"/> from cms_ad
+        WHERE 1=1
+	    ${whereSqlString}
+
+        <trim prefix=" and " suffix="" suffixOverrides="" >
+        <if test="customSql != null">
+        ${customSqlString}
+        </if>
+        </trim>
+
+        <if test="orderBy != null">
+		${orderBySqlString}
+        </if>
+    </select>
+</mapper>

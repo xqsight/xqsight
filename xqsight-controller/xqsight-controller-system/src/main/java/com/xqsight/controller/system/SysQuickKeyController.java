@@ -1,0 +1,76 @@
+/**
+ * 新启工作室
+ * Copyright (c) 1994-2015 All Rights Reserved.
+ */
+package com.xqsight.controller.system;
+
+import com.github.pagehelper.Page;
+import com.xqsight.common.core.support.XqsightPageHelper;
+import com.xqsight.common.model.XqsightPage;
+import com.xqsight.common.support.MessageSupport;
+import com.xqsight.system.model.SysQuickKey;
+import com.xqsight.system.service.SysQuickKeyService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
+/**
+ * <p>快捷键表 controller</p>
+ * <p>Table: sys_quick_key - 快捷键表</p>
+ * @since 2017-01-07 11:57:57
+ * @author wangganggang
+ */
+@RestController
+@RequestMapping("/sys/quick/key/")
+public class SysQuickKeyController{
+
+	@Autowired
+	private SysQuickKeyService sysQuickKeyService;
+
+	@RequestMapping("save")
+	public Object save(SysQuickKey sysQuickKey) {
+		sysQuickKeyService.save(sysQuickKey,true);
+		return MessageSupport.successMsg("保存成功");
+	}
+	
+	@RequestMapping("update")
+	public Object update(SysQuickKey sysQuickKey) {
+		sysQuickKeyService.update(sysQuickKey, true);
+		return MessageSupport.successMsg("修改成功");
+	}
+	
+	@RequestMapping("delete")
+	public Object delete(Long id ) {
+		sysQuickKeyService.delete(id );
+		return MessageSupport.successMsg("删除成功");
+	}
+
+	@RequestMapping("logicDel")
+	public Object logicDel(Long id) {
+		sysQuickKeyService.logicDel(id);
+		return MessageSupport.successMsg("删除成功");
+	}
+
+	@RequestMapping("query")
+	public Object query(XqsightPage xqsightPage) {
+		Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
+		List<SysQuickKey> sysQuickKeys = sysQuickKeyService.search(null);
+		xqsightPage.setTotalCount(page.getTotal());
+		return MessageSupport.successDataTableMsg(xqsightPage, sysQuickKeys);
+    }
+
+	@RequestMapping("querybyid")
+	public Object queryById(Long id ) {
+		SysQuickKey sysQuickKey = sysQuickKeyService.get(id );
+		return MessageSupport.successDataMsg(sysQuickKey, "查询成功");
+	}
+
+	@RequestMapping("queryall")
+	public Object queryall() {
+		List<SysQuickKey> sysQuickKeys = sysQuickKeyService.search(null);
+		return MessageSupport.successDataMsg(sysQuickKeys, "查询成功");
+    }
+
+}
