@@ -1,6 +1,7 @@
 package com.xqsight.common.upload.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.xqsight.common.upload.GlobalUpload;
 import com.xqsight.common.upload.UploadResult;
 import com.xqsight.common.upload.Uploader;
@@ -211,15 +212,10 @@ public abstract class UploadControllerAbstract {
 			response.setContentType("text/html");
 			response.setHeader("Cache-Control", "no-cache");
 			PrintWriter out = response.getWriter();
-			String callback = request.getParameter("CKEditorFuncNum");
-			out.println("<script type=\"text/javascript\">");
-			out.println("(function(){var d=document.domain;while (true){try{var A=window.parent.document.domain;break;}catch(e) {};d=d.replace(/.*?(?:\\.|$)/,'');if (d.length==0) break;try{document.domain=d;}catch (e){break;}}})();\n");
-			if (result.isError()) {
-				out.println("window.parent.CKEDITOR.tools.callFunction(" + callback + ",'" + result.getFileUrl() + "',''" + ");");
-			} else {
-				out.println("alert('" + result.getMessage() + "');");
-			}
-			out.print("</script>");
+			JSONObject obj = new JSONObject();
+			obj.put("error", result.getStatus());
+			obj.put("url", result.getFileUrl());
+			out.println(obj.toJSONString());
 			out.flush();
 			out.close();
 		} else if (request.getParameter("ueditor") != null) {

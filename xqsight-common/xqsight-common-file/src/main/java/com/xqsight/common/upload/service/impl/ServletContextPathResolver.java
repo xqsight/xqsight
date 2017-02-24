@@ -34,7 +34,8 @@ public class ServletContextPathResolver implements PathResolver, ServletContextA
 
     public String getPath(String uri, String prefix) {
         uri = uri == null ? "" : uri;
-        StringBuilder sb = new StringBuilder();
+        return "D:/nginx-1.2.8/html/cms" + uri;
+       /* StringBuilder sb = new StringBuilder();
         if (StringUtils.startsWith(prefix, "files:")) {
             sb.append(prefix.substring(5));
         } else {
@@ -48,6 +49,6 @@ public class ServletContextPathResolver implements PathResolver, ServletContextA
             sb.append(File.separator);
 
         sb.append(uri.replace('/', File.separatorChar));
-        return sb.toString();
+        return sb.toString();*/
     }
 }

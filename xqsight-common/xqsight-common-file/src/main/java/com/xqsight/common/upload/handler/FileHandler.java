@@ -4,7 +4,6 @@ import com.xqsight.common.upload.file.CommonFile;
 import com.xqsight.common.upload.file.CommonFileFilter;
 import com.xqsight.common.upload.file.FtpTemplate;
 import com.xqsight.common.upload.service.PathResolver;
-import freemarker.template.Template;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
@@ -61,8 +60,6 @@ public abstract class FileHandler {
     public abstract void storeFile(File file, String filename) throws IllegalStateException, IOException;
 
     public abstract void storeFile(List<File> files, List<String> filenames) throws IllegalStateException, IOException;
-
-    public abstract void storeFile(final Template template, final Object rootMap, final String filename);
 
     public abstract void storeImage(BufferedImage image, String extension, String filename) throws IOException;
 

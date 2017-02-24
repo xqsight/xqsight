@@ -2,8 +2,6 @@ package com.xqsight.common.upload.handler;
 
 import com.xqsight.common.upload.file.*;
 import com.xqsight.common.upload.image.Images;
-import freemarker.template.Template;
-import freemarker.template.TemplateException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.io.IOUtils;
@@ -14,7 +12,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -191,28 +192,6 @@ public class FtpFileHandler extends FileHandler {
                 InputStream is = file.getInputStream();
                 client.storeFile(fullPathName, is);
                 is.close();
-            }
-        });
-    }
-
-    @Override
-    public void storeFile(final Template template, final Object rootMap, final String filename) {
-        ftpTemplate.execute(new FtpClientExtractor() {
-            public void doInFtp(FTPClient client) throws IOException {
-                String fullPathName = prefix + filename;
-                String fullPath = FilenameUtils.getFullPath(fullPathName);
-                mkdir(client, fullPath);
-                client.setBufferSize(8192);
-                OutputStream os = client.storeFileStream(fullPathName);
-                Writer writer = new OutputStreamWriter(os, "UTF-8");
-                try {
-                    template.process(rootMap, writer);
-                } catch (TemplateException e) {
-                    logger.error("Create Template error.", e);
-                }
-                IOUtils.closeQuietly(writer);
-                IOUtils.closeQuietly(os);
-                client.completePendingCommand();
             }
         });
     }

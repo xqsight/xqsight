@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration;
 import org.springframework.context.annotation.ImportResource;
 
 /**
@@ -16,7 +17,7 @@ import org.springframework.context.annotation.ImportResource;
         "classpath:shiro-config.xml",
         "classpath:applicationContext.xml"})
 @SpringBootApplication(scanBasePackages = {"com.xqsight"})
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude={MultipartAutoConfiguration.class})
 public class Application {
 
     private static final Logger logger = LogManager.getLogger();

@@ -1,9 +1,11 @@
 package com.xqsight.common.upload.controller;
 
+import com.alibaba.fastjson.JSONObject;
 import com.xqsight.common.upload.Uploader;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +16,7 @@ import java.io.IOException;
  *
  * @author wangganggang
  */
-@Controller
+@RestController
 @RequestMapping("/files/core/")
 public class UploadController extends UploadControllerAbstract {
 
@@ -45,9 +47,15 @@ public class UploadController extends UploadControllerAbstract {
         upload(request, response, Uploader.DOC);
     }
 
-    @RequestMapping(value = "/ueditor")
-    public void ueditor(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String action = request.getParameter("action");
+    @RequestMapping(value = "editor",produces = MediaType.TEXT_HTML_VALUE)
+    public Object ueditor(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String callbackFun = request.getParameter("callBackFun");
+        JSONObject obj = new JSONObject();
+        obj.put("error", 0);
+        obj.put("url", "http://localhostgg/cms/1/file/public/201702/20170224155810_ubwc2t1p63.jpg");
+        return obj.toString();
+
+        /*String action = request.getParameter("action");
         if ("core".equals(action)) {
             super.ueditorConfig(request, response);
         } else if ("uploadimage".equals(action)) {
@@ -59,12 +67,14 @@ public class UploadController extends UploadControllerAbstract {
         } else if ("uploadfile".equals(action)) {
             uploadFile(request, response);
         } else if ("uploadscrawl".equals(action)) {
-
+            uploadFile(request, response);
         } else if ("listimage".equals(action)) {
-
+            uploadFile(request, response);
         } else if ("listfile".equals(action)) {
-
-        }
+            uploadFile(request, response);
+        }else{
+            uploadFile(request, response);
+        }*/
     }
 
     public void ueditorCatchImage(HttpServletRequest request, HttpServletResponse response) throws IOException {

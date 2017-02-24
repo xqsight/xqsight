@@ -12,9 +12,9 @@ public class UploadConfige {
     /** **/
     private String storePath = "/";
     /** **/
-    private String uploadMethod = "ftp";
+    private String uploadMethod = "local";
     /** **/
-    private String displayPath = "/display";
+    private String displayPath = "http://localhost/cms";
 
     /**
      * ftp IP

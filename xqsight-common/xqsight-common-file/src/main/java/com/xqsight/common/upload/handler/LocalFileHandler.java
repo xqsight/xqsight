@@ -5,7 +5,6 @@ import com.xqsight.common.upload.file.CommonFileFilter;
 import com.xqsight.common.upload.file.SearchCommonFileFilter;
 import com.xqsight.common.upload.image.Images;
 import com.xqsight.common.upload.service.PathResolver;
-import freemarker.template.Template;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -117,30 +116,6 @@ public class LocalFileHandler extends FileHandler {
 			parent.mkdirs();
 		}
 		file.transferTo(dest);
-	}
-
-	@Override
-	public void storeFile(Template template, Object rootMap, String filename) {
-		File dest = new File(pathResolver.getPath(filename, prefix));
-		File parent = dest.getParentFile();
-		if (!parent.exists()) {
-			parent.mkdirs();
-		}
-		try {
-			OutputStream os = null;
-			Writer writer = null;
-			try {
-				os = new FileOutputStream(dest);
-				writer = new OutputStreamWriter(os, "UTF-8");
-				template.process(rootMap, writer);
-			} finally {
-				IOUtils.closeQuietly(writer);
-				IOUtils.closeQuietly(os);
-			}
-		} catch (Exception e) {
-			logger.error("", e);
-		}
-
 	}
 
 	@Override
