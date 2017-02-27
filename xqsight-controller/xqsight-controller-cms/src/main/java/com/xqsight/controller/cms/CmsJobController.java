@@ -5,6 +5,10 @@
 package com.xqsight.controller.cms;
 
 import com.github.pagehelper.Page;
+import com.xqsight.common.core.orm.MatchType;
+import com.xqsight.common.core.orm.PropertyFilter;
+import com.xqsight.common.core.orm.PropertyType;
+import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.common.support.MessageSupport;
@@ -54,11 +58,11 @@ public class CmsJobController{
 	}
 
 	@RequestMapping("query")
-	public Object query(XqsightPage xqsightPage) {
-		Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
-		List<CmsJob> cmsJobs = cmsJobService.search(null);
-		xqsightPage.setTotalCount(page.getTotal());
-		return MessageSupport.successDataTableMsg(xqsightPage, cmsJobs);
+	public Object query(String positionId) {
+		List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
+				.propertyType(PropertyType.L).add("position_id",positionId).end();
+ 		List<CmsJob> cmsJobs = cmsJobService.search(propertyFilters);
+		return MessageSupport.successDataMsg(cmsJobs, "查询成功");
     }
 
 	@RequestMapping("querybyid")

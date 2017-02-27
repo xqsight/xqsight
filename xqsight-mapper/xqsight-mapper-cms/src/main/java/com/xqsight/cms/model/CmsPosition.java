@@ -34,7 +34,7 @@ public class CmsPosition extends TreeBaseModel<CmsPosition>{
     }
     public void setPositionId(Long positionId){
         this.positionId = positionId;
-        super.setIcon("" + positionId);
+        super.setId("" + positionId);
     }
 	public String getParentIds(){
         return this.parentIds;

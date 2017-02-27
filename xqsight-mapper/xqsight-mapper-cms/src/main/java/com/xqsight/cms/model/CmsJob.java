@@ -29,8 +29,10 @@ public class CmsJob extends Model{
     /** job_name - 招聘名称 */
     private String jobName;
     /** job_start_time - 招聘开始时间 */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime jobStartTime;
     /** job_end_time - 招聘结束时间 */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime jobEndTime;
     /** job_content - 招聘内容 */
     private String jobContent;
