@@ -56,6 +56,7 @@ create table cms_article
    article_content      text comment '文章内容',
    article_url          varchar(120) comment '文章访问URl',
    article_source       varchar(100) comment '文章来源',
+   publish_time         datetime comment '发布时间',
    article_hit          tinyint(4) comment '是否显示 0:显示-1:隐藏',
    active               tinyint(4) not null default 0 comment '是否有效 0:有效 -1:无效',
    create_user_id       varchar(40) comment '创建人ID',

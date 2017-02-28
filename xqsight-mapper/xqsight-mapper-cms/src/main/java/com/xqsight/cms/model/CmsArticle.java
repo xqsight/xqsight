@@ -4,16 +4,19 @@
  */
 package com.xqsight.cms.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xqsight.common.model.Model;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 
 /**
  * <p>文章表实体类</p>
  * <p>Table: cms_article - --> CmsArticle</p>
  * <p>文章表</p>
- * @since 2017-02-23 04:52:03
+ * @since 2017-02-28 03:25:22
  * @author wangganggang
  */
 public class CmsArticle extends Model{
@@ -37,6 +40,9 @@ public class CmsArticle extends Model{
     private String articleUrl;
     /** article_source - 文章来源 */
     private String articleSource;
+    /** publish_time - 发布时间 */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate publishTime;
     /** article_hit - 是否显示 0:显示-1:隐藏 */
     private Byte articleHit;
 
@@ -93,6 +99,14 @@ public class CmsArticle extends Model{
     }
     public void setArticleSource(String articleSource){
         this.articleSource = articleSource;
+    }
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+	public LocalDate getPublishTime(){
+        return this.publishTime;
+    }
+    public void setPublishTime(LocalDate publishTime){
+        this.publishTime = publishTime;
     }
 	public Byte getArticleHit(){
         return this.articleHit;
