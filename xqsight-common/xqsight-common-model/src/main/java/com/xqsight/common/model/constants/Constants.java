@@ -13,6 +13,8 @@ import java.math.BigDecimal;
  */
 public class Constants {
 
+    public static final String CURRENT_USER = "user";
+
     public final static BigDecimal THOUSAND_BIGDECIMAL = new BigDecimal("1000");
 
     /**
