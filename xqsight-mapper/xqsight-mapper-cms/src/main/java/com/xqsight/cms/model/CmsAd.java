@@ -39,8 +39,10 @@ public class CmsAd extends Model{
     /** ad_flash - flash */
     private String adFlash;
     /** ad_begin_time - 开始时间 */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime adBeginTime;
     /** ad_end_time - 结束时间 */
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime adEndTime;
     /** type - 类型 */
     private Byte type;
