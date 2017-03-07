@@ -71,6 +71,7 @@ public class UploadController extends UploadControllerAbstract {
         }
     }
 
+    @Override
     public void ueditorCatchImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
         super.ueditorCatchImage(request, response);
     }

@@ -1,6 +1,9 @@
 #\u542f\u52a8\u670d\u52a1\u5668\u7aef\u53e3\u8bbe\u7f6e\uff0c\u9ed8\u8ba4\u4e3a\u0038\u0030\u0038\u0030
-server.port=8080
-server.context-path=/portal
+server:
+  port:8080
+  context-path:/portal
+
+
 
 
 

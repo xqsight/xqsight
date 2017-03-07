@@ -2,6 +2,7 @@ package com.xqsight.common.upload.service.impl;
 
 import com.xqsight.common.upload.service.PathResolver;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
 
@@ -18,10 +19,12 @@ public class ServletContextPathResolver implements PathResolver, ServletContextA
 
     private ServletContext servletContext;
 
+    @Override
     public void setServletContext(ServletContext servletContext) {
         this.servletContext = servletContext;
     }
 
+    @Override
     public String getPath(String uri) {
         uri = uri == null ? "" : uri;
         StringBuilder sb = new StringBuilder();
@@ -32,6 +35,7 @@ public class ServletContextPathResolver implements PathResolver, ServletContextA
         return sb.toString();
     }
 
+    @Override
     public String getPath(String uri, String prefix) {
         uri = uri == null ? "" : uri;
         return "D:/nginx-1.2.8/html/cms" + uri;

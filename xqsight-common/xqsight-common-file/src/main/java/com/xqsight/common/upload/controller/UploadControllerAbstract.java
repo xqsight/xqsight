@@ -57,8 +57,7 @@ public abstract class UploadControllerAbstract {
      * @throws IOException
      */
     protected void ueditorConfig(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UploadSupport uploadSupport = new UploadSupport();
-        GlobalUpload globalUpload = uploadSupport.getGlobalUpload();
+        GlobalUpload globalUpload = UploadSupport.getGlobalUpload();
         // limit是以KB为单位，要乘以1024
         int imageLimit = globalUpload.getImageLimit();
         if (imageLimit <= 0) {

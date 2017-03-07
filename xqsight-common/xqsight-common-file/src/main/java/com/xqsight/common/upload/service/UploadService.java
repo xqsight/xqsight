@@ -19,8 +19,7 @@ public interface UploadService {
 
     public String storeImage(File file, String extension, String formatName, String ip, Integer userId);
 
-    public String storeImage(BufferedImage buff, String extension, String formatName, String ip,
-                             Integer userId);
+    public String storeImage(BufferedImage buff, String extension, String formatName, String ip, Integer userId);
 
     public void upload(String url, String type, Integer userId, String ip, UploadResult result);
 

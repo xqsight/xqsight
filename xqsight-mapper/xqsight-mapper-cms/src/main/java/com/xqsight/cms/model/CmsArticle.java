@@ -10,6 +10,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 
 /**
@@ -45,6 +46,8 @@ public class CmsArticle extends Model{
     private LocalDate publishTime;
     /** article_hit - 是否显示 0:显示-1:隐藏 */
     private Byte articleHit;
+
+    private List<String> tags;
 
     public Long getArticleId(){
         return this.articleId;
@@ -113,6 +116,14 @@ public class CmsArticle extends Model{
     }
     public void setArticleHit(Byte articleHit){
         this.articleHit = articleHit;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 
     @Override

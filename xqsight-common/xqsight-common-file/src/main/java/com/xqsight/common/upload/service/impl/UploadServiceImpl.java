@@ -221,7 +221,7 @@ public class UploadServiceImpl implements UploadService {
         if (Uploader.IMAGE.equals(type)) {
             WatermarkParam wp = UploadSupport.getWatermarkParam(watermark);
             doUploadImage(fileHandler, file, pathname, scale, exact, width, height, thumbnail, thumbnailWidth, thumbnailHeight, watermark, gu, wp, ip, userId, siteId);
-        } else if (Uploader.DOC == type) {
+        } else if (StringUtils.equals(Uploader.DOC,type)) {
             if (!"swf".equals(ext)) {
                 String swfPathname = UploadSupport.getSiteBase(Uploader.getQuickPathname(type, "swf"));
                 swfUrl = urlPrefix + swfPathname;
