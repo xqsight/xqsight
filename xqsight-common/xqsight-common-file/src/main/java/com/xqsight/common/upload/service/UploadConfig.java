@@ -1,37 +1,42 @@
 package com.xqsight.common.upload.service;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
  * Created by wangganggang on 2017/1/11.
  */
 @Component
-public class UploadConfige {
+public class UploadConfig {
 
-    /** **/
-    private String storePath = "/";
-    /** **/
+    /** 文件上传方式 **/
+    @Value("${file.upload.method}")
     private String uploadMethod = "local";
-    /** **/
-    private String displayPath = "http://localhost/cms";
 
-    /**
-     * ftp IP
-     **/
-    private String ftpHostName="182.61.6.205";
-    /**
-     * ftp 端口
-     **/
-    private Integer ftpPort=21;
-    /**
-     * ftp 用户
-     **/
-    private String ftpUserName="ftpuser";
-    /**
-     * ftp 密码
-     **/
-    private String ftpPassword="!wgg2016";
+    /** 文件保存路径**/
+    @Value("${file.upload.store.path}")
+    private String storePath;
+    /** 文件访问路径 **/
+    @Value("${file.upload.access.domain}")
+    private String displayPath;
+
+
+    /**  ftp IP **/
+    @Value("${file.upload.ftp.host:localhost}")
+    private String ftpHostName;
+
+    /**  ftp 端口  **/
+    @Value("${file.upload.ftp.port:21}")
+    private Integer ftpPort;
+
+    /**  ftp 用户 **/
+    @Value("${file.upload.ftp.username:ftp}")
+    private String ftpUserName;
+
+    /**  ftp 密码 **/
+    @Value("${file.upload.ftp.password:ftppwd}")
+    private String ftpPassword;
 
 
     public String getStorePath() {

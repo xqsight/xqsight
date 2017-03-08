@@ -7,7 +7,11 @@ package com.xqsight.common.upload.service;
  */
 public interface PathResolver {
 
-    public String getPath(String uri);
+    String PREFIX_IS_FILES = "file:";
 
-    public String getPath(String uri, String prefix);
+    String SEPARATOR = "/";
+
+    String getPath(String uri);
+
+    String getPath(String uri, String prefix);
 }

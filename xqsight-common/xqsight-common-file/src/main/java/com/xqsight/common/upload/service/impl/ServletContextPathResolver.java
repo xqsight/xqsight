@@ -1,8 +1,9 @@
 package com.xqsight.common.upload.service.impl;
 
 import com.xqsight.common.upload.service.PathResolver;
+import com.xqsight.common.upload.service.UploadConfig;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.ServletContextAware;
 
@@ -15,44 +16,47 @@ import java.io.File;
  * @author wangganggang
  */
 @Component
-public class ServletContextPathResolver implements PathResolver, ServletContextAware {
+public class ServletContextPathResolver implements PathResolver {
 
-    private ServletContext servletContext;
 
-    @Override
-    public void setServletContext(ServletContext servletContext) {
-        this.servletContext = servletContext;
-    }
+    @Autowired
+    private UploadConfig uploadConfig;
 
     @Override
     public String getPath(String uri) {
-        uri = uri == null ? "" : uri;
         StringBuilder sb = new StringBuilder();
-        sb.append(servletContext.getRealPath(""));
-        if (!StringUtils.startsWith(uri, "/"))
+        sb.append(uploadConfig.getStorePath());
+
+        if (StringUtils.isBlank(uri)) {
+            return sb.toString();
+        }
+
+        if (!StringUtils.startsWith(uri, SEPARATOR)) {
             sb.append(File.separator);
+        }
         sb.append(uri.replace('/', File.separatorChar));
         return sb.toString();
     }
 
     @Override
     public String getPath(String uri, String prefix) {
-        uri = uri == null ? "" : uri;
-        return "D:/nginx-1.2.8/html/cms" + uri;
-       /* StringBuilder sb = new StringBuilder();
-        if (StringUtils.startsWith(prefix, "files:")) {
-            sb.append(prefix.substring(5));
+        StringBuilder sb = new StringBuilder();
+        if (StringUtils.startsWith(prefix, PREFIX_IS_FILES)) {
+            sb.append(prefix.substring(PREFIX_IS_FILES.length()));
         } else {
-            sb.append(servletContext.getRealPath(""));
+            sb.append(uploadConfig.getStorePath());
             if (StringUtils.isNotBlank(prefix)) {
                 sb.append(prefix.replace('/', File.separatorChar));
             }
         }
-
-        if (!StringUtils.startsWith(uri, "/"))
+        if (StringUtils.isBlank(uri)) {
+            return sb.toString();
+        }
+        if (!StringUtils.startsWith(uri, SEPARATOR)) {
             sb.append(File.separator);
-
+        }
         sb.append(uri.replace('/', File.separatorChar));
-        return sb.toString();*/
+
+        return sb.toString();
     }
 }

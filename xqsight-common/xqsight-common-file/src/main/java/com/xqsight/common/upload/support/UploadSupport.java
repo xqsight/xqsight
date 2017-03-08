@@ -5,7 +5,7 @@ import com.xqsight.common.upload.file.FtpTemplate;
 import com.xqsight.common.upload.handler.FileHandler;
 import com.xqsight.common.upload.image.WatermarkParam;
 import com.xqsight.common.upload.service.PathResolver;
-import com.xqsight.common.upload.service.UploadConfige;
+import com.xqsight.common.upload.service.UploadConfig;
 import com.xqsight.common.web.WebUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class UploadSupport {
 
     @Autowired
-    private static UploadConfige uploadConfige = new UploadConfige();
+    private static UploadConfig uploadConfige = new UploadConfig();
 
     public static WatermarkParam getWatermarkParam(Boolean watermark) {
         return new WatermarkParam(watermark);

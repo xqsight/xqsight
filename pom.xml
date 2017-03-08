@@ -114,7 +114,7 @@
         <pinyin4j.version>2.5.0</pinyin4j.version>
         <hutool.version>2.16.0</hutool.version>
         <!-- 模板文件 -->
-        <freemarker.version>2.3.20</freemarker.version>
+        <freemarker.version>2.3.23</freemarker.version>
         <velocity.version>1.7</velocity.version>
         <!-- ehcache -->
         <ehcache.version>2.4.3</ehcache.version>
