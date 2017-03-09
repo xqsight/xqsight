@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 public class UploadConfig {
 
     /** 文件上传方式 **/
-    @Value("${file.upload.method}")
-    private String uploadMethod = "local";
+    @Value("${file.upload.method:local}")
+    private String uploadMethod;
 
     /** 文件保存路径**/
     @Value("${file.upload.store.path}")
@@ -20,7 +20,8 @@ public class UploadConfig {
     /** 文件访问路径 **/
     @Value("${file.upload.access.domain}")
     private String displayPath;
-
+    @Value("${file.upload.prefix:}")
+    private String prefix;
 
     /**  ftp IP **/
     @Value("${file.upload.ftp.host:localhost}")
@@ -93,6 +94,14 @@ public class UploadConfig {
 
     public void setDisplayPath(String displayPath) {
         this.displayPath = displayPath;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
     public boolean isFtpMethod() {

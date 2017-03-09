@@ -5,6 +5,7 @@ import com.xqsight.common.upload.file.*;
 import com.xqsight.common.upload.handler.FileHandler;
 import com.xqsight.common.upload.handler.LocalFileHandler;
 import com.xqsight.common.upload.service.PathResolver;
+import com.xqsight.common.upload.support.UploadSupport;
 import com.xqsight.common.upload.support.Validations;
 import com.xqsight.common.web.Servlets;
 import org.apache.commons.lang3.StringUtils;
@@ -33,6 +34,9 @@ public abstract class WebFileControllerAbstractor {
 
     @Autowired
     protected PathResolver pathResolver;
+
+    @Autowired
+    protected UploadSupport uploadSupport;
 
     public static final int TEMPLATE = 1;
     public static final int UPLOAD = 2;

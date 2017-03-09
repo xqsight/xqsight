@@ -48,26 +48,29 @@ public class UploadServiceImpl implements UploadService {
     @Autowired
     protected PathResolver pathResolver;
 
+    @Autowired
+    private UploadSupport uploadSupport;
+
     @Override
     public String copyImage(File src, String extension, String formatName, Boolean scale, Boolean exact,
                             Integer width, Integer height, Boolean thumbnail, Integer thumbnailWidth, Integer thumbnailHeight,
                             Boolean watermark, String ip, Integer userId, Integer siteId) {
 
-        GlobalUpload gu = UploadSupport.getGlobalUpload();
+        GlobalUpload gu = uploadSupport.getGlobalUpload();
         ScaleParam scaleParam = gu.getScaleParam(scale, exact, width, height);
         scale = scaleParam.isScale();
 
         ThumbnailParam thumbnailParam = new ThumbnailParam(thumbnail, thumbnailWidth, thumbnailHeight);
         thumbnail = thumbnailParam.isThumbnail();
 
-        WatermarkParam watermarkParam = UploadSupport.getWatermarkParam(watermark);
+        WatermarkParam watermarkParam = uploadSupport.getWatermarkParam(watermark);
         watermark = watermarkParam.isWatermark();
 
-        FileHandler fileHandler = UploadSupport.getFileHandler(pathResolver);
+        FileHandler fileHandler = uploadSupport.getFileHandler(pathResolver);
 
-        String pathname = UploadUtils.getUrl(UploadSupport.getSystemId(), Uploader.IMAGE, extension);
+        String pathname = UploadUtils.getUrl(uploadSupport.getSystemId(), Uploader.IMAGE, extension);
 
-        String urlPrefix = UploadSupport.getUrlPrefix();
+        String urlPrefix = uploadSupport.getUrlPrefix();
         try {
             File copy = FilesEx.getTempFile();
             try {
@@ -86,9 +89,9 @@ public class UploadServiceImpl implements UploadService {
     @Override
     public String storeImage(File file, String extension, String formatName, String ip, Integer userId) {
 
-        FileHandler fileHandler = UploadSupport.getFileHandler(pathResolver);
-        String urlPrefix = UploadSupport.getUrlPrefix();
-        String filename = UploadUtils.getUrl(UploadSupport.getSystemId(), Uploader.IMAGE, extension);
+        FileHandler fileHandler = uploadSupport.getFileHandler(pathResolver);
+        String urlPrefix = uploadSupport.getUrlPrefix();
+        String filename = UploadUtils.getUrl(uploadSupport.getSystemId(), Uploader.IMAGE, extension);
         try {
             fileHandler.storeFile(file, filename);
             long length = file.length();
@@ -102,9 +105,9 @@ public class UploadServiceImpl implements UploadService {
 
     @Override
     public String storeImage(BufferedImage buff, String extension, String formatName, String ip, Integer userId) {
-        FileHandler fileHandler = UploadSupport.getFileHandler(pathResolver);
-        String urlPrefix = UploadSupport.getUrlPrefix();
-        String filename = UploadUtils.getUrl(UploadSupport.getSystemId(), Uploader.IMAGE, extension);
+        FileHandler fileHandler = uploadSupport.getFileHandler(pathResolver);
+        String urlPrefix = uploadSupport.getUrlPrefix();
+        String filename = UploadUtils.getUrl(uploadSupport.getSystemId(), Uploader.IMAGE, extension);
         try {
             fileHandler.storeImage(buff, formatName, filename);
             long length = buff.getWidth() * buff.getHeight() / 3;
@@ -198,10 +201,10 @@ public class UploadServiceImpl implements UploadService {
     private UploadResult doUpload(File file, String fileName, String type, Integer userId, String ip, UploadResult result, Boolean scale, Boolean exact,
                                   Integer width, Integer height, Boolean thumbnail, Integer thumbnailWidth, Integer thumbnailHeight, Boolean watermark) throws Exception {
 
-        Integer siteId = UploadSupport.getSystemId();
+        Integer siteId = uploadSupport.getSystemId();
         long fileLength = file.length();
         String ext = FilenameUtils.getExtension(fileName).toLowerCase();
-        GlobalUpload gu = UploadSupport.getGlobalUpload();
+        GlobalUpload gu = uploadSupport.getGlobalUpload();
         // 后缀名是否合法
         if (!validateExt(ext, type, gu, result)) {
             return result;
@@ -211,28 +214,27 @@ public class UploadServiceImpl implements UploadService {
             return result;
         }*/
 
-        String urlPrefix = UploadSupport.getUrlPrefix();
-        FileHandler fileHandler = UploadSupport.getFileHandler(pathResolver);
+        String urlPrefix = uploadSupport.getUrlPrefix();
+        FileHandler fileHandler = uploadSupport.getFileHandler(pathResolver);
 
-        String pathname = UploadSupport.getSiteBase(Uploader.getQuickPathname(type, ext));
+        String pathname = uploadSupport.getSiteBase(Uploader.getQuickPathname(type, ext));
         String fileUrl = urlPrefix + pathname;
         String pdfUrl = null;
         String swfUrl = null;
         if (Uploader.IMAGE.equals(type)) {
-            WatermarkParam wp = UploadSupport.getWatermarkParam(watermark);
+            WatermarkParam wp = uploadSupport.getWatermarkParam(watermark);
             doUploadImage(fileHandler, file, pathname, scale, exact, width, height, thumbnail, thumbnailWidth, thumbnailHeight, watermark, gu, wp, ip, userId, siteId);
-        } else if (StringUtils.equals(Uploader.DOC,type)) {
+        } else if (StringUtils.equals(Uploader.DOC, type)) {
             if (!"swf".equals(ext)) {
-                String swfPathname = UploadSupport.getSiteBase(Uploader.getQuickPathname(type, "swf"));
+                String swfPathname = uploadSupport.getSiteBase(Uploader.getQuickPathname(type, "swf"));
                 swfUrl = urlPrefix + swfPathname;
                 String pdfPathname = null;
                 if (!"pdf".equals(ext)) {
-                    pdfPathname = UploadSupport.getSiteBase(Uploader.getQuickPathname(type, "pdf"));
+                    pdfPathname = uploadSupport.getSiteBase(Uploader.getQuickPathname(type, "pdf"));
                     pdfUrl = urlPrefix + pdfPathname;
                 } else {
                     pdfUrl = fileUrl;
                 }
-                //UploadDoc.exec(attachmentService, fileHandler, pathname, ext, pdfPathname, swfPathname, files, ip,userId, siteId);
                 UploadDoc.exec(fileHandler, pathname, ext, pdfPathname, swfPathname, file, ip, userId, siteId);
             } else {
                 swfUrl = fileUrl;
@@ -241,7 +243,6 @@ public class UploadServiceImpl implements UploadService {
         } else {
             fileHandler.storeFile(file, pathname);
         }
-        //attachmentService.save(pathname, fileLength, ip, userId, siteId);
         result.set(fileUrl, fileName, ext, fileLength, pdfUrl, swfUrl);
         return result;
     }

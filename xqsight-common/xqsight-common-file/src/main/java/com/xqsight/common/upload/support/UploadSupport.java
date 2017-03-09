@@ -9,34 +9,37 @@ import com.xqsight.common.upload.service.UploadConfig;
 import com.xqsight.common.web.WebUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.io.File;
 
 /**
  * Created by wangganggang on 2017/1/11.
  */
+@Component
 public class UploadSupport {
 
     @Autowired
-    private static UploadConfig uploadConfige = new UploadConfig();
+    private UploadConfig uploadConfig;
 
-    public static WatermarkParam getWatermarkParam(Boolean watermark) {
+    private final String seperator = "/";
+
+    public WatermarkParam getWatermarkParam(Boolean watermark) {
         return new WatermarkParam(watermark);
-        /*return new WatermarkParam(watermark, getImagePath(), getAlpha(),
-                getPosition(), getPaddingX(), getPaddingY(), getMinWidth(),
-                getMinHeight());*/
     }
 
-    public static GlobalUpload getGlobalUpload() {
+    public GlobalUpload getGlobalUpload() {
         return new GlobalUpload();
     }
 
-    public static FtpTemplate getFtpTemplate() {
-        return new FtpTemplate(uploadConfige.getFtpHostName(), uploadConfige.getFtpPort(), uploadConfige.getFtpUserName(), uploadConfige.getFtpPassword());
+    public FtpTemplate getFtpTemplate() {
+        return new FtpTemplate(uploadConfig.getFtpHostName(), uploadConfig.getFtpPort(), uploadConfig.getFtpUserName(), uploadConfig.getFtpPassword());
     }
 
-    public static FileHandler getFileHandler(PathResolver pathResolver) {
-        String prefix = uploadConfige.getStorePath();
+    public FileHandler getFileHandler(PathResolver pathResolver) {
+        String prefix = uploadConfig.getPrefix();
         FileHandler fileHandler;
-        if (uploadConfige.isFtpMethod()) {
+        if (uploadConfig.isFtpMethod()) {
             fileHandler = FileHandler.getFileHandler(getFtpTemplate(), prefix);
         } else {
             fileHandler = FileHandler.getLocalFileHandler(pathResolver, prefix);
@@ -44,31 +47,26 @@ public class UploadSupport {
         return fileHandler;
     }
 
-    public static String getUrlPrefix() {
+    public String getUrlPrefix() {
         StringBuilder sb = new StringBuilder();
-        if (!uploadConfige.isFtpMethod() && !StringUtils.startsWith(uploadConfige.getStorePath(), "files:")) {
-            String ctx = WebUtils.getCtx();
-            if (StringUtils.isNotBlank(ctx)) {
-                sb.append(ctx);
-            }
-        }
-        String displayPath = uploadConfige.getDisplayPath();
+        String displayPath = uploadConfig.getDisplayPath();
         if (StringUtils.isNotBlank(displayPath)) {
             sb.append(displayPath);
         }
         return sb.toString();
     }
 
-    public static int getSystemId() {
+    public int getSystemId() {
         return 1;
     }
 
-    public static String getSiteBase(String path) {
+    public String getSiteBase(String path) {
         StringBuilder sb = new StringBuilder();
-        sb.append("/").append(getSystemId());
+        sb.append(File.separator).append(getSystemId());
+
         if (StringUtils.isNotBlank(path)) {
-            if (!path.startsWith("/")) {
-                sb.append("/");
+            if (!StringUtils.startsWith(path, seperator)) {
+                sb.append(File.separator);
             }
             sb.append(path);
         }
@@ -76,6 +74,7 @@ public class UploadSupport {
     }
 
     public boolean isFtp() {
-        return uploadConfige.isFtpMethod();
+        return uploadConfig.isFtpMethod();
     }
+
 }

@@ -305,6 +305,7 @@ public class GlobalUpload implements Configurable {
 		}
 	}
 
+	@Override
 	public Map<String, String> getCustoms() {
 		if (customs == null) {
 			customs = new HashMap<String, String>();
@@ -316,6 +317,7 @@ public class GlobalUpload implements Configurable {
 		this.customs = customs;
 	}
 
+	@Override
 	public String getPrefix() {
 		return PREFIX;
 	}

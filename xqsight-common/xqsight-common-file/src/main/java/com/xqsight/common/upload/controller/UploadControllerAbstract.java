@@ -49,6 +49,9 @@ public abstract class UploadControllerAbstract {
     @Autowired
     protected UploadService uploadService;
 
+    @Autowired
+    private UploadSupport uploadSupport;
+
     /**
      * ueditor core action，返回空配置，全部配置在前端完整。
      *
@@ -57,7 +60,7 @@ public abstract class UploadControllerAbstract {
      * @throws IOException
      */
     protected void ueditorConfig(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        GlobalUpload globalUpload = UploadSupport.getGlobalUpload();
+        GlobalUpload globalUpload = uploadSupport.getGlobalUpload();
         // limit是以KB为单位，要乘以1024
         int imageLimit = globalUpload.getImageLimit();
         if (imageLimit <= 0) {
@@ -133,7 +136,6 @@ public abstract class UploadControllerAbstract {
      * @throws IOException
      */
     protected void ueditorCatchImage(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UploadSupport uploadSupport = new UploadSupport();
         GlobalUpload globalUpload = uploadSupport.getGlobalUpload();
         FileHandler fileHandler = uploadSupport.getFileHandler(pathResolver);
         String urlPrefix = uploadSupport.getUrlPrefix();
@@ -152,18 +154,15 @@ public abstract class UploadControllerAbstract {
 
             // 格式验证
             if (!globalUpload.isExtensionValid(extension, Uploader.IMAGE)) {
-                // state = "Extension Invalid";
                 continue;
             }
 
             HttpURLConnection.setFollowRedirects(false);
             HttpURLConnection conn = (HttpURLConnection) new URL(src).openConnection();
             if (conn.getContentType().indexOf("image") == -1) {
-                // state = "ContentType Invalid";
                 continue;
             }
             if (conn.getResponseCode() != 200) {
-                // state = "Request Error";
                 continue;
             }
             String pathname = uploadSupport.getSiteBase(Uploader.getQuickPathname(Uploader.IMAGE, extension));
@@ -199,74 +198,46 @@ public abstract class UploadControllerAbstract {
         UploadResult result = new UploadResult();
         Locale locale = RequestContextUtils.getLocale(request);
         result.setMessageSource(messageSource, locale);
-
-        Integer userId = 1;//Context.getCurrentUserId();
-        String ip = WebUtils.getUserIp(request);//Servlets.getRemoteAddr(request);
+        Integer userId = uploadSupport.getSystemId();
+        String ip = WebUtils.getUserIp(request);
         MultipartFile partFile = getMultipartFile(request);
 
         uploadService.upload(partFile, type, userId, ip, result, scale, exact, width, height, thumbnail, thumbnailWidth, thumbnailHeight, watermark);
 
-        if (request.getParameter("CKEditor") != null) {
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("text/html");
-            response.setHeader("Cache-Control", "no-cache");
-            PrintWriter out = response.getWriter();
-            JSONObject obj = new JSONObject();
-            obj.put("error", result.getStatus());
-            obj.put("url", result.getFileUrl());
-            out.println(obj.toJSONString());
-            out.flush();
-            out.close();
-        } else if (request.getParameter("ueditor") != null) {
-            Map<String, String> umap = new HashMap<String, String>();
-            String title = request.getParameter("pictitle");
-            umap.put("title", title);
-            umap.put("state", "SUCCESS");
-            umap.put("original", result.getFileName());
-            umap.put("url", result.getFileUrl());
-            umap.put("fileType", "." + result.getFileExtension());
-            //JsonMapper mapper = new JsonMapper();
-            String json = JSON.toJSON(umap).toString();
-            logger.debug(json);
-            Servlets.writeHtml(response, json);
-        } else if (request.getParameter("editormd") != null) {
-            // {
-            // success : 0 | 1, // 0 表示上传失败，1 表示上传成功
-            // message : "提示的信息，上传成功或上传失败及错误信息等。",
-            // url : "图片地址" // 上传成功时才返回
-            // }
-            Map<String, Object> umap = new HashMap<String, Object>();
-            umap.put("success", result.isSuccess() ? 1 : 0);
-            umap.put("message", result.getMessage());
-            umap.put("url", result.getFileUrl());
-            String json = JSON.toJSON(umap).toString();
-            logger.debug(json);
-            Servlets.writeHtml(response, json);
-            /*JsonMapper mapper = new JsonMapper();
-			String json = mapper.toJson(umap);
-			logger.debug(json);
-			Servlets.writeHtml(response, json);*/
-        } else if (request.getParameter("wangEditor") != null) {
-            response.setCharacterEncoding("UTF-8");
-            response.setContentType("text/html");
-            response.setHeader("Cache-Control", "no-cache");
-            PrintWriter out = response.getWriter();
-            if (result.getStatus() == 0) {
-                out.println(result.getFileUrl());
-            } else {
-                out.println("error|" + result.getMessage());
-            }
-
-            out.flush();
-            out.close();
-        } else {
-            String json = JSON.toJSON(result).toString();
-            logger.debug(json);
-            Servlets.writeHtml(response, json);
-			/*JsonMapper mapper = new JsonMapper();
-			String json = mapper.toJson(result);
-			logger.debug(json);
-			Servlets.writeHtml(response, json);*/
+        Map<String, Object> returnMap = new HashMap();
+        String editor = StringUtils.trimToEmpty(request.getParameter("editor"));
+        switch (editor) {
+            case "ckeditor":
+                returnMap.put("error", result.getStatus());
+                returnMap.put("url", result.getFileUrl());
+                Servlets.writeHtml(response, JSON.toJSONString(returnMap));
+                break;
+            case "ueditor":
+                String title = request.getParameter("pictitle");
+                returnMap.put("title", title);
+                returnMap.put("state", "SUCCESS");
+                returnMap.put("url", result.getFileUrl());
+                returnMap.put("fileType", "." + result.getFileExtension());
+                Servlets.writeHtml(response, JSON.toJSONString(returnMap));
+                break;
+            case "editormd":
+                returnMap.put("success", result.isSuccess() ? 1 : 0);
+                returnMap.put("message", result.getMessage());
+                returnMap.put("url", result.getFileUrl());
+                Servlets.writeHtml(response, JSON.toJSONString(returnMap));
+                break;
+            case "wangeditor":
+                String retMsg;
+                if (result.getStatus() == 0) {
+                    retMsg = result.getFileUrl();
+                } else {
+                    retMsg = "error|" + result.getMessage();
+                }
+                Servlets.writeHtml(response, retMsg);
+                break;
+            default:
+                String json = JSON.toJSON(result).toString();
+                Servlets.writeHtml(response, json);
         }
     }
 
