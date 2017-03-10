@@ -4,22 +4,25 @@
  */
 package com.xqsight.cms.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.xqsight.cms.mapper.CmsArticleMapper;
+import com.xqsight.cms.model.CmsArticle;
 import com.xqsight.cms.model.CmsTag;
+import com.xqsight.cms.support.GenerateTemplate;
 import com.xqsight.common.core.dao.Dao;
 import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.service.DefaultEntityService;
-
+import com.xqsight.common.freemarker.TemplateEngineException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.xqsight.cms.model.CmsArticle;
-import com.xqsight.cms.mapper.CmsArticleMapper;
-
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -38,22 +41,27 @@ public class CmsArticleService extends DefaultEntityService<CmsArticle, Long> {
     @Autowired
     private CmsTagService cmsTagService;
 
+    @Autowired
+    private GenerateTemplate generateTemplate;
+
     @Override
     protected Dao<CmsArticle, Long> getDao() {
         return cmsArticleMapper;
     }
 
-    public void saveArticle(CmsArticle cmsArticle) {
+    public void saveArticle(CmsArticle cmsArticle) throws TemplateEngineException {
         this.save(cmsArticle, true);
         saveArticleTag(cmsArticle);
+        generateHtmlContent(cmsArticle);
     }
 
-    public void updateArticle(CmsArticle cmsArticle) {
+    public void updateArticle(CmsArticle cmsArticle) throws TemplateEngineException {
         this.update(cmsArticle, true);
         saveArticleTag(cmsArticle);
+        generateHtmlContent(cmsArticle);
     }
 
-    public List queryTagByArticle(long articleId){
+    public List queryTagByArticle(long articleId) {
         return cmsArticleMapper.queryArticleTag(articleId);
     }
 
@@ -81,7 +89,16 @@ public class CmsArticleService extends DefaultEntityService<CmsArticle, Long> {
 
     }
 
-    private void generateHtmlContent(CmsArticle cmsArticle){
+    private void generateHtmlContent(CmsArticle cmsArticle) throws TemplateEngineException {
+        ObjectMapper oMapper = new ObjectMapper();
+        Map modelMap = oMapper.convertValue(cmsArticle, Map.class);
+        modelMap.put("publishTime", cmsArticle.getPublishTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        String fileName = "article_" + cmsArticle.getArticleId() + ".html";
+        String articleUrl = generateTemplate.generate(modelMap, "article.html", fileName);
 
+        CmsArticle updArticle = new CmsArticle();
+        updArticle.setArticleId(cmsArticle.getArticleId());
+        updArticle.setArticleUrl(articleUrl);
+        cmsArticleMapper.updateByPrimaryKeySelective(updArticle);
     }
 }

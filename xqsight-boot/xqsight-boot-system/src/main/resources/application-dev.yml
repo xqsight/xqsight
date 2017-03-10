@@ -1,0 +1,27 @@
+server:
+  port: 8080
+  context-path: /portal
+
+###=====================##
+
+default.system.goto.url: login.html
+
+###===  文件上传处理   =====##
+file:
+  upload:
+    method: local
+    store:
+      path: D:/nginx-1.2.8/html/cms
+    access:
+      domain: http://localhost/cms
+
+
+#===== 网站模板访问 =============###
+site:
+  upload:
+    store:
+      path: D:/nginx-1.2.8/html/site/
+    access:
+      domain: http://localhost/site
+  tpl:
+    path: D:/nginx-1.2.8/html/site/template

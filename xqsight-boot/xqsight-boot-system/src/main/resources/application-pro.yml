@@ -1,0 +1,20 @@
+server:
+  port: 8080
+  context-path: /portal
+
+###=====================##
+
+default.system.goto.url: login.html
+
+###===  文件上传处理   =====##
+file:
+  upload:
+    method: local
+    store:
+      path: /var/webroot/eju-site
+    access:
+      domain: http://10.99.69.43/eju-site
+
+
+
+

@@ -18,14 +18,15 @@ package com.xqsight.common.freemarker;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.*;
 import java.util.Map;
 
 public class FreeMarkerImpl implements TemplateEngine {
 
-    private static final Logger LOGGER = Logger.getLogger(FreeMarkerImpl.class);
+    protected Logger logger = LogManager.getLogger(FreeMarkerImpl.class);
 
     private static final String DEFAULT_ENCODING = "UTF-8";
 
@@ -55,12 +56,13 @@ public class FreeMarkerImpl implements TemplateEngine {
             config.setSetting("time_format", "HH:mm:ss");
             config.setSetting("number_format", "0.######;");
         } catch (Exception e) {
-            LOGGER.info(e.getMessage(), e);
+            logger.info(e.getMessage(), e);
         }
     }
 
     @Override
     public String processToString(Map<String, Object> model, String stringTemplate) throws TemplateEngineException {
+        logger.debug("model:{}", model);
         try {
             Configuration cfg = new Configuration();
             cfg.setTemplateLoader(new StringTemplateLoader(stringTemplate));
@@ -76,7 +78,8 @@ public class FreeMarkerImpl implements TemplateEngine {
     }
 
     @Override
-    public void processToFile(Map<String, Object> model, TemplateElement templateElement)throws TemplateEngineException {
+    public void processToFile(Map<String, Object> model, TemplateElement templateElement) throws TemplateEngineException {
+        logger.debug("model:{}", model);
         try {
             Template template = config.getTemplate(templateElement.getTemplateFile(), templateElement.getEncoding());
             String targetPath = PathSupport.packagePathToFilePath(processToString(model, templateElement.getTargetPath()));

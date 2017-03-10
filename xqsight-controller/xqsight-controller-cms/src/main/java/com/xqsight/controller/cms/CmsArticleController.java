@@ -5,6 +5,7 @@
 package com.xqsight.controller.cms;
 
 import com.github.pagehelper.Page;
+import com.xqsight.common.freemarker.TemplateEngineException;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.common.support.MessageSupport;
@@ -33,13 +34,23 @@ public class CmsArticleController {
 
     @RequestMapping("save")
     public Object save(CmsArticle cmsArticle) {
-        cmsArticleService.saveArticle(cmsArticle);
+        try {
+            cmsArticleService.saveArticle(cmsArticle);
+        } catch (TemplateEngineException e) {
+            e.printStackTrace();
+            return MessageSupport.successMsg("保存成功,生成模板出错");
+        }
         return MessageSupport.successMsg("保存成功");
     }
 
     @RequestMapping("update")
     public Object update(CmsArticle cmsArticle) {
-        cmsArticleService.updateArticle(cmsArticle);
+        try {
+            cmsArticleService.updateArticle(cmsArticle);
+        } catch (TemplateEngineException e) {
+            e.printStackTrace();
+            return MessageSupport.successMsg("修改成功,生成模板出错");
+        }
         return MessageSupport.successMsg("修改成功");
     }
 
