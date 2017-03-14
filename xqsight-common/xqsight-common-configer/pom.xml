@@ -46,6 +46,12 @@
         </dependency>
         <!-- Mybatis End -->
 
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
+
         <!-- Spring START -->
         <dependency>
             <groupId>org.springframework</groupId>

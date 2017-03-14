@@ -29,10 +29,10 @@ public class CmsJob extends Model{
     /** job_name - 招聘名称 */
     private String jobName;
     /** job_start_time - 招聘开始时间 */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss",iso = DateTimeFormat.ISO.TIME)
     private LocalDateTime jobStartTime;
     /** job_end_time - 招聘结束时间 */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss",iso = DateTimeFormat.ISO.TIME)
     private LocalDateTime jobEndTime;
     /** job_content - 招聘内容 */
     private String jobContent;
@@ -62,7 +62,6 @@ public class CmsJob extends Model{
         this.jobName = jobName;
     }
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     public LocalDateTime getJobStartTime(){
         return this.jobStartTime;
     }
@@ -70,7 +69,6 @@ public class CmsJob extends Model{
         this.jobStartTime = jobStartTime;
     }
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     public LocalDateTime getJobEndTime(){
         return this.jobEndTime;
     }

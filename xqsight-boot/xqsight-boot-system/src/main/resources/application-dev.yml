@@ -2,8 +2,7 @@ server:
   port: 8080
   context-path: /portal
 
-###=====================##
-
+###====== 登陆页面 =======##
 default.system.goto.url: login.html
 
 ###===  文件上传处理   =====##
@@ -11,17 +10,21 @@ file:
   upload:
     method: local
     store:
-      path: D:/nginx-1.2.8/html/site/file
-    access:
-      domain: http://localhost/site/file
-
-
-#=====  网站模板访问 ========###
-site:
-  upload:
-    store:
       path: D:/nginx-1.2.8/html/site/
     access:
       domain: http://localhost/site
+
+#==== 模板存放位置 ===#
+site:
   tpl:
-    path: D:/nginx-1.2.8/html/site/template
+    path: classpath:/view/
+
+#==== freemarker 模板设置 =====#
+spring:
+  freemarker:
+    cache: false
+    template-loader-path: classpath:/view/
+    charset: UTF-8
+    check-template-location: false
+
+

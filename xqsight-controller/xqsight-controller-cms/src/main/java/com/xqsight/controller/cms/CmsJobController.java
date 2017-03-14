@@ -8,6 +8,7 @@ import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
+import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.support.MessageSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,8 +51,11 @@ public class CmsJobController{
 
 	@RequestMapping("logicDel")
 	public Object logicDel(Long jobId) {
-		cmsJobService.logicDel(jobId);
-		return MessageSupport.successMsg("删除成功");
+		CmsJob cmsJob = new CmsJob();
+		cmsJob.setJobId(jobId);
+		cmsJob.setStatus(Byte.valueOf("2"));
+		cmsJobService.update(cmsJob,true);
+		return MessageSupport.successMsg("停止成功");
 	}
 
 	@RequestMapping("query")

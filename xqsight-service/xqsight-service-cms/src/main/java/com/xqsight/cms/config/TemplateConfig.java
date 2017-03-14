@@ -10,10 +10,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class TemplateConfig {
 
-    @Value("${site.upload.store.path}")
+    @Value("${file.upload.store.path}")
     private String storePath;
 
-    @Value("${site.upload.access.domain}")
+    @Value("${file.upload.access.domain}")
     private String displayPath;
 
     @Value("${site.tpl.path}")

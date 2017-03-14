@@ -22,7 +22,7 @@ public class UploadSupport {
     @Autowired
     private UploadConfig uploadConfig;
 
-    private final String seperator = "/";
+    private static final String SEPARATOR = "/";
 
     public WatermarkParam getWatermarkParam(Boolean watermark) {
         return new WatermarkParam(watermark);
@@ -62,11 +62,11 @@ public class UploadSupport {
 
     public String getSiteBase(String path) {
         StringBuilder sb = new StringBuilder();
-        sb.append(File.separator).append(getSystemId());
+        sb.append(SEPARATOR).append(getSystemId());
 
         if (StringUtils.isNotBlank(path)) {
-            if (!StringUtils.startsWith(path, seperator)) {
-                sb.append(File.separator);
+            if (!StringUtils.startsWith(path, SEPARATOR)) {
+                sb.append(SEPARATOR);
             }
             sb.append(path);
         }

@@ -32,9 +32,9 @@ public class ServletContextPathResolver implements PathResolver {
         }
 
         if (!StringUtils.startsWith(uri, SEPARATOR)) {
-            sb.append(File.separator);
+            sb.append(SEPARATOR);
         }
-        sb.append(uri.replace('/', File.separatorChar));
+        sb.append(uri.replace("\\", SEPARATOR));
         return sb.toString();
     }
 
@@ -46,17 +46,16 @@ public class ServletContextPathResolver implements PathResolver {
         } else {
             sb.append(uploadConfig.getStorePath());
             if (StringUtils.isNotBlank(prefix)) {
-                sb.append(prefix.replace('/', File.separatorChar));
+                sb.append(prefix.replace("\\", SEPARATOR));
             }
         }
         if (StringUtils.isBlank(uri)) {
             return sb.toString();
         }
         if (!StringUtils.startsWith(uri, SEPARATOR)) {
-            sb.append(File.separator);
+            sb.append(SEPARATOR);
         }
-        sb.append(uri.replace('/', File.separatorChar));
-
+        sb.append(uri.replace("\\", SEPARATOR));
         return sb.toString();
     }
 }

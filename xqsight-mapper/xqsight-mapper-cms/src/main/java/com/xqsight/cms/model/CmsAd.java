@@ -9,7 +9,7 @@ import com.xqsight.common.model.Model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 
 /**
@@ -39,11 +39,11 @@ public class CmsAd extends Model{
     /** ad_flash - flash */
     private String adFlash;
     /** ad_begin_time - 开始时间 */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime adBeginTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss",iso = DateTimeFormat.ISO.DATE_TIME)
+    private Date adBeginTime;
     /** ad_end_time - 结束时间 */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime adEndTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss",iso = DateTimeFormat.ISO.DATE_TIME)
+    private Date adEndTime;
     /** type - 类型 */
     private Byte type;
     /** sort - 排序 */
@@ -98,19 +98,17 @@ public class CmsAd extends Model{
         this.adFlash = adFlash;
     }
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-	public LocalDateTime getAdBeginTime(){
+	public Date getAdBeginTime(){
         return this.adBeginTime;
     }
-    public void setAdBeginTime(LocalDateTime adBeginTime){
+    public void setAdBeginTime(Date adBeginTime){
         this.adBeginTime = adBeginTime;
     }
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
-	public LocalDateTime getAdEndTime(){
+	public Date getAdEndTime(){
         return this.adEndTime;
     }
-    public void setAdEndTime(LocalDateTime adEndTime){
+    public void setAdEndTime(Date adEndTime){
         this.adEndTime = adEndTime;
     }
 	public Byte getType(){

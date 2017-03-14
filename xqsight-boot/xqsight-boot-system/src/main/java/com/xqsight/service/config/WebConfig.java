@@ -27,7 +27,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         argumentResolvers.add(new CurrentUserArgumentResolver());
     }
 
-
 }
 
 

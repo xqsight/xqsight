@@ -26,7 +26,7 @@ public class GenerateTemplate {
     public String generate(Map model, String tplFileName, String fileName) throws TemplateEngineException {
         TemplateElement templateElement = new TemplateElement("", "freemark", tplFileName, templateConfig.getStorePath(), fileName, "utf-8");
         delFile(fileName);
-        TemplateEngine templateEngine = new FreeMarkerImpl(templateConfig.getTplPath());
+        TemplateEngine templateEngine = new FreeMarkerImpl(getTemplatePath());
         templateEngine.processToFile(model, templateElement);
 
         String displayPath = templateConfig.getDisplayPath();
@@ -47,5 +47,14 @@ public class GenerateTemplate {
         if (file.exists()) {
             file.delete();
         }
+    }
+
+    private String getTemplatePath() {
+        String CLASS_PATH = "classpath:";
+        String tplPath = templateConfig.getTplPath();
+        if (StringUtils.startsWith(tplPath, CLASS_PATH)) {
+            return GenerateTemplate.class.getResource(StringUtils.replace(tplPath,CLASS_PATH,"")).getFile();
+        }
+        return tplPath;
     }
 }

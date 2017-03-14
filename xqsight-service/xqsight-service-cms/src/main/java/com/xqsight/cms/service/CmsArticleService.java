@@ -94,7 +94,7 @@ public class CmsArticleService extends DefaultEntityService<CmsArticle, Long> {
         Map modelMap = oMapper.convertValue(cmsArticle, Map.class);
         modelMap.put("publishTime", cmsArticle.getPublishTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         String fileName = "article_" + cmsArticle.getArticleId() + ".html";
-        String articleUrl = generateTemplate.generate(modelMap, "article.html", fileName);
+        String articleUrl = generateTemplate.generate(modelMap, "template/article.html", fileName);
 
         CmsArticle updArticle = new CmsArticle();
         updArticle.setArticleId(cmsArticle.getArticleId());
