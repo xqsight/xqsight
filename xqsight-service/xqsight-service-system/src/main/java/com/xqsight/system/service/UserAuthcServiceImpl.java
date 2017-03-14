@@ -45,14 +45,15 @@ public class UserAuthcServiceImpl implements UserAuthcService {
                 .propertyType(PropertyType.S).add("login_id", loginId).end();
 
         UserBaseModel userBaseModel = sysLoginService.search(propertyFilters).get(0);
-        if (userBaseModel == null)
+        if (userBaseModel == null) {
             throw new UnknownAccountException("用户名没有找到");
-
-        if (userBaseModel.isUserLocked())
+        }
+        if (userBaseModel.isUserLocked()) {
             throw new LockedAccountException("您的账户已锁定");
-
-        if (userBaseModel.isNoActive())
+        }
+        if (userBaseModel.isNoActive()) {
             throw new CustomAuthcException("你的账户未激活");
+        }
         SysUser sysUser = sysUserService.get(userBaseModel.getId());
 
         userBaseModel.setUserName(sysUser.getUserName());

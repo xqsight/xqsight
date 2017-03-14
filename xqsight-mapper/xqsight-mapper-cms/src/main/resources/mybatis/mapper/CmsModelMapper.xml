@@ -5,6 +5,8 @@
     <resultMap id="BaseResultMap"  type="com.xqsight.cms.model.CmsModel">
         <result column="model_id" property="modelId" jdbcType="NUMERIC"/>
         <result column="site_id" property="siteId" jdbcType="NUMERIC"/>
+        <result column="parent_id" property="parentId" jdbcType="NUMERIC"/>
+        <result column="parent_ids" property="parentIds" jdbcType="VARCHAR"/>
         <result column="model_code" property="modelCode" jdbcType="VARCHAR"/>
         <result column="model_name" property="modelName" jdbcType="VARCHAR"/>
         <result column="model_type" property="modelType" jdbcType="NUMERIC"/>
@@ -19,14 +21,16 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-	 model_id,site_id,model_code,model_name,model_type,model_url,model_desp,active,create_user_id,create_time,update_user_id,update_time,remark
+	 model_id,site_id,parent_id,parent_ids,model_code,model_name,model_type,model_url,model_desp,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
 
     <insert id="insert" parameterType="com.xqsight.cms.model.CmsModel" useGeneratedKeys="true" keyProperty="modelId">
         insert into cms_model (
-	site_id,model_code,model_name,model_type,model_url,model_desp,active,create_user_id,create_time,update_user_id,update_time,remark
+	site_id,parent_id,parent_ids,model_code,model_name,model_type,model_url,model_desp,active,create_user_id,create_time,update_user_id,update_time,remark
         ) values (
 	#{siteId,jdbcType=NUMERIC},
+	#{parentId,jdbcType=NUMERIC},
+	#{parentIds,jdbcType=VARCHAR},
 	#{modelCode,jdbcType=VARCHAR},
 	#{modelName,jdbcType=VARCHAR},
 	#{modelType,jdbcType=NUMERIC},
@@ -46,6 +50,12 @@
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="siteId!=null">
 			site_id,
+            </if>
+            <if test="parentId!=null">
+			parent_id,
+            </if>
+            <if test="parentIds!=null">
+			parent_ids,
             </if>
             <if test="modelCode!=null">
 			model_code,
@@ -84,6 +94,12 @@
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="siteId!=null">
 			#{siteId,jdbcType=NUMERIC},
+            </if>
+            <if test="parentId!=null">
+			#{parentId,jdbcType=NUMERIC},
+            </if>
+            <if test="parentIds!=null">
+			#{parentIds,jdbcType=VARCHAR},
             </if>
             <if test="modelCode!=null">
 			#{modelCode,jdbcType=VARCHAR},
@@ -124,6 +140,8 @@
     <update id="updateByPrimaryKey" parameterType="com.xqsight.cms.model.CmsModel">
         update cms_model set
 		site_id = #{siteId,jdbcType=NUMERIC},
+		parent_id = #{parentId,jdbcType=NUMERIC},
+		parent_ids = #{parentIds,jdbcType=VARCHAR},
 		model_code = #{modelCode,jdbcType=VARCHAR},
 		model_name = #{modelName,jdbcType=VARCHAR},
 		model_type = #{modelType,jdbcType=NUMERIC},
@@ -141,6 +159,12 @@
         <set>
             <if test="siteId!=null">
             site_id = #{siteId,jdbcType=NUMERIC},
+            </if>
+            <if test="parentId!=null">
+            parent_id = #{parentId,jdbcType=NUMERIC},
+            </if>
+            <if test="parentIds!=null">
+            parent_ids = #{parentIds,jdbcType=VARCHAR},
             </if>
             <if test="modelCode!=null">
             model_code = #{modelCode,jdbcType=VARCHAR},
@@ -186,16 +210,16 @@
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
         select <include refid="Base_Column_List"/> from cms_model
         WHERE 1=1
-	    ${whereSqlString}
+        ${whereSqlString}
 
         <trim prefix=" and " suffix="" suffixOverrides="" >
-        <if test="customSql != null">
-        ${customSqlString}
-        </if>
+            <if test="customSql != null">
+                ${customSqlString}
+            </if>
         </trim>
 
         <if test="orderBy != null">
-		${orderBySqlString}
+            ${orderBySqlString}
         </if>
     </select>
 </mapper>

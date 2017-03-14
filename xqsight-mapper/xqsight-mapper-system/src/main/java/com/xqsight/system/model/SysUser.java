@@ -4,7 +4,10 @@
  */
 package com.xqsight.system.model;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -17,19 +20,10 @@ import java.util.Date;
  */
 public class SysUser extends SysLogin{
 
-	/** 主键 */
-    private Long id;
-
     /** company_id - 归属公司 */
     private Long companyId;
     /** office_id - 所属部门 */
     private Long officeId;
-    /** password - 登录密码 */
-    private String password;
-    /** salt - 随机数 */
-    private String salt;
-    /** user_name - 昵称 */
-    private String userName;
     /** real_name - 真实姓名 */
     private String realName;
     /** user_code - 用户编号 */
@@ -37,7 +31,8 @@ public class SysUser extends SysLogin{
     /** sex - 性别 0:未知 1:男 2:女 */
     private Byte sex;
     /** user_born - 生日 */
-    private Date userBorn;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDate userBorn;
     /** from_source - 来源 WECHAT  PC  MOBILE */
     private String fromSource;
     /** img_url - 图片地址 */
@@ -47,12 +42,6 @@ public class SysUser extends SysLogin{
     /** email - 邮箱 */
     private String email;
 
-    public Long getId(){
-        return this.id;
-    }
-    public void setId(Long id){
-        this.id = id;
-    }
 	public Long getCompanyId(){
         return this.companyId;
     }
@@ -64,24 +53,6 @@ public class SysUser extends SysLogin{
     }
     public void setOfficeId(Long officeId){
         this.officeId = officeId;
-    }
-	public String getPassword(){
-        return this.password;
-    }
-    public void setPassword(String password){
-        this.password = password;
-    }
-	public String getSalt(){
-        return this.salt;
-    }
-    public void setSalt(String salt){
-        this.salt = salt;
-    }
-	public String getUserName(){
-        return this.userName;
-    }
-    public void setUserName(String userName){
-        this.userName = userName;
     }
 	public String getRealName(){
         return this.realName;
@@ -101,10 +72,12 @@ public class SysUser extends SysLogin{
     public void setSex(Byte sex){
         this.sex = sex;
     }
-	public Date getUserBorn(){
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
+	public LocalDate getUserBorn(){
         return this.userBorn;
     }
-    public void setUserBorn(Date userBorn){
+    public void setUserBorn(LocalDate userBorn){
         this.userBorn = userBorn;
     }
 	public String getFromSource(){
@@ -130,10 +103,5 @@ public class SysUser extends SysLogin{
     }
     public void setEmail(String email){
         this.email = email;
-    }
-
-    @Override
-    public Serializable getPK() {
-        return this.id;
     }
 }

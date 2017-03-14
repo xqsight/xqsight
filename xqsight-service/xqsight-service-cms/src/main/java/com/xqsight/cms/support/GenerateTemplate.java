@@ -38,7 +38,7 @@ public class GenerateTemplate {
     }
 
     private void delFile(String fileName) {
-        String displayPath = templateConfig.getDisplayPath();
+        String displayPath = templateConfig.getStorePath();
         StringBuffer sbpath = new StringBuffer(displayPath);
         if (!StringUtils.startsWith(displayPath, SEPARATOR)) {
             sbpath.append(File.separator);

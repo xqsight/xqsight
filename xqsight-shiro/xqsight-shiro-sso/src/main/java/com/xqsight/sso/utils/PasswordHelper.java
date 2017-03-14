@@ -21,7 +21,6 @@ public class PasswordHelper {
 
     public static void encryptPassword(UserBaseModel user) {
         Assert.notNull(user, "user must not be null");
-        Assert.notNull(user.getLoginId(), "user loginId must not be null");
         if(!StringUtils.hasLength(user.getSalt())){
             user.setSalt(randomNumberGenerator.nextBytes().toHex());
         }
@@ -31,7 +30,6 @@ public class PasswordHelper {
     
     public static boolean checkPassword(UserBaseModel user, String password) {
         Assert.notNull(user, "user must not be null");
-        Assert.notNull(user.getLoginId(), "user loginId must not be null");
         Assert.notNull(user.getSalt(), "user salt must not be null");
         String newPassword = new SimpleHash(algorithmName, password, ByteSource.Util.bytes(user.getCredentialsSalt()), hashIterations).toHex();
         return newPassword.equals(user.getPassword());

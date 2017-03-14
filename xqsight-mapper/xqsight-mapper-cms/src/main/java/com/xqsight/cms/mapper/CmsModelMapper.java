@@ -14,7 +14,7 @@ import com.xqsight.cms.model.CmsModel;
 /**
  * <p>模块表实现类service</p>
  * <p>Table: cms_model - 模块表</p>
- * @since 2017-02-23 04:52:18
+ * @since 2017-03-13 11:41:56
  * @author wangganggang
 */
 public interface CmsModelMapper extends Dao<CmsModel,Long>{

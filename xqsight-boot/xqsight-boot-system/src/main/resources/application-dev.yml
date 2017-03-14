@@ -11,12 +11,12 @@ file:
   upload:
     method: local
     store:
-      path: D:/nginx-1.2.8/html/cms
+      path: D:/nginx-1.2.8/html/site/file
     access:
-      domain: http://localhost/cms
+      domain: http://localhost/site/file
 
 
-#===== 网站模板访问 =============###
+#=====  网站模板访问 ========###
 site:
   upload:
     store:

@@ -14,6 +14,13 @@
             <password>root</password>
             <schema/>
         </database>
+        <database name="ejusite">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://10.99.69.43:3306/ejusite</url>
+            <username>ejusite</username>
+            <password>ejusite</password>
+            <schema/>
+        </database>
         <database name="portal_new">
             <driverClass>com.mysql.jdbc.Driver</driverClass>
             <url>jdbc:mysql://120.27.96.191:3306/portal_new</url>

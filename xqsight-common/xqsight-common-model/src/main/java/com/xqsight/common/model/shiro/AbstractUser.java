@@ -4,6 +4,7 @@ package com.xqsight.common.model.shiro;
 import com.xqsight.common.model.Model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 public abstract class AbstractUser extends Model implements Serializable{
@@ -135,7 +136,7 @@ public abstract class AbstractUser extends Model implements Serializable{
      * @return
      */
     public String getCredentialsSalt() {
-        return loginId + salt;
+        return salt + System.currentTimeMillis();
     }
 
     @Override

@@ -39,6 +39,8 @@ public class CmsArticle extends Model{
     private String articleContent;
     /** article_url - 文章访问URl */
     private String articleUrl;
+    /** department - 部门 */
+    private String department;
     /** article_source - 文章来源 */
     private String articleSource;
     /** publish_time - 发布时间 */
@@ -116,6 +118,14 @@ public class CmsArticle extends Model{
     }
     public void setArticleHit(Byte articleHit){
         this.articleHit = articleHit;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public List<String> getTags() {

@@ -22,7 +22,7 @@ create table cms_ad
    ad_id                bigint not null auto_increment comment '广告内码',
    site_id              bigint not null default 0 comment '站点内码',
    ad_name              varchar(40) not null comment '名称',
-   ad_url               varchar(40) comment '广告url',
+   ad_url               varchar(400) comment '广告url',
    ad_text              varchar(200) comment '文字',
    ad_script            varchar(400) comment '代码',
    ad_image             varchar(100) comment '图片',
@@ -55,6 +55,7 @@ create table cms_article
    article_desp         varchar(120) comment '文章描述',
    article_content      text comment '文章内容',
    article_url          varchar(120) comment '文章访问URl',
+   department           varchar(100) comment '部门',
    article_source       varchar(100) comment '文章来源',
    publish_time         datetime comment '发布时间',
    article_hit          tinyint(4) comment '是否显示 0:显示-1:隐藏',
@@ -106,6 +107,7 @@ create table cms_job
 
 alter table cms_job comment '招聘表';
 
+
 /*==============================================================*/
 /* Table: cms_model                                             */
 /*==============================================================*/
@@ -113,6 +115,8 @@ create table cms_model
 (
    model_id             bigint not null auto_increment comment '模块内码',
    site_id              bigint not null default 0 comment '站点内码',
+   parent_id            bigint not null default 0 comment '上级',
+   parent_ids           varchar(200) comment '所有上级',
    model_code           varchar(40) comment '模块编号',
    model_name           varchar(40) not null comment '模块名称',
    model_type           tinyint(4) default 0 comment '模块类型',

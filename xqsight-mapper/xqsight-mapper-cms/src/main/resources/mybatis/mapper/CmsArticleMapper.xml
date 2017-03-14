@@ -11,6 +11,7 @@
         <result column="article_desp" property="articleDesp" jdbcType="VARCHAR"/>
         <result column="article_content" property="articleContent" jdbcType="VARCHAR"/>
         <result column="article_url" property="articleUrl" jdbcType="VARCHAR"/>
+        <result column="department" property="department" jdbcType="VARCHAR"/>
         <result column="article_source" property="articleSource" jdbcType="VARCHAR"/>
         <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP"/>
         <result column="article_hit" property="articleHit" jdbcType="NUMERIC"/>
@@ -23,12 +24,12 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-	 article_id,model_id,article_img,article_title,article_author,article_desp,article_content,article_url,article_source,publish_time,article_hit,active,create_user_id,create_time,update_user_id,update_time,remark
+	 article_id,model_id,article_img,article_title,article_author,article_desp,article_content,article_url,department,article_source,publish_time,article_hit,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
 
     <insert id="insert" parameterType="com.xqsight.cms.model.CmsArticle" useGeneratedKeys="true" keyProperty="articleId">
         insert into cms_article (
-	model_id,article_img,article_title,article_author,article_desp,article_content,article_url,article_source,publish_time,article_hit,active,create_user_id,create_time,update_user_id,update_time,remark
+	model_id,article_img,article_title,article_author,article_desp,article_content,article_url,department,article_source,publish_time,article_hit,active,create_user_id,create_time,update_user_id,update_time,remark
         ) values (
 	#{modelId,jdbcType=NUMERIC},
 	#{articleImg,jdbcType=VARCHAR},
@@ -37,6 +38,7 @@
 	#{articleDesp,jdbcType=VARCHAR},
 	#{articleContent,jdbcType=VARCHAR},
 	#{articleUrl,jdbcType=VARCHAR},
+	#{department,jdbcType=VARCHAR},
 	#{articleSource,jdbcType=VARCHAR},
 	#{publishTime,jdbcType=TIMESTAMP},
 	#{articleHit,jdbcType=NUMERIC},
@@ -72,6 +74,9 @@
             </if>
             <if test="articleUrl!=null">
 			article_url,
+            </if>
+            <if test="department!=null">
+                department,
             </if>
             <if test="articleSource!=null">
 			article_source,
@@ -123,6 +128,9 @@
             <if test="articleUrl!=null">
 			#{articleUrl,jdbcType=VARCHAR},
             </if>
+            <if test="department!=null">
+                #{department,jdbcType=VARCHAR},
+            </if>
             <if test="articleSource!=null">
 			#{articleSource,jdbcType=VARCHAR},
             </if>
@@ -162,6 +170,7 @@
 		article_desp = #{articleDesp,jdbcType=VARCHAR},
 		article_content = #{articleContent,jdbcType=VARCHAR},
 		article_url = #{articleUrl,jdbcType=VARCHAR},
+		department = #{department,jdbcType=VARCHAR},
 		article_source = #{articleSource,jdbcType=VARCHAR},
 		publish_time = #{publishTime,jdbcType=TIMESTAMP},
 		article_hit = #{articleHit,jdbcType=NUMERIC},
@@ -195,6 +204,9 @@
             </if>
             <if test="articleUrl!=null">
             article_url = #{articleUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="department!=null">
+                department = #{department,jdbcType=VARCHAR},
             </if>
             <if test="articleSource!=null">
             article_source = #{articleSource,jdbcType=VARCHAR},
