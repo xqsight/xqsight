@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Properties>
-        <Property name="appName">${web:servletContextName}</Property>
-        <Property name="fileName">/config/logs/xqsight/${appName}-${hostName}.log</Property>
-        <Property name="filePattern">/config/logs/xqsight/${appName}-%d{yyyyMMdd}-${hostName}.log.gz</Property>
+        <Property name="appName">xqsight-boot</Property>
+        <Property name="fileName">./logs/${appName}-${hostName}.log</Property>
+        <Property name="filePattern">./logs/${appName}-%d{yyyyMMdd}-${hostName}.log.gz</Property>
     </Properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">

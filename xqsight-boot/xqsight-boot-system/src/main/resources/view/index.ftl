@@ -1,5 +1,5 @@
 <#include "common/head.html"/>
-<link rel="stylesheet" type="text/css" href="http://localhost/static/css/index.css">
+<link rel="stylesheet" type="text/css" href="${domain}/static/css/index.css">
 <#include "common/navbar.html"/>
 
 <div class="page-index">

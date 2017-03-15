@@ -117,7 +117,7 @@
         <freemarker.version>2.3.23</freemarker.version>
         <velocity.version>1.7</velocity.version>
         <!-- ehcache -->
-        <ehcache.version>2.4.3</ehcache.version>
+        <ehcache.version>2.4.7</ehcache.version>
         <shiro.ehcache.version>1.2.4</shiro.ehcache.version>
 
         <imgscalr.version>4.2</imgscalr.version>
@@ -1107,7 +1107,6 @@
         <module>xqsight-shiro</module>
         <module>xqsight-wechat</module>
         <module>xqsight-service</module>
-        <module>xqisight-app</module>
         <module>xqsight-mapper</module>
         <module>xqsight-controller</module>
         <module>xqsight-boot</module>

@@ -12,7 +12,7 @@ file:
     store:
       path: D:/nginx-1.2.8/html/site/
     access:
-      domain: http://localhost/site
+      domain: http://127.0.0.1/site
 
 #==== 模板存放位置 ===#
 site:

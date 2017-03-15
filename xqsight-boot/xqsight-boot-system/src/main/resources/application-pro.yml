@@ -15,6 +15,17 @@ file:
     access:
       domain: http://10.99.69.43/eju-site
 
+#==== 模板存放位置 ===#
+site:
+  tpl:
+    path: classpath:/view/
 
+#==== freemarker 模板设置 =====#
+spring:
+  freemarker:
+    cache: false
+    template-loader-path: classpath:/view/
+    charset: UTF-8
+    check-template-location: false
 
 

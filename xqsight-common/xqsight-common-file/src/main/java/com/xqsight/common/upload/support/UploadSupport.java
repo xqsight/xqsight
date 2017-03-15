@@ -62,7 +62,7 @@ public class UploadSupport {
 
     public String getSiteBase(String path) {
         StringBuilder sb = new StringBuilder();
-        sb.append(SEPARATOR).append(getSystemId());
+        //sb.append(SEPARATOR).append(getSystemId());
 
         if (StringUtils.isNotBlank(path)) {
             if (!StringUtils.startsWith(path, SEPARATOR)) {

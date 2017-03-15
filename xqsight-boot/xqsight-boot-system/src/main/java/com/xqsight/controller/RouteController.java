@@ -1,6 +1,7 @@
 package com.xqsight.controller;
 
 import com.github.pagehelper.Page;
+import com.xqsight.cms.config.TemplateConfig;
 import com.xqsight.cms.model.CmsAd;
 import com.xqsight.cms.model.CmsArticle;
 import com.xqsight.cms.service.CmsAdService;
@@ -13,10 +14,12 @@ import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.core.support.XqsightPageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -30,6 +33,9 @@ public class RouteController {
 
     @Autowired
     private CmsAdService cmsAdService;
+
+    @Autowired
+    private TemplateConfig templateConfig;
 
     @RequestMapping("/")
     public String redirectIndex(Model model) {
@@ -46,8 +52,10 @@ public class RouteController {
                 .propertyType(PropertyType.I).add("type","1").end();
         sorts = SortBuilder.create().addDesc("sort").end();
         List<CmsAd> cmsAds = cmsAdService.search(propertyFilters,sorts);
+        java.net.URI uri = URI.create(templateConfig.getDisplayPath());
         model.addAttribute("articles",articles);
         model.addAttribute("cmsAds",cmsAds);
+        model.addAttribute("domain",uri.getScheme() + "://" + uri.getHost());
         return "index";
     }
 }
