@@ -5,10 +5,12 @@
 package com.xqsight.controller.cms;
 
 import com.github.pagehelper.Page;
+import com.xqsight.cms.service.CmsGenerateService;
 import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
+import com.xqsight.common.freemarker.TemplateEngineException;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.common.support.MessageSupport;
@@ -36,15 +38,29 @@ public class CmsAdController {
     @Autowired
     private CmsAdService cmsAdService;
 
+    @Autowired
+    private CmsGenerateService cmsGenerateService;
+
     @RequestMapping("save")
     public Object save(CmsAd cmsAd) {
         cmsAdService.save(cmsAd, true);
+        try {
+            cmsGenerateService.generateIndex();
+        } catch (TemplateEngineException e) {
+            e.printStackTrace();
+        }
         return MessageSupport.successMsg("保存成功");
     }
 
     @RequestMapping("update")
     public Object update(CmsAd cmsAd) {
         cmsAdService.update(cmsAd, true);
+
+        try {
+            cmsGenerateService.generateIndex();
+        } catch (TemplateEngineException e) {
+            e.printStackTrace();
+        }
         return MessageSupport.successMsg("修改成功");
     }
 

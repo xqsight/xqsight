@@ -44,6 +44,9 @@ public class CmsArticleService extends DefaultEntityService<CmsArticle, Long> {
     @Autowired
     private GenerateTemplate generateTemplate;
 
+    @Autowired
+    private CmsGenerateService cmsGenerateService;
+
     @Override
     protected Dao<CmsArticle, Long> getDao() {
         return cmsArticleMapper;
@@ -100,5 +103,9 @@ public class CmsArticleService extends DefaultEntityService<CmsArticle, Long> {
         updArticle.setArticleId(cmsArticle.getArticleId());
         updArticle.setArticleUrl(articleUrl);
         cmsArticleMapper.updateByPrimaryKeySelective(updArticle);
+
+        cmsGenerateService.generateIndex();
     }
+
+
 }

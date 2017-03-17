@@ -6,73 +6,73 @@
 <#include "common/navbar.html"/>
 
 <div class="wrap page-article">
-	<p class="breadcrumb">
-		<a href="">首页 &gt;</a>
-		<a href="">首页推荐 &gt;</a>
-		<span>${articleTitle}</span>
-	</p>
-	<div class="article-title">
-		<div class="article-title01">
-			<h2>${articleTitle}</h2>
-			<div class="article-title01-from">
-				<a href="">${department}</a> | <span class="article-title01-name">${articleAuthor}</span>
-				<span class="article-title01-time"><span class="i-clock"></span>${publishTime}</span>
-			</div>
-			<p class="article-title01-tag">
-				<#list tags as tag>
-				<span class="i-tag">${tag}</span>
-				</#list>
-			</p>
-		</div>
-	</div>
-	<!--文章详情-->
-	<div class="article-ct">
-		<div class="article-ct-banner">
-			<img src="${articleImg}" alt="">
-		</div>
-		<article class="article-ct-p">
-			${articleContent}
-		</article>
-	</div>
+    <p class="breadcrumb">
+        <a href="">首页 &gt;</a>
+        <a href="">首页推荐 &gt;</a>
+        <span>${articleTitle}</span>
+    </p>
+    <div class="article-title">
+        <div class="article-title01">
+            <h2>${articleTitle}</h2>
+            <div class="article-title01-from">
+                <a href="">${department}</a> | <span class="article-title01-name">${articleAuthor}</span>
+                <span class="article-title01-time"><span class="i-clock"></span>${publishTime}</span>
+            </div>
+            <p class="article-title01-tag">
+                <#list tags as tag>
+                    <span class="i-tag">${tag}</span>
+                </#list>
+            </p>
+        </div>
+    </div>
+    <!--文章详情-->
+    <div class="article-ct">
+        <div class="article-ct-banner">
+            <img src="${articleImg}" alt="">
+        </div>
+        <article class="article-ct-p">
+            ${articleContent}
+        </article>
+    </div>
 
-	<!--文章详情结束-->
-	<div class="artile-bottom">
-		<a href="" target="_blank" class="artile-bottom01" id="preArticle">
-			<span class="i-border-arrow"></span>上一篇
-			<span class="text-normal" id="preArticleTitile"></span>
-		</a>
-		<a href="" target="_blank" class="artile-bottom02" id="nextArticle">下一篇
-			<span class="text-normal" id="nextArticleTitile"></span>
-			<span class="i-border-arrow"></span>
-		</a>
-	</div>
-	<input id="articleId" type="hidden" value="${articleId}">
+    <!--文章详情结束-->
+    <div class="artile-bottom">
+        <a href="" target="_self" class="artile-bottom01" id="preArticle">
+            <span class="i-border-arrow"></span>上一篇
+            <span class="text-normal" id="preArticleTitile"></span>
+        </a>
+        <a href="" target="_self" class="artile-bottom02" id="nextArticle">下一篇
+            <span class="text-normal" id="nextArticleTitile"></span>
+            <span class="i-border-arrow"></span>
+        </a>
+    </div>
+    <input id="articleId" type="hidden" value="${articleId}">
 
-	<script>
-        window.onload = function(){
-            var xmlhttp=new XMLHttpRequest();
-            var url = "http://localhost:8080/portal/site/article/link/" + document.getElementById("articleId").value;
-            xmlhttp.open("GET",url,true);
+    <script>
+        window.onload = function () {
+            var xmlhttp = new XMLHttpRequest();
+            var url = "http://10.99.69.43:8080/portal/site/article/link/" + document.getElementById("articleId").value;
+            xmlhttp.open("GET", url, true);
             xmlhttp.send();
-            xmlhttp.onreadystatechange=function(){
-                if (xmlhttp.readyState==4 && xmlhttp.status==200){
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var object = JSON.parse(xmlhttp.responseText);
-                    if(object.preArticle.articleTitle == undefined ||object.preArticle.articleTitle == ""){
-                        document.getElementById("preArticle").style.visibility="hidden";
-                    }else{
-                        document.getElementById("preArticle").setAttribute("href",object.preArticle.articleUrl);
-                        document.getElementById("preArticleTitile").innerHTML=object.preArticle.articleTitle;
+                    if (object.preArticle.articleTitle == undefined || object.preArticle.articleTitle == "") {
+                        document.getElementById("preArticle").style.visibility = "hidden";
+                    } else {
+                        document.getElementById("preArticle").setAttribute("href", object.preArticle.articleUrl);
+                        document.getElementById("preArticleTitile").innerHTML = object.preArticle.articleTitle;
                     }
 
-                    if(object.nextArticle.articleTitle == undefined || object.nextArticle.articleTitle == ""){
-                        document.getElementById("nextArticle").style.visibility="hidden";
-                    }else{
-                        document.getElementById("nextArticle").setAttribute("href",object.nextArticle.articleUrl);
-                        document.getElementById("nextArticleTitile").innerHTML=object.nextArticle.articleTitle;
+                    if (object.nextArticle.articleTitle == undefined || object.nextArticle.articleTitle == "") {
+                        document.getElementById("nextArticle").style.visibility = "hidden";
+                    } else {
+                        document.getElementById("nextArticle").setAttribute("href", object.nextArticle.articleUrl);
+                        document.getElementById("nextArticleTitile").innerHTML = object.nextArticle.articleTitle;
                     }
                 }
             }
         }
-	</script>
-
+    </script>
+</div>
 <#include "common/foot.html"/>

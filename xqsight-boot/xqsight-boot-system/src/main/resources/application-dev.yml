@@ -10,9 +10,9 @@ file:
   upload:
     method: local
     store:
-      path: D:/nginx-1.2.8/html/site/
+      path: D:/nginx-1.2.8/html/
     access:
-      domain: http://127.0.0.1/site
+      domain: http://127.0.0.1
 
 #==== 模板存放位置 ===#
 site:
@@ -20,11 +20,11 @@ site:
     path: classpath:/view/
 
 #==== freemarker 模板设置 =====#
-spring:
-  freemarker:
-    cache: false
-    template-loader-path: classpath:/view/
-    charset: UTF-8
-    check-template-location: false
+#spring:
+#  freemarker:
+#    cache: false
+#    template-loader-path: classpath:/view/
+#    charset: UTF-8
+#    check-template-location: false
 
 
