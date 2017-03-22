@@ -43,6 +43,15 @@ public class CmsJob extends Model{
     /** job_address - 地点 */
     private String jobAddress;
 
+    /** position_desp - 职位描述 */
+    private String positionDesp;
+
+    /** job_need - 岗位需求 */
+    private String jobNeed;
+
+    /** job_email - 邮箱 */
+    private String jobEmail;
+
     public Long getJobId(){
         return this.jobId;
     }
@@ -98,6 +107,30 @@ public class CmsJob extends Model{
     }
     public void setJobAddress(String jobAddress){
         this.jobAddress = jobAddress;
+    }
+
+    public String getPositionDesp() {
+        return positionDesp;
+    }
+
+    public void setPositionDesp(String positionDesp) {
+        this.positionDesp = positionDesp;
+    }
+
+    public String getJobNeed() {
+        return jobNeed;
+    }
+
+    public void setJobNeed(String jobNeed) {
+        this.jobNeed = jobNeed;
+    }
+
+    public String getJobEmail() {
+        return jobEmail;
+    }
+
+    public void setJobEmail(String jobEmail) {
+        this.jobEmail = jobEmail;
     }
 
     @Override

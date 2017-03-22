@@ -1,7 +1,6 @@
 package com.xqsight.cms.service;
 
 import com.github.pagehelper.Page;
-import com.xqsight.cms.config.TemplateConfig;
 import com.xqsight.cms.model.CmsAd;
 import com.xqsight.cms.model.CmsArticle;
 import com.xqsight.cms.support.GenerateTemplate;
@@ -13,10 +12,11 @@ import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.common.freemarker.TemplateEngineException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +28,8 @@ import java.util.Map;
 @Component
 public class CmsGenerateService {
 
+    protected Logger logger = LogManager.getLogger(CmsGenerateService.class);
+
     @Autowired
     private CmsArticleService cmsArticleService;
 
@@ -35,12 +37,10 @@ public class CmsGenerateService {
     private CmsAdService cmsAdService;
 
     @Autowired
-    private TemplateConfig templateConfig;
-
-    @Autowired
     private GenerateTemplate generateTemplate;
 
     public void generateIndex() throws TemplateEngineException {
+        logger.debug("开始生成首页");
         Map modelMap = new HashMap();
         Page page = XqsightPageHelper.startPage(1,10);
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)

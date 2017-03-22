@@ -29,6 +29,7 @@ public class GenerateTemplate {
     private String SEPARATOR = "/";
 
     public String generate(Map model, String tplFileName, String fileName) throws TemplateEngineException {
+        logger.debug("model:{},tplFileName:{},fileName:{}",model,tplFileName,fileName);
         java.net.URI uri = URI.create(templateConfig.getDisplayPath());
         model.put("domain",uri.getScheme() + "://" + uri.getHost());
         TemplateElement templateElement = new TemplateElement("", "freemark", tplFileName, templateConfig.getStorePath(), fileName, "utf-8");

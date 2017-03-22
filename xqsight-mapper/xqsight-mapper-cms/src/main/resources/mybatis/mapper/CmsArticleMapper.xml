@@ -6,6 +6,7 @@
         <result column="article_id" property="articleId" jdbcType="NUMERIC"/>
         <result column="model_id" property="modelId" jdbcType="NUMERIC"/>
         <result column="article_img" property="articleImg" jdbcType="VARCHAR"/>
+        <result column="thumbnail_img" property="thumbnailImg" jdbcType="VARCHAR"/>
         <result column="article_title" property="articleTitle" jdbcType="VARCHAR"/>
         <result column="article_author" property="articleAuthor" jdbcType="VARCHAR"/>
         <result column="article_desp" property="articleDesp" jdbcType="VARCHAR"/>
@@ -15,6 +16,8 @@
         <result column="article_source" property="articleSource" jdbcType="VARCHAR"/>
         <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP"/>
         <result column="article_hit" property="articleHit" jdbcType="NUMERIC"/>
+        <result column="scan_times" property="scanTimes" jdbcType="NUMERIC"/>
+        <result column="agree_times" property="agreeTimes" jdbcType="NUMERIC"/>
         <result column="active" property="active" jdbcType="NUMERIC"/>
         <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
@@ -23,16 +26,63 @@
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <sql id="Base_Column_List_">
+	  article_id,model_id,article_img,thumbnail_img,article_title,article_author,article_desp,article_content,article_url,department,article_source,publish_time,article_hit,scan_times,agree_times,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
+
     <sql id="Base_Column_List">
-	 article_id,model_id,article_img,article_title,article_author,article_desp,article_content,article_url,department,article_source,publish_time,article_hit,active,create_user_id,create_time,update_user_id,update_time,remark
+      article_id,model_id,article_img,thumbnail_img,article_title,article_author,article_desp,article_content,article_url,department,article_source,publish_time,article_hit,scan_times,agree_times,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
+
+    <sql id="Insert_Column">
+        <if test="modelId!=null">model_id,</if>
+        <if test="articleImg!=null">article_img,</if>
+        <if test="thumbnailImg!=null">thumbnail_img,</if>
+        <if test="articleTitle!=null">article_title,</if>
+        <if test="articleAuthor!=null">article_author,</if>
+        <if test="articleDesp!=null"> article_desp,</if>
+        <if test="articleContent!=null"> article_content,</if>
+        <if test="articleUrl!=null">article_url,</if>
+        <if test="department!=null">department,</if>
+        <if test="articleSource!=null">article_source,</if>
+        <if test="publishTime!=null">publish_time,</if>
+        <if test="articleHit!=null">article_hit,</if>
+        <if test="active!=null">active,</if>
+        <if test="createUserId!=null">create_user_id,</if>
+        <if test="createTime!=null">create_time,</if>
+        <if test="updateUserId!=null">update_user_id,</if>
+        <if test="updateTime!=null">update_time,</if>
+        <if test="remark!=null"> remark,</if>
+    </sql>
+
+    <sql id="Insert_Value">
+        <if test="modelId!=null">#{modelId,jdbcType=NUMERIC},</if>
+        <if test="articleImg!=null">#{articleImg,jdbcType=VARCHAR},</if>
+        <if test="thumbnailImg!=null">#{thumbnailImg,jdbcType=VARCHAR},</if>
+        <if test="articleTitle!=null">#{articleTitle,jdbcType=VARCHAR},</if>
+        <if test="articleAuthor!=null">#{articleAuthor,jdbcType=VARCHAR},</if>
+        <if test="articleDesp!=null">#{articleDesp,jdbcType=VARCHAR},</if>
+        <if test="articleContent!=null">#{articleContent,jdbcType=VARCHAR},</if>
+        <if test="articleUrl!=null">#{articleUrl,jdbcType=VARCHAR},</if>
+        <if test="department!=null">#{department,jdbcType=VARCHAR}, </if>
+        <if test="articleSource!=null">#{articleSource,jdbcType=VARCHAR},</if>
+        <if test="publishTime!=null">#{publishTime,jdbcType=TIMESTAMP},</if>
+        <if test="articleHit!=null">#{articleHit,jdbcType=NUMERIC},</if>
+        <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null">#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null"> #{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
     </sql>
 
     <insert id="insert" parameterType="com.xqsight.cms.model.CmsArticle" useGeneratedKeys="true" keyProperty="articleId">
         insert into cms_article (
-	model_id,article_img,article_title,article_author,article_desp,article_content,article_url,department,article_source,publish_time,article_hit,active,create_user_id,create_time,update_user_id,update_time,remark
+	model_id,article_img,thumbnail_img,article_title,article_author,article_desp,article_content,article_url,department,article_source,publish_time,article_hit,active,create_user_id,create_time,update_user_id,update_time,remark
         ) values (
 	#{modelId,jdbcType=NUMERIC},
 	#{articleImg,jdbcType=VARCHAR},
+	#{thumbnailImg,jdbcType=VARCHAR},
 	#{articleTitle,jdbcType=VARCHAR},
 	#{articleAuthor,jdbcType=VARCHAR},
 	#{articleDesp,jdbcType=VARCHAR},
@@ -59,6 +109,9 @@
             </if>
             <if test="articleImg!=null">
 			article_img,
+            </if>
+            <if test="thumbnailImg!=null">
+                thumbnail_img,
             </if>
             <if test="articleTitle!=null">
 			article_title,
@@ -113,6 +166,9 @@
             <if test="articleImg!=null">
 			#{articleImg,jdbcType=VARCHAR},
             </if>
+            <if test="thumbnailImg!=null">
+                #{thumbnailImg,jdbcType=VARCHAR},
+            </if>
             <if test="articleTitle!=null">
 			#{articleTitle,jdbcType=VARCHAR},
             </if>
@@ -165,6 +221,7 @@
         update cms_article set
 		model_id = #{modelId,jdbcType=NUMERIC},
 		article_img = #{articleImg,jdbcType=VARCHAR},
+		thumbnail_img = #{thumbnailImg,jdbcType=VARCHAR},
 		article_title = #{articleTitle,jdbcType=VARCHAR},
 		article_author = #{articleAuthor,jdbcType=VARCHAR},
 		article_desp = #{articleDesp,jdbcType=VARCHAR},
@@ -189,6 +246,9 @@
             </if>
             <if test="articleImg!=null">
             article_img = #{articleImg,jdbcType=VARCHAR},
+            </if>
+            <if test="thumbnailImg!=null">
+                thumbnail_img = #{thumbnailImg,jdbcType=VARCHAR},
             </if>
             <if test="articleTitle!=null">
             article_title = #{articleTitle,jdbcType=VARCHAR},

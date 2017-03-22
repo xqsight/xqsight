@@ -29,6 +29,8 @@ public class CmsArticle extends Model{
     private Long modelId;
     /** article_img - 文章缩列图 */
     private String articleImg;
+    /** thumbnail_img - 文章缩列图 */
+    private String thumbnailImg;
     /** article_title - 文章标题 */
     private String articleTitle;
     /** article_author - 文章作者 */
@@ -48,6 +50,12 @@ public class CmsArticle extends Model{
     private LocalDate publishTime;
     /** article_hit - 是否显示 0:显示-1:隐藏 */
     private Byte articleHit;
+
+    /** scan_times - 浏览量 */
+    private Long scanTimes;
+
+    /** agree_times - 点赞量 */
+    private Long agreeTimes;
 
     private List<String> tags;
 
@@ -126,6 +134,30 @@ public class CmsArticle extends Model{
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public String getThumbnailImg() {
+        return thumbnailImg;
+    }
+
+    public void setThumbnailImg(String thumbnailImg) {
+        this.thumbnailImg = thumbnailImg;
+    }
+
+    public Long getScanTimes() {
+        return scanTimes;
+    }
+
+    public void setScanTimes(Long scanTimes) {
+        this.scanTimes = scanTimes;
+    }
+
+    public Long getAgreeTimes() {
+        return agreeTimes;
+    }
+
+    public void setAgreeTimes(Long agreeTimes) {
+        this.agreeTimes = agreeTimes;
     }
 
     public List<String> getTags() {
