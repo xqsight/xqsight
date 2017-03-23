@@ -1,16 +1,19 @@
 package com.xqsight.common.core.service;
 
 import com.xqsight.common.core.dao.IInsertDao;
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.BaseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 /**
+ * @author wangganggang
+ * @Date 2017/3/23
+ *
  * @param <Dao>
  * @param <Po>
  */
-public abstract class AbstractAddService<Dao extends IInsertDao<Po>, Po extends Model> implements IAddService<Po> {
+public abstract class AbstractAddService<Dao extends IInsertDao<Po>, Po extends BaseModel> implements IAddService<Po> {
 
     @Autowired
     protected Dao dao;

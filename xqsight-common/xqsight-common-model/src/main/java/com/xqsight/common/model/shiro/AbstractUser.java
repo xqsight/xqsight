@@ -1,13 +1,12 @@
 package com.xqsight.common.model.shiro;
 
 
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.BaseModel;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
-public abstract class AbstractUser extends Model implements Serializable{
+public abstract class AbstractUser extends BaseModel implements Serializable{
 
     /** 用户内码 **/
     private Long       id;

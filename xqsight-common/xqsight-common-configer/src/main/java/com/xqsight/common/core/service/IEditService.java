@@ -3,6 +3,12 @@ package com.xqsight.common.core.service;
 
 import java.util.List;
 
+/**
+ * @author wangganggang
+ * @Date 2017/3/23
+ *
+ * @param <T>
+ */
 public interface IEditService<T> {
 
     /**
@@ -14,6 +20,7 @@ public interface IEditService<T> {
     int editById(T record);
 
     /**
+     * batch update recode by id
      * @param records
      * @return 影响的记录数
      */

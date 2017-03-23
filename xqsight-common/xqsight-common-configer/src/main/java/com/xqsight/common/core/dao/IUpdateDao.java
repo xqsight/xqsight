@@ -3,12 +3,15 @@ package com.xqsight.common.core.dao;
 import java.util.List;
 
 /**
- * @param <T> Po
+ * @author wangganggang
+ * @Date 2017/3/23
+ *
+ * @param <T>
  */
 public interface IUpdateDao<T> {
 
     /**
-     * 根据主键更新用户信息
+     * update record by id
      *
      * @param record
      * @return 影响的记录数
@@ -16,6 +19,8 @@ public interface IUpdateDao<T> {
     int updateById(final T record);
 
     /**
+     * batch update record by id
+     *
      * @param records
      * @return 影响的记录数
      */

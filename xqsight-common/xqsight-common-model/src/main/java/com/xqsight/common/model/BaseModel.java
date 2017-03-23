@@ -6,7 +6,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public abstract class Model implements Serializable {
+/**
+ * Created by wangganggang on 2017/3/23.
+ */
+public abstract class BaseModel implements Serializable {
 
     private static final long serialVersionUID = 5859337383077120660L;
 

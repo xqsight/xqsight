@@ -1,6 +1,6 @@
 package com.xqsight.sso.shiro.resolver;
 
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.BaseModel;
 import com.xqsight.sso.shiro.annotation.CurrentUserId;
 import com.xqsight.sso.utils.SSOUtils;
 import org.springframework.beans.*;
@@ -26,7 +26,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.hasParameterAnnotation(CurrentUserId.class) || Model.class.isAssignableFrom(parameter.getParameterType());
+        return parameter.hasParameterAnnotation(CurrentUserId.class) || BaseModel.class.isAssignableFrom(parameter.getParameterType());
     }
 
     @Override
@@ -38,7 +38,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
             return currentUserId;
         }
         /** 给当前对象注入用户登录信息 **/
-        else if (Model.class.isAssignableFrom(parameter.getParameterType())) {
+        else if (BaseModel.class.isAssignableFrom(parameter.getParameterType())) {
             String name = parameter.getParameterName();
 
             // 查找是否已有名为name的参数值的映射，如果没有则创建一个

@@ -6,15 +6,19 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @param <T> Po
+ * @author wangganggang
+ * @Date 2017/3/23
+ *
+ * @param <T>
+ * @param <PK>
  */
 public interface ISelectDao<T, PK extends Serializable> {
 
     /**
-     * 通过主键找出一条数据
+     * select record by id
      *
      * @param id 主键id值
-     * @return
+     * @return record
      */
     T selectById(final PK id);
 
@@ -22,7 +26,7 @@ public interface ISelectDao<T, PK extends Serializable> {
      * 根据条件查询零条及多条数据
      *
      * @param criterion 查询条件参数
-     * @return 记录列表
+     * @return record list
      */
     List<T> search(Criterion criterion);
 }

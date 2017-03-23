@@ -2,13 +2,18 @@ package com.xqsight.common.core.service;
 
 import com.xqsight.common.core.dao.IDeleteDao;
 import com.xqsight.common.core.orm.Criterion;
+import com.xqsight.common.core.orm.PropertyFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
+ * @author wangganggang
+ * @Date 2017/3/23
+ *
  * @param <Dao>
+ * @param <PK>
  */
 public abstract class AbstractRemoveService<Dao extends IDeleteDao<PK>, PK extends Serializable> implements IRemoveService<PK> {
 
@@ -23,6 +28,11 @@ public abstract class AbstractRemoveService<Dao extends IDeleteDao<PK>, PK exten
     @Override
     public int removeByCriterion(Criterion criterion) {
         return this.dao.deleteByCriterion(criterion);
+    }
+
+    @Override
+    public int removeByFilters(List<PropertyFilter> propertyFilters) {
+        return this.removeByCriterion(new Criterion(propertyFilters));
     }
 
     @Override

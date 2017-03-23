@@ -4,7 +4,6 @@
  */
 package com.xqsight.cms.model;
 
-import com.xqsight.common.model.Model;
 import com.xqsight.common.model.TreeBaseModel;
 
 import java.io.Serializable;

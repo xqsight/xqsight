@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by wangganggang on 16/6/15.
  */
-public abstract class TreeBaseModel<T> extends Model {
+public abstract class TreeBaseModel<T> extends BaseModel {
 
     private String id = (String) getPK();
     /** parent_id - 父级id */

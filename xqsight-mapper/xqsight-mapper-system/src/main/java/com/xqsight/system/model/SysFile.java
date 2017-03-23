@@ -4,7 +4,7 @@
  */
 package com.xqsight.system.model;
 
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.BaseModel;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @since 2017-01-07 11:57:19
  * @author wangganggang
  */
-public class SysFile extends Model{
+public class SysFile extends BaseModel {
 
 	/** 主键 */
     private Long fileId;

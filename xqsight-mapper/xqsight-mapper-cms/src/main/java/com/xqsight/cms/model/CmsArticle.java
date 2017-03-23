@@ -5,7 +5,7 @@
 package com.xqsight.cms.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.BaseModel;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -20,7 +20,7 @@ import java.util.List;
  * @since 2017-02-28 03:25:22
  * @author wangganggang
  */
-public class CmsArticle extends Model{
+public class CmsArticle extends BaseModel {
 
 	/** 主键 */
     private Long articleId;

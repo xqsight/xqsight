@@ -1,7 +1,7 @@
 package com.xqsight.common.core.service;
 
 import com.xqsight.common.core.dao.Dao;
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.BaseModel;
 import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.core.orm.Criterion;
 import com.xqsight.common.core.orm.PropertyFilter;
@@ -24,7 +24,7 @@ import java.util.List;
  * @param <PK> 领域对象的主键类型
  */
 @Transactional
-public abstract class DefaultEntityService<T extends Model, PK extends Serializable> {
+public abstract class DefaultEntityService<T extends BaseModel, PK extends Serializable> {
 
     protected Logger logger = LogManager.getLogger(getClass());
 

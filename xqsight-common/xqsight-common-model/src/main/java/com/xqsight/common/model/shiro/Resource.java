@@ -1,10 +1,10 @@
 package com.xqsight.common.model.shiro;
 
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.BaseModel;
 
 import java.io.Serializable;
 
-public class Resource extends Model{
+public class Resource extends BaseModel {
     private Long         id;                            //编号
     private String       name;                          //资源名称
     private int          type; 							//资源类型

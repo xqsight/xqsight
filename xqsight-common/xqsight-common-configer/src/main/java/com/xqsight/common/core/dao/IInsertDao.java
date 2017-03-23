@@ -3,21 +3,25 @@ package com.xqsight.common.core.dao;
 import java.util.List;
 
 /**
- * @param <T>
+ * @author wangganggang
+ *
+ * @Date 2017/3/23
  */
 public interface IInsertDao<T> {
 
     /**
-     * 插入一条数据，忽略record中的ID
+     * insert one record ignore id
      *
      * @param record
-     * @return 影响的记录数
+     * @return update count
      */
     int insert(final T record);
 
     /**
+     * batch insert record
+     *
      * @param records
-     * @return 影响的记录数
+     * @return update count
      */
     int batchInsert(final List<T> records);
 }

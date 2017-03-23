@@ -4,7 +4,7 @@
  */
 package com.xqsight.system.model;
 
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.BaseModel;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @since 2017-02-22 04:30:04
  * @author wangganggang
  */
-public class SysRole extends Model{
+public class SysRole extends BaseModel {
 
 	/** 主键 */
     private Long roleId;

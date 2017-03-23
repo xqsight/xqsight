@@ -11,7 +11,6 @@ import java.util.Set;
 /**
  * 错误代码对照表
  *
- * @see errMessage_zh_CN.properties
  */
 public class ErrorMessageConstants extends ListResourceBundle {
 

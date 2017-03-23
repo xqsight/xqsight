@@ -2,18 +2,23 @@ package com.xqsight.common.core.service;
 
 import com.xqsight.common.core.dao.ICrudDao;
 import com.xqsight.common.core.orm.Criterion;
-import com.xqsight.common.model.Model;
+import com.xqsight.common.core.orm.PropertyFilter;
+import com.xqsight.common.core.orm.Sort;
+import com.xqsight.common.model.BaseModel;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * 基本增删改查(CRUD)数据访问服务基类
- *
  * @param <Dao>
  * @param <Po>
+ * @param <PK>
+ * @author wangganggang
+ * @Date 2017/3/23
+ * <p>
+ * 基本增删改查(CRUD)数据访问服务基类
  */
-public abstract class AbstractCrudService<Dao extends ICrudDao<Po, PK>, Po extends Model, PK extends Serializable>
+public abstract class AbstractCrudService<Dao extends ICrudDao<Po, PK>, Po extends BaseModel, PK extends Serializable>
         extends AbstractGetService<Dao, Po, PK> implements ICrudService<Po, PK> {
 
     @Override
@@ -42,16 +47,71 @@ public abstract class AbstractCrudService<Dao extends ICrudDao<Po, PK>, Po exten
     }
 
     @Override
-    public int removeByCriterion(Criterion criterion) {
-        return this.dao.deleteByCriterion(criterion);
-    }
-
-    @Override
     public int removeByIds(List<PK> ids) {
         int count = 0;
         for (PK id : ids) {
             count += this.removeById(id);
         }
         return count;
+    }
+
+    @Override
+    public int removeByCriterion(Criterion criterion) {
+        return this.dao.deleteByCriterion(criterion);
+    }
+
+    @Override
+    public int removeByFilters(List<PropertyFilter> propertyFilters) {
+        return this.removeByCriterion(new Criterion(propertyFilters));
+    }
+
+    @Override
+    public boolean exists(Criterion criterion) {
+        return super.exists(criterion);
+    }
+
+    @Override
+    public boolean exists(List<PropertyFilter> propertyFilters) {
+        return super.exists(propertyFilters);
+    }
+
+    @Override
+    public Po getById(PK id) {
+        return super.getById(id);
+    }
+
+    @Override
+    public Po getOneByCriterion(Criterion criterion) {
+        return super.getOneByCriterion(criterion);
+    }
+
+    @Override
+    public Po getOneByFilters(List<PropertyFilter> propertyFilters) {
+        return super.getOneByFilters(propertyFilters);
+    }
+
+    @Override
+    public List<Po> getAll() {
+        return super.getAll();
+    }
+
+    @Override
+    public List<Po> getAll(List<Sort> sorts) {
+        return super.getAll(sorts);
+    }
+
+    @Override
+    public List<Po> getByCriterion(Criterion criterion) {
+        return super.getByCriterion(criterion);
+    }
+
+    @Override
+    public List<Po> getByFilters(List<PropertyFilter> propertyFilters) {
+        return super.getByFilters(propertyFilters);
+    }
+
+    @Override
+    public List<Po> getByFilters(List<PropertyFilter> propertyFilters, List<Sort> sorts) {
+        return super.getByFilters(propertyFilters, sorts);
     }
 }

@@ -7,7 +7,6 @@ package com.xqsight.common.model.constants;
 import java.math.BigDecimal;
 
 /**
- * @Description: this is use for 
  * @author xqsight-jerry
  * @date 2016年1月8日 下午7:39:21
  */

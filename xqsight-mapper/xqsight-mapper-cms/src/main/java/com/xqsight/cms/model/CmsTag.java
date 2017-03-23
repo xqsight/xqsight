@@ -4,7 +4,7 @@
  */
 package com.xqsight.cms.model;
 
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.BaseModel;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @since 2017-02-23 04:52:38
  * @author wangganggang
  */
-public class CmsTag extends Model{
+public class CmsTag extends BaseModel {
 
 	/** 主键 */
     private Long tagId;

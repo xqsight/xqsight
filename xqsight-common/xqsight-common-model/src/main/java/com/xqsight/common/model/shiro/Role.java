@@ -1,11 +1,11 @@
 package com.xqsight.common.model.shiro;
 
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.BaseModel;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class Role extends Model {
+public class Role extends BaseModel {
     private Long id;                        //编号
     private String role;                      //角色标识 程序中判断使用,如"admin"
     private String description;               //角色描述,UI界面显示使用

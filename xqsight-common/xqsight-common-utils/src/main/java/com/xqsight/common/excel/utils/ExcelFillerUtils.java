@@ -24,15 +24,18 @@ import java.util.List;
 import java.util.Map;
 
 public class ExcelFillerUtils extends ExcelFiller {
+
 	private static Logger logger = LogManager.getLogger(ExcelFillerUtils.class);
 
-	private WritableWorkbook wwb = null;// 创建excel文件
-	private WritableSheet wSheet = null;// 工作表
+	/** 创建excel文件 **/
+	private WritableWorkbook wwb = null;
+	/** 工作表 **/
+	private WritableSheet wSheet = null;
 	private int sheetIndex = 0;
 	private String sheetName = "";
 	private Workbook wb;
 	private ByteArrayOutputStream bos = new ByteArrayOutputStream();
-	// 用户自定义样式：false表示使用模板原有样式；true表示使用自定义的样式
+	/** 用户自定义样式：false表示使用模板原有样式；true表示使用自定义的样式**/
 	private boolean customStyle = true;
 
 	public ExcelFillerUtils() {}

@@ -4,10 +4,16 @@ import com.xqsight.common.core.orm.Criterion;
 
 import java.io.Serializable;
 
+/**
+ * @author wangganggang
+ * @Date 2017/3/23
+ *
+ * @param <PK>
+ */
 public interface IDeleteDao<PK extends Serializable> {
 
     /**
-     * 根据主键删除记录
+     * delete record by id
      *
      * @param id id主键值
      * @return 影响的记录数
@@ -15,9 +21,9 @@ public interface IDeleteDao<PK extends Serializable> {
     int deleteById(final PK id);
 
     /**
-     * 根据条件删除记录
+     * delete record by criterion
      *
-     * @param criterion 查询Example条件参数
+     * @param criterion 查询条件
      * @return 影响的记录数
      */
     int deleteByCriterion(Criterion criterion);

@@ -15,6 +15,8 @@ import java.util.Arrays;
 
 /**
  * Created by wangganggang on 2017/2/15.
+ *
+ * filter not transport filed from object model
  */
 @Component
 public class AttributeFilterResolver implements HandlerMethodReturnValueHandler {
