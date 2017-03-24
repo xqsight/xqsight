@@ -126,6 +126,8 @@
 
         <weixin.version>2.4.0</weixin.version>
         <lombok.version>1.16.16</lombok.version>
+
+        <spring.boot.mybatis.version>1.2.0</spring.boot.mybatis.version>
         <springfox.swagger2.version>2.6.1</springfox.swagger2.version>
         <springfox.swagger.ui.version>2.2.2</springfox.swagger.ui.version>
         <springfox.staticdocs.version>2.4.0</springfox.staticdocs.version>
@@ -225,6 +227,7 @@
                                         <exclude>junit:junit</exclude>
                                         <exclude>org.testng:testng</exclude>
                                         <exclude>org.springframework:spring-test</exclude>
+                                        <exclude>org.springframework.boot:spring-boot-test</exclude>
                                         <exclude>org.mockito:mockito-all</exclude>
                                         <exclude>log4j:log4j</exclude>
                                         <exclude>org.slf4j:slf4j-log4j12</exclude>
@@ -233,6 +236,7 @@
                                     <includes>
                                         <include>junit:junit:*:jar:test</include>
                                         <include>org.springframework:spring-test:*:jar:test</include>
+                                        <include>org.springframework.boot:spring-boot-test:*:jar:test</include>
                                         <include>org.mockito:mockito-all:*:jar:test</include>
                                     </includes>
                                 </bannedDependencies>
@@ -332,6 +336,18 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${spring.boot.mybatis.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                        <groupId>org.springframework.boot</groupId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
             <dependency>
                 <groupId>net.sf.ehcache</groupId>
                 <artifactId>ehcache-core</artifactId>
@@ -1090,6 +1106,10 @@
             <artifactId>spring-test</artifactId>
             <version>${spring.version}</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
         </dependency>
         <dependency>
             <groupId>junit</groupId>

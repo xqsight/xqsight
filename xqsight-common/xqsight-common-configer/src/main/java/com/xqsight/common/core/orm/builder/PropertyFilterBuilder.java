@@ -8,10 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by wangganggang on 2017/1/3.
+ * @author wangganggang
+ * @Date 2017/3/23
+ *
  */
 public class PropertyFilterBuilder {
-    public List<PropertyFilter> propertyFilters;
+
+    private List<PropertyFilter> propertyFilters;
 
     private MatchType matchType;
     private PropertyType propertyType;

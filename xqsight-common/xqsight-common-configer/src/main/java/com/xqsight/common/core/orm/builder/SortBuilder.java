@@ -7,17 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by wangganggang on 2017/1/3.
+ * author wangganggang
+ * @Date 2017/3/23
+ *
  */
 public class SortBuilder {
 
-    List<Sort> sorts = new ArrayList<>();
+    private List<Sort> sorts = new ArrayList<>();
 
     private SortBuilder() {
     }
 
     public static SortBuilder create() {
         return new SortBuilder();
+
     }
 
     public SortBuilder addDesc(String fileName) {

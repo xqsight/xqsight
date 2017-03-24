@@ -4,10 +4,15 @@ package com.xqsight.common.core.orm;
 import java.util.Date;
 
 
+/**
+ * @author wangganggang
+ * @Date 2017/3/23
+ */
 public enum PropertyType {
+
     S(String.class), I(Integer.class), L(Long.class), N(Double.class), D(Date.class), B(Boolean.class), A(String.class);
 
-    private static final String MYSQL_LONG_TIME_FORMAT    =  "%Y-%m-%d %H:%i:%s";
+    private static final String MYSQL_LONG_TIME_FORMAT = "%Y-%m-%d %H:%i:%s";
 
     private Class<?> clazz;
 
@@ -20,22 +25,24 @@ public enum PropertyType {
     }
 
     public String expressStart() {
-        if ("S".equals(this.name())) {
-            return "'";
+        switch (this.name()) {
+            case "S":
+                return "'";
+            case "D":
+                return "str_to_date('";
+            default:
+                return "";
         }
-        if ("D".equals(this.name())) {
-            return "str_to_date('";
-        }
-        return "";
     }
 
     public String expressEnd() {
-        if ("S".equals(this.name())) {
-            return "'";
+        switch (this.name()) {
+            case "S":
+                return "'";
+            case "D":
+                return "','" + MYSQL_LONG_TIME_FORMAT + "')";
+            default:
+                return "";
         }
-        if ("D".equals(this.name())) {
-            return "','" + MYSQL_LONG_TIME_FORMAT + "')";
-        }
-        return "";
     }
 }

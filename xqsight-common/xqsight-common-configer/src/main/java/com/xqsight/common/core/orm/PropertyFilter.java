@@ -1,24 +1,27 @@
 package com.xqsight.common.core.orm;
 
 import com.xqsight.common.core.support.PropertyFilterSupport;
-import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.utils.ReflectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+/**
+ * @author wangganggang
+ * @Date 2017/3/23
+ *
+ */
 public class PropertyFilter {
     /**
      * 多个属性间OR关系的分隔符.
      */
     public static final String OR_SEPARATOR = "_OR_";
 
-    private String[] propertyNames = null;
-    private Class<?> propertyType = null;
-    private Object propertyValue = null;
-    private MatchType matchType = null;
-    private String propertyTypeCode = null;
+    private String[] propertyNames;
+    private Class<?> propertyType;
+    private Object propertyValue;
+    private MatchType matchType;
+    private String propertyTypeCode;
 
     public PropertyFilter() {
-
     }
 
     public PropertyFilter(MatchType matchType, PropertyType propertyType, String fieldName, String value) {
@@ -48,15 +51,17 @@ public class PropertyFilter {
         }
 
         String propertyNameStr = StringUtils.substringAfter(filterName, "_");
+
         propertyNames = StringUtils.splitByWholeSeparator(propertyNameStr, PropertyFilter.OR_SEPARATOR);
 
-        if (propertyNames.length < 1)
+        if (propertyNames.length < 1) {
             throw new IllegalArgumentException("filter name of " + filterName + "is illegal");
+        }
 
         //按entity property中的类型将字符串转化为实际类型.
-        if(StringUtils.equalsIgnoreCase(matchTypeCode,"in")){
+        if (StringUtils.equalsIgnoreCase(matchTypeCode, MatchType.IN.name())) {
             this.propertyValue = value;
-        }else{
+        } else {
             this.propertyValue = ReflectionUtils.convertStringToObject(value, propertyType);
         }
     }

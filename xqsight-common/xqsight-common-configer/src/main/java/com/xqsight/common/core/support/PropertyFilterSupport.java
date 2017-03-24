@@ -13,7 +13,13 @@ import org.springframework.util.Assert;
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
+/**
+ * @author wangganggang
+ * @Date 2017/3/23
+ *
+ */
 public class PropertyFilterSupport {
+
     /**
      * 根据对象ID集合,整理合并集合.
      * <p>
@@ -21,8 +27,7 @@ public class PropertyFilterSupport {
      *
      * @see #mergeByCheckedIds(Collection, Collection, Class, String)
      */
-    public static <T, ID> void mergeByCheckedIds(final Collection<T> srcObjects,
-                                                 final Collection<ID> checkedIds, final Class<T> clazz) {
+    public static <T, ID> void mergeByCheckedIds(final Collection<T> srcObjects, final Collection<ID> checkedIds, final Class<T> clazz) {
         mergeByCheckedIds(srcObjects, checkedIds, clazz, "id");
     }
 
@@ -38,8 +43,7 @@ public class PropertyFilterSupport {
      * @param clazz      集合中对象的类型
      * @param idName     对象主键的名称
      */
-    public static <T, ID> void mergeByCheckedIds(final Collection<T> srcObjects, final Collection<ID> checkedIds,
-                                                 final Class<T> clazz, final String idName) {
+    public static <T, ID> void mergeByCheckedIds(final Collection<T> srcObjects, final Collection<ID> checkedIds, final Class<T> clazz, final String idName) {
 
         //参数校验
         Assert.notNull(srcObjects, "scrObjects can not be null");

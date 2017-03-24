@@ -15,6 +15,7 @@
         <module>xqsight-data-redis</module>
         <module>xqsight-data-ehcache</module>
         <module>xqsight-data-neo4j</module>
+        <module>xqsight-data-mybatis</module>
     </modules>
 
 

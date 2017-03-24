@@ -1,66 +1,74 @@
 package com.xqsight.common.core.orm;
 
 /**
+ * @author wangganggang
+ * @Date 2017/3/23
+ * <p>
  * 属性比较类型. 目前IN 只支持字符串的类型
  */
 public enum MatchType {
+
     NEQ, EQ, LIKE, LT, GT, LE, GE, NULL, NOTNULL, IN, LLIKE, RLIKE;
 
     public String express() {
-        if ("LIKE".equals(this.name()) || "LLIKE".equals(this.name()) || "RLIKE".equals(this.name())) {
-            return "LIKE";
+
+        switch (this.name()) {
+            case "LIKE":
+            case "LLIKE":
+            case "RLIKE":
+                return "LIKE";
+            case "LT":
+                return "<";
+            case "GT":
+                return ">";
+            case "LE":
+                return "<=";
+            case "GE":
+                return ">=";
+            case "NULL":
+                return "is null";
+            case "NOTNULL":
+                return "is not null";
+            case "IN":
+                return "in";
+            case "NEQ":
+                return "<>";
+            default:
+                return "=";
         }
-        if ("LT".equals(this.name())) {
-            return "<";
-        }
-        if ("GT".equals(this.name())) {
-            return ">";
-        }
-        if ("LE".equals(this.name())) {
-            return "<=";
-        }
-        if ("GE".equals(this.name())) {
-            return ">=";
-        }
-        if ("NULL".equals(this.name())) {
-            return "is null";
-        }
-        if ("NOTNULL".equals(this.name())) {
-            return "is not null";
-        }
-        if ("IN".equals(this.name())) {
-            return "in";
-        }
-        if ("NEQ".equals(this.name())) {
-            return "<>";
-        }
-        return "=";
     }
 
     public String expressStart() {
-        if ("LIKE".equals(this.name()) || "LLIKE".equals(this.name())) {
-            return "%";
+        switch (this.name()) {
+            case "LIKE":
+            case "LLIKE":
+                return "%";
+            case "IN":
+                return "(";
+            default:
+                return "";
         }
-        if ("IN".equals(this.name())) {
-            return "(";
-        }
-        return "";
     }
 
     public String expressEnd() {
-        if ("LIKE".equals(this.name()) || "RLIKE".equals(this.name())) {
-            return "%";
+        switch (this.name()) {
+            case "LIKE":
+            case "RLIKE":
+                return "%";
+            case "IN":
+                return ")";
+            default:
+                return "";
         }
-        if ("IN".equals(this.name())) {
-            return ")";
-        }
-        return "";
     }
 
     public boolean outputValue() {
-        if ("NULL".equals(this.name()) || "NOTNULL".equals(this.name())) {
-            return false;
+        switch (this.name()) {
+            case "NULL":
+            case "NOTNULL":
+                return false;
+            default:
+                return true;
         }
-        return true;
     }
 }

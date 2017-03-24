@@ -72,7 +72,7 @@
         delete from ${table.tableName}
         where <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
     </delete>
-    <delete id="deleteByWhere" parameterType="com.xqsight.common.core.orm.Criterion">
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
         delete from ${table.tableName}
         where 1=1
         ${r'${whereSqlString}'}

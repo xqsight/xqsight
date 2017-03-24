@@ -11,27 +11,24 @@ import java.util.List;
 
 
 /**
+ * @author wangganggang
+ * @Date 2017/3/23
+ *
  * 查询共用类
  */
 public class Criterion implements Serializable {
-    private static final long serialVersionUID = -9094478488987769373L;
-
     private static Logger logger = LogManager.getLogger(Criterion.class);
 
     private String order = Sort.DESC;
     private String orderBy;
 
-    @SuppressWarnings("unchecked")
     private List<PropertyFilter> criteria = Collections.EMPTY_LIST;
 
     private String customSql;
 
-    //嵌套的扩展查询条件
-    @SuppressWarnings("unchecked")
     private List<PropertyFilter> extraCriteria = Collections.EMPTY_LIST;
 
     public Criterion() {
-
     }
 
     public Criterion(List<PropertyFilter> criteria) {
