@@ -12,11 +12,11 @@
     <artifactId>xqsight-boot-system</artifactId>
 
     <dependencies>
-        <!--<dependency>
+        <dependency>
             <groupId>com.xqsight</groupId>
             <artifactId>xqsight-controller-system</artifactId>
             <version>${project.version}</version>
-        </dependency>-->
+        </dependency>
 
         <dependency>
             <groupId>com.xqsight</groupId>

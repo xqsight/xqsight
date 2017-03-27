@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>xqsight-boot-system</module>
+        <module>xqsight-boot-demo</module>
     </modules>
 
 

@@ -17,6 +17,12 @@
             <artifactId>xqsight-common-configer</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.xqsight</groupId>
+            <artifactId>xqsight-data-mybatis</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

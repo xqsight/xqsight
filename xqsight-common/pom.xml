@@ -16,5 +16,6 @@
         <module>xqsight-common-configer</module>
         <module>xqsight-common-model</module>
         <module>xqsight-common-file</module>
+        <module>xqsight-common-base</module>
     </modules>
 </project>

@@ -15,6 +15,7 @@
     <modules>
         <module>xqsight-mapper-system</module>
         <module>xqsight-mapper-cms</module>
+        <module>xqsight-mapper-demo</module>
     </modules>
 
 </project>
