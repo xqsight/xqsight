@@ -1,6 +1,5 @@
 package com.xqsight.data.mybatis.config;
 
-import com.xqsight.data.mybatis.annotation.BatchAnnotation;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.Bean;
@@ -22,12 +21,12 @@ public class MapperScannerConfig {
         return mapperScannerConfigurer;
     }
 
-    @Bean(name = "mapperScannerConfigurerBatch")
-    public MapperScannerConfigurer mapperScannerConfigurerBatch(){
-        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-        mapperScannerConfigurer.setBasePackage("com.xqsight.**.mapper.batch");
-        mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionTemplateBatch");
-        mapperScannerConfigurer.setAnnotationClass(BatchAnnotation.class);
-        return mapperScannerConfigurer;
-    }
+//    @Bean(name = "mapperScannerConfigurerBatch")
+//    public MapperScannerConfigurer mapperScannerConfigurerBatch(){
+//        MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
+//        mapperScannerConfigurer.setBasePackage("com.xqsight.**.mapper.batch");
+//        mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionTemplateBatch");
+//        mapperScannerConfigurer.setAnnotationClass(BatchAnnotation.class);
+//        return mapperScannerConfigurer;
+//    }
 }

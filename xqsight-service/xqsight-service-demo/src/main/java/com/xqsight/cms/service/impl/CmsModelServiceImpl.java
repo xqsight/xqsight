@@ -10,7 +10,6 @@ import com.xqsight.cms.model.CmsModel;
 import com.xqsight.cms.service.CmsModelService;
 import com.xqsight.common.base.service.AbstractCrudService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 
 /**
@@ -23,7 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 public class CmsModelServiceImpl extends AbstractCrudService<CmsModelMapper,CmsModel, Long> implements CmsModelService {
 
     @Override
-    @Transactional
     public void saveTest(CmsModel cmsModel)throws Exception{
         this.add(cmsModel);
         throw new Exception();

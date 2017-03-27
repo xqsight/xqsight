@@ -18,6 +18,7 @@ import org.springframework.transaction.interceptor.TransactionInterceptor;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.Collections;
+import java.util.Properties;
 
 /**
  * @author wangganggang
@@ -28,9 +29,7 @@ import java.util.Collections;
 @EnableTransactionManagement
 public class TransactionManage implements TransactionManagementConfigurer {
 
-    private static final String TX_METHOD_NAME = "*";
-    private static final int TX_METHOD_TIMEOUT = 3;
-    private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.xqsight.**.service.**(..))";
+    private static final String AOP_POINTCUT_EXPRESSION = "execution(* com.xqsight.**.service.*.*(..))";
 
     @Resource(name = "commonDataSource")
     private DataSource dataSource;
@@ -38,38 +37,16 @@ public class TransactionManage implements TransactionManagementConfigurer {
     /**
      * 配置事务
      */
-    @Bean
+    @Bean(name = "transactionManager")
     @Override
     public PlatformTransactionManager annotationDrivenTransactionManager() {
         return new DataSourceTransactionManager(dataSource);
     }
 
     @Bean
-    public TransactionInterceptor txAdvice() {
-        System.out.println("aaa");
-        MatchAlwaysTransactionAttributeSource source = new MatchAlwaysTransactionAttributeSource();
-        RuleBasedTransactionAttribute transactionAttribute = new RuleBasedTransactionAttribute();
-        transactionAttribute.setName(TX_METHOD_NAME);
-        transactionAttribute.setRollbackRules(
-                Collections.singletonList(new RollbackRuleAttribute(Exception.class)));
-        transactionAttribute.setTimeout(TX_METHOD_TIMEOUT);
-        source.setTransactionAttribute(transactionAttribute);
-        TransactionInterceptor txAdvice = new TransactionInterceptor(annotationDrivenTransactionManager(), source);
-        return txAdvice;
-    }
-
-    @Bean
-    public Advisor txAdviceAdvisor() {
-        System.out.println("bbb");
-        AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
-        pointcut.setExpression(AOP_POINTCUT_EXPRESSION);
-        return new DefaultPointcutAdvisor(pointcut, txAdvice());
-    }
-
-    /*@Bean
     public TransactionInterceptor transactionInterceptor() {
         TransactionInterceptor ti = new TransactionInterceptor();
-        ti.setTransactionManager(annotationDrivenTransactionManager());
+        ti.setTransactionManagerBeanName("transactionManager");
         Properties properties = new Properties();
 
         properties.setProperty("find*", "PROPAGATION_REQUIRED, readOnly");
@@ -83,16 +60,28 @@ public class TransactionManage implements TransactionManagementConfigurer {
         properties.setProperty("del*", "PROPAGATION_REQUIRED");
         properties.setProperty("update*", "PROPAGATION_REQUIRED");
         properties.setProperty("edit*", "PROPAGATION_REQUIRED");
+        properties.setProperty("call*", "PROPAGATION_REQUIRED");
+        properties.setProperty("batch*", "PROPAGATION_REQUIRED");
+        properties.setProperty("dealWith*", "PROPAGATION_REQUIRED");
+        properties.setProperty("inIsolate*", "PROPAGATION_REQUIRED");
+        properties.setProperty("*", "PROPAGATION_SUPPORTS");
         ti.setTransactionAttributes(properties);
+
+        MatchAlwaysTransactionAttributeSource source = new MatchAlwaysTransactionAttributeSource();
+        RuleBasedTransactionAttribute transactionAttribute = new RuleBasedTransactionAttribute();
+        transactionAttribute.setRollbackRules(
+                Collections.singletonList(new RollbackRuleAttribute(Exception.class)));
+        source.setTransactionAttribute(transactionAttribute);
+
+        ti.setTransactionAttributeSource(source);
         return ti;
     }
 
     @Bean
-    public BeanNameAutoProxyCreator transactionAutoProxy() {
-        BeanNameAutoProxyCreator transactionAutoProxy = new BeanNameAutoProxyCreator();
-        transactionAutoProxy.setProxyTargetClass(false);
-        transactionAutoProxy.setBeanNames(new String[]{"*Service*","*Component"});
-        transactionAutoProxy.setInterceptorNames(new String[]{"transactionInterceptor"});
-        return transactionAutoProxy;
-    }*/
+    public Advisor txAdviceAdvisor() {
+        AspectJExpressionPointcut pointcut = new AspectJExpressionPointcut();
+        pointcut.setExpression(AOP_POINTCUT_EXPRESSION);
+        return new DefaultPointcutAdvisor(pointcut, transactionInterceptor());
+    }
+
 }
