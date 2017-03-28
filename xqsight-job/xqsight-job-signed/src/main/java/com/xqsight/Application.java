@@ -3,20 +3,14 @@ package com.xqsight;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * Created by wangganggang on 2017/1/1.
  */
-@ImportResource({"classpath*:xqsight-common-dao.xml",
-        "classpath*:xqsight-sso-shiro.xml",
-        "classpath:shiro-config.xml",
-        "classpath:applicationContext.xml"})
 @SpringBootApplication
-@EnableAutoConfiguration(exclude={MultipartAutoConfiguration.class})
+@EnableScheduling
 public class Application {
 
     private static final Logger logger = LogManager.getLogger();

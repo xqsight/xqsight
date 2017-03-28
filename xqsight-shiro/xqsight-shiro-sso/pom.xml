@@ -14,13 +14,16 @@
     <dependencies>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-data-ehcache</artifactId>
+            <artifactId>xqsight-common-model</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-common-model</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-ehcache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba</groupId>

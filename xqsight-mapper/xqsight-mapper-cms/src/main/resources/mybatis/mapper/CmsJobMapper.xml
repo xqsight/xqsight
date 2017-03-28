@@ -18,15 +18,18 @@
         <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="position_desp" property="positionDesp" jdbcType="VARCHAR"/>
+        <result column="job_need" property="jobNeed" jdbcType="VARCHAR"/>
+        <result column="job_email" property="jobEmail" jdbcType="VARCHAR"/>
     </resultMap>
 
     <sql id="Base_Column_List">
-	 job_id,position_id,job_name,job_start_time,job_end_time,job_content,job_phone,status,job_address,active,create_user_id,create_time,update_user_id,update_time,remark
+	 job_id,position_id,job_name,job_start_time,job_end_time,job_content,job_phone,status,job_address,active,create_user_id,create_time,update_user_id,update_time,remark,position_desp,job_need,job_email
     </sql>
 
     <insert id="insert" parameterType="com.xqsight.cms.model.CmsJob" useGeneratedKeys="true" keyProperty="jobId">
         insert into cms_job (
-	position_id,job_name,job_start_time,job_end_time,job_content,job_phone,status,job_address,active,create_user_id,create_time,update_user_id,update_time,remark
+	position_id,job_name,job_start_time,job_end_time,job_content,job_phone,status,job_address,active,create_user_id,create_time,update_user_id,update_time,remark,position_desp,job_need,job_email
         ) values (
 	#{positionId,jdbcType=NUMERIC},
 	#{jobName,jdbcType=VARCHAR},
@@ -41,7 +44,10 @@
 	#{createTime,jdbcType=TIMESTAMP},
 	#{updateUserId,jdbcType=VARCHAR},
 	#{updateTime,jdbcType=TIMESTAMP},
-	#{remark,jdbcType=VARCHAR}
+	#{remark,jdbcType=VARCHAR},
+	#{positionDesp,jdbcType=VARCHAR},
+	#{jobNeed,jdbcType=VARCHAR},
+	#{jobEmail,jdbcType=VARCHAR}
         )
     </insert>
 
@@ -90,6 +96,15 @@
             <if test="remark!=null">
 			remark,
             </if>
+            <if test="positionDesp!=null">
+			position_desp,
+            </if>
+            <if test="jobNeed!=null">
+			job_need,
+            </if>
+            <if test="jobEmail!=null">
+			job_email,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="positionId!=null">
@@ -134,6 +149,15 @@
             <if test="remark!=null">
 			#{remark,jdbcType=VARCHAR},
             </if>
+            <if test="positionDesp!=null">
+			#{positionDesp,jdbcType=VARCHAR},
+            </if>
+            <if test="jobNeed!=null">
+			#{jobNeed,jdbcType=VARCHAR},
+            </if>
+            <if test="jobEmail!=null">
+			#{jobEmail,jdbcType=VARCHAR},
+            </if>
         </trim>
     </insert>
 
@@ -150,7 +174,10 @@
 		active = #{active,jdbcType=NUMERIC},
 		update_user_id = #{updateUserId,jdbcType=VARCHAR},
 		update_time = #{updateTime,jdbcType=TIMESTAMP},
-		remark = #{remark,jdbcType=VARCHAR}
+		remark = #{remark,jdbcType=VARCHAR},
+		position_desp = #{positionDesp,jdbcType=VARCHAR},
+		job_need = #{jobNeed,jdbcType=VARCHAR},
+		job_email = #{jobEmail,jdbcType=VARCHAR}
         where  job_id = #{jobId,jdbcType=NUMERIC}  
     </update>
 
@@ -192,6 +219,15 @@
             </if>
             <if test="remark!=null">
             remark = #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="positionDesp!=null">
+            position_desp = #{positionDesp,jdbcType=VARCHAR},
+            </if>
+            <if test="jobNeed!=null">
+            job_need = #{jobNeed,jdbcType=VARCHAR},
+            </if>
+            <if test="jobEmail!=null">
+            job_email = #{jobEmail,jdbcType=VARCHAR},
             </if>
         </set>
         where  job_id = #{jobId,jdbcType=NUMERIC}  

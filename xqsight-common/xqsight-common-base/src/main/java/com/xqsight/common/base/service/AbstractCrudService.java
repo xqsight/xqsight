@@ -5,7 +5,6 @@ import com.xqsight.common.core.orm.Criterion;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.model.BaseModel;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;

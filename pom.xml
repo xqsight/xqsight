@@ -1136,6 +1136,7 @@
         <module>xqsight-mapper</module>
         <module>xqsight-controller</module>
         <module>xqsight-boot</module>
+        <module>xqsight-job</module>
     </modules>
 
 
