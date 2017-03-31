@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
@@ -36,14 +35,20 @@ public class SignJob {
         map.put("110595", "1018Abcd");
         /**帆帆 **/
         map.put("122894", "3028Abcd");
-        /** 洪福 **/
-        map.put("123123", "4030Abcd");
         /** 钜鳌 **/
-        map.put("122894", "3028Abcd");
+        map.put("123123", "0110Abcd");
         /** 张俊 **/
-        map.put("117585", "3028Abcd");
+        map.put("117585", "0916Abcd");
         /** 卢俊 **/
         map.put("14485", "0411Abcd");
+        /** 虞倩倩 **/
+        map.put("117572", "0222Abcd");
+        /** 洪福 **/
+        map.put("112690", "4030Abcd");
+        /** 王子腾 **/
+        map.put("107626", "Eju13559O");
+        /** 刘书理 **/
+        map.put("111780", "2011Abcd");
 
         mExecutor = Executors.newFixedThreadPool(map.size() / 2 + 1);
     }
@@ -55,30 +60,35 @@ public class SignJob {
     }
 
 
-    @Scheduled(cron = "0 47 18 * * ?")
+    @Scheduled(cron = "0 45 18 * * ?")
     public void nightSign() {
         sign();
     }
 
     private void sign(){
-        map.forEach((k,v)->{
-            mExecutor.execute(()->{
-                Random random = new Random(System.currentTimeMillis());
-                long milliSeconds = random.nextLong();
-                milliSeconds = Math.abs(milliSeconds);
-                milliSeconds %= 30 * 60 * 1000 / 2;
+        for(Map.Entry<String, String> entry : map.entrySet()) {
+            Random random = new Random();
+            long milliSeconds = random.nextLong();
+            milliSeconds = Math.abs(milliSeconds);
+            milliSeconds %= 30 *  60 * 1000 / 2;
 
+            final long milli = milliSeconds;
+            final String username = entry.getKey();
+            final String password = entry.getValue();
+            mExecutor.execute(()->{
+                logger.debug("休眠{}分钟之后{}开始打卡",milli/1000/60,username);
                 try {
-                    Thread.sleep(milliSeconds);
+                    Thread.sleep(milli);
                 } catch (InterruptedException ignored) {}
 
+                logger.info("{}开始打卡",username);
                 try {
-                    signComponent.signJob(k,v);
+                    signComponent.signJob(username,password);
                 } catch (Exception e) {
                     logger.error(e);
-                    e.printStackTrace();
+//                    e.printStackTrace();
                 }
             });
-        });
+        }
     }
 }

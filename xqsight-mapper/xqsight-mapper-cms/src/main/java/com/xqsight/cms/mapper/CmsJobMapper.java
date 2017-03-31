@@ -8,7 +8,10 @@ package com.xqsight.cms.mapper;
 import com.xqsight.common.core.dao.Dao;
 
 import com.xqsight.cms.model.CmsJob;
+import com.xqsight.common.core.orm.Criterion;
 
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -18,4 +21,6 @@ import com.xqsight.cms.model.CmsJob;
  * @author wangganggang
 */
 public interface CmsJobMapper extends Dao<CmsJob,Long>{
+
+    List<Map> queryJob(Criterion criterion);
 }

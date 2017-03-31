@@ -24,11 +24,11 @@
             <version>${project.version}</version>
         </dependency>
 
-       <!-- <dependency>
+       <dependency>
             <groupId>com.xqsight</groupId>
             <artifactId>xqsight-common-file</artifactId>
             <version>${project.version}</version>
-        </dependency>-->
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

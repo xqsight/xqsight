@@ -35,11 +35,11 @@ public class CmsJob extends BaseModel {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss",iso = DateTimeFormat.ISO.TIME)
     private LocalDateTime jobEndTime;
     /** job_content - 招聘内容 */
-    private String jobContent;
+    private String jobDepartment;
     /** job_phone - 电话 */
     private String jobPhone;
-    /** status - 状态 1:正常2:结束3:4: */
-    private Byte status;
+    /** jobType - 状态 0:全职1:兼职 */
+    private Byte jobType;
     /** job_address - 地点 */
     private String jobAddress;
 
@@ -84,11 +84,11 @@ public class CmsJob extends BaseModel {
     public void setJobEndTime(LocalDateTime jobEndTime){
         this.jobEndTime = jobEndTime;
     }
-	public String getJobContent(){
-        return this.jobContent;
+	public String getJobDepartment(){
+        return this.jobDepartment;
     }
-    public void setJobContent(String jobContent){
-        this.jobContent = jobContent;
+    public void setJobDepartment(String jobDepartment){
+        this.jobDepartment = jobDepartment;
     }
 	public String getJobPhone(){
         return this.jobPhone;
@@ -96,15 +96,18 @@ public class CmsJob extends BaseModel {
     public void setJobPhone(String jobPhone){
         this.jobPhone = jobPhone;
     }
-	public Byte getStatus(){
-        return this.status;
-    }
-    public void setStatus(Byte status){
-        this.status = status;
-    }
 	public String getJobAddress(){
         return this.jobAddress;
     }
+
+    public Byte getJobType() {
+        return jobType;
+    }
+
+    public void setJobType(Byte jobType) {
+        this.jobType = jobType;
+    }
+
     public void setJobAddress(String jobAddress){
         this.jobAddress = jobAddress;
     }

@@ -4,14 +4,12 @@
  */
 package com.xqsight.common.utils;
 
+import org.apache.commons.collections.MapUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.commons.collections.MapUtils;
-
-import com.xiaoleilu.hutool.util.StrUtil;
 
 /**
  * @author wangganggang
@@ -20,46 +18,28 @@ import com.xiaoleilu.hutool.util.StrUtil;
  */
 public class MapKeyHandle {
 
-    /**
-     * map 的 key 转成 java命名方式
-     *
-     * @param @param  map
-     * @param @return 设定文件
-     * @return Map<String,Object>    返回类型
-     * @throws
-     * @Description: TODO
-     * @Title: keyToJavaProperty
-     */
-    public static Map<String, Object> keyToJavaProperty(Map<String, Object> map) {
-        Map<String, Object> retMap = new HashMap<String, Object>();
-        if (map == null)
-            return null;
+    /** map 的 key 转成 java命名方式 **/
+    public static Map keyToJavaProperty(Map map) {
+        Map retMap = new HashMap();
+        if (map == null){ return null;}
 
-        for (String key : map.keySet()) {
-            String newKey = StrUtil.lowerFirst(StrUtil.toCamelCase(key));
+        for (Object key : map.keySet()) {
+            String newKey = StringUtils.lowerFirst(StringUtils.toCamelCase(key.toString()));
             retMap.put(newKey, MapUtils.getObject(map, key));
         }
         return retMap;
     }
 
-    /**
-     * map 的 key 转成 java命名方式
-     *
-     * @param @param  listMap
-     * @param @return 设定文件
-     * @return List<Map<String,Object>>    返回类型
-     * @throws
-     * @Description: TODO
-     * @Title: keyToJavaProperty
-     */
-    public static List<Map<String, Object>> keyToJavaProperty(List<Map<String, Object>> listMap) {
-        List<Map<String, Object>> newListMap = new ArrayList<Map<String, Object>>();
-        if (listMap == null)
-            return null;
+    /** map 的 key 转成 java命名方式 **/
+    public static List<Map> keyToJavaProperty(List<Map> listMap) {
+        List<Map> newListMap = new ArrayList<Map>();
+        if (listMap == null) {return null;}
 
         for (Map<String, Object> map : listMap) {
             newListMap.add(keyToJavaProperty(map));
         }
         return newListMap;
     }
+
+
 }

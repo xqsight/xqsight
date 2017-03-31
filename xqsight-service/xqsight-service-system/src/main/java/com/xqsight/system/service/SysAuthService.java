@@ -78,9 +78,8 @@ public class SysAuthService {
     public List<SysLogin> querAuthUserByRole(long roleId) {
         List<String> userIds = sysAuthMapper.queryUserIdByRole(roleId);
         StringBuffer userIdSb = new StringBuffer();
-        userIds.stream().forEach(userId -> {
-            userIdSb.append(userId).append(",");
-        });
+        userIds.stream().forEach(userId -> userIdSb.append(userId).append(","));
+
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
                 .add("id", StringUtils.substringBeforeLast(userIdSb.toString(), ",")).end();
 
@@ -95,13 +94,13 @@ public class SysAuthService {
      */
     public List<SysMenu> querAuthMenuByRole(long roleId) {
         List<String> menuIds = sysAuthMapper.queryMenuIdByRole(roleId);
-        if(menuIds.size() == 0)
+        if(menuIds.size() == 0) {
             return null;
+        }
 
         StringBuffer menuIdSb = new StringBuffer();
-        menuIds.stream().forEach(menuId -> {
-            menuIdSb.append(menuId).append(",");
-        });
+        menuIds.stream().forEach(menuId ->  menuIdSb.append(menuId).append(",") );
+
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
                 .add("menu_id", StringUtils.substringBeforeLast(menuIdSb.toString(), ",")).end();
 
@@ -118,9 +117,8 @@ public class SysAuthService {
         List<String> roleIds = sysAuthMapper.queryRoleIdByuser(userId);
 
         StringBuffer roleIdSb = new StringBuffer();
-        roleIds.stream().forEach(roleId -> {
-            roleIdSb.append(roleId).append(",");
-        });
+        roleIds.stream().forEach(roleId ->  roleIdSb.append(roleId).append(",") );
+
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
                 .add("role_id", StringUtils.substringBeforeLast(roleIdSb.toString(), ",")).end();
 
@@ -136,19 +134,18 @@ public class SysAuthService {
     public List<SysMenu> queryMenuByUser(long userId, List<PropertyFilter> propertyFilters,List<Sort> sorts ) {
         List<String> menuIds = new ArrayList<>();
         List<String> roleIds = sysAuthMapper.queryRoleIdByuser(userId);
-        roleIds.stream().forEach(roleId -> {
-            menuIds.addAll(sysAuthMapper.queryMenuIdByRole(Long.valueOf(roleId)));
-        });
+
+        roleIds.stream().forEach(roleId -> menuIds.addAll(sysAuthMapper.queryMenuIdByRole(Long.valueOf(roleId))));
+
         StringBuffer menuIdSb = new StringBuffer();
-        menuIds.stream().forEach(menuId -> {
-            menuIdSb.append(menuId).append(",");
-        });
+        menuIds.stream().forEach(menuId -> menuIdSb.append(menuId).append(",") );
+
         List<PropertyFilter> proFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
                 .add("menu_id", StringUtils.substringBeforeLast(menuIdSb.toString(), ",")).end();
 
-        if(propertyFilters == null)
+        if(propertyFilters == null) {
             propertyFilters = new ArrayList<>();
-
+        }
         propertyFilters.addAll(proFilters);
         return sysMenuMapper.search(new Criterion(propertyFilters,sorts));
     }

@@ -42,7 +42,7 @@ public class CmsGenerateService {
     public void generateIndex() throws TemplateEngineException {
         logger.debug("开始生成首页");
         Map modelMap = new HashMap();
-        Page page = XqsightPageHelper.startPage(1,10);
+        Page page = XqsightPageHelper.startPage(1,1000);
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.I).add("article_hit","0").end();
         List<Sort> sorts = SortBuilder.create().addDesc("article_id").end();

@@ -8,6 +8,7 @@ import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
+import com.xqsight.common.freemarker.TemplateEngineException;
 import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.support.MessageSupport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,18 +35,33 @@ public class CmsJobController{
 	@RequestMapping("save")
 	public Object save(CmsJob cmsJob) {
 		cmsJobService.save(cmsJob,true);
+		try {
+			cmsJobService.generateHtmlContent();
+		} catch (TemplateEngineException e) {
+			return MessageSupport.successMsg("保存成功,生成模板失败");
+		}
 		return MessageSupport.successMsg("保存成功");
 	}
 	
 	@RequestMapping("update")
 	public Object update(CmsJob cmsJob) {
 		cmsJobService.update(cmsJob, true);
+		try {
+			cmsJobService.generateHtmlContent();
+		} catch (TemplateEngineException e) {
+			return MessageSupport.successMsg("修改成功,生成模板失败");
+		}
 		return MessageSupport.successMsg("修改成功");
 	}
 	
 	@RequestMapping("delete")
 	public Object delete(Long jobId) {
 		cmsJobService.delete(jobId);
+		try {
+			cmsJobService.generateHtmlContent();
+		} catch (TemplateEngineException e) {
+			return MessageSupport.successMsg("删除成功,生成模板失败");
+		}
 		return MessageSupport.successMsg("删除成功");
 	}
 
@@ -53,8 +69,13 @@ public class CmsJobController{
 	public Object logicDel(Long jobId) {
 		CmsJob cmsJob = new CmsJob();
 		cmsJob.setJobId(jobId);
-		cmsJob.setStatus(Byte.valueOf("2"));
+		cmsJob.setActive(Byte.valueOf("-1"));
 		cmsJobService.update(cmsJob,true);
+		try {
+			cmsJobService.generateHtmlContent();
+		} catch (TemplateEngineException e) {
+			return MessageSupport.successMsg("停止成功,生成模板失败");
+		}
 		return MessageSupport.successMsg("停止成功");
 	}
 

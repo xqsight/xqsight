@@ -8,9 +8,9 @@
         <result column="job_name" property="jobName" jdbcType="VARCHAR"/>
         <result column="job_start_time" property="jobStartTime" jdbcType="TIMESTAMP"/>
         <result column="job_end_time" property="jobEndTime" jdbcType="TIMESTAMP"/>
-        <result column="job_content" property="jobContent" jdbcType="VARCHAR"/>
+        <result column="job_department" property="jobDepartment" jdbcType="VARCHAR"/>
         <result column="job_phone" property="jobPhone" jdbcType="VARCHAR"/>
-        <result column="status" property="status" jdbcType="NUMERIC"/>
+        <result column="job_type" property="jobType" jdbcType="NUMERIC"/>
         <result column="job_address" property="jobAddress" jdbcType="VARCHAR"/>
         <result column="active" property="active" jdbcType="NUMERIC"/>
         <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
@@ -24,20 +24,20 @@
     </resultMap>
 
     <sql id="Base_Column_List">
-	 job_id,position_id,job_name,job_start_time,job_end_time,job_content,job_phone,status,job_address,active,create_user_id,create_time,update_user_id,update_time,remark,position_desp,job_need,job_email
+	 job_id,position_id,job_name,job_start_time,job_end_time,job_department,job_phone,job_type,job_address,active,create_user_id,create_time,update_user_id,update_time,remark,position_desp,job_need,job_email
     </sql>
 
     <insert id="insert" parameterType="com.xqsight.cms.model.CmsJob" useGeneratedKeys="true" keyProperty="jobId">
         insert into cms_job (
-	position_id,job_name,job_start_time,job_end_time,job_content,job_phone,status,job_address,active,create_user_id,create_time,update_user_id,update_time,remark,position_desp,job_need,job_email
+	position_id,job_name,job_start_time,job_end_time,job_department,job_phone,job_type,job_address,active,create_user_id,create_time,update_user_id,update_time,remark,position_desp,job_need,job_email
         ) values (
 	#{positionId,jdbcType=NUMERIC},
 	#{jobName,jdbcType=VARCHAR},
 	#{jobStartTime,jdbcType=TIMESTAMP},
 	#{jobEndTime,jdbcType=TIMESTAMP},
-	#{jobContent,jdbcType=VARCHAR},
+	#{jobDepartment,jdbcType=VARCHAR},
 	#{jobPhone,jdbcType=VARCHAR},
-	#{status,jdbcType=NUMERIC},
+	#{jobType,jdbcType=NUMERIC},
 	#{jobAddress,jdbcType=VARCHAR},
 	#{active,jdbcType=NUMERIC},
 	#{createUserId,jdbcType=VARCHAR},
@@ -66,14 +66,14 @@
             <if test="jobEndTime!=null">
 			job_end_time,
             </if>
-            <if test="jobContent!=null">
-			job_content,
+            <if test="jobDepartment!=null">
+			job_department,
             </if>
             <if test="jobPhone!=null">
 			job_phone,
             </if>
-            <if test="status!=null">
-			status,
+            <if test="jobType!=null">
+                job_type,
             </if>
             <if test="jobAddress!=null">
 			job_address,
@@ -119,14 +119,14 @@
             <if test="jobEndTime!=null">
 			#{jobEndTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="jobContent!=null">
-			#{jobContent,jdbcType=VARCHAR},
+            <if test="jobDepartment!=null">
+			#{jobDepartment,jdbcType=VARCHAR},
             </if>
             <if test="jobPhone!=null">
 			#{jobPhone,jdbcType=VARCHAR},
             </if>
-            <if test="status!=null">
-			#{status,jdbcType=NUMERIC},
+            <if test="jobType!=null">
+			#{jobType,jdbcType=NUMERIC},
             </if>
             <if test="jobAddress!=null">
 			#{jobAddress,jdbcType=VARCHAR},
@@ -167,9 +167,9 @@
 		job_name = #{jobName,jdbcType=VARCHAR},
 		job_start_time = #{jobStartTime,jdbcType=TIMESTAMP},
 		job_end_time = #{jobEndTime,jdbcType=TIMESTAMP},
-		job_content = #{jobContent,jdbcType=VARCHAR},
+		job_department = #{jobDepartment,jdbcType=VARCHAR},
 		job_phone = #{jobPhone,jdbcType=VARCHAR},
-		status = #{status,jdbcType=NUMERIC},
+		job_type = #{jobType,jdbcType=NUMERIC},
 		job_address = #{jobAddress,jdbcType=VARCHAR},
 		active = #{active,jdbcType=NUMERIC},
 		update_user_id = #{updateUserId,jdbcType=VARCHAR},
@@ -196,14 +196,14 @@
             <if test="jobEndTime!=null">
             job_end_time = #{jobEndTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="jobContent!=null">
-            job_content = #{jobContent,jdbcType=VARCHAR},
+            <if test="jobDepartment!=null">
+            job_department = #{jobDepartment,jdbcType=VARCHAR},
             </if>
             <if test="jobPhone!=null">
             job_phone = #{jobPhone,jdbcType=VARCHAR},
             </if>
-            <if test="status!=null">
-            status = #{status,jdbcType=NUMERIC},
+            <if test="jobType!=null">
+                job_type = #{jobType,jdbcType=NUMERIC},
             </if>
             <if test="jobAddress!=null">
             job_address = #{jobAddress,jdbcType=VARCHAR},
@@ -256,6 +256,28 @@
 
         <if test="orderBy != null">
 		${orderBySqlString}
+        </if>
+    </select>
+
+    <select id="queryJob"  resultType="java.util.Map" parameterType="com.xqsight.common.core.orm.Criterion">
+        select
+        cp.position_id,cp.position_name,cp.position_code,cj.job_name,cj.job_id,cj.job_department,
+          cj.job_need,cj.position_desp,cj.job_email,cj.create_time,
+          case cj.job_type when '0' then '全职' when '1' then '兼职' end job_type
+        from cms_job cj
+        left join cms_position cp on cj.position_id = cp.position_id
+        WHERE cj.active=0
+
+        ${whereSqlString}
+
+        <trim prefix=" and " suffix="" suffixOverrides="" >
+            <if test="customSql != null">
+                ${customSqlString}
+            </if>
+        </trim>
+
+        <if test="orderBy != null">
+            ${orderBySqlString}
         </if>
     </select>
 </mapper>

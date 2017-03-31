@@ -3,6 +3,8 @@
 <#include "common/navbar.html"/>
 
 <div class="page-index">
+
+    <!-- banner -->
     <div class="slider" id="slider">
         <ul class="slider-list clearfix" style="left: 0;">
             <#list cmsAds as cmsAd>
@@ -22,6 +24,60 @@
             <li></li>
         </ol>
     </div>
+
+    <!-- banner js -->
+    <script type="text/javascript">
+        window.addEventListener('load', function(){
+            var oSlider = document.getElementById("slider");
+            var oUl = oSlider.getElementsByTagName("ul")[0];
+            var aLi = oUl.getElementsByTagName("li");
+            var aBtn = oSlider.getElementsByTagName("ol")[0].getElementsByTagName("li");
+            var w = -aLi[0].offsetWidth;
+            var current = 0;
+            var timer = null;
+
+            //切换按钮
+            for(var i = 0; i < aBtn.length; i++){
+                aBtn[i].index = i;
+                aBtn[i].onmousemove = function(){
+                    animate(this.index);
+                }
+            }
+
+            //鼠标移入图片静止
+            oSlider.onmouseon = function(){
+                clearInterval(timer);
+            }
+
+            //鼠标移出图片滚动
+            oSlider.onmousemover = function(){
+                autoPlay();
+            }
+
+            //自动循环播放
+            function autoPlay(time){
+                time = time || 3500;
+                if(timer) clearInterval(timer)
+                timer = setInterval(function(){
+                    current += 1;
+                    if(current >= aLi.length) current = 0;
+                    animate(current);
+                },time)
+            }
+
+            //图片按钮同时滚动
+            function animate(index){
+                //图片滚动
+                oUl.style.left = w * index + "px";
+                //按钮滚动
+                for(var i = 0; i < aBtn.length; i++) aBtn[i].className = "";
+                aBtn[index].className = "current";
+            }
+            autoPlay();
+        })
+    </script>
+
+    <!-- article list start -->
     <ul class="list01 clearfix">
         <#list articles as article>
             <li>
@@ -43,61 +99,43 @@
             </li>
         </#list>
     </ul>
+    <!-- article list end -->
+
     <div class="loading-more">加载更多…</div>
+
+    <!-- load more js -->
+    <script type="text/javascript">
+        var _currentCount = 0;
+        var _defaultCount = 8;
+
+        window.addEventListener("load",function(){
+            var _loadMore = document.querySelector(".loading-more");
+            _loadMore.addEventListener("click",function(){
+                loadData(_defaultCount);
+            },false);
+
+            function loadData(loadCount){
+                var datas = document.querySelectorAll(".list01 li");
+
+                for (var i = _currentCount; i < datas.length ; i++) {
+                    if(i < (_currentCount + loadCount)){
+                        datas[i].style.display="block";
+                    }
+                }
+                _currentCount+=loadCount;
+
+                if(datas.length < _currentCount){
+                    _loadMore.style.display="none";
+                    return;
+                }
+            }
+
+            loadData(_defaultCount);
+        },false);
+
+    </script>
 </div>
 
 
-<script type="text/javascript">
-    window.addEventListener('load', function(){
-        var oSlider = document.getElementById("slider");
-        var oUl = oSlider.getElementsByTagName("ul")[0];
-        var aLi = oUl.getElementsByTagName("li");
-        var aBtn = oSlider.getElementsByTagName("ol")[0].getElementsByTagName("li");
-        var w = -aLi[0].offsetWidth;
-        var current = 0;
-        var timer = null;
-
-        //切换按钮
-        for(var i = 0; i < aBtn.length; i++){
-            aBtn[i].index = i;
-            aBtn[i].onmousemove = function(){
-                animate(this.index);
-            }
-        }
-
-        //鼠标移入图片静止
-        oSlider.onmouseon = function(){
-            clearInterval(timer);
-        }
-
-        //鼠标移出图片滚动
-        oSlider.onmousemover = function(){
-            autoPlay();
-        }
-
-        //自动循环播放
-        function autoPlay(time){
-            time = time || 3500;
-            if(timer) clearInterval(timer)
-            timer = setInterval(function(){
-                current += 1;
-                if(current >= aLi.length) current = 0;
-                animate(current);
-            },time)
-        }
-
-        //图片按钮同时滚动
-        function animate(index){
-            //图片滚动
-            oUl.style.left = w * index + "px";
-            //按钮滚动
-            for(var i = 0; i < aBtn.length; i++) aBtn[i].className = "";
-            aBtn[index].className = "current";
-        }
-
-        autoPlay();
-    })
-
-</script>
 
 <#include "common/foot.html"/>

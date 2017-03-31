@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
 public class SignComponent {
     protected Logger logger = LogManager.getLogger(SignComponent.class);
 
-    private static final String CASH_KEY="sign_cookie_";
+    private static final String CASH_KEY = "sign_cookie_";
 
     @Autowired
     private BaseInfoProperties baseInfoProperties;
@@ -97,11 +97,14 @@ public class SignComponent {
 
     public String auth(String userName, String password) throws Exception {
         LoginRet loginRet = login(userName, password);
-
+        if (loginRet.getResult() != 1) {
+            logger.error("{}登录失败", userName);
+            throw new Exception(loginRet.getMessage());
+        }
         StringBuffer stringBuffer = new StringBuffer(baseInfoProperties.getAuthUrl())
                 .append("?appid=").append(baseInfoProperties.getAppId()).append("&sid=")
                 .append(loginRet.getSid()).append("&ticket=").append(loginRet.getTicket()).append("&sign=")
-                .append(PasswordHelp.getMd5Str("appid=" + baseInfoProperties.getAppId() + "&sid=" + loginRet.getSid()+ "&ticket=" + loginRet.getTicket() + loginRet.getKey()));
+                .append(PasswordHelp.getMd5Str("appid=" + baseInfoProperties.getAppId() + "&sid=" + loginRet.getSid() + "&ticket=" + loginRet.getTicket() + loginRet.getKey()));
         Request build = new Request.Builder()
                 .url(stringBuffer.toString())
                 .build();
@@ -118,23 +121,23 @@ public class SignComponent {
     }
 
     public void signJob(String userName, String password) throws Exception {
-        String cookie =  (String)cacheTemplate.get(CASH_KEY + userName);
-        if(cookie == null || "".equals(cookie)){
+        String cookie = (String) cacheTemplate.get(CASH_KEY + userName);
+        if (cookie == null || "".equals(cookie)) {
             cookie = auth(userName, password);
-            cacheTemplate.put(CASH_KEY + userName,cookie);
+            cacheTemplate.put(CASH_KEY + userName, cookie);
         }
 
-        Result result = sign(userName,cookie);
-        logger.info("{}签到结果:{}",userName,result.getMessage());
-        if(!result.getCode().equals("0000")){
+        Result result = sign(userName, cookie);
+        logger.info("{}签到结果:{}", userName, result.getMessage());
+        if (!result.getCode().equals("0000")) {
             cookie = auth(userName, password);
-            cacheTemplate.put(CASH_KEY + userName,cookie);
-            result = sign(userName,cookie);
-            logger.info("{}重新签到结果:{}",userName,result.getMessage());
+            cacheTemplate.put(CASH_KEY + userName, cookie);
+            result = sign(userName, cookie);
+            logger.info("{}重新签到结果:{}", userName, result.getMessage());
         }
     }
 
-    public Result sign(String userName, String cookie)throws Exception {
+    public Result sign(String userName, String cookie) throws Exception {
         StringBuffer stringBuffer = new StringBuffer(baseInfoProperties.getSignUrl())
                 .append("?user=").append(userName);
         Request build = new Request.Builder()
@@ -161,7 +164,7 @@ public class SignComponent {
 
         byte[] buffer = new byte[512];
         int count = 0;
-        while(-1 != (count = input.read(buffer))) {
+        while (-1 != (count = input.read(buffer))) {
             baos.write(buffer, 0, count);
             baos.flush();
         }

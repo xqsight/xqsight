@@ -1,0 +1,111 @@
+<#include "common/head.html"/>
+<link rel="stylesheet" type="text/css" href="${domain}/static/css/joinus.css">
+
+<title>招聘精英</title>
+
+<#include "common/navbar.html"/>
+
+<div class="page-joinus">
+
+    <div class="banner">
+        <img src="http://img.t.sinajs.cn/t5/skin/public/profile_cover/002.jpg" alt="">
+    </div>
+
+    <ul class="joinus-title">
+        <li><a href="javascript:void(0);" id="position_all" class="current">全部职位</a></li>
+        <#list position?keys as key>
+            <li><a href="javascript:void(0);" id="position_${key}">${position[key]}</a></li>
+        </#list>
+    </ul>
+
+    <ul class="joinus-list clearfix">
+        <#list jobs as job>
+            <li class="position_${job.positionId}">
+                <div class="joinus-list01">
+                    <h2>${job.jobName}</h2>
+                    <p><span>${job.jobDepartment}</span>
+                        <span>${job.jobType}</span>
+                        <i class="joinus-list01-clock"></i>
+                        <span>${job.createTime}</span>
+                    </p>
+                </div>
+                <div class="joinus-list02">
+                    <a href="javascript:void(0);" id="job_${job.jobId}" class="btn">查看详情</a>
+                </div>
+            </li>
+        </#list>
+    </ul>
+
+    <div class="mask">
+        <#list jobs as job>
+            <div class="dialog" id="detail_job_${job.jobId}">
+                <!--标题部分-->
+                <div class="dialog-title">
+                    <h2>${job.jobName}</h2>
+                    <p>
+                        <span>${job.jobDepartment}</span><span>${job.jobType}</span>
+                        <span><i class="i-clock02"></i>${job.createTime}</span>
+                    </p>
+                    <div class="dialog-title-close">
+                        <span class="i-close"></span>
+                    </div>
+                </div>
+                <!--标题部分结束-->
+
+                <!--岗位要求-->
+                <div class="dialog-ct">
+                    <h3>岗位职责</h3>
+                    <ol>
+                       ${job.jobNeed}
+                    </ol>
+                    <h3>任职要求</h3>
+                    <ol>
+                        ${job.positionDesp}
+                    </ol>
+                    <p class="dialog-tips">备注：邮件请注明 “姓名+职位”  你也可以直接发送简历至${job.jobEmail}</p>
+                </div>
+            </div>
+        </#list>
+
+    </div>
+</div>
+
+<!-- join us js -->
+<script>
+    window.addEventListener('load', function(){
+        document.addEventListener("click",function(e){
+            var targetClass = e.target.className;
+            var targetIdAttr = e.target.attributes["id"];
+            if(targetClass.indexOf("i-close") >= 0){
+                document.querySelector(".mask").style.display = "none";
+                e.target.parentElement.parentElement.parentElement.style.display="none"
+            }else if(targetIdAttr != undefined && targetIdAttr.value.startsWith("job")){
+                document.querySelector(".mask").style.display = "block";
+                document.getElementById("detail_" + targetIdAttr.value).style.display = "block";
+            }else if(targetIdAttr != undefined && targetIdAttr.value.startsWith("position")){
+                var li = document.querySelectorAll(".joinus-list li");
+                for(var i = 0;i < li.length;i++){
+                    if(targetIdAttr.value != undefined && targetIdAttr.value == "position_all"){
+                        li[i].style.display="flex";
+                    }else if(li[i].className.indexOf(targetIdAttr.value)  >= 0 ){
+                        li[i].style.display="flex";
+                    }else{
+                        li[i].style.display="none";
+                    }
+                }
+
+                var title = document.querySelectorAll(".joinus-title li");
+                for(var t = 0;t < title.length ; t++){
+                    var pos = title[t].children[0];
+                    if(targetIdAttr.value != undefined && pos != undefined && pos.attributes["id"].value == targetIdAttr.value){
+                        pos.className="current";
+                    }else{
+                        pos.className="";
+                    }
+                }
+            }
+        },false);
+    })
+</script>
+
+<#include "common/foot.html"/>
