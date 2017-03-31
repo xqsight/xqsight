@@ -127,6 +127,8 @@
         <weixin.version>2.4.0</weixin.version>
         <lombok.version>1.16.16</lombok.version>
 
+        <rxjava.version>2.0.8</rxjava.version>
+
         <spring.boot.mybatis.version>1.2.0</spring.boot.mybatis.version>
 
         <springfox.swagger2.version>2.6.1</springfox.swagger2.version>
@@ -330,6 +332,12 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>io.reactivex.rxjava2</groupId>
+                <artifactId>rxjava</artifactId>
+                <version>${rxjava.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>

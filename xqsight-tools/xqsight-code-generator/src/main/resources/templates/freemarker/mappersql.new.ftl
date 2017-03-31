@@ -10,10 +10,11 @@
     </resultMap>
 
     <sql id="Base_Column_List_Without_Id">
-    <#list table.baseColumns as column>${column.columnName}<#if column_has_next>,</#if></#list>
+        <#list table.baseColumns as column>${column.columnName}<#if column_has_next>,</#if></#list>
     </sql>
     <sql id="Base_Column_List">
-    <#list table.primaryKeys as column> ${column.columnName},</#list><#list table.baseColumns as column>${column.columnName}<#if column_has_next>,</#if></#list>
+        <#list table.primaryKeys as column> ${column.columnName},</#list>
+        <include refid="Base_Column_List_Without_Id"/>
     </sql>
 
     <sql id="Insert_Columns">
@@ -28,7 +29,7 @@
     </sql>
     <sql id="Batch_Insert_Values">
     <#list table.baseColumns as column>
-    ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}},
+        ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}},
     </#list>
     </sql>
 
@@ -39,7 +40,7 @@
     </sql>
     <sql id="BatchUpdate_Set_From_Bean">
     <#list table.baseColumns as column>
-    ${column.columnName}=${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}},
+        ${column.columnName}=${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}},
     </#list>
     </sql>
 
@@ -89,9 +90,10 @@
     </update>
     <update id="batchUpdate" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
-            update ${table.tableName}
-            <include refid="BatchUpdate_Set_From_Bean"/>
-            where <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
+        update ${table.tableName}
+        <include refid="BatchUpdate_Set_From_Bean"/>
+        where
+            <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
         </foreach>
     </update>
     <!-- end update -->
@@ -99,11 +101,13 @@
     <!-- select -->
     <select id="selectById" resultMap="BaseResultMap" parameterType="<#list table.primaryKeys as key>${key.fullJavaType}</#list>">
         select <include refid="Base_Column_List"/> from ${table.tableName}
-        where <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
+        where
+            <#list table.primaryKeys as column> ${column.columnName} = ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}} <#if column_has_next>and</#if> </#list>
     </select>
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
         select <include refid="Base_Column_List"/> from ${table.tableName}
         WHERE 1=1
+
         ${r'${whereSqlString}'}
         <trim prefix=" and " suffix="" suffixOverrides="" >
             <if test="customSql != null">
