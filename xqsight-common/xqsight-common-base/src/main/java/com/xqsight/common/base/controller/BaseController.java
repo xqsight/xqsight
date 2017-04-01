@@ -19,33 +19,34 @@ public class BaseController<Service extends ICrudService<Record, PK>, Record ext
     @Autowired
     protected Service service;
 
-    @RequestMapping(value = "/put", method = RequestMethod.PUT)
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
     public Object save(Record record) {
         int iRet = service.add(record);
         return new BaseResult(iRet);
     }
 
-    @RequestMapping(value = "/put", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.POST)
     public Object update(Record record) {
         int iRet = service.editById(record);
         return new BaseResult(iRet);
     }
 
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public Object getAll() {
+        List<Record> records = service.getAll();
+        return new BaseResult(records);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Object deleteById(@PathVariable PK id) {
         int iRet = service.removeById(id);
         return new BaseResult(iRet);
     }
 
-    @RequestMapping(value = "/get/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Object getById(@PathVariable PK id) {
         Record record = service.getById(id);
         return new BaseResult(record);
     }
 
-    @RequestMapping(value = "/getall", method = RequestMethod.GET)
-    public Object getAll() {
-        List<Record> records = service.getAll();
-        return new BaseResult(records);
-    }
 }
