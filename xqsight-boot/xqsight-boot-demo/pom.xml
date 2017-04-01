@@ -20,12 +20,6 @@
         </dependency>
 
         <dependency>
-            <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-data-ehcache</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>

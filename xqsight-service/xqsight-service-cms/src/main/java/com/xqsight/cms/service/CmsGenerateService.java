@@ -17,6 +17,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,5 +62,19 @@ public class CmsGenerateService {
 
         String articleUrl = generateTemplate.generate(modelMap, "template/index.html", "index.html");
         //保存到站点
+    }
+
+    @PostConstruct
+    public void generateStaticHtml(){
+        try {
+            logger.debug("start generate service & event and aboutus html");
+            generateTemplate.generate(null,"template/service.html", "service.html");
+            generateTemplate.generate(null,"template/event.html", "event.html");
+            generateTemplate.generate(null,"template/aboutus.html", "aboutus.html");
+            logger.debug("generate service & event and aboutus html end");
+        } catch (TemplateEngineException e) {
+            logger.error("generate service & event and aboutus html error");
+            e.printStackTrace();
+        }
     }
 }

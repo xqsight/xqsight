@@ -17,7 +17,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,11 +51,12 @@ public class CmsJobService extends DefaultEntityService<CmsJob, Long> {
         Map position = new HashMap();
 
         List<Map> jobMaps = jobs.parallelStream().map(map -> {
-            position.put(MapUtils.getString(map, "position_id"),MapUtils.getString(map, "position_name"));
+            position.put(MapUtils.getString(map, "position_id"), MapUtils.getString(map, "position_name"));
+
+            String createTime = MapUtils.getString(map, "create_time");
+            map.put("create_time", StringUtils.substring(createTime, 0, 10));
             return MapKeyHandle.keyToJavaProperty(map);
         }).collect(Collectors.toList());
-
-
 
         modelMap.put("position", position);
         modelMap.put("jobs", jobMaps);

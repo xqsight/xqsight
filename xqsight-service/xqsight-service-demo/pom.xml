@@ -15,7 +15,12 @@
         <dependency>
             <groupId>com.xqsight</groupId>
             <artifactId>xqsight-mapper-demo</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xqsight</groupId>
+            <artifactId>xqsight-shiro-sso</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 </project>

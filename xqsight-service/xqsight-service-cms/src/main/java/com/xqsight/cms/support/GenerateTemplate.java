@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -29,6 +30,9 @@ public class GenerateTemplate {
     private String SEPARATOR = "/";
 
     public String generate(Map model, String tplFileName, String fileName) throws TemplateEngineException {
+        if (model == null){
+            model = new HashMap();
+        }
         logger.debug("model:{},tplFileName:{},fileName:{}",model,tplFileName,fileName);
         java.net.URI uri = URI.create(templateConfig.getDisplayPath());
         model.put("domain",uri.getScheme() + "://" + uri.getHost());
