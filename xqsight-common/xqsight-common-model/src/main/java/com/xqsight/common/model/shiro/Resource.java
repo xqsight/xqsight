@@ -4,6 +4,7 @@ import com.xqsight.common.model.BaseModel;
 
 import java.io.Serializable;
 
+@Deprecated
 public class Resource extends BaseModel {
     private Long         id;                            //编号
     private String       name;                          //资源名称

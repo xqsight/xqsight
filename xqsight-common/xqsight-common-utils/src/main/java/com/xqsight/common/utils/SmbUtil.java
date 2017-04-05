@@ -1,3 +1,4 @@
+/*
 package com.xqsight.common.utils;
 
 import java.io.*;
@@ -9,23 +10,27 @@ import jcifs.smb.SmbFile;
 import jcifs.smb.SmbFileInputStream;
 import jcifs.smb.SmbFileOutputStream;
 
+*/
 /**
  * SMB远程文件存取实用类
  * @author xqsight-jerry
  * @version $Id: SmbUtil.java, v 0.1 2013-9-6 下午1:47:51 xqsight-jerry Exp $
- */
+ *//*
+
 public class SmbUtil {
 
 	private static Log logger = LogFactory.getLog(SmbUtil.class);
 
-	/**
+	*/
+/**
 	 * Description: 从共享目录拷贝文件到本地
 	 * 
 	 * @param remoteUrl
 	 *            共享目录上的文件路径
 	 * @param localDir
 	 *            本地目录
-	 */
+	 *//*
+
 	public static String smbGet(String remoteUrl, String localDir) {
 		InputStream in = null;
 		OutputStream out = null;
@@ -58,14 +63,16 @@ public class SmbUtil {
 		return localDir;
 	}
 
-	/**
+	*/
+/**
 	 * Description: 从本地上传文件到共享目录
 	 * 
 	 * @param remoteUrl
 	 *            共享文件目录
 	 * @param localFilePath
 	 *            本地文件绝对路径
-	 */
+	 *//*
+
 	public static void smbPut(String remoteUrl, String localFilePath) {
 		InputStream in = null;
 		OutputStream out = null;
@@ -100,7 +107,8 @@ public class SmbUtil {
 		}
 	}
 	
-	/**
+	*/
+/**
 	 *  Description: 从本地上传文件内容到共享目录
 	 *  
 	 * @param remoteUrl
@@ -111,7 +119,8 @@ public class SmbUtil {
 	 * 				文件内容
      * @param charset
      * 				目标文件的字符编码
-	 */
+	 *//*
+
 	public static void smbPut(String remoteUrl, String fileName, String fileContent,String charset) {
 		OutputStream out = null;
 		InputStream is = null;
@@ -162,3 +171,4 @@ public class SmbUtil {
 		smbPut(remoteUrl, fileName, fileContent,"GBK");
 	}
 }
+*/

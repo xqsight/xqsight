@@ -14,7 +14,7 @@
     <modules>
         <module>xqsight-controller-system</module>
         <module>xqsight-controller-cms</module>
-        <module>xqsight.controller-demo</module>
+        <module>xqsight-controller-sys</module>
     </modules>
 
 </project>

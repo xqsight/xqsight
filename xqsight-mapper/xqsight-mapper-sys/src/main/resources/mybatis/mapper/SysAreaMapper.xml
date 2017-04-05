@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xqsight.system.mapper.SysAreaMapper">
+
+    <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysArea">
+        <result column="area_id" property="areaId" jdbcType="NUMERIC"/>
+        <result column="parent_id" property="parentId" jdbcType="NUMERIC"/>
+        <result column="parent_ids" property="parentIds" jdbcType="VARCHAR"/>
+        <result column="area_name" property="areaName" jdbcType="VARCHAR"/>
+        <result column="area_code" property="areaCode" jdbcType="VARCHAR"/>
+        <result column="area_type" property="areaType" jdbcType="NUMERIC"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="NUMERIC"/>
+        <result column="active" property="active" jdbcType="NUMERIC"/>
+        <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List_Without_Id">
+        parent_id,parent_ids,area_name,area_code,area_type,icon,sort,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
+    <sql id="Base_Column_List">
+         area_id,
+        <include refid="Base_Column_List_Without_Id"/>
+    </sql>
+
+    <sql id="Insert_Columns">
+        <if test="parentId!=null"> parent_id,</if>
+        <if test="parentIds!=null"> parent_ids,</if>
+        <if test="areaName!=null"> area_name,</if>
+        <if test="areaCode!=null"> area_code,</if>
+        <if test="areaType!=null"> area_type,</if>
+        <if test="icon!=null"> icon,</if>
+        <if test="sort!=null"> sort,</if>
+        <if test="active!=null"> active,</if>
+        <if test="createUserId!=null"> create_user_id,</if>
+        <if test="createTime!=null"> create_time,</if>
+        <if test="updateUserId!=null"> update_user_id,</if>
+        <if test="updateTime!=null"> update_time,</if>
+        <if test="remark!=null"> remark,</if>
+    </sql>
+    <sql id="Insert_Values">
+        <if test="parentId!=null">#{parentId,jdbcType=NUMERIC},</if>
+        <if test="parentIds!=null">#{parentIds,jdbcType=VARCHAR},</if>
+        <if test="areaName!=null">#{areaName,jdbcType=VARCHAR},</if>
+        <if test="areaCode!=null">#{areaCode,jdbcType=VARCHAR},</if>
+        <if test="areaType!=null">#{areaType,jdbcType=NUMERIC},</if>
+        <if test="icon!=null">#{icon,jdbcType=VARCHAR},</if>
+        <if test="sort!=null">#{sort,jdbcType=NUMERIC},</if>
+        <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null">#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="Batch_Insert_Values">
+        #{parentId,jdbcType=NUMERIC},
+        #{parentIds,jdbcType=VARCHAR},
+        #{areaName,jdbcType=VARCHAR},
+        #{areaCode,jdbcType=VARCHAR},
+        #{areaType,jdbcType=NUMERIC},
+        #{icon,jdbcType=VARCHAR},
+        #{sort,jdbcType=NUMERIC},
+        #{active,jdbcType=NUMERIC},
+        #{createUserId,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{updateUserId,jdbcType=VARCHAR},
+        #{updateTime,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR},
+    </sql>
+
+    <sql id="Update_Set_From_Bean">
+        <if test="parentId!=null"> parent_id=#{parentId,jdbcType=NUMERIC},</if>
+        <if test="parentIds!=null"> parent_ids=#{parentIds,jdbcType=VARCHAR},</if>
+        <if test="areaName!=null"> area_name=#{areaName,jdbcType=VARCHAR},</if>
+        <if test="areaCode!=null"> area_code=#{areaCode,jdbcType=VARCHAR},</if>
+        <if test="areaType!=null"> area_type=#{areaType,jdbcType=NUMERIC},</if>
+        <if test="icon!=null"> icon=#{icon,jdbcType=VARCHAR},</if>
+        <if test="sort!=null"> sort=#{sort,jdbcType=NUMERIC},</if>
+        <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null"> create_time=#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null"> update_user_id=#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null"> update_time=#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BatchUpdate_Set_From_Bean">
+        parent_id=#{parentId,jdbcType=NUMERIC},
+        parent_ids=#{parentIds,jdbcType=VARCHAR},
+        area_name=#{areaName,jdbcType=VARCHAR},
+        area_code=#{areaCode,jdbcType=VARCHAR},
+        area_type=#{areaType,jdbcType=NUMERIC},
+        icon=#{icon,jdbcType=VARCHAR},
+        sort=#{sort,jdbcType=NUMERIC},
+        active=#{active,jdbcType=NUMERIC},
+        create_user_id=#{createUserId,jdbcType=VARCHAR},
+        create_time=#{createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{updateUserId,jdbcType=VARCHAR},
+        update_time=#{updateTime,jdbcType=TIMESTAMP},
+        remark=#{remark,jdbcType=VARCHAR},
+    </sql>
+
+    <!--insert-->
+    <insert id="insert" parameterType="com.xqsight.system.model.SysArea" useGeneratedKeys="true" keyProperty="areaId">
+        insert into sys_area
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Columns"/>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Values"/>
+        </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into sys_area
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Base_Column_List_Without_Id"/>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <include refid="Batch_Insert_Values"/>
+            </trim>
+        </foreach>
+    </insert>
+    <!-- end insert -->
+
+    <!-- delete -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from sys_area
+        where  area_id = #{areaId,jdbcType=NUMERIC}  
+    </delete>
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
+        delete from sys_area
+        where 1=1
+        ${whereSqlString}
+    </delete>
+    <!-- end delete -->
+
+    <!-- update -->
+    <update id="updateById" parameterType="com.xqsight.system.model.SysArea">
+        update sys_area
+        <set>
+            <include refid="Update_Set_From_Bean"/>
+        </set>
+        where  area_id = #{areaId,jdbcType=NUMERIC}  
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update sys_area
+        <include refid="BatchUpdate_Set_From_Bean"/>
+        where
+             area_id = #{areaId,jdbcType=NUMERIC}  
+        </foreach>
+    </update>
+    <!-- end update -->
+
+    <!-- select -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from sys_area
+        where
+             area_id = #{areaId,jdbcType=NUMERIC}  
+    </select>
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
+        select <include refid="Base_Column_List"/> from sys_area
+        WHERE 1=1
+
+        ${whereSqlString}
+        <trim prefix=" and " suffix="" suffixOverrides="" >
+            <if test="customSql != null">
+            ${customSqlString}
+            </if>
+        </trim>
+        <if test="orderBy != null">
+        ${orderBySqlString}
+        </if>
+    </select>
+    <!-- end select -->
+</mapper>

@@ -1,6 +1,6 @@
 package com.xqsight.common.support;
 
-import com.xqsight.common.model.TreeBaseModel;
+import com.xqsight.common.model.AbstractTreeModel;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  *
  * @since jdk1.8
  */
-public class TreeSupport<T extends TreeBaseModel<T>> {
+public class TreeSupport<T extends AbstractTreeModel<T>> {
 
     /**
      * 获取list的跟节点ID

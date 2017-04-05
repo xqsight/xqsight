@@ -1003,6 +1003,12 @@
                 <groupId>jcifs</groupId>
                 <artifactId>jcifs</artifactId>
                 <version>${jcifs.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>servlet-api</artifactId>
+                        <groupId>javax.servlet</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>net.lingala.zip4j</groupId>

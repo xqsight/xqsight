@@ -1,7 +1,8 @@
 <#include "copyright.ftl"/>
 package ${basePackage}.${moduleName}.model;
 
-import com.xqsight.common.model.Model;
+import com.xqsight.common.model.BaseModel;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -16,7 +17,8 @@ import java.math.BigDecimal;
  * @since ${.now}
  * @author wangganggang
  */
-public class ${table.className} extends Model{
+@Data
+public class ${table.className} extends BaseModel{
 
 <#list table.primaryKeys as key>
 	/** 主键 */
@@ -28,27 +30,6 @@ public class ${table.className} extends Model{
     /** ${column.columnName} - ${column.remarks} */
     private ${column.javaType} ${column.javaProperty};
 </#if>
-</#list>
-
-<#list table.primaryKeys as key>
-    <#if notNeed?seq_contains(column.javaProperty)><#else>
-    public ${key.javaType} ${key.getterMethodName}(){
-        return this.${key.javaProperty};
-    }
-    public void ${key.setterMethodName}(${key.javaType} ${key.javaProperty}){
-        this.${key.javaProperty} = ${key.javaProperty};
-    }
-    </#if>
-</#list>
-<#list table.baseColumns as column>
-    <#if notNeed?seq_contains(column.javaProperty)><#else>
-	public ${column.javaType} ${column.getterMethodName}(){
-        return this.${column.javaProperty};
-    }
-    public void ${column.setterMethodName}(${column.javaType} ${column.javaProperty}){
-        this.${column.javaProperty} = ${column.javaProperty};
-    }
-    </#if>
 </#list>
 
     @Override

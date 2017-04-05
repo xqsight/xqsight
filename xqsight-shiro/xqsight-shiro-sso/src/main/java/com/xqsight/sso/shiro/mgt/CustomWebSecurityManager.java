@@ -33,7 +33,7 @@ public class CustomWebSecurityManager extends DefaultWebSecurityManager {
 
         Subject loggedIn = createSubject(token, info, subject);
         CustomAuthenticationInfo cInfo = (CustomAuthenticationInfo) info;
-        loggedIn.getSession().setAttribute(WebConstants.CURRENT_USER, cInfo.getUserBaseModel());
+        loggedIn.getSession().setAttribute(WebConstants.CURRENT_USER, cInfo.getBaseUserModel());
 
         onSuccessfulLogin(token, info, loggedIn);
 

@@ -12,6 +12,7 @@ import java.util.Set;
  * 错误代码对照表
  *
  */
+@Deprecated
 public class ErrorMessageConstants extends ListResourceBundle {
 
     /* ERR_MSG_ */

@@ -5,6 +5,7 @@ import com.xqsight.common.model.BaseModel;
 import java.io.Serializable;
 import java.util.List;
 
+@Deprecated
 public class Role extends BaseModel {
     private Long id;                        //编号
     private String role;                      //角色标识 程序中判断使用,如"admin"

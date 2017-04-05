@@ -11,5 +11,4 @@ public class CacheKeyConstants {
 
     public final static String SYS_DICT_MAP                         = "SYS_DICT_MAP";
 
-
 }

@@ -4,7 +4,7 @@
  */
 package com.xqsight.system.model;
 
-import com.xqsight.common.model.UserBaseModel;
+import com.xqsight.common.model.shiro.BaseUserModel;
 
 
 /**
@@ -14,7 +14,7 @@ import com.xqsight.common.model.UserBaseModel;
  * @since 2017-02-22 04:29:47
  * @author wangganggang
  */
-public class SysLogin extends UserBaseModel{
+public class SysLogin extends BaseUserModel {
 
     /** status - 用户状态 0:正常 1:查封 2:待审核 */
     private Byte status;

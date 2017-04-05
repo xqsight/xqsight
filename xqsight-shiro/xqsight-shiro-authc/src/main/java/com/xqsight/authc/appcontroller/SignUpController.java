@@ -4,6 +4,7 @@ import com.xqsight.authc.enums.LoginTypeEnum;
 import com.xqsight.authc.support.LoginSupport;
 import com.xqsight.common.model.UserBaseModel;
 import com.xqsight.common.model.constants.Constants;
+import com.xqsight.common.model.shiro.BaseUserModel;
 import com.xqsight.common.web.WebUtils;
 import com.xqsight.sso.authc.SSOUsernamePasswordToken;
 import com.xqsight.sso.authc.service.UserAuthcService;
@@ -31,7 +32,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/authc")
-public class SignUpController{
+public class SignUpController {
 
     private final static Logger logger = LogManager.getLogger(SignUpController.class);
 
@@ -89,7 +90,7 @@ public class SignUpController{
         String userName = request.getParameter(WebConstants.USERNAME);
         String departmentCode = request.getParameter(WebConstants.DEPARTMENTCODE);
         LoginTypeEnum loginType = LoginSupport.judgeLoginType(loginId);
-        UserBaseModel user = null;
+        BaseUserModel user = null;
         switch (loginType) {
             case CELLPHONE:
             case EMAIL:
@@ -103,7 +104,7 @@ public class SignUpController{
         user = sysUserAuthcService.findByLoginId(loginId);
 
         if (user == null) {
-            UserBaseModel model = new UserBaseModel();
+            BaseUserModel model = new BaseUserModel();
             model.setLoginId(loginId);
             model.setUserName(userName);
             model.setDepartmentCode(departmentCode);

@@ -1,7 +1,7 @@
 package com.xqsight.sso.shiro.filter;
 
 import com.alibaba.fastjson.JSON;
-import com.xqsight.common.model.UserBaseModel;
+import com.xqsight.common.model.shiro.BaseUserModel;
 import com.xqsight.sso.shiro.constants.WebConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,8 +39,8 @@ public class AuthorizationFilter extends org.apache.shiro.web.filter.authz.Autho
 		if(subject.isAuthenticated()){
 			String reqUrl = ((HttpServletRequest) request).getRequestURL().toString();
 			logger.debug("request url:{}",reqUrl);
-	        UserBaseModel userBaseModel = (UserBaseModel)subject.getSession().getAttribute(WebConstants.CURRENT_USER);
-	        logger.debug("current user is:{}",JSON.toJSONString(userBaseModel));
+			BaseUserModel baseUserModel = (BaseUserModel)subject.getSession().getAttribute(WebConstants.CURRENT_USER);
+	        logger.debug("current user is:{}",JSON.toJSONString(baseUserModel));
 	        return true;
 		}
         return false;  

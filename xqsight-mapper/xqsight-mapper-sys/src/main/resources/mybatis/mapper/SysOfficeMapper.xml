@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xqsight.system.mapper.SysOfficeMapper">
+
+    <resultMap id="BaseResultMap"  type="com.xqsight.system.model.SysOffice">
+        <result column="office_id" property="officeId" jdbcType="NUMERIC"/>
+        <result column="area_id" property="areaId" jdbcType="NUMERIC"/>
+        <result column="parent_id" property="parentId" jdbcType="NUMERIC"/>
+        <result column="parent_ids" property="parentIds" jdbcType="VARCHAR"/>
+        <result column="office_name" property="officeName" jdbcType="VARCHAR"/>
+        <result column="office_code" property="officeCode" jdbcType="VARCHAR"/>
+        <result column="office_type" property="officeType" jdbcType="NUMERIC"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="zip_code" property="zipCode" jdbcType="VARCHAR"/>
+        <result column="master" property="master" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="fax" property="fax" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="NUMERIC"/>
+        <result column="icon" property="icon" jdbcType="VARCHAR"/>
+        <result column="active" property="active" jdbcType="NUMERIC"/>
+        <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List_Without_Id">
+        area_id,parent_id,parent_ids,office_name,office_code,office_type,address,zip_code,master,phone,fax,email,sort,icon,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
+    <sql id="Base_Column_List">
+         office_id,
+        <include refid="Base_Column_List_Without_Id"/>
+    </sql>
+
+    <sql id="Insert_Columns">
+        <if test="areaId!=null"> area_id,</if>
+        <if test="parentId!=null"> parent_id,</if>
+        <if test="parentIds!=null"> parent_ids,</if>
+        <if test="officeName!=null"> office_name,</if>
+        <if test="officeCode!=null"> office_code,</if>
+        <if test="officeType!=null"> office_type,</if>
+        <if test="address!=null"> address,</if>
+        <if test="zipCode!=null"> zip_code,</if>
+        <if test="master!=null"> master,</if>
+        <if test="phone!=null"> phone,</if>
+        <if test="fax!=null"> fax,</if>
+        <if test="email!=null"> email,</if>
+        <if test="sort!=null"> sort,</if>
+        <if test="icon!=null"> icon,</if>
+        <if test="active!=null"> active,</if>
+        <if test="createUserId!=null"> create_user_id,</if>
+        <if test="createTime!=null"> create_time,</if>
+        <if test="updateUserId!=null"> update_user_id,</if>
+        <if test="updateTime!=null"> update_time,</if>
+        <if test="remark!=null"> remark,</if>
+    </sql>
+    <sql id="Insert_Values">
+        <if test="areaId!=null">#{areaId,jdbcType=NUMERIC},</if>
+        <if test="parentId!=null">#{parentId,jdbcType=NUMERIC},</if>
+        <if test="parentIds!=null">#{parentIds,jdbcType=VARCHAR},</if>
+        <if test="officeName!=null">#{officeName,jdbcType=VARCHAR},</if>
+        <if test="officeCode!=null">#{officeCode,jdbcType=VARCHAR},</if>
+        <if test="officeType!=null">#{officeType,jdbcType=NUMERIC},</if>
+        <if test="address!=null">#{address,jdbcType=VARCHAR},</if>
+        <if test="zipCode!=null">#{zipCode,jdbcType=VARCHAR},</if>
+        <if test="master!=null">#{master,jdbcType=VARCHAR},</if>
+        <if test="phone!=null">#{phone,jdbcType=VARCHAR},</if>
+        <if test="fax!=null">#{fax,jdbcType=VARCHAR},</if>
+        <if test="email!=null">#{email,jdbcType=VARCHAR},</if>
+        <if test="sort!=null">#{sort,jdbcType=NUMERIC},</if>
+        <if test="icon!=null">#{icon,jdbcType=VARCHAR},</if>
+        <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null">#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="Batch_Insert_Values">
+        #{areaId,jdbcType=NUMERIC},
+        #{parentId,jdbcType=NUMERIC},
+        #{parentIds,jdbcType=VARCHAR},
+        #{officeName,jdbcType=VARCHAR},
+        #{officeCode,jdbcType=VARCHAR},
+        #{officeType,jdbcType=NUMERIC},
+        #{address,jdbcType=VARCHAR},
+        #{zipCode,jdbcType=VARCHAR},
+        #{master,jdbcType=VARCHAR},
+        #{phone,jdbcType=VARCHAR},
+        #{fax,jdbcType=VARCHAR},
+        #{email,jdbcType=VARCHAR},
+        #{sort,jdbcType=NUMERIC},
+        #{icon,jdbcType=VARCHAR},
+        #{active,jdbcType=NUMERIC},
+        #{createUserId,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{updateUserId,jdbcType=VARCHAR},
+        #{updateTime,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR},
+    </sql>
+
+    <sql id="Update_Set_From_Bean">
+        <if test="areaId!=null"> area_id=#{areaId,jdbcType=NUMERIC},</if>
+        <if test="parentId!=null"> parent_id=#{parentId,jdbcType=NUMERIC},</if>
+        <if test="parentIds!=null"> parent_ids=#{parentIds,jdbcType=VARCHAR},</if>
+        <if test="officeName!=null"> office_name=#{officeName,jdbcType=VARCHAR},</if>
+        <if test="officeCode!=null"> office_code=#{officeCode,jdbcType=VARCHAR},</if>
+        <if test="officeType!=null"> office_type=#{officeType,jdbcType=NUMERIC},</if>
+        <if test="address!=null"> address=#{address,jdbcType=VARCHAR},</if>
+        <if test="zipCode!=null"> zip_code=#{zipCode,jdbcType=VARCHAR},</if>
+        <if test="master!=null"> master=#{master,jdbcType=VARCHAR},</if>
+        <if test="phone!=null"> phone=#{phone,jdbcType=VARCHAR},</if>
+        <if test="fax!=null"> fax=#{fax,jdbcType=VARCHAR},</if>
+        <if test="email!=null"> email=#{email,jdbcType=VARCHAR},</if>
+        <if test="sort!=null"> sort=#{sort,jdbcType=NUMERIC},</if>
+        <if test="icon!=null"> icon=#{icon,jdbcType=VARCHAR},</if>
+        <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null"> create_time=#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null"> update_user_id=#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null"> update_time=#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BatchUpdate_Set_From_Bean">
+        area_id=#{areaId,jdbcType=NUMERIC},
+        parent_id=#{parentId,jdbcType=NUMERIC},
+        parent_ids=#{parentIds,jdbcType=VARCHAR},
+        office_name=#{officeName,jdbcType=VARCHAR},
+        office_code=#{officeCode,jdbcType=VARCHAR},
+        office_type=#{officeType,jdbcType=NUMERIC},
+        address=#{address,jdbcType=VARCHAR},
+        zip_code=#{zipCode,jdbcType=VARCHAR},
+        master=#{master,jdbcType=VARCHAR},
+        phone=#{phone,jdbcType=VARCHAR},
+        fax=#{fax,jdbcType=VARCHAR},
+        email=#{email,jdbcType=VARCHAR},
+        sort=#{sort,jdbcType=NUMERIC},
+        icon=#{icon,jdbcType=VARCHAR},
+        active=#{active,jdbcType=NUMERIC},
+        create_user_id=#{createUserId,jdbcType=VARCHAR},
+        create_time=#{createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{updateUserId,jdbcType=VARCHAR},
+        update_time=#{updateTime,jdbcType=TIMESTAMP},
+        remark=#{remark,jdbcType=VARCHAR},
+    </sql>
+
+    <!--insert-->
+    <insert id="insert" parameterType="com.xqsight.system.model.SysOffice" useGeneratedKeys="true" keyProperty="officeId">
+        insert into sys_office
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Columns"/>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Values"/>
+        </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into sys_office
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Base_Column_List_Without_Id"/>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <include refid="Batch_Insert_Values"/>
+            </trim>
+        </foreach>
+    </insert>
+    <!-- end insert -->
+
+    <!-- delete -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from sys_office
+        where  office_id = #{officeId,jdbcType=NUMERIC}  
+    </delete>
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
+        delete from sys_office
+        where 1=1
+        ${whereSqlString}
+    </delete>
+    <!-- end delete -->
+
+    <!-- update -->
+    <update id="updateById" parameterType="com.xqsight.system.model.SysOffice">
+        update sys_office
+        <set>
+            <include refid="Update_Set_From_Bean"/>
+        </set>
+        where  office_id = #{officeId,jdbcType=NUMERIC}  
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update sys_office
+        <include refid="BatchUpdate_Set_From_Bean"/>
+        where
+             office_id = #{officeId,jdbcType=NUMERIC}  
+        </foreach>
+    </update>
+    <!-- end update -->
+
+    <!-- select -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from sys_office
+        where
+             office_id = #{officeId,jdbcType=NUMERIC}  
+    </select>
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
+        select <include refid="Base_Column_List"/> from sys_office
+        WHERE 1=1
+
+        ${whereSqlString}
+        <trim prefix=" and " suffix="" suffixOverrides="" >
+            <if test="customSql != null">
+            ${customSqlString}
+            </if>
+        </trim>
+        <if test="orderBy != null">
+        ${orderBySqlString}
+        </if>
+    </select>
+    <!-- end select -->
+</mapper>

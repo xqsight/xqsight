@@ -4,7 +4,7 @@
  */
 package com.xqsight.cms.model;
 
-import com.xqsight.common.model.TreeBaseModel;
+import com.xqsight.common.model.AbstractTreeModel;
 
 import java.io.Serializable;
 
@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @since 2017-03-13 11:41:56
  * @author wangganggang
  */
-public class CmsModel extends TreeBaseModel<CmsModel> {
+public class CmsModel extends AbstractTreeModel<CmsModel> {
 
 	/** 主键 */
     private Long modelId;

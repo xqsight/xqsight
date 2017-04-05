@@ -1,7 +1,7 @@
 package com.xqsight.sso.authc.service;
 
 
-import com.xqsight.common.model.UserBaseModel;
+import com.xqsight.common.model.shiro.BaseUserModel;
 
 import java.util.Set;
 
@@ -12,7 +12,7 @@ public interface UserAuthcService {
      * @param loginId
      * @return
      */
-    UserBaseModel findByLoginId(String loginId);
+    BaseUserModel findByLoginId(String loginId);
 
     /**
      * 根据用户id查找其角色
@@ -38,5 +38,5 @@ public interface UserAuthcService {
      * @return void    返回类型
      * @throws
      */
-    void saveUser(UserBaseModel userBaseModel);
+    void saveUser(BaseUserModel abstractUser);
 }

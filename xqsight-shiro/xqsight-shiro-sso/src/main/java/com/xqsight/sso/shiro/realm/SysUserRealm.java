@@ -1,6 +1,6 @@
 package com.xqsight.sso.shiro.realm;
 
-import com.xqsight.common.model.UserBaseModel;
+import com.xqsight.common.model.shiro.BaseUserModel;
 import com.xqsight.sso.authc.CustomAuthenticationInfo;
 import com.xqsight.sso.authc.service.UserAuthcService;
 import com.xqsight.sso.shiro.authc.SysUserToken;
@@ -14,7 +14,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
 
 
 /**
@@ -42,7 +41,7 @@ public class SysUserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         String loginId = (String) principals.fromRealm(getName()).iterator().next();
         logger.info("doGetAuthorizationInfo(PrincipalCollection principals):" + loginId);
-        UserBaseModel user = userAuthcService.findByLoginId(loginId);
+        BaseUserModel user = userAuthcService.findByLoginId(loginId);
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         authorizationInfo.setRoles(userAuthcService.findRoles(user.getId()));
         authorizationInfo.setStringPermissions(userAuthcService.findPermissions(user.getId()));
@@ -56,7 +55,7 @@ public class SysUserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
         logger.info("doGetAuthorizationInfo(AuthenticationToken authcToken):" + authcToken);
         String loginId = (String) authcToken.getPrincipal();
-        UserBaseModel user = userAuthcService.findByLoginId(loginId);
+        BaseUserModel user = userAuthcService.findByLoginId(loginId);
         if (user == null)
             throw new UnknownAccountException("用户名没有找到");// 没找到帐号
 

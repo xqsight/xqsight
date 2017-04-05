@@ -4,7 +4,7 @@
  */
 package com.xqsight.system.model;
 
-import com.xqsight.common.model.TreeBaseModel;
+import com.xqsight.common.model.AbstractTreeModel;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @since 2017-01-07 11:57:32
  * @author wangganggang
  */
-public class SysMenu extends TreeBaseModel<SysMenu> {
+public class SysMenu extends AbstractTreeModel<SysMenu> {
 
 	/** 主键 */
     private Long menuId;

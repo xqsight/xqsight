@@ -44,6 +44,8 @@ public class SignTest {
             map.put("112690", "4030Abcd");
             /** 王子腾 **/
             map.put("107626", "Eju13559O");
+            /** 刘书理 **/
+            map.put("111780", "2011Abcd");
             map.forEach((k,v)-> {
                 try {
                     signComponent.signJob(k, v);

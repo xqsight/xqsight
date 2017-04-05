@@ -1,6 +1,6 @@
 package com.xqsight.sso.utils;
 
-import com.xqsight.common.model.UserBaseModel;
+import com.xqsight.common.model.shiro.BaseUserModel;
 import com.xqsight.sso.shiro.constants.WebConstants;
 import com.xqsight.sso.subject.SSOSubject;
 import org.apache.shiro.SecurityUtils;
@@ -19,10 +19,10 @@ public class SSOUtils {
     }
     
     
-    public static UserBaseModel getCurrentUser(){
+    public static BaseUserModel getCurrentUser(){
         Subject subject = SecurityUtils.getSubject();
         Session session = subject.getSession(false);
-        return (UserBaseModel) session.getAttribute(WebConstants.CURRENT_USER);
+        return (BaseUserModel) session.getAttribute(WebConstants.CURRENT_USER);
     }
 
     public static Long getCurrentUserId(){

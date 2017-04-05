@@ -1,17 +1,18 @@
 package com.xqsight.common.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * Created by wangganggang on 2017/3/23.
+ * @author wangganggang
+ * @date 2017/3/23
  */
+@Data
 public abstract class BaseModel implements Serializable {
-
-    private static final long serialVersionUID = 5859337383077120660L;
 
     public abstract Serializable getPK();
 
@@ -22,7 +23,7 @@ public abstract class BaseModel implements Serializable {
     /**
      * 创建时间
      **/
-    private LocalDateTime createTime;
+    private LocalDateTime createTime = LocalDateTime.now();
     /**
      * 创建人ID
      **/
@@ -30,7 +31,7 @@ public abstract class BaseModel implements Serializable {
     /**
      * 修改时间
      **/
-    private LocalDateTime updateTime;
+    private LocalDateTime updateTime = LocalDateTime.now();
     /**
      * 修改人ID
      **/
@@ -40,58 +41,17 @@ public abstract class BaseModel implements Serializable {
      **/
     private String remark;
 
-    public byte getActive() {
-        return active;
-    }
-
-    public void setActive(byte active) {
-        this.active = active;
-    }
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public String getCreateUserId() {
-        return createUserId;
-    }
-
-    public void setCreateUserId(String createUserId) {
-        this.createUserId = createUserId;
-    }
-
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     public LocalDateTime getUpdateTime() {
         return updateTime;
     }
-
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-
-    public String getUpdateUserId() {
-        return updateUserId;
-    }
-
-    public void setUpdateUserId(String updateUserId) {
-        this.updateUserId = updateUserId;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
 
     public boolean isNoActive() {
         return this.active == -1;

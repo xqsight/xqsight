@@ -1,13 +1,11 @@
 package com.xqsight.common.model;
 
-
-
-import com.xqsight.common.model.shiro.AbstractUser;
+import com.xqsight.common.model.shiro.BaseUserModel;
 
 import java.io.Serializable;
 
-
-public class UserBaseModel extends AbstractUser implements Serializable {
+@Deprecated
+public class UserBaseModel extends BaseUserModel implements Serializable {
 
     /** 用户名 **/
     private String  userName;

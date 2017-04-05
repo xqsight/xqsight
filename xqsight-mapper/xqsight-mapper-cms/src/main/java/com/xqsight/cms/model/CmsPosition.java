@@ -4,7 +4,7 @@
  */
 package com.xqsight.cms.model;
 
-import com.xqsight.common.model.TreeBaseModel;
+import com.xqsight.common.model.AbstractTreeModel;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @since 2017-02-23 04:52:22
  * @author wangganggang
  */
-public class CmsPosition extends TreeBaseModel<CmsPosition>{
+public class CmsPosition extends AbstractTreeModel<CmsPosition> {
 
 	/** 主键 */
     private Long positionId;

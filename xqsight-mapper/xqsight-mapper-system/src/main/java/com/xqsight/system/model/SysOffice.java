@@ -4,7 +4,7 @@
  */
 package com.xqsight.system.model;
 
-import com.xqsight.common.model.TreeBaseModel;
+import com.xqsight.common.model.AbstractTreeModel;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @since 2017-02-22 04:29:58
  * @author wangganggang
  */
-public class SysOffice extends TreeBaseModel<SysOffice> {
+public class SysOffice extends AbstractTreeModel<SysOffice> {
 
 	/** 主键 */
     private Long officeId;

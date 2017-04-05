@@ -6,7 +6,7 @@ import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
-import com.xqsight.common.model.UserBaseModel;
+import com.xqsight.common.model.shiro.BaseUserModel;
 import com.xqsight.sso.authc.service.UserAuthcService;
 import com.xqsight.sso.exceptions.CustomAuthcException;
 import com.xqsight.system.model.SysLogin;
@@ -40,11 +40,11 @@ public class UserAuthcServiceImpl implements UserAuthcService {
     private SysUserService sysUserService;
 
     @Override
-    public UserBaseModel findByLoginId(String loginId) {
+    public BaseUserModel findByLoginId(String loginId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.S).add("login_id", loginId).end();
 
-        UserBaseModel userBaseModel = sysLoginService.search(propertyFilters).get(0);
+        BaseUserModel userBaseModel = sysLoginService.search(propertyFilters).get(0);
         if (userBaseModel == null) {
             throw new UnknownAccountException("用户名没有找到");
         }
@@ -73,7 +73,7 @@ public class UserAuthcServiceImpl implements UserAuthcService {
     }
 
     @Override
-    public void saveUser(UserBaseModel userBaseModel) {
+    public void saveUser(BaseUserModel userBaseModel) {
         SysLogin sysLogin = new SysLogin();
         sysLogin.setLoginId(userBaseModel.getLoginId());
         sysLogin.setPassword(userBaseModel.getPassword());
@@ -86,7 +86,7 @@ public class UserAuthcServiceImpl implements UserAuthcService {
         sysLoginService.save(sysLogin, true);
     }
 
-    private void saveSysUser(UserBaseModel userBaseModel) {
+    private void saveSysUser(BaseUserModel userBaseModel) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.S).add("department_code", userBaseModel.getDepartmentCode()).end();
       /*  SysDepartment sysDepartment = sysDepartmentService.search(propertyFilters).get(0);

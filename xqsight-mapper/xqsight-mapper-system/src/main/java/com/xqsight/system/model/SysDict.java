@@ -4,7 +4,7 @@
  */
 package com.xqsight.system.model;
 
-import com.xqsight.common.model.TreeBaseModel;
+import com.xqsight.common.model.AbstractTreeModel;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @since 2017-01-07 11:57:14
  * @author wangganggang
  */
-public class SysDict extends TreeBaseModel<SysDict>{
+public class SysDict extends AbstractTreeModel<SysDict> {
 
 	/** 主键 */
     private Long dictId;

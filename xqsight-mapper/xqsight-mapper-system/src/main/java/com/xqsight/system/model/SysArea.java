@@ -4,7 +4,7 @@
  */
 package com.xqsight.system.model;
 
-import com.xqsight.common.model.TreeBaseModel;
+import com.xqsight.common.model.AbstractTreeModel;
 
 import java.io.Serializable;
 
@@ -16,7 +16,7 @@ import java.io.Serializable;
  * @since 2017-02-22 04:29:28
  * @author wangganggang
  */
-public class SysArea extends TreeBaseModel<SysArea> {
+public class SysArea extends AbstractTreeModel<SysArea> {
 
 	/** 主键 */
     private Long areaId;

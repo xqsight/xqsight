@@ -1,30 +1,15 @@
 <#include "copyright.ftl"/>
 package ${basePackage}.${moduleName}.service.impl;
 
-import com.xqsight.common.core.dao.Dao;
-import com.xqsight.common.core.service.DefaultEntityService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import ${basePackage}.${moduleName}.model.${table.className};
-import ${basePackage}.${moduleName}.mapper.${table.className}Mapper;
-
+import com.xqsight.common.base.service.ICrudService;
+import com.xqsight.system.model.${table.className};
 
 /**
- * <p>${table.remarks}实现类service</p>
- * <p>Table: ${table.tableName} - ${table.remarks}</p>
- * @since ${.now}
- * @author wangganggang
- */
-@Service
-public class ${table.className}Service extends DefaultEntityService<${table.className}, Long> {
+* <p>${table.remarks} service</p>
+* <p>Table: ${table.tableName} - ${table.remarks}</p>
+* @since ${.now}
+* @author wangganggang
+*/
+public interface ${table.className}Service extends ICrudService<${table.className}, Long> {
 
-	@Autowired
-	private ${table.className}Mapper ${table.javaProperty}Mapper;
-
-	@Override
-	protected Dao<${table.className}, Long> getDao() {
-		return ${table.javaProperty}Mapper;
-	}
 }

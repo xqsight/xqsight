@@ -1,12 +1,9 @@
 <#include "copyright.ftl"/>
 package ${basePackage}.${moduleName}.mapper;
 
-
-import com.xqsight.common.core.dao.Dao;
+import com.xqsight.common.base.dao.ICrudDao;
 
 import ${basePackage}.${moduleName}.model.${table.className};
-
-
 
 /**
  * <p>${table.remarks}实现类service</p>
@@ -14,5 +11,5 @@ import ${basePackage}.${moduleName}.model.${table.className};
  * @since ${.now}
  * @author wangganggang
 */
-public interface ${table.className}Mapper extends Dao<${table.className},Long>{
+public interface ${table.className}Mapper extends ICrudDao<${table.className},Long>{
 }

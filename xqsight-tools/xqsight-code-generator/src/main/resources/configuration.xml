@@ -39,10 +39,16 @@
             <targetFileName>${table.className}Controller.java</targetFileName>
             <encoding>UTF-8</encoding>
         </template>
-        <template engine="freemarker" name="服务类" selected="true">
+        <template engine="freemarker" name="服务类接口" selected="true">
             <templateFile>service.ftl</templateFile>
             <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\service\</targetPath>
-            <targetFileName>${table.className}Service.java</targetFileName>ut
+            <targetFileName>${table.className}Service.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="服务类实现" selected="true">
+            <templateFile>serviceImpl.ftl</templateFile>
+            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\service\impl</targetPath>
+            <targetFileName>${table.className}ServiceImpl.java</targetFileName>
             <encoding>UTF-8</encoding>
         </template>
         <template engine="freemarker" name="实体类" selected="true">

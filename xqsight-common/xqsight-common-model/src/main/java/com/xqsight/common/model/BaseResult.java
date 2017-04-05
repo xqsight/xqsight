@@ -30,4 +30,5 @@ public class BaseResult {
         this.message = "success";
         this.data = data;
     }
+
 }
