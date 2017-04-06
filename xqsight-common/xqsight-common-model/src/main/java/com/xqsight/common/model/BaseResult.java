@@ -8,7 +8,6 @@ import lombok.*;
  * @date 2017/3/23
  */
 @Data
-@AllArgsConstructor
 public class BaseResult {
 
     /** 状态码：1成功，其他为失败 **/
@@ -23,6 +22,11 @@ public class BaseResult {
     public BaseResult(){
         this.code = Constants.SUCCESS;
         this.message = "success";
+    }
+
+    public BaseResult(int code,String message){
+        this.code = code;
+        this.message = message;
     }
 
     public BaseResult(Object data){

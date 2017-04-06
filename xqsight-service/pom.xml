@@ -14,7 +14,6 @@
     <modules>
         <module>xqsight-service-system</module>
         <module>xqsight-service-cms</module>
-        <module>xqsight-service-sys</module>
     </modules>
 
 

@@ -5,9 +5,8 @@
 package com.xqsight.cms.mapper;
 
 
-import com.xqsight.common.core.dao.Dao;
-
 import com.xqsight.cms.model.CmsModel;
+import com.xqsight.common.base.dao.ICrudDao;
 
 
 
@@ -17,5 +16,5 @@ import com.xqsight.cms.model.CmsModel;
  * @since 2017-03-13 11:41:56
  * @author wangganggang
 */
-public interface CmsModelMapper extends Dao<CmsModel,Long>{
+public interface CmsModelMapper extends ICrudDao<CmsModel,Long> {
 }

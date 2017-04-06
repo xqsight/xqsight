@@ -11,7 +11,7 @@ import java.math.BigDecimal;
  * @date 2016年1月8日 下午7:39:21
  */
 public class Constants {
-    public static final String PAGE_NUM = "pageNum";
+    public static final String TOTAL_SIZE = "totalSize";
     public static final String PAGE_SIZE = "pageSize";
     public static final String PAGE_RESULT = "data";
 

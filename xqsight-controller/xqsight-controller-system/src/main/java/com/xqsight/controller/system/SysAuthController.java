@@ -7,8 +7,8 @@ import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
+import com.xqsight.common.model.support.TreeSupport;
 import com.xqsight.common.support.MessageSupport;
-import com.xqsight.common.support.TreeSupport;
 import com.xqsight.sso.shiro.annotation.CurrentUserId;
 import com.xqsight.system.enums.MenuTypeEnum;
 import com.xqsight.system.model.SysLogin;
@@ -23,7 +23,6 @@ import java.util.List;
 
 /**
  * @author wangganggang
- * @Description: TODO
  * @date 2016年1月8日 上午9:29:25
  */
 @RestController
@@ -59,7 +58,6 @@ public class SysAuthController {
 
 
     @RequestMapping("queryusermenu")
-    @AttributeFilter(type = SysMenu.class, filter = "createTime,updateTime")
     public Object queryUserMenu(@CurrentUserId long currentUserId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.I).add("type", "" + MenuTypeEnum.MENU.getValuel()).end();

@@ -4,30 +4,15 @@
  */
 package com.xqsight.system.service;
 
-import com.xqsight.common.core.dao.Dao;
-import com.xqsight.common.core.service.DefaultEntityService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.xqsight.common.base.service.ICrudService;
 import com.xqsight.system.model.SysArea;
-import com.xqsight.system.mapper.SysAreaMapper;
-
 
 /**
- * <p>区域表实现类service</p>
- * <p>Table: sys_area - 区域表</p>
- * @since 2017-02-22 04:29:28
- * @author wangganggang
- */
-@Service
-public class SysAreaService extends DefaultEntityService<SysArea, Long> {
+* <p>区域表 service</p>
+* <p>Table: sys_area - 区域表</p>
+* @since 2017-04-05 05:16:47
+* @author wangganggang
+*/
+public interface SysAreaService extends ICrudService<SysArea, Long> {
 
-	@Autowired
-	private SysAreaMapper sysAreaMapper;
-
-	@Override
-	protected Dao<SysArea, Long> getDao() {
-		return sysAreaMapper;
-	}
 }

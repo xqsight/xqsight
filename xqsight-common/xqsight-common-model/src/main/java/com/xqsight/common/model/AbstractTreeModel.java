@@ -11,7 +11,7 @@ import java.util.List;
 @Data
 public abstract class AbstractTreeModel<T> extends BaseModel {
 
-    private String id = (String) getPK();
+    private String id;
     /** parent_id - 父级id */
     private String parentId;
     /** parent_id - 父级ids */
@@ -24,6 +24,9 @@ public abstract class AbstractTreeModel<T> extends BaseModel {
     private Short sort;
     private List<T> children;
 
+    public String getId(){
+        return getPK().toString();
+    }
     public void setName(String name) {
         this.name = name;
         this.text = name;

@@ -12,6 +12,7 @@ import java.util.Map;
 /**
  * Created by user on 2016/6/2.
  */
+@Deprecated
 public class MessageSupport {
 
     private final static int SUCCESS = 0;

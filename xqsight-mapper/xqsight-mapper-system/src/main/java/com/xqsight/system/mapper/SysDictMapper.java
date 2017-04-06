@@ -4,18 +4,14 @@
  */
 package com.xqsight.system.mapper;
 
-
-import com.xqsight.common.core.dao.Dao;
-
+import com.xqsight.common.base.dao.ICrudDao;
 import com.xqsight.system.model.SysDict;
-
-
 
 /**
  * <p>系统字典表实现类service</p>
  * <p>Table: sys_dict - 系统字典表</p>
- * @since 2017-02-22 04:29:34
+ * @since 2017-04-06 09:53:25
  * @author wangganggang
 */
-public interface SysDictMapper extends Dao<SysDict,Long>{
+public interface SysDictMapper extends ICrudDao<SysDict,Long>{
 }

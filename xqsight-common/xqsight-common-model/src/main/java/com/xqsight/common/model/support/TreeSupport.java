@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  *
  * @since jdk1.8
  */
-public class TreeSupport<T extends AbstractTreeModel<T>> {
+public class TreeSupport<T extends AbstractTreeModel> {
 
     /**
      * 获取list的跟节点ID

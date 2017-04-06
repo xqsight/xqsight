@@ -6,6 +6,7 @@ package com.xqsight.cms.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xqsight.common.model.BaseModel;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
  * @since 2017-02-23 04:52:11
  * @author wangganggang
  */
+@Data
 public class CmsJob extends BaseModel {
 
 	/** 主键 */
@@ -52,88 +54,13 @@ public class CmsJob extends BaseModel {
     /** job_email - 邮箱 */
     private String jobEmail;
 
-    public Long getJobId(){
-        return this.jobId;
-    }
-    public void setJobId(Long jobId){
-        this.jobId = jobId;
-    }
-	public Long getPositionId(){
-        return this.positionId;
-    }
-    public void setPositionId(Long positionId){
-        this.positionId = positionId;
-    }
-	public String getJobName(){
-        return this.jobName;
-    }
-    public void setJobName(String jobName){
-        this.jobName = jobName;
-    }
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public LocalDateTime getJobStartTime(){
         return this.jobStartTime;
     }
-    public void setJobStartTime(LocalDateTime jobStartTime){
-        this.jobStartTime = jobStartTime;
-    }
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     public LocalDateTime getJobEndTime(){
         return this.jobEndTime;
-    }
-    public void setJobEndTime(LocalDateTime jobEndTime){
-        this.jobEndTime = jobEndTime;
-    }
-	public String getJobDepartment(){
-        return this.jobDepartment;
-    }
-    public void setJobDepartment(String jobDepartment){
-        this.jobDepartment = jobDepartment;
-    }
-	public String getJobPhone(){
-        return this.jobPhone;
-    }
-    public void setJobPhone(String jobPhone){
-        this.jobPhone = jobPhone;
-    }
-	public String getJobAddress(){
-        return this.jobAddress;
-    }
-
-    public Byte getJobType() {
-        return jobType;
-    }
-
-    public void setJobType(Byte jobType) {
-        this.jobType = jobType;
-    }
-
-    public void setJobAddress(String jobAddress){
-        this.jobAddress = jobAddress;
-    }
-
-    public String getPositionDesp() {
-        return positionDesp;
-    }
-
-    public void setPositionDesp(String positionDesp) {
-        this.positionDesp = positionDesp;
-    }
-
-    public String getJobNeed() {
-        return jobNeed;
-    }
-
-    public void setJobNeed(String jobNeed) {
-        this.jobNeed = jobNeed;
-    }
-
-    public String getJobEmail() {
-        return jobEmail;
-    }
-
-    public void setJobEmail(String jobEmail) {
-        this.jobEmail = jobEmail;
     }
 
     @Override

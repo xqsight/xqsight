@@ -15,7 +15,7 @@
 
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>xqsight.controller-demo</artifactId>
+            <artifactId>xqsight-controller-system</artifactId>
             <version>${project.version}</version>
         </dependency>
 

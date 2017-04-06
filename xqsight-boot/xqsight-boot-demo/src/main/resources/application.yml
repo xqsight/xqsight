@@ -1,15 +1,7 @@
+server:
+  port: 8081
+  context-path: /portal
 
-###===  文件上传处理   =====##
-file:
-  upload:
-    method: local
-    store:
-      path: D:/nginx-1.2.8/html/
-    access:
-      domain: http://127.0.0.1
 
-#==== 模板存放位置 ===#
-site:
-  tpl:
-    path: classpath:/view/
+default.system.goto.url: login.html
 

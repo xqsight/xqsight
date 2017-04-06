@@ -6,6 +6,10 @@ import lombok.Data;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @author wangganggang
+ * @date 2017/3/23
+ */
 @Data
 public class BaseUserModel extends BaseModel implements Serializable {
 

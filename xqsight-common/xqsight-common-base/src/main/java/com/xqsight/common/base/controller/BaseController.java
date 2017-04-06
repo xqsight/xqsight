@@ -8,6 +8,8 @@ import com.xqsight.common.core.support.PropertyFilterSupport;
 import com.xqsight.common.model.BaseModel;
 import com.xqsight.common.model.BaseResult;
 import com.xqsight.common.model.constants.Constants;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,7 @@ import java.util.Map;
  * @Date 2017/3/23
  */
 public class BaseController<Service extends ICrudService<Record, PK>, Record extends BaseModel, PK extends Serializable> {
+    protected Logger logger = LogManager.getLogger(getClass());
 
     @Autowired
     protected Service service;
@@ -86,7 +89,7 @@ public class BaseController<Service extends ICrudService<Record, PK>, Record ext
      */
     protected Map getPageInfo(Page page) {
         Map pageMap = new HashMap(3);
-        pageMap.put(Constants.PAGE_NUM, page.getPageNum());
+        pageMap.put(Constants.TOTAL_SIZE, page.getTotal());
         pageMap.put(Constants.PAGE_SIZE, page.getPageSize());
         pageMap.put(Constants.PAGE_RESULT, page.getResult());
         return pageMap;

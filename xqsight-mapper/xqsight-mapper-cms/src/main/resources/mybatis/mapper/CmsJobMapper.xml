@@ -23,247 +23,190 @@
         <result column="job_email" property="jobEmail" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <sql id="Base_Column_List_Without_Id">
+        position_id,job_name,job_start_time,job_end_time,job_department,job_phone,job_type,job_address,active,create_user_id,create_time,update_user_id,update_time,remark,position_desp,job_need,job_email
+    </sql>
     <sql id="Base_Column_List">
-	 job_id,position_id,job_name,job_start_time,job_end_time,job_department,job_phone,job_type,job_address,active,create_user_id,create_time,update_user_id,update_time,remark,position_desp,job_need,job_email
+         job_id,
+        <include refid="Base_Column_List_Without_Id"/>
     </sql>
 
+    <sql id="Insert_Columns">
+        <if test="positionId!=null"> position_id,</if>
+        <if test="jobName!=null"> job_name,</if>
+        <if test="jobStartTime!=null"> job_start_time,</if>
+        <if test="jobEndTime!=null"> job_end_time,</if>
+        <if test="jobDepartment!=null"> job_department,</if>
+        <if test="jobPhone!=null"> job_phone,</if>
+        <if test="jobType!=null"> job_type,</if>
+        <if test="jobAddress!=null"> job_address,</if>
+        <if test="active!=null"> active,</if>
+        <if test="createUserId!=null"> create_user_id,</if>
+        <if test="createTime!=null"> create_time,</if>
+        <if test="updateUserId!=null"> update_user_id,</if>
+        <if test="updateTime!=null"> update_time,</if>
+        <if test="remark!=null"> remark,</if>
+        <if test="positionDesp!=null"> position_desp,</if>
+        <if test="jobNeed!=null"> job_need,</if>
+        <if test="jobEmail!=null"> job_email,</if>
+    </sql>
+    <sql id="Insert_Values">
+        <if test="positionId!=null">#{positionId,jdbcType=NUMERIC},</if>
+        <if test="jobName!=null">#{jobName,jdbcType=VARCHAR},</if>
+        <if test="jobStartTime!=null">#{jobStartTime,jdbcType=TIMESTAMP},</if>
+        <if test="jobEndTime!=null">#{jobEndTime,jdbcType=TIMESTAMP},</if>
+        <if test="jobDepartment!=null">#{jobDepartment,jdbcType=VARCHAR},</if>
+        <if test="jobPhone!=null">#{jobPhone,jdbcType=VARCHAR},</if>
+        <if test="jobType!=null">#{jobType,jdbcType=NUMERIC},</if>
+        <if test="jobAddress!=null">#{jobAddress,jdbcType=VARCHAR},</if>
+        <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null">#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
+        <if test="positionDesp!=null">#{positionDesp,jdbcType=VARCHAR},</if>
+        <if test="jobNeed!=null">#{jobNeed,jdbcType=VARCHAR},</if>
+        <if test="jobEmail!=null">#{jobEmail,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="Batch_Insert_Values">
+        #{positionId,jdbcType=NUMERIC},
+        #{jobName,jdbcType=VARCHAR},
+        #{jobStartTime,jdbcType=TIMESTAMP},
+        #{jobEndTime,jdbcType=TIMESTAMP},
+        #{jobDepartment,jdbcType=VARCHAR},
+        #{jobPhone,jdbcType=VARCHAR},
+        #{jobType,jdbcType=NUMERIC},
+        #{jobAddress,jdbcType=VARCHAR},
+        #{active,jdbcType=NUMERIC},
+        #{createUserId,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{updateUserId,jdbcType=VARCHAR},
+        #{updateTime,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR},
+        #{positionDesp,jdbcType=VARCHAR},
+        #{jobNeed,jdbcType=VARCHAR},
+        #{jobEmail,jdbcType=VARCHAR},
+    </sql>
+
+    <sql id="Update_Set_From_Bean">
+        <if test="positionId!=null"> position_id=#{positionId,jdbcType=NUMERIC},</if>
+        <if test="jobName!=null"> job_name=#{jobName,jdbcType=VARCHAR},</if>
+        <if test="jobStartTime!=null"> job_start_time=#{jobStartTime,jdbcType=TIMESTAMP},</if>
+        <if test="jobEndTime!=null"> job_end_time=#{jobEndTime,jdbcType=TIMESTAMP},</if>
+        <if test="jobDepartment!=null"> job_department=#{jobDepartment,jdbcType=VARCHAR},</if>
+        <if test="jobPhone!=null"> job_phone=#{jobPhone,jdbcType=VARCHAR},</if>
+        <if test="jobType!=null"> job_type=#{jobType,jdbcType=NUMERIC},</if>
+        <if test="jobAddress!=null"> job_address=#{jobAddress,jdbcType=VARCHAR},</if>
+        <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null"> create_time=#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null"> update_user_id=#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null"> update_time=#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
+        <if test="positionDesp!=null"> position_desp=#{positionDesp,jdbcType=VARCHAR},</if>
+        <if test="jobNeed!=null"> job_need=#{jobNeed,jdbcType=VARCHAR},</if>
+        <if test="jobEmail!=null"> job_email=#{jobEmail,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BatchUpdate_Set_From_Bean">
+        position_id=#{positionId,jdbcType=NUMERIC},
+        job_name=#{jobName,jdbcType=VARCHAR},
+        job_start_time=#{jobStartTime,jdbcType=TIMESTAMP},
+        job_end_time=#{jobEndTime,jdbcType=TIMESTAMP},
+        job_department=#{jobDepartment,jdbcType=VARCHAR},
+        job_phone=#{jobPhone,jdbcType=VARCHAR},
+        job_type=#{jobType,jdbcType=NUMERIC},
+        job_address=#{jobAddress,jdbcType=VARCHAR},
+        active=#{active,jdbcType=NUMERIC},
+        create_user_id=#{createUserId,jdbcType=VARCHAR},
+        create_time=#{createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{updateUserId,jdbcType=VARCHAR},
+        update_time=#{updateTime,jdbcType=TIMESTAMP},
+        remark=#{remark,jdbcType=VARCHAR},
+        position_desp=#{positionDesp,jdbcType=VARCHAR},
+        job_need=#{jobNeed,jdbcType=VARCHAR},
+        job_email=#{jobEmail,jdbcType=VARCHAR},
+    </sql>
+
+    <!--insert-->
     <insert id="insert" parameterType="com.xqsight.cms.model.CmsJob" useGeneratedKeys="true" keyProperty="jobId">
-        insert into cms_job (
-	position_id,job_name,job_start_time,job_end_time,job_department,job_phone,job_type,job_address,active,create_user_id,create_time,update_user_id,update_time,remark,position_desp,job_need,job_email
-        ) values (
-	#{positionId,jdbcType=NUMERIC},
-	#{jobName,jdbcType=VARCHAR},
-	#{jobStartTime,jdbcType=TIMESTAMP},
-	#{jobEndTime,jdbcType=TIMESTAMP},
-	#{jobDepartment,jdbcType=VARCHAR},
-	#{jobPhone,jdbcType=VARCHAR},
-	#{jobType,jdbcType=NUMERIC},
-	#{jobAddress,jdbcType=VARCHAR},
-	#{active,jdbcType=NUMERIC},
-	#{createUserId,jdbcType=VARCHAR},
-	#{createTime,jdbcType=TIMESTAMP},
-	#{updateUserId,jdbcType=VARCHAR},
-	#{updateTime,jdbcType=TIMESTAMP},
-	#{remark,jdbcType=VARCHAR},
-	#{positionDesp,jdbcType=VARCHAR},
-	#{jobNeed,jdbcType=VARCHAR},
-	#{jobEmail,jdbcType=VARCHAR}
-        )
-    </insert>
-
-    <insert id="insertSelective" parameterType="com.xqsight.cms.model.CmsJob" useGeneratedKeys="true" keyProperty="jobId">
         insert into cms_job
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="positionId!=null">
-			position_id,
-            </if>
-            <if test="jobName!=null">
-			job_name,
-            </if>
-            <if test="jobStartTime!=null">
-			job_start_time,
-            </if>
-            <if test="jobEndTime!=null">
-			job_end_time,
-            </if>
-            <if test="jobDepartment!=null">
-			job_department,
-            </if>
-            <if test="jobPhone!=null">
-			job_phone,
-            </if>
-            <if test="jobType!=null">
-                job_type,
-            </if>
-            <if test="jobAddress!=null">
-			job_address,
-            </if>
-            <if test="active!=null">
-			active,
-            </if>
-            <if test="createUserId!=null">
-			create_user_id,
-            </if>
-            <if test="createTime!=null">
-			create_time,
-            </if>
-            <if test="updateUserId!=null">
-			update_user_id,
-            </if>
-            <if test="updateTime!=null">
-			update_time,
-            </if>
-            <if test="remark!=null">
-			remark,
-            </if>
-            <if test="positionDesp!=null">
-			position_desp,
-            </if>
-            <if test="jobNeed!=null">
-			job_need,
-            </if>
-            <if test="jobEmail!=null">
-			job_email,
-            </if>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Columns"/>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="positionId!=null">
-			#{positionId,jdbcType=NUMERIC},
-            </if>
-            <if test="jobName!=null">
-			#{jobName,jdbcType=VARCHAR},
-            </if>
-            <if test="jobStartTime!=null">
-			#{jobStartTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="jobEndTime!=null">
-			#{jobEndTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="jobDepartment!=null">
-			#{jobDepartment,jdbcType=VARCHAR},
-            </if>
-            <if test="jobPhone!=null">
-			#{jobPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="jobType!=null">
-			#{jobType,jdbcType=NUMERIC},
-            </if>
-            <if test="jobAddress!=null">
-			#{jobAddress,jdbcType=VARCHAR},
-            </if>
-            <if test="active!=null">
-			#{active,jdbcType=NUMERIC},
-            </if>
-            <if test="createUserId!=null">
-			#{createUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime!=null">
-			#{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateUserId!=null">
-			#{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-			#{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-			#{remark,jdbcType=VARCHAR},
-            </if>
-            <if test="positionDesp!=null">
-			#{positionDesp,jdbcType=VARCHAR},
-            </if>
-            <if test="jobNeed!=null">
-			#{jobNeed,jdbcType=VARCHAR},
-            </if>
-            <if test="jobEmail!=null">
-			#{jobEmail,jdbcType=VARCHAR},
-            </if>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Values"/>
         </trim>
     </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into cms_job
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Base_Column_List_Without_Id"/>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <include refid="Batch_Insert_Values"/>
+            </trim>
+        </foreach>
+    </insert>
+    <!-- end insert -->
 
-    <update id="updateByPrimaryKey" parameterType="com.xqsight.cms.model.CmsJob">
-        update cms_job set
-		position_id = #{positionId,jdbcType=NUMERIC},
-		job_name = #{jobName,jdbcType=VARCHAR},
-		job_start_time = #{jobStartTime,jdbcType=TIMESTAMP},
-		job_end_time = #{jobEndTime,jdbcType=TIMESTAMP},
-		job_department = #{jobDepartment,jdbcType=VARCHAR},
-		job_phone = #{jobPhone,jdbcType=VARCHAR},
-		job_type = #{jobType,jdbcType=NUMERIC},
-		job_address = #{jobAddress,jdbcType=VARCHAR},
-		active = #{active,jdbcType=NUMERIC},
-		update_user_id = #{updateUserId,jdbcType=VARCHAR},
-		update_time = #{updateTime,jdbcType=TIMESTAMP},
-		remark = #{remark,jdbcType=VARCHAR},
-		position_desp = #{positionDesp,jdbcType=VARCHAR},
-		job_need = #{jobNeed,jdbcType=VARCHAR},
-		job_email = #{jobEmail,jdbcType=VARCHAR}
-        where  job_id = #{jobId,jdbcType=NUMERIC}  
-    </update>
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.cms.model.CmsJob">
-        update cms_job
-        <set>
-            <if test="positionId!=null">
-            position_id = #{positionId,jdbcType=NUMERIC},
-            </if>
-            <if test="jobName!=null">
-            job_name = #{jobName,jdbcType=VARCHAR},
-            </if>
-            <if test="jobStartTime!=null">
-            job_start_time = #{jobStartTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="jobEndTime!=null">
-            job_end_time = #{jobEndTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="jobDepartment!=null">
-            job_department = #{jobDepartment,jdbcType=VARCHAR},
-            </if>
-            <if test="jobPhone!=null">
-            job_phone = #{jobPhone,jdbcType=VARCHAR},
-            </if>
-            <if test="jobType!=null">
-                job_type = #{jobType,jdbcType=NUMERIC},
-            </if>
-            <if test="jobAddress!=null">
-            job_address = #{jobAddress,jdbcType=VARCHAR},
-            </if>
-            <if test="active!=null">
-            active = #{active,jdbcType=NUMERIC},
-            </if>
-            <if test="updateUserId!=null">
-            update_user_id = #{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-            update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-            remark = #{remark,jdbcType=VARCHAR},
-            </if>
-            <if test="positionDesp!=null">
-            position_desp = #{positionDesp,jdbcType=VARCHAR},
-            </if>
-            <if test="jobNeed!=null">
-            job_need = #{jobNeed,jdbcType=VARCHAR},
-            </if>
-            <if test="jobEmail!=null">
-            job_email = #{jobEmail,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where  job_id = #{jobId,jdbcType=NUMERIC}  
-    </update>
-
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!-- delete -->
+    <delete id="deleteById" parameterType="java.lang.Long">
         delete from cms_job
         where  job_id = #{jobId,jdbcType=NUMERIC}  
     </delete>
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
+        delete from cms_job
+        where 1=1
+        ${whereSqlString}
+    </delete>
+    <!-- end delete -->
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select <include refid="Base_Column_List"/> from cms_job
+    <!-- update -->
+    <update id="updateById" parameterType="com.xqsight.cms.model.CmsJob">
+        update cms_job
+        <set>
+            <include refid="Update_Set_From_Bean"/>
+        </set>
         where  job_id = #{jobId,jdbcType=NUMERIC}  
-    </select>
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update cms_job
+        <include refid="BatchUpdate_Set_From_Bean"/>
+        where
+             job_id = #{jobId,jdbcType=NUMERIC}  
+        </foreach>
+    </update>
+    <!-- end update -->
 
+    <!-- select -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from cms_job
+        where
+             job_id = #{jobId,jdbcType=NUMERIC}  
+    </select>
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
         select <include refid="Base_Column_List"/> from cms_job
         WHERE 1=1
-	    ${whereSqlString}
 
+        ${whereSqlString}
         <trim prefix=" and " suffix="" suffixOverrides="" >
-        <if test="customSql != null">
-        ${customSqlString}
-        </if>
+            <if test="customSql != null">
+            ${customSqlString}
+            </if>
         </trim>
-
         <if test="orderBy != null">
-		${orderBySqlString}
+        ${orderBySqlString}
         </if>
     </select>
-
     <select id="queryJob"  resultType="java.util.Map" parameterType="com.xqsight.common.core.orm.Criterion">
         select
         cp.position_id,cp.position_name,cp.position_code,cj.job_name,cj.job_id,cj.job_department,
-          cj.job_need,cj.position_desp,cj.job_email,cj.create_time,
-          case cj.job_type when '0' then '全职' when '1' then '兼职' end job_type
+        cj.job_need,cj.position_desp,cj.job_email,cj.create_time,
+        case cj.job_type when '0' then '全职' when '1' then '兼职' end job_type
         from cms_job cj
         left join cms_position cp on cj.position_id = cp.position_id
         WHERE cj.active=0
@@ -280,4 +223,5 @@
             ${orderBySqlString}
         </if>
     </select>
+    <!-- end select -->
 </mapper>

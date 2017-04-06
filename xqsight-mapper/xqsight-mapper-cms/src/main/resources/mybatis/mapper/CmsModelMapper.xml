@@ -20,206 +20,169 @@
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <sql id="Base_Column_List_Without_Id">
+        site_id,parent_id,parent_ids,model_code,model_name,model_type,model_url,model_desp,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
     <sql id="Base_Column_List">
-	 model_id,site_id,parent_id,parent_ids,model_code,model_name,model_type,model_url,model_desp,active,create_user_id,create_time,update_user_id,update_time,remark
+         model_id,
+        <include refid="Base_Column_List_Without_Id"/>
     </sql>
 
+    <sql id="Insert_Columns">
+        <if test="siteId!=null"> site_id,</if>
+        <if test="parentId!=null"> parent_id,</if>
+        <if test="parentIds!=null"> parent_ids,</if>
+        <if test="modelCode!=null"> model_code,</if>
+        <if test="modelName!=null"> model_name,</if>
+        <if test="modelType!=null"> model_type,</if>
+        <if test="modelUrl!=null"> model_url,</if>
+        <if test="modelDesp!=null"> model_desp,</if>
+        <if test="active!=null"> active,</if>
+        <if test="createUserId!=null"> create_user_id,</if>
+        <if test="createTime!=null"> create_time,</if>
+        <if test="updateUserId!=null"> update_user_id,</if>
+        <if test="updateTime!=null"> update_time,</if>
+        <if test="remark!=null"> remark,</if>
+    </sql>
+    <sql id="Insert_Values">
+        <if test="siteId!=null">#{siteId,jdbcType=NUMERIC},</if>
+        <if test="parentId!=null">#{parentId,jdbcType=NUMERIC},</if>
+        <if test="parentIds!=null">#{parentIds,jdbcType=VARCHAR},</if>
+        <if test="modelCode!=null">#{modelCode,jdbcType=VARCHAR},</if>
+        <if test="modelName!=null">#{modelName,jdbcType=VARCHAR},</if>
+        <if test="modelType!=null">#{modelType,jdbcType=NUMERIC},</if>
+        <if test="modelUrl!=null">#{modelUrl,jdbcType=VARCHAR},</if>
+        <if test="modelDesp!=null">#{modelDesp,jdbcType=VARCHAR},</if>
+        <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null">#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="Batch_Insert_Values">
+        #{siteId,jdbcType=NUMERIC},
+        #{parentId,jdbcType=NUMERIC},
+        #{parentIds,jdbcType=VARCHAR},
+        #{modelCode,jdbcType=VARCHAR},
+        #{modelName,jdbcType=VARCHAR},
+        #{modelType,jdbcType=NUMERIC},
+        #{modelUrl,jdbcType=VARCHAR},
+        #{modelDesp,jdbcType=VARCHAR},
+        #{active,jdbcType=NUMERIC},
+        #{createUserId,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{updateUserId,jdbcType=VARCHAR},
+        #{updateTime,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR},
+    </sql>
+
+    <sql id="Update_Set_From_Bean">
+        <if test="siteId!=null"> site_id=#{siteId,jdbcType=NUMERIC},</if>
+        <if test="parentId!=null"> parent_id=#{parentId,jdbcType=NUMERIC},</if>
+        <if test="parentIds!=null"> parent_ids=#{parentIds,jdbcType=VARCHAR},</if>
+        <if test="modelCode!=null"> model_code=#{modelCode,jdbcType=VARCHAR},</if>
+        <if test="modelName!=null"> model_name=#{modelName,jdbcType=VARCHAR},</if>
+        <if test="modelType!=null"> model_type=#{modelType,jdbcType=NUMERIC},</if>
+        <if test="modelUrl!=null"> model_url=#{modelUrl,jdbcType=VARCHAR},</if>
+        <if test="modelDesp!=null"> model_desp=#{modelDesp,jdbcType=VARCHAR},</if>
+        <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null"> create_time=#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null"> update_user_id=#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null"> update_time=#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BatchUpdate_Set_From_Bean">
+        site_id=#{siteId,jdbcType=NUMERIC},
+        parent_id=#{parentId,jdbcType=NUMERIC},
+        parent_ids=#{parentIds,jdbcType=VARCHAR},
+        model_code=#{modelCode,jdbcType=VARCHAR},
+        model_name=#{modelName,jdbcType=VARCHAR},
+        model_type=#{modelType,jdbcType=NUMERIC},
+        model_url=#{modelUrl,jdbcType=VARCHAR},
+        model_desp=#{modelDesp,jdbcType=VARCHAR},
+        active=#{active,jdbcType=NUMERIC},
+        create_user_id=#{createUserId,jdbcType=VARCHAR},
+        create_time=#{createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{updateUserId,jdbcType=VARCHAR},
+        update_time=#{updateTime,jdbcType=TIMESTAMP},
+        remark=#{remark,jdbcType=VARCHAR},
+    </sql>
+
+    <!--insert-->
     <insert id="insert" parameterType="com.xqsight.cms.model.CmsModel" useGeneratedKeys="true" keyProperty="modelId">
-        insert into cms_model (
-	site_id,parent_id,parent_ids,model_code,model_name,model_type,model_url,model_desp,active,create_user_id,create_time,update_user_id,update_time,remark
-        ) values (
-	#{siteId,jdbcType=NUMERIC},
-	#{parentId,jdbcType=NUMERIC},
-	#{parentIds,jdbcType=VARCHAR},
-	#{modelCode,jdbcType=VARCHAR},
-	#{modelName,jdbcType=VARCHAR},
-	#{modelType,jdbcType=NUMERIC},
-	#{modelUrl,jdbcType=VARCHAR},
-	#{modelDesp,jdbcType=VARCHAR},
-	#{active,jdbcType=NUMERIC},
-	#{createUserId,jdbcType=VARCHAR},
-	#{createTime,jdbcType=TIMESTAMP},
-	#{updateUserId,jdbcType=VARCHAR},
-	#{updateTime,jdbcType=TIMESTAMP},
-	#{remark,jdbcType=VARCHAR}
-        )
-    </insert>
-
-    <insert id="insertSelective" parameterType="com.xqsight.cms.model.CmsModel" useGeneratedKeys="true" keyProperty="modelId">
         insert into cms_model
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="siteId!=null">
-			site_id,
-            </if>
-            <if test="parentId!=null">
-			parent_id,
-            </if>
-            <if test="parentIds!=null">
-			parent_ids,
-            </if>
-            <if test="modelCode!=null">
-			model_code,
-            </if>
-            <if test="modelName!=null">
-			model_name,
-            </if>
-            <if test="modelType!=null">
-			model_type,
-            </if>
-            <if test="modelUrl!=null">
-			model_url,
-            </if>
-            <if test="modelDesp!=null">
-			model_desp,
-            </if>
-            <if test="active!=null">
-			active,
-            </if>
-            <if test="createUserId!=null">
-			create_user_id,
-            </if>
-            <if test="createTime!=null">
-			create_time,
-            </if>
-            <if test="updateUserId!=null">
-			update_user_id,
-            </if>
-            <if test="updateTime!=null">
-			update_time,
-            </if>
-            <if test="remark!=null">
-			remark,
-            </if>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Columns"/>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="siteId!=null">
-			#{siteId,jdbcType=NUMERIC},
-            </if>
-            <if test="parentId!=null">
-			#{parentId,jdbcType=NUMERIC},
-            </if>
-            <if test="parentIds!=null">
-			#{parentIds,jdbcType=VARCHAR},
-            </if>
-            <if test="modelCode!=null">
-			#{modelCode,jdbcType=VARCHAR},
-            </if>
-            <if test="modelName!=null">
-			#{modelName,jdbcType=VARCHAR},
-            </if>
-            <if test="modelType!=null">
-			#{modelType,jdbcType=NUMERIC},
-            </if>
-            <if test="modelUrl!=null">
-			#{modelUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="modelDesp!=null">
-			#{modelDesp,jdbcType=VARCHAR},
-            </if>
-            <if test="active!=null">
-			#{active,jdbcType=NUMERIC},
-            </if>
-            <if test="createUserId!=null">
-			#{createUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime!=null">
-			#{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateUserId!=null">
-			#{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-			#{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-			#{remark,jdbcType=VARCHAR},
-            </if>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Values"/>
         </trim>
     </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into cms_model
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Base_Column_List_Without_Id"/>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <include refid="Batch_Insert_Values"/>
+            </trim>
+        </foreach>
+    </insert>
+    <!-- end insert -->
 
-    <update id="updateByPrimaryKey" parameterType="com.xqsight.cms.model.CmsModel">
-        update cms_model set
-		site_id = #{siteId,jdbcType=NUMERIC},
-		parent_id = #{parentId,jdbcType=NUMERIC},
-		parent_ids = #{parentIds,jdbcType=VARCHAR},
-		model_code = #{modelCode,jdbcType=VARCHAR},
-		model_name = #{modelName,jdbcType=VARCHAR},
-		model_type = #{modelType,jdbcType=NUMERIC},
-		model_url = #{modelUrl,jdbcType=VARCHAR},
-		model_desp = #{modelDesp,jdbcType=VARCHAR},
-		active = #{active,jdbcType=NUMERIC},
-		update_user_id = #{updateUserId,jdbcType=VARCHAR},
-		update_time = #{updateTime,jdbcType=TIMESTAMP},
-		remark = #{remark,jdbcType=VARCHAR}
-        where  model_id = #{modelId,jdbcType=NUMERIC}  
-    </update>
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.cms.model.CmsModel">
-        update cms_model
-        <set>
-            <if test="siteId!=null">
-            site_id = #{siteId,jdbcType=NUMERIC},
-            </if>
-            <if test="parentId!=null">
-            parent_id = #{parentId,jdbcType=NUMERIC},
-            </if>
-            <if test="parentIds!=null">
-            parent_ids = #{parentIds,jdbcType=VARCHAR},
-            </if>
-            <if test="modelCode!=null">
-            model_code = #{modelCode,jdbcType=VARCHAR},
-            </if>
-            <if test="modelName!=null">
-            model_name = #{modelName,jdbcType=VARCHAR},
-            </if>
-            <if test="modelType!=null">
-            model_type = #{modelType,jdbcType=NUMERIC},
-            </if>
-            <if test="modelUrl!=null">
-            model_url = #{modelUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="modelDesp!=null">
-            model_desp = #{modelDesp,jdbcType=VARCHAR},
-            </if>
-            <if test="active!=null">
-            active = #{active,jdbcType=NUMERIC},
-            </if>
-            <if test="updateUserId!=null">
-            update_user_id = #{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-            update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-            remark = #{remark,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where  model_id = #{modelId,jdbcType=NUMERIC}  
-    </update>
-
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!-- delete -->
+    <delete id="deleteById" parameterType="java.lang.Long">
         delete from cms_model
         where  model_id = #{modelId,jdbcType=NUMERIC}  
     </delete>
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
+        delete from cms_model
+        where 1=1
+        ${whereSqlString}
+    </delete>
+    <!-- end delete -->
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select <include refid="Base_Column_List"/> from cms_model
+    <!-- update -->
+    <update id="updateById" parameterType="com.xqsight.cms.model.CmsModel">
+        update cms_model
+        <set>
+            <include refid="Update_Set_From_Bean"/>
+        </set>
         where  model_id = #{modelId,jdbcType=NUMERIC}  
-    </select>
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update cms_model
+        <include refid="BatchUpdate_Set_From_Bean"/>
+        where
+             model_id = #{modelId,jdbcType=NUMERIC}  
+        </foreach>
+    </update>
+    <!-- end update -->
 
+    <!-- select -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from cms_model
+        where
+             model_id = #{modelId,jdbcType=NUMERIC}  
+    </select>
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
         select <include refid="Base_Column_List"/> from cms_model
         WHERE 1=1
-        ${whereSqlString}
 
+        ${whereSqlString}
         <trim prefix=" and " suffix="" suffixOverrides="" >
             <if test="customSql != null">
-                ${customSqlString}
+            ${customSqlString}
             </if>
         </trim>
-
         <if test="orderBy != null">
-            ${orderBySqlString}
+        ${orderBySqlString}
         </if>
     </select>
+    <!-- end select -->
 </mapper>

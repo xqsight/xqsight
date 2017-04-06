@@ -4,18 +4,15 @@
  */
 package com.xqsight.cms.mapper;
 
-
-import com.xqsight.common.core.dao.Dao;
+import com.xqsight.common.base.dao.ICrudDao;
 
 import com.xqsight.cms.model.CmsAd;
-
-
 
 /**
  * <p>广告表实现类service</p>
  * <p>Table: cms_ad - 广告表</p>
- * @since 2017-02-23 04:51:56
+ * @since 2017-04-06 02:34:40
  * @author wangganggang
 */
-public interface CmsAdMapper extends Dao<CmsAd,Long>{
+public interface CmsAdMapper extends ICrudDao<CmsAd,Long>{
 }

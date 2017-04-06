@@ -4,30 +4,15 @@
  */
 package com.xqsight.system.service;
 
-import com.xqsight.common.core.dao.Dao;
-import com.xqsight.common.core.service.DefaultEntityService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.xqsight.common.base.service.ICrudService;
 import com.xqsight.system.model.SysDict;
-import com.xqsight.system.mapper.SysDictMapper;
-
 
 /**
- * <p>系统字典表实现类service</p>
- * <p>Table: sys_dict - 系统字典表</p>
- * @since 2017-02-22 04:29:34
- * @author wangganggang
- */
-@Service
-public class SysDictService extends DefaultEntityService<SysDict, Long> {
+* <p>系统字典表 service</p>
+* <p>Table: sys_dict - 系统字典表</p>
+* @since 2017-04-05 05:16:52
+* @author wangganggang
+*/
+public interface SysDictService extends ICrudService<SysDict, Long> {
 
-	@Autowired
-	private SysDictMapper sysDictMapper;
-
-	@Override
-	protected Dao<SysDict, Long> getDao() {
-		return sysDictMapper;
-	}
 }

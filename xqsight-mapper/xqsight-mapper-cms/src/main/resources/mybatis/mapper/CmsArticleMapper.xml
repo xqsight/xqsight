@@ -12,50 +12,51 @@
         <result column="article_desp" property="articleDesp" jdbcType="VARCHAR"/>
         <result column="article_content" property="articleContent" jdbcType="VARCHAR"/>
         <result column="article_url" property="articleUrl" jdbcType="VARCHAR"/>
-        <result column="department" property="department" jdbcType="VARCHAR"/>
         <result column="article_source" property="articleSource" jdbcType="VARCHAR"/>
         <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP"/>
         <result column="article_hit" property="articleHit" jdbcType="NUMERIC"/>
-        <result column="scan_times" property="scanTimes" jdbcType="NUMERIC"/>
-        <result column="agree_times" property="agreeTimes" jdbcType="NUMERIC"/>
         <result column="active" property="active" jdbcType="NUMERIC"/>
         <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
         <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
         <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="department" property="department" jdbcType="VARCHAR"/>
+        <result column="scan_times" property="scanTimes" jdbcType="NUMERIC"/>
+        <result column="agree_times" property="agreeTimes" jdbcType="NUMERIC"/>
     </resultMap>
 
-    <sql id="Base_Column_List_">
-	  article_id,model_id,article_img,thumbnail_img,article_title,article_author,article_desp,article_content,article_url,department,article_source,publish_time,article_hit,scan_times,agree_times,active,create_user_id,create_time,update_user_id,update_time,remark
+    <sql id="Base_Column_List_Without_Id">
+        model_id,article_img,thumbnail_img,article_title,article_author,article_desp,article_content,article_url,article_source,publish_time,article_hit,active,create_user_id,create_time,update_user_id,update_time,remark,department,scan_times,agree_times
     </sql>
-
     <sql id="Base_Column_List">
-      article_id,model_id,article_img,thumbnail_img,article_title,article_author,article_desp,article_content,article_url,department,article_source,publish_time,article_hit,scan_times,agree_times,active,create_user_id,create_time,update_user_id,update_time,remark
+         article_id,
+        <include refid="Base_Column_List_Without_Id"/>
     </sql>
 
-    <sql id="Insert_Column">
-        <if test="modelId!=null">model_id,</if>
-        <if test="articleImg!=null">article_img,</if>
-        <if test="thumbnailImg!=null">thumbnail_img,</if>
-        <if test="articleTitle!=null">article_title,</if>
-        <if test="articleAuthor!=null">article_author,</if>
+    <sql id="Insert_Columns">
+        <if test="modelId!=null"> model_id,</if>
+        <if test="articleImg!=null"> article_img,</if>
+        <if test="thumbnailImg!=null"> thumbnail_img,</if>
+        <if test="articleTitle!=null"> article_title,</if>
+        <if test="articleAuthor!=null"> article_author,</if>
         <if test="articleDesp!=null"> article_desp,</if>
         <if test="articleContent!=null"> article_content,</if>
-        <if test="articleUrl!=null">article_url,</if>
-        <if test="department!=null">department,</if>
-        <if test="articleSource!=null">article_source,</if>
-        <if test="publishTime!=null">publish_time,</if>
-        <if test="articleHit!=null">article_hit,</if>
-        <if test="active!=null">active,</if>
-        <if test="createUserId!=null">create_user_id,</if>
-        <if test="createTime!=null">create_time,</if>
-        <if test="updateUserId!=null">update_user_id,</if>
-        <if test="updateTime!=null">update_time,</if>
+        <if test="articleUrl!=null"> article_url,</if>
+        <if test="articleSource!=null"> article_source,</if>
+        <if test="publishTime!=null"> publish_time,</if>
+        <if test="articleHit!=null"> article_hit,</if>
+        <if test="active!=null"> active,</if>
+        <if test="createUserId!=null"> create_user_id,</if>
+        <if test="createTime!=null"> create_time,</if>
+        <if test="updateUserId!=null"> update_user_id,</if>
+        <if test="updateTime!=null"> update_time,</if>
         <if test="remark!=null"> remark,</if>
+        <if test="department!=null"> department,</if>
+        <if test="scanTimes!=null"> scan_times,</if>
+        <if test="agreeTimes!=null"> agree_times,</if>
     </sql>
-
-    <sql id="Insert_Value">
+    <sql id="Insert_Values">
         <if test="modelId!=null">#{modelId,jdbcType=NUMERIC},</if>
         <if test="articleImg!=null">#{articleImg,jdbcType=VARCHAR},</if>
         <if test="thumbnailImg!=null">#{thumbnailImg,jdbcType=VARCHAR},</if>
@@ -64,7 +65,6 @@
         <if test="articleDesp!=null">#{articleDesp,jdbcType=VARCHAR},</if>
         <if test="articleContent!=null">#{articleContent,jdbcType=VARCHAR},</if>
         <if test="articleUrl!=null">#{articleUrl,jdbcType=VARCHAR},</if>
-        <if test="department!=null">#{department,jdbcType=VARCHAR}, </if>
         <if test="articleSource!=null">#{articleSource,jdbcType=VARCHAR},</if>
         <if test="publishTime!=null">#{publishTime,jdbcType=TIMESTAMP},</if>
         <if test="articleHit!=null">#{articleHit,jdbcType=NUMERIC},</if>
@@ -72,250 +72,153 @@
         <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
         <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
         <if test="updateUserId!=null">#{updateUserId,jdbcType=VARCHAR},</if>
-        <if test="updateTime!=null"> #{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateTime!=null">#{updateTime,jdbcType=TIMESTAMP},</if>
         <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
+        <if test="department!=null">#{department,jdbcType=VARCHAR},</if>
+        <if test="scanTimes!=null">#{scanTimes,jdbcType=NUMERIC},</if>
+        <if test="agreeTimes!=null">#{agreeTimes,jdbcType=NUMERIC},</if>
+    </sql>
+    <sql id="Batch_Insert_Values">
+        #{modelId,jdbcType=NUMERIC},
+        #{articleImg,jdbcType=VARCHAR},
+        #{thumbnailImg,jdbcType=VARCHAR},
+        #{articleTitle,jdbcType=VARCHAR},
+        #{articleAuthor,jdbcType=VARCHAR},
+        #{articleDesp,jdbcType=VARCHAR},
+        #{articleContent,jdbcType=VARCHAR},
+        #{articleUrl,jdbcType=VARCHAR},
+        #{articleSource,jdbcType=VARCHAR},
+        #{publishTime,jdbcType=TIMESTAMP},
+        #{articleHit,jdbcType=NUMERIC},
+        #{active,jdbcType=NUMERIC},
+        #{createUserId,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{updateUserId,jdbcType=VARCHAR},
+        #{updateTime,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR},
+        #{department,jdbcType=VARCHAR},
+        #{scanTimes,jdbcType=NUMERIC},
+        #{agreeTimes,jdbcType=NUMERIC},
     </sql>
 
+    <sql id="Update_Set_From_Bean">
+        <if test="modelId!=null"> model_id=#{modelId,jdbcType=NUMERIC},</if>
+        <if test="articleImg!=null"> article_img=#{articleImg,jdbcType=VARCHAR},</if>
+        <if test="thumbnailImg!=null"> thumbnail_img=#{thumbnailImg,jdbcType=VARCHAR},</if>
+        <if test="articleTitle!=null"> article_title=#{articleTitle,jdbcType=VARCHAR},</if>
+        <if test="articleAuthor!=null"> article_author=#{articleAuthor,jdbcType=VARCHAR},</if>
+        <if test="articleDesp!=null"> article_desp=#{articleDesp,jdbcType=VARCHAR},</if>
+        <if test="articleContent!=null"> article_content=#{articleContent,jdbcType=VARCHAR},</if>
+        <if test="articleUrl!=null"> article_url=#{articleUrl,jdbcType=VARCHAR},</if>
+        <if test="articleSource!=null"> article_source=#{articleSource,jdbcType=VARCHAR},</if>
+        <if test="publishTime!=null"> publish_time=#{publishTime,jdbcType=TIMESTAMP},</if>
+        <if test="articleHit!=null"> article_hit=#{articleHit,jdbcType=NUMERIC},</if>
+        <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null"> create_time=#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null"> update_user_id=#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null"> update_time=#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
+        <if test="department!=null"> department=#{department,jdbcType=VARCHAR},</if>
+        <if test="scanTimes!=null"> scan_times=#{scanTimes,jdbcType=NUMERIC},</if>
+        <if test="agreeTimes!=null"> agree_times=#{agreeTimes,jdbcType=NUMERIC},</if>
+    </sql>
+    <sql id="BatchUpdate_Set_From_Bean">
+        model_id=#{modelId,jdbcType=NUMERIC},
+        article_img=#{articleImg,jdbcType=VARCHAR},
+        thumbnail_img=#{thumbnailImg,jdbcType=VARCHAR},
+        article_title=#{articleTitle,jdbcType=VARCHAR},
+        article_author=#{articleAuthor,jdbcType=VARCHAR},
+        article_desp=#{articleDesp,jdbcType=VARCHAR},
+        article_content=#{articleContent,jdbcType=VARCHAR},
+        article_url=#{articleUrl,jdbcType=VARCHAR},
+        article_source=#{articleSource,jdbcType=VARCHAR},
+        publish_time=#{publishTime,jdbcType=TIMESTAMP},
+        article_hit=#{articleHit,jdbcType=NUMERIC},
+        active=#{active,jdbcType=NUMERIC},
+        create_user_id=#{createUserId,jdbcType=VARCHAR},
+        create_time=#{createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{updateUserId,jdbcType=VARCHAR},
+        update_time=#{updateTime,jdbcType=TIMESTAMP},
+        remark=#{remark,jdbcType=VARCHAR},
+        department=#{department,jdbcType=VARCHAR},
+        scan_times=#{scanTimes,jdbcType=NUMERIC},
+        agree_times=#{agreeTimes,jdbcType=NUMERIC},
+    </sql>
+
+    <!--insert-->
     <insert id="insert" parameterType="com.xqsight.cms.model.CmsArticle" useGeneratedKeys="true" keyProperty="articleId">
-        insert into cms_article (
-	model_id,article_img,thumbnail_img,article_title,article_author,article_desp,article_content,article_url,department,article_source,publish_time,article_hit,active,create_user_id,create_time,update_user_id,update_time,remark
-        ) values (
-	#{modelId,jdbcType=NUMERIC},
-	#{articleImg,jdbcType=VARCHAR},
-	#{thumbnailImg,jdbcType=VARCHAR},
-	#{articleTitle,jdbcType=VARCHAR},
-	#{articleAuthor,jdbcType=VARCHAR},
-	#{articleDesp,jdbcType=VARCHAR},
-	#{articleContent,jdbcType=VARCHAR},
-	#{articleUrl,jdbcType=VARCHAR},
-	#{department,jdbcType=VARCHAR},
-	#{articleSource,jdbcType=VARCHAR},
-	#{publishTime,jdbcType=TIMESTAMP},
-	#{articleHit,jdbcType=NUMERIC},
-	#{active,jdbcType=NUMERIC},
-	#{createUserId,jdbcType=VARCHAR},
-	#{createTime,jdbcType=TIMESTAMP},
-	#{updateUserId,jdbcType=VARCHAR},
-	#{updateTime,jdbcType=TIMESTAMP},
-	#{remark,jdbcType=VARCHAR}
-        )
-    </insert>
-
-    <insert id="insertSelective" parameterType="com.xqsight.cms.model.CmsArticle" useGeneratedKeys="true" keyProperty="articleId">
         insert into cms_article
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="modelId!=null">
-			model_id,
-            </if>
-            <if test="articleImg!=null">
-			article_img,
-            </if>
-            <if test="thumbnailImg!=null">
-                thumbnail_img,
-            </if>
-            <if test="articleTitle!=null">
-			article_title,
-            </if>
-            <if test="articleAuthor!=null">
-			article_author,
-            </if>
-            <if test="articleDesp!=null">
-			article_desp,
-            </if>
-            <if test="articleContent!=null">
-			article_content,
-            </if>
-            <if test="articleUrl!=null">
-			article_url,
-            </if>
-            <if test="department!=null">
-                department,
-            </if>
-            <if test="articleSource!=null">
-			article_source,
-            </if>
-            <if test="publishTime!=null">
-			publish_time,
-            </if>
-            <if test="articleHit!=null">
-			article_hit,
-            </if>
-            <if test="active!=null">
-			active,
-            </if>
-            <if test="createUserId!=null">
-			create_user_id,
-            </if>
-            <if test="createTime!=null">
-			create_time,
-            </if>
-            <if test="updateUserId!=null">
-			update_user_id,
-            </if>
-            <if test="updateTime!=null">
-			update_time,
-            </if>
-            <if test="remark!=null">
-			remark,
-            </if>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Columns"/>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="modelId!=null">
-			#{modelId,jdbcType=NUMERIC},
-            </if>
-            <if test="articleImg!=null">
-			#{articleImg,jdbcType=VARCHAR},
-            </if>
-            <if test="thumbnailImg!=null">
-                #{thumbnailImg,jdbcType=VARCHAR},
-            </if>
-            <if test="articleTitle!=null">
-			#{articleTitle,jdbcType=VARCHAR},
-            </if>
-            <if test="articleAuthor!=null">
-			#{articleAuthor,jdbcType=VARCHAR},
-            </if>
-            <if test="articleDesp!=null">
-			#{articleDesp,jdbcType=VARCHAR},
-            </if>
-            <if test="articleContent!=null">
-			#{articleContent,jdbcType=VARCHAR},
-            </if>
-            <if test="articleUrl!=null">
-			#{articleUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="department!=null">
-                #{department,jdbcType=VARCHAR},
-            </if>
-            <if test="articleSource!=null">
-			#{articleSource,jdbcType=VARCHAR},
-            </if>
-            <if test="publishTime!=null">
-			#{publishTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="articleHit!=null">
-			#{articleHit,jdbcType=NUMERIC},
-            </if>
-            <if test="active!=null">
-			#{active,jdbcType=NUMERIC},
-            </if>
-            <if test="createUserId!=null">
-			#{createUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime!=null">
-			#{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateUserId!=null">
-			#{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-			#{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-			#{remark,jdbcType=VARCHAR},
-            </if>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Values"/>
         </trim>
     </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into cms_article
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Base_Column_List_Without_Id"/>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <include refid="Batch_Insert_Values"/>
+            </trim>
+        </foreach>
+    </insert>
+    <!-- end insert -->
 
-    <update id="updateByPrimaryKey" parameterType="com.xqsight.cms.model.CmsArticle">
-        update cms_article set
-		model_id = #{modelId,jdbcType=NUMERIC},
-		article_img = #{articleImg,jdbcType=VARCHAR},
-		thumbnail_img = #{thumbnailImg,jdbcType=VARCHAR},
-		article_title = #{articleTitle,jdbcType=VARCHAR},
-		article_author = #{articleAuthor,jdbcType=VARCHAR},
-		article_desp = #{articleDesp,jdbcType=VARCHAR},
-		article_content = #{articleContent,jdbcType=VARCHAR},
-		article_url = #{articleUrl,jdbcType=VARCHAR},
-		department = #{department,jdbcType=VARCHAR},
-		article_source = #{articleSource,jdbcType=VARCHAR},
-		publish_time = #{publishTime,jdbcType=TIMESTAMP},
-		article_hit = #{articleHit,jdbcType=NUMERIC},
-		active = #{active,jdbcType=NUMERIC},
-		update_user_id = #{updateUserId,jdbcType=VARCHAR},
-		update_time = #{updateTime,jdbcType=TIMESTAMP},
-		remark = #{remark,jdbcType=VARCHAR}
-        where  article_id = #{articleId,jdbcType=NUMERIC}  
-    </update>
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.cms.model.CmsArticle">
-        update cms_article
-        <set>
-            <if test="modelId!=null">
-            model_id = #{modelId,jdbcType=NUMERIC},
-            </if>
-            <if test="articleImg!=null">
-            article_img = #{articleImg,jdbcType=VARCHAR},
-            </if>
-            <if test="thumbnailImg!=null">
-                thumbnail_img = #{thumbnailImg,jdbcType=VARCHAR},
-            </if>
-            <if test="articleTitle!=null">
-            article_title = #{articleTitle,jdbcType=VARCHAR},
-            </if>
-            <if test="articleAuthor!=null">
-            article_author = #{articleAuthor,jdbcType=VARCHAR},
-            </if>
-            <if test="articleDesp!=null">
-            article_desp = #{articleDesp,jdbcType=VARCHAR},
-            </if>
-            <if test="articleContent!=null">
-            article_content = #{articleContent,jdbcType=VARCHAR},
-            </if>
-            <if test="articleUrl!=null">
-            article_url = #{articleUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="department!=null">
-                department = #{department,jdbcType=VARCHAR},
-            </if>
-            <if test="articleSource!=null">
-            article_source = #{articleSource,jdbcType=VARCHAR},
-            </if>
-            <if test="publishTime!=null">
-            publish_time = #{publishTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="articleHit!=null">
-            article_hit = #{articleHit,jdbcType=NUMERIC},
-            </if>
-            <if test="active!=null">
-            active = #{active,jdbcType=NUMERIC},
-            </if>
-            <if test="updateUserId!=null">
-            update_user_id = #{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-            update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-            remark = #{remark,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where  article_id = #{articleId,jdbcType=NUMERIC}  
-    </update>
-
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!-- delete -->
+    <delete id="deleteById" parameterType="java.lang.Long">
         delete from cms_article
         where  article_id = #{articleId,jdbcType=NUMERIC}  
     </delete>
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
+        delete from cms_article
+        where 1=1
+        ${whereSqlString}
+    </delete>
+    <!-- end delete -->
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select <include refid="Base_Column_List"/> from cms_article
+    <!-- update -->
+    <update id="updateById" parameterType="com.xqsight.cms.model.CmsArticle">
+        update cms_article
+        <set>
+            <include refid="Update_Set_From_Bean"/>
+        </set>
         where  article_id = #{articleId,jdbcType=NUMERIC}  
-    </select>
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update cms_article
+        <include refid="BatchUpdate_Set_From_Bean"/>
+        where
+             article_id = #{articleId,jdbcType=NUMERIC}  
+        </foreach>
+    </update>
+    <!-- end update -->
 
+    <!-- select -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from cms_article
+        where
+             article_id = #{articleId,jdbcType=NUMERIC}  
+    </select>
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
         select <include refid="Base_Column_List"/> from cms_article
         WHERE 1=1
-	    ${whereSqlString}
 
+        ${whereSqlString}
         <trim prefix=" and " suffix="" suffixOverrides="" >
-        <if test="customSql != null">
-        ${customSqlString}
-        </if>
+            <if test="customSql != null">
+            ${customSqlString}
+            </if>
         </trim>
-
         <if test="orderBy != null">
-		${orderBySqlString}
+        ${orderBySqlString}
         </if>
     </select>
+    <!-- end select -->
 </mapper>

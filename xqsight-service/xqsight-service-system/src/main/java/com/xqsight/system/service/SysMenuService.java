@@ -4,30 +4,15 @@
  */
 package com.xqsight.system.service;
 
-import com.xqsight.common.core.dao.Dao;
-import com.xqsight.common.core.service.DefaultEntityService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.xqsight.common.base.service.ICrudService;
 import com.xqsight.system.model.SysMenu;
-import com.xqsight.system.mapper.SysMenuMapper;
-
 
 /**
- * <p>菜单信息表实现类service</p>
- * <p>Table: sys_menu - 菜单信息表</p>
- * @since 2017-02-22 04:29:52
- * @author wangganggang
- */
-@Service
-public class SysMenuService extends DefaultEntityService<SysMenu, Long> {
+* <p>菜单信息表 service</p>
+* <p>Table: sys_menu - 菜单信息表</p>
+* @since 2017-04-05 05:16:59
+* @author wangganggang
+*/
+public interface SysMenuService extends ICrudService<SysMenu, Long> {
 
-	@Autowired
-	private SysMenuMapper sysMenuMapper;
-
-	@Override
-	protected Dao<SysMenu, Long> getDao() {
-		return sysMenuMapper;
-	}
 }

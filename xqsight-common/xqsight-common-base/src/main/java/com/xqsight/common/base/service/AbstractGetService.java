@@ -5,6 +5,8 @@ import com.xqsight.common.core.orm.Criterion;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.model.BaseModel;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
@@ -19,6 +21,7 @@ import java.util.List;
  * @param <PK>
  */
 public abstract class AbstractGetService<Dao extends ISelectDao<Po, PK>, Po extends BaseModel, PK extends Serializable> implements IGetService<Po, PK> {
+    protected Logger logger = LogManager.getLogger(getClass());
 
     @Autowired
     protected Dao dao;

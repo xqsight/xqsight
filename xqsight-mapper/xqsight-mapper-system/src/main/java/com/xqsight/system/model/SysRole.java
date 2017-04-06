@@ -5,6 +5,7 @@
 package com.xqsight.system.model;
 
 import com.xqsight.common.model.BaseModel;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -13,10 +14,11 @@ import java.io.Serializable;
  * <p>角色信息表实体类</p>
  * <p>Table: sys_role - --> SysRole</p>
  * <p>角色信息表</p>
- * @since 2017-02-22 04:30:04
+ * @since 2017-04-06 09:56:26
  * @author wangganggang
  */
-public class SysRole extends BaseModel {
+@Data
+public class SysRole extends BaseModel{
 
 	/** 主键 */
     private Long roleId;
@@ -31,43 +33,6 @@ public class SysRole extends BaseModel {
     private String roleType;
     /** sys_flag - 是否系统数据 0:是-1:否 */
     private Byte sysFlag;
-
-    public Long getRoleId(){
-        return this.roleId;
-    }
-    public void setRoleId(Long roleId){
-        this.roleId = roleId;
-    }
-	public Long getOfficeId(){
-        return this.officeId;
-    }
-    public void setOfficeId(Long officeId){
-        this.officeId = officeId;
-    }
-	public String getRoleName(){
-        return this.roleName;
-    }
-    public void setRoleName(String roleName){
-        this.roleName = roleName;
-    }
-	public String getRoleEnname(){
-        return this.roleEnname;
-    }
-    public void setRoleEnname(String roleEnname){
-        this.roleEnname = roleEnname;
-    }
-	public String getRoleType(){
-        return this.roleType;
-    }
-    public void setRoleType(String roleType){
-        this.roleType = roleType;
-    }
-	public Byte getSysFlag(){
-        return this.sysFlag;
-    }
-    public void setSysFlag(Byte sysFlag){
-        this.sysFlag = sysFlag;
-    }
 
     @Override
     public Serializable getPK() {

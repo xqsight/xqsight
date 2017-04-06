@@ -19,7 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by wangganggang on 2017/1/17.
+ * @author wangganggang
+ * @date 2017/04/01
  */
 @Component
 public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolver {
@@ -31,7 +32,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
 
     @Override
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        long currentUserId = SSOUtils.isAuthenticated() ? SSOUtils.getCurrentUserId() : 2;
+        long currentUserId = SSOUtils.isAuthenticated() ? SSOUtils.getCurrentUserId() : 1;
 
         /*** 注解获取当前用户ID **/
         if (parameter.hasParameterAnnotation(CurrentUserId.class)) {
@@ -91,7 +92,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
             map.put(name, value);
         }
 
-        long currentUserId = SSOUtils.isAuthenticated() ? SSOUtils.getCurrentUserId() : 2;
+        long currentUserId = SSOUtils.isAuthenticated() ? SSOUtils.getCurrentUserId() : 1;
 
         map.put("createUserId","" + currentUserId);
         map.put("updateUserId", "" + currentUserId);

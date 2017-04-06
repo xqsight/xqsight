@@ -4,30 +4,15 @@
  */
 package com.xqsight.system.service;
 
-import com.xqsight.common.core.dao.Dao;
-import com.xqsight.common.core.service.DefaultEntityService;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import com.xqsight.common.base.service.ICrudService;
 import com.xqsight.system.model.SysOffice;
-import com.xqsight.system.mapper.SysOfficeMapper;
-
 
 /**
- * <p>机构表实现类service</p>
- * <p>Table: sys_office - 机构表</p>
- * @since 2017-02-22 04:29:58
- * @author wangganggang
- */
-@Service
-public class SysOfficeService extends DefaultEntityService<SysOffice, Long> {
+* <p>机构表 service</p>
+* <p>Table: sys_office - 机构表</p>
+* @since 2017-04-05 05:17:04
+* @author wangganggang
+*/
+public interface SysOfficeService extends ICrudService<SysOffice, Long> {
 
-	@Autowired
-	private SysOfficeMapper sysOfficeMapper;
-
-	@Override
-	protected Dao<SysOffice, Long> getDao() {
-		return sysOfficeMapper;
-	}
 }

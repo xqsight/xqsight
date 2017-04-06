@@ -21,20 +21,7 @@ import java.util.List;
  * @Description: TODO
  * @date 2016年1月8日 上午9:24:31
  */
-@Service
-public class SysAuthService {
-
-    @Autowired
-    private SysAuthMapper sysAuthMapper;
-
-    @Autowired
-    private SysLoginMapper sysLoginMapper;
-
-    @Autowired
-    private SysMenuMapper sysMenuMapper;
-
-    @Autowired
-    private SysRoleMapper sysRoleMapper;
+public interface SysAuthService {
 
 
     /**
@@ -44,14 +31,7 @@ public class SysAuthService {
      * @param roleId
      * @param ids
      */
-    public void saveUserRole(long roleId, Long... ids) {
-        sysAuthMapper.deleUserRole(roleId);
-        if (ids != null && !"".equals(ids)) {
-            for (long id : ids) {
-                sysAuthMapper.saveUserRole(id, roleId);
-            }
-        }
-    }
+    void saveUserRole(long roleId, Long... ids);
 
     /**
      * <p>Title: saveMenuRole</p>
@@ -60,14 +40,7 @@ public class SysAuthService {
      * @param roleId
      * @param menuIds
      */
-    public void saveMenuRole(long roleId, Long... menuIds) {
-        sysAuthMapper.deleMenuRole(roleId);
-        if (menuIds != null && !"".equals(menuIds)) {
-            for (long menuId : menuIds) {
-                sysAuthMapper.saveMenuRole(menuId, roleId);
-            }
-        }
-    }
+    void saveMenuRole(long roleId, Long... menuIds);
 
     /**
      * 根据角色查询当前角色下的用户
@@ -75,16 +48,7 @@ public class SysAuthService {
      * @param roleId
      * @return
      */
-    public List<SysLogin> querAuthUserByRole(long roleId) {
-        List<String> userIds = sysAuthMapper.queryUserIdByRole(roleId);
-        StringBuffer userIdSb = new StringBuffer();
-        userIds.stream().forEach(userId -> userIdSb.append(userId).append(","));
-
-        List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
-                .add("id", StringUtils.substringBeforeLast(userIdSb.toString(), ",")).end();
-
-        return sysLoginMapper.search(new Criterion(propertyFilters));
-    }
+    List<SysLogin> querAuthUserByRole(long roleId);
 
     /**
      * 根据角色查询当前角色下分配的菜单
@@ -92,20 +56,7 @@ public class SysAuthService {
      * @param roleId
      * @return
      */
-    public List<SysMenu> querAuthMenuByRole(long roleId) {
-        List<String> menuIds = sysAuthMapper.queryMenuIdByRole(roleId);
-        if(menuIds.size() == 0) {
-            return null;
-        }
-
-        StringBuffer menuIdSb = new StringBuffer();
-        menuIds.stream().forEach(menuId ->  menuIdSb.append(menuId).append(",") );
-
-        List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
-                .add("menu_id", StringUtils.substringBeforeLast(menuIdSb.toString(), ",")).end();
-
-        return sysMenuMapper.search(new Criterion(propertyFilters));
-    }
+    List<SysMenu> querAuthMenuByRole(long roleId);
 
     /**
      * 根据用户查询当前用户所在的角色
@@ -113,17 +64,7 @@ public class SysAuthService {
      * @param userId
      * @return
      */
-    public List<SysRole> queryRoleByUser(long userId) {
-        List<String> roleIds = sysAuthMapper.queryRoleIdByuser(userId);
-
-        StringBuffer roleIdSb = new StringBuffer();
-        roleIds.stream().forEach(roleId ->  roleIdSb.append(roleId).append(",") );
-
-        List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
-                .add("role_id", StringUtils.substringBeforeLast(roleIdSb.toString(), ",")).end();
-
-        return sysRoleMapper.search(new Criterion(propertyFilters));
-    }
+    List<SysRole> queryRoleByUser(long userId);
 
     /**
      * 根据用户查询当前用户分配的菜单
@@ -131,24 +72,5 @@ public class SysAuthService {
      * @param userId
      * @return
      */
-    public List<SysMenu> queryMenuByUser(long userId, List<PropertyFilter> propertyFilters,List<Sort> sorts ) {
-        List<String> menuIds = new ArrayList<>();
-        List<String> roleIds = sysAuthMapper.queryRoleIdByuser(userId);
-
-        roleIds.stream().forEach(roleId -> menuIds.addAll(sysAuthMapper.queryMenuIdByRole(Long.valueOf(roleId))));
-
-        StringBuffer menuIdSb = new StringBuffer();
-        menuIds.stream().forEach(menuId -> menuIdSb.append(menuId).append(",") );
-
-        List<PropertyFilter> proFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN).propertyType(PropertyType.L)
-                .add("menu_id", StringUtils.substringBeforeLast(menuIdSb.toString(), ",")).end();
-
-        if(propertyFilters == null) {
-            propertyFilters = new ArrayList<>();
-        }
-        propertyFilters.addAll(proFilters);
-        return sysMenuMapper.search(new Criterion(propertyFilters,sorts));
-    }
-
-
+    List<SysMenu> queryMenuByUser(long userId, List<PropertyFilter> propertyFilters,List<Sort> sorts );
 }

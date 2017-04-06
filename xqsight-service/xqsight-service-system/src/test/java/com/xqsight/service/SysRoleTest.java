@@ -20,7 +20,7 @@ public class SysRoleTest {
 
     @Test
     public void query(){
-        SysRole sysRole = sysRoleService.get(1L);
+        SysRole sysRole = sysRoleService.getById(1L);
         System.out.println(sysRole.getRoleName());
     }
 }

@@ -6,7 +6,7 @@ package com.xqsight.cms.mapper;
 
 
 import com.xqsight.cms.model.CmsArticle;
-import com.xqsight.common.core.dao.Dao;
+import com.xqsight.common.base.dao.ICrudDao;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -22,7 +22,7 @@ import java.util.List;
  * @author wangganggang
  * @since 2017-02-23 04:52:03
  */
-public interface CmsArticleMapper extends Dao<CmsArticle, Long> {
+public interface CmsArticleMapper extends ICrudDao<CmsArticle, Long> {
 
     @Insert("insert into cms_article_tag (tag_id,article_id)values(#{tagId, jdbcType=NUMERIC},#{articleId, jdbcType=NUMERIC})")
     void saveArticleTag(@Param("articleId") long articleId, @Param("tagId") long tagId);

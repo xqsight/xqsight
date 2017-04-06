@@ -5,6 +5,7 @@
 package com.xqsight.cms.model;
 
 import com.xqsight.common.model.BaseModel;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -16,6 +17,7 @@ import java.io.Serializable;
  * @since 2017-02-23 04:52:38
  * @author wangganggang
  */
+@Data
 public class CmsTag extends BaseModel {
 
 	/** 主键 */
@@ -23,19 +25,6 @@ public class CmsTag extends BaseModel {
 
     /** tag_name - 标签名称 */
     private String tagName;
-
-    public Long getTagId(){
-        return this.tagId;
-    }
-    public void setTagId(Long tagId){
-        this.tagId = tagId;
-    }
-	public String getTagName(){
-        return this.tagName;
-    }
-    public void setTagName(String tagName){
-        this.tagName = tagName;
-    }
 
     @Override
     public Serializable getPK() {

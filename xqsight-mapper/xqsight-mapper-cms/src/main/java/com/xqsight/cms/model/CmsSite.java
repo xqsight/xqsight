@@ -5,6 +5,7 @@
 package com.xqsight.cms.model;
 
 import com.xqsight.common.model.AbstractTreeModel;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -16,6 +17,7 @@ import java.io.Serializable;
  * @since 2017-02-23 04:52:30
  * @author wangganggang
  */
+@Data
 public class CmsSite extends AbstractTreeModel<CmsSite> {
 
 	/** 主键 */
@@ -28,28 +30,6 @@ public class CmsSite extends AbstractTreeModel<CmsSite> {
     /** site_name - 站点名称 */
     private String siteName;
 
-    public Long getSiteId(){
-        return this.siteId;
-    }
-    public void setSiteId(Long siteId){
-        this.siteId = siteId;
-        super.setId("" + siteId);
-    }
-	public String getParentIds(){
-        return this.parentIds;
-    }
-    public void setParentIds(String parentIds){
-        this.parentIds = parentIds;
-    }
-	public String getSiteCode(){
-        return this.siteCode;
-    }
-    public void setSiteCode(String siteCode){
-        this.siteCode = siteCode;
-    }
-	public String getSiteName(){
-        return this.siteName;
-    }
     public void setSiteName(String siteName){
         this.siteName = siteName;
         super.setName(siteName);

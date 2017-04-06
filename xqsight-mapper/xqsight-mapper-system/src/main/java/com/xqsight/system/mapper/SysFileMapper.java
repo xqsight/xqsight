@@ -4,18 +4,14 @@
  */
 package com.xqsight.system.mapper;
 
-
-import com.xqsight.common.core.dao.Dao;
-
+import com.xqsight.common.base.dao.ICrudDao;
 import com.xqsight.system.model.SysFile;
-
-
 
 /**
  * <p>文件表实现类service</p>
  * <p>Table: sys_file - 文件表</p>
- * @since 2017-02-22 04:29:42
+ * @since 2017-04-05 05:21:18
  * @author wangganggang
 */
-public interface SysFileMapper extends Dao<SysFile,Long>{
+public interface SysFileMapper extends ICrudDao<SysFile,Long>{
 }

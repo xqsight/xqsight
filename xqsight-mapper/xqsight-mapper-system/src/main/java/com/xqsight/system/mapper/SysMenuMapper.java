@@ -4,18 +4,14 @@
  */
 package com.xqsight.system.mapper;
 
-
-import com.xqsight.common.core.dao.Dao;
-
+import com.xqsight.common.base.dao.ICrudDao;
 import com.xqsight.system.model.SysMenu;
-
-
 
 /**
  * <p>菜单信息表实现类service</p>
  * <p>Table: sys_menu - 菜单信息表</p>
- * @since 2017-02-22 04:29:52
+ * @since 2017-04-06 09:53:31
  * @author wangganggang
 */
-public interface SysMenuMapper extends Dao<SysMenu,Long>{
+public interface SysMenuMapper extends ICrudDao<SysMenu,Long>{
 }

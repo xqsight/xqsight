@@ -75,7 +75,7 @@ public class ShiroConfig {
         return new CustomAuthenticationStrategy();
     }
 
-    @Bean
+    @Bean(name = "securityManager")
     public CustomWebSecurityManager securityManager() {
         CustomWebSecurityManager  securityManager = new CustomWebSecurityManager();
         /** 设置realm **/

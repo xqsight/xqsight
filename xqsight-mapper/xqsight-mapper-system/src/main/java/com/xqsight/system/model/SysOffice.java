@@ -5,6 +5,7 @@
 package com.xqsight.system.model;
 
 import com.xqsight.common.model.AbstractTreeModel;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -13,18 +14,17 @@ import java.io.Serializable;
  * <p>机构表实体类</p>
  * <p>Table: sys_office - --> SysOffice</p>
  * <p>机构表</p>
- * @since 2017-02-22 04:29:58
+ * @since 2017-04-06 09:56:20
  * @author wangganggang
  */
-public class SysOffice extends AbstractTreeModel<SysOffice> {
+@Data
+public class SysOffice extends AbstractTreeModel<SysOffice>{
 
 	/** 主键 */
     private Long officeId;
 
     /** area_id - 区域内码 */
     private Long areaId;
-    /** parent_ids - 所有上级 */
-    private String parentIds;
     /** office_name - 名称 */
     private String officeName;
     /** office_code - 编号 */
@@ -44,79 +44,9 @@ public class SysOffice extends AbstractTreeModel<SysOffice> {
     /** email - 邮箱 */
     private String email;
 
-    public Long getOfficeId(){
-        return this.officeId;
-    }
-    public void setOfficeId(Long officeId){
-        this.officeId = officeId;
-        super.setId("" + officeId);
-    }
-	public Long getAreaId(){
-        return this.areaId;
-    }
-    public void setAreaId(Long areaId){
-        this.areaId = areaId;
-    }
-	public String getParentIds(){
-        return this.parentIds;
-    }
-    public void setParentIds(String parentIds){
-        this.parentIds = parentIds;
-    }
-	public String getOfficeName(){
-        return this.officeName;
-    }
     public void setOfficeName(String officeName){
-        this.officeName = officeName;
         super.setName(officeName);
-    }
-	public String getOfficeCode(){
-        return this.officeCode;
-    }
-    public void setOfficeCode(String officeCode){
-        this.officeCode = officeCode;
-    }
-	public Byte getOfficeType(){
-        return this.officeType;
-    }
-    public void setOfficeType(Byte officeType){
-        this.officeType = officeType;
-    }
-	public String getAddress(){
-        return this.address;
-    }
-    public void setAddress(String address){
-        this.address = address;
-    }
-	public String getZipCode(){
-        return this.zipCode;
-    }
-    public void setZipCode(String zipCode){
-        this.zipCode = zipCode;
-    }
-	public String getMaster(){
-        return this.master;
-    }
-    public void setMaster(String master){
-        this.master = master;
-    }
-	public String getPhone(){
-        return this.phone;
-    }
-    public void setPhone(String phone){
-        this.phone = phone;
-    }
-	public String getFax(){
-        return this.fax;
-    }
-    public void setFax(String fax){
-        this.fax = fax;
-    }
-	public String getEmail(){
-        return this.email;
-    }
-    public void setEmail(String email){
-        this.email = email;
+        this.officeName = officeName;
     }
 
     @Override

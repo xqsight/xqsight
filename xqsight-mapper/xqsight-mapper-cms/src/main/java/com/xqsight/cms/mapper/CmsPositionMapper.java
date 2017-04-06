@@ -5,9 +5,8 @@
 package com.xqsight.cms.mapper;
 
 
-import com.xqsight.common.core.dao.Dao;
-
 import com.xqsight.cms.model.CmsPosition;
+import com.xqsight.common.base.dao.ICrudDao;
 
 
 
@@ -17,5 +16,5 @@ import com.xqsight.cms.model.CmsPosition;
  * @since 2017-02-23 04:52:22
  * @author wangganggang
 */
-public interface CmsPositionMapper extends Dao<CmsPosition,Long>{
+public interface CmsPositionMapper extends ICrudDao<CmsPosition,Long> {
 }

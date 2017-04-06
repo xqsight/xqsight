@@ -1,6 +1,5 @@
 package com.xqsight.rxjava;
 
-import io.reactivex.Flowable;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -20,7 +19,7 @@ public class RxjavaTest {
         //Flowable.fromIterable(list).skip(2).subscribe(System.out::println);
         //Flowable.fromArray(list.toArray()).subscribe(System.out::println);
         //Flowable.just("blue").subscribe(System.out::println);
-        Flowable.range(0,100).subscribe(System.out::println);
+       // Flowable.range(0,100).subscribe(System.out::println);
 
     }
 

@@ -4,18 +4,14 @@
  */
 package com.xqsight.system.mapper;
 
-
-import com.xqsight.common.core.dao.Dao;
-
+import com.xqsight.common.base.dao.ICrudDao;
 import com.xqsight.system.model.SysArea;
-
-
 
 /**
  * <p>区域表实现类service</p>
  * <p>Table: sys_area - 区域表</p>
- * @since 2017-02-22 04:29:28
+ * @since 2017-04-06 09:53:18
  * @author wangganggang
 */
-public interface SysAreaMapper extends Dao<SysArea,Long>{
+public interface SysAreaMapper extends ICrudDao<SysArea,Long>{
 }

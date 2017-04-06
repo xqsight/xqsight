@@ -5,7 +5,7 @@
 package com.xqsight.system.mapper;
 
 
-import com.xqsight.common.core.dao.Dao;
+import com.xqsight.common.base.dao.ICrudDao;
 import com.xqsight.system.model.SysQuickKey;
 
 
@@ -15,5 +15,5 @@ import com.xqsight.system.model.SysQuickKey;
  * @since 2017-01-07 11:57:57
  * @author wangganggang
 */
-public interface SysQuickKeyMapper extends Dao<SysQuickKey,Long>{
+public interface SysQuickKeyMapper extends ICrudDao<SysQuickKey,Long>{
 }

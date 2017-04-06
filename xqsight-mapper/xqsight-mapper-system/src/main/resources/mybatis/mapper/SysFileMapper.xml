@@ -19,195 +19,164 @@
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <sql id="Base_Column_List_Without_Id">
+        file_name,file_url,file_domain,file_ext,file_size,attachment_type,file_kind,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
     <sql id="Base_Column_List">
-	 file_id,file_name,file_url,file_domain,file_ext,file_size,attachment_type,file_kind,active,create_user_id,create_time,update_user_id,update_time,remark
+         file_id,
+        <include refid="Base_Column_List_Without_Id"/>
     </sql>
 
+    <sql id="Insert_Columns">
+        <if test="fileName!=null"> file_name,</if>
+        <if test="fileUrl!=null"> file_url,</if>
+        <if test="fileDomain!=null"> file_domain,</if>
+        <if test="fileExt!=null"> file_ext,</if>
+        <if test="fileSize!=null"> file_size,</if>
+        <if test="attachmentType!=null"> attachment_type,</if>
+        <if test="fileKind!=null"> file_kind,</if>
+        <if test="active!=null"> active,</if>
+        <if test="createUserId!=null"> create_user_id,</if>
+        <if test="createTime!=null"> create_time,</if>
+        <if test="updateUserId!=null"> update_user_id,</if>
+        <if test="updateTime!=null"> update_time,</if>
+        <if test="remark!=null"> remark,</if>
+    </sql>
+    <sql id="Insert_Values">
+        <if test="fileName!=null">#{fileName,jdbcType=VARCHAR},</if>
+        <if test="fileUrl!=null">#{fileUrl,jdbcType=VARCHAR},</if>
+        <if test="fileDomain!=null">#{fileDomain,jdbcType=VARCHAR},</if>
+        <if test="fileExt!=null">#{fileExt,jdbcType=VARCHAR},</if>
+        <if test="fileSize!=null">#{fileSize,jdbcType=VARCHAR},</if>
+        <if test="attachmentType!=null">#{attachmentType,jdbcType=VARCHAR},</if>
+        <if test="fileKind!=null">#{fileKind,jdbcType=VARCHAR},</if>
+        <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null">#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="Batch_Insert_Values">
+        #{fileName,jdbcType=VARCHAR},
+        #{fileUrl,jdbcType=VARCHAR},
+        #{fileDomain,jdbcType=VARCHAR},
+        #{fileExt,jdbcType=VARCHAR},
+        #{fileSize,jdbcType=VARCHAR},
+        #{attachmentType,jdbcType=VARCHAR},
+        #{fileKind,jdbcType=VARCHAR},
+        #{active,jdbcType=NUMERIC},
+        #{createUserId,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{updateUserId,jdbcType=VARCHAR},
+        #{updateTime,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR},
+    </sql>
+
+    <sql id="Update_Set_From_Bean">
+        <if test="fileName!=null"> file_name=#{fileName,jdbcType=VARCHAR},</if>
+        <if test="fileUrl!=null"> file_url=#{fileUrl,jdbcType=VARCHAR},</if>
+        <if test="fileDomain!=null"> file_domain=#{fileDomain,jdbcType=VARCHAR},</if>
+        <if test="fileExt!=null"> file_ext=#{fileExt,jdbcType=VARCHAR},</if>
+        <if test="fileSize!=null"> file_size=#{fileSize,jdbcType=VARCHAR},</if>
+        <if test="attachmentType!=null"> attachment_type=#{attachmentType,jdbcType=VARCHAR},</if>
+        <if test="fileKind!=null"> file_kind=#{fileKind,jdbcType=VARCHAR},</if>
+        <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null"> create_time=#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null"> update_user_id=#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null"> update_time=#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BatchUpdate_Set_From_Bean">
+        file_name=#{fileName,jdbcType=VARCHAR},
+        file_url=#{fileUrl,jdbcType=VARCHAR},
+        file_domain=#{fileDomain,jdbcType=VARCHAR},
+        file_ext=#{fileExt,jdbcType=VARCHAR},
+        file_size=#{fileSize,jdbcType=VARCHAR},
+        attachment_type=#{attachmentType,jdbcType=VARCHAR},
+        file_kind=#{fileKind,jdbcType=VARCHAR},
+        active=#{active,jdbcType=NUMERIC},
+        create_user_id=#{createUserId,jdbcType=VARCHAR},
+        create_time=#{createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{updateUserId,jdbcType=VARCHAR},
+        update_time=#{updateTime,jdbcType=TIMESTAMP},
+        remark=#{remark,jdbcType=VARCHAR},
+    </sql>
+
+    <!--insert-->
     <insert id="insert" parameterType="com.xqsight.system.model.SysFile" useGeneratedKeys="true" keyProperty="fileId">
-        insert into sys_file (
-	file_name,file_url,file_domain,file_ext,file_size,attachment_type,file_kind,active,create_user_id,create_time,update_user_id,update_time,remark
-        ) values (
-	#{fileName,jdbcType=VARCHAR},
-	#{fileUrl,jdbcType=VARCHAR},
-	#{fileDomain,jdbcType=VARCHAR},
-	#{fileExt,jdbcType=VARCHAR},
-	#{fileSize,jdbcType=VARCHAR},
-	#{attachmentType,jdbcType=VARCHAR},
-	#{fileKind,jdbcType=VARCHAR},
-	#{active,jdbcType=NUMERIC},
-	#{createUserId,jdbcType=VARCHAR},
-	#{createTime,jdbcType=TIMESTAMP},
-	#{updateUserId,jdbcType=VARCHAR},
-	#{updateTime,jdbcType=TIMESTAMP},
-	#{remark,jdbcType=VARCHAR}
-        )
-    </insert>
-
-    <insert id="insertSelective" parameterType="com.xqsight.system.model.SysFile" useGeneratedKeys="true" keyProperty="fileId">
         insert into sys_file
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="fileName!=null">
-			file_name,
-            </if>
-            <if test="fileUrl!=null">
-			file_url,
-            </if>
-            <if test="fileDomain!=null">
-			file_domain,
-            </if>
-            <if test="fileExt!=null">
-			file_ext,
-            </if>
-            <if test="fileSize!=null">
-			file_size,
-            </if>
-            <if test="attachmentType!=null">
-			attachment_type,
-            </if>
-            <if test="fileKind!=null">
-			file_kind,
-            </if>
-            <if test="active!=null">
-			active,
-            </if>
-            <if test="createUserId!=null">
-			create_user_id,
-            </if>
-            <if test="createTime!=null">
-			create_time,
-            </if>
-            <if test="updateUserId!=null">
-			update_user_id,
-            </if>
-            <if test="updateTime!=null">
-			update_time,
-            </if>
-            <if test="remark!=null">
-			remark,
-            </if>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Columns"/>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="fileName!=null">
-			#{fileName,jdbcType=VARCHAR},
-            </if>
-            <if test="fileUrl!=null">
-			#{fileUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="fileDomain!=null">
-			#{fileDomain,jdbcType=VARCHAR},
-            </if>
-            <if test="fileExt!=null">
-			#{fileExt,jdbcType=VARCHAR},
-            </if>
-            <if test="fileSize!=null">
-			#{fileSize,jdbcType=VARCHAR},
-            </if>
-            <if test="attachmentType!=null">
-			#{attachmentType,jdbcType=VARCHAR},
-            </if>
-            <if test="fileKind!=null">
-			#{fileKind,jdbcType=VARCHAR},
-            </if>
-            <if test="active!=null">
-			#{active,jdbcType=NUMERIC},
-            </if>
-            <if test="createUserId!=null">
-			#{createUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime!=null">
-			#{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateUserId!=null">
-			#{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-			#{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-			#{remark,jdbcType=VARCHAR},
-            </if>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Values"/>
         </trim>
     </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into sys_file
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Base_Column_List_Without_Id"/>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <include refid="Batch_Insert_Values"/>
+            </trim>
+        </foreach>
+    </insert>
+    <!-- end insert -->
 
-    <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysFile">
-        update sys_file set
-		file_name = #{fileName,jdbcType=VARCHAR},
-		file_url = #{fileUrl,jdbcType=VARCHAR},
-		file_domain = #{fileDomain,jdbcType=VARCHAR},
-		file_ext = #{fileExt,jdbcType=VARCHAR},
-		file_size = #{fileSize,jdbcType=VARCHAR},
-		attachment_type = #{attachmentType,jdbcType=VARCHAR},
-		file_kind = #{fileKind,jdbcType=VARCHAR},
-		active = #{active,jdbcType=NUMERIC},
-		update_user_id = #{updateUserId,jdbcType=VARCHAR},
-		update_time = #{updateTime,jdbcType=TIMESTAMP},
-		remark = #{remark,jdbcType=VARCHAR}
-        where  file_id = #{fileId,jdbcType=NUMERIC}  
-    </update>
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysFile">
-        update sys_file
-        <set>
-            <if test="fileName!=null">
-            file_name = #{fileName,jdbcType=VARCHAR},
-            </if>
-            <if test="fileUrl!=null">
-            file_url = #{fileUrl,jdbcType=VARCHAR},
-            </if>
-            <if test="fileDomain!=null">
-            file_domain = #{fileDomain,jdbcType=VARCHAR},
-            </if>
-            <if test="fileExt!=null">
-            file_ext = #{fileExt,jdbcType=VARCHAR},
-            </if>
-            <if test="fileSize!=null">
-            file_size = #{fileSize,jdbcType=VARCHAR},
-            </if>
-            <if test="attachmentType!=null">
-            attachment_type = #{attachmentType,jdbcType=VARCHAR},
-            </if>
-            <if test="fileKind!=null">
-            file_kind = #{fileKind,jdbcType=VARCHAR},
-            </if>
-            <if test="active!=null">
-            active = #{active,jdbcType=NUMERIC},
-            </if>
-            <if test="updateUserId!=null">
-            update_user_id = #{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-            update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-            remark = #{remark,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where  file_id = #{fileId,jdbcType=NUMERIC}  
-    </update>
-
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!-- delete -->
+    <delete id="deleteById" parameterType="java.lang.Long">
         delete from sys_file
         where  file_id = #{fileId,jdbcType=NUMERIC}  
     </delete>
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
+        delete from sys_file
+        where 1=1
+        ${whereSqlString}
+    </delete>
+    <!-- end delete -->
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select <include refid="Base_Column_List"/> from sys_file
+    <!-- update -->
+    <update id="updateById" parameterType="com.xqsight.system.model.SysFile">
+        update sys_file
+        <set>
+            <include refid="Update_Set_From_Bean"/>
+        </set>
         where  file_id = #{fileId,jdbcType=NUMERIC}  
-    </select>
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update sys_file
+        <include refid="BatchUpdate_Set_From_Bean"/>
+        where
+             file_id = #{fileId,jdbcType=NUMERIC}  
+        </foreach>
+    </update>
+    <!-- end update -->
 
+    <!-- select -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from sys_file
+        where
+             file_id = #{fileId,jdbcType=NUMERIC}  
+    </select>
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
         select <include refid="Base_Column_List"/> from sys_file
         WHERE 1=1
-	    ${whereSqlString}
 
+        ${whereSqlString}
         <trim prefix=" and " suffix="" suffixOverrides="" >
-        <if test="customSql != null">
-        ${customSqlString}
-        </if>
+            <if test="customSql != null">
+            ${customSqlString}
+            </if>
         </trim>
-
         <if test="orderBy != null">
-		${orderBySqlString}
+        ${orderBySqlString}
         </if>
     </select>
+    <!-- end select -->
 </mapper>

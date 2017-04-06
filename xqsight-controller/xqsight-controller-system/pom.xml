@@ -17,7 +17,6 @@
             <artifactId>xqsight-service-system</artifactId>
             <version>${project.version}</version>
         </dependency>
-
     </dependencies>
 
 </project>

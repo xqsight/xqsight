@@ -14,12 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-common-configer</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-common-model</artifactId>
+            <artifactId>xqsight-common-base</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

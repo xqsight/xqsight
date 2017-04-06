@@ -5,6 +5,7 @@
 package com.xqsight.cms.model;
 
 import com.xqsight.common.model.AbstractTreeModel;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -16,6 +17,7 @@ import java.io.Serializable;
  * @since 2017-02-23 04:52:22
  * @author wangganggang
  */
+@Data
 public class CmsPosition extends AbstractTreeModel<CmsPosition> {
 
 	/** 主键 */
@@ -28,31 +30,9 @@ public class CmsPosition extends AbstractTreeModel<CmsPosition> {
     /** position_code - 职位编码 */
     private String positionCode;
 
-    public Long getPositionId(){
-        return this.positionId;
-    }
-    public void setPositionId(Long positionId){
-        this.positionId = positionId;
-        super.setId("" + positionId);
-    }
-	public String getParentIds(){
-        return this.parentIds;
-    }
-    public void setParentIds(String parentIds){
-        this.parentIds = parentIds;
-    }
-	public String getPositionName(){
-        return this.positionName;
-    }
     public void setPositionName(String positionName){
         this.positionName = positionName;
         super.setName(positionName);
-    }
-	public String getPositionCode(){
-        return this.positionCode;
-    }
-    public void setPositionCode(String positionCode){
-        this.positionCode = positionCode;
     }
 
     @Override

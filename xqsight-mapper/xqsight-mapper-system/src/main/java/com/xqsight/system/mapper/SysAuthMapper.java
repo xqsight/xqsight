@@ -1,5 +1,6 @@
 package com.xqsight.system.mapper;
 
+import com.xqsight.common.base.dao.ICrudDao;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -12,7 +13,7 @@ import java.util.List;
  * @Description: 系统收权限分派
  * @date 2016年1月8日 上午9:11:27
  */
-public interface SysAuthMapper {
+public interface SysAuthMapper extends ICrudDao {
 
     @Insert("insert into sys_menu_role (menu_id,role_id)values(#{menuId, jdbcType=NUMERIC},#{roleId, jdbcType=NUMERIC})")
     void saveMenuRole(@Param("menuId") long menuId, @Param("roleId") long roleId);

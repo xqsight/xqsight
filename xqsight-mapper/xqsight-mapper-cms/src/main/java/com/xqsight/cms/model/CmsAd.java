@@ -6,6 +6,7 @@ package com.xqsight.cms.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.xqsight.common.model.BaseModel;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -19,6 +20,7 @@ import java.util.Date;
  * @since 2017-02-23 04:51:56
  * @author wangganggang
  */
+@Data
 public class CmsAd extends BaseModel {
 
 	/** 主键 */
@@ -49,79 +51,13 @@ public class CmsAd extends BaseModel {
     /** sort - 排序 */
     private Short sort;
 
-    public Long getAdId(){
-        return this.adId;
-    }
-    public void setAdId(Long adId){
-        this.adId = adId;
-    }
-	public Long getSiteId(){
-        return this.siteId;
-    }
-    public void setSiteId(Long siteId){
-        this.siteId = siteId;
-    }
-	public String getAdName(){
-        return this.adName;
-    }
-    public void setAdName(String adName){
-        this.adName = adName;
-    }
-	public String getAdUrl(){
-        return this.adUrl;
-    }
-    public void setAdUrl(String adUrl){
-        this.adUrl = adUrl;
-    }
-	public String getAdText(){
-        return this.adText;
-    }
-    public void setAdText(String adText){
-        this.adText = adText;
-    }
-	public String getAdScript(){
-        return this.adScript;
-    }
-    public void setAdScript(String adScript){
-        this.adScript = adScript;
-    }
-	public String getAdImage(){
-        return this.adImage;
-    }
-    public void setAdImage(String adImage){
-        this.adImage = adImage;
-    }
-	public String getAdFlash(){
-        return this.adFlash;
-    }
-    public void setAdFlash(String adFlash){
-        this.adFlash = adFlash;
-    }
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	public Date getAdBeginTime(){
         return this.adBeginTime;
     }
-    public void setAdBeginTime(Date adBeginTime){
-        this.adBeginTime = adBeginTime;
-    }
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	public Date getAdEndTime(){
         return this.adEndTime;
-    }
-    public void setAdEndTime(Date adEndTime){
-        this.adEndTime = adEndTime;
-    }
-	public Byte getType(){
-        return this.type;
-    }
-    public void setType(Byte type){
-        this.type = type;
-    }
-	public Short getSort(){
-        return this.sort;
-    }
-    public void setSort(Short sort){
-        this.sort = sort;
     }
 
     @Override

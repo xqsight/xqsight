@@ -17,173 +17,154 @@
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <sql id="Base_Column_List_Without_Id">
+        office_id,role_name,role_enname,role_type,sys_flag,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
     <sql id="Base_Column_List">
-	 role_id,office_id,role_name,role_enname,role_type,sys_flag,active,create_user_id,create_time,update_user_id,update_time,remark
+         role_id,
+        <include refid="Base_Column_List_Without_Id"/>
     </sql>
 
+    <sql id="Insert_Columns">
+        <if test="officeId!=null"> office_id,</if>
+        <if test="roleName!=null"> role_name,</if>
+        <if test="roleEnname!=null"> role_enname,</if>
+        <if test="roleType!=null"> role_type,</if>
+        <if test="sysFlag!=null"> sys_flag,</if>
+        <if test="active!=null"> active,</if>
+        <if test="createUserId!=null"> create_user_id,</if>
+        <if test="createTime!=null"> create_time,</if>
+        <if test="updateUserId!=null"> update_user_id,</if>
+        <if test="updateTime!=null"> update_time,</if>
+        <if test="remark!=null"> remark,</if>
+    </sql>
+    <sql id="Insert_Values">
+        <if test="officeId!=null">#{officeId,jdbcType=NUMERIC},</if>
+        <if test="roleName!=null">#{roleName,jdbcType=VARCHAR},</if>
+        <if test="roleEnname!=null">#{roleEnname,jdbcType=VARCHAR},</if>
+        <if test="roleType!=null">#{roleType,jdbcType=VARCHAR},</if>
+        <if test="sysFlag!=null">#{sysFlag,jdbcType=NUMERIC},</if>
+        <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null">#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="Batch_Insert_Values">
+        #{officeId,jdbcType=NUMERIC},
+        #{roleName,jdbcType=VARCHAR},
+        #{roleEnname,jdbcType=VARCHAR},
+        #{roleType,jdbcType=VARCHAR},
+        #{sysFlag,jdbcType=NUMERIC},
+        #{active,jdbcType=NUMERIC},
+        #{createUserId,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{updateUserId,jdbcType=VARCHAR},
+        #{updateTime,jdbcType=TIMESTAMP},
+        #{remark,jdbcType=VARCHAR},
+    </sql>
+
+    <sql id="Update_Set_From_Bean">
+        <if test="officeId!=null"> office_id=#{officeId,jdbcType=NUMERIC},</if>
+        <if test="roleName!=null"> role_name=#{roleName,jdbcType=VARCHAR},</if>
+        <if test="roleEnname!=null"> role_enname=#{roleEnname,jdbcType=VARCHAR},</if>
+        <if test="roleType!=null"> role_type=#{roleType,jdbcType=VARCHAR},</if>
+        <if test="sysFlag!=null"> sys_flag=#{sysFlag,jdbcType=NUMERIC},</if>
+        <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null"> create_time=#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null"> update_user_id=#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null"> update_time=#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BatchUpdate_Set_From_Bean">
+        office_id=#{officeId,jdbcType=NUMERIC},
+        role_name=#{roleName,jdbcType=VARCHAR},
+        role_enname=#{roleEnname,jdbcType=VARCHAR},
+        role_type=#{roleType,jdbcType=VARCHAR},
+        sys_flag=#{sysFlag,jdbcType=NUMERIC},
+        active=#{active,jdbcType=NUMERIC},
+        create_user_id=#{createUserId,jdbcType=VARCHAR},
+        create_time=#{createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{updateUserId,jdbcType=VARCHAR},
+        update_time=#{updateTime,jdbcType=TIMESTAMP},
+        remark=#{remark,jdbcType=VARCHAR},
+    </sql>
+
+    <!--insert-->
     <insert id="insert" parameterType="com.xqsight.system.model.SysRole" useGeneratedKeys="true" keyProperty="roleId">
-        insert into sys_role (
-	office_id,role_name,role_enname,role_type,sys_flag,active,create_user_id,create_time,update_user_id,update_time,remark
-        ) values (
-	#{officeId,jdbcType=NUMERIC},
-	#{roleName,jdbcType=VARCHAR},
-	#{roleEnname,jdbcType=VARCHAR},
-	#{roleType,jdbcType=VARCHAR},
-	#{sysFlag,jdbcType=NUMERIC},
-	#{active,jdbcType=NUMERIC},
-	#{createUserId,jdbcType=VARCHAR},
-	#{createTime,jdbcType=TIMESTAMP},
-	#{updateUserId,jdbcType=VARCHAR},
-	#{updateTime,jdbcType=TIMESTAMP},
-	#{remark,jdbcType=VARCHAR}
-        )
-    </insert>
-
-    <insert id="insertSelective" parameterType="com.xqsight.system.model.SysRole" useGeneratedKeys="true" keyProperty="roleId">
         insert into sys_role
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="officeId!=null">
-			office_id,
-            </if>
-            <if test="roleName!=null">
-			role_name,
-            </if>
-            <if test="roleEnname!=null">
-			role_enname,
-            </if>
-            <if test="roleType!=null">
-			role_type,
-            </if>
-            <if test="sysFlag!=null">
-			sys_flag,
-            </if>
-            <if test="active!=null">
-			active,
-            </if>
-            <if test="createUserId!=null">
-			create_user_id,
-            </if>
-            <if test="createTime!=null">
-			create_time,
-            </if>
-            <if test="updateUserId!=null">
-			update_user_id,
-            </if>
-            <if test="updateTime!=null">
-			update_time,
-            </if>
-            <if test="remark!=null">
-			remark,
-            </if>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Columns"/>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="officeId!=null">
-			#{officeId,jdbcType=NUMERIC},
-            </if>
-            <if test="roleName!=null">
-			#{roleName,jdbcType=VARCHAR},
-            </if>
-            <if test="roleEnname!=null">
-			#{roleEnname,jdbcType=VARCHAR},
-            </if>
-            <if test="roleType!=null">
-			#{roleType,jdbcType=VARCHAR},
-            </if>
-            <if test="sysFlag!=null">
-			#{sysFlag,jdbcType=NUMERIC},
-            </if>
-            <if test="active!=null">
-			#{active,jdbcType=NUMERIC},
-            </if>
-            <if test="createUserId!=null">
-			#{createUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime!=null">
-			#{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateUserId!=null">
-			#{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-			#{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-			#{remark,jdbcType=VARCHAR},
-            </if>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Values"/>
         </trim>
     </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into sys_role
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Base_Column_List_Without_Id"/>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <include refid="Batch_Insert_Values"/>
+            </trim>
+        </foreach>
+    </insert>
+    <!-- end insert -->
 
-    <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysRole">
-        update sys_role set
-		office_id = #{officeId,jdbcType=NUMERIC},
-		role_name = #{roleName,jdbcType=VARCHAR},
-		role_enname = #{roleEnname,jdbcType=VARCHAR},
-		role_type = #{roleType,jdbcType=VARCHAR},
-		sys_flag = #{sysFlag,jdbcType=NUMERIC},
-		active = #{active,jdbcType=NUMERIC},
-		update_user_id = #{updateUserId,jdbcType=VARCHAR},
-		update_time = #{updateTime,jdbcType=TIMESTAMP},
-		remark = #{remark,jdbcType=VARCHAR}
-        where  role_id = #{roleId,jdbcType=NUMERIC}  
-    </update>
-
-    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysRole">
-        update sys_role
-        <set>
-            <if test="officeId!=null">
-            office_id = #{officeId,jdbcType=NUMERIC},
-            </if>
-            <if test="roleName!=null">
-            role_name = #{roleName,jdbcType=VARCHAR},
-            </if>
-            <if test="roleEnname!=null">
-            role_enname = #{roleEnname,jdbcType=VARCHAR},
-            </if>
-            <if test="roleType!=null">
-            role_type = #{roleType,jdbcType=VARCHAR},
-            </if>
-            <if test="sysFlag!=null">
-            sys_flag = #{sysFlag,jdbcType=NUMERIC},
-            </if>
-            <if test="active!=null">
-            active = #{active,jdbcType=NUMERIC},
-            </if>
-            <if test="updateUserId!=null">
-            update_user_id = #{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-            update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-            remark = #{remark,jdbcType=VARCHAR},
-            </if>
-        </set>
-        where  role_id = #{roleId,jdbcType=NUMERIC}  
-    </update>
-
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!-- delete -->
+    <delete id="deleteById" parameterType="java.lang.Long">
         delete from sys_role
         where  role_id = #{roleId,jdbcType=NUMERIC}  
     </delete>
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
+        delete from sys_role
+        where 1=1
+        ${whereSqlString}
+    </delete>
+    <!-- end delete -->
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select <include refid="Base_Column_List"/> from sys_role
+    <!-- update -->
+    <update id="updateById" parameterType="com.xqsight.system.model.SysRole">
+        update sys_role
+        <set>
+            <include refid="Update_Set_From_Bean"/>
+        </set>
         where  role_id = #{roleId,jdbcType=NUMERIC}  
-    </select>
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update sys_role
+        <include refid="BatchUpdate_Set_From_Bean"/>
+        where
+             role_id = #{roleId,jdbcType=NUMERIC}  
+        </foreach>
+    </update>
+    <!-- end update -->
 
+    <!-- select -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from sys_role
+        where
+             role_id = #{roleId,jdbcType=NUMERIC}  
+    </select>
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
         select <include refid="Base_Column_List"/> from sys_role
         WHERE 1=1
-	    ${whereSqlString}
 
+        ${whereSqlString}
         <trim prefix=" and " suffix="" suffixOverrides="" >
-        <if test="customSql != null">
-        ${customSqlString}
-        </if>
+            <if test="customSql != null">
+            ${customSqlString}
+            </if>
         </trim>
-
         <if test="orderBy != null">
-		${orderBySqlString}
+        ${orderBySqlString}
         </if>
     </select>
+    <!-- end select -->
 </mapper>
