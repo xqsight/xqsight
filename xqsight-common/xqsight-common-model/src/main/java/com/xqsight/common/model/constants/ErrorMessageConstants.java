@@ -1,6 +1,3 @@
-/**
- *
- */
 package com.xqsight.common.model.constants;
 
 import java.util.ListResourceBundle;
@@ -11,23 +8,19 @@ import java.util.Set;
 /**
  * 错误代码对照表
  *
+ * @author wangganggang
+ * @date 2017/04/07
  */
-@Deprecated
 public class ErrorMessageConstants extends ListResourceBundle {
 
-    /* ERR_MSG_ */
-    public static final String ERR_MSG_0001 = "ERR_MSG_0001";
-    public static final String ERR_MSG_0002 = "ERR_MSG_0002";
-    public static final String ERR_MSG_0003 = "ERR_MSG_0003";
-    public static final String ERR_MSG_0004 = "ERR_MSG_0004";
-    public static final String ERR_MSG_0005 = "ERR_MSG_0005";
-    public static final String ERR_MSG_0006 = "ERR_MSG_0006";
-    public static final String ERR_MSG_0007 = "ERR_MSG_0007";
-    public static final String ERR_MSG_0008 = "ERR_MSG_0008";
-    public static final String ERR_MSG_0009 = "ERR_MSG_0009";
-    public static final String ERR_MSG_0010 = "ERR_MSG_0010";
+    /* 自定义message */
+    public static final int ERROR_10000 = 10000;
+
+    /* 生成模板错误 */
+    public static final int ERROR_20001 = 20001;
+
     //未知异常
-    public static final String ERR_MSG_9999 = "ERR_MSG_9999";
+    public static final int ERROR_99999 = 99999;
 
 
     private static ResourceBundle rb = null;

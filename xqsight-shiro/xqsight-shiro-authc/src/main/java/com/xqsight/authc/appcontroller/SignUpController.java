@@ -2,7 +2,6 @@ package com.xqsight.authc.appcontroller;
 
 import com.xqsight.authc.enums.LoginTypeEnum;
 import com.xqsight.authc.support.LoginSupport;
-import com.xqsight.common.model.UserBaseModel;
 import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.model.shiro.BaseUserModel;
 import com.xqsight.common.web.WebUtils;

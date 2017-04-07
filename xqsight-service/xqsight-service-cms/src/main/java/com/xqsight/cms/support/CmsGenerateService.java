@@ -14,7 +14,7 @@ import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
-import com.xqsight.common.freemarker.TemplateEngineException;
+import com.xqsight.common.exception.TemplateEngineException;
 import com.xqsight.common.utils.MapKeyHandle;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -52,17 +52,12 @@ public class CmsGenerateService {
     private GenerateTemplate generateTemplate;
 
     @PostConstruct
-    public void generateStaticHtml(){
-        try {
-            logger.debug("start generate service & event and aboutus html");
-            generateTemplate.generate(null,"template/service.html", "service.html");
-            generateTemplate.generate(null,"template/event.html", "event.html");
-            generateTemplate.generate(null,"template/aboutus.html", "aboutus.html");
-            logger.debug("generate service & event and aboutus html end");
-        } catch (TemplateEngineException e) {
-            logger.error("generate service & event and aboutus html error");
-            e.printStackTrace();
-        }
+    public void generateStaticHtml()throws TemplateEngineException {
+        logger.debug("start generate service & event and aboutus html");
+        generateTemplate.generate(null,"template/service.html", "service.html");
+        generateTemplate.generate(null,"template/event.html", "event.html");
+        generateTemplate.generate(null,"template/aboutus.html", "aboutus.html");
+        logger.debug("generate service & event and aboutus html end");
     }
 
     public void generateIndex() throws TemplateEngineException {

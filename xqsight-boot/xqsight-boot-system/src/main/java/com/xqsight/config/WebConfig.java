@@ -1,6 +1,6 @@
 package com.xqsight.config;
 
-import com.xqsight.common.core.resolver.AttributeFilterResolver;
+import com.xqsight.common.resolver.AttributeFilterResolver;
 import com.xqsight.sso.shiro.resolver.CurrentUserArgumentResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;

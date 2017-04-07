@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-common-model</artifactId>
+            <artifactId>xqsight-common-exception</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -52,23 +52,10 @@
             <artifactId>fastjson</artifactId>
         </dependency>
 
-        <!-- other -->
-      <!--  <dependency>
-            <groupId>jcifs</groupId>
-            <artifactId>jcifs</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jcraft</groupId>
-            <artifactId>jsch</artifactId>
-        </dependency>-->
 
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
         </dependency>
 
         <dependency>

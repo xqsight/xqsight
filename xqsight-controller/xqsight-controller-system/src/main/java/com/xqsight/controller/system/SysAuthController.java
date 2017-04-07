@@ -1,14 +1,13 @@
 package com.xqsight.controller.system;
 
-import com.xqsight.common.core.annotation.AttributeFilter;
 import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
+import com.xqsight.common.model.BaseResult;
 import com.xqsight.common.model.support.TreeSupport;
-import com.xqsight.common.support.MessageSupport;
 import com.xqsight.sso.shiro.annotation.CurrentUserId;
 import com.xqsight.system.enums.MenuTypeEnum;
 import com.xqsight.system.model.SysLogin;
@@ -35,25 +34,25 @@ public class SysAuthController {
     @RequestMapping("saveroleuser")
     public Object saveRoleUser(long roleId, @RequestParam("id") Long[] ids) {
         sysAuthService.saveUserRole(roleId, ids);
-        return MessageSupport.successMsg("保存成功");
+        return new BaseResult();
     }
 
     @RequestMapping("saverolemenu")
     public Object saveMenuRole(long roleId, @RequestParam("menuId") Long[] menuIds) {
         sysAuthService.saveMenuRole(roleId, menuIds);
-        return MessageSupport.successMsg("保存成功");
+        return new BaseResult();
     }
 
     @RequestMapping("queryauthuser")
     public Object queryAuthUser(long roleId) {
         List<SysLogin> sysLogins = sysAuthService.querAuthUserByRole(roleId);
-        return MessageSupport.successDataMsg(sysLogins, "查询成功");
+        return new BaseResult(sysLogins);
     }
 
     @RequestMapping("queryauthmenu")
     public Object queryAuthMenu(long roleId) {
         List<SysMenu> sysMenus = sysAuthService.querAuthMenuByRole(roleId);
-        return MessageSupport.successDataMsg(sysMenus, "查询成功");
+        return new BaseResult(sysMenus);
     }
 
 
@@ -65,7 +64,7 @@ public class SysAuthController {
 
         List<SysMenu> sysMenus = sysAuthService.queryMenuByUser(currentUserId, propertyFilters, sorts);
         sysMenus = new TreeSupport<SysMenu>().generateTree(sysMenus);
-        return MessageSupport.successDataMsg(sysMenus, "查询成功");
+        return new BaseResult(sysMenus);
     }
 
 }

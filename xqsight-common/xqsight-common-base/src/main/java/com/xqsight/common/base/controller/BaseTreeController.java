@@ -33,27 +33,32 @@ public class BaseTreeController<Service extends ICrudService<Record, PK>, Record
     @Autowired
     protected Service service;
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public Object save(Record record) {
-        if (StringUtils.equals(record.getParentId(), "0")) {
-            record.setParentIds(",0,");
-        } else {
-            Record parentArea = service.getById((PK) record.getParentId());
-            record.setParentIds(parentArea.getParentIds() + record.getPK() + Constants.COMMA_SIGN_SPLIT_NAME);
-        }
-        int iRet = service.add(record);
-        return new BaseResult(iRet);
-    }
-
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Object update(Record record) {
-        int iRet = service.editById(record);
+    public Object put(Record record) throws Exception {
+        prePut(record);
+
+        int iRet = 0;
+        if (record.getPK() != null && !"".equals(record.getPK())) {
+            iRet = service.editById(record);
+        } else {
+            if (StringUtils.equals(record.getParentId(), "0")) {
+                record.setParentIds(",0,");
+            } else {
+                Record parentArea = service.getById((PK) record.getParentId());
+                record.setParentIds(parentArea.getParentIds() + record.getPK() + Constants.COMMA_SIGN_SPLIT_NAME);
+            }
+            service.add(record);
+        }
+
+        afterPut(record);
         return new BaseResult(iRet);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Object deleteById(@PathVariable PK id) {
+    public Object deleteById(@PathVariable PK id) throws Exception {
+        preDelete(id);
         int iRet = service.removeById(id);
+        afterDelete(id);
         return new BaseResult(iRet);
     }
 
@@ -84,5 +89,17 @@ public class BaseTreeController<Service extends ICrudService<Record, PK>, Record
      */
     protected List<PropertyFilter> getFilter(HttpServletRequest request) {
         return PropertyFilterSupport.buildPropertyFilters(request);
+    }
+
+    protected void prePut(Record record) throws Exception {
+    }
+
+    protected void afterPut(Record record) throws Exception {
+    }
+
+    protected void preDelete(PK id) throws Exception {
+    }
+
+    protected void afterDelete(PK id) throws Exception {
     }
 }

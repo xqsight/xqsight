@@ -21,6 +21,10 @@ import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 
+/**
+ * @author wangganggang
+ * @date 2017/04/07
+ */
 public class StringTemplateLoader implements TemplateLoader {
 
     private String template;

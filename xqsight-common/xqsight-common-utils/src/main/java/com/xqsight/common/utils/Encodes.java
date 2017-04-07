@@ -3,7 +3,7 @@
  */
 package com.xqsight.common.utils;
 
-import com.xqsight.common.exception.Exceptions;
+import com.xqsight.common.exception.support.Exceptions;
 import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;

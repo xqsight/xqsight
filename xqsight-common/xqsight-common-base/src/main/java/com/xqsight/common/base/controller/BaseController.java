@@ -5,9 +5,11 @@ import com.github.pagehelper.PageHelper;
 import com.xqsight.common.base.service.ICrudService;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.support.PropertyFilterSupport;
+import com.xqsight.common.exception.TemplateEngineException;
 import com.xqsight.common.model.BaseModel;
 import com.xqsight.common.model.BaseResult;
 import com.xqsight.common.model.constants.Constants;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,21 +36,34 @@ public class BaseController<Service extends ICrudService<Record, PK>, Record ext
     @Autowired
     protected Service service;
 
-    @RequestMapping(value = "/", method = RequestMethod.PUT)
-    public Object save(Record record) {
-        int iRet = service.add(record);
-        return new BaseResult(iRet);
-    }
-
     @RequestMapping(value = "/", method = RequestMethod.POST)
-    public Object update(Record record) {
-        int iRet = service.editById(record);
+    public Object put(Record record) throws Exception {
+        prePut(record);
+
+        int iRet = 0;
+        if (record.getPK() != null && !"".equals(record.getPK())) {
+            iRet = service.editById(record);
+        } else {
+            service.add(record);
+        }
+
+        afterPut(record);
         return new BaseResult(iRet);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Object deleteById(@PathVariable PK id) {
+    public Object deleteById(@PathVariable PK id) throws Exception {
+        preDelete(id);
         int iRet = service.removeById(id);
+        afterDelete(id);
+        return new BaseResult(iRet);
+    }
+
+    @RequestMapping(value = "/logic/{id}", method = RequestMethod.DELETE)
+    public Object logicDeleteById(@PathVariable PK id) throws Exception {
+        preDelete(id);
+        int iRet = service.removeById(id);
+        afterDelete(id);
         return new BaseResult(iRet);
     }
 
@@ -59,7 +74,7 @@ public class BaseController<Service extends ICrudService<Record, PK>, Record ext
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public Object getPage(int pageNum, int pageSize,HttpServletRequest request) {
+    public Object getPage(int pageNum, int pageSize, HttpServletRequest request) {
         Page page = PageHelper.startPage(pageNum, pageSize);
         List<Record> records = service.getByFilters(getFilter(request));
         return getPageInfo(page);
@@ -77,7 +92,7 @@ public class BaseController<Service extends ICrudService<Record, PK>, Record ext
      * @param request
      * @return
      */
-    protected List<PropertyFilter> getFilter(HttpServletRequest request){
+    protected List<PropertyFilter> getFilter(HttpServletRequest request) {
         return PropertyFilterSupport.buildPropertyFilters(request);
     }
 
@@ -95,5 +110,11 @@ public class BaseController<Service extends ICrudService<Record, PK>, Record ext
         return pageMap;
     }
 
+    protected void prePut(Record record)  throws Exception{}
 
+    protected void afterPut(Record record)  throws Exception{}
+
+    protected void preDelete(PK id)  throws Exception{}
+
+    protected void afterDelete(PK id)  throws Exception{}
 }

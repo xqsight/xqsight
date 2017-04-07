@@ -66,8 +66,8 @@ public class SignJob {
     }
 
     private void sign(){
+        Random random = new Random();
         for(Map.Entry<String, String> entry : map.entrySet()) {
-            Random random = new Random();
             long milliSeconds = random.nextLong();
             milliSeconds = Math.abs(milliSeconds);
             milliSeconds %= 30 *  60 * 1000 / 2;

@@ -15,9 +15,11 @@
  */
 package com.xqsight.common.freemarker;
 
+import com.xqsight.common.exception.TemplateEngineException;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
+import freemarker.template.Version;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,6 +36,8 @@ public class FreeMarkerImpl implements TemplateEngine {
 
     private String classPath;
 
+    private  Version version = new Version(2, 3, 23);
+
     public FreeMarkerImpl(String classPath) {
         this.classPath = classPath;
         initConfiguration();
@@ -41,9 +45,9 @@ public class FreeMarkerImpl implements TemplateEngine {
 
     public void initConfiguration() {
         try {
-            config = new Configuration();
+            config = new Configuration(version);
             config.setDirectoryForTemplateLoading(new File(classPath));
-            config.setObjectWrapper(new DefaultObjectWrapper());
+            config.setObjectWrapper(new DefaultObjectWrapper(version));
 
             config.setSetting("classic_compatible", "true");
             config.setSetting("whitespace_stripping", "true");
@@ -64,7 +68,7 @@ public class FreeMarkerImpl implements TemplateEngine {
     public String processToString(Map<String, Object> model, String stringTemplate) throws TemplateEngineException {
         logger.debug("model:{}", model);
         try {
-            Configuration cfg = new Configuration();
+            Configuration cfg = new Configuration(version);
             cfg.setTemplateLoader(new StringTemplateLoader(stringTemplate));
             cfg.setDefaultEncoding(DEFAULT_ENCODING);
 
@@ -73,7 +77,7 @@ public class FreeMarkerImpl implements TemplateEngine {
             template.process(model, writer);
             return writer.toString();
         } catch (Exception e) {
-            throw new TemplateEngineException(e.getMessage(), e);
+            throw new TemplateEngineException(e);
         }
     }
 
@@ -95,7 +99,7 @@ public class FreeMarkerImpl implements TemplateEngine {
             out.flush();
             out.close();
         } catch (Exception e) {
-            throw new TemplateEngineException(e.getMessage(), e);
+            throw new TemplateEngineException(e);
         }
     }
 }

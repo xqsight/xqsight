@@ -1,9 +1,7 @@
 package com.xqsight.common.freemarker;
 
 /**
- * Created by wangganggang on 2017/3/7.
- *
- * @author zy8
+ * @author wangganggang
  * @date 2017/03/07
  */
 public class PathSupport {

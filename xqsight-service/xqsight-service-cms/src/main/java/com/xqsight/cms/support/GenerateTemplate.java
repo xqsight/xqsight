@@ -1,10 +1,10 @@
 package com.xqsight.cms.support;
 
 import com.xqsight.cms.config.TemplateConfig;
+import com.xqsight.common.exception.TemplateEngineException;
 import com.xqsight.common.freemarker.FreeMarkerImpl;
 import com.xqsight.common.freemarker.TemplateElement;
 import com.xqsight.common.freemarker.TemplateEngine;
-import com.xqsight.common.freemarker.TemplateEngineException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
