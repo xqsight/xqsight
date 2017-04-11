@@ -1,6 +1,5 @@
 package com.xqsight.config;
 
-import com.xqsight.common.core.resolver.AttributeFilterResolver;
 import com.xqsight.sso.shiro.resolver.CurrentUserArgumentResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -19,7 +18,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addReturnValueHandlers(List<HandlerMethodReturnValueHandler> returnValueHandlers) {
-        returnValueHandlers.add(new AttributeFilterResolver());
+        //returnValueHandlers.add(new AttributeFilterResolver());
     }
 
     @Override

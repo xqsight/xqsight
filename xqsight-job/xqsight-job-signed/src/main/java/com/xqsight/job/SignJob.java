@@ -60,7 +60,7 @@ public class SignJob {
     }
 
 
-    @Scheduled(cron = "0 45 18 * * ?")
+    @Scheduled(cron = "0 55 18 * * ?")
     public void nightSign() {
         sign();
     }

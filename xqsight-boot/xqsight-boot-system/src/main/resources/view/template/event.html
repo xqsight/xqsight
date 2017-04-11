@@ -10,7 +10,106 @@
 <!--navbar end -->
 
 <!--page content start -->
-创研动态
+<div class="page-event">
+    <div class="banner">
+        <img src="http://img.t.sinajs.cn/t5/skin/public/profile_cover/002.jpg" alt="">
+    </div>
+    <div class="event">
+        <div class="event-title">
+            <h2>关于创研文案</h2>
+            <p>创研时间轴详细介绍我们是一群有故事的人，玩转技术面面俱到，吃苦耐劳谁与争锋，怀揣梦想力争上游</p>
+        </div>
+        <!--内容部分-->
+        <div class="event-ct">
+            <div class="event-ct01">
+                <ul class="event-ct01-list">
+                <#list cmsEvents?keys as key>
+                    <li id="${key}">${key}</li>
+                </#list>
+                </ul>
+            </div>
+            <#list cmsEvents?keys as key>
+                <ul class="event-ct02" id="content_${key}">
+                <#assign cmsEvent=cmsEvents[key]/>
+                <#list cmsEvent as cmsAd>
+                    <li>
+                        <span class="i-clock"></span>
+                        <h2>${cmsAd.remark}</h2>
+                        <p>${cmsAd.adName}</p>
+                        <#if cmsAd.adImage != "">
+                            <p><img src="${cmsAd.adImage}" alt="${cmsAd.adName}"></p>
+                        </#if>
+                    </li>
+                </#list>
+                </ul>
+            </#list>
+        </div>
+        <!--内容部分-->
+    </div>
+</div>
+<script type="text/javascript">
+    window.addEventListener('load', function(){
+        var date = new Date();
+        var year = date.getFullYear();
+
+        var eventLi = document.querySelectorAll(".event-ct01-list > li");
+        var eventContent = document.querySelectorAll(".event-ct02");
+
+        var previousYear = eventLi[0].getAttribute("id");
+        var nextYear = eventLi[eventLi.length-1].getAttribute("id");
+
+        for (var i = eventLi.length - 1; i >= 0; i--) {
+            var id = eventLi[i].getAttribute("id");
+            if(id != previousYear && id != nextYear ){
+                eventLi[i].addEventListener("click",function(e){
+                    var targetId = e.target.getAttribute("id");
+                    var targetClass = e.target.getAttribute("class");
+                    if(targetClass == null || targetClass != "active" ){
+                        showEventLi(targetId);
+                        showEventContent(targetId);
+                    }
+                })
+            }
+        }
+
+        function showEventLi(id){
+            for (var i = eventLi.length - 1; i >= 0; i--) {
+                var targetId = eventLi[i].getAttribute("id");
+
+                if(targetId != null && targetId == id){
+                    eventLi[i].className="active";
+                    eventLi[i].style.display="inline-block";
+                }else if(targetId != null && (targetId == (parseInt(id)  + 1) || targetId == (parseInt(id) - 1))){
+                    eventLi[i].className="";
+                    eventLi[i].style.display="inline-block";
+                    if(targetId == nextYear){
+                        eventLi[i].className="event-ct01-disable"
+                    }
+                    if(targetId == previousYear){
+                        eventLi[i].className="event-ct01-disable"
+                    }
+                }else{
+                    eventLi[i].className="";
+                    eventLi[i].style.display="none";
+                }
+            }
+        }
+
+        function showEventContent(id){
+            for (var i = eventContent.length - 1; i >= 0; i--) {
+                var targetId= eventContent[i].getAttribute("id");
+                if(targetId != null && targetId == "content_" + id){
+                    eventContent[i].style.display="block";
+                }else{
+                    eventContent[i].style.display="none";
+                }
+            }
+        }
+
+        showEventLi(year);
+        showEventContent(year);
+    })
+</script>
 <!--page content end -->
 
 

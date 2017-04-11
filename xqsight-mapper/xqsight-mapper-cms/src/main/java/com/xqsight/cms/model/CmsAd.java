@@ -10,7 +10,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 /**
@@ -41,22 +41,22 @@ public class CmsAd extends BaseModel {
     /** ad_flash - flash */
     private String adFlash;
     /** ad_begin_time - 开始时间 */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss",iso = DateTimeFormat.ISO.DATE_TIME)
-    private Date adBeginTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss",iso = DateTimeFormat.ISO.TIME)
+    private LocalDateTime adBeginTime;
     /** ad_end_time - 结束时间 */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss",iso = DateTimeFormat.ISO.DATE_TIME)
-    private Date adEndTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss",iso = DateTimeFormat.ISO.TIME)
+    private LocalDateTime adEndTime;
     /** type - 类型 */
     private Byte type;
     /** sort - 排序 */
     private Short sort;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	public Date getAdBeginTime(){
+	public LocalDateTime getAdBeginTime(){
         return this.adBeginTime;
     }
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-	public Date getAdEndTime(){
+	public LocalDateTime getAdEndTime(){
         return this.adEndTime;
     }
 

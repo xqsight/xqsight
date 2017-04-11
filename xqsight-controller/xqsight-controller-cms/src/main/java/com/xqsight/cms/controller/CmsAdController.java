@@ -28,11 +28,20 @@ public class CmsAdController extends BaseController<CmsAdService, CmsAd, Long> {
 
     @Override
     protected void afterPut(CmsAd cmsAd) throws Exception {
-        cmsGenerateService.generateIndex();
+        if(cmsAd.getType() == 0) {
+            cmsGenerateService.generateIndex();
+        }else {
+            cmsGenerateService.generateEvent();
+        }
     }
 
     @Override
     protected void afterDelete(Long id) throws Exception {
-        cmsGenerateService.generateIndex();
+        CmsAd cmsAd = service.getById(id);
+        if(cmsAd.getType() == 0) {
+            cmsGenerateService.generateIndex();
+        }else {
+            cmsGenerateService.generateEvent();
+        }
     }
 }

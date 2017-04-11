@@ -12,6 +12,14 @@ public class ParamsException extends GlobalException {
         super(ErrorMessageConstants.ERROR_20001);
     }
 
+    public ParamsException(int code) {
+        super(code);
+    }
+
+    public ParamsException(int code, String message) {
+        super(code, message);
+    }
+
     public ParamsException(Throwable cause) {
         super(ErrorMessageConstants.ERROR_20001, cause);
     }

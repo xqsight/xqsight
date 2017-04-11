@@ -5,10 +5,8 @@
 package com.xqsight.wechat.bxs.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.github.pagehelper.Page;
 import com.xqsight.common.model.XqsightPage;
 import com.xqsight.common.support.MessageSupport;
-import com.xqsight.common.core.support.XqsightPageHelper;
 import com.xqsight.wechat.bxs.model.WxPromise;
 import com.xqsight.wechat.bxs.service.PromiseService;
 import com.xqsight.wechat.bxs.service.WxUserInfoService;
@@ -68,18 +66,18 @@ public class PromiseController {
 	@RequestMapping("query")
 	@ResponseBody
 	public Object query(XqsightPage xqsightPage,WxPromise wxPromise) {
-		Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
+		//Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
 		List<WxPromise> wxPromises = promiseService.query();
-		xqsightPage.setTotalCount(page.getTotal());
+		//xqsightPage.setTotalCount(page.getTotal());
 		return  MessageSupport.successDataTableMsg(xqsightPage,wxPromises);
 	}
 	
 	@RequestMapping("querybywxusercode")
 	@ResponseBody
 	public Object queryByWxUserCode(XqsightPage xqsightPage, WxPromise wxPromise) {
-		Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
+		//Page page = XqsightPageHelper.startPageWithPageIndex(xqsightPage.getiDisplayStart(), xqsightPage.getiDisplayLength());
 		List<WxPromise> wxPromises = promiseService.queryByUserId(wxPromise.getWxUserId());
-		xqsightPage.setTotalCount(page.getTotal());
+		//xqsightPage.setTotalCount(page.getTotal());
 		return  MessageSupport.successDataTableMsg(xqsightPage,wxPromises);
 	}
 	
