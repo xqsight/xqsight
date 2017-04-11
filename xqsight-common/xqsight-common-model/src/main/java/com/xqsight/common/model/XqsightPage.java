@@ -3,6 +3,7 @@ package com.xqsight.common.model;
 /**
  * Created by user on 2016/6/2.
  */
+@Deprecated
 public class XqsightPage{
     private int sEcho = 1;
 
