@@ -13,16 +13,16 @@ import java.util.Set;
  */
 public class ErrorMessageConstants extends ListResourceBundle {
 
-    /* 自定义message */
+    /** 自定义message */
     public static final int ERROR_10000 = 10000;
 
     /** 当前对象不存在 **/
     public static final int ERROR_10001 = 10001;
 
-    /* 生成模板错误 */
+    /** 生成模板错误 */
     public static final int ERROR_20001 = 20001;
 
-    //未知异常
+    /** 未知异常 **/
     public static final int ERROR_99999 = 99999;
 
 

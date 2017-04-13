@@ -36,8 +36,6 @@ public class FreeMarkerImpl implements TemplateEngine {
 
     private String classPath;
 
-    private  Version version = new Version(2, 3, 23);
-
     public FreeMarkerImpl(String classPath) {
         this.classPath = classPath;
         initConfiguration();
@@ -45,9 +43,9 @@ public class FreeMarkerImpl implements TemplateEngine {
 
     public void initConfiguration() {
         try {
-            config = new Configuration(version);
+            config = new Configuration(Configuration.VERSION_2_3_23);
             config.setDirectoryForTemplateLoading(new File(classPath));
-            config.setObjectWrapper(new DefaultObjectWrapper(version));
+            config.setObjectWrapper(new DefaultObjectWrapper(Configuration.VERSION_2_3_23));
 
             config.setSetting("classic_compatible", "true");
             config.setSetting("whitespace_stripping", "true");
@@ -68,7 +66,7 @@ public class FreeMarkerImpl implements TemplateEngine {
     public String processToString(Map<String, Object> model, String stringTemplate) throws TemplateEngineException {
         logger.debug("model:{}", model);
         try {
-            Configuration cfg = new Configuration(version);
+            Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
             cfg.setTemplateLoader(new StringTemplateLoader(stringTemplate));
             cfg.setDefaultEncoding(DEFAULT_ENCODING);
 

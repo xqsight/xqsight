@@ -36,16 +36,17 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Object deleteById(@PathVariable PK id) throws Exception {
-        preDelete(id);
+        Record record = service.getById(id);
+        preDelete(record);
         int iRet = service.removeById(id);
-        afterDelete(id);
+        afterDelete(record);
         return new BaseResult(iRet);
     }
 
     @RequestMapping(value = "/logic/{id}", method = RequestMethod.DELETE)
     public Object logicDeleteById(Record record,@PathVariable PK id) throws Exception {
-        preDelete(id);
         Record updRecord = service.getById(id);
+        preDelete(updRecord);
         if(updRecord == null || updRecord.getPK() == null){
             throw new ParamsException(ErrorMessageConstants.ERROR_10001);
         }
@@ -53,7 +54,7 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
         updRecord.setUpdateTime(record.getUpdateTime());
         updRecord.setUpdateUserId(record.getUpdateUserId());
         int iRet = service.editById(updRecord);
-        afterDelete(id);
+        afterDelete(updRecord);
         return new BaseResult(iRet);
     }
 
@@ -106,9 +107,9 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
     protected void afterPut(Record record) throws Exception {
     }
 
-    protected void preDelete(PK id) throws Exception {
+    protected void preDelete(Record record) throws Exception {
     }
 
-    protected void afterDelete(PK id) throws Exception {
+    protected void afterDelete(Record record) throws Exception {
     }
 }

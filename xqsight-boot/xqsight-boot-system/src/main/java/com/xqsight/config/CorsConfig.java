@@ -1,5 +1,6 @@
 package com.xqsight.config;
 
+import com.xqsight.cms.support.CmsGeneratInit;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -29,5 +30,10 @@ public class CorsConfig {
         CommonsMultipartResolver multipart = new CommonsMultipartResolver();
         multipart.setMaxUploadSize(3 * 1024 * 1024);
         return multipart;
+    }
+
+    @Bean
+    public CmsGeneratInit cmsInitRunner() {
+        return new CmsGeneratInit();
     }
 }

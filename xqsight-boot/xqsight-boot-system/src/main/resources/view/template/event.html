@@ -16,8 +16,8 @@
     </div>
     <div class="event">
         <div class="event-title">
-            <h2>关于创研文案</h2>
-            <p>创研时间轴详细介绍我们是一群有故事的人，玩转技术面面俱到，吃苦耐劳谁与争锋，怀揣梦想力争上游</p>
+            <h2>创研大事记</h2>
+            <p>一步一个脚印，与大家一起分享我们的成长故事</p>
         </div>
         <!--内容部分-->
         <div class="event-ct">
@@ -49,14 +49,14 @@
 </div>
 <script type="text/javascript">
     window.addEventListener('load', function(){
-        var date = new Date();
-        var year = date.getFullYear();
 
         var eventLi = document.querySelectorAll(".event-ct01-list > li");
         var eventContent = document.querySelectorAll(".event-ct02");
 
         var previousYear = eventLi[0].getAttribute("id");
         var nextYear = eventLi[eventLi.length-1].getAttribute("id");
+
+        document.getElementById("content_" + (parseInt(nextYear)-1)).firstElementChild.className="active";
 
         for (var i = eventLi.length - 1; i >= 0; i--) {
             var id = eventLi[i].getAttribute("id");
@@ -106,8 +106,8 @@
             }
         }
 
-        showEventLi(year);
-        showEventContent(year);
+        showEventLi(parseInt(nextYear)-1);
+        showEventContent(parseInt(nextYear)-1);
     })
 </script>
 <!--page content end -->

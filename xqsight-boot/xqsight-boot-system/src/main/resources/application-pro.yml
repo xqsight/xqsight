@@ -18,7 +18,7 @@ file:
 #==== 模板存放位置 ===#
 site:
   tpl:
-    path: classpath:/view/
+    path: /home/cloud/eju-site/view/
 
 #==== freemarker 模板设置 =====#
 #spring:

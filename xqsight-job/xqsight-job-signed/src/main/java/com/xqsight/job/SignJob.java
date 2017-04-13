@@ -49,6 +49,8 @@ public class SignJob {
         map.put("107626", "Eju13559O");
         /** 刘书理 **/
         map.put("111780", "2011Abcd");
+        /** 施澍 **/
+        map.put("115715", "shishu123!");
 
         mExecutor = Executors.newFixedThreadPool(map.size() / 2 + 1);
     }
