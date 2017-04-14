@@ -10,6 +10,7 @@ import com.xqsight.common.model.BaseModel;
 import com.xqsight.common.model.BaseResult;
 import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.model.constants.ErrorMessageConstants;
+import com.xqsight.common.utils.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
@@ -34,6 +36,12 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
     @Autowired
     protected Service service;
 
+    @Autowired
+    protected HttpServletRequest request;
+
+    @Autowired
+    protected HttpServletResponse response;
+
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public Object deleteById(@PathVariable PK id) throws Exception {
         Record record = service.getById(id);
@@ -44,10 +52,10 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
     }
 
     @RequestMapping(value = "/logic/{id}", method = RequestMethod.DELETE)
-    public Object logicDeleteById(Record record,@PathVariable PK id) throws Exception {
+    public Object logicDeleteById(Record record, @PathVariable PK id) throws Exception {
         Record updRecord = service.getById(id);
         preDelete(updRecord);
-        if(updRecord == null || updRecord.getPK() == null){
+        if (updRecord == null || updRecord.getPK() == null) {
             throw new ParamsException(ErrorMessageConstants.ERROR_10001);
         }
         updRecord.setActive((byte) -1);
@@ -65,26 +73,35 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
     }
 
     @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public Object getPage(int pageNum, int pageSize, HttpServletRequest request) {
-        Page page = PageHelper.startPage(pageNum, pageSize);
-        List<Record> records = service.getByFilters(getFilter(request));
+    public Object getPage() {
+        Page page = initPage();
+        List<Record> records = service.getByFilters(getFilter());
         return getPageInfo(page);
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Object getAll(HttpServletRequest request) {
-        List<Record> records = service.getByFilters(getFilter(request));
+    public Object getAll() {
+        List<Record> records = service.getByFilters(getFilter());
         return new BaseResult(records);
     }
 
     /**
      * 获取查询的参数
      *
-     * @param request
      * @return
      */
-    protected List<PropertyFilter> getFilter(HttpServletRequest request) {
+    protected List<PropertyFilter> getFilter() {
         return PropertyFilterSupport.buildPropertyFilters(request);
+    }
+
+    /**
+     *初始化分页信息
+     * @return
+     */
+    protected Page initPage() {
+        int pageNum = StringUtils.isBlank(request.getParameter("pageNum")) ? 1 : Integer.parseInt(request.getParameter("pageNum"));
+        int pageSize = StringUtils.isBlank(request.getParameter("pageSize")) ? 15 : Integer.parseInt(request.getParameter("pageSize"));
+        return PageHelper.startPage(pageNum, pageSize);
     }
 
     /**

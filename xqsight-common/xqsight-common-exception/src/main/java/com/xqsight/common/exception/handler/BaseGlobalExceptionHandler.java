@@ -30,11 +30,11 @@ public class BaseGlobalExceptionHandler {
         }
 
         String errorStack = Exceptions.getStackTraceAsString(e);
-        return handleViewError(req.getRequestURL().toString(), errorStack, errorMsg, status);
+        return handleViewError(req.getRequestURL().toString(),req.getMethod(), errorStack, errorMsg, status);
     }
 
-    protected Object handleViewError(String url, String errorStack, String errorMessage, int status) {
-        logger.error("request url:{} is exception, reason is:{},exception stack is:{}", url, errorMessage, errorStack);
+    protected Object handleViewError(String url,String method, String errorStack, String errorMessage, int status) {
+        logger.error("request is exception url:{} ,method:{}, reason:{},exception stack:{}", url, method,errorMessage, errorStack);
         return new BaseResult(status, errorMessage);
     }
 

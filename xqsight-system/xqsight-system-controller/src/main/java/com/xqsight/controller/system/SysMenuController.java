@@ -11,7 +11,9 @@ import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
+import com.xqsight.common.exception.GlobalException;
 import com.xqsight.common.model.BaseResult;
+import com.xqsight.common.model.constants.ErrorMessageConstants;
 import com.xqsight.common.model.support.TreeSupport;
 import com.xqsight.system.model.SysMenu;
 import com.xqsight.system.service.SysMenuService;
@@ -42,5 +44,15 @@ public class SysMenuController extends BaseTreeController<SysMenuService,SysMenu
         List<SysMenu> sysMenus = service.getByFilters(propertyFilters, sorts);
         sysMenus = new TreeSupport<SysMenu>().generateTree(sysMenus);
         return new BaseResult(sysMenus);
+    }
+
+    @Override
+    protected void preDelete(SysMenu sysMenu) throws Exception {
+        List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
+                .propertyType(PropertyType.L).add("parent_id", "" + sysMenu.getId()).end();
+        List<SysMenu> sysMenus = service.getByFilters(propertyFilters);
+        if (sysMenus != null && sysMenus.size() > 0) {
+            throw new GlobalException(ErrorMessageConstants.ERROR_10000, "该项还有子项不可删除");
+        }
     }
 }

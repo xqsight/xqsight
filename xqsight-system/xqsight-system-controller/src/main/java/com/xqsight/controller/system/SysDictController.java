@@ -32,24 +32,24 @@ public class SysDictController extends BaseTreeController<SysDictService,SysDict
 
     @Override
     protected void prePut(SysDict sysDict) throws Exception {
-        if(StringUtils.isNotBlank(sysDict.getPK().toString())) {
+        if(sysDict.getPK() != null) {
             SysDict subDict = service.getById(sysDict.getDictId());
-            if (subDict.getEditable() == Constants.DISABLE) {
-                throw new GlobalException(ErrorMessageConstants.ERROR_10000, "该条字典是系统内置数据不可修改");
+            if (subDict.getEditable() != null && subDict.getEditable() == Constants.DISABLE) {
+                throw new GlobalException(ErrorMessageConstants.ERROR_10000, "该条数据是系统内置数据不可修改");
             }
         }
     }
 
     @Override
     protected void preDelete(SysDict sysDict) throws Exception {
-        if (sysDict.getEditable() == Constants.DISABLE) {
-            throw new GlobalException(ErrorMessageConstants.ERROR_10000, "该条字典是系统内置数据不可删除");
+        if (sysDict.getEditable() != null && sysDict.getEditable() == Constants.DISABLE) {
+            throw new GlobalException(ErrorMessageConstants.ERROR_10000, "该条数据是系统内置数据不可删除");
         }
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.L).add("parent_id", "" + sysDict.getId()).end();
         List<SysDict> sysDicts = service.getByFilters(propertyFilters);
         if (sysDicts != null && sysDicts.size() > 0) {
-            throw new GlobalException(ErrorMessageConstants.ERROR_10000, "该字典项还有子项不可删除");
+            throw new GlobalException(ErrorMessageConstants.ERROR_10000, "该项还有子项不可删除");
         }
     }
 }

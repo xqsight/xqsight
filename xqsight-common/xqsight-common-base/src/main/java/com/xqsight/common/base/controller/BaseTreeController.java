@@ -5,11 +5,13 @@ import com.xqsight.common.model.AbstractTreeModel;
 import com.xqsight.common.model.BaseResult;
 import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.model.support.TreeSupport;
+import com.xqsight.common.utils.ReflectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.List;
 
 /**
@@ -33,7 +35,8 @@ public class BaseTreeController<Service extends ICrudService<Record, PK>, Record
             if (StringUtils.equals(record.getParentId(), "0")) {
                 record.setParentIds(",0,");
             } else {
-                Record parentArea = service.getById((PK) record.getParentId());
+
+                Record parentArea = service.getById((PK) Long.valueOf(record.getParentId()));
                 record.setParentIds(parentArea.getParentIds() + record.getPK() + Constants.COMMA_SIGN_SPLIT_NAME);
             }
             service.add(record);
