@@ -76,7 +76,7 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
     public Object getPage() {
         Page page = initPage();
         List<Record> records = service.getByFilters(getFilter());
-        return getPageInfo(page);
+        return new BaseResult(getPageInfo(page));
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)

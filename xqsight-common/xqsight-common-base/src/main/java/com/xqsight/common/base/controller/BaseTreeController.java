@@ -49,7 +49,7 @@ public class BaseTreeController<Service extends ICrudService<Record, PK>, Record
 
     @RequestMapping(value = "/tree", method = RequestMethod.GET)
     public Object getTree() {
-        List<Record> records = service.getAll();
+        List<Record> records = service.getByFilters(getFilter());
         records = new TreeSupport<Record>().generateTree(records);
         return new BaseResult(records);
     }
