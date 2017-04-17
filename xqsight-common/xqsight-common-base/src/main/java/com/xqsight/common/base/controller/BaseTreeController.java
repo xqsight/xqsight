@@ -35,8 +35,8 @@ public class BaseTreeController<Service extends ICrudService<Record, PK>, Record
             if (StringUtils.equals(record.getParentId(), "0")) {
                 record.setParentIds(",0,");
             } else {
-
-                Record parentArea = service.getById((PK) Long.valueOf(record.getParentId()));
+                PK id = (PK)ReflectionUtils.convertStringToObject(record.getParentId(),record.getPkClass());
+                Record parentArea = service.getById(id);
                 record.setParentIds(parentArea.getParentIds() + record.getPK() + Constants.COMMA_SIGN_SPLIT_NAME);
             }
             service.add(record);

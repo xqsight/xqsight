@@ -56,4 +56,8 @@ public abstract class BaseModel implements Serializable {
     public boolean isNoActive() {
         return this.active == -1;
     }
+
+    public Class getPkClass(){
+        return Long.class;
+    }
 }
