@@ -36,6 +36,9 @@
     <!-- banner js -->
     <script type="text/javascript">
         window.addEventListener('load', function(){
+
+            document.getElementById("index").className="current";
+
             var oSlider = document.getElementById("slider");
             var oUl = oSlider.getElementsByTagName("ul")[0];
             var aLi = oUl.getElementsByTagName("li");
@@ -128,6 +131,8 @@
                 for (var i = _currentCount; i < datas.length ; i++) {
                     if(i < (_currentCount + loadCount)){
                         datas[i].style.display="block";
+                    }else{
+                        datas[i].style.display="none";
                     }
                 }
                 _currentCount+=loadCount;

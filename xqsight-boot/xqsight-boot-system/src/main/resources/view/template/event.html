@@ -12,7 +12,7 @@
 <!--page content start -->
 <div class="page-event">
     <div class="banner">
-        <img src="http://img.t.sinajs.cn/t5/skin/public/profile_cover/002.jpg" alt="">
+        <img src="${domain}/static/images/banner_event.png" alt="">
     </div>
     <div class="event">
         <div class="event-title">
@@ -49,6 +49,8 @@
 </div>
 <script type="text/javascript">
     window.addEventListener('load', function(){
+
+        document.getElementById("event").className="current";
 
         var eventLi = document.querySelectorAll(".event-ct01-list > li");
         var eventContent = document.querySelectorAll(".event-ct02");

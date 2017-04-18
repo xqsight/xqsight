@@ -13,7 +13,7 @@
 <div class="page-joinus">
 
     <div class="banner">
-        <img src="http://img.t.sinajs.cn/t5/skin/public/profile_cover/002.jpg" alt="">
+        <img src="${domain}/static/images/banner_joinus.png" alt="">
     </div>
 
     <ul class="joinus-title">
@@ -77,6 +77,9 @@
 <!-- join us js -->
 <script>
     window.addEventListener('load', function(){
+
+        document.getElementById("joinus").className="current";
+
         document.addEventListener("click",function(e){
             var targetClass = e.target.className;
             var targetIdAttr = e.target.attributes["id"];

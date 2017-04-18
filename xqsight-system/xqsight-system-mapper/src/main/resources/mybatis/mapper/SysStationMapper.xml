@@ -49,16 +49,16 @@
         <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
     </sql>
     <sql id="Batch_Insert_Values">
-        #{officeId,jdbcType=NUMERIC},
-        #{stationName,jdbcType=VARCHAR},
-        #{stationCode,jdbcType=VARCHAR},
-        #{stationType,jdbcType=NUMERIC},
-        #{active,jdbcType=NUMERIC},
-        #{createUserId,jdbcType=VARCHAR},
-        #{createTime,jdbcType=TIMESTAMP},
-        #{updateUserId,jdbcType=VARCHAR},
-        #{updateTime,jdbcType=TIMESTAMP},
-        #{remark,jdbcType=VARCHAR},
+        #{item.officeId,jdbcType=NUMERIC},
+        #{item.stationName,jdbcType=VARCHAR},
+        #{item.stationCode,jdbcType=VARCHAR},
+        #{item.stationType,jdbcType=NUMERIC},
+        #{item.active,jdbcType=NUMERIC},
+        #{item.createUserId,jdbcType=VARCHAR},
+        #{item.createTime,jdbcType=TIMESTAMP},
+        #{item.updateUserId,jdbcType=VARCHAR},
+        #{item.updateTime,jdbcType=TIMESTAMP},
+        #{item.remark,jdbcType=VARCHAR},
     </sql>
 
     <sql id="Update_Set_From_Bean">
@@ -74,16 +74,16 @@
         <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
     </sql>
     <sql id="BatchUpdate_Set_From_Bean">
-        office_id=#{officeId,jdbcType=NUMERIC},
-        station_name=#{stationName,jdbcType=VARCHAR},
-        station_code=#{stationCode,jdbcType=VARCHAR},
-        station_type=#{stationType,jdbcType=NUMERIC},
-        active=#{active,jdbcType=NUMERIC},
-        create_user_id=#{createUserId,jdbcType=VARCHAR},
-        create_time=#{createTime,jdbcType=TIMESTAMP},
-        update_user_id=#{updateUserId,jdbcType=VARCHAR},
-        update_time=#{updateTime,jdbcType=TIMESTAMP},
-        remark=#{remark,jdbcType=VARCHAR},
+        office_id=#{item.officeId,jdbcType=NUMERIC},
+        station_name=#{item.stationName,jdbcType=VARCHAR},
+        station_code=#{item.stationCode,jdbcType=VARCHAR},
+        station_type=#{item.stationType,jdbcType=NUMERIC},
+        active=#{item.active,jdbcType=NUMERIC},
+        create_user_id=#{item.createUserId,jdbcType=VARCHAR},
+        create_time=#{item.createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{item.updateUserId,jdbcType=VARCHAR},
+        update_time=#{item.updateTime,jdbcType=TIMESTAMP},
+        remark=#{item.remark,jdbcType=VARCHAR},
     </sql>
 
     <!--insert-->

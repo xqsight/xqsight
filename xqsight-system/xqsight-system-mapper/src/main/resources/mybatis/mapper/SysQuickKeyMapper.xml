@@ -16,151 +16,144 @@
         <result column="remark" property="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <sql id="Base_Column_List_Without_Id">
+        key_icon,key_title,key_value,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
     <sql id="Base_Column_List">
-	 Id, fun_order,key_icon,key_title,key_value,active,create_user_id,create_time,update_user_id,update_time,remark
+         Id, fun_order,
+        <include refid="Base_Column_List_Without_Id"/>
     </sql>
 
-    <insert id="insert" parameterType="com.xqsight.system.model.SysQuickKey" useGeneratedKeys="true" keyProperty="idfunOrder">
-        insert into sys_quick_key (
-	key_icon,key_title,key_value,active,create_user_id,create_time,update_user_id,update_time,remark
-        ) values (
-	#{keyIcon,jdbcType=VARCHAR},
-	#{keyTitle,jdbcType=VARCHAR},
-	#{keyValue,jdbcType=VARCHAR},
-	#{active,jdbcType=NUMERIC},
-	#{createUserId,jdbcType=VARCHAR},
-	#{createTime,jdbcType=TIMESTAMP},
-	#{updateUserId,jdbcType=VARCHAR},
-	#{updateTime,jdbcType=TIMESTAMP},
-	#{remark,jdbcType=VARCHAR}
-        )
-    </insert>
+    <sql id="Insert_Columns">
+        <if test="keyIcon!=null"> key_icon,</if>
+        <if test="keyTitle!=null"> key_title,</if>
+        <if test="keyValue!=null"> key_value,</if>
+        <if test="active!=null"> active,</if>
+        <if test="createUserId!=null"> create_user_id,</if>
+        <if test="createTime!=null"> create_time,</if>
+        <if test="updateUserId!=null"> update_user_id,</if>
+        <if test="updateTime!=null"> update_time,</if>
+        <if test="remark!=null"> remark,</if>
+    </sql>
+    <sql id="Insert_Values">
+        <if test="keyIcon!=null">#{keyIcon,jdbcType=VARCHAR},</if>
+        <if test="keyTitle!=null">#{keyTitle,jdbcType=VARCHAR},</if>
+        <if test="keyValue!=null">#{keyValue,jdbcType=VARCHAR},</if>
+        <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null">#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="Batch_Insert_Values">
+        #{item.keyIcon,jdbcType=VARCHAR},
+        #{item.keyTitle,jdbcType=VARCHAR},
+        #{item.keyValue,jdbcType=VARCHAR},
+        #{item.active,jdbcType=NUMERIC},
+        #{item.createUserId,jdbcType=VARCHAR},
+        #{item.createTime,jdbcType=TIMESTAMP},
+        #{item.updateUserId,jdbcType=VARCHAR},
+        #{item.updateTime,jdbcType=TIMESTAMP},
+        #{item.remark,jdbcType=VARCHAR},
+    </sql>
 
-    <insert id="insertSelective" parameterType="com.xqsight.system.model.SysQuickKey" useGeneratedKeys="true" keyProperty="idfunOrder">
+    <sql id="Update_Set_From_Bean">
+        <if test="keyIcon!=null"> key_icon=#{keyIcon,jdbcType=VARCHAR},</if>
+        <if test="keyTitle!=null"> key_title=#{keyTitle,jdbcType=VARCHAR},</if>
+        <if test="keyValue!=null"> key_value=#{keyValue,jdbcType=VARCHAR},</if>
+        <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null"> create_time=#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null"> update_user_id=#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null"> update_time=#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BatchUpdate_Set_From_Bean">
+        key_icon=#{item.keyIcon,jdbcType=VARCHAR},
+        key_title=#{item.keyTitle,jdbcType=VARCHAR},
+        key_value=#{item.keyValue,jdbcType=VARCHAR},
+        active=#{item.active,jdbcType=NUMERIC},
+        create_user_id=#{item.createUserId,jdbcType=VARCHAR},
+        create_time=#{item.createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{item.updateUserId,jdbcType=VARCHAR},
+        update_time=#{item.updateTime,jdbcType=TIMESTAMP},
+        remark=#{item.remark,jdbcType=VARCHAR},
+    </sql>
+
+    <!--insert-->
+    <insert id="insert" parameterType="com.xqsight.system.model.SysQuickKey">
         insert into sys_quick_key
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="keyIcon!=null">
-			key_icon,
-            </if>
-            <if test="keyTitle!=null">
-			key_title,
-            </if>
-            <if test="keyValue!=null">
-			key_value,
-            </if>
-            <if test="active!=null">
-			active,
-            </if>
-            <if test="createUserId!=null">
-			create_user_id,
-            </if>
-            <if test="createTime!=null">
-			create_time,
-            </if>
-            <if test="updateUserId!=null">
-			update_user_id,
-            </if>
-            <if test="updateTime!=null">
-			update_time,
-            </if>
-            <if test="remark!=null">
-			remark,
-            </if>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Columns"/>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="keyIcon!=null">
-			#{keyIcon,jdbcType=VARCHAR},
-            </if>
-            <if test="keyTitle!=null">
-			#{keyTitle,jdbcType=VARCHAR},
-            </if>
-            <if test="keyValue!=null">
-			#{keyValue,jdbcType=VARCHAR},
-            </if>
-            <if test="active!=null">
-			#{active,jdbcType=NUMERIC},
-            </if>
-            <if test="createUserId!=null">
-			#{createUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="createTime!=null">
-			#{createTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="updateUserId!=null">
-			#{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-			#{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-			#{remark,jdbcType=VARCHAR},
-            </if>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Values"/>
         </trim>
     </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into sys_quick_key
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Base_Column_List_Without_Id"/>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <include refid="Batch_Insert_Values"/>
+            </trim>
+        </foreach>
+    </insert>
+    <!-- end insert -->
 
-    <update id="updateByPrimaryKey" parameterType="com.xqsight.system.model.SysQuickKey">
-        update sys_quick_key set
-		key_icon = #{keyIcon,jdbcType=VARCHAR},
-		key_title = #{keyTitle,jdbcType=VARCHAR},
-		key_value = #{keyValue,jdbcType=VARCHAR},
-		active = #{active,jdbcType=NUMERIC},
-		update_user_id = #{updateUserId,jdbcType=VARCHAR},
-		update_time = #{updateTime,jdbcType=TIMESTAMP},
-		remark = #{remark,jdbcType=VARCHAR}
-        where  Id = #{id,jdbcType=NUMERIC} and  fun_order = #{funOrder,jdbcType=NUMERIC}  
-    </update>
+    <!-- delete -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from sys_quick_key
+        where  id = #{id,jdbcType=NUMERIC}
+    </delete>
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
+        delete from sys_quick_key
+        where 1=1
+        ${whereSqlString}
+    </delete>
+    <!-- end delete -->
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.xqsight.system.model.SysQuickKey">
+    <!-- update -->
+    <update id="updateById" parameterType="com.xqsight.system.model.SysQuickKey">
         update sys_quick_key
         <set>
-            <if test="keyIcon!=null">
-            key_icon = #{keyIcon,jdbcType=VARCHAR},
-            </if>
-            <if test="keyTitle!=null">
-            key_title = #{keyTitle,jdbcType=VARCHAR},
-            </if>
-            <if test="keyValue!=null">
-            key_value = #{keyValue,jdbcType=VARCHAR},
-            </if>
-            <if test="active!=null">
-            active = #{active,jdbcType=NUMERIC},
-            </if>
-            <if test="updateUserId!=null">
-            update_user_id = #{updateUserId,jdbcType=VARCHAR},
-            </if>
-            <if test="updateTime!=null">
-            update_time = #{updateTime,jdbcType=TIMESTAMP},
-            </if>
-            <if test="remark!=null">
-            remark = #{remark,jdbcType=VARCHAR},
-            </if>
+            <include refid="Update_Set_From_Bean"/>
         </set>
         where  Id = #{id,jdbcType=NUMERIC} and  fun_order = #{funOrder,jdbcType=NUMERIC}  
     </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update sys_quick_key
+        <include refid="BatchUpdate_Set_From_Bean"/>
+        where
+             id = #{id,jdbcType=NUMERIC}
+        </foreach>
+    </update>
+    <!-- end update -->
 
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-        delete  sys_quick_key
-        where  Id = #{id,jdbcType=NUMERIC}
-    </delete>
-
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    <!-- select -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select <include refid="Base_Column_List"/> from sys_quick_key
-        where  Id = #{id,jdbcType=NUMERIC}
+        where
+             id = #{id,jdbcType=NUMERIC}
     </select>
-
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
         select <include refid="Base_Column_List"/> from sys_quick_key
         WHERE 1=1
-	    ${whereSqlString}
 
+        ${whereSqlString}
         <trim prefix=" and " suffix="" suffixOverrides="" >
-        <if test="customSql != null">
-        ${customSqlString}
-        </if>
+            <if test="customSql != null">
+            ${customSqlString}
+            </if>
         </trim>
-
         <if test="orderBy != null">
-		${orderBySqlString}
+        ${orderBySqlString}
         </if>
     </select>
+    <!-- end select -->
 </mapper>

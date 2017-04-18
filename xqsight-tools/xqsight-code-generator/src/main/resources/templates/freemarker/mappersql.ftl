@@ -29,7 +29,7 @@
     </sql>
     <sql id="Batch_Insert_Values">
     <#list table.baseColumns as column>
-        ${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}},
+        ${r'#{item.'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}},
     </#list>
     </sql>
 
@@ -40,7 +40,7 @@
     </sql>
     <sql id="BatchUpdate_Set_From_Bean">
     <#list table.baseColumns as column>
-        ${column.columnName}=${r'#{'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}},
+        ${column.columnName}=${r'#{item.'}${column.javaProperty},jdbcType=${column.mybatisJdbcType}},
     </#list>
     </sql>
 

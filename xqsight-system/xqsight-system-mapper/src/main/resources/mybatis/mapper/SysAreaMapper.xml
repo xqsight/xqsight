@@ -58,19 +58,19 @@
         <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
     </sql>
     <sql id="Batch_Insert_Values">
-        #{parentId,jdbcType=NUMERIC},
-        #{parentIds,jdbcType=VARCHAR},
-        #{areaName,jdbcType=VARCHAR},
-        #{areaCode,jdbcType=VARCHAR},
-        #{areaType,jdbcType=NUMERIC},
-        #{icon,jdbcType=VARCHAR},
-        #{sort,jdbcType=NUMERIC},
-        #{active,jdbcType=NUMERIC},
-        #{createUserId,jdbcType=VARCHAR},
-        #{createTime,jdbcType=TIMESTAMP},
-        #{updateUserId,jdbcType=VARCHAR},
-        #{updateTime,jdbcType=TIMESTAMP},
-        #{remark,jdbcType=VARCHAR},
+        #{item.parentId,jdbcType=NUMERIC},
+        #{item.parentIds,jdbcType=VARCHAR},
+        #{item.areaName,jdbcType=VARCHAR},
+        #{item.areaCode,jdbcType=VARCHAR},
+        #{item.areaType,jdbcType=NUMERIC},
+        #{item.icon,jdbcType=VARCHAR},
+        #{item.sort,jdbcType=NUMERIC},
+        #{item.active,jdbcType=NUMERIC},
+        #{item.createUserId,jdbcType=VARCHAR},
+        #{item.createTime,jdbcType=TIMESTAMP},
+        #{item.updateUserId,jdbcType=VARCHAR},
+        #{item.updateTime,jdbcType=TIMESTAMP},
+        #{item.remark,jdbcType=VARCHAR},
     </sql>
 
     <sql id="Update_Set_From_Bean">
@@ -89,19 +89,19 @@
         <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
     </sql>
     <sql id="BatchUpdate_Set_From_Bean">
-        parent_id=#{parentId,jdbcType=NUMERIC},
-        parent_ids=#{parentIds,jdbcType=VARCHAR},
-        area_name=#{areaName,jdbcType=VARCHAR},
-        area_code=#{areaCode,jdbcType=VARCHAR},
-        area_type=#{areaType,jdbcType=NUMERIC},
-        icon=#{icon,jdbcType=VARCHAR},
-        sort=#{sort,jdbcType=NUMERIC},
-        active=#{active,jdbcType=NUMERIC},
-        create_user_id=#{createUserId,jdbcType=VARCHAR},
-        create_time=#{createTime,jdbcType=TIMESTAMP},
-        update_user_id=#{updateUserId,jdbcType=VARCHAR},
-        update_time=#{updateTime,jdbcType=TIMESTAMP},
-        remark=#{remark,jdbcType=VARCHAR},
+        parent_id=#{item.parentId,jdbcType=NUMERIC},
+        parent_ids=#{item.parentIds,jdbcType=VARCHAR},
+        area_name=#{item.areaName,jdbcType=VARCHAR},
+        area_code=#{item.areaCode,jdbcType=VARCHAR},
+        area_type=#{item.areaType,jdbcType=NUMERIC},
+        icon=#{item.icon,jdbcType=VARCHAR},
+        sort=#{item.sort,jdbcType=NUMERIC},
+        active=#{item.active,jdbcType=NUMERIC},
+        create_user_id=#{item.createUserId,jdbcType=VARCHAR},
+        create_time=#{item.createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{item.updateUserId,jdbcType=VARCHAR},
+        update_time=#{item.updateTime,jdbcType=TIMESTAMP},
+        remark=#{item.remark,jdbcType=VARCHAR},
     </sql>
 
     <!--insert-->

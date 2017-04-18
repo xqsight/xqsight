@@ -15,10 +15,10 @@
     </resultMap>
 
     <sql id="Base_Column_List_Without_Id">
-        login_id,status,active,create_user_id,create_time,update_user_id,update_time,remark
+        id,login_id,status,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
     <sql id="Base_Column_List">
-         id,
+        
         <include refid="Base_Column_List_Without_Id"/>
     </sql>
 
@@ -45,15 +45,15 @@
         <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
     </sql>
     <sql id="Batch_Insert_Values">
-        #{id,jdbcType=NUMERIC},
-        #{loginId,jdbcType=VARCHAR},
-        #{status,jdbcType=NUMERIC},
-        #{active,jdbcType=NUMERIC},
-        #{createUserId,jdbcType=VARCHAR},
-        #{createTime,jdbcType=TIMESTAMP},
-        #{updateUserId,jdbcType=VARCHAR},
-        #{updateTime,jdbcType=TIMESTAMP},
-        #{remark,jdbcType=VARCHAR},
+        #{item.id,jdbcType=NUMERIC},
+        #{item.loginId,jdbcType=VARCHAR},
+        #{item.status,jdbcType=NUMERIC},
+        #{item.active,jdbcType=NUMERIC},
+        #{item.createUserId,jdbcType=VARCHAR},
+        #{item.createTime,jdbcType=TIMESTAMP},
+        #{item.updateUserId,jdbcType=VARCHAR},
+        #{item.updateTime,jdbcType=TIMESTAMP},
+        #{item.remark,jdbcType=VARCHAR},
     </sql>
 
     <sql id="Update_Set_From_Bean">
@@ -68,19 +68,19 @@
         <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
     </sql>
     <sql id="BatchUpdate_Set_From_Bean">
-        id=#{id,jdbcType=NUMERIC},
-        login_id=#{loginId,jdbcType=VARCHAR},
-        status=#{status,jdbcType=NUMERIC},
-        active=#{active,jdbcType=NUMERIC},
-        create_user_id=#{createUserId,jdbcType=VARCHAR},
-        create_time=#{createTime,jdbcType=TIMESTAMP},
-        update_user_id=#{updateUserId,jdbcType=VARCHAR},
-        update_time=#{updateTime,jdbcType=TIMESTAMP},
-        remark=#{remark,jdbcType=VARCHAR},
+        id=#{item.id,jdbcType=NUMERIC},
+        login_id=#{item.loginId,jdbcType=VARCHAR},
+        status=#{item.status,jdbcType=NUMERIC},
+        active=#{item.active,jdbcType=NUMERIC},
+        create_user_id=#{item.createUserId,jdbcType=VARCHAR},
+        create_time=#{item.createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{item.updateUserId,jdbcType=VARCHAR},
+        update_time=#{item.updateTime,jdbcType=TIMESTAMP},
+        remark=#{item.remark,jdbcType=VARCHAR},
     </sql>
 
     <!--insert-->
-    <insert id="insert" parameterType="com.xqsight.system.model.SysLogin" useGeneratedKeys="true" keyProperty="id">
+    <insert id="insert" parameterType="com.xqsight.system.model.SysLogin">
         insert into sys_login
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <include refid="Insert_Columns"/>
@@ -106,7 +106,7 @@
     <!-- delete -->
     <delete id="deleteById" parameterType="java.lang.Long">
         delete from sys_login
-        where  id = #{id,jdbcType=NUMERIC}  
+        where  id = #{id,jdbcType=NUMERIC}
     </delete>
     <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
         delete from sys_login
@@ -121,14 +121,15 @@
         <set>
             <include refid="Update_Set_From_Bean"/>
         </set>
-        where  id = #{id,jdbcType=NUMERIC}  
+        where
+            id = #{id,jdbcType=NUMERIC}
     </update>
     <update id="batchUpdate" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
         update sys_login
         <include refid="BatchUpdate_Set_From_Bean"/>
         where
-             id = #{id,jdbcType=NUMERIC}  
+            id = #{id,jdbcType=NUMERIC}
         </foreach>
     </update>
     <!-- end update -->
@@ -137,7 +138,7 @@
     <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
         select <include refid="Base_Column_List"/> from sys_login
         where
-             id = #{id,jdbcType=NUMERIC}  
+        id = #{id,jdbcType=NUMERIC}
     </select>
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
         select <include refid="Base_Column_List"/> from sys_login
