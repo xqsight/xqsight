@@ -28,10 +28,14 @@
                 </#list>
                 </ul>
             </div>
+
             <#list cmsEvents?keys as key>
-                <ul class="event-ct02" id="content_${key}">
+            <div class="event-ct02 clearfix" id="content_${key}">
                 <#assign cmsEvent=cmsEvents[key]/>
+                <!--奇数-->
+                <ul class="event-ct02-list01">
                 <#list cmsEvent as cmsAd>
+                    <#if cmsAd_index%2 == 0>
                     <li>
                         <span class="i-clock"></span>
                         <h2>${cmsAd.remark}</h2>
@@ -40,8 +44,25 @@
                             <p><img src="${cmsAd.adImage}" alt="${cmsAd.adName}"></p>
                         </#if>
                     </li>
+                    </#if>
                 </#list>
                 </ul>
+                <!--偶数-->
+                <ul class="event-ct02-list02">
+                <#list cmsEvent as cmsAd>
+                <#if cmsAd_index%2 != 0>
+                    <li>
+                    <span class="i-clock"></span>
+                    <h2>${cmsAd.remark}</h2>
+                    <p>${cmsAd.adName}</p>
+                    <#if cmsAd.adImage != "">
+                        <p><img src="${cmsAd.adImage}" alt="${cmsAd.adName}"></p>
+                    </#if>
+                    </li>
+                </#if>
+                </#list>
+                </ul>
+            </div>
             </#list>
         </div>
         <!--内容部分-->
@@ -49,6 +70,16 @@
 </div>
 <script type="text/javascript">
     window.addEventListener('load', function(){
+
+        var oBox = document.querySelector('.event-ct01');
+
+        window.onscroll = function(){
+            if(document.body.scrollTop < 556){
+                oBox.className = "event-ct01";
+            }else{
+                oBox.className = "event-ct01 event-ct01-pof";
+            }
+        }
 
         document.getElementById("event").className="current";
 
@@ -58,7 +89,7 @@
         var previousYear = eventLi[0].getAttribute("id");
         var nextYear = eventLi[eventLi.length-1].getAttribute("id");
 
-        document.getElementById("content_" + (parseInt(nextYear)-1)).firstElementChild.className="active";
+        //document.getElementById("content_" + (parseInt(nextYear)-1)).firstElementChild.className="active";
 
         for (var i = eventLi.length - 1; i >= 0; i--) {
             var id = eventLi[i].getAttribute("id");

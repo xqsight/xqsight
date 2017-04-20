@@ -13,7 +13,7 @@ file:
     store:
       path: /var/webroot/
     access:
-      domain: http://10.99.69.43
+      domain: http://101.231.84.121
 
 #==== 模板存放位置 ===#
 site:

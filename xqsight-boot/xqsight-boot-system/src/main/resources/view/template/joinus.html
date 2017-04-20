@@ -3,7 +3,7 @@
 <!-- head end -->
 
 <link rel="stylesheet" type="text/css" href="${domain}/static/css/joinus.css">
-<title>招聘精英</title>
+<title>招聘职位</title>
 
 <!--navbar start-->
 <#include "common/navbar.html"/>
@@ -79,6 +79,7 @@
     window.addEventListener('load', function(){
 
         document.getElementById("joinus").className="current";
+        document.getElementById("joinus-2").className="current";
 
         document.addEventListener("click",function(e){
             var targetClass = e.target.className;

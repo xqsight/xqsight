@@ -63,17 +63,17 @@
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     var object = JSON.parse(xmlhttp.responseText);
                     if (object.preArticle.articleTitle == undefined || object.preArticle.articleTitle == "") {
-                        document.getElementById("preArticle").style.visibility = "hidden";
+                        document.getElementById("nextArticle").style.visibility = "hidden";
                     } else {
-                        document.getElementById("preArticle").setAttribute("href", object.preArticle.articleUrl);
-                        document.getElementById("preArticleTitile").innerHTML = object.preArticle.articleTitle;
+                        document.getElementById("nextArticle").setAttribute("href", object.preArticle.articleUrl);
+                        document.getElementById("nextArticleTitile").innerHTML = object.preArticle.articleTitle;
                     }
 
                     if (object.nextArticle.articleTitle == undefined || object.nextArticle.articleTitle == "") {
-                        document.getElementById("nextArticle").style.visibility = "hidden";
+                        document.getElementById("preArticle").style.visibility = "hidden";
                     } else {
-                        document.getElementById("nextArticle").setAttribute("href", object.nextArticle.articleUrl);
-                        document.getElementById("nextArticleTitile").innerHTML = object.nextArticle.articleTitle;
+                        document.getElementById("preArticle").setAttribute("href", object.nextArticle.articleUrl);
+                        document.getElementById("preArticleTitile").innerHTML = object.nextArticle.articleTitle;
                     }
                 }
             }

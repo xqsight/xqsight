@@ -1,0 +1,35 @@
+<!-- head start -->
+<#include "common/head.html"/>
+<!-- head end -->
+
+<link rel="stylesheet" type="text/css" href="${domain}/static/css/showus.css">
+<title>员工风采</title>
+
+<!--navbar start-->
+<#include "common/navbar.html"/>
+<!--navbar end -->
+
+<!--page content start -->
+
+<div class="page-personal">
+    <div class="banner">
+        <img src="${domain}/static/images/banner_joinus.png" alt="">
+    </div>
+    <div class="page-personal-img">
+        <img src="${domain}/static/images/showus.png" />
+    </div>
+    <div class="page-personal-bgc"></div>
+<div>
+
+<!-- show us js -->
+<script>
+    window.addEventListener('load', function(){
+        document.getElementById("joinus").className="current";
+        document.getElementById("joinus-1").className="current";
+    })
+</script>
+<!--page content end -->
+
+<!-- foot start -->
+<#include "common/foot.html"/>
+<!-- foot end -->

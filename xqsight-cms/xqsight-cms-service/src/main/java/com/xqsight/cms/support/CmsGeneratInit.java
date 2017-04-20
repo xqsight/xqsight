@@ -21,6 +21,7 @@ public class CmsGeneratInit implements CommandLineRunner {
         logger.debug("start generate service and aboutus html");
         generateTemplate.generate(null, "template/service.html", "service.html");
         generateTemplate.generate(null, "template/aboutus.html", "aboutus.html");
+        generateTemplate.generate(null, "template/showus.html", "showus.html");
         logger.debug("generate service & event and aboutus html end");
     }
 
