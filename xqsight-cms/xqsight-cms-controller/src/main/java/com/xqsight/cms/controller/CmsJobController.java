@@ -29,12 +29,12 @@ public class CmsJobController extends BaseController<CmsJobService, CmsJob, Long
     private CmsGenerateService cmsGenerateService;
 
     @Override
-    protected void afterPut(CmsJob cmsJob) throws Exception {
+    protected void afterPut(CmsJob cmsJob) {
         cmsGenerateService.generateJob();
     }
 
     @Override
-    protected void afterDelete(CmsJob cmsJob) throws Exception {
+    protected void afterDelete(CmsJob cmsJob) {
         cmsGenerateService.generateJob();
     }
 }

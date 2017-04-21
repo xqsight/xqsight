@@ -40,9 +40,9 @@ public class SignJob {
         /** 张俊 **/
         map.put("117585", "0916Abcd");
         /** 卢俊 **/
-        map.put("14485", "0411Abcd");
+        //map.put("14485", "0411Abcd");
         /** 虞倩倩 **/
-        map.put("117572", "0222Abcd");
+        //map.put("117572", "0222Abcd");
         /** 洪福 **/
         map.put("112690", "4030Abcd");
         /** 王子腾 **/

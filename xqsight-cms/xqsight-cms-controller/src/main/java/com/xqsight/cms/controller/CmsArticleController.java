@@ -28,17 +28,17 @@ public class CmsArticleController extends BaseController<CmsArticleService, CmsA
     private CmsGenerateService cmsGenerateService;
 
     @Override
-    protected void afterPut(CmsArticle cmsArticle) throws Exception {
+    protected void afterPut(CmsArticle cmsArticle) {
         service.saveArticleTag(cmsArticle);
         afterOperate(cmsArticle);
     }
 
     @Override
-    protected void afterDelete(CmsArticle cmsArticle) throws Exception {
+    protected void afterDelete(CmsArticle cmsArticle) {
         cmsGenerateService.generateIndex();
     }
 
-    private void afterOperate(CmsArticle cmsArticle) throws Exception {
+    private void afterOperate(CmsArticle cmsArticle) {
         cmsGenerateService.generateArticle(cmsArticle);
         cmsGenerateService.generateIndex();
     }

@@ -17,7 +17,7 @@ public class CmsGeneratInit implements CommandLineRunner {
     private GenerateTemplate generateTemplate;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args){
         logger.debug("start generate service and aboutus html");
         generateTemplate.generate(null, "template/service.html", "service.html");
         generateTemplate.generate(null, "template/aboutus.html", "aboutus.html");

@@ -31,7 +31,7 @@ import java.util.List;
 public class SysDictController extends BaseTreeController<SysDictService,SysDict,Long> {
 
     @Override
-    protected void prePut(SysDict sysDict) throws Exception {
+    protected void prePut(SysDict sysDict) {
         if(sysDict.getPK() != null) {
             SysDict subDict = service.getById(sysDict.getDictId());
             if (subDict.getEditable() != null && subDict.getEditable() == Constants.DISABLE) {
@@ -41,7 +41,7 @@ public class SysDictController extends BaseTreeController<SysDictService,SysDict
     }
 
     @Override
-    protected void preDelete(SysDict sysDict) throws Exception {
+    protected void preDelete(SysDict sysDict) {
         if (sysDict.getEditable() != null && sysDict.getEditable() == Constants.DISABLE) {
             throw new GlobalException(ErrorMessageConstants.ERROR_10000, "该条数据是系统内置数据不可删除");
         }

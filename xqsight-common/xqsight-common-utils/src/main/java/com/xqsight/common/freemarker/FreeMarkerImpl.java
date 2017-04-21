@@ -19,7 +19,6 @@ import com.xqsight.common.exception.TemplateEngineException;
 import freemarker.template.Configuration;
 import freemarker.template.DefaultObjectWrapper;
 import freemarker.template.Template;
-import freemarker.template.Version;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -63,7 +62,7 @@ public class FreeMarkerImpl implements TemplateEngine {
     }
 
     @Override
-    public String processToString(Map<String, Object> model, String stringTemplate) throws TemplateEngineException {
+    public String processToString(Map<String, Object> model, String stringTemplate){
         logger.debug("model:{}", model);
         try {
             Configuration cfg = new Configuration(Configuration.VERSION_2_3_23);
@@ -80,7 +79,7 @@ public class FreeMarkerImpl implements TemplateEngine {
     }
 
     @Override
-    public void processToFile(Map<String, Object> model, TemplateElement templateElement) throws TemplateEngineException {
+    public void processToFile(Map<String, Object> model, TemplateElement templateElement){
         logger.debug("model:{}", model);
         try {
             Template template = config.getTemplate(templateElement.getTemplateFile(), templateElement.getEncoding());

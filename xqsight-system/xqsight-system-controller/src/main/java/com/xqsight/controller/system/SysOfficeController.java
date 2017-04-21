@@ -28,7 +28,7 @@ import java.util.List;
 @RequestMapping("/sys/office")
 public class SysOfficeController extends BaseTreeController<SysOfficeService,SysOffice,Long> {
     @Override
-    protected void preDelete(SysOffice sysOffice) throws Exception {
+    protected void preDelete(SysOffice sysOffice) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.L).add("parent_id", "" + sysOffice.getId()).end();
         List<SysOffice> sysOffices = service.getByFilters(propertyFilters);

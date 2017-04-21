@@ -47,7 +47,7 @@ public class SysMenuController extends BaseTreeController<SysMenuService,SysMenu
     }
 
     @Override
-    protected void preDelete(SysMenu sysMenu) throws Exception {
+    protected void preDelete(SysMenu sysMenu) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.L).add("parent_id", "" + sysMenu.getId()).end();
         List<SysMenu> sysMenus = service.getByFilters(propertyFilters);

@@ -1,7 +1,6 @@
 package com.xqsight.cms.support;
 
 import com.xqsight.cms.config.TemplateConfig;
-import com.xqsight.common.exception.TemplateEngineException;
 import com.xqsight.common.freemarker.FreeMarkerImpl;
 import com.xqsight.common.freemarker.TemplateElement;
 import com.xqsight.common.freemarker.TemplateEngine;
@@ -29,13 +28,13 @@ public class GenerateTemplate {
 
     private String SEPARATOR = "/";
 
-    public String generate(Map model, String tplFileName, String fileName) throws TemplateEngineException {
-        if (model == null){
+    public String generate(Map model, String tplFileName, String fileName) {
+        if (model == null) {
             model = new HashMap();
         }
-        logger.debug("model:{},tplFileName:{},fileName:{}",model,tplFileName,fileName);
+        logger.debug("model:{},tplFileName:{},fileName:{}", model, tplFileName, fileName);
         java.net.URI uri = URI.create(templateConfig.getDisplayPath());
-        model.put("domain",uri.getScheme() + "://" + uri.getHost());
+        model.put("domain", uri.getScheme() + "://" + uri.getHost());
         TemplateElement templateElement = new TemplateElement("", "freemark", tplFileName, templateConfig.getStorePath(), fileName, "utf-8");
         delFile(fileName);
         TemplateEngine templateEngine = new FreeMarkerImpl(getTemplatePath());
@@ -65,9 +64,9 @@ public class GenerateTemplate {
         String CLASS_PATH = "classpath:";
         String tplPath = templateConfig.getTplPath();
         if (StringUtils.startsWith(tplPath, CLASS_PATH)) {
-            tplPath = GenerateTemplate.class.getResource(StringUtils.replace(tplPath,CLASS_PATH,"")).getFile();
+            tplPath = GenerateTemplate.class.getResource(StringUtils.replace(tplPath, CLASS_PATH, "")).getFile();
         }
-        logger.debug("tplPath:{}",tplPath);
+        logger.debug("tplPath:{}", tplPath);
         return tplPath;
     }
 }

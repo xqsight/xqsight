@@ -15,13 +15,11 @@
  */
 package com.xqsight.common.freemarker;
 
-import com.xqsight.common.exception.TemplateEngineException;
-
 import java.util.Map;
 
 public interface TemplateEngine {
 
-    String processToString(Map<String, Object> model, String stringTemplate) throws TemplateEngineException;
+    String processToString(Map<String, Object> model, String stringTemplate);
 
-    void processToFile(Map<String, Object> model, TemplateElement templateElement) throws TemplateEngineException;
+    void processToFile(Map<String, Object> model, TemplateElement templateElement);
 }

@@ -14,7 +14,6 @@ import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.Sort;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
-import com.xqsight.common.exception.TemplateEngineException;
 import com.xqsight.common.utils.MapKeyHandle;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -48,7 +47,7 @@ public class CmsGenerateService {
     @Autowired
     private GenerateTemplate generateTemplate;
 
-    public void generateIndex() throws TemplateEngineException {
+    public void generateIndex(){
         logger.debug("开始生成首页");
         Map modelMap = new HashMap();
         Page page = PageHelper.startPage(1, 1000);
@@ -72,7 +71,7 @@ public class CmsGenerateService {
         //保存到站点
     }
 
-    public void generateJob() throws TemplateEngineException {
+    public void generateJob(){
         Map modelMap = new HashMap();
         List<Map> jobs = cmsJobService.queryJob(null);
         Map position = new HashMap();
@@ -90,7 +89,7 @@ public class CmsGenerateService {
         generateTemplate.generate(modelMap, "template/joinus.html", "joinus.html");
     }
 
-    public void generateEvent() throws TemplateEngineException {
+    public void generateEvent(){
         Map modelMap = new HashMap();
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.IN)
                 .propertyType(PropertyType.I).add("type", "2,3").end();
@@ -123,7 +122,7 @@ public class CmsGenerateService {
         generateTemplate.generate(modelMap, "template/event.html", "event.html");
     }
 
-    public void generateArticle(CmsArticle cmsArticle) throws TemplateEngineException {
+    public void generateArticle(CmsArticle cmsArticle){
         ObjectMapper oMapper = new ObjectMapper();
         Map modelMap = oMapper.convertValue(cmsArticle, Map.class);
         modelMap.put("publishTime", cmsArticle.getPublishTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));

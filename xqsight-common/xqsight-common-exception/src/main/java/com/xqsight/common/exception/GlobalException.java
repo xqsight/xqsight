@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
  * @author wangganggang
  * @date 2017/04/07
  */
-public class GlobalException extends Exception {
+public class GlobalException extends RuntimeException {
 
     protected final Logger logger = LogManager.getLogger(getClass());
 

@@ -31,7 +31,7 @@ import java.util.List;
 public class SysAreaController extends BaseTreeController<SysAreaService, SysArea, Long> {
 
     @Override
-    protected void preDelete(SysArea sysArea) throws Exception {
+    protected void preDelete(SysArea sysArea) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
                 .propertyType(PropertyType.L).add("parent_id", "" + sysArea.getId()).end();
         List<SysArea> sysAreas = service.getByFilters(propertyFilters);

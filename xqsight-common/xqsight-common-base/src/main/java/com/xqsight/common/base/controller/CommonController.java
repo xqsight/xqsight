@@ -43,7 +43,7 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
     protected HttpServletResponse response;
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Object deleteById(@PathVariable PK id) throws Exception {
+    public Object deleteById(@PathVariable PK id){
         Record record = service.getById(id);
         preDelete(record);
         int iRet = service.removeById(id);
@@ -52,7 +52,7 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
     }
 
     @RequestMapping(value = "/logic/{id}", method = RequestMethod.DELETE)
-    public Object logicDeleteById(Record record, @PathVariable PK id) throws Exception {
+    public Object logicDeleteById(Record record, @PathVariable PK id){
         Record updRecord = service.getById(id);
         preDelete(updRecord);
         if (updRecord == null || updRecord.getPK() == null) {
@@ -118,15 +118,15 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
         return pageMap;
     }
 
-    protected void prePut(Record record) throws Exception {
+    protected void prePut(Record record){
     }
 
-    protected void afterPut(Record record) throws Exception {
+    protected void afterPut(Record record){
     }
 
-    protected void preDelete(Record record) throws Exception {
+    protected void preDelete(Record record){
     }
 
-    protected void afterDelete(Record record) throws Exception {
+    protected void afterDelete(Record record){
     }
 }
