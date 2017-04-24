@@ -102,7 +102,11 @@ public class ShiroConfig {
     @Bean
     public DefaultWebSessionManager defaultWebSessionManager() {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-
+        SimpleCookie simpleCookie = new SimpleCookie();
+        simpleCookie.setName("jssid");
+        simpleCookie.setMaxAge(-1);
+        simpleCookie.setPath("/");
+        sessionManager.setSessionIdCookie(simpleCookie);
         sessionManager.setSessionDAO(enterpriseCacheSessionDAO());
         return sessionManager;
     }

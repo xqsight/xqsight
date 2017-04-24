@@ -19,6 +19,9 @@ public class ErrorMessageConstants extends ListResourceBundle {
     /** 当前对象不存在 **/
     public static final int ERROR_10001 = 10001;
 
+    /** 未授权异常 **/
+    public static final int ERROR_10005 = 10005;
+
     /** 生成模板错误 */
     public static final int ERROR_20001 = 20001;
 

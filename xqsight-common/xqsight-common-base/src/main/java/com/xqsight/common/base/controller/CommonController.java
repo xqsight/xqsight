@@ -99,8 +99,8 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
      * @return
      */
     protected Page initPage() {
-        int pageNum = StringUtils.isBlank(request.getParameter("pageNum")) ? 1 : Integer.parseInt(request.getParameter("pageNum"));
-        int pageSize = StringUtils.isBlank(request.getParameter("pageSize")) ? 15 : Integer.parseInt(request.getParameter("pageSize"));
+        int pageNum = StringUtils.isBlank(request.getParameter("iDisplayStart")) ? 1 : Integer.parseInt(request.getParameter("iDisplayStart"));
+        int pageSize = StringUtils.isBlank(request.getParameter("iDisplayLength")) ? 15 : Integer.parseInt(request.getParameter("iDisplayLength"));
         return PageHelper.startPage(pageNum, pageSize);
     }
 
@@ -111,10 +111,11 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
      * @return
      */
     protected Map getPageInfo(Page page) {
-        Map pageMap = new HashMap(3);
-        pageMap.put(Constants.TOTAL_SIZE, page.getTotal());
-        pageMap.put(Constants.PAGE_SIZE, page.getPageSize());
-        pageMap.put(Constants.PAGE_RESULT, page.getResult());
+        Map pageMap = new HashMap(4);
+        pageMap.put("sEcho", request.getParameter("sEcho"));
+        pageMap.put("iTotalRecords", page.getTotal());
+        pageMap.put("iTotalDisplayRecords", page.getTotal());
+        pageMap.put("aaData", page.getResult());
         return pageMap;
     }
 

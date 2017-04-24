@@ -49,12 +49,76 @@
     <!--第三部分-->
     <div class="aboutus-box">
         <div class="wrap aboutus-box03">
+            <ul class="aboutus-box03-list">
+                <li class="active">
+                    <a href="">托管与指导服务</a>
+                    <ul class="aboutus-box03-list01">
+                        <li>企业集团服务</li>
+                        <li>房地产+金融服务</li>
+                        <li>社区教育服务</li>
+                        <li>金融服务</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">公共技术服务</a>
+                    <ul class="aboutus-box03-list02">
+                        <li>企业集团服务</li>
+                        <li>房地产+金融服务</li>
+                        <li>社区教育服务</li>
+                        <li>金融服务</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">孵化与投资服务</a>
+                    <ul class="aboutus-box03-list03">
+                        <li>企业集团服务</li>
+                        <li>房地产+金融服务</li>
+                        <li>社区教育服务</li>
+                        <li>金融服务</li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="">专业技术服务</a>
+                    <ul class="aboutus-box03-list04">
+                        <li>企业集团服务</li>
+                        <li>房地产+金融服务</li>
+                        <li>社区教育服务</li>
+                        <li>金融服务</li>
+                    </ul>
+                </li>
+            </ul>
             <div class="aboutus-box03-inner">
-                <h2>创研业务布局</h2>
-                <h3>托管与指导服务</h3>
-                <p>
-                    支撑易居集团各业务趋向互联网化的发展，负责托管、承接、委托开发各项业务的产品需求，提供必要的技术支持与定制服务
-                </p>
+                <ul>
+                    <li class="active">
+                        <h2>创研业务布局</h2>
+                        <h3>托管与指导服务</h3>
+                        <p>
+                            支撑易居集团各业务趋向互联网化的发展，负责托管、承接、委托开发各项业务的产品需求，提供必要的技术支持与定制服务。
+                        </p>
+                    </li>
+                    <li>
+                        <h2>创研业务布局</h2>
+                        <h3>公共技术服务</h3>
+                        <p>
+                            构建易居集团的信息化服务平台，提供通用性的基础技术服务解决方案与服务支持，包括信息化自助平台、自动化运维平台、大数据平台及与其相关的应用支撑服务平台。
+                        </p>
+                    </li>
+                    <li>
+                        <h2>创研业务布局</h2>
+                        <h3>孵化与投资服务</h3>
+                        <p>
+                            根据孵化与投资项目预期，着力于垂直、深度化服务的产品创新；通过自主孵化，或联结成熟的业务版块，整合优势资源的联合孵化，快速形成业务领域竞争壁垒，实现阶段性的投资预期。
+                        </p>
+                    </li>
+                    <li>
+                        <h2>创研业务布局</h2>
+                        <h3>专业技术服务</h3>
+                        <p>
+                            基于互联网行业的通用性专业技术，为业务方提供一站式的解决方案；通过对内提供技术研发与服务，持续沉淀为可对外商业化运营的产品体系，实现技术能力的价值转化。
+                        </p>
+                    </li>
+                </ul>
+
             </div>
         </div>
     </div>
@@ -88,6 +152,23 @@
 <script>
     window.addEventListener('load', function(){
         document.getElementById("aboutus").className="current";
+
+        var aLi =  document.querySelectorAll('.aboutus-box03-list > li');
+        var aItems =  document.querySelectorAll('.aboutus-box03-inner > ul > li');
+
+        for(var i = 0; i < aLi.length; i++){
+            aLi[i].index = i;
+            console.log(aLi[i].index);
+
+            aLi[i].onmouseover = function(){
+                for (var j = 0; j < aLi.length; j++) aLi[j].className = '';
+                this.className = 'active';
+
+                for(var k = 0; k < aItems.length; k++) aItems[k].className = '';
+
+                aItems[this.index].className = 'active';
+            }
+        }
     })
 </script>
 <!--page content end -->

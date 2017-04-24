@@ -1,5 +1,6 @@
 package com.xqsight.sso.shiro.filter;
 
+import com.xqsight.common.exception.UnAuthcException;
 import com.xqsight.sso.shiro.constants.WebConstants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,7 +13,6 @@ import org.springframework.util.StringUtils;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Enumeration;
@@ -23,8 +23,7 @@ public class PassThruAuthenticationWithGotoFilter extends PassThruAuthentication
     
     /** 个人用户登陆页面 */
     private String personalLoginUrl;
-    
-    
+
     /** 系统用户登陆页面 */
     private String systemLoginUrl;
     
@@ -33,21 +32,40 @@ public class PassThruAuthenticationWithGotoFilter extends PassThruAuthentication
     private final static String SYSTEM_URL_KEYWORD = "sys";
     
     @Override
-    protected void redirectToLogin(ServletRequest request, ServletResponse response) throws IOException {
-        String gotoUrl = getGotoUrl(request);
-        SavedRequest savedRequest = WebUtils.getSavedRequest(request);
-        if(savedRequest == null){
-            logger.info("savedRequest is null");
-            HttpServletRequest httpRequest = (HttpServletRequest) request;
-            logger.info("httpRequest: requestURI={}, QueryString={}, method={}", httpRequest.getRequestURI(), httpRequest.getQueryString(), httpRequest.getMethod()); 
-            httpRequest.getPathTranslated();
-        } else {
-            logger.info("savedRequest: requestUrl={}, requestURI={}, QueryString={}, method={}", savedRequest.getRequestUrl(), savedRequest.getRequestURI(), savedRequest.getQueryString(), savedRequest.getMethod());            
-        }
-        WebUtils.issueRedirect(request, response, getRedirectUrl(request, gotoUrl));
+    protected void redirectToLogin(ServletRequest request, ServletResponse response) {
+       try{
+           String gotoUrl = getGotoUrl(request);
+           SavedRequest savedRequest = WebUtils.getSavedRequest(request);
+           if(savedRequest == null){
+               logger.info("savedRequest is null");
+               HttpServletRequest httpRequest = (HttpServletRequest) request;
+               logger.info("httpRequest: requestURI={}, QueryString={}, method={}", httpRequest.getRequestURI(), httpRequest.getQueryString(), httpRequest.getMethod());
+               httpRequest.getPathTranslated();
+           } else {
+               logger.info("savedRequest: requestUrl={}, requestURI={}, QueryString={}, method={}", savedRequest.getRequestUrl(), savedRequest.getRequestURI(), savedRequest.getQueryString(), savedRequest.getMethod());
+           }
+           WebUtils.issueRedirect(request, response, getRedirectUrl(request, gotoUrl));
+       }catch (Exception e){
+           e.printStackTrace();
+           throw new UnAuthcException();
+       }
     }
-    
-    
+
+    @Override
+    protected boolean onAccessDenied(ServletRequest request, ServletResponse response){
+        if (isLoginRequest(request, response)) {
+            return true;
+        } else {
+            try {
+                saveRequestAndRedirectToLogin(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+                redirectToLogin(request,response);
+            }
+            return false;
+        }
+    }
+
     /**
      * 得到用户原始访问路径，若是POST方式提交，则将参数组装到URL中
      * @param request
