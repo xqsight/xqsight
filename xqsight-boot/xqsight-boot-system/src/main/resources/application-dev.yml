@@ -3,7 +3,11 @@ server:
   context-path: /portal
 
 ###====== 登陆页面 =======##
-default.system.goto.url: login.html
+default.system.goto.url:  http://127.0.0.1:8887/page/index.html
+system.login.url: http://127.0.0.1:8887/page/login.html
+person.login.url: http://127.0.0.1:8887/page/login.html
+
+
 
 ###===  文件上传处理   =====##
 file:

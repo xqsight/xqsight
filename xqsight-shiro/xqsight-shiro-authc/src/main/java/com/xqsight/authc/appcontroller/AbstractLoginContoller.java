@@ -83,7 +83,7 @@ public abstract class AbstractLoginContoller {
                     logger.error("登陆发生异常", e);
                     map.put(Constants.KEY_MESSAGE, "系统繁忙，请稍后再试");
                 }
-                return WebUtils.getResponseBody(request, map);
+                return new BaseResult(map);
             }
         }
         map.put(Constants.KEY_STATUS, Constants.SUCCESS);

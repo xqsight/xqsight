@@ -99,7 +99,7 @@ public class BaseUserModel extends BaseModel implements Serializable {
      * @return
      */
     public String getCredentialsSalt() {
-        return salt + System.currentTimeMillis();
+        return salt;
     }
 
     @Override

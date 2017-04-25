@@ -5,6 +5,8 @@ server:
 ###=====================##
 
 default.system.goto.url: login.html
+system.login.url: http://101.231.84.121/admin/page/login.html
+person.login.url: http://101.231.84.121/admin/page/login.html
 
 ###===  文件上传处理   =====##
 file:

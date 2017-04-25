@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ImportResource;
 /**
  * Created by wangganggang on 2017/1/1.
  */
-@ImportResource({"classpath:applicationContext.xml"})
+@ImportResource({"classpath:applicationContext.xml","classpath:shiro-config.xml","classpath*:xqsight-sso-shiro.xml"})
 @SpringBootApplication
 @EnableAutoConfiguration(exclude={MultipartAutoConfiguration.class})
 public class Application {
