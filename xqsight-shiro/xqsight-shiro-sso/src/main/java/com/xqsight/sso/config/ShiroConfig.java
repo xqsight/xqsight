@@ -1,4 +1,3 @@
-/*
 package com.xqsight.sso.config;
 
 import com.xqsight.sso.shiro.authc.pam.CustomAuthenticationStrategy;
@@ -10,6 +9,7 @@ import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
+import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
@@ -17,12 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-*/
 /**
  * @author wangganggang
  * @date 2017/03/31
- *//*
-
+ */
 @Configuration
 public class ShiroConfig {
 
@@ -32,15 +30,47 @@ public class ShiroConfig {
     private CacheManager cacheManager;
 
     @Bean
+    public ShiroFilterFactoryBean shiroFilter() {
+        ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
+        factoryBean.setSecurityManager(securityManager());
+        return factoryBean;
+    }
+
+    @Bean(name = "securityManager")
+    public CustomWebSecurityManager securityManager() {
+        CustomWebSecurityManager  securityManager = new CustomWebSecurityManager();
+        /** 设置realm **/
+        securityManager.setRealm(userShiroRealm());
+
+        /** 注入缓存管理器
+         *  这个如果执行多次，也是同样的一个对象;
+         */
+        securityManager.setCacheManager(cacheManager);
+        securityManager.setSessionManager(defaultWebSessionManager());
+        securityManager.setAuthenticator(singleSupportModularRealmAuthenticator());
+        securityManager.setRememberMeManager(cookieRememberMeManager());
+
+        return securityManager;
+    }
+
+    @Bean
+    public DefaultWebSessionManager defaultWebSessionManager() {
+        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
+        SimpleCookie simpleCookie = new SimpleCookie();
+        simpleCookie.setName("jssid");
+        simpleCookie.setMaxAge(-1);
+        simpleCookie.setPath("/");
+        sessionManager.setSessionIdCookie(simpleCookie);
+        sessionManager.setSessionDAO(enterpriseCacheSessionDAO());
+        return sessionManager;
+    }
+
+    @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
-        */
-/** 散列算法:这里使用MD5算法; **//*
-
+        /** 散列算法:这里使用MD5算法; **/
         hashedCredentialsMatcher.setHashAlgorithmName("SHA-256");
-        */
-/** 散列的次数，比如散列两次，相当于 md5(md5("")); **//*
-
+        /** 散列的次数，比如散列两次，相当于 md5(md5("")); **/
         hashedCredentialsMatcher.setHashIterations(2);
         hashedCredentialsMatcher.setStoredCredentialsHexEncoded(true);
         return hashedCredentialsMatcher;
@@ -82,26 +112,6 @@ public class ShiroConfig {
         return new CustomAuthenticationStrategy();
     }
 
-    @Bean(name = "securityManager")
-    public CustomWebSecurityManager securityManager() {
-        CustomWebSecurityManager  securityManager = new CustomWebSecurityManager();
-        */
-/** 设置realm **//*
-
-        securityManager.setRealm(userShiroRealm());
-
-        */
-/** 注入缓存管理器
-         *  这个如果执行多次，也是同样的一个对象;
-         *//*
-
-        securityManager.setCacheManager(cacheManager);
-        securityManager.setSessionManager(defaultWebSessionManager());
-        securityManager.setAuthenticator(singleSupportModularRealmAuthenticator());
-        securityManager.setRememberMeManager(cookieRememberMeManager());
-
-        return securityManager;
-    }
 
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor() {
@@ -110,17 +120,6 @@ public class ShiroConfig {
         return authorizationAttributeSourceAdvisor;
     }
 
-    @Bean
-    public DefaultWebSessionManager defaultWebSessionManager() {
-        DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-        SimpleCookie simpleCookie = new SimpleCookie();
-        simpleCookie.setName("jssid");
-        simpleCookie.setMaxAge(-1);
-        simpleCookie.setPath("/");
-        sessionManager.setSessionIdCookie(simpleCookie);
-        sessionManager.setSessionDAO(enterpriseCacheSessionDAO());
-        return sessionManager;
-    }
 
     @Bean
     public EnterpriseCacheSessionDAO enterpriseCacheSessionDAO() {
@@ -133,6 +132,4 @@ public class ShiroConfig {
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
         return new LifecycleBeanPostProcessor();
     }
-
 }
-*/
