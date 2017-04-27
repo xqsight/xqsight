@@ -16,6 +16,7 @@ import java.util.Map;
  * @author wangganggang
  * @date 2017/04/01
  */
+@Configuration
 public class ShiroFilter {
 
     @Autowired
@@ -31,14 +32,14 @@ public class ShiroFilter {
         shiroFilterFactoryBean.setSecurityManager(securityManager);
 
         Map<String, Filter> filters = new HashMap<>();
-        filters.put("authc",getPassThruAuthenticationWithGotoFilter());
+        filters.put("authc", getPassThruAuthenticationWithGotoFilter());
         shiroFilterFactoryBean.setFilters(filters);
 
         /** 拦截器 **/
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         filterChainDefinitionMap.put("/logout", "anon");
         filterChainDefinitionMap.put("/index", "anon");
-        filterChainDefinitionMap.put("/", "anon");
+        filterChainDefinitionMap.put("/**/ajaxlogin", "anon");
         filterChainDefinitionMap.put("/**", "anon");
 
         /*// 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
@@ -54,7 +55,7 @@ public class ShiroFilter {
     }
 
     @Bean
-    public Filter getPassThruAuthenticationWithGotoFilter(){
+    public Filter getPassThruAuthenticationWithGotoFilter() {
         PassThruAuthenticationWithGotoFilter passThruAuthenticationWithGotoFilter = new PassThruAuthenticationWithGotoFilter();
         passThruAuthenticationWithGotoFilter.setPersonalLoginUrl("");
         passThruAuthenticationWithGotoFilter.setSystemLoginUrl("");

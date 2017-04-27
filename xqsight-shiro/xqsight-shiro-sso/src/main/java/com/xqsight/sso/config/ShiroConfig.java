@@ -29,13 +29,6 @@ public class ShiroConfig {
     @Autowired
     private CacheManager cacheManager;
 
-    @Bean
-    public ShiroFilterFactoryBean shiroFilter() {
-        ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
-        factoryBean.setSecurityManager(securityManager());
-        return factoryBean;
-    }
-
     @Bean(name = "securityManager")
     public CustomWebSecurityManager securityManager() {
         CustomWebSecurityManager  securityManager = new CustomWebSecurityManager();

@@ -14,9 +14,10 @@
     <dependencies>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>xqsight-common-exception</artifactId>
+            <artifactId>xqsight-common-utils</artifactId>
             <version>${project.version}</version>
         </dependency>
+
         <dependency>
             <groupId>com.xqsight</groupId>
             <artifactId>xqsight-data-ehcache</artifactId>
