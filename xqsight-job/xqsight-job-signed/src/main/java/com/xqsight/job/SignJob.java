@@ -39,8 +39,6 @@ public class SignJob {
         map.put("117585", "0916Abcd");
         /** 卢俊 **/
         map.put("14485", "0411Abcd");
-        /** 洪福 **/
-        map.put("112690", "4030Abcd");
         /** 王子腾 **/
         map.put("107626", "Eju13559O");
         /** 刘书理 **/
