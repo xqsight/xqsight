@@ -28,7 +28,7 @@ public class CmsAdController extends BaseController<CmsAdService, CmsAd, Long> {
 
     @Override
     protected void afterPut(CmsAd cmsAd) {
-        if(cmsAd.getType() == 0) {
+        if(cmsAd.getType() == 1) {
             cmsGenerateService.generateIndex();
         }else {
             cmsGenerateService.generateEvent();
@@ -37,7 +37,7 @@ public class CmsAdController extends BaseController<CmsAdService, CmsAd, Long> {
 
     @Override
     protected void afterDelete(CmsAd cmsAd) {
-        if(cmsAd.getType() == 0) {
+        if(cmsAd.getType() == 1) {
             cmsGenerateService.generateIndex();
         }else {
             cmsGenerateService.generateEvent();

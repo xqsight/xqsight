@@ -32,19 +32,19 @@ public class SignJob {
         /**王刚刚 **/
         map.put("122792", "4430Abcd");
         /**小胖 **/
-        map.put("110595", "1018Abcd");
+        //map.put("110595", "1018Abcd");
         /**帆帆 **/
-        map.put("122894", "3028Abcd");
+        //map.put("122894", "3028Abcd");
         /** 张俊 **/
-        map.put("117585", "0916Abcd");
+        //map.put("117585", "0916Abcd");
         /** 卢俊 **/
-        map.put("14485", "0411Abcd");
+        //map.put("14485", "0411Abcd");
         /** 王子腾 **/
-        map.put("107626", "Eju13559O");
+        //map.put("107626", "Eju13559O");
         /** 刘书理 **/
-        map.put("111780", "2011Abcd");
+        //map.put("111780", "2011Abcd");
         /** 施澍 **/
-        map.put("115715", "shishu123!");
+        //map.put("115715", "shishu123!");
 
         mExecutor = Executors.newFixedThreadPool(map.size() / 2 + 1);
     }

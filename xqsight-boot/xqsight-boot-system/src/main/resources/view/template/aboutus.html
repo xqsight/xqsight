@@ -129,14 +129,14 @@
             <div class="partner">
                 <h2>合作伙伴</h2>
                 <ul class="clearfix">
-                    <li><a href="http://www.baokuchina.com/"><img src="${domain}/static/images/p-yjwh.png" alt="易进文化"></a></li>
-                    <li><a href="http://www.51kupai.com"><img src="${domain}/static/images/p-bk.png" alt="宝库"></a></li>
-                    <li><a href="http://www.jpinvestment.cn/"><img src="${domain}/static/images/p-jp.png" alt="钜派投资集团"></a></li>
-                    <li><a href="http://collection.sina.com.cn/"><img src="${domain}/static/images/p-xlsc.png" alt="新浪收藏"></a></li>
-                    <li><a href="http://www.eju-ted.com/"><img src="${domain}/static/images/p-tdlt.png" alt="太德励拓"></a></li>
-                    <li><a href="http://www.ehousechina.com/cn/"><img src="${domain}/static/images/p-yj.png" alt="易居"></a></li>
-                    <li><a href="www.leju.com"><img src="${domain}/static/images/p-xllj.png" alt="新浪乐居"></a></li>
-                    <li><a href="http://www.51kupai.com/"><img src="${domain}/static/images/p-kp.png" alt="库拍"></a></li>
+                    <li><a href="http://www.baokuchina.com/" target="_blank"><img src="${domain}/static/images/p-yjwh.png" alt="易进文化"></a></li>
+                    <li><a href="http://www.51kupai.com" target="_blank"><img src="${domain}/static/images/p-bk.png" alt="宝库"></a></li>
+                    <li><a href="http://www.jpinvestment.cn/" target="_blank"><img src="${domain}/static/images/p-jp.png" alt="钜派投资集团"></a></li>
+                    <li><a href="http://collection.sina.com.cn/" target="_blank"><img src="${domain}/static/images/p-xlsc.png" alt="新浪收藏"></a></li>
+                    <li><a href="http://www.eju-ted.com/" target="_blank"><img src="${domain}/static/images/p-tdlt.png" alt="太德励拓"></a></li>
+                    <li><a href="http://www.ehousechina.com/cn/" target="_blank"><img src="${domain}/static/images/p-yj.png" alt="易居"></a></li>
+                    <li><a href="http://www.leju.com" target="_blank"><img src="${domain}/static/images/p-xllj.png" alt="新浪乐居"></a></li>
+                    <li><a href="http://www.51kupai.com/" target="_blank"><img src="${domain}/static/images/p-kp.png" alt="库拍"></a></li>
                 </ul>
             </div>
 
@@ -152,25 +152,9 @@
 <script>
     window.addEventListener('load', function(){
         document.getElementById("aboutus").className="current";
-
-        var aLi =  document.querySelectorAll('.aboutus-box03-list > li');
-        var aItems =  document.querySelectorAll('.aboutus-box03-inner > ul > li');
-
-        for(var i = 0; i < aLi.length; i++){
-            aLi[i].index = i;
-            console.log(aLi[i].index);
-
-            aLi[i].onmouseover = function(){
-                for (var j = 0; j < aLi.length; j++) aLi[j].className = '';
-                this.className = 'active';
-
-                for(var k = 0; k < aItems.length; k++) aItems[k].className = '';
-
-                aItems[this.index].className = 'active';
-            }
-        }
     })
 </script>
+<script src="${domain}/static/js/aboutus.js"></script>
 <!--page content end -->
 
 <!-- foot start -->

@@ -22,7 +22,7 @@ public class Criterion implements Serializable {
     private String order = Sort.DESC;
     private String orderBy;
 
-    private List<PropertyFilter> criteria = Collections.EMPTY_LIST;
+    private List<PropertyFilter> propertyFilters = Collections.EMPTY_LIST;
 
     private String customSql;
 
@@ -31,12 +31,12 @@ public class Criterion implements Serializable {
     public Criterion() {
     }
 
-    public Criterion(List<PropertyFilter> criteria) {
-        this.criteria = criteria;
+    public Criterion(List<PropertyFilter> propertyFilters) {
+        this.propertyFilters = propertyFilters;
     }
 
-    public Criterion(List<PropertyFilter> criteria,List<Sort> sorts) {
-        this.criteria = criteria;
+    public Criterion(List<PropertyFilter> propertyFilters,List<Sort> sorts) {
+        this.propertyFilters = propertyFilters;
         if (sorts != null) {
             StringBuilder orderBySb = new StringBuilder();
             StringBuilder orderSb = new StringBuilder();
@@ -56,13 +56,13 @@ public class Criterion implements Serializable {
         }
     }
 
-    public Criterion(List<PropertyFilter> criteria, String orderBy) {
-        this.criteria = criteria;
+    public Criterion(List<PropertyFilter> propertyFilters, String orderBy) {
+        this.propertyFilters = propertyFilters;
         this.orderBy = orderBy;
     }
 
-    public Criterion(List<PropertyFilter> criteria, String orderBy, String order) {
-        this.criteria = criteria;
+    public Criterion(List<PropertyFilter> propertyFilters, String orderBy, String order) {
+        this.propertyFilters = propertyFilters;
         this.orderBy = orderBy;
         this.order = order;
     }
@@ -105,18 +105,18 @@ public class Criterion implements Serializable {
      * @return the criteria
      */
     public List<PropertyFilter> getCriteria() {
-        return criteria;
+        return propertyFilters;
     }
 
     /**
-     * @param criteria the criteria to set
+     * @param propertyFilters the criteria to set
      */
-    public void setCriteria(List<PropertyFilter> criteria) {
-        this.criteria = criteria;
+    public void setCriteria(List<PropertyFilter> propertyFilters) {
+        this.propertyFilters = propertyFilters;
     }
 
     public String getWhereSqlString() {
-        return constructSqlString(criteria);
+        return constructSqlString(propertyFilters);
     }
 
     public void setCustomCriteria(String sql) {
