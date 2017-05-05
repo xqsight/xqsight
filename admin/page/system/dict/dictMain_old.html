@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>字典管理</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- bootstrap & fonts -->
+    <link rel="stylesheet" href="../../../static/ace/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../../static/ace/css/font-awesome.css" />
+
+    <!--  ace styles & fonts & common-->
+    <link rel="stylesheet" href="../../../static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../../../static/ace/css/ace-fonts.css" />
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="../../../static/ace/js/html5shiv.js"></script>
+    <script src="../../../static/ace/js/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="no-skin">
+<!-- /section:basics/navbar.layout -->
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="widget-box widget-color-blue3">
+                            <div class="widget-header widget-header-flat">
+                                <h4 class="widget-title">
+                                    <i class="ace-icon fa fa-filter"></i>
+                                    过滤
+                                </h4>
+                                <div class="widget-toolbar">
+                                    <a href="javascript:void(0);" data-action="collapse">
+                                        <i class="ace-icon fa fa-chevron-up"></i>
+                                    </a>
+                                </div>
+                                <div class="widget-toolbar">
+                                    <a href="javascript:void(0);" id="btn-undo" class="white">
+                                        <i class="ace-icon fa fa-undo"></i> 重置
+                                    </a>
+                                </div>
+                                <div class="widget-toolbar no-border">
+                                    <a href="javascript:void(0);" id="btn-search" class="white btn-search">
+                                        <i class="ace-icon fa fa-search"></i> 查询
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <div class="widget-main padding-10">
+                                    <!-- start condition -->
+                                    <div class="row filter">
+                                        <div class="col-sm-12 filter-item">
+                                            <ul class="list-unstyled list-inline">
+                                                <span>字典名称:</span>
+                                                <li>
+                                                    <input type="text" class="input-xlarge" id="dictName" placeholder="字典名称"/>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- end condition -->
+                                </div><!-- /.widget-main -->
+                            </div><!-- /.widget-body -->
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 no-padding-right">
+                        <div class="widget-box widget-color-blue3">
+                            <div class="widget-header widget-header-flat">
+                                <h4 class="widget-title">
+                                    <i class="ace-icon fa fa-bars"></i>
+                                    字典列表
+                                </h4>
+                                <div class="widget-toolbar">
+                                    <a href="javascript:void(0);" id="btn-remove" class="white">
+                                        <i class="ace-icon fa fa-remove"></i> 删除
+                                    </a>
+                                </div>
+                                <div class="widget-toolbar">
+                                    <a href="javascript:void(0);" id="btn-edit" class="white">
+                                        <i class="ace-icon fa fa-edit"></i> 修改
+                                    </a>
+                                </div>
+                                <div class="widget-toolbar no-border">
+                                    <a href="javascript:void(0);" id="btn-plus" class="white">
+                                        <i class="ace-icon fa fa-plus"></i> 新增
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+
+                                <div class="widget-main no-padding">
+                                    <span class="input-icon width-100">
+                                    <input id="dict-search-input" type="text" placeholder="名称/拼音/code" class="nav-search-input width-100" autocomplete="on">
+                                    <i class="ace-icon fa fa-search nav-search-icon"></i>
+                                </span>
+                                    <!-- start condition -->
+                                    <div class="list-group" id="dictList">
+
+                                    </div>
+                                    <!-- end condition -->
+                                </div><!-- /.widget-main -->
+                            </div><!-- /.widget-body -->
+                        </div>
+                    </div>
+
+                    <div class="col-sm-8">
+                        <div class="widget-box widget-color-blue3">
+                            <div class="widget-header widget-header-flat">
+                                <h4 class="widget-title">
+                                    <i class="ace-icon fa fa-th"></i>
+                                    明细列表
+                                </h4>
+
+                                <div class="widget-toolbar">
+                                    <a href="avascript:void(0);" data-action="fullscreen" class="white">
+                                        <i class="ace-icon fa fa-expand"></i>
+                                    </a>
+                                </div>
+                                <div class="widget-toolbar">
+                                    <a href="javascript:void(0);" id="btn-retweet" class="white">
+                                        <i class="ace-icon fa fa-retweet"></i> 同步
+                                    </a>
+                                </div>
+                                <div class="widget-toolbar">
+                                    <a href="javascript:void(0);" id="btn-refresh" class="white">
+                                        <i class="ace-icon fa fa-refresh"></i> 刷新
+                                    </a>
+                                </div>
+                                <div class="widget-toolbar">
+                                    <a href="javascript:void(0);" id="btn-detail-remove" class="white">
+                                        <i class="ace-icon fa fa-remove"></i> 删除
+                                    </a>
+                                </div>
+                                <div class="widget-toolbar">
+                                    <a href="javascript:void(0);" id="btn-detail-edit" class="white">
+                                        <i class="ace-icon fa fa-edit"></i> 修改
+                                    </a>
+                                </div>
+                                <div class="widget-toolbar no-border">
+                                    <a href="javascript:void(0);" id="btn-detail-plus" class="white">
+                                        <i class="ace-icon fa fa-plus"></i> 新增
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <div class="widget-main no-padding">
+                                    <table id="detail-table" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                        <th class="left">
+                                            <label class="pos-rel">
+                                                <input type="checkbox" name="checkall" class="ace" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </th>
+                                        <th class="center">字典键</th>
+                                        <th class="center">字典值</th>
+                                        <th class="center">是否启用</th>
+                                        <th class="center">可否编辑</th>
+                                        <th class="center">备注</th>
+                                        <th class="center">操作</th>
+                                        </thead>
+                                    </table>
+                                </div><!-- /.widget-main -->
+                            </div><!-- /.widget-body -->
+                        </div>
+                    </div>
+                </div><!-- /.col -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="../../../static/ace/js/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../../../static/ace/js/jquery1x.js"></script>
+<![endif]-->
+<script src="../../../static/ace/js/bootstrap.js"></script>
+<script src="../../../static/ace/js/ace.js"></script>
+<script src="../../../static/js/pub.js"></script>
+<!-- page specific plugin scripts -->
+<!--datatables组件-->
+<script src="../../../static/ace/js/dataTables/jquery.dataTables.js"></script>
+<script src="../../../static/ace/js/dataTables/jquery.dataTables.bootstrap.js"></script>
+
+<script src="../../../static/js/pinyin.js"></script>
+
+<script src="dictMain.js"></script>
+</body>
+</html>

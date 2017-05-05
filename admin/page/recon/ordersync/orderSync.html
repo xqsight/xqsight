@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>订单同步</title>
+    <meta name="description" content="Static &amp; Dynamic Tables" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- bootstrap & fonts  ace styles & fonts & common-->
+    <link rel="stylesheet" href="../../../static/ace/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../../static/ace/css/font-awesome.css" />
+
+    <!-- ace styles & fonts & common-->
+    <link rel="stylesheet" href="../../../static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../../../static/ace/css/ace-fonts.css" />
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="../../../static/ace/js/html5shiv.js"></script>
+    <script src="../../../static/ace/js/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="no-skin">
+<!-- /section:basics/navbar.layout -->
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content">
+                <div class="row">
+                    <h4 class="widget-title light-grey">
+                        <i class="ace-icon fa fa-refresh"></i>
+                        同步订单
+                    </h4>
+                    <div class="col-sm-12 hr hr12 hr-dotted"></div>
+
+                    <label class="col-sm-1 control-label">日期时间</label>
+                    <div class="col-sm-4" id="searchDiv">
+                        <div class="input-daterange input-group width-100">
+                            <input type="text" class="input-sm form-control" value="20160314000000" id="startTime" name="startTime" placeholder="开始日期"/>
+                            <span class="input-group-addon">
+                                <i class="fa fa-exchange"></i>
+                            </span>
+                            <input type="text" class="input-sm form-control" value="20160314235959" id="endTime" name="endTime" placeholder="结束日期"/>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 operateDiv">
+                        <button id="btn-query" type="button" data-rel="tooltip" title="同步" class="btn btn-white btn-default btn-round">
+                            <i class="ace-icon fa fa-refresh"></i>同步
+                        </button>
+                        <button id="btn-reset" type="button" data-rel="tooltip" title="重置" class="btn btn-white btn-default btn-round">
+                            <i class="ace-icon fa fa-reply"></i>重置
+                        </button>
+                    </div>
+                </div>
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="../../../static/ace/js/jquery.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="../../../static/ace/js/jquery1x.js"></script>
+<![endif]-->
+
+<script src="../../../static/ace/js/bootstrap.js"></script>
+<script src="../../../static/ace/js/ace.js"></script>
+<script src="../../../static/js/pub.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="orderSync.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>banner管理</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <!-- bootstrap & fonts  -->
+    <link rel="stylesheet" href="../../../static/ace/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../../static/ace/css/font-awesome.css"/>
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="../../../static/bootstrap-select/css/bootstrap-select.css"/>
+
+    <!-- ace styles & fonts & common-->
+    <link rel="stylesheet" href="../../../static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-fonts.css"/>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/wangEditor/css/wangEditor.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="../../../static/ace/js/html5shiv.js"></script>
+    <script src="../../../static/ace/js/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="no-skin">
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content">
+                <div class="row no-margin">
+                    <form id="adForm" name="modelForm">
+                        <input id="adId" name="adId" type="hidden">
+                        <input id="adImage" name="adImage" type="hidden" />
+                        <input id="type" name="type" value="0" type="hidden" />
+
+                        <div class="col-xs-9">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="adName" class="col-sm-1 control-label">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="adName" name="adName" placeholder="名称" required>
+                                    </div>
+                                    <div class="col-sm-1 red">*</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="adText" class="col-sm-1 control-label">展示内容</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="adText" name="adText" style="height:100px;width: 100%"></textarea>
+                                    </div>
+                                    <div class="col-sm-1 red"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sort" class="col-sm-1 control-label">排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序</label>
+                                    <div class="col-sm-10">
+                                        <input type="number" class="form-control" id="sort" name="sort" value="1" placeholder="排序">
+                                    </div>
+                                    <div class="col-sm-1 red"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="adUrl" class="col-sm-1 control-label">连接地址</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="adUrl" name="adUrl" placeholder="连接地址">
+                                    </div>
+                                    <div class="col-sm-1 red"></div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xs-3">
+                            <div>
+                                <label >图片</label>
+                                <div class="center">
+                                    <ul class="ace-thumbnails clearfix">
+                                        <!-- #section:pages/gallery -->
+                                        <li>
+                                            <img id="imgUrl" width="350" height="150" alt="1920x500" src="http://placehold.it/1920x500">
+                                            <div class="tools tools-bottom">
+                                                <a href="javascript:void(0);" id="btn-upload-pic">
+                                                    <i class="ace-icon fa fa-pencil "></i>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div><!-- /.col -->
+
+                <div class="navbar-fixed-bottom">
+                    <div class="clearfix form-actions no-margin">
+                        <div class="center">
+                            <button class="btn btn-white btn-default btn-round" type="button" id="btn_save">
+                                <i class="ace-icon fa fa-check "></i>
+                                提交
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn btn-white btn-default btn-round" type="button" id="btn_cancel">
+                                <i class="ace-icon fa fa-close"></i>
+                                取消
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="../../../static/ace/js/jquery.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="../../../static/ace/js/jquery1x.js"></script>
+<![endif]-->
+
+<script src="../../../static/ace/js/bootstrap.js"></script>
+<script src="../../../static/ace/js/ace.js"></script>
+<script src="../../../static/js/pub.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="../../../static/wangEditor/js/wangEditor.js"></script>
+<script src="../../../static/layer/laydate/laydate.dev.js"></script>
+<script src="../../../static/layer/layer/layer.dev.js"></script>
+<script src="../../../static/bootstrap-select/js/bootstrap-select.js"></script>
+<script src="../../../static/validator/jquery-html5Validate.js"></script>
+
+<script src="adManage.js"></script>
+</body>
+</html>

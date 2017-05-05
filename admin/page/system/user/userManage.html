@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>用户管理</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- bootstrap & fonts -->
+    <link rel="stylesheet" href="../../../static/ace/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../../static/ace/css/font-awesome.css" />
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="../../../static/bootstrap-select/css/bootstrap-select.css" />
+    <link rel="stylesheet" href="../../../static/wdtree/tree.css" />
+
+    <!-- ace styles & fonts & common-->
+    <link rel="stylesheet" href="../../../static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../../../static/ace/css/ace-fonts.css" />
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="../../../static/ace/js/html5shiv.js"></script>
+    <script src="../../../static/ace/js/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="no-skin">
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content">
+                <div class="row no-margin">
+                    <form id="userForm" name="userForm" class="form-auto">
+                        <input id="id" name="id" type="hidden">
+                        <input id="companyId" name="companyId" type="hidden">
+                        <input id="officeId" name="officeId" type="hidden">
+                        <input type="hidden" id="imgUrl" name="imgUrl"/>
+
+                        <div class="col-xs-9 no-margin no-padding">
+                            <div class="form-horizontal">
+
+                                <div class="form-group">
+                                    <label for="companyId" class="col-sm-1 control-label">归属公司</label>
+                                    <div class="col-sm-10">
+                                        <div id="companyShow" type="selectTree" class="ui-select">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1 red">*</div>
+                                </div>
+
+                                <div class="form-group" id="officeIdDiv">
+                                    <label for="officeId" class="col-sm-1 control-label">归属部门</label>
+                                    <div class="col-sm-10">
+                                        <div id="officeShow" type="selectTree" class="ui-select">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1 red">*</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="userCode" class="col-sm-1 control-label">用户编号</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="userCode" name="userCode" placeholder="用户编号" required>
+                                    </div>
+                                    <div class="col-sm-1 red">*</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cellPhone" class="col-sm-1 control-label">电&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;话</label>
+                                    <div class="col-sm-4">
+                                        <input type="tel" class="form-control" id="cellPhone" name="cellPhone" placeholder="电话" required>
+                                    </div>
+                                    <div class="col-sm-1 red">*</div>
+
+                                    <label for="email" class="col-sm-1 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
+                                    <div class="col-sm-4">
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="邮箱" required>
+                                    </div>
+                                    <div class="col-sm-1 red">*</div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="userName" class="col-sm-1 control-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名" required>
+                                    </div>
+                                    <div class="col-sm-1 red">*</div>
+                                    <label for="realName" class="col-sm-1 control-label">真实姓名</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="realName" name="realName" placeholder="真实姓名">
+                                    </div>
+                                    <div class="col-sm-1 red"></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="userBorn" class="col-sm-1 control-label">生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="userBorn" name="userBorn" placeholder="生日">
+                                    </div>
+                                    <div class="col-sm-1 red"></div>
+
+                                    <label for="sex" class="col-sm-1 control-label">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</label>
+                                    <div class="col-sm-4">
+                                        <select id="sex" name="sex" class="form-control selectpicker" data-style="btn-white"
+                                                data-width="100%" title="性别" required>
+                                            <option value="1" selected>男</option>
+                                            <option value="2">女</option>
+                                            <option value="0">未知</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1 red"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <div>
+                                <label for="imgUrl">图片</label>
+                                <div class=" center">
+                                    <ul class="ace-thumbnails clearfix">
+                                        <!-- #section:pages/gallery -->
+                                        <li>
+                                            <img id="userImage" width="150" height="150" alt="150x150" src="http://placehold.it/150x150">
+                                            <div class="tools tools-bottom">
+                                                <a href="javascript:void(0);" id="btn-upload-pic">
+                                                    <i class="ace-icon fa fa-pencil "></i>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div><!-- /.col -->
+
+                <div class="navbar-fixed-bottom">
+                    <div class="clearfix form-actions no-margin" >
+                        <div class="center">
+                            <button class="btn btn-white btn-default btn-round" type="button" id="btn_save">
+                                <i class="ace-icon fa fa-check "></i>
+                                提交
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn btn-white btn-default btn-round" type="button" id="btn_cancel">
+                                <i class="ace-icon fa fa-close"></i>
+                                取消
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="../../../static/ace/js/jquery.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="../../../static/ace/js/jquery1x.js"></script>
+<![endif]-->
+
+<script src="../../../static/ace/js/bootstrap.js"></script>
+<script src="../../../static/ace/js/ace.js"></script>
+<script src="../../../static/js/pub.js"></script>
+
+<!--下拉框选择组件-->
+<script src="../../../static/layer/laydate/laydate.dev.js"></script>
+<script src="../../../static/layer/layer/layer.dev.js"></script>
+<script src="../../../static/bootstrap-select/js/bootstrap-select.js"></script>
+<script src="../../../static/wdtree/tree.js"></script>
+<!-- page specific plugin scripts -->
+<script src="../../../static/validator/jquery-html5Validate.js"></script>
+
+<script src="userManage.js"></script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+/** tab close css **/
+.portal-nav li > a {
+    height: 40px !important;
+    line-height: 20px !important;
+}
+
+.nav-tabs > li > a > .badge {
+    padding: 1px 1px !important;
+    line-height: 15px;
+    opacity: 0.75;
+}
+
+/** datatables head css **/
+.dataTables_wrapper .row:first-child {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    background-color: white !important;
+}
+
+.dataTable > thead > tr > th[class*=sorting_] {
+    color: #707070 !important;
+}
+
+/**  **/
+.list-group-item.active {
+    z-index: 2;
+    color: #616161 !important;
+    background-color: #f5f7fa !important;
+    border-color: #f5f7fa !important;
+}
+
+/** tab tool bar css **/
+.dropdown-preview {
+    margin: 0 5px;
+    display: inline-block;
+}
+
+.dropdown-preview > .dropdown-menu {
+    display: block;
+    position: static;
+    margin-bottom: 5px;
+}
+
+.dropdown-menu > li > a {
+    padding: 0px 20px !important;
+}
+
+.dropdown-menu > li.divider {
+    margin: 1px !important;
+}
+
+/** upload file css **/
+.div1 {
+    float: left;
+    height: 35px;
+    background: #E7E7E7;
+    width: 144px;
+    position: relative;
+    margin-left: 10px;
+}
+
+.div2 {
+    text-align: center;
+    padding-top: 5px;
+    font-size: 15px;
+    font-weight: 800
+}
+
+.inputstyle {
+    width: 144px;
+    height: 41px;
+    cursor: pointer;
+    font-size: 30px;
+    outline: medium none;
+    position: absolute;
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity: 0;
+    left: 0px;
+    top: 0px;
+}
+
+/** form bottom css **/
+.form-auto {
+    margin-bottom: 63px;
+}
+
+/** filter query css  **/
+.filter-item > ul {
+    margin: 0px;
+}
+
+.filter-item > li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.filter-item li a {
+    color: #555555;
+    text-decoration: none;
+    padding: 2px 4px;
+}
+
+.filter-item li span {
+    color: #555555;
+}
+
+.filter-item .active a, .filter-item li a:hover {
+    background-color: #80909A;
+    color: #fff;
+    text-decoration: none;
+    padding: 2px 4px;
+}
+
+/** IE tab not  in line **/
+#portal_tabs li {
+    display: inline;
+}
+
+/** tree select css */
+.ui-select[disabled], fieldset[disabled] .ui-select {
+    background-color: #eee;
+    opacity: 1;
+    cursor: default;
+    background-image: none;
+    opacity: 0.6;
+}
+
+.ui-select {
+    cursor: pointer;
+    outline: 0;
+    width: auto;
+    height: 28px;
+    line-height: 26px;
+    position: relative;
+    background: #fff url(../images/a2.png) no-repeat right center;
+}
+
+.ui-select-focus {
+    border-color: #337ab7;
+}
+
+.ui-select .ui-select-text {
+    box-shadow: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    user-select: none;
+    border: 1px solid #ccc;
+    padding-left: 5px;
+    height: 28px;
+    line-height: 26px;
+}
+
+.ui-select-option {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    display: none;
+    position: absolute;
+    left: 0px;
+    top: 28px;
+    background-color: #fff;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-top: 0;
+    z-index: 9999;
+}
+
+.ui-select-option .ui-select-option-content {
+    overflow-y: auto;
+}
+
+.ui-select-option li {
+    min-height: 26px;
+    line-height: 26px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.ui-select-option li.on {
+    background-color: #eee;
+}
+
+.ui-select-option li.liactive {
+    background-color: #337ab7;
+    color: #fff;
+}
+
+.ui-select-option-search {
+    position: relative;
+}
+
+.ui-select-option-search .form-control {
+    box-shadow: none;
+    border-color: #ccc;
+    border: none;
+    border-top: 1px solid #ccc;
+    height: 25px;
+    margin: 0px;
+}
+
+.ui-select-option-search .input-query {
+    position: absolute;
+    right: 4px;
+    top: 1px;
+    color: #ccc;
+    font-size: 16px;
+}
+
+/** input buttion css **/
+.form .input-button {
+    border: none;
+    right: 8px;
+    top: 50%;
+    width: 12px;
+    height: 16px;
+    margin-top: -12px;
+    cursor: pointer;
+    overflow: hidden;
+    position: absolute;
+    z-index: 100;
+}
+
+

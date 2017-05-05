@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8" />
+    <title>模块管理</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- bootstrap & fonts  -->
+    <link rel="stylesheet" href="../../../static/ace/css/bootstrap.css" />
+    <link rel="stylesheet" href="../../../static/ace/css/font-awesome.css" />
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="../../../static/bootstrap-select/css/bootstrap-select.css" />
+
+    <!-- ace styles & fonts & common-->
+    <link rel="stylesheet" href="../../../static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style" />
+    <link rel="stylesheet" href="../../../static/ace/css/ace-fonts.css" />
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/wangEditor/css/wangEditor.css" />
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="../../../static/ace/js/html5shiv.js"></script>
+    <script src="../../../static/ace/js/respond.js"></script>
+    <![endif]-->
+</head>
+<body class="no-skin">
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+    </script>
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content">
+                <div class="row no-margin">
+                    <form id="jobForm" name="modelForm">
+                        <input id="jobId" name="jobId" type="hidden">
+                        <input id="positionId" name="positionId" type="hidden">
+
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label for="jobName" class="col-xs-2 control-label">招聘名称</label>
+                                <div class="col-xs-9">
+                                    <input type="text" class="form-control" id="jobName" name="jobName" placeholder="招聘名称" required>
+                                </div>
+                                <div class="col-xs-1 red">*</div>
+                            </div>
+                            <!--<div class="form-group">
+                                <label for="jobStartTime" class="col-xs-2 control-label">开始时间</label>
+                                <div class="col-xs-3">
+                                    <input type="text" class="form-control" id="jobStartTime" placeholder="开始时间" >
+                                </div>
+                                <div class="col-xs-1 red"></div>
+                                <label for="jobEndTime" class="col-xs-1 control-label">结束时间</label>
+                                <div class="col-xs-4">
+                                    <input type="text" class="form-control" id="jobEndTime" placeholder="结束时间" >
+                                </div>
+                                <div class="col-xs-1 red"> </div>
+                            </div>-->
+                            <div class="form-group">
+                                <label for="jobEmail" class="col-xs-2 control-label">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
+                                <div class="col-xs-3">
+                                    <input type="email" class="form-control" id="jobEmail" name="jobEmail" placeholder="邮箱" required>
+                                </div>
+                                <div class="col-xs-1 red"></div>
+                                <label for="active" class="col-xs-1 control-label">状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态</label>
+                                <div class="col-xs-4">
+                                    <select id="active" name="active" class="form-control selectpicker" data-live-search="false"  data-style="btn-white" data-width="100%" title="状态">
+                                        <option value="0" selected>正常</option>
+                                        <option value="-1">结束</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-1 red">*</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="jobDepartment" class="col-xs-2 control-label">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</label>
+                                <div class="col-xs-3">
+                                    <input type="text" class="form-control" id="jobDepartment" name="jobDepartment" placeholder="部门" required>
+                                </div>
+                                <div class="col-xs-1 red"></div>
+                                <label for="jobType" class="col-xs-1 control-label">职位类型</label>
+                                <div class="col-xs-4">
+                                    <select id="jobType" name="jobType" class="form-control selectpicker" data-live-search="false"  data-style="btn-white" data-width="100%" title="职位类型">
+                                        <option value="0" selected>全职</option>
+                                        <option value="1">兼职</option>
+                                    </select>
+                                </div>
+                                <div class="col-xs-1 red">*</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="positionDesp" class="col-xs-2 control-label">职位描述</label>
+                                <div class="col-xs-9">
+                                    <textarea id="positionDesp" name="positionDesp"  style="height:150px;width: 100%;"></textarea>
+                                </div>
+                                <div class="col-xs-1 red"></div>
+                            </div>
+                            <div class="form-group">
+                                <label for="jobNeed" class="col-xs-2 control-label">岗位需求</label>
+                                <div class="col-xs-9">
+                                    <textarea id="jobNeed" name="jobNeed"  style="height:150px;width: 100%;"></textarea>
+                                </div>
+                                <div class="col-xs-1 red"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div><!-- /.col -->
+
+                <div class="navbar-fixed-bottom">
+                    <div class="clearfix form-actions no-margin" >
+                        <div class="center">
+                            <button class="btn btn-white btn-default btn-round" type="button" id="btn_save">
+                                <i class="ace-icon fa fa-check "></i>
+                                提交
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn btn-white btn-default btn-round" type="button" id="btn_cancel">
+                                <i class="ace-icon fa fa-close"></i>
+                                取消
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="../../../static/ace/js/jquery.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="../../../static/ace/js/jquery1x.js"></script>
+<![endif]-->
+
+<script src="../../../static/ace/js/bootstrap.js"></script>
+<script src="../../../static/ace/js/ace.js"></script>
+<script src="../../../static/js/pub.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="../../../static/layer/laydate/laydate.dev.js"></script>
+<script src="../../../static/bootstrap-select/js/bootstrap-select.js"></script>
+<script src="../../../static/wangEditor/js/wangEditor.js"></script>
+<script src="../../../static/validator/jquery-html5Validate.js"></script>
+<script src="jobManage.js"></script>
+</body>
+</html>
+</html>

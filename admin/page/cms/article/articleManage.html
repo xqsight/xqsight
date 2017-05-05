@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>文章管理</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+    <!-- bootstrap & fonts -->
+    <link rel="stylesheet" href="../../../static/ace/css/bootstrap.css"/>
+    <link rel="stylesheet" href="../../../static/ace/css/font-awesome.css"/>
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" href="../../../static/ace/css/chosen.css"/>
+    <link rel="stylesheet" href="../../../static/bootstrap-select/css/bootstrap-select.css"/>
+
+    <!-- ace styles & fonts & common-->
+    <link rel="stylesheet" href="../../../static/ace/css/ace.css" class="ace-main-stylesheet" id="main-ace-style"/>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-fonts.css"/>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/wangEditor/css/wangEditor.css"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-part2.css" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" href="../../../static/ace/css/ace-ie.css"/>
+    <![endif]-->
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+    <!--[if lte IE 8]>
+    <script src="../../../static/ace/js/html5shiv.js"></script>
+    <script src="../../../static/ace/js/respond.js"></script>
+
+    <![endif]-->
+</head>
+<body class="no-skin">
+<div class="main-container" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('main-container', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <!-- /section:basics/sidebar -->
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="page-content">
+                <div class="row no-margin">
+                    <form id="articleForm" name="articleForm" class="form-auto">
+                        <input id="articleId" name="articleId" type="hidden">
+                        <input type="hidden" id="articleImg" name="articleImg"/>
+                        <input type="hidden" id="thumbnailImg" name="thumbnailImg"/>
+
+                        <div class="col-xs-9 no-margin no-padding">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="articleTitle" class="col-sm-1 control-label">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;题</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="articleTitle" name="articleTitle" placeholder="标题"
+                                               required>
+                                    </div>
+                                    <div class="col-sm-1 red">*</div>
+
+                                    <label for="publishTime" class="col-sm-1 control-label">发布时间</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="publishTime" name="publishTime" placeholder="发布时间"
+                                               required>
+                                    </div>
+                                    <div class="col-sm-1 red">*</div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="articleAuthor" class="col-sm-1 control-label">作&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;者</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" id="articleAuthor" name="articleAuthor" placeholder="作者">
+                                    </div>
+                                    <div class="col-sm-1 red"></div>
+
+                                    <label for="articleHit" class="col-sm-1 control-label">是否显示</label>
+                                    <div class="col-sm-4">
+                                        <select id="articleHit" name="articleHit" class="form-control selectpicker" data-style="btn-white"
+                                                data-width="100%" title="是否显示" required>
+                                            <option value="0" selected>显示</option>
+                                            <option value="-1">隐藏</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-1"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="articleDesp" class="col-sm-1 control-label">描&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;述</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="articleDesp" name="articleDesp" placeholder="描述">
+                                    </div>
+                                    <div class="col-sm-1 "></div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="articleContent" class="col-sm-1 control-label">内&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容</label>
+                                    <div class="col-sm-10">
+                                        <textarea id="articleContent" style="height:400px;"></textarea>
+                                    </div>
+                                    <div class="col-sm-1 red"></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="articleSource" class="col-sm-1 control-label">来&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;源</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="articleSource" name="articleSource" placeholder="来源">
+                                    </div>
+                                    <div class="col-sm-1 "></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-3">
+                            <label for="tags">部&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;门</label>
+                            <div>
+                                <input type="text" id="department" name="department" class="form-control">
+                            </div>
+                            <label for="tags">标&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;签</label>
+                            <div>
+                                <input type="text" id="tags" name="tags" data-provide="tag" class="form-control">
+                            </div>
+                            <hr/>
+                            <div>
+                                <label for="thumbnailImg">缩列图</label>
+                                <div class=" center">
+                                    <ul class="ace-thumbnails clearfix">
+                                        <!-- #section:pages/gallery -->
+                                        <li>
+                                            <img id="imgThumbnail" width="350" height="150" alt="580x240" src="http://placehold.it/580x240">
+                                            <div class="tools tools-bottom">
+                                                <a href="javascript:void(0);" id="thumbnailImgShow">
+                                                    <i class="ace-icon fa fa-pencil "></i>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="articleImg">文章图</label>
+                                <div class=" center">
+                                    <ul class="ace-thumbnails clearfix">
+                                        <!-- #section:pages/gallery -->
+                                        <li>
+                                            <img id="imgArticle" width="350" height="150" alt="900x340" src="http://placehold.it/900x340">
+                                            <div class="tools tools-bottom">
+                                                <a href="javascript:void(0);" id="articleImgShow">
+                                                    <i class="ace-icon fa fa-pencil "></i>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div><!-- /.col -->
+                <div class="navbar-fixed-bottom">
+                    <div class="clearfix form-actions no-margin">
+                        <div class="center">
+                            <button class="btn btn-white btn-default btn-round" type="button" id="btn_save">
+                                <i class="ace-icon fa fa-check "></i>
+                                提交
+                            </button>
+                            &nbsp; &nbsp; &nbsp;
+                            <button class="btn btn-white btn-default btn-round" type="button" id="btn_cancel">
+                                <i class="ace-icon fa fa-close"></i>
+                                取消
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+</div><!-- /.main-container -->
+
+
+<!-- basic scripts -->
+<!--[if !IE]> -->
+<script src="../../../static/ace/js/jquery.js"></script>
+<!-- <![endif]-->
+<!--[if IE]>
+<script src="../../../static/ace/js/jquery1x.js"></script>
+<![endif]-->
+
+<script src="../../../static/ace/js/bootstrap.js"></script>
+<script src="../../../static/ace/js/ace.js"></script>
+
+<script src="../../../static/ace/js/bootstrap-tag.js"></script>
+<script src="../../../static/ace/js/ace-elements.js"></script>
+<script src="../../../static/js/pub.js"></script>
+
+<!-- page specific plugin scripts -->
+<script src="../../../static/layer/laydate/laydate.dev.js"></script>
+<script src="../../../static/layer/layer/layer.dev.js"></script>
+<script src="../../../static/bootstrap-select/js/bootstrap-select.js"></script>
+<script src="../../../static/wangEditor/js/wangEditor.js"></script>
+
+<script src="../../../static/validator/jquery-html5Validate.js"></script>
+
+<script src="articleManage.js"></script>
+</body>
+</html>
