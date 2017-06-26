@@ -5,6 +5,6 @@ package com.xqsight;
  */
 public class TestBranch {
     public static void mian(String argss[]){
-        System.out.println("test branch develop");
+        System.out.println("test2 branch develop");
     }
 }
