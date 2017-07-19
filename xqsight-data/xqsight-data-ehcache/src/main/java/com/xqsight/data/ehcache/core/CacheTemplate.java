@@ -134,10 +134,10 @@ public class CacheTemplate {
      * @return
      */
     private String getKey(String key) {
-//		String dsName = DataSourceHolder.getDataSourceName();
-//		if (StringUtils.isNotBlank(dsName)){
-//			return dsName + "_" + key;
-//		}
+		/*String dsName = DataSourceHolder.getDataSourceName();
+		if (StringUtils.isNotBlank(dsName)){
+			return dsName + "_" + key;
+		}*/
         return key;
     }
 

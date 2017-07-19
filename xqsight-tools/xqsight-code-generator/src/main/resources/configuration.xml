@@ -9,25 +9,12 @@
     <connections>
         <database name="portal_new">
             <driverClass>com.mysql.jdbc.Driver</driverClass>
-            <url>jdbc:mysql://10.99.66.13:3306/portal_new</url>
+            <url>jdbc:mysql://139.196.83.11/rms</url>
             <username>root</username>
-            <password>root</password>
+            <password>Tangchaoroot#1234@abcd</password>
             <schema/>
         </database>
-        <database name="ejusite">
-            <driverClass>com.mysql.jdbc.Driver</driverClass>
-            <url>jdbc:mysql://10.99.69.43:3306/ejusite</url>
-            <username>ejusite</username>
-            <password>ejusite</password>
-            <schema/>
-        </database>
-        <database name="portal_new">
-            <driverClass>com.mysql.jdbc.Driver</driverClass>
-            <url>jdbc:mysql://120.27.96.191:3306/portal_new</url>
-            <username>root</username>
-            <password>root</password>
-            <schema/>
-        </database>
+
     </connections>
     <tagertProject>temp</tagertProject>
     <basePackage>com.xqsight</basePackage>
