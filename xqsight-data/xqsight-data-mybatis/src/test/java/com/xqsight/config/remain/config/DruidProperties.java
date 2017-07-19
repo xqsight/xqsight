@@ -13,10 +13,9 @@ import org.springframework.stereotype.Component;
  */
 @Data
 @Configuration
-@ConfigurationProperties(locations = "classpath:xqsight.jdbc.mysql.cfg.properties",prefix = "xqsight.jdbc")
+@ConfigurationProperties(prefix = "xqsight.jdbc")
 @Component
 public class DruidProperties {
-
     //@Value("${xqsight.jdbc.url}")
     private String url;
     private String username;

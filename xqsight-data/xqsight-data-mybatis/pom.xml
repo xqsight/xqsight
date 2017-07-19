@@ -23,6 +23,10 @@
             <artifactId>mybatis-spring-boot-starter</artifactId>
             <version>${spring.boot.mybatis.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-typehandlers-jsr310</artifactId>
+        </dependency>
         <!-- Mybatis End -->
 
         <!-- Spring START -->

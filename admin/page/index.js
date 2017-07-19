@@ -14,10 +14,10 @@ xqsight.nameSpace.reg("sys");
         /**  初始化页面 */
         this.init = function () {
             var loginId = $.cookie("admin");
-            if(loginId == null || loginId == undefined){
-                var redirect = xqsight.utils.getServerPath("domain") + "/page/login.html";
-                window.location.href = redirect;
-            }
+            // if(loginId == null || loginId == undefined){
+            //     var redirect = xqsight.utils.getServerPath("domain") + "/page/login.html";
+            //     window.location.href = redirect;
+            // }
 
             obj.initMenuFun();
 
