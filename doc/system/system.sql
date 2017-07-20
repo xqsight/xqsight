@@ -109,7 +109,8 @@ create table sys_login
    create_time          datetime comment '创建时间',
    update_user_id       varchar(40) comment '修改人ID',
    update_time          datetime comment '修改时间',
-   remark               varchar(200) comment '备注'
+   remark               varchar(200) comment '备注',
+   primary key (login_id)
 );
 
 alter table sys_login comment '用户登陆表';
