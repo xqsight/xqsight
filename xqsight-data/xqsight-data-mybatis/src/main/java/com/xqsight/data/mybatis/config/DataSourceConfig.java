@@ -1,6 +1,10 @@
 package com.xqsight.data.mybatis.config;
 
+import com.alibaba.druid.filter.stat.StatFilter;
 import com.alibaba.druid.pool.DruidDataSource;
+import com.alibaba.druid.support.http.StatViewServlet;
+import com.alibaba.druid.wall.WallConfig;
+import com.alibaba.druid.wall.WallFilter;
 import com.xqsight.data.mybatis.datasource.DynamicDataSource;
 import com.xqsight.data.mybatis.enums.DataSourceEnum;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -13,6 +17,7 @@ import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -38,7 +43,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement(order = 2)//由于引入多数据源，所以让spring事务的aop要在多数据源切换aop的后面
-@MapperScan(basePackages = {"com.xqsight.**.mapper"})
+@MapperScan(basePackages = {"com.xqsight.**.mapper","com.tangchao.**.mapper"})
 public class DataSourceConfig {
     protected Logger logger = LogManager.getLogger(DataSourceConfig.class);
 
@@ -93,6 +98,35 @@ public class DataSourceConfig {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    @Bean
+    public ServletRegistrationBean druidServlet() {
+        ServletRegistrationBean servletRegistrationBean = new ServletRegistrationBean();
+        servletRegistrationBean.setServlet(new StatViewServlet());
+        servletRegistrationBean.addUrlMappings("/druid/*");
+        return servletRegistrationBean;
+    }
+
+    @Bean
+    public StatFilter statFilter(){
+        StatFilter statFilter = new StatFilter();
+        statFilter.setLogSlowSql(true);
+        statFilter.setMergeSql(true);
+        statFilter.setSlowSqlMillis(1000);
+
+        return statFilter;
+    }
+
+    @Bean
+    public WallFilter wallFilter(){
+        WallFilter wallFilter = new WallFilter();
+        //允许执行多条SQL
+        WallConfig config = new WallConfig();
+        config.setMultiStatementAllow(true);
+        wallFilter.setConfig(config);
+        return wallFilter;
     }
 
     /**

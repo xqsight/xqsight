@@ -3,21 +3,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>xqsight</artifactId>
+        <artifactId>rms-api</artifactId>
         <groupId>com.xqsight</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rms-api</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>rms-api-security</module>
-        <module>rms-api-mapper</module>
-        <module>rms-api-service</module>
-        <module>rms-api-controller</module>
-        <module>rms-api-boot</module>
-    </modules>
+    <artifactId>rms-api-boot</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.xqsight</groupId>
+            <artifactId>rms-api-controller</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  context-path: /portal
+
+###=====================##
+
+default.system.goto.url: login.html
+system.login.url: http://101.231.84.121/admin/page/login.html
+person.login.url: http://101.231.84.121/admin/page/login.html
+
+###===  文件上传处理   =====##
+file:
+  upload:
+    method: local
+    store:
+      path: /var/webroot/
+    access:
+      domain: http://101.231.84.121
+
+#==== 模板存放位置 ===#
+site:
+  tpl:
+    path: /home/cloud/eju-site/view/
+
+#==== freemarker 模板设置 =====#
+#spring:
+#  freemarker:
+#    cache: false
+#    template-loader-path: classpath:/view/
+#    charset: UTF-8
+#    check-template-location: false
+
+

@@ -1,0 +1,43 @@
+server:
+  port: 8080
+  context-path: /portal
+
+###===  文件上传处理   =====##
+file:
+  upload:
+    method: local
+    store:
+      path: D:/nginx-1.2.8/html/
+    access:
+      domain: http://127.0.0.1
+
+#==== db config =======#
+spring:
+  datasource:
+    master:
+      driverClassName: com.mysql.jdbc.Driver
+      url: jdbc:mysql://localhost:3310/portal?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
+      initialSize: 10
+      maxActive: 20
+      maxIdle: 5
+      minIdle: 1
+      maxWait: 10000
+      minEvictableIdleTimeMillis: 300000
+      timeBetweenEvictionRunsMillis: 60000
+      validationQuery: SELECT 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      filters: stat
+      removeAbandoned: true
+      removeAbandonedTimeout: 60000
+      logAbandoned: true
+
+#==== 模板存放位置 ===#
+site:
+  tpl:
+    path: classpath:/view/

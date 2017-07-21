@@ -1,6 +1,6 @@
 package com.tangchao.mapper;
 
-import com.tangchao.model.BestHouseVO;
+import com.tangchao.model.vo.BestHouseVO;
 
 import java.util.List;
 
