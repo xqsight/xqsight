@@ -11,5 +11,11 @@
 
     <artifactId>rms-api-mapper</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.xqsight</groupId>
+            <artifactId>xqsight-common-base</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

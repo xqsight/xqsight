@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -16,19 +17,25 @@ import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
+/**
+ * Created by wangganggang on 2017/7/18.
+ */
 @Aspect
-@Order(-1) //保证该AOP在@Transactional之前执行
+@Order(1) //保证该AOP在@Transactional之前执行
 @Component
 public class DataSourceAspect {
     protected Logger logger = LogManager.getLogger(DataSourceAspect.class);
+
+    @Pointcut("execution(* com.xqsight.*.service.*.*(..))")
+    public void dataSourceAop(){}
 
     /**
      * 在进入Service方法之前执行
      * @param point
      * @throws NoSuchMethodException
      */
-    @Before(value = "execution(* com.xqsight.service.*.*(..))")
-    public void before(JoinPoint point) throws NoSuchMethodException {
+    @Before("dataSourceAop()")
+    public void doBefore(JoinPoint point) throws NoSuchMethodException {
         //拦截的实体对象
         Object target = point.getTarget();
         //拦截的方法名称

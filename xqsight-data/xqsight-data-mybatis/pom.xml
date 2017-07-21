@@ -28,17 +28,10 @@
             <artifactId>mybatis-typehandlers-jsr310</artifactId>
         </dependency>
         <!-- Mybatis End -->
-
-        <!-- Spring START -->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aspects</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-       <!-- <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-orm</artifactId>
-        </dependency>-->
-        <!-- Spring END -->
 
         <dependency>
             <groupId>com.alibaba</groupId>

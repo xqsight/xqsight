@@ -2,7 +2,6 @@ package com.xqsight.common.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -42,13 +41,11 @@ public abstract class BaseModel implements Serializable {
     private String remark;
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     public LocalDateTime getCreateTime() {
         return createTime;
     }
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     public LocalDateTime getUpdateTime() {
         return updateTime;
     }

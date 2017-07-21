@@ -13,6 +13,7 @@ import com.xqsight.system.service.SysAuthService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ import java.util.List;
  * @date 2016年1月8日 上午9:24:31
  */
 @Service
+@Transactional
 public class SysAuthServiceImpl implements SysAuthService {
 
     @Autowired
@@ -59,6 +61,7 @@ public class SysAuthServiceImpl implements SysAuthService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<SysLogin> querAuthUserByRole(long roleId) {
         List<String> userIds = sysAuthMapper.queryUserIdByRole(roleId);
         StringBuffer userIdSb = new StringBuffer();
@@ -71,6 +74,7 @@ public class SysAuthServiceImpl implements SysAuthService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<SysMenu> querAuthMenuByRole(long roleId) {
         List<String> menuIds = sysAuthMapper.queryMenuIdByRole(roleId);
         if(menuIds.size() == 0) {
@@ -87,6 +91,7 @@ public class SysAuthServiceImpl implements SysAuthService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<SysRole> queryRoleByUser(long userId) {
         List<String> roleIds = sysAuthMapper.queryRoleIdByuser(userId);
 
@@ -100,6 +105,7 @@ public class SysAuthServiceImpl implements SysAuthService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<SysMenu> queryMenuByUser(long userId, List<PropertyFilter> propertyFilters,List<Sort> sorts ) {
         List<String> menuIds = new ArrayList<>();
         List<String> roleIds = sysAuthMapper.queryRoleIdByuser(userId);

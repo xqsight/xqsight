@@ -17,6 +17,7 @@ import org.springframework.core.io.ClassPathResource;
 @Configuration
 @EnableCaching
 public class EhcacheConfig {
+
     private Logger logger = LogManager.getLogger(EhcacheConfig.class);
 
     @Bean

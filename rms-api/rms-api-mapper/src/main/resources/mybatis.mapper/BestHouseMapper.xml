@@ -3,40 +3,36 @@
 <mapper namespace="com.xqsight.cms.mapper.CmsArticleMapper">
 
     <resultMap id="BaseResultMap"  type="com.tangchao.model.BestHouseVO">
-        <result column="article_id" property="articleId" jdbcType="NUMERIC"/>
-        <result column="model_id" property="modelId" jdbcType="NUMERIC"/>
-        <result column="article_img" property="articleImg" jdbcType="VARCHAR"/>
-        <result column="thumbnail_img" property="thumbnailImg" jdbcType="VARCHAR"/>
-        <result column="article_title" property="articleTitle" jdbcType="VARCHAR"/>
-        <result column="article_author" property="articleAuthor" jdbcType="VARCHAR"/>
-        <result column="article_desp" property="articleDesp" jdbcType="VARCHAR"/>
-        <result column="article_content" property="articleContent" jdbcType="VARCHAR"/>
-        <result column="article_url" property="articleUrl" jdbcType="VARCHAR"/>
-        <result column="article_source" property="articleSource" jdbcType="VARCHAR"/>
-        <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP"/>
-        <result column="article_hit" property="articleHit" jdbcType="NUMERIC"/>
-        <result column="active" property="active" jdbcType="NUMERIC"/>
-        <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
-        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
-        <result column="remark" property="remark" jdbcType="VARCHAR"/>
-        <result column="department" property="department" jdbcType="VARCHAR"/>
-        <result column="scan_times" property="scanTimes" jdbcType="NUMERIC"/>
-        <result column="agree_times" property="agreeTimes" jdbcType="NUMERIC"/>
+        <result column="ID" property="id" jdbcType="NUMERIC"/>
+        <result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR"/>
+        <result column="PROJECT_ADDR" property="projectAddr" jdbcType="VARCHAR"/>
+        <result column="ROOM_SPACE" property="roomSpace" jdbcType="NUMERIC"/>
+        <result column="rental" property="rental" jdbcType="NUMERIC"/>
+        <result column="ORIENTATION" property="orientation" jdbcType="VARCHAR"/>
+        <result column="STRUCTURE" property="structure" jdbcType="VARCHAR"/>
+        <result column="pay_way" property="payWay" jdbcType="VARCHAR"/>
     </resultMap>
-
-    <sql id="Base_Column_List_Without_Id">
-        model_id,article_img,thumbnail_img,article_title,article_author,article_desp,article_content,article_url,article_source,publish_time,article_hit,active,create_user_id,create_time,update_user_id,update_time,remark,department,scan_times,agree_times
-    </sql>
 
     <!-- select -->
     <select id="queryBestHouseById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT
+            tpp.PROJECT_NAME,tpp.PROJECT_ADDR,
+            tr.ID,tr.ROOM_SPACE,tr.rental,tr.ORIENTATION,
+            tr.STRUCTURE,tr.pay_way
+        FROM t_room tr
+        INNER JOIN t_house th ON tr.HOUSE_ID = th.ID AND th.DEL_FLAG=0
+        INNER JOIN t_property_project tpp ON tr.PROPERTY_PROJECT_ID = tpp.ID AND tpp.DEL_FLAG=0
 
     </select>
 
     <select id="queryBestHouse" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
-
+        SELECT
+            tpp.PROJECT_NAME,tpp.PROJECT_ADDR,
+            tr.ID,tr.ROOM_SPACE,tr.rental,tr.ORIENTATION,
+            tr.STRUCTURE
+        FROM t_room tr
+        INNER JOIN t_house th ON tr.HOUSE_ID = th.ID AND th.DEL_FLAG=0
+        INNER JOIN t_property_project tpp ON tr.PROPERTY_PROJECT_ID = tpp.ID AND tpp.DEL_FLAG=0
     </select>
     <!-- end select -->
 </mapper>
