@@ -11,10 +11,9 @@ import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.exception.GlobalException;
 import com.xqsight.common.model.constants.Constants;
-import com.xqsight.common.model.constants.ErrorMessageConstants;
+import com.xqsight.common.exception.constants.ErrorMessageConstants;
 import com.xqsight.system.model.SysDict;
 import com.xqsight.system.service.SysDictService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

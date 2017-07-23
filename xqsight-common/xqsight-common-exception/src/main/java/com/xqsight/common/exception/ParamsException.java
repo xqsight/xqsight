@@ -1,6 +1,6 @@
 package com.xqsight.common.exception;
 
-import com.xqsight.common.model.constants.ErrorMessageConstants;
+import com.xqsight.common.exception.constants.ErrorMessageConstants;
 
 /**
  * @author wangganggang

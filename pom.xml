@@ -367,7 +367,12 @@
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-spring</artifactId>
-                <version>${shiro.ehcache.version}</version>
+                <version>${shiro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+                <version>${shiro.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.velocity</groupId>
@@ -444,11 +449,6 @@
                 <groupId>org.apache.santuario</groupId>
                 <artifactId>xmlsec</artifactId>
                 <version>${apache.xmlsec.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.shiro</groupId>
-                <artifactId>shiro-spring</artifactId>
-                <version>${shiro.version}</version>
             </dependency>
             <!-- apache end -->
             <!--start excel 操作 -->
@@ -1162,6 +1162,7 @@
         <module>xqsight-boot</module>
         <module>xqsight-job</module>
         <module>rms-api</module>
+        <module>xqsight-security</module>
     </modules>
 
 

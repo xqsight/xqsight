@@ -1,4 +1,4 @@
-package com.tangchao.model;
+package com.xqsight.common.model.shiro;
 
 import lombok.Data;
 
@@ -7,15 +7,14 @@ import java.util.Date;
 
 /**
  * @author wangganggang
- * @date 2017年07月21日 16:31
+ * @date 2017年07月22日 上午9:19
  */
 @Data
-public class Token implements Serializable {
-
+public class UserToken implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /* 用户ID */
-    private String userId;
+    private Long userId;
     /*token */
     private String token;
     /*过期时间 */

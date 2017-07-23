@@ -1,4 +1,4 @@
-package com.xqsight.common.model.constants;
+package com.xqsight.data.ehcache.constants;
 
 /**
  * Created by user on 2016/8/25.

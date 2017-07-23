@@ -1,6 +1,6 @@
 package com.xqsight.common.exception;
 
-import com.xqsight.common.model.constants.ErrorMessageConstants;
+import com.xqsight.common.exception.constants.ErrorMessageConstants;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.logging.log4j.LogManager;

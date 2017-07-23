@@ -1,4 +1,4 @@
-package com.xqsight.common.model.constants;
+package com.xqsight.common.exception.constants;
 
 import java.util.ListResourceBundle;
 import java.util.PropertyResourceBundle;
@@ -20,7 +20,16 @@ public class ErrorMessageConstants extends ListResourceBundle {
     public static final int ERROR_10001 = 10001;
 
     /** 未授权异常 **/
-    public static final int ERROR_10005 = 10005;
+    public static final int ERROR_40001 = 40001;
+    /** token失效 **/
+    public static final int ERROR_40002 = 40002;
+    /** 账号已被锁定 **/
+    public static final int ERROR_40003 = 40003;
+    /** 严重吗错误 **/
+    public static final int ERROR_40004 = 40004;
+
+    /** 短信验证码发送失败 **/
+    public static final int ERROR_30001 = 30001;
 
     /** 生成模板错误 */
     public static final int ERROR_20001 = 20001;

@@ -13,7 +13,7 @@ import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.exception.GlobalException;
 import com.xqsight.common.model.BaseResult;
-import com.xqsight.common.model.constants.ErrorMessageConstants;
+import com.xqsight.common.exception.constants.ErrorMessageConstants;
 import com.xqsight.common.model.support.TreeSupport;
 import com.xqsight.system.model.SysMenu;
 import com.xqsight.system.service.SysMenuService;
