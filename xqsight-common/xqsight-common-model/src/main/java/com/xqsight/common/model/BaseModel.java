@@ -1,6 +1,7 @@
 package com.xqsight.common.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.xqsight.common.model.constants.Constants;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -50,8 +51,8 @@ public abstract class BaseModel implements Serializable {
         return updateTime;
     }
 
-    public boolean isNoActive() {
-        return this.active == -1;
+    public boolean isActive() {
+        return this.active == Constants.ACTIVE;
     }
 
     public Class getPkClass(){
