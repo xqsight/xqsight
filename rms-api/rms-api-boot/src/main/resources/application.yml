@@ -11,3 +11,10 @@ spring:
     # 环境 dev|test|pro
     profiles:
         active: dev
+
+
+sms:
+    url:
+    account:
+    password:
+    sign: 

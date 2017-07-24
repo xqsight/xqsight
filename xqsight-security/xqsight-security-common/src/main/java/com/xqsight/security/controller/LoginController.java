@@ -33,8 +33,10 @@ public class LoginController {
 
     @Autowired
     private Producer producer;
+
     @Autowired
     private UserAuthcService userAuthcService;
+
     @Autowired
     private TokenService tokenService;
 

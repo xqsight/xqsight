@@ -3,6 +3,7 @@ package com.xqsight.security.config;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import com.google.code.kaptcha.util.Config;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.Properties;
 
@@ -10,7 +11,9 @@ import java.util.Properties;
  * @author wangganggang
  * @date 2017年07月24日 9:35
  */
+@Configuration
 public class KaptchaConfig {
+
     @Bean
     public DefaultKaptcha producer() {
         Properties properties = new Properties();

@@ -12,16 +12,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SmsConfig {
 
-    @Value("${sms.url}")
+    @Value("${sms.url:#{null}}")
     private String smsUrl;
 
-    @Value("${sms.account}")
+    @Value("${sms.account:#{null}}")
     private String smsAccount;
 
-    @Value("${sms.password}")
+    @Value("${sms.password:#{null}}")
     private String smsPassword;
 
-    @Value("${sms.sign}")
+    @Value("${sms.sign:#{null}}")
     private String smsSign;
 
 }

@@ -9,6 +9,7 @@ import com.xqsight.common.utils.StringUtils;
 import com.xqsight.security.annontation.AuthIgnore;
 import com.xqsight.security.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author wangganggang
  * @date 2017年07月21日
  */
+@Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
