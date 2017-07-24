@@ -10,7 +10,7 @@ package com.xqsight.sso.shiro.cache;///**
 //import org.apache.logging.log4j.Logger;
 //import org.apache.shiro.cache.Cache;
 //import org.apache.shiro.cache.CacheException;
-//import org.springframework.data.redis.core.RedisTemplate;
+//import org.springframework.data.redis.template.RedisTemplate;
 //
 //public class RedisStringKeyCache<K, V> implements Cache<String, V> {
 //

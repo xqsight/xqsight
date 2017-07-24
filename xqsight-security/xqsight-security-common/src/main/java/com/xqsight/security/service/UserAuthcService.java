@@ -32,5 +32,9 @@ public interface UserAuthcService {
 
     UserToken queryByToken(String token);
 
+    /**
+     * 改变token
+     * @param userId
+     */
     void logout(Long userId);
 }

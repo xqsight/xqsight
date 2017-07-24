@@ -21,12 +21,12 @@ public class SSOUtils {
         return SecurityUtils.getSubject();
     }
 
-    public static BaseUserModel getUserEntity() {
+    public static BaseUserModel getCurrentuser() {
         return (BaseUserModel)SecurityUtils.getSubject().getPrincipal();
     }
 
     public static Long getCurrentUserId() {
-        return getUserEntity().getId();
+        return getCurrentuser().getId();
     }
 
     public static void setSessionAttribute(Object key, Object value) {

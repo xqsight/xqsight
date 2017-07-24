@@ -79,7 +79,7 @@ public class LoginController {
         }
 
         //生成token，并保存到数据库
-        Map tokenMap  = tokenService.createToken(user.getId());
+        Map tokenMap  = tokenService.createTokenAndSave(user.getId());
         return new BaseResult(tokenMap);
     }
 

@@ -3,6 +3,7 @@ package com.xqsight.common.core.orm.builder;
 import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
+import com.xqsight.common.xss.SQLFilter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,12 +39,14 @@ public class PropertyFilterBuilder {
     }
 
     public PropertyFilterBuilder add(String fileName, String value) {
+        value = SQLFilter.sqlInject(value);
         PropertyFilter propertyFilter = new PropertyFilter(matchType, propertyType, fileName, value);
         propertyFilters.add(propertyFilter);
         return this;
     }
 
     public PropertyFilterBuilder addFilter(MatchType matchType, PropertyType propertyType, String fileName, String value) {
+        value = SQLFilter.sqlInject(value);
         PropertyFilter propertyFilter = new PropertyFilter(matchType, propertyType, fileName, value);
         propertyFilters.add(propertyFilter);
         return this;

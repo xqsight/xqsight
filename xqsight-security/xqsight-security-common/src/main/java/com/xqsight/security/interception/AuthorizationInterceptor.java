@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
-    public static final String LOGIN_USER_KEY = "LOGIN_USER_KEY";
-
     @Autowired
     private TokenService tokenService;
 
@@ -56,9 +54,6 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         if (userToken == null || userToken.getExpireTime().getTime() < System.currentTimeMillis()) {
             throw new UnAuthcException(ErrorMessageConstants.ERROR_40003, "token失效，请重新登录");
         }
-
-        //设置userId到request里，后续根据userId，获取用户信息
-        request.setAttribute(LOGIN_USER_KEY, userToken.getUserId());
 
         return true;
     }

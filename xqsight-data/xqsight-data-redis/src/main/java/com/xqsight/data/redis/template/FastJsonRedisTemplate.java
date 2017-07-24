@@ -1,4 +1,4 @@
-package com.xqsight.data.redis.core;
+package com.xqsight.data.redis.template;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,6 +26,7 @@ import com.alibaba.fastjson.JSON;
  */
 @Component
 public class FastJsonRedisTemplate {
+
 	private Logger logger = LogManager.getLogger(getClass());
 
 	@Autowired

@@ -1,4 +1,29 @@
+# tomcat config
+server:
+    tomcat:
+        uri-encoding: UTF-8
+        max-threads: 1000
+        min-spare-threads: 30
+    port: 8080
+
+
 spring:
-  profiles:
-    active: dev
+    # 环境 dev|test|pro
+    profiles:
+        active: dev
+
+#  freemarker:
+#    cache: false
+#    template-loader-path: classpath:/view/
+#    charset: UTF-8
+#    check-template-location: false
+
+
+#==== 模板存放位置 ===#
+site:
+  tpl:
+    path: /home/cloud/eju-site/view/
+
+#==== freemarker 模板设置 =====#
+#spring:
 

@@ -20,7 +20,7 @@ import java.io.IOException;
  * @author wangganggang
  */
 @Controller
-@RequestMapping("/files/core/web_file_1")
+@RequestMapping("/files/template/web_file_1")
 public class WebFileTemplateController extends WebFileControllerAbstractor {
 
     @Override

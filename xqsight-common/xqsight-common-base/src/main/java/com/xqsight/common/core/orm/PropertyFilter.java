@@ -2,6 +2,7 @@ package com.xqsight.common.core.orm;
 
 import com.xqsight.common.core.support.PropertyFilterSupport;
 import com.xqsight.common.utils.ReflectionUtils;
+import com.xqsight.common.xss.SQLFilter;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -31,10 +32,10 @@ public class PropertyFilter {
     /**
      * @param filterName 比较属性字符串,含待比较的比较类型、属性值类型及属性列表.
      *                   eg. LIKES_NAME_OR_LOGIN_NAME
-     * @param value      待比较的值.
+     * @param value1      待比较的值.
      */
-    public PropertyFilter(final String filterName, final String value) {
-
+    public PropertyFilter(final String filterName, final String value1) {
+        String value = SQLFilter.sqlInject(value1);
         String matchTypeStr = StringUtils.substringBefore(filterName, "_");
         String matchTypeCode = StringUtils.substring(matchTypeStr, 0, matchTypeStr.length() - 1);
         this.propertyTypeCode = StringUtils.substring(matchTypeStr, matchTypeStr.length() - 1, matchTypeStr.length());

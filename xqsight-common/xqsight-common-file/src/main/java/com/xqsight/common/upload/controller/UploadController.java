@@ -17,7 +17,7 @@ import java.io.PrintWriter;
  * @author wangganggang
  */
 @RestController
-@RequestMapping("/files/core/")
+@RequestMapping("/files/template/")
 public class UploadController extends UploadControllerAbstract {
 
     @RequestMapping(value = "upload_image", method = RequestMethod.POST)
@@ -50,7 +50,7 @@ public class UploadController extends UploadControllerAbstract {
     @RequestMapping(value = "editor")
     public void ueditor(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String action = request.getParameter("action");
-        if ("core".equals(action)) {
+        if ("template".equals(action)) {
             super.ueditorConfig(request, response);
         } else if ("uploadimage".equals(action)) {
             uploadImage(null, null, null, null, null, null, null, null, request, response);

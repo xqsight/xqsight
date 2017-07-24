@@ -65,7 +65,7 @@ public abstract class WebFileControllerAbstractor {
         modelMap.addAttribute("list", list);
         modelMap.addAttribute("type", getType());
         modelMap.addAttribute("isFtp", isFtp());
-        return "core/web_file/web_file_left";
+        return "template/web_file/web_file_left";
     }
 
     protected String leftTree(HttpServletRequest request, HttpServletResponse response, Model modelMap) throws IOException {
@@ -84,7 +84,7 @@ public abstract class WebFileControllerAbstractor {
         modelMap.addAttribute("list", list);
         modelMap.addAttribute("type", getType());
         modelMap.addAttribute("isFtp", isFtp());
-        return "core/web_file/web_file_left_tree";
+        return "template/web_file/web_file_left_tree";
     }
 
     protected String list(HttpServletRequest request, HttpServletResponse response, Model modelMap) throws IOException {
@@ -120,7 +120,7 @@ public abstract class WebFileControllerAbstractor {
         modelMap.addAttribute("list", list);
         modelMap.addAttribute("type", getType());
         modelMap.addAttribute("isFtp", isFtp());
-        return "core/web_file/web_file_list";
+        return "template/web_file/web_file_list";
     }
 
     protected String create(HttpServletRequest request, HttpServletResponse response, Model modelMap) throws IOException {
@@ -147,7 +147,7 @@ public abstract class WebFileControllerAbstractor {
         modelMap.addAttribute("parentId", parentId);
         modelMap.addAttribute("type", getType());
         modelMap.addAttribute("isFtp", isFtp());
-        return "core/web_file/web_file_form";
+        return "template/web_file/web_file_form";
     }
 
     protected String edit(HttpServletRequest request, HttpServletResponse response, Model modelMap) throws IOException {
@@ -166,7 +166,7 @@ public abstract class WebFileControllerAbstractor {
         modelMap.addAttribute("bean", bean);
         modelMap.addAttribute("type", getType());
         modelMap.addAttribute("isFtp", isFtp());
-        return "core/web_file/web_file_form";
+        return "template/web_file/web_file_form";
     }
 
     protected String mkdir(String parentId, String dir, HttpServletRequest request, HttpServletResponse response, RedirectAttributes ra) throws IOException {
@@ -459,11 +459,11 @@ public abstract class WebFileControllerAbstractor {
         modelMap.addAttribute("parentId", parentId);
         modelMap.addAttribute("list", list);
         Servlets.setNoCacheHeader(response);
-        return "core/web_file/choose_dir";
+        return "template/web_file/choose_dir";
     }
 
     protected String dirList(HttpServletRequest request, HttpServletResponse response, Model modelMap) throws IOException {
         dir(request, response, modelMap);
-        return "core/web_file/choose_dir_list";
+        return "template/web_file/choose_dir_list";
     }
 }

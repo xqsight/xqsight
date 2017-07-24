@@ -53,7 +53,7 @@ public abstract class UploadControllerAbstract {
     private UploadSupport uploadSupport;
 
     /**
-     * ueditor core action，返回空配置，全部配置在前端完整。
+     * ueditor template action，返回空配置，全部配置在前端完整。
      *
      * @param request
      * @param response
@@ -102,7 +102,7 @@ public abstract class UploadControllerAbstract {
             sb.append(",\"+uploadsDomain+\"");
         }
         sb.append("]}");
-        logger.debug("ueditor core:" + sb.toString());
+        logger.debug("ueditor template:" + sb.toString());
         response.setHeader("Content-Type", "text/html");
         response.getWriter().print(sb.toString());
         response.flushBuffer();

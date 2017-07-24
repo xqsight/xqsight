@@ -13,7 +13,7 @@ package com.xqsight.sso.shiro.cache;///**
 //import org.apache.shiro.session.UnknownSessionException;
 //import org.apache.shiro.session.mgt.eis.AbstractSessionDAO;
 //import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.redis.core.RedisTemplate;
+//import org.springframework.data.redis.template.RedisTemplate;
 //
 //public class RedisSessionDAO extends AbstractSessionDAO {
 //

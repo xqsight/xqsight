@@ -43,6 +43,6 @@
 	<bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
 		p:connection-factory-ref="jedisConnFactory" />
 		
-	<bean id="fastJsonRedisTemplate" class="com.xqsight.data.redis.core.FastJsonRedisTemplate" />
+	<bean id="fastJsonRedisTemplate" class="com.xqsight.data.redis.template.FastJsonRedisTemplate" />
 
 </beans>

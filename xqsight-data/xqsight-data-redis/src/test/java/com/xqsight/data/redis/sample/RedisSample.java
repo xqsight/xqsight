@@ -23,7 +23,7 @@ import org.springframework.util.ReflectionUtils;
 import redis.clients.jedis.Connection;
 import redis.clients.jedis.Protocol.Command;
 
-import com.xqsight.data.redis.core.FastJsonRedisTemplate;
+import com.xqsight.data.redis.template.FastJsonRedisTemplate;
 import com.xqsight.data.redis.sample.model.Data;
 import com.xqsight.data.redis.sample.model.SubData;
 import com.xqsight.data.redis.serializer.FastJsonRedisSerializer;
