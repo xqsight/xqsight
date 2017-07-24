@@ -1,4 +1,4 @@
-package com.tangchao.model.vo;
+package com.tangchao.house.model.vo;
 
 import lombok.Data;
 

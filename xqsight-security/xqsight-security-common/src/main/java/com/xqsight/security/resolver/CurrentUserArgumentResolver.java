@@ -1,5 +1,6 @@
 package com.xqsight.security.resolver;
 
+import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.model.shiro.BaseUserModel;
 import com.xqsight.security.annontation.CurrentUser;
 import com.xqsight.security.interception.AuthorizationInterceptor;
@@ -30,7 +31,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer, NativeWebRequest nativeWebRequest, WebDataBinderFactory webDataBinderFactory) throws Exception {
 
         //获取用户ID
-        Object object = nativeWebRequest.getAttribute(AuthorizationInterceptor.LOGIN_USER_KEY, RequestAttributes.SCOPE_REQUEST);
+        Object object = nativeWebRequest.getAttribute(Constants.LOGIN_USER_KEY, RequestAttributes.SCOPE_REQUEST);
 
         if(object == null){
             return null;

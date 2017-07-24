@@ -3,6 +3,7 @@ package com.xqsight.security.interception;
 
 import com.xqsight.common.exception.UnAuthcException;
 import com.xqsight.common.exception.constants.ErrorMessageConstants;
+import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.model.shiro.UserToken;
 import com.xqsight.common.utils.StringUtils;
 import com.xqsight.security.annontation.AuthIgnore;
@@ -55,6 +56,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
             throw new UnAuthcException(ErrorMessageConstants.ERROR_40003, "token失效，请重新登录");
         }
 
+        request.setAttribute(Constants.LOGIN_USER_KEY, userToken.getUserId());
         return true;
     }
 }

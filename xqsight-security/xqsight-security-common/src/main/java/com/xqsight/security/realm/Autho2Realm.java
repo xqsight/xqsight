@@ -17,6 +17,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
@@ -24,6 +25,7 @@ import java.util.Set;
  * @author wangganggang
  * @date 2017年07月22日 上午8:52
  */
+@Component
 public class Autho2Realm extends AuthorizingRealm {
 
     protected Logger logger = LogManager.getLogger(getClass());

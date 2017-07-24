@@ -1,6 +1,6 @@
-package com.tangchao.mapper;
+package com.tangchao.system.mapper;
 
-import com.tangchao.model.TokenEntity;
+import com.tangchao.system.model.TokenEntity;
 
 /**
  * @author wangganggang

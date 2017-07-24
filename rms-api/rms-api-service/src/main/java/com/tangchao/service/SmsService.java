@@ -1,4 +1,4 @@
-package com.tangchao.security.service;
+package com.tangchao.service;
 
 /**
  * @author wangganggang

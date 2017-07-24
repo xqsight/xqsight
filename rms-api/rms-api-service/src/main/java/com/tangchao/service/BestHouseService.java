@@ -1,6 +1,6 @@
 package com.tangchao.service;
 
-import com.tangchao.model.vo.BestHouseVO;
+import com.tangchao.house.model.vo.BestHouseVO;
 
 import java.util.List;
 

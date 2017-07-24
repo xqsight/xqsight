@@ -17,5 +17,10 @@
             <artifactId>rms-api-mapper</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.xqsight</groupId>
+            <artifactId>xqsight-security-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

@@ -12,7 +12,6 @@
     <artifactId>xqsight-security</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>xqsight-security-api</module>
         <module>xqsight-security-common</module>
     </modules>
 

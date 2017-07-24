@@ -12,7 +12,6 @@
     <artifactId>rms-api</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>rms-api-security</module>
         <module>rms-api-mapper</module>
         <module>rms-api-service</module>
         <module>rms-api-controller</module>

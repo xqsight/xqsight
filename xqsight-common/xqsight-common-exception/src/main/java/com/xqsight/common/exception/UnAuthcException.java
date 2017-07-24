@@ -9,7 +9,7 @@ import com.xqsight.common.exception.constants.ErrorMessageConstants;
 public class UnAuthcException extends GlobalException {
 
     public UnAuthcException() {
-        super(ErrorMessageConstants.ERROR_10005);
+        super(ErrorMessageConstants.ERROR_40001);
     }
 
     public UnAuthcException(int code) {
@@ -21,6 +21,6 @@ public class UnAuthcException extends GlobalException {
     }
 
     public UnAuthcException(Throwable cause) {
-        super(ErrorMessageConstants.ERROR_10005, cause);
+        super(ErrorMessageConstants.ERROR_40001, cause);
     }
 }

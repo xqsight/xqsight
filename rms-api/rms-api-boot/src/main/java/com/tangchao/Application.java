@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author wangganggang
@@ -13,6 +14,7 @@ import org.springframework.boot.autoconfigure.web.MultipartAutoConfiguration;
  */
 @SpringBootApplication
 @EnableAutoConfiguration(exclude={MultipartAutoConfiguration.class})
+@ComponentScan(basePackages = {"com.xqsight","com.tangchao"})
 public class Application {
 
     private static final Logger logger = LogManager.getLogger();

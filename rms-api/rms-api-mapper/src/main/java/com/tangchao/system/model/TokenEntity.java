@@ -1,4 +1,4 @@
-package com.tangchao.model;
+package com.tangchao.system.model;
 
 import lombok.Data;
 

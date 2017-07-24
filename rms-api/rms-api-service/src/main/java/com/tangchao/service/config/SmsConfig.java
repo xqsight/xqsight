@@ -1,4 +1,4 @@
-package com.tangchao.security.config;
+package com.tangchao.service.config;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

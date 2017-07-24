@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>rms-api-security</artifactId>
+            <artifactId>rms-api-service</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
