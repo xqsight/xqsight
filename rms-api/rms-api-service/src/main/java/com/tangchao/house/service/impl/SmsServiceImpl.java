@@ -1,7 +1,7 @@
-package com.tangchao.service.impl;
+package com.tangchao.house.service.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.tangchao.service.SmsService;
+import com.tangchao.house.service.SmsService;
 import com.tangchao.service.config.SmsConfig;
 import com.xqsight.common.exception.ParamsException;
 import com.xqsight.common.exception.SmsSendException;

@@ -25,7 +25,7 @@ public class ErrorMessageConstants extends ListResourceBundle {
     public static final int ERROR_40002 = 40002;
     /** 账号已被锁定 **/
     public static final int ERROR_40003 = 40003;
-    /** 严重吗错误 **/
+    /** 验证码错误 **/
     public static final int ERROR_40004 = 40004;
 
     /** 短信验证码发送失败 **/

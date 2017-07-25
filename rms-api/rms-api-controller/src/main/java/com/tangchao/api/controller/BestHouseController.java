@@ -1,7 +1,7 @@
 package com.tangchao.api.controller;
 
 import com.tangchao.house.model.vo.BestHouseVO;
-import com.tangchao.service.BestHouseService;
+import com.tangchao.house.service.BestHouseService;
 import com.xqsight.common.model.BaseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

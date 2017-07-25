@@ -1,4 +1,4 @@
-package com.tangchao.service.impl;
+package com.tangchao.house.service.impl;
 
 import com.xqsight.common.model.SysLog;
 import com.xqsight.security.service.SysLogService;

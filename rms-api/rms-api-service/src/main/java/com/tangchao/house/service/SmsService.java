@@ -1,4 +1,6 @@
-package com.tangchao.service;
+package com.tangchao.house.service;
+
+import com.xqsight.common.model.BaseResult;
 
 /**
  * @author wangganggang
@@ -6,7 +8,7 @@ package com.tangchao.service;
  */
 public interface SmsService {
 
-    String sendValidCode(String telPhone);
+    BaseResult sendValidCode(String telPhone);
 
     boolean validate(String telPhone,String validcode);
 }

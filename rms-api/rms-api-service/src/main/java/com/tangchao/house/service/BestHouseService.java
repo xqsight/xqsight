@@ -1,4 +1,4 @@
-package com.tangchao.service;
+package com.tangchao.house.service;
 
 import com.tangchao.house.model.vo.BestHouseVO;
 

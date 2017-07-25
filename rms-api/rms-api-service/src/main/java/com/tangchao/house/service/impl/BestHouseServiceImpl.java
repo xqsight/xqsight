@@ -1,8 +1,8 @@
-package com.tangchao.service.impl;
+package com.tangchao.house.service.impl;
 
-import com.tangchao.house.mapper.BestHouseMapper;
+import com.tangchao.api.mapper.BestHouseMapper;
 import com.tangchao.house.model.vo.BestHouseVO;
-import com.tangchao.service.BestHouseService;
+import com.tangchao.house.service.BestHouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,7 @@
 package com.xqsight.common.model;
 
 import com.xqsight.common.model.constants.Constants;
+import com.xqsight.common.model.shiro.BaseUserModel;
 import lombok.*;
 
 /**
@@ -35,4 +36,26 @@ public class BaseResult {
         this.data = data;
     }
 
+    public static BaseResult success(){
+        return new BaseResult();
+    }
+
+    public static BaseResult failure(){
+        return new BaseResult().code(Constants.FAILURE);
+    }
+
+    public BaseResult message(String message){
+        this.message = message;
+        return this;
+    }
+
+    public BaseResult code(int code){
+        this.code = code;
+        return this;
+    }
+
+    public BaseResult data(Object data){
+        this.data = data;
+        return this;
+    }
 }

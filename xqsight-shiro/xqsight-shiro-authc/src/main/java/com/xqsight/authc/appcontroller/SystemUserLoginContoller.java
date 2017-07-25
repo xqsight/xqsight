@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @version ShiroContoller.java, v 0.1 2015年7月3日 上午9:49:26
  */
 @RestController
-@RequestMapping("/system")
+@RequestMapping("/security")
 public class SystemUserLoginContoller extends AbstractLoginContoller {
     
-    @Value("${default.system.goto.url}")
+    @Value("${default.security.goto.url}")
     private String default_goto_url;
 
     /** 
