@@ -6,6 +6,7 @@ import com.xqsight.common.exception.constants.ErrorMessageConstants;
 import com.xqsight.common.model.BaseResult;
 import com.xqsight.common.model.shiro.BaseUserModel;
 import com.xqsight.common.utils.StringUtils;
+import com.xqsight.security.annontation.AuthIgnore;
 import com.xqsight.security.annontation.CurrentUserId;
 import com.xqsight.security.service.TokenService;
 import com.xqsight.security.service.UserAuthcService;
@@ -31,16 +32,13 @@ public class UserController {
     @Autowired
     private UserAuthcService userAuthcService;
 
+    @Autowired
     private TokenService tokenService;
 
-    @RequestMapping(value = "send/code", method = RequestMethod.GET)
-    public Object sendValidate(String telePhone) {
-        return smsService.sendValidCode(telePhone);
-    }
-
+    @AuthIgnore
     @RequestMapping(value = "login", method = RequestMethod.POST)
     public Object login(String telephone, String validateCode) {
-        boolean isValidate = smsService.validate(telephone, validateCode);
+        boolean isValidate = smsService.verifyCode(telephone, validateCode);
         if (!isValidate) {
             throw new UnAuthcException(ErrorMessageConstants.ERROR_40004, "验证码错误");
         }
@@ -52,7 +50,7 @@ public class UserController {
         return BaseResult.success().data(token);
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
     public Object logout(@CurrentUserId Long currentId) {
         userAuthcService.logout(currentId);
         return BaseResult.success();

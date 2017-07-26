@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.xqsight</groupId>
-            <artifactId>rms-api-controller</artifactId>
+            <artifactId>xqsight-rms-controller</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

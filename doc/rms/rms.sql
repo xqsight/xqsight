@@ -10,6 +10,7 @@ drop table if exists appointment;
 create table appointment
 (
    id                   bigint not null auto_increment,
+   server_user_id       varchar(64) comment '服务管家Id',
    user_name            varchar(64) not null comment '用户id',
    user_sex             tinyint(4) not null default 0 comment  '0:男，1:女 2:保密',
    telphone             varchar(20) not null comment '电话号码',

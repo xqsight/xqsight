@@ -22,5 +22,10 @@
             <artifactId>xqsight-security-common</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.xqsight</groupId>
+            <artifactId>xqsight-data-ehcache</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

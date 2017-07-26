@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author wangganggang
  */
 @RestController
-@RequestMapping("/questions")
+@RequestMapping("/api/questions")
 public class QuestionsController extends BaseController<QuestionsService,Questions,Long> {
 
 }

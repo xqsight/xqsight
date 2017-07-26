@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author wangganggang
  */
 @RestController
-@RequestMapping("/message")
+@RequestMapping("/api/message")
 public class MessageController extends BaseController<MessageService,Message,Long> {
 
 }
