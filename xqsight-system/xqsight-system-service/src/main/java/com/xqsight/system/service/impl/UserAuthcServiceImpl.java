@@ -1,14 +1,14 @@
 package com.xqsight.system.service.impl;
 
-import com.xqsight.authc.enums.LoginTypeEnum;
-import com.xqsight.authc.support.LoginSupport;
 import com.xqsight.common.core.orm.MatchType;
 import com.xqsight.common.core.orm.PropertyFilter;
 import com.xqsight.common.core.orm.PropertyType;
 import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
+import com.xqsight.common.exception.ParamsException;
+import com.xqsight.common.exception.constants.ErrorMessageConstants;
 import com.xqsight.common.model.shiro.BaseUserModel;
-import com.xqsight.sso.authc.service.UserAuthcService;
-import com.xqsight.sso.exceptions.CustomAuthcException;
+import com.xqsight.common.model.shiro.UserToken;
+import com.xqsight.security.service.UserAuthcService;
 import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.model.SysMenu;
 import com.xqsight.system.model.SysUser;
@@ -44,9 +44,9 @@ public class UserAuthcServiceImpl implements UserAuthcService {
     private SysUserService sysUserService;
 
     @Override
-    public BaseUserModel findByLoginId(String loginId) {
+    public BaseUserModel queryUserById(Long loginId) {
         List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
-                .propertyType(PropertyType.S).add("login_id", loginId).end();
+                .propertyType(PropertyType.S).add("login_id", String.valueOf(loginId)).end();
 
         BaseUserModel userBaseModel = sysLoginService.getOneByFilters(propertyFilters);
 
@@ -56,8 +56,8 @@ public class UserAuthcServiceImpl implements UserAuthcService {
         if (userBaseModel.isUserLocked()) {
             throw new LockedAccountException("您的账户已锁定");
         }
-        if (userBaseModel.isNoActive()) {
-            throw new CustomAuthcException("你的账户未激活");
+        if (!userBaseModel.isActive()) {
+            throw new ParamsException(ErrorMessageConstants.ERROR_10000,"你的账户未激活");
         }
         SysUser sysUser = sysUserService.getById(userBaseModel.getId());
 
@@ -68,52 +68,27 @@ public class UserAuthcServiceImpl implements UserAuthcService {
     }
 
     @Override
-    public Set<String> findRoles(long id) {
+    public Set<String> findRoles(Long id) {
         return sysAuthService.queryRoleByUser(id).stream().map(sysRole -> "" + sysRole.getRoleId()).collect(Collectors.toSet());
     }
 
     @Override
-    public Set<String> findPermissions(long id) {
+    public Set<String> findPermissions(Long id) {
         return sysAuthService.queryMenuByUser(id, null, null).stream().map(SysMenu::getPermission).collect(Collectors.toSet());
     }
 
     @Override
-    public void saveUser(BaseUserModel userBaseModel) {
-        SysLogin sysLogin = new SysLogin();
-        sysLogin.setLoginId(userBaseModel.getLoginId());
-        sysLogin.setPassword(userBaseModel.getPassword());
-        sysLogin.setLoginType(userBaseModel.getLoginType());
-        sysLogin.setUserName(userBaseModel.getUserName());
-        sysLogin.setSalt(userBaseModel.getSalt());
-
-        saveSysUser(userBaseModel);
-
-        sysLoginService.add(sysLogin);
+    public BaseUserModel queryUserByLoginId(String loginId) {
+        return null;
     }
 
-    private void saveSysUser(BaseUserModel userBaseModel) {
-        List<PropertyFilter> propertyFilters = PropertyFilterBuilder.create().matchTye(MatchType.EQ)
-                .propertyType(PropertyType.S).add("department_code", userBaseModel.getDepartmentCode()).end();
-      /*  SysDepartment sysDepartment = sysDepartmentService.search(propertyFilters).get(0);
-        if (sysDepartment == null)
-            throw new CustomAuthcException("部门编号不存在");*/
-
-        SysUser sysUser = new SysUser();
-        sysUser.setUserName(userBaseModel.getUserName());
-        //sysUser.setDepartmentId(sysDepartment.getDepartmentId());
-        LoginTypeEnum loginType = LoginSupport.judgeLoginType(userBaseModel.getLoginId());
-        switch (loginType) {
-            case CELLPHONE:
-                sysUser.setCellPhone(userBaseModel.getLoginId());
-                break;
-            case EMAIL:
-                sysUser.setEmail(userBaseModel.getLoginId());
-                break;
-            default:
-                sysUser.setUserCode(userBaseModel.getLoginId());
-        }
-        sysUserService.add(sysUser);
-        userBaseModel.setId(sysUser.getId());
+    @Override
+    public UserToken queryByToken(String token) {
+        return null;
     }
 
+    @Override
+    public void logout(Long userId) {
+
+    }
 }
