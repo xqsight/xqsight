@@ -1155,14 +1155,14 @@
         <module>xqsight-common</module>
         <module>xqsight-data</module>
         <module>xqsight-tools</module>
-        <module>xqsight-shiro</module>
         <module>xqsight-wechat</module>
         <module>xqsight-system</module>
         <module>xqsight-cms</module>
         <module>xqsight-boot</module>
         <module>xqsight-job</module>
-        <module>rms-api</module>
+        <module>xqsight-rms</module>
         <module>xqsight-security</module>
+        <module>xqsight-rpc</module>
     </modules>
 
 

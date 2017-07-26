@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tangchao.api.mapper.AppointmentMapper">
+
+    <resultMap id="BaseResultMap"  type="com.tangchao.house.model.Appointment">
+        <result column="id" property="id" jdbcType="NUMERIC"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_sex" property="userSex" jdbcType="NUMERIC"/>
+        <result column="telphone" property="telphone" jdbcType="VARCHAR"/>
+        <result column="associate_type" property="associateType" jdbcType="NUMERIC"/>
+        <result column="associate_id" property="associateId" jdbcType="VARCHAR"/>
+        <result column="app_time" property="appTime" jdbcType="TIMESTAMP"/>
+        <result column="status" property="status" jdbcType="NUMERIC"/>
+        <result column="active" property="active" jdbcType="NUMERIC"/>
+        <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List_Without_Id">
+        user_name,user_sex,telphone,associate_type,associate_id,app_time,status,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
+    <sql id="Base_Column_List">
+         id,
+        <include refid="Base_Column_List_Without_Id"/>
+    </sql>
+
+    <sql id="Insert_Columns">
+        <if test="userName!=null"> user_name,</if>
+        <if test="userSex!=null"> user_sex,</if>
+        <if test="telphone!=null"> telphone,</if>
+        <if test="associateType!=null"> associate_type,</if>
+        <if test="associateId!=null"> associate_id,</if>
+        <if test="appTime!=null"> app_time,</if>
+        <if test="status!=null"> status,</if>
+        <if test="active!=null"> active,</if>
+        <if test="createUserId!=null"> create_user_id,</if>
+        <if test="createTime!=null"> create_time,</if>
+        <if test="updateUserId!=null"> update_user_id,</if>
+        <if test="updateTime!=null"> update_time,</if>
+        <if test="remark!=null"> remark,</if>
+    </sql>
+    <sql id="Insert_Values">
+        <if test="userName!=null">#{userName,jdbcType=VARCHAR},</if>
+        <if test="userSex!=null">#{userSex,jdbcType=NUMERIC},</if>
+        <if test="telphone!=null">#{telphone,jdbcType=VARCHAR},</if>
+        <if test="associateType!=null">#{associateType,jdbcType=NUMERIC},</if>
+        <if test="associateId!=null">#{associateId,jdbcType=VARCHAR},</if>
+        <if test="appTime!=null">#{appTime,jdbcType=TIMESTAMP},</if>
+        <if test="status!=null">#{status,jdbcType=NUMERIC},</if>
+        <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null">#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="Batch_Insert_Values">
+        #{item.userName,jdbcType=VARCHAR},
+        #{item.userSex,jdbcType=NUMERIC},
+        #{item.telphone,jdbcType=VARCHAR},
+        #{item.associateType,jdbcType=NUMERIC},
+        #{item.associateId,jdbcType=VARCHAR},
+        #{item.appTime,jdbcType=TIMESTAMP},
+        #{item.status,jdbcType=NUMERIC},
+        #{item.active,jdbcType=NUMERIC},
+        #{item.createUserId,jdbcType=VARCHAR},
+        #{item.createTime,jdbcType=TIMESTAMP},
+        #{item.updateUserId,jdbcType=VARCHAR},
+        #{item.updateTime,jdbcType=TIMESTAMP},
+        #{item.remark,jdbcType=VARCHAR},
+    </sql>
+
+    <sql id="Update_Set_From_Bean">
+        <if test="userName!=null"> user_name=#{userName,jdbcType=VARCHAR},</if>
+        <if test="userSex!=null"> user_sex=#{userSex,jdbcType=NUMERIC},</if>
+        <if test="telphone!=null"> telphone=#{telphone,jdbcType=VARCHAR},</if>
+        <if test="associateType!=null"> associate_type=#{associateType,jdbcType=NUMERIC},</if>
+        <if test="associateId!=null"> associate_id=#{associateId,jdbcType=VARCHAR},</if>
+        <if test="appTime!=null"> app_time=#{appTime,jdbcType=TIMESTAMP},</if>
+        <if test="status!=null"> status=#{status,jdbcType=NUMERIC},</if>
+        <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null"> create_time=#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null"> update_user_id=#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null"> update_time=#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BatchUpdate_Set_From_Bean">
+        user_name=#{item.userName,jdbcType=VARCHAR},
+        user_sex=#{item.userSex,jdbcType=NUMERIC},
+        telphone=#{item.telphone,jdbcType=VARCHAR},
+        associate_type=#{item.associateType,jdbcType=NUMERIC},
+        associate_id=#{item.associateId,jdbcType=VARCHAR},
+        app_time=#{item.appTime,jdbcType=TIMESTAMP},
+        status=#{item.status,jdbcType=NUMERIC},
+        active=#{item.active,jdbcType=NUMERIC},
+        create_user_id=#{item.createUserId,jdbcType=VARCHAR},
+        create_time=#{item.createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{item.updateUserId,jdbcType=VARCHAR},
+        update_time=#{item.updateTime,jdbcType=TIMESTAMP},
+        remark=#{item.remark,jdbcType=VARCHAR},
+    </sql>
+
+    <!--insert-->
+    <insert id="insert" parameterType="com.tangchao.house.model.Appointment" useGeneratedKeys="true" keyProperty="id">
+        insert into appointment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Columns"/>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Values"/>
+        </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into appointment
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Base_Column_List_Without_Id"/>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <include refid="Batch_Insert_Values"/>
+            </trim>
+        </foreach>
+    </insert>
+    <!-- end insert -->
+
+    <!-- delete -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from appointment
+        where  id = #{id,jdbcType=NUMERIC}  
+    </delete>
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
+        delete from appointment
+        where 1=1
+        ${whereSqlString}
+    </delete>
+    <!-- end delete -->
+
+    <!-- update -->
+    <update id="updateById" parameterType="com.tangchao.house.model.Appointment">
+        update appointment
+        <set>
+            <include refid="Update_Set_From_Bean"/>
+        </set>
+        where  id = #{id,jdbcType=NUMERIC}  
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+        update appointment
+        <include refid="BatchUpdate_Set_From_Bean"/>
+        where
+             id = #{id,jdbcType=NUMERIC}  
+        </foreach>
+    </update>
+    <!-- end update -->
+
+    <!-- select -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from appointment
+        where
+             id = #{id,jdbcType=NUMERIC}  
+    </select>
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
+        select <include refid="Base_Column_List"/> from appointment
+        WHERE 1=1
+
+        ${whereSqlString}
+        <trim prefix=" and " suffix="" suffixOverrides="" >
+            <if test="customSql != null">
+            ${customSqlString}
+            </if>
+        </trim>
+        <if test="orderBy != null">
+        ${orderBySqlString}
+        </if>
+    </select>
+    <!-- end select -->
+</mapper>

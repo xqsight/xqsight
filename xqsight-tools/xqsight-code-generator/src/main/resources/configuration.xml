@@ -7,11 +7,11 @@
         <entry>lib/postgresql-8.2-505.jdbc2.jar</entry>
     </classpath>
     <connections>
-        <database name="portal_new">
+        <database name="rms">
             <driverClass>com.mysql.jdbc.Driver</driverClass>
-            <url>jdbc:mysql://139.196.83.11/rms</url>
+            <url>jdbc:mysql://localhost:3310/rms</url>
             <username>root</username>
-            <password>Tangchaoroot#1234@abcd</password>
+            <password>root</password>
             <schema/>
         </database>
 
