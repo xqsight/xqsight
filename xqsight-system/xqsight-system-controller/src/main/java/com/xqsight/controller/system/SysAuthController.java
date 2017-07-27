@@ -8,7 +8,7 @@ import com.xqsight.common.core.orm.builder.PropertyFilterBuilder;
 import com.xqsight.common.core.orm.builder.SortBuilder;
 import com.xqsight.common.model.BaseResult;
 import com.xqsight.common.model.support.TreeSupport;
-import com.xqsight.sso.shiro.annotation.CurrentUserId;
+import com.xqsight.security.annontation.CurrentUserId;
 import com.xqsight.system.enums.MenuTypeEnum;
 import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.model.SysMenu;

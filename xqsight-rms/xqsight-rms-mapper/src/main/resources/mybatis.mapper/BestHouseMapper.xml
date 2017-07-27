@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.xqsight.cms.mapper.CmsArticleMapper">
+<mapper namespace="com.tangchao.house.mapper.BestHouseMapper">
 
     <resultMap id="BaseResultMap"  type="com.tangchao.house.model.vo.BestHouseVO">
         <result column="ID" property="id" jdbcType="NUMERIC"/>
@@ -14,7 +14,7 @@
     </resultMap>
 
     <!-- select -->
-    <select id="queryBestHouseById" resultMap="BaseResultMap" parameterType="java.lang.String">
+    <select id="queryBestRoomById" resultMap="BaseResultMap" parameterType="java.lang.String">
         SELECT
             tpp.PROJECT_NAME,tpp.PROJECT_ADDR,
             tr.ID,tr.ROOM_SPACE,tr.rental,tr.ORIENTATION,
@@ -22,7 +22,17 @@
         FROM t_room tr
         INNER JOIN t_house th ON tr.HOUSE_ID = th.ID AND th.DEL_FLAG=0
         INNER JOIN t_property_project tpp ON tr.PROPERTY_PROJECT_ID = tpp.ID AND tpp.DEL_FLAG=0
+        WHERE tr.DEL_FLAG=0 and tr.ID = #{id,jdbcType=VARCHAR}
+    </select>
 
+    <select id="queryBestHouseById" resultMap="BaseResultMap" parameterType="java.lang.String">
+        SELECT
+        tpp.PROJECT_NAME,tpp.PROJECT_ADDR,
+        th.ID,tr.ROOM_SPACE,th.rental,th.ORIENTATION,
+        th.STRUCTURE,th.pay_way
+        FROM t_house th
+        INNER JOIN t_property_project tpp ON tr.PROPERTY_PROJECT_ID = tpp.ID AND tpp.DEL_FLAG=0
+        WHERE th.DEL_FLAG=0 and th.ID = #{id,jdbcType=VARCHAR}
     </select>
 
     <select id="queryBestHouse" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
@@ -33,6 +43,8 @@
         FROM t_room tr
         INNER JOIN t_house th ON tr.HOUSE_ID = th.ID AND th.DEL_FLAG=0
         INNER JOIN t_property_project tpp ON tr.PROPERTY_PROJECT_ID = tpp.ID AND tpp.DEL_FLAG=0
+        WHERE 1=1
+        ${whereSqlString}
     </select>
     <!-- end select -->
 </mapper>

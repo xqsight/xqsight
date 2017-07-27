@@ -1,7 +1,7 @@
 package com.xqsight.config;
 
 import com.xqsight.common.resolver.AttributeFilterResolver;
-import com.xqsight.sso.shiro.resolver.CurrentUserArgumentResolver;
+import com.xqsight.security.resolver.CurrentUserArgumentResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;

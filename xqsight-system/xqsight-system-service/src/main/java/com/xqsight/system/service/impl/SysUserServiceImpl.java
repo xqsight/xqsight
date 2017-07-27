@@ -4,10 +4,9 @@
  */
 package com.xqsight.system.service.impl;
 
-import com.xqsight.authc.enums.LoginTypeEnum;
 import com.xqsight.common.base.service.AbstractCrudService;
 import com.xqsight.common.model.constants.Constants;
-import com.xqsight.sso.utils.PasswordHelper;
+import com.xqsight.security.utils.PasswordHelper;
 import com.xqsight.system.mapper.SysUserMapper;
 import com.xqsight.system.model.SysLogin;
 import com.xqsight.system.model.SysUser;
@@ -49,7 +48,6 @@ public class SysUserServiceImpl extends AbstractCrudService<SysUserMapper,SysUse
         sysLogin.setLoginId(sysUser.getUserCode());
         sysLogin.setLocked(Constants.ACTIVE);
         sysLogin.setStatus((byte) 0);
-        sysLogin.setLoginType(LoginTypeEnum.USERID.value());
         sysLogins.add(sysLogin);
 
         SysLogin sysLoginCell = new SysLogin();
@@ -57,7 +55,6 @@ public class SysUserServiceImpl extends AbstractCrudService<SysUserMapper,SysUse
         sysLoginCell.setLoginId(sysUser.getCellPhone());
         sysLoginCell.setLocked(Constants.ACTIVE);
         sysLoginCell.setStatus((byte) 0);
-        sysLoginCell.setLoginType(LoginTypeEnum.CELLPHONE.value());
         sysLogins.add(sysLoginCell);
 
         SysLogin sysLoginEmail = new SysLogin();
@@ -65,7 +62,6 @@ public class SysUserServiceImpl extends AbstractCrudService<SysUserMapper,SysUse
         sysLoginEmail.setLoginId(sysUser.getEmail());
         sysLoginEmail.setLocked(Constants.ACTIVE);
         sysLoginEmail.setStatus((byte) 0);
-        sysLoginEmail.setLoginType(LoginTypeEnum.EMAIL.value());
         sysLogins.add(sysLoginEmail);
 
         sysLoginService.batchAdd(sysLogins);

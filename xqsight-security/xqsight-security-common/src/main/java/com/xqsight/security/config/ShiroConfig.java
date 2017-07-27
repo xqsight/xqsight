@@ -46,16 +46,16 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
 
-        //oauth过滤
+        //autho过滤
         Map<String, Filter> filters = new HashMap<>();
-        filters.put("oauth2", new Autho2Filter());
+        filters.put("autho2", new Autho2Filter());
         shiroFilter.setFilters(filters);
 
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/druid/**", "anon");
         filterMap.put("/api/**", "anon");
         filterMap.put("/sys/login", "anon");
-        filterMap.put("/**", "oauth2");
+        filterMap.put("/**", "autho2");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
         return shiroFilter;

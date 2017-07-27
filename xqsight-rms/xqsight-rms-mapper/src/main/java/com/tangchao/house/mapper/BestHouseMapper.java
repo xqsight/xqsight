@@ -1,6 +1,7 @@
 package com.tangchao.house.mapper;
 
 import com.tangchao.house.model.vo.BestHouseVO;
+import com.xqsight.common.core.orm.Criterion;
 
 import java.util.List;
 
@@ -11,5 +12,9 @@ import java.util.List;
  */
 public interface BestHouseMapper {
 
-    List<BestHouseVO> queryBestHouse();
+    List<BestHouseVO> queryBestHouse(Criterion criterion);
+
+    BestHouseVO queryBestRoomById(Long roomId);
+
+    BestHouseVO queryBestHouseById(Long houseId);
 }
