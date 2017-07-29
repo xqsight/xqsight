@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tangchao.api.mapper.AppointmentMapper">
+<mapper namespace="com.tangchao.server.mapper.RepairMapper">
 
-    <resultMap id="BaseResultMap"  type="com.tangchao.house.model.Appointment">
+    <resultMap id="BaseResultMap"  type="com.tangchao.server.model.Repair">
         <result column="id" property="id" jdbcType="NUMERIC"/>
-        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
-        <result column="user_sex" property="userSex" jdbcType="NUMERIC"/>
-        <result column="telphone" property="telphone" jdbcType="VARCHAR"/>
         <result column="associate_type" property="associateType" jdbcType="NUMERIC"/>
         <result column="associate_id" property="associateId" jdbcType="VARCHAR"/>
-        <result column="app_time" property="appTime" jdbcType="TIMESTAMP"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_mobile" property="userMobile" jdbcType="VARCHAR"/>
+        <result column="repair_mobile" property="repairMobile" jdbcType="VARCHAR"/>
+        <result column="expect_repair_time" property="expectRepairTime" jdbcType="VARCHAR"/>
+        <result column="contract_id" property="contractId" jdbcType="VARCHAR"/>
+        <result column="description" property="description" jdbcType="VARCHAR"/>
+        <result column="keeper" property="keeper" jdbcType="VARCHAR"/>
+        <result column="keeper_mobile" property="keeperMobile" jdbcType="VARCHAR"/>
         <result column="status" property="status" jdbcType="NUMERIC"/>
         <result column="active" property="active" jdbcType="NUMERIC"/>
         <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
@@ -20,7 +25,7 @@
     </resultMap>
 
     <sql id="Base_Column_List_Without_Id">
-        user_name,user_sex,telphone,associate_type,associate_id,app_time,status,active,create_user_id,create_time,update_user_id,update_time,remark
+        associate_type,associate_id,user_id,user_name,user_mobile,repair_mobile,expect_repair_time,contract_id,description,keeper,keeper_mobile,status,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
     <sql id="Base_Column_List">
          id,
@@ -28,12 +33,17 @@
     </sql>
 
     <sql id="Insert_Columns">
-        <if test="userName!=null"> user_name,</if>
-        <if test="userSex!=null"> user_sex,</if>
-        <if test="telphone!=null"> telphone,</if>
         <if test="associateType!=null"> associate_type,</if>
         <if test="associateId!=null"> associate_id,</if>
-        <if test="appTime!=null"> app_time,</if>
+        <if test="userId!=null"> user_id,</if>
+        <if test="userName!=null"> user_name,</if>
+        <if test="userMobile!=null"> user_mobile,</if>
+        <if test="repairMobile!=null"> repair_mobile,</if>
+        <if test="expectRepairTime!=null"> expect_repair_time,</if>
+        <if test="contractId!=null"> contract_id,</if>
+        <if test="description!=null"> description,</if>
+        <if test="keeper!=null"> keeper,</if>
+        <if test="keeperMobile!=null"> keeper_mobile,</if>
         <if test="status!=null"> status,</if>
         <if test="active!=null"> active,</if>
         <if test="createUserId!=null"> create_user_id,</if>
@@ -43,12 +53,17 @@
         <if test="remark!=null"> remark,</if>
     </sql>
     <sql id="Insert_Values">
-        <if test="userName!=null">#{userName,jdbcType=VARCHAR},</if>
-        <if test="userSex!=null">#{userSex,jdbcType=NUMERIC},</if>
-        <if test="telphone!=null">#{telphone,jdbcType=VARCHAR},</if>
         <if test="associateType!=null">#{associateType,jdbcType=NUMERIC},</if>
         <if test="associateId!=null">#{associateId,jdbcType=VARCHAR},</if>
-        <if test="appTime!=null">#{appTime,jdbcType=TIMESTAMP},</if>
+        <if test="userId!=null">#{userId,jdbcType=VARCHAR},</if>
+        <if test="userName!=null">#{userName,jdbcType=VARCHAR},</if>
+        <if test="userMobile!=null">#{userMobile,jdbcType=VARCHAR},</if>
+        <if test="repairMobile!=null">#{repairMobile,jdbcType=VARCHAR},</if>
+        <if test="expectRepairTime!=null">#{expectRepairTime,jdbcType=VARCHAR},</if>
+        <if test="contractId!=null">#{contractId,jdbcType=VARCHAR},</if>
+        <if test="description!=null">#{description,jdbcType=VARCHAR},</if>
+        <if test="keeper!=null">#{keeper,jdbcType=VARCHAR},</if>
+        <if test="keeperMobile!=null">#{keeperMobile,jdbcType=VARCHAR},</if>
         <if test="status!=null">#{status,jdbcType=NUMERIC},</if>
         <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
         <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
@@ -58,12 +73,17 @@
         <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
     </sql>
     <sql id="Batch_Insert_Values">
-        #{item.userName,jdbcType=VARCHAR},
-        #{item.userSex,jdbcType=NUMERIC},
-        #{item.telphone,jdbcType=VARCHAR},
         #{item.associateType,jdbcType=NUMERIC},
         #{item.associateId,jdbcType=VARCHAR},
-        #{item.appTime,jdbcType=TIMESTAMP},
+        #{item.userId,jdbcType=VARCHAR},
+        #{item.userName,jdbcType=VARCHAR},
+        #{item.userMobile,jdbcType=VARCHAR},
+        #{item.repairMobile,jdbcType=VARCHAR},
+        #{item.expectRepairTime,jdbcType=VARCHAR},
+        #{item.contractId,jdbcType=VARCHAR},
+        #{item.description,jdbcType=VARCHAR},
+        #{item.keeper,jdbcType=VARCHAR},
+        #{item.keeperMobile,jdbcType=VARCHAR},
         #{item.status,jdbcType=NUMERIC},
         #{item.active,jdbcType=NUMERIC},
         #{item.createUserId,jdbcType=VARCHAR},
@@ -74,12 +94,17 @@
     </sql>
 
     <sql id="Update_Set_From_Bean">
-        <if test="userName!=null"> user_name=#{userName,jdbcType=VARCHAR},</if>
-        <if test="userSex!=null"> user_sex=#{userSex,jdbcType=NUMERIC},</if>
-        <if test="telphone!=null"> telphone=#{telphone,jdbcType=VARCHAR},</if>
         <if test="associateType!=null"> associate_type=#{associateType,jdbcType=NUMERIC},</if>
         <if test="associateId!=null"> associate_id=#{associateId,jdbcType=VARCHAR},</if>
-        <if test="appTime!=null"> app_time=#{appTime,jdbcType=TIMESTAMP},</if>
+        <if test="userId!=null"> user_id=#{userId,jdbcType=VARCHAR},</if>
+        <if test="userName!=null"> user_name=#{userName,jdbcType=VARCHAR},</if>
+        <if test="userMobile!=null"> user_mobile=#{userMobile,jdbcType=VARCHAR},</if>
+        <if test="repairMobile!=null"> repair_mobile=#{repairMobile,jdbcType=VARCHAR},</if>
+        <if test="expectRepairTime!=null"> expect_repair_time=#{expectRepairTime,jdbcType=VARCHAR},</if>
+        <if test="contractId!=null"> contract_id=#{contractId,jdbcType=VARCHAR},</if>
+        <if test="description!=null"> description=#{description,jdbcType=VARCHAR},</if>
+        <if test="keeper!=null"> keeper=#{keeper,jdbcType=VARCHAR},</if>
+        <if test="keeperMobile!=null"> keeper_mobile=#{keeperMobile,jdbcType=VARCHAR},</if>
         <if test="status!=null"> status=#{status,jdbcType=NUMERIC},</if>
         <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
         <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
@@ -89,12 +114,17 @@
         <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
     </sql>
     <sql id="BatchUpdate_Set_From_Bean">
-        user_name=#{item.userName,jdbcType=VARCHAR},
-        user_sex=#{item.userSex,jdbcType=NUMERIC},
-        telphone=#{item.telphone,jdbcType=VARCHAR},
         associate_type=#{item.associateType,jdbcType=NUMERIC},
         associate_id=#{item.associateId,jdbcType=VARCHAR},
-        app_time=#{item.appTime,jdbcType=TIMESTAMP},
+        user_id=#{item.userId,jdbcType=VARCHAR},
+        user_name=#{item.userName,jdbcType=VARCHAR},
+        user_mobile=#{item.userMobile,jdbcType=VARCHAR},
+        repair_mobile=#{item.repairMobile,jdbcType=VARCHAR},
+        expect_repair_time=#{item.expectRepairTime,jdbcType=VARCHAR},
+        contract_id=#{item.contractId,jdbcType=VARCHAR},
+        description=#{item.description,jdbcType=VARCHAR},
+        keeper=#{item.keeper,jdbcType=VARCHAR},
+        keeper_mobile=#{item.keeperMobile,jdbcType=VARCHAR},
         status=#{item.status,jdbcType=NUMERIC},
         active=#{item.active,jdbcType=NUMERIC},
         create_user_id=#{item.createUserId,jdbcType=VARCHAR},
@@ -105,8 +135,8 @@
     </sql>
 
     <!--insert-->
-    <insert id="insert" parameterType="com.tangchao.house.model.Appointment" useGeneratedKeys="true" keyProperty="id">
-        insert into appointment
+    <insert id="insert" parameterType="com.tangchao.server.model.Repair" useGeneratedKeys="true" keyProperty="id">
+        insert into repair
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <include refid="Insert_Columns"/>
         </trim>
@@ -115,7 +145,7 @@
         </trim>
     </insert>
     <insert id="batchInsert" parameterType="java.util.List">
-        insert into appointment
+        insert into repair
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <include refid="Base_Column_List_Without_Id"/>
         </trim>
@@ -130,19 +160,19 @@
 
     <!-- delete -->
     <delete id="deleteById" parameterType="java.lang.Long">
-        delete from appointment
+        delete from repair
         where  id = #{id,jdbcType=NUMERIC}  
     </delete>
     <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
-        delete from appointment
+        delete from repair
         where 1=1
         ${whereSqlString}
     </delete>
     <!-- end delete -->
 
     <!-- update -->
-    <update id="updateById" parameterType="com.tangchao.house.model.Appointment">
-        update appointment
+    <update id="updateById" parameterType="com.tangchao.server.model.Repair">
+        update repair
         <set>
             <include refid="Update_Set_From_Bean"/>
         </set>
@@ -150,7 +180,7 @@
     </update>
     <update id="batchUpdate" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
-        update appointment
+        update repair
         <include refid="BatchUpdate_Set_From_Bean"/>
         where
              id = #{id,jdbcType=NUMERIC}  
@@ -160,12 +190,12 @@
 
     <!-- select -->
     <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select <include refid="Base_Column_List"/> from appointment
+        select <include refid="Base_Column_List"/> from repair
         where
              id = #{id,jdbcType=NUMERIC}  
     </select>
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
-        select <include refid="Base_Column_List"/> from appointment
+        select <include refid="Base_Column_List"/> from repair
         WHERE 1=1
 
         ${whereSqlString}

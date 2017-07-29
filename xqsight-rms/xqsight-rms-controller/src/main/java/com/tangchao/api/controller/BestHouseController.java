@@ -32,8 +32,8 @@ public class BestHouseController {
 
     @AuthIgnore
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public Object queryBestHouse(@PathVariable String id){
-        BestHouseVO bestHouses = bestHouseService.queryBestHouseById(id);
+    public Object queryBestHouse(@PathVariable String id,Integer rentType){
+        BestHouseVO bestHouses = bestHouseService.queryBestHouseById(id,rentType);
         return new BaseResult(bestHouses);
     }
 }

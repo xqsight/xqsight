@@ -13,5 +13,5 @@ public interface BestHouseService {
 
     List<BestHouseVO> queryBestHouse();
 
-    BestHouseVO queryBestHouseById(String id);
+    BestHouseVO queryBestHouseById(String id,int rentType);
 }

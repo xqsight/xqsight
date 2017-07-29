@@ -14,7 +14,7 @@ public interface BestHouseMapper {
 
     List<BestHouseVO> queryBestHouse(Criterion criterion);
 
-    BestHouseVO queryBestRoomById(Long roomId);
+    BestHouseVO queryBestRoomById(String roomId);
 
-    BestHouseVO queryBestHouseById(Long houseId);
+    BestHouseVO queryBestHouseById(String houseId);
 }

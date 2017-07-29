@@ -1,5 +1,6 @@
 package com.tangchao.house.service.impl;
 
+import com.tangchao.constans.RmsContants;
 import com.tangchao.constans.TemplateConstans;
 import com.tangchao.house.service.SmsService;
 import com.tangchao.service.config.SmsConfig;
@@ -38,11 +39,16 @@ public class SmsServiceImpl implements SmsService {
 
     @Override
     public BaseResult sendValidCode(String telPhone) {
+        Integer requestTimes = (Integer) cacheTemplate.get(EhcacheKey.getSysConfigKey(RmsContants.VALIDATE_CODE_TIMES + telPhone),0);
+
+        if (requestTimes >= RmsContants.VALIDATE_CODE_REQUEST_MAX_TIMES) {
+            throw new SmsSendException(ErrorMessageConstants.ERROR_30002, "短信验证码连续发送次数最多不能超过:" + RmsContants.VALIDATE_CODE_REQUEST_MAX_TIMES +" 次");
+        }
         String code = GenerateCode.generateCode();
         String content = String.format(TemplateConstans.VALIDATE_CODE_TEMPLATE, code);
         String sendContent = smsConfig.converParams(telPhone, content);
 
-        logger.debug("send params:{}", sendContent);
+        logger.debug("send validate code params:{}", sendContent);
 
         Request request = new Request.Builder().url(smsConfig.getSmsUrl()).
                 post(RequestBody.create(MediaType.parse("application/json;charset=utf-8"), sendContent)).build();
@@ -51,15 +57,18 @@ public class SmsServiceImpl implements SmsService {
         try {
             Response response = httpClient.newCall(request).execute();
             if (response.isSuccessful()) {
+                requestTimes++;
+                cacheTemplate.put(EhcacheKey.getSysConfigKey(RmsContants.VALIDATE_CODE_TIMES + telPhone), requestTimes);
                 retMsg = response.body().string();
+                logger.debug("send validate code response :{}", retMsg);
             }
         } catch (IOException e) {
             e.printStackTrace();
             logger.error(e.getMessage());
             throw new SmsSendException(ErrorMessageConstants.ERROR_30001, "短信验证码发送失败");
         }
-
-        cacheTemplate.put(EhcacheKey.getSysConfigKey(telPhone), code);
+        /*缓存存放10分钟*/
+        cacheTemplate.put(EhcacheKey.getSysConfigKey(RmsContants.VALIDATE_CODE + telPhone), code,10*60);
         return BaseResult.success();
     }
 
@@ -68,6 +77,7 @@ public class SmsServiceImpl implements SmsService {
         Assert.hasLength(validcode, "验证码不能为空！");
         String code = (String) cacheTemplate.get(EhcacheKey.getSysConfigKey(telPhone));
         if (StringUtils.equals(code, validcode)) {
+            cacheTemplate.put(EhcacheKey.getSysConfigKey(RmsContants.VALIDATE_CODE_TIMES + telPhone), 0);
             return true;
         }
         return false;

@@ -1,9 +1,11 @@
 package com.tangchao.house.service.impl;
 
+import com.tangchao.constans.RentTypeEnum;
 import com.tangchao.house.mapper.BestHouseMapper;
 import com.tangchao.house.model.vo.BestHouseVO;
 import com.tangchao.house.service.BestHouseService;
 import com.xqsight.common.core.orm.Criterion;
+import com.xqsight.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,12 @@ public class BestHouseServiceImpl implements BestHouseService {
     }
 
     @Override
-    public BestHouseVO queryBestHouseById(String id) {
+    public BestHouseVO queryBestHouseById(String id, int rentType) {
+        if (rentType == RentTypeEnum.RENT_ROOM.value()) {
+            return bestHouseMapper.queryBestRoomById(id);
+        } else if (rentType == RentTypeEnum.RENT_HOUSE.value()) {
+            return bestHouseMapper.queryBestHouseById(id);
+        }
         return null;
     }
 }

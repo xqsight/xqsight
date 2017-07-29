@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.tangchao.api.mapper.MessageMapper">
+<mapper namespace="com.tangchao.server.mapper.QuestionsMapper">
 
-    <resultMap id="BaseResultMap"  type="com.tangchao.server.model.Message">
+    <resultMap id="BaseResultMap"  type="com.tangchao.server.model.Questions">
         <result column="id" property="id" jdbcType="NUMERIC"/>
-        <result column="title" property="title" jdbcType="VARCHAR"/>
-        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="question" property="question" jdbcType="VARCHAR"/>
+        <result column="answer" property="answer" jdbcType="VARCHAR"/>
         <result column="type" property="type" jdbcType="VARCHAR"/>
-        <result column="sender" property="sender" jdbcType="VARCHAR"/>
-        <result column="receiver" property="receiver" jdbcType="VARCHAR"/>
-        <result column="status" property="status" jdbcType="VARCHAR"/>
+        <result column="sort" property="sort" jdbcType="NUMERIC"/>
         <result column="active" property="active" jdbcType="NUMERIC"/>
         <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
         <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
@@ -19,7 +17,7 @@
     </resultMap>
 
     <sql id="Base_Column_List_Without_Id">
-        title,content,type,sender,receiver,status,active,create_user_id,create_time,update_user_id,update_time,remark
+        question,answer,type,sort,active,create_user_id,create_time,update_user_id,update_time,remark
     </sql>
     <sql id="Base_Column_List">
          id,
@@ -27,12 +25,10 @@
     </sql>
 
     <sql id="Insert_Columns">
-        <if test="title!=null"> title,</if>
-        <if test="content!=null"> content,</if>
+        <if test="question!=null"> question,</if>
+        <if test="answer!=null"> answer,</if>
         <if test="type!=null"> type,</if>
-        <if test="sender!=null"> sender,</if>
-        <if test="receiver!=null"> receiver,</if>
-        <if test="status!=null"> status,</if>
+        <if test="sort!=null"> sort,</if>
         <if test="active!=null"> active,</if>
         <if test="createUserId!=null"> create_user_id,</if>
         <if test="createTime!=null"> create_time,</if>
@@ -41,12 +37,10 @@
         <if test="remark!=null"> remark,</if>
     </sql>
     <sql id="Insert_Values">
-        <if test="title!=null">#{title,jdbcType=VARCHAR},</if>
-        <if test="content!=null">#{content,jdbcType=VARCHAR},</if>
+        <if test="question!=null">#{question,jdbcType=VARCHAR},</if>
+        <if test="answer!=null">#{answer,jdbcType=VARCHAR},</if>
         <if test="type!=null">#{type,jdbcType=VARCHAR},</if>
-        <if test="sender!=null">#{sender,jdbcType=VARCHAR},</if>
-        <if test="receiver!=null">#{receiver,jdbcType=VARCHAR},</if>
-        <if test="status!=null">#{status,jdbcType=VARCHAR},</if>
+        <if test="sort!=null">#{sort,jdbcType=NUMERIC},</if>
         <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
         <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
         <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
@@ -55,12 +49,10 @@
         <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
     </sql>
     <sql id="Batch_Insert_Values">
-        #{item.title,jdbcType=VARCHAR},
-        #{item.content,jdbcType=VARCHAR},
+        #{item.question,jdbcType=VARCHAR},
+        #{item.answer,jdbcType=VARCHAR},
         #{item.type,jdbcType=VARCHAR},
-        #{item.sender,jdbcType=VARCHAR},
-        #{item.receiver,jdbcType=VARCHAR},
-        #{item.status,jdbcType=VARCHAR},
+        #{item.sort,jdbcType=NUMERIC},
         #{item.active,jdbcType=NUMERIC},
         #{item.createUserId,jdbcType=VARCHAR},
         #{item.createTime,jdbcType=TIMESTAMP},
@@ -70,12 +62,10 @@
     </sql>
 
     <sql id="Update_Set_From_Bean">
-        <if test="title!=null"> title=#{title,jdbcType=VARCHAR},</if>
-        <if test="content!=null"> content=#{content,jdbcType=VARCHAR},</if>
+        <if test="question!=null"> question=#{question,jdbcType=VARCHAR},</if>
+        <if test="answer!=null"> answer=#{answer,jdbcType=VARCHAR},</if>
         <if test="type!=null"> type=#{type,jdbcType=VARCHAR},</if>
-        <if test="sender!=null"> sender=#{sender,jdbcType=VARCHAR},</if>
-        <if test="receiver!=null"> receiver=#{receiver,jdbcType=VARCHAR},</if>
-        <if test="status!=null"> status=#{status,jdbcType=VARCHAR},</if>
+        <if test="sort!=null"> sort=#{sort,jdbcType=NUMERIC},</if>
         <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
         <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
         <if test="createTime!=null"> create_time=#{createTime,jdbcType=TIMESTAMP},</if>
@@ -84,12 +74,10 @@
         <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
     </sql>
     <sql id="BatchUpdate_Set_From_Bean">
-        title=#{item.title,jdbcType=VARCHAR},
-        content=#{item.content,jdbcType=VARCHAR},
+        question=#{item.question,jdbcType=VARCHAR},
+        answer=#{item.answer,jdbcType=VARCHAR},
         type=#{item.type,jdbcType=VARCHAR},
-        sender=#{item.sender,jdbcType=VARCHAR},
-        receiver=#{item.receiver,jdbcType=VARCHAR},
-        status=#{item.status,jdbcType=VARCHAR},
+        sort=#{item.sort,jdbcType=NUMERIC},
         active=#{item.active,jdbcType=NUMERIC},
         create_user_id=#{item.createUserId,jdbcType=VARCHAR},
         create_time=#{item.createTime,jdbcType=TIMESTAMP},
@@ -99,8 +87,8 @@
     </sql>
 
     <!--insert-->
-    <insert id="insert" parameterType="com.tangchao.house.model.Message" useGeneratedKeys="true" keyProperty="id">
-        insert into message
+    <insert id="insert" parameterType="com.tangchao.server.model.Questions" useGeneratedKeys="true" keyProperty="id">
+        insert into questions
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <include refid="Insert_Columns"/>
         </trim>
@@ -109,7 +97,7 @@
         </trim>
     </insert>
     <insert id="batchInsert" parameterType="java.util.List">
-        insert into message
+        insert into questions
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <include refid="Base_Column_List_Without_Id"/>
         </trim>
@@ -124,19 +112,19 @@
 
     <!-- delete -->
     <delete id="deleteById" parameterType="java.lang.Long">
-        delete from message
+        delete from questions
         where  id = #{id,jdbcType=NUMERIC}  
     </delete>
     <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
-        delete from message
+        delete from questions
         where 1=1
         ${whereSqlString}
     </delete>
     <!-- end delete -->
 
     <!-- update -->
-    <update id="updateById" parameterType="com.tangchao.house.model.Message">
-        update message
+    <update id="updateById" parameterType="com.tangchao.server.model.Questions">
+        update questions
         <set>
             <include refid="Update_Set_From_Bean"/>
         </set>
@@ -144,7 +132,7 @@
     </update>
     <update id="batchUpdate" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index" open="" close="" separator=";">
-        update message
+        update questions
         <include refid="BatchUpdate_Set_From_Bean"/>
         where
              id = #{id,jdbcType=NUMERIC}  
@@ -154,12 +142,12 @@
 
     <!-- select -->
     <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
-        select <include refid="Base_Column_List"/> from message
+        select <include refid="Base_Column_List"/> from questions
         where
              id = #{id,jdbcType=NUMERIC}  
     </select>
     <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
-        select <include refid="Base_Column_List"/> from message
+        select <include refid="Base_Column_List"/> from questions
         WHERE 1=1
 
         ${whereSqlString}

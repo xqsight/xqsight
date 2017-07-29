@@ -6,5 +6,5 @@ package com.tangchao.constans;
  */
 public class TemplateConstans {
 
-    public static String VALIDATE_CODE_TEMPLATE = "【唐巢公寓】尊敬的用户，您的验证码是%，十分钟内有效。";
+    public static String VALIDATE_CODE_TEMPLATE = "【唐巢公寓】尊敬的用户，您的验证码是%s，十分钟内有效。";
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tangchao.house.mapper.BestHouseMapper">
+
+    <resultMap id="BaseResultMap" type="com.tangchao.house.model.vo.BestHouseVO">
+        <result column="ID" property="id" jdbcType="VARCHAR"/>
+        <result column="PROJECT_NAME" property="projectName" jdbcType="VARCHAR"/>
+        <result column="PROJECT_ADDR" property="projectAddr" jdbcType="VARCHAR"/>
+        <result column="HOUSE_NO" property="houseNo" jdbcType="VARCHAR"/>
+        <result column="DECORA_STRUC_ROOM_NUM" property="decoraStrucRoomNum" jdbcType="NUMERIC"/>
+        <result column="DECORA_STRUC_CUSSPAC_NUM" property="decoraStrucCusspacNum" jdbcType="NUMERIC"/>
+        <result column="space" property="space" jdbcType="NUMERIC"/>
+        <result column="HOUSE_FLOOR" property="houseFloor" jdbcType="NUMERIC"/>
+        <result column="rental" property="rental" jdbcType="NUMERIC"/>
+        <result column="short_desc" property="renshortDesctal" jdbcType="VARCHAR"/>
+        <result column="short_location" property="shortLocation" jdbcType="VARCHAR"/>
+        <result column="pay_way" property="payWay" jdbcType="VARCHAR"/>
+        <result column="ORIENTATION" property="orientation" jdbcType="VARCHAR"/>
+        <result column="rent_type" property="rentType" jdbcType="NUMERIC"/>
+    </resultMap>
+
+    <resultMap id="DetailResultMap" type="com.tangchao.house.model.vo.BestHouseVO" extends="BaseResultMap">
+
+    </resultMap>
+
+    <!-- select -->
+    <select id="queryBestRoomById" resultMap="DetailResultMap" parameterType="java.lang.String">
+        SELECT
+            tpp.PROJECT_NAME,tpp.PROJECT_ADDR,
+            tr.ID,tr.ROOM_SPACE,tr.rental,tr.ORIENTATION,
+            tr.STRUCTURE,tr.pay_way
+        FROM t_room tr
+        INNER JOIN t_house th ON tr.HOUSE_ID = th.ID AND th.DEL_FLAG=0
+        INNER JOIN t_property_project tpp ON tr.PROPERTY_PROJECT_ID = tpp.ID AND tpp.DEL_FLAG=0
+        WHERE tr.DEL_FLAG=0 and tr.ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="queryBestHouseById" resultMap="DetailResultMap" parameterType="java.lang.String">
+        SELECT
+        tpp.PROJECT_NAME,tpp.PROJECT_ADDR,
+        th.ID,tr.ROOM_SPACE,th.rental,th.ORIENTATION,
+        th.STRUCTURE,th.pay_way
+        FROM t_house th
+        INNER JOIN t_property_project tpp ON tr.PROPERTY_PROJECT_ID = tpp.ID AND tpp.DEL_FLAG=0
+        WHERE th.DEL_FLAG=0 and th.ID = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="queryBestHouse" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
+        SELECT
+            tr.ID,tpp.PROJECT_NAME,tpp.PROJECT_ADDR,
+            th.HOUSE_NO,th.DECORA_STRUC_ROOM_NUM,th.DECORA_STRUC_CUSSPAC_NUM,
+            tr.ROOM_SPACE space,th.HOUSE_FLOOR,tr.rental,th.short_desc,
+            th.short_location,tr.pay_way,tr.ORIENTATION,1 as rent_type
+        FROM t_room tr
+        INNER JOIN t_house th ON tr.HOUSE_ID = th.ID AND th.DEL_FLAG=0
+        INNER JOIN t_property_project tpp ON tr.PROPERTY_PROJECT_ID = tpp.ID AND tpp.DEL_FLAG=0
+        WHERE 1=1  and tr.is_feature=1
+        union
+        SELECT
+            th.ID,tpp.PROJECT_NAME,tpp.PROJECT_ADDR,
+            th.HOUSE_NO,th.DECORA_STRUC_ROOM_NUM,th.DECORA_STRUC_CUSSPAC_NUM,
+            th.DECORATION_SPANCE space,th.HOUSE_FLOOR,th.rental,th.short_desc,
+            th.short_location,th.pay_way,'' as ORIENTATION,0 as rent_type
+        from t_house th
+        INNER JOIN t_property_project tpp ON th.PROPERTY_PROJECT_ID = tpp.ID AND tpp.DEL_FLAG=0
+        WHERE 1=1 and th.is_feature=1
+        ${whereSqlString}
+    </select>
+    <!-- end select -->
+</mapper>

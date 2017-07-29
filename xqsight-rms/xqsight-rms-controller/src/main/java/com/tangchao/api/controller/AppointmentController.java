@@ -7,8 +7,11 @@ import com.tangchao.house.service.SmsService;
 import com.xqsight.common.base.controller.BaseController;
 import com.xqsight.common.exception.UnAuthcException;
 import com.xqsight.common.exception.constants.ErrorMessageConstants;
+import com.xqsight.security.annontation.AuthIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -21,6 +24,36 @@ public class AppointmentController extends BaseController<AppointmentService, Ap
 
     @Autowired
     private SmsService smsService;
+
+    @AuthIgnore
+    @Override
+    @RequestMapping(value = "/", method = RequestMethod.POST)
+    public Object put(Appointment appointment) throws Exception {
+        return super.put(appointment);
+    }
+
+    @AuthIgnore
+    @Override
+    @RequestMapping(value = "/logic/{id}", method = RequestMethod.DELETE)
+    public Object logicDeleteById(Appointment appointment, @PathVariable Long id) {
+        return super.logicDeleteById(appointment, id);
+    }
+
+
+    @AuthIgnore
+    @Override
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Object getById(@PathVariable Long id) {
+        return super.getById(id);
+    }
+
+    @AuthIgnore
+    @Override
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
+    public Object getPage() {
+        return super.getPage();
+    }
+
 
     @Override
     protected void prePut(Appointment appointment) {

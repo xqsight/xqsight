@@ -30,6 +30,8 @@ public class ErrorMessageConstants extends ListResourceBundle {
 
     /** 短信验证码发送失败 **/
     public static final int ERROR_30001 = 30001;
+    /** 短信验证码发送次数超限 **/
+    public static final int ERROR_30002 = 30002;
 
     /** 生成模板错误 */
     public static final int ERROR_20001 = 20001;
