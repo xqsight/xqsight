@@ -1,6 +1,6 @@
 package com.tangchao.api.controller;
 
-import com.tangchao.house.service.SmsService;
+import com.tangchao.user.service.SmsService;
 import com.xqsight.security.annontation.AuthIgnore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;

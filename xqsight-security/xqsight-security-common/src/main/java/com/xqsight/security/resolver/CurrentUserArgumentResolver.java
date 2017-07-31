@@ -3,7 +3,6 @@ package com.xqsight.security.resolver;
 import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.model.shiro.BaseUserModel;
 import com.xqsight.security.annontation.CurrentUser;
-import com.xqsight.security.interception.AuthorizationInterceptor;
 import com.xqsight.security.service.UserAuthcService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;

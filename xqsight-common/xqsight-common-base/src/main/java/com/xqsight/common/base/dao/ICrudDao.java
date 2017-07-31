@@ -1,5 +1,7 @@
 package com.xqsight.common.base.dao;
 
+import com.xqsight.common.model.BaseModel;
+
 import java.io.Serializable;
 
 /**
@@ -11,7 +13,7 @@ import java.io.Serializable;
  * @param <T>
  * @param <PK>
  */
-public interface ICrudDao<T, PK extends Serializable> extends
+public interface ICrudDao<T extends BaseModel, PK extends Serializable> extends
         IInsertDao<T>,
         IDeleteDao<PK>,
         IUpdateDao<T>,

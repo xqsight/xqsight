@@ -1,6 +1,7 @@
 package com.xqsight.common.base.dao;
 
 import com.xqsight.common.core.orm.Criterion;
+import com.xqsight.common.model.BaseModel;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  * @param <T>
  * @param <PK>
  */
-public interface ISelectDao<T, PK extends Serializable> {
+public interface ISelectDao<T extends BaseModel, PK extends Serializable> {
 
     /**
      * select record by id

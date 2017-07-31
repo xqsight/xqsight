@@ -4,6 +4,7 @@ import com.google.code.kaptcha.Producer;
 import com.xqsight.common.model.BaseResult;
 import com.xqsight.common.model.constants.Constants;
 import com.xqsight.common.model.shiro.BaseUserModel;
+import com.xqsight.common.model.shiro.UserToken;
 import com.xqsight.security.annontation.CurrentUserId;
 import com.xqsight.security.service.TokenService;
 import com.xqsight.security.service.UserAuthcService;
@@ -81,8 +82,8 @@ public class LoginController {
         }
 
         //生成token，并保存到数据库
-        Map tokenMap  = tokenService.createTokenAndSave(user.getId());
-        return new BaseResult(tokenMap);
+        UserToken userToken = tokenService.createTokenAndSave(user.getId());
+        return new BaseResult(userToken);
     }
 
     /**

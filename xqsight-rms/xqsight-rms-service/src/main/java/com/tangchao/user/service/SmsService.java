@@ -1,4 +1,4 @@
-package com.tangchao.house.service;
+package com.tangchao.user.service;
 
 import com.xqsight.common.model.BaseResult;
 

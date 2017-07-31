@@ -14,10 +14,5 @@ public interface TokenService{
 
     UserToken queryByToken(String token);
 
-    /**
-     * 创建token 并 保存
-     * @param userId
-     * @return 过期时间和token
-     */
-    Map<String, Object> createTokenAndSave(Long userId);
+    UserToken createTokenAndSave(Long userId);
 }

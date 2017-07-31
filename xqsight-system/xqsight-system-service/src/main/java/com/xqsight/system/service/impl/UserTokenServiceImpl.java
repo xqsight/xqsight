@@ -21,7 +21,7 @@ public class UserTokenServiceImpl implements TokenService {
     }
 
     @Override
-    public Map<String, Object> createTokenAndSave(Long userId) {
+    public UserToken createTokenAndSave(Long userId) {
         return null;
     }
 }

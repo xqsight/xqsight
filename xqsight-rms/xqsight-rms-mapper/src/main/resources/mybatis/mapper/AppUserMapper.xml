@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tangchao.user.mapper.AppUserMapper">
+
+    <resultMap id="BaseResultMap"  type="com.tangchao.user.model.AppUser">
+        <result column="id" property="id" jdbcType="NUMERIC"/>
+        <result column="login_id" property="loginId" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="salt" property="salt" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="user_code" property="userCode" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="NUMERIC"/>
+        <result column="identity_code" property="identityCode" jdbcType="VARCHAR"/>
+        <result column="identity_front_pic" property="identityFrontPic" jdbcType="VARCHAR"/>
+        <result column="identity_back_pic" property="identityBackPic" jdbcType="VARCHAR"/>
+        <result column="user_born" property="userBorn" jdbcType="TIMESTAMP"/>
+        <result column="from_source" property="fromSource" jdbcType="VARCHAR"/>
+        <result column="img_url" property="imgUrl" jdbcType="VARCHAR"/>
+        <result column="cell_phone" property="cellPhone" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="active" property="active" jdbcType="NUMERIC"/>
+        <result column="create_user_id" property="createUserId" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="update_user_id" property="updateUserId" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List_Without_Id">
+        login_id,password,salt,user_name,real_name,user_code,sex,identity_code,identity_front_pic,identity_back_pic,user_born,from_source,img_url,cell_phone,email,active,create_user_id,create_time,update_user_id,update_time,remark
+    </sql>
+    <sql id="Base_Column_List">
+        id,
+        <include refid="Base_Column_List_Without_Id"/>
+    </sql>
+
+    <sql id="Insert_Columns">
+        <if test="loginId!=null"> login_id,</if>
+        <if test="password!=null"> password,</if>
+        <if test="salt!=null"> salt,</if>
+        <if test="userName!=null"> user_name,</if>
+        <if test="realName!=null"> real_name,</if>
+        <if test="userCode!=null"> user_code,</if>
+        <if test="sex!=null"> sex,</if>
+        <if test="identityCode!=null"> identity_code,</if>
+        <if test="identityFrontPic!=null"> identity_front_pic,</if>
+        <if test="identityBackPic!=null"> identity_back_pic,</if>
+        <if test="userBorn!=null"> user_born,</if>
+        <if test="fromSource!=null"> from_source,</if>
+        <if test="imgUrl!=null"> img_url,</if>
+        <if test="cellPhone!=null"> cell_phone,</if>
+        <if test="email!=null"> email,</if>
+        <if test="active!=null"> active,</if>
+        <if test="createUserId!=null"> create_user_id,</if>
+        <if test="createTime!=null"> create_time,</if>
+        <if test="updateUserId!=null"> update_user_id,</if>
+        <if test="updateTime!=null"> update_time,</if>
+        <if test="remark!=null"> remark,</if>
+    </sql>
+    <sql id="Insert_Values">
+        <if test="loginId!=null">#{loginId,jdbcType=VARCHAR},</if>
+        <if test="password!=null">#{password,jdbcType=VARCHAR},</if>
+        <if test="salt!=null">#{salt,jdbcType=VARCHAR},</if>
+        <if test="userName!=null">#{userName,jdbcType=VARCHAR},</if>
+        <if test="realName!=null">#{realName,jdbcType=VARCHAR},</if>
+        <if test="userCode!=null">#{userCode,jdbcType=VARCHAR},</if>
+        <if test="sex!=null">#{sex,jdbcType=NUMERIC},</if>
+        <if test="identityCode!=null">#{identityCode,jdbcType=VARCHAR},</if>
+        <if test="identityFrontPic!=null">#{identityFrontPic,jdbcType=VARCHAR},</if>
+        <if test="identityBackPic!=null">#{identityBackPic,jdbcType=VARCHAR},</if>
+        <if test="userBorn!=null">#{userBorn,jdbcType=TIMESTAMP},</if>
+        <if test="fromSource!=null">#{fromSource,jdbcType=VARCHAR},</if>
+        <if test="imgUrl!=null">#{imgUrl,jdbcType=VARCHAR},</if>
+        <if test="cellPhone!=null">#{cellPhone,jdbcType=VARCHAR},</if>
+        <if test="email!=null">#{email,jdbcType=VARCHAR},</if>
+        <if test="active!=null">#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null">#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null">#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null">#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null">#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null">#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="Batch_Insert_Values">
+        #{item.loginId,jdbcType=VARCHAR},
+        #{item.password,jdbcType=VARCHAR},
+        #{item.salt,jdbcType=VARCHAR},
+        #{item.userName,jdbcType=VARCHAR},
+        #{item.realName,jdbcType=VARCHAR},
+        #{item.userCode,jdbcType=VARCHAR},
+        #{item.sex,jdbcType=NUMERIC},
+        #{item.identityCode,jdbcType=VARCHAR},
+        #{item.identityFrontPic,jdbcType=VARCHAR},
+        #{item.identityBackPic,jdbcType=VARCHAR},
+        #{item.userBorn,jdbcType=TIMESTAMP},
+        #{item.fromSource,jdbcType=VARCHAR},
+        #{item.imgUrl,jdbcType=VARCHAR},
+        #{item.cellPhone,jdbcType=VARCHAR},
+        #{item.email,jdbcType=VARCHAR},
+        #{item.active,jdbcType=NUMERIC},
+        #{item.createUserId,jdbcType=VARCHAR},
+        #{item.createTime,jdbcType=TIMESTAMP},
+        #{item.updateUserId,jdbcType=VARCHAR},
+        #{item.updateTime,jdbcType=TIMESTAMP},
+        #{item.remark,jdbcType=VARCHAR},
+    </sql>
+
+    <sql id="Update_Set_From_Bean">
+        <if test="loginId!=null"> login_id=#{loginId,jdbcType=VARCHAR},</if>
+        <if test="password!=null"> password=#{password,jdbcType=VARCHAR},</if>
+        <if test="salt!=null"> salt=#{salt,jdbcType=VARCHAR},</if>
+        <if test="userName!=null"> user_name=#{userName,jdbcType=VARCHAR},</if>
+        <if test="realName!=null"> real_name=#{realName,jdbcType=VARCHAR},</if>
+        <if test="userCode!=null"> user_code=#{userCode,jdbcType=VARCHAR},</if>
+        <if test="sex!=null"> sex=#{sex,jdbcType=NUMERIC},</if>
+        <if test="identityCode!=null"> identity_code=#{identityCode,jdbcType=VARCHAR},</if>
+        <if test="identityFrontPic!=null"> identity_front_pic=#{identityFrontPic,jdbcType=VARCHAR},</if>
+        <if test="identityBackPic!=null"> identity_back_pic=#{identityBackPic,jdbcType=VARCHAR},</if>
+        <if test="userBorn!=null"> user_born=#{userBorn,jdbcType=TIMESTAMP},</if>
+        <if test="fromSource!=null"> from_source=#{fromSource,jdbcType=VARCHAR},</if>
+        <if test="imgUrl!=null"> img_url=#{imgUrl,jdbcType=VARCHAR},</if>
+        <if test="cellPhone!=null"> cell_phone=#{cellPhone,jdbcType=VARCHAR},</if>
+        <if test="email!=null"> email=#{email,jdbcType=VARCHAR},</if>
+        <if test="active!=null"> active=#{active,jdbcType=NUMERIC},</if>
+        <if test="createUserId!=null"> create_user_id=#{createUserId,jdbcType=VARCHAR},</if>
+        <if test="createTime!=null"> create_time=#{createTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateUserId!=null"> update_user_id=#{updateUserId,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null"> update_time=#{updateTime,jdbcType=TIMESTAMP},</if>
+        <if test="remark!=null"> remark=#{remark,jdbcType=VARCHAR},</if>
+    </sql>
+    <sql id="BatchUpdate_Set_From_Bean">
+        login_id=#{item.loginId,jdbcType=VARCHAR},
+        password=#{item.password,jdbcType=VARCHAR},
+        salt=#{item.salt,jdbcType=VARCHAR},
+        user_name=#{item.userName,jdbcType=VARCHAR},
+        real_name=#{item.realName,jdbcType=VARCHAR},
+        user_code=#{item.userCode,jdbcType=VARCHAR},
+        sex=#{item.sex,jdbcType=NUMERIC},
+        identity_code=#{item.identityCode,jdbcType=VARCHAR},
+        identity_front_pic=#{item.identityFrontPic,jdbcType=VARCHAR},
+        identity_back_pic=#{item.identityBackPic,jdbcType=VARCHAR},
+        user_born=#{item.userBorn,jdbcType=TIMESTAMP},
+        from_source=#{item.fromSource,jdbcType=VARCHAR},
+        img_url=#{item.imgUrl,jdbcType=VARCHAR},
+        cell_phone=#{item.cellPhone,jdbcType=VARCHAR},
+        email=#{item.email,jdbcType=VARCHAR},
+        active=#{item.active,jdbcType=NUMERIC},
+        create_user_id=#{item.createUserId,jdbcType=VARCHAR},
+        create_time=#{item.createTime,jdbcType=TIMESTAMP},
+        update_user_id=#{item.updateUserId,jdbcType=VARCHAR},
+        update_time=#{item.updateTime,jdbcType=TIMESTAMP},
+        remark=#{item.remark,jdbcType=VARCHAR},
+    </sql>
+
+    <!--insert-->
+    <insert id="insert" parameterType="com.tangchao.user.model.AppUser" useGeneratedKeys="true" keyProperty="id">
+        insert into app_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Columns"/>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Values"/>
+        </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into app_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Base_Column_List_Without_Id"/>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <include refid="Batch_Insert_Values"/>
+            </trim>
+        </foreach>
+    </insert>
+    <!-- end insert -->
+
+    <!-- delete -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from app_user
+        where  id = #{id,jdbcType=NUMERIC}  
+    </delete>
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
+        delete from app_user
+        where 1=1
+        ${whereSqlString}
+    </delete>
+    <!-- end delete -->
+
+    <!-- update -->
+    <update id="updateById" parameterType="com.tangchao.user.model.AppUser">
+        update app_user
+        <set>
+            <include refid="Update_Set_From_Bean"/>
+        </set>
+        where  id = #{id,jdbcType=NUMERIC}
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update app_user
+            <include refid="BatchUpdate_Set_From_Bean"/>
+            where
+            id = #{id,jdbcType=NUMERIC}
+        </foreach>
+    </update>
+    <!-- end update -->
+
+    <!-- select -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from app_user
+        where
+        id = #{id,jdbcType=NUMERIC}
+    </select>
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
+        select <include refid="Base_Column_List"/> from app_user
+        WHERE 1=1
+
+        ${whereSqlString}
+        <trim prefix=" and " suffix="" suffixOverrides="" >
+            <if test="customSql != null">
+                ${customSqlString}
+            </if>
+        </trim>
+        <if test="orderBy != null">
+            ${orderBySqlString}
+        </if>
+    </select>
+    <!-- end select -->
+</mapper>

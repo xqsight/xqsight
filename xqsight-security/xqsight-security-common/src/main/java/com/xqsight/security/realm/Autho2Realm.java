@@ -19,6 +19,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 /**
@@ -65,7 +66,7 @@ public class Autho2Realm extends AuthorizingRealm {
         UserToken userToken = userAuthcService.queryByToken(accessToken);
 
         //token失效
-        if(userToken == null || userToken.getExpireTime().getTime() < System.currentTimeMillis()){
+        if(userToken == null || userToken.getExpireTime().compareTo(LocalDate.now()) < 0){
             throw new UnAuthcException(ErrorMessageConstants.ERROR_40002,"token失效，请重新登录");
         }
 

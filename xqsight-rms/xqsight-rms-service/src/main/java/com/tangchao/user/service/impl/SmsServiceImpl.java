@@ -1,8 +1,8 @@
-package com.tangchao.house.service.impl;
+package com.tangchao.user.service.impl;
 
 import com.tangchao.constans.RmsContants;
 import com.tangchao.constans.TemplateConstans;
-import com.tangchao.house.service.SmsService;
+import com.tangchao.user.service.SmsService;
 import com.tangchao.service.config.SmsConfig;
 import com.tangchao.utils.GenerateCode;
 import com.xqsight.common.exception.SmsSendException;

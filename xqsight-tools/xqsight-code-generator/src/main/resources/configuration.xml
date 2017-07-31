@@ -9,9 +9,9 @@
     <connections>
         <database name="rms">
             <driverClass>com.mysql.jdbc.Driver</driverClass>
-            <url>jdbc:mysql://localhost:3310/rms</url>
+            <url>jdbc:mysql://139.196.83.11:3310/rms</url>
             <username>root</username>
-            <password>root</password>
+            <password>Tangchaoroot#1234@abcd</password>
             <schema/>
         </database>
 

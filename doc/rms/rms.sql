@@ -118,4 +118,60 @@ create table repair
 );
 alter table repair comment '保修';
 
+/*==============================================================*/
+/* Table: sys_file                                              */
+/*==============================================================*/
+create table sys_file
+(
+   file_id              bigint not null auto_increment comment '主键',
+   file_name            varchar(200) comment '文件名称',
+   file_url             varchar(500) comment '附件URL',
+   file_domain          varchar(500) comment '文件域',
+   file_ext             varchar(10) default '0' comment '扩展名',
+   file_size            varchar(10) default '0' comment '大小',
+   attachment_type      char(2) default '0' comment '附件类型 01:普通图 02:缩略图 03:LOGO',
+   file_kind            varchar(10) default '0' comment '附件种类 Image Vedio Doc Excel Ppt',
+   active               int not null default 0 comment '是否有效 0:有效 -1:无效',
+   create_user_id       varchar(40) comment '创建人ID',
+   create_time          datetime comment '创建时间',
+   update_user_id       varchar(40) comment '修改人ID',
+   update_time          datetime comment '修改时间',
+   remark               varchar(200) comment '备注',
+   primary key (file_id)
+);
+
+alter table sys_file comment ' 文件表';
+
+/*==============================================================*/
+/* Table: s_user                                              */
+/*==============================================================*/
+create table app_user
+(
+   id                   bigint not null auto_increment comment '登陆内码',
+   login_id             varchar(20) not null comment '登录编号',
+   password             varchar(120) not null comment '登录密码',
+   salt                 varchar(120) not null comment '随机数',
+   user_name            varchar(40) comment '昵称',
+   real_name            varchar(40) comment '真实姓名',
+   user_code            varchar(40) comment '用户编号',
+   sex                  tinyint(4) comment '性别 0:未知 1:男 2:女',
+   identity_code        varchar(20) not null comment '身份证号码',
+   identity_front_pic        varchar(100) not null comment '身份证正面',
+   identity_back_pic        varchar(100) not null comment '身份证反面',
+   user_born            datetime comment '生日',
+   from_source          varchar(20) comment '来源 WECHAT  PC  MOBILE',
+   img_url              varchar(120) comment '图片地址',
+   cell_phone           varchar(40) comment '电话',
+   email                varchar(40) comment '邮箱',
+   active               tinyint(4) not null default 0 comment '是否有效 0:有效 -1:无效',
+   create_user_id       varchar(40) comment '创建人ID',
+   create_time          datetime comment '创建时间',
+   update_user_id       varchar(40) comment '修改人ID',
+   update_time          datetime comment '修改时间',
+   remark               varchar(200) comment '备注',
+   primary key (ID)
+);
+
+alter table sys_user comment '用户信息表 ';
+
 

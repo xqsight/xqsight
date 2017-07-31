@@ -1,16 +1,17 @@
 package com.xqsight.common.model.shiro;
 
+import com.xqsight.common.model.BaseModel;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * @author wangganggang
  * @date 2017年07月22日 上午9:19
  */
 @Data
-public class UserToken implements Serializable {
+public class UserToken extends BaseModel {
     private static final long serialVersionUID = 1L;
 
     /* 用户ID */
@@ -18,7 +19,10 @@ public class UserToken implements Serializable {
     /*token */
     private String token;
     /*过期时间 */
-    private Date expireTime;
-    /*更新时间 */
-    private Date updateTime;
+    private LocalDate expireTime;
+
+    @Override
+    public Serializable getPK() {
+        return this.userId;
+    }
 }

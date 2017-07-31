@@ -18,6 +18,8 @@ public class Constants {
 
     public static final String LOGIN_USER_KEY = "current_user_id";
 
+    public static final int TOKEN_EXPIRE_DAY = 7;
+
     public static final String TOTAL_SIZE = "totalSize";
     public static final String PAGE_SIZE = "pageSize";
     public static final String PAGE_NUM = "pageNum";

@@ -1,10 +1,9 @@
 package com.tangchao.api.controller;
 
 import com.tangchao.constans.AppointmentStatusEnum;
-import com.tangchao.house.model.Appointment;
 import com.tangchao.house.model.Reservate;
 import com.tangchao.house.service.ReservateService;
-import com.tangchao.house.service.SmsService;
+import com.tangchao.user.service.SmsService;
 import com.xqsight.common.base.controller.BaseController;
 import com.xqsight.common.exception.UnAuthcException;
 import com.xqsight.common.exception.constants.ErrorMessageConstants;

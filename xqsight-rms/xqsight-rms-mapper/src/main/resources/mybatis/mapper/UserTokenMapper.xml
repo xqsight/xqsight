@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tangchao.user.mapper.TokenMapper">
+
+    <resultMap id="BaseResultMap"  type="com.xqsight.common.model.shiro.UserToken">
+        <result column="user_Id" property="userId" jdbcType="NUMERIC"/>
+        <result column="token" property="token" jdbcType="VARCHAR"/>
+        <result column="expire_time" property="expireTime" jdbcType="TIMESTAMP"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List_Without_Id">
+        token,expire_timeupdate_time
+    </sql>
+    <sql id="Base_Column_List">
+        user_Id,
+        <include refid="Base_Column_List_Without_Id"/>
+    </sql>
+
+    <sql id="Insert_Columns">
+        <if test="userId!=null"> user_id,</if>
+        <if test="token!=null"> token,</if>
+        <if test="expireTime!=null"> expire_time,</if>
+        <if test="updateTime!=null"> update_time,</if>
+    </sql>
+    <sql id="Insert_Values">
+        <if test="userId!=null"> #{userId,jdbcType=NUMERIC},</if>
+        <if test="token!=null">#{token,jdbcType=VARCHAR},</if>
+        <if test="updateTime!=null">#{updateTime,jdbcType=TIMESTAMP},</if>
+    </sql>
+    <sql id="Batch_Insert_Values">
+        #{userId,jdbcType=NUMERIC},
+        #{item.token,jdbcType=VARCHAR},
+        #{item.expireTime,jdbcType=TIMESTAMP},
+        #{item.updateTime,jdbcType=TIMESTAMP},
+    </sql>
+
+    <sql id="Update_Set_From_Bean">
+        <if test="token!=null"> token=#{token,jdbcType=VARCHAR},</if>
+        <if test="expireTime!=null"> expire_time=#{expireTime,jdbcType=TIMESTAMP},</if>
+        <if test="updateTime!=null"> update_time=#{updateTime,jdbcType=TIMESTAMP},</if>
+    </sql>
+    <sql id="BatchUpdate_Set_From_Bean">
+        token=#{item.token,jdbcType=VARCHAR},
+        expire_time=#{item.expireTime,jdbcType=TIMESTAMP},
+        update_time=#{item.updateTime,jdbcType=TIMESTAMP},
+    </sql>
+
+    <!--insert-->
+    <insert id="insert" parameterType="com.xqsight.common.model.shiro.UserToken">
+        insert into user_token
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Columns"/>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <include refid="Insert_Values"/>
+        </trim>
+    </insert>
+    <insert id="batchInsert" parameterType="java.util.List">
+        insert into user_token
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="Base_Column_List_Without_Id"/>
+        </trim>
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <include refid="Batch_Insert_Values"/>
+            </trim>
+        </foreach>
+    </insert>
+    <!-- end insert -->
+
+    <!-- delete -->
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from user_token
+        where  user_Id = #{userId,jdbcType=NUMERIC}
+    </delete>
+    <delete id="deleteByCriterion" parameterType="com.xqsight.common.core.orm.Criterion">
+        delete from user_token
+        where 1=1
+        ${whereSqlString}
+    </delete>
+    <!-- end delete -->
+
+    <!-- update -->
+    <update id="updateById" parameterType="com.xqsight.common.model.shiro.UserToken">
+        update user_token
+        <set>
+            <include refid="Update_Set_From_Bean"/>
+        </set>
+        where  user_Id = #{userId,jdbcType=NUMERIC}
+    </update>
+    <update id="batchUpdate" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index" open="" close="" separator=";">
+            update user_token
+            <include refid="BatchUpdate_Set_From_Bean"/>
+            where
+            user_Id = #{userId,jdbcType=NUMERIC}
+        </foreach>
+    </update>
+    <!-- end update -->
+
+    <!-- select -->
+    <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select <include refid="Base_Column_List"/> from user_token
+        where
+        user_Id = #{userId,jdbcType=NUMERIC}
+    </select>
+    <select id="search" resultMap="BaseResultMap" parameterType="com.xqsight.common.core.orm.Criterion">
+        select <include refid="Base_Column_List"/> from user_token
+        WHERE 1=1
+
+        ${whereSqlString}
+        <trim prefix=" and " suffix="" suffixOverrides="" >
+            <if test="customSql != null">
+                ${customSqlString}
+            </if>
+        </trim>
+        <if test="orderBy != null">
+            ${orderBySqlString}
+        </if>
+    </select>
+    <!-- end select -->
+</mapper>

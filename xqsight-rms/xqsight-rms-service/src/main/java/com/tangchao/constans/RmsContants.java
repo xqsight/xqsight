@@ -11,4 +11,6 @@ public class RmsContants {
     public static final String VALIDATE_CODE_TIMES = "validate:code:times:";
 
     public static final int VALIDATE_CODE_REQUEST_MAX_TIMES = 5;
+
+    public static final int TOKEN_EXPIRE_DAY = 7;
 }

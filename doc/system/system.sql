@@ -254,7 +254,7 @@ alter table sys_station comment '岗位信息表';
 /*==============================================================*/
 create table sys_user
 (
-   ID                   bigint not null auto_increment comment '登陆内码',
+   id                   bigint not null auto_increment comment '登陆内码',
    company_id           bigint not null default 0 comment '归属公司',
    office_id            bigint not null default 0 comment '所属部门',
    password             varchar(120) not null comment '登录密码',

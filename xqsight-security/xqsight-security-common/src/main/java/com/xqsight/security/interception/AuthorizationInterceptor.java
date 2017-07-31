@@ -15,6 +15,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.time.LocalDate;
 
 /**
  * @author wangganggang
@@ -54,7 +55,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
         //查询token信息
         UserToken userToken = tokenService.queryByToken(token);
-        if (userToken == null || userToken.getExpireTime().getTime() < System.currentTimeMillis()) {
+        if (userToken == null || userToken.getExpireTime().compareTo(LocalDate.now()) < 0) {
             throw new UnAuthcException(ErrorMessageConstants.ERROR_40003, "token失效，请重新登录");
         }
 

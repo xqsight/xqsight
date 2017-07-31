@@ -1,5 +1,7 @@
 package com.xqsight.common.base.dao;
 
+import com.xqsight.common.model.BaseModel;
+
 import java.util.List;
 
 /**
@@ -8,7 +10,7 @@ import java.util.List;
  *
  * @param <T>
  */
-public interface IUpdateDao<T> {
+public interface IUpdateDao<T extends BaseModel> {
 
     /**
      * update record by id
