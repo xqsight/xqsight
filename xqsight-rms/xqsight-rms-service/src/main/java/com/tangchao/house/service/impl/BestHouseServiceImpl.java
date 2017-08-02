@@ -5,7 +5,6 @@ import com.tangchao.house.mapper.BestHouseMapper;
 import com.tangchao.house.model.vo.BestHouseVO;
 import com.tangchao.house.service.BestHouseService;
 import com.xqsight.common.core.orm.Criterion;
-import com.xqsight.common.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
