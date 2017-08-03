@@ -15,26 +15,30 @@ public class ErrorMessageConstants extends ListResourceBundle {
 
     /** 自定义message */
     public static final int ERROR_10000 = 10000;
-
     /** 当前对象不存在 **/
     public static final int ERROR_10001 = 10001;
 
-    /** 未授权异常 **/
-    public static final int ERROR_40001 = 40001;
-    /** token失效 **/
-    public static final int ERROR_40002 = 40002;
-    /** 账号已被锁定 **/
-    public static final int ERROR_40003 = 40003;
-    /** 验证码错误 **/
-    public static final int ERROR_40004 = 40004;
+
+    /** 生成模板错误 */
+    public static final int ERROR_20001 = 20001;
+
 
     /** 短信验证码发送失败 **/
     public static final int ERROR_30001 = 30001;
     /** 短信验证码发送次数超限 **/
     public static final int ERROR_30002 = 30002;
 
-    /** 生成模板错误 */
-    public static final int ERROR_20001 = 20001;
+
+    /** 未授权异常 **/
+    public static final int ERROR_40001 = 40001;
+    /** token失效 **/
+    public static final int ERROR_40002 = 40002;
+
+
+    /** 账号已被锁定 **/
+    public static final int ERROR_50001 = 50001;
+    /** 验证码错误 **/
+    public static final int ERROR_50002 = 50002;
 
     /** 未知异常 **/
     public static final int ERROR_99999 = 99999;

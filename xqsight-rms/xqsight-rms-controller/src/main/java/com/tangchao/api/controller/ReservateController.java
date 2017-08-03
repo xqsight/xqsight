@@ -5,7 +5,7 @@ import com.tangchao.house.model.Reservate;
 import com.tangchao.house.service.ReservateService;
 import com.tangchao.user.service.SmsService;
 import com.xqsight.common.base.controller.BaseController;
-import com.xqsight.common.exception.UnAuthcException;
+import com.xqsight.common.exception.SmsSendException;
 import com.xqsight.common.exception.constants.ErrorMessageConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +27,7 @@ public class ReservateController extends BaseController<ReservateService, Reserv
         String validateCode = request.getParameter("validCode");
         boolean isValidate = smsService.verifyCode(reservate.getTelphone(), validateCode);
         if (!isValidate) {
-            throw new UnAuthcException(ErrorMessageConstants.ERROR_40004, "验证码错误");
+            throw new SmsSendException(ErrorMessageConstants.ERROR_50002, "验证码错误");
         }
         //设置状态为申请
         reservate.setStatus((byte) AppointmentStatusEnum.APP.value());

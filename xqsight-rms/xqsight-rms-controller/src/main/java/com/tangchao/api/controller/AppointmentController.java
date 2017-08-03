@@ -5,6 +5,7 @@ import com.tangchao.house.model.Appointment;
 import com.tangchao.house.service.AppointmentService;
 import com.tangchao.user.service.SmsService;
 import com.xqsight.common.base.controller.BaseController;
+import com.xqsight.common.exception.SmsSendException;
 import com.xqsight.common.exception.UnAuthcException;
 import com.xqsight.common.exception.constants.ErrorMessageConstants;
 import com.xqsight.security.annontation.AuthIgnore;
@@ -60,7 +61,7 @@ public class AppointmentController extends BaseController<AppointmentService, Ap
         String validateCode = request.getParameter("validCode");
         boolean isValidate = smsService.verifyCode(appointment.getTelphone(), validateCode);
         if (!isValidate) {
-            throw new UnAuthcException(ErrorMessageConstants.ERROR_40004, "验证码错误");
+            throw new SmsSendException(ErrorMessageConstants.ERROR_50002, "验证码错误");
         }
         //设置状态为申请
         appointment.setStatus((byte) ReservateStatusEnum.APP.value());

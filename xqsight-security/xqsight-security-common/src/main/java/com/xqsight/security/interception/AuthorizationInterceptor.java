@@ -56,7 +56,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         //查询token信息
         UserToken userToken = tokenService.queryByToken(token);
         if (userToken == null || userToken.getExpireTime().compareTo(LocalDate.now()) < 0) {
-            throw new UnAuthcException(ErrorMessageConstants.ERROR_40003, "token失效，请重新登录");
+            throw new UnAuthcException(ErrorMessageConstants.ERROR_40002, "token失效，请重新登录");
         }
 
         request.setAttribute(Constants.LOGIN_USER_KEY, userToken.getUserId());
