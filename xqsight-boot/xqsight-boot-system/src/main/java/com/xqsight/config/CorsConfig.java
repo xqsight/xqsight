@@ -32,8 +32,8 @@ public class CorsConfig {
         return multipart;
     }
 
-    @Bean
+    /*@Bean
     public CmsGeneratInit cmsInitRunner() {
         return new CmsGeneratInit();
-    }
+    }*/
 }

@@ -377,10 +377,10 @@ xqsight.utils = {
         var serverPath = "";
         switch (reqType) {
             case "system" :  //系统管理
-                serverPath = "http://localhost:8080/portal";//xqsight.utils.getContextPath();
+                serverPath = "http://localhost:8080";//xqsight.utils.getContextPath();
                 break;
             case "cms" :
-                serverPath = "http://localhost:8080/portal";//xqsight.utils.getContextPath();
+                serverPath = "http://localhost:8080";//xqsight.utils.getContextPath();
                 break;
             case "dataTableLocal" :
                 serverPath = xqsight.utils.getContextPath() + "/static/ace/js/dataTables/language/zn_ch.json";

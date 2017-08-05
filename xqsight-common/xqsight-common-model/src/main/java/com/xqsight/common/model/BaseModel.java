@@ -19,11 +19,11 @@ public abstract class BaseModel implements Serializable {
     /**
      * 是否有效 0:有效 -1:无效
      **/
-    private byte active = 0;
+    private byte active;
     /**
      * 创建时间
      **/
-    private LocalDateTime createTime = LocalDateTime.now();
+    private LocalDateTime createTime ;
     /**
      * 创建人ID
      **/
@@ -31,7 +31,7 @@ public abstract class BaseModel implements Serializable {
     /**
      * 修改时间
      **/
-    private LocalDateTime updateTime = LocalDateTime.now();
+    private LocalDateTime updateTime ;
     /**
      * 修改人ID
      **/
@@ -51,7 +51,7 @@ public abstract class BaseModel implements Serializable {
         return updateTime;
     }
 
-    public boolean isActive() {
+    public boolean isActived() {
         return this.active == Constants.ACTIVE;
     }
 

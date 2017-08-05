@@ -1,5 +1,6 @@
 # tomcat config
 server:
+    context-path: /
     tomcat:
         uri-encoding: UTF-8
         max-threads: 1000
@@ -8,13 +9,16 @@ server:
 
 
 spring:
+    application:
+       name: rms-api
+
     # 环境 dev|test|pro
     profiles:
         active: dev
 
 
 sms:
-    url:
-    account:
-    password:
-    sign: 
+    url: http://wt.3tong.net/json/sms/Submit
+    account: dh21961
+    password: tangchaotouzi001
+    sign: 唐巢公寓

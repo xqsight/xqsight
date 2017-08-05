@@ -56,7 +56,7 @@ public class UserAuthcServiceImpl implements UserAuthcService {
         if (userBaseModel.isUserLocked()) {
             throw new LockedAccountException("您的账户已锁定");
         }
-        if (!userBaseModel.isActive()) {
+        if (!userBaseModel.isActived()) {
             throw new ParamsException(ErrorMessageConstants.ERROR_10000,"你的账户未激活");
         }
         SysUser sysUser = sysUserService.getById(userBaseModel.getId());

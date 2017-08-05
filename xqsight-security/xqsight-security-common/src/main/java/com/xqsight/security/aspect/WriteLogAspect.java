@@ -24,8 +24,8 @@ import java.lang.reflect.Method;
  * @author wangganggang
  * @date 2017年07月24日 11:02
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class WriteLogAspect {
 
     @Autowired

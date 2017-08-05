@@ -2,6 +2,7 @@ package com.xqsight.config;
 
 import com.xqsight.common.resolver.AttributeFilterResolver;
 import com.xqsight.security.resolver.CurrentUserArgumentResolver;
+import com.xqsight.security.resolver.CurrentUserIdArgumentResolver;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.HandlerMethodReturnValueHandler;
@@ -24,6 +25,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
+        argumentResolvers.add(new CurrentUserIdArgumentResolver());
         argumentResolvers.add(new CurrentUserArgumentResolver());
     }
 

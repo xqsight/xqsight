@@ -7,6 +7,7 @@ server:
     port: 8080
 
 
+
 spring:
     # 环境 dev|test|pro
     profiles:
@@ -22,7 +23,7 @@ spring:
 #==== 模板存放位置 ===#
 site:
   tpl:
-    path: /home/cloud/eju-site/view/
+    path: /Users/wangganggang/workspace/
 
 #==== freemarker 模板设置 =====#
 #spring:

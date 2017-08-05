@@ -3,9 +3,9 @@ spring:
   datasource:
     master:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://localhost:3310/portal?useUnicode=true&characterEncoding=utf-8
+      url: jdbc:mysql://139.196.83.11:3306/rms?useUnicode=true&characterEncoding=utf-8
       username: root
-      password: root
+      password: Tangchaoroot#1234@abcd
       initialSize: 10
       maxActive: 20
       maxIdle: 5
