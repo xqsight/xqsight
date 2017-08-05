@@ -1,9 +1,9 @@
 package com.tangchao.api.controller;
 
-import com.tangchao.user.service.SmsService;
 import com.tangchao.user.model.AppUser;
 import com.tangchao.user.service.AppUserService;
-import com.xqsight.common.exception.UnAuthcException;
+import com.tangchao.user.service.SmsService;
+import com.xqsight.common.exception.SmsSendException;
 import com.xqsight.common.exception.constants.ErrorMessageConstants;
 import com.xqsight.common.model.BaseResult;
 import com.xqsight.common.model.shiro.BaseUserModel;
@@ -18,9 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author wangganggang
@@ -47,7 +44,7 @@ public class UserController {
     public Object loginbyCode(String telephone, String validateCode) {
         boolean isValidate = smsService.verifyCode(telephone, validateCode);
         if (!isValidate) {
-            throw new UnAuthcException(ErrorMessageConstants.ERROR_40004, "验证码错误");
+            throw new SmsSendException(ErrorMessageConstants.ERROR_50002, "验证码错误");
         }
         BaseUserModel baseUserModel = userAuthcService.queryUserByLoginId(telephone);
         if (baseUserModel != null && StringUtils.equals(baseUserModel.getLoginId(), telephone)) {
@@ -79,7 +76,7 @@ public class UserController {
     public Object register(AppUser appUser, String validateCode) {
         boolean isValidate = smsService.verifyCode(appUser.getLoginId(), validateCode);
         if (!isValidate) {
-            throw new UnAuthcException(ErrorMessageConstants.ERROR_40004, "验证码错误");
+            throw new SmsSendException(ErrorMessageConstants.ERROR_50002, "验证码错误");
         }
         appUser.setCellPhone(appUser.getLoginId());
         PasswordHelper.encryptPassword(appUser);
@@ -91,7 +88,7 @@ public class UserController {
     public Object resetPwd(AppUser appUser, String validateCode) {
         boolean isValidate = smsService.verifyCode(appUser.getLoginId(), validateCode);
         if (!isValidate) {
-            throw new UnAuthcException(ErrorMessageConstants.ERROR_40004, "验证码错误");
+            throw new SmsSendException(ErrorMessageConstants.ERROR_50002, "验证码错误");
         }
         appUser.setCellPhone(appUser.getLoginId());
         PasswordHelper.encryptPassword(appUser);

@@ -9,14 +9,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>xqsight-rms</artifactId>
+    <artifactId>xqsight-pay</artifactId>
     <packaging>pom</packaging>
-
     <modules>
-        <module>xqsight-rms-mapper</module>
-        <module>xqsight-rms-service</module>
-        <module>xqsight-rms-controller</module>
-        <module>xqsight-rms-boot</module>
+        <module>xqsight-pay-alipay</module>
     </modules>
 
 

@@ -1163,6 +1163,7 @@
         <module>xqsight-rms</module>
         <module>xqsight-security</module>
         <module>xqsight-rpc</module>
+        <module>xqsight-pay</module>
     </modules>
 
 
