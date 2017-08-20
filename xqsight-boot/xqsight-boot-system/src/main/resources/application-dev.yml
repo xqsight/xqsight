@@ -12,9 +12,9 @@ spring:
   datasource:
     master:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://10.99.66.13:3306/portal_new?useUnicode=true&characterEncoding=utf-8
-      username: root
-      password: root
+      url: jdbc:mysql://139.196.83.11:3306/new_portal?useUnicode=true&characterEncoding=utf-8
+      username: xqsight
+      password: password
       initialSize: 10
       maxActive: 20
       maxIdle: 5
@@ -32,11 +32,13 @@ spring:
       removeAbandoned: true
       removeAbandonedTimeout: 60000
       logAbandoned: true
+      #druid:
+      #  connection-properties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAPR3s42h+p61h9xNaG4KcPmi6P5WrR/PUvDYHI8Elr0q8OOqZH5FuC7mldD56+cWh45UhENK1ZrGo8zoczeBOP0CAwEAAQ==
     slave:
       driverClassName: com.mysql.jdbc.Driver
-      url: jdbc:mysql://10.99.66.13:3306/portal_new?useUnicode=true&characterEncoding=utf-8
-      username: root
-      password: root
+      url: jdbc:mysql://139.196.83.11:3306/new_portal?useUnicode=true&characterEncoding=utf-8
+      username: xqsight
+      password: password
       initialSize: 10
       maxActive: 20
       maxIdle: 5
@@ -54,3 +56,5 @@ spring:
       removeAbandoned: true
       removeAbandonedTimeout: 60000
       logAbandoned: true
+      #druid:
+      #  connection-properties: config.decrypt=true;config.decrypt.key=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAPR3s42h+p61h9xNaG4KcPmi6P5WrR/PUvDYHI8Elr0q8OOqZH5FuC7mldD56+cWh45UhENK1ZrGo8zoczeBOP0CAwEAAQ==

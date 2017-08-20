@@ -17,7 +17,7 @@ public class Application {
     private static final Logger logger = LogManager.getLogger();
 
     /**
-     * @param args
+     * @param args∂
      */
     public static void main(String[] args) {
         SpringApplication.run(Application.class,args);

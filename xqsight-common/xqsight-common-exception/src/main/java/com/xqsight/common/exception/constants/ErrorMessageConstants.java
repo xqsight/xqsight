@@ -33,7 +33,8 @@ public class ErrorMessageConstants extends ListResourceBundle {
     public static final int ERROR_40001 = 40001;
     /** token失效 **/
     public static final int ERROR_40002 = 40002;
-
+    /** 账号已经被锁定 **/
+    public static final int ERROR_40003 = 40003;
 
     /** 账号已被锁定 **/
     public static final int ERROR_50001 = 50001;

@@ -57,7 +57,7 @@ public class Autho2Filter extends AuthenticatingFilter {
             httpResponse.getWriter().print(result);
             return false;
         }
-        return false;
+        return executeLogin(request, response);
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.xqsight.config;
 
-import com.xqsight.cms.support.CmsGeneratInit;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;

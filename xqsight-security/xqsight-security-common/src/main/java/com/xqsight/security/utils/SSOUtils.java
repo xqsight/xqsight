@@ -48,7 +48,7 @@ public class SSOUtils {
     public static String getKaptcha(String key) {
         Object kaptcha = getSessionAttribute(key);
         if(kaptcha == null){
-            throw new UnAuthcException(ErrorMessageConstants.ERROR_40004,"验证码已失效");
+            throw new UnAuthcException(ErrorMessageConstants.ERROR_50002,"验证码已失效");
         }
         getSession().removeAttribute(key);
         return kaptcha.toString();
