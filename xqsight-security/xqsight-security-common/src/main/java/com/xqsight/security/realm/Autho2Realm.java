@@ -73,7 +73,7 @@ public class Autho2Realm extends AuthorizingRealm {
         BaseUserModel user = userAuthcService.queryUserById(userToken.getUserId());
 
         if(user.isUserLocked()){
-            throw new UnAuthcException(ErrorMessageConstants.ERROR_40003,"账号已被锁定,请联系管理员");
+            throw new UnAuthcException(ErrorMessageConstants.ERROR_40001,"账号已被锁定,请联系管理员");
         }
 
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user,accessToken,getName());
