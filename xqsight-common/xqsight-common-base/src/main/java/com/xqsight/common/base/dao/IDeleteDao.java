@@ -1,32 +1,18 @@
 package com.xqsight.common.base.dao;
 
-import com.xqsight.common.core.orm.Criterion;
-
-import java.io.Serializable;
+import tk.mybatis.mapper.common.base.BaseDeleteMapper;
+import tk.mybatis.mapper.common.condition.DeleteByConditionMapper;
+import tk.mybatis.mapper.common.example.DeleteByExampleMapper;
 
 /**
  * @author wangganggang
  * @Date 2017/3/23
  *
- * @param <PK>
  */
-public interface IDeleteDao<PK extends Serializable> {
+public interface IDeleteDao<T> extends BaseDeleteMapper<T>,
+        DeleteByConditionMapper<T>,
+        DeleteByExampleMapper<T> {
 
-    /**
-     * delete record by id
-     *
-     * @param id id主键值
-     * @return 影响的记录数
-     */
-    int deleteById(final PK id);
-
-    /**
-     * delete record by criterion
-     *
-     * @param criterion 查询条件
-     * @return 影响的记录数
-     */
-    int deleteByCriterion(Criterion criterion);
 
 }
 

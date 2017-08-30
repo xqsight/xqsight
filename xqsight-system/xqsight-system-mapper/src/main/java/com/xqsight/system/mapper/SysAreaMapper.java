@@ -13,5 +13,5 @@ import com.xqsight.system.model.SysArea;
  * @since 2017-04-06 09:53:18
  * @author wangganggang
 */
-public interface SysAreaMapper extends ICrudDao<SysArea,Long>{
+public interface SysAreaMapper extends ICrudDao<SysArea>{
 }

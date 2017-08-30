@@ -15,5 +15,5 @@ import com.xqsight.system.model.SysQuickKey;
  * @since 2017-01-07 11:57:57
  * @author wangganggang
 */
-public interface SysQuickKeyMapper extends ICrudDao<SysQuickKey,Long>{
+public interface SysQuickKeyMapper extends ICrudDao<SysQuickKey>{
 }

@@ -1,5 +1,6 @@
 package com.xqsight.common.base.service;
 
+import com.alibaba.fastjson.JSON;
 import com.xqsight.common.base.dao.IInsertDao;
 import com.xqsight.common.model.BaseModel;
 import org.apache.logging.log4j.LogManager;
@@ -9,11 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 /**
- * @author wangganggang
- * @Date 2017/3/23
- *
  * @param <Dao>
  * @param <Po>
+ * @author wangganggang
+ * @Date 2017/3/23
  */
 public abstract class AbstractAddService<Dao extends IInsertDao<Po>, Po extends BaseModel> implements IAddService<Po> {
     protected Logger logger = LogManager.getLogger(getClass());
@@ -22,12 +22,20 @@ public abstract class AbstractAddService<Dao extends IInsertDao<Po>, Po extends 
     protected Dao dao;
 
     @Override
-    public int add(Po record) {
-        return this.dao.insert(record);
+    public int save(Po record) {
+        logger.debug("save [data={}]", JSON.toJSON(record));
+        return dao.insert(record);
     }
 
     @Override
-    public int batchAdd(List<Po> records) {
-        return this.dao.batchInsert(records);
+    public int batchSave(List<Po> records) {
+        logger.debug("batchSave [data={}]", JSON.toJSON(records));
+        return dao.insertList(records);
+    }
+
+    @Override
+    public int saveSelective(Po record) {
+        logger.debug("saveSelective [data={}]", JSON.toJSON(record));
+        return dao.insertSelective(record);
     }
 }

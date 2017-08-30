@@ -13,5 +13,5 @@ import com.xqsight.system.model.SysDict;
  * @since 2017-04-06 09:53:25
  * @author wangganggang
 */
-public interface SysDictMapper extends ICrudDao<SysDict,Long>{
+public interface SysDictMapper extends ICrudDao<SysDict>{
 }

@@ -10,18 +10,26 @@ import java.util.List;
  */
 public interface IAddService<T> {
     /**
-     * add record
+     * save record
      *
      * @param record
      * @return
      */
-    int add(T record);
+    int save(T record);
 
     /**
-     * batch add record
+     * batch save record
      *
      * @param records
      * @return
      */
-    int batchAdd(List<T> records);
+    int batchSave(List<T> records);
+
+    /**
+     * save record
+     * if null not save
+     * @param record
+     * @return
+     */
+    int saveSelective(T record);
 }

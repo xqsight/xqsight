@@ -12,9 +12,7 @@ import java.time.LocalDateTime;
  * @date 2017/3/23
  */
 @Data
-public abstract class BaseModel implements Serializable {
-
-    public abstract Serializable getPK();
+public abstract class BaseModel{
 
     /**
      * 是否有效 0:有效 -1:无效
@@ -55,7 +53,4 @@ public abstract class BaseModel implements Serializable {
         return this.active == Constants.ACTIVE;
     }
 
-    public Class getPkClass(){
-        return Long.class;
-    }
 }

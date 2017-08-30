@@ -7,6 +7,7 @@ package com.xqsight.system.model;
 import com.xqsight.common.model.AbstractTreeModel;
 import lombok.Data;
 
+import javax.persistence.Id;
 import java.io.Serializable;
 
 
@@ -21,6 +22,7 @@ import java.io.Serializable;
 public class SysArea extends AbstractTreeModel<SysArea>{
 
 	/** 主键 */
+	@Id
     private Long areaId;
 
     /** area_name - 区域名称 */
@@ -39,8 +41,4 @@ public class SysArea extends AbstractTreeModel<SysArea>{
         this.areaName = areaName;
     }
 
-    @Override
-    public Serializable getPK() {
-        return this.areaId;
-    }
 }

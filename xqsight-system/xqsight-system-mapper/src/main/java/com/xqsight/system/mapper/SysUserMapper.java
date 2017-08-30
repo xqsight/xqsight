@@ -10,8 +10,9 @@ import com.xqsight.system.model.SysUser;
 /**
  * <p>用户信息表实现类service</p>
  * <p>Table: sys_user - 用户信息表</p>
- * @since 2017-04-06 09:56:36
+ *
  * @author wangganggang
-*/
-public interface SysUserMapper extends ICrudDao<SysUser,Long>{
+ * @since 2017-04-06 09:56:36
+ */
+public interface SysUserMapper extends ICrudDao<SysUser> {
 }

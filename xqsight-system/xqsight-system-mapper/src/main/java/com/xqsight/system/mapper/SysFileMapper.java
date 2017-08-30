@@ -13,5 +13,5 @@ import com.xqsight.system.model.SysFile;
  * @since 2017-04-05 05:21:18
  * @author wangganggang
 */
-public interface SysFileMapper extends ICrudDao<SysFile,Long>{
+public interface SysFileMapper extends ICrudDao<SysFile>{
 }

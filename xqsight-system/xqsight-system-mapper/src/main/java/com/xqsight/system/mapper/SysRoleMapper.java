@@ -13,5 +13,5 @@ import com.xqsight.system.model.SysRole;
  * @since 2017-04-06 09:56:26
  * @author wangganggang
 */
-public interface SysRoleMapper extends ICrudDao<SysRole,Long>{
+public interface SysRoleMapper extends ICrudDao<SysRole>{
 }

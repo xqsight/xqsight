@@ -13,125 +13,55 @@ import java.util.List;
 /**
  * @param <Dao>
  * @param <Po>
- * @param <PK>
  * @author wangganggang
  * @Date 2017/3/23
  * <p>
  * 基本增删改查(CRUD)数据访问服务基类
  */
 @Transactional
-public abstract class AbstractCrudService<Dao extends ICrudDao<Po, PK>, Po extends BaseModel, PK extends Serializable>
-        extends AbstractGetService<Dao, Po, PK> implements ICrudService<Po, PK> {
+public abstract class AbstractCrudService<Dao extends ICrudDao<Po>, Po extends BaseModel>
+        extends AbstractGetService<Dao, Po> implements ICrudService<Po> {
 
     @Override
     @Transactional
-    public int add(Po record) {
+    public int save(Po record) {
         return this.dao.insert(record);
     }
 
     @Override
     @Transactional
-    public int batchAdd(List<Po> records) {
-        return this.dao.batchInsert(records);
+    public int saveSelective(Po record) {
+        return this.dao.insertSelective(record);
     }
 
     @Override
     @Transactional
-    public int editById(Po record) {
-        return this.dao.updateById(record);
+    public int batchSave(List<Po> records) {
+        return this.dao.insertList(records);
     }
 
     @Override
     @Transactional
-    public int batchEdit(List<Po> records) {
-        return this.dao.batchUpdate(records);
+    public int edit(Po record) {
+        return this.dao.updateByPrimaryKey(record);
     }
 
     @Override
     @Transactional
-    public int removeById(PK id) {
-        return this.dao.deleteById(id);
+    public int editSelective(Po record) {
+        return this.dao.updateByPrimaryKeySelective(record);
     }
 
     @Override
     @Transactional
-    public int removeByIds(List<PK> ids) {
-        int count = 0;
-        for (PK id : ids) {
-            count += this.removeById(id);
-        }
-        return count;
+    public int remove(Po record) {
+        return this.dao.delete(record);
     }
 
     @Override
     @Transactional
-    public int removeByCriterion(Criterion criterion) {
-        return this.dao.deleteByCriterion(criterion);
+    public int removeById(Po record) {
+        return this.dao.deleteByPrimaryKey(record);
     }
 
-    @Override
-    @Transactional
-    public int removeByFilters(List<PropertyFilter> propertyFilters) {
-        return this.removeByCriterion(new Criterion(propertyFilters));
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public boolean exists(Criterion criterion) {
-        return super.exists(criterion);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public boolean exists(List<PropertyFilter> propertyFilters) {
-        return super.exists(propertyFilters);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Po getById(PK id) {
-        return super.getById(id);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Po getOneByCriterion(Criterion criterion) {
-        return super.getOneByCriterion(criterion);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Po getOneByFilters(List<PropertyFilter> propertyFilters) {
-        return super.getOneByFilters(propertyFilters);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Po> getAll() {
-        return super.getAll();
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Po> getAll(List<Sort> sorts) {
-        return super.getAll(sorts);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Po> getByCriterion(Criterion criterion) {
-        return super.getByCriterion(criterion);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Po> getByFilters(List<PropertyFilter> propertyFilters) {
-        return super.getByFilters(propertyFilters);
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Po> getByFilters(List<PropertyFilter> propertyFilters, List<Sort> sorts) {
-        return super.getByFilters(propertyFilters, sorts);
-    }
 }

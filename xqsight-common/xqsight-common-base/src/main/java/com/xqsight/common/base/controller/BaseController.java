@@ -11,25 +11,17 @@ import java.io.Serializable;
 /**
  * @param <Service>
  * @param <Record>
- * @param <PK>
  * @author wangganggang
  * @Date 2017/3/23
  */
-public class BaseController<Service extends ICrudService<Record, PK>, Record extends BaseModel, PK extends Serializable>
-        extends CommonController<Service, Record, PK> {
+public class BaseController<Service extends ICrudService<Record>, Record extends BaseModel>
+        extends CommonController<Service, Record> {
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/", method = RequestMethod.PUT)
     public Object put(Record record) throws Exception {
         prePut(record);
 
-        int iRet = 0;
-        if (record.getPK() != null && !"".equals(record.getPK())) {
-            iRet = service.editById(record);
-        } else {
-            service.add(record);
-        }
-
         afterPut(record);
-        return new BaseResult(iRet);
+        return new BaseResult(0);
     }
 }

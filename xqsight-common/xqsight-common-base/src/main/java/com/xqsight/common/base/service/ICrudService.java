@@ -1,19 +1,15 @@
 package com.xqsight.common.base.service;
 
-import java.io.Serializable;
-
 /**
+ * @param <T>
  * @author wangganggang
  * @Date 2017/3/23
- *
+ * <p>
  * 基本增删改查(CRUD)数据访问服务接口
- *
- * @param <T>
- * @param <PK>
  */
-public interface ICrudService<T, PK extends Serializable> extends
+public interface ICrudService<T> extends
         IAddService<T>,
-        IRemoveService<PK>,
+        IRemoveService<T>,
         IEditService<T>,
-        IGetService<T, PK> {
+        IGetService<T> {
 }

@@ -1,43 +1,25 @@
 package com.xqsight.common.base.service;
 
-import com.xqsight.common.core.orm.Criterion;
-import com.xqsight.common.core.orm.PropertyFilter;
-
-import java.util.List;
-
 /**
+ * @param <T>
  * @author wangganggang
  * @Date 2017/3/23
- *
- * @param <PK>
  */
-public interface IRemoveService<PK> {
+public interface IRemoveService<T> {
 
     /**
      * delete record by id
-     * @param id
+     *
+     * @param record
      * @return
      */
-    int removeById(PK id);
+    int removeById(T record);
 
     /**
-     * batch delete recode by ids
-     * @param ids
+     * 根据内容删除
+     *
+     * @param record
      * @return
      */
-    int removeByIds(List<PK> ids);
-
-    /**
-     * delete record by criterion
-     * @param criterion
-     * @return
-     */
-    int removeByCriterion(Criterion criterion);
-
-    /**
-     * delete record by filters
-     * @param propertyFilters
-     * @return
-     */
-    int removeByFilters(List<PropertyFilter> propertyFilters);
+    int remove(T record);
 }

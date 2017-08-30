@@ -28,7 +28,7 @@ import java.util.Map;
  * @author wangganggang
  * @date 2017/04/10
  */
-public class CommonController<Service extends ICrudService<Record, PK>, Record extends BaseModel, PK extends Serializable> {
+public class CommonController<Service extends ICrudService<Record>, Record extends BaseModel> {
 
     protected Logger logger = LogManager.getLogger(getClass());
 
@@ -41,56 +41,36 @@ public class CommonController<Service extends ICrudService<Record, PK>, Record e
     @Autowired
     protected HttpServletResponse response;
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public Object deleteById(@PathVariable PK id){
-        Record record = service.getById(id);
+    @RequestMapping(value = "/", method = RequestMethod.PATCH)
+    public Object deleteById(@PathVariable Record record){
         preDelete(record);
-        int iRet = service.removeById(id);
+        int iRet = service.removeById(record);
         afterDelete(record);
         return new BaseResult(iRet);
     }
 
-    @RequestMapping(value = "/logic/{id}", method = RequestMethod.DELETE)
-    public Object logicDeleteById(Record record, @PathVariable PK id){
-        Record updRecord = service.getById(id);
-        preDelete(updRecord);
-        if (updRecord == null || updRecord.getPK() == null) {
-            throw new ParamsException(ErrorMessageConstants.ERROR_10001);
-        }
-        updRecord.setActive((byte) -1);
-        updRecord.setUpdateTime(record.getUpdateTime());
-        updRecord.setUpdateUserId(record.getUpdateUserId());
-        int iRet = service.editById(updRecord);
-        afterDelete(updRecord);
+    @RequestMapping(value = "/logic/", method = RequestMethod.PATCH)
+    public Object logicDeleteById(Record record){
+        preDelete(record);
+        record.setActive((byte) -1);
+        record.setUpdateTime(record.getUpdateTime());
+        record.setUpdateUserId(record.getUpdateUserId());
+        int iRet = service.editSelective(record);
+        afterDelete(record);
         return new BaseResult(iRet);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Object getById(@PathVariable PK id) {
-        Record record = service.getById(id);
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public Object getById(Record record) {
+        record = service.getById(record);
         return new BaseResult(record);
     }
 
-    @RequestMapping(value = "/page", method = RequestMethod.GET)
-    public Object getPage() {
+    @RequestMapping(value = "/page", method = RequestMethod.POST)
+    public Object getPage(Record record) {
         Page page = initPage();
-        List<Record> records = service.getByFilters(getFilter());
+        List<Record> records = service.get(record);
         return new BaseResult(getPageInfo(page));
-    }
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public Object getAll() {
-        List<Record> records = service.getByFilters(getFilter());
-        return new BaseResult(records);
-    }
-
-    /**
-     * 获取查询的参数
-     *
-     * @return
-     */
-    protected List<PropertyFilter> getFilter() {
-        return PropertyFilterSupport.buildPropertyFilters(request);
     }
 
     /**

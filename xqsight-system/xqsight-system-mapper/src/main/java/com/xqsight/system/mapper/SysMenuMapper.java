@@ -13,5 +13,5 @@ import com.xqsight.system.model.SysMenu;
  * @since 2017-04-06 09:53:31
  * @author wangganggang
 */
-public interface SysMenuMapper extends ICrudDao<SysMenu,Long>{
+public interface SysMenuMapper extends ICrudDao<SysMenu>{
 }

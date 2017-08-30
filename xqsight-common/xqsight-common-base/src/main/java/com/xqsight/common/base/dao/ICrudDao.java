@@ -5,17 +5,15 @@ import com.xqsight.common.model.BaseModel;
 import java.io.Serializable;
 
 /**
+ * @param <T>
  * @author wangganggang
  * @Date 2017/3/23
- *
+ * <p>
  * 基本增删改查(CRUD)数据访问接口
- *
- * @param <T>
- * @param <PK>
  */
-public interface ICrudDao<T extends BaseModel, PK extends Serializable> extends
+public interface ICrudDao<T extends BaseModel> extends
         IInsertDao<T>,
-        IDeleteDao<PK>,
+        IDeleteDao<T>,
         IUpdateDao<T>,
-        ISelectDao<T,PK> {
+        ISelectDao<T> {
 }

@@ -13,5 +13,5 @@ import com.xqsight.system.model.SysLogin;
  * @since 2017-04-05 05:21:22
  * @author wangganggang
 */
-public interface SysLoginMapper extends ICrudDao<SysLogin,Long>{
+public interface SysLoginMapper extends ICrudDao<SysLogin>{
 }

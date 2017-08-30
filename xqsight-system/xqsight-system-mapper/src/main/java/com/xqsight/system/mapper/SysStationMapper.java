@@ -13,5 +13,5 @@ import com.xqsight.system.model.SysStation;
  * @since 2017-04-06 09:56:31
  * @author wangganggang
 */
-public interface SysStationMapper extends ICrudDao<SysStation,Long>{
+public interface SysStationMapper extends ICrudDao<SysStation>{
 }

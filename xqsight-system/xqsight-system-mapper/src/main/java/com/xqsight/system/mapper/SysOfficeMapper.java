@@ -13,5 +13,5 @@ import com.xqsight.system.model.SysOffice;
  * @since 2017-04-06 09:56:20
  * @author wangganggang
 */
-public interface SysOfficeMapper extends ICrudDao<SysOffice,Long>{
+public interface SysOfficeMapper extends ICrudDao<SysOffice>{
 }
