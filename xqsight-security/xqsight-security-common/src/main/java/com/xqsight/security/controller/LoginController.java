@@ -83,6 +83,8 @@ public class LoginController {
 
         //生成token，并保存到数据库
         UserToken userToken = tokenService.createTokenAndSave(user.getId());
+
+
         return new BaseResult(userToken);
     }
 

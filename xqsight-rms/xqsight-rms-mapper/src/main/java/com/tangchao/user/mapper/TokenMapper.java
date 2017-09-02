@@ -7,5 +7,5 @@ import com.xqsight.common.model.shiro.UserToken;
  * @author wangganggang
  * @date 2017年07月21日 16:39
  */
-public interface TokenMapper extends ICrudDao<UserToken,Long> {
+public interface TokenMapper extends ICrudDao<UserToken> {
 }

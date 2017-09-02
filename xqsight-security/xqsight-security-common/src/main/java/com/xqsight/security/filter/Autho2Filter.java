@@ -3,6 +3,7 @@ package com.xqsight.security.filter;
 import com.alibaba.fastjson.JSON;
 import com.xqsight.common.model.BaseResult;
 import com.xqsight.common.model.constants.Constants;
+import com.xqsight.common.utils.CookieUtils;
 import com.xqsight.common.utils.StringUtils;
 import com.xqsight.security.authc.Autho2Token;
 import org.apache.shiro.authc.AuthenticationException;
@@ -31,6 +32,11 @@ public class Autho2Filter extends AuthenticatingFilter {
         if (StringUtils.isBlank(accessToken)) {
             accessToken = httpServletRequest.getParameter(Constants.ACCESS_TOKEN);
         }
+
+        if (StringUtils.isBlank(accessToken)) {
+            CookieUtils.getCookieValue((HttpServletRequest) request, Constants.ACCESS_TOKEN);
+        }
+
         return new Autho2Token(accessToken);
     }
 
@@ -47,6 +53,10 @@ public class Autho2Filter extends AuthenticatingFilter {
 
         if (StringUtils.isBlank(accessToken)) {
             accessToken = httpServletRequest.getParameter(Constants.ACCESS_TOKEN);
+        }
+
+        if (StringUtils.isBlank(accessToken)) {
+            CookieUtils.getCookieValue((HttpServletRequest) request, Constants.ACCESS_TOKEN);
         }
 
         //获取请求token，如果token不存在，直接返回401
@@ -73,7 +83,6 @@ public class Autho2Filter extends AuthenticatingFilter {
         } catch (IOException e1) {
             e1.printStackTrace();
         }
-
         return false;
     }
 
