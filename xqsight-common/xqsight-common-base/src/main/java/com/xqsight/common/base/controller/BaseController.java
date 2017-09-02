@@ -14,8 +14,8 @@ import java.io.Serializable;
  * @author wangganggang
  * @Date 2017/3/23
  */
-public class BaseController<Service extends ICrudService<Record>, Record extends BaseModel>
-        extends CommonController<Service, Record> {
+public class BaseController<Service extends ICrudService<Record, Example>, Record , Example>
+        extends CommonController<Service, Record, Example> {
 
     @RequestMapping(value = "/", method = RequestMethod.PUT)
     public Object put(Record record) throws Exception {

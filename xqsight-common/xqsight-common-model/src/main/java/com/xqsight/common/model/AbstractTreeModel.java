@@ -24,9 +24,6 @@ public abstract class AbstractTreeModel<T> extends BaseModel {
     private Short sort;
     private List<T> children;
 
-    public String getId(){
-        return getPK().toString();
-    }
     public void setName(String name) {
         this.name = name;
         this.text = name;

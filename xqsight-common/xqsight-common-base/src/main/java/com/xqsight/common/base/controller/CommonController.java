@@ -28,7 +28,7 @@ import java.util.Map;
  * @author wangganggang
  * @date 2017/04/10
  */
-public class CommonController<Service extends ICrudService<Record>, Record extends BaseModel> {
+public class CommonController<Service extends ICrudService<Record, Example>, Record, Example> {
 
     protected Logger logger = LogManager.getLogger(getClass());
 
@@ -42,20 +42,9 @@ public class CommonController<Service extends ICrudService<Record>, Record exten
     protected HttpServletResponse response;
 
     @RequestMapping(value = "/", method = RequestMethod.PATCH)
-    public Object deleteById(@PathVariable Record record){
+    public Object deleteById(Record record) {
         preDelete(record);
         int iRet = service.removeById(record);
-        afterDelete(record);
-        return new BaseResult(iRet);
-    }
-
-    @RequestMapping(value = "/logic/", method = RequestMethod.PATCH)
-    public Object logicDeleteById(Record record){
-        preDelete(record);
-        record.setActive((byte) -1);
-        record.setUpdateTime(record.getUpdateTime());
-        record.setUpdateUserId(record.getUpdateUserId());
-        int iRet = service.editSelective(record);
         afterDelete(record);
         return new BaseResult(iRet);
     }
@@ -74,7 +63,8 @@ public class CommonController<Service extends ICrudService<Record>, Record exten
     }
 
     /**
-     *初始化分页信息
+     * 初始化分页信息
+     *
      * @return
      */
     protected Page initPage() {
@@ -98,15 +88,15 @@ public class CommonController<Service extends ICrudService<Record>, Record exten
         return pageMap;
     }
 
-    protected void prePut(Record record){
+    protected void prePut(Record record) {
     }
 
-    protected void afterPut(Record record){
+    protected void afterPut(Record record) {
     }
 
-    protected void preDelete(Record record){
+    protected void preDelete(Record record) {
     }
 
-    protected void afterDelete(Record record){
+    protected void afterDelete(Record record) {
     }
 }

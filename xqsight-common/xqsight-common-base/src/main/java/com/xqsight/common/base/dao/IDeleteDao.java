@@ -13,6 +13,5 @@ public interface IDeleteDao<T> extends BaseDeleteMapper<T>,
         DeleteByConditionMapper<T>,
         DeleteByExampleMapper<T> {
 
-
 }
 

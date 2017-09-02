@@ -1,11 +1,12 @@
 package com.xqsight.common.base.service;
 
 /**
- * @param <T>
+ * @param <T>  Po
+ * @param <U>  Example
  * @author wangganggang
  * @Date 2017/3/23
  */
-public interface IRemoveService<T> {
+public interface IRemoveService<T, U> {
 
     /**
      * delete record by id
@@ -15,6 +16,7 @@ public interface IRemoveService<T> {
      */
     int removeById(T record);
 
+
     /**
      * 根据内容删除
      *
@@ -22,4 +24,11 @@ public interface IRemoveService<T> {
      * @return
      */
     int remove(T record);
+
+    /**
+     * @param example
+     * @return
+     */
+    int removeByExample(U example);
+
 }

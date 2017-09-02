@@ -13,13 +13,12 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * @author wangganggang
- * @Date 2017/3/23
- *
  * @param <Dao>
  * @param <PO>
+ * @author wangganggang
+ * @Date 2017/3/23
  */
-public abstract class AbstractRemoveService<Dao extends IDeleteDao<PO>, PO extends BaseModel> implements IRemoveService<PO> {
+public abstract class AbstractRemoveService<Dao extends IDeleteDao<PO>, PO, Example> implements IRemoveService<PO, Example> {
     protected Logger logger = LogManager.getLogger(getClass());
 
     @Autowired
@@ -27,13 +26,25 @@ public abstract class AbstractRemoveService<Dao extends IDeleteDao<PO>, PO exten
 
     @Override
     public int removeById(PO record) {
-        logger.debug("removeById [data={}]", JSON.toJSON(record));
+        logger.debug("removeById [record={}]", JSON.toJSON(record));
         return dao.deleteByPrimaryKey(record);
     }
 
     @Override
     public int remove(PO record) {
-        logger.debug("remove [data={}]", JSON.toJSON(record));
+        logger.debug("remove [record={}]", JSON.toJSON(record));
         return dao.delete(record);
     }
+
+
+    /**
+     * @param example
+     * @return
+     */
+    @Override
+    public int removeByExample(Example example) {
+        logger.debug("removeByExample [example={}]", JSON.toJSON(example));
+        return dao.deleteByExample(example);
+    }
+
 }

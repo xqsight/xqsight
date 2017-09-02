@@ -20,8 +20,8 @@ import java.util.List;
  * @author wangganggang
  * @Date 2017/3/23
  */
-public class BaseTreeController<Service extends ICrudService<Record>, Record extends AbstractTreeModel>
-        extends CommonController<Service, Record> {
+public class BaseTreeController<Service extends ICrudService<Record, Example>, Record extends AbstractTreeModel, Example>
+        extends CommonController<Service, Record, Example> {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public Object put(Record record) throws Exception {

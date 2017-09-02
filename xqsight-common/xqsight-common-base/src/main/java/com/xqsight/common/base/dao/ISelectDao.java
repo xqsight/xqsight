@@ -1,6 +1,5 @@
 package com.xqsight.common.base.dao;
 
-import com.xqsight.common.model.BaseModel;
 import tk.mybatis.mapper.common.base.BaseSelectMapper;
 import tk.mybatis.mapper.common.condition.SelectByConditionMapper;
 import tk.mybatis.mapper.common.condition.SelectCountByConditionMapper;
@@ -15,7 +14,7 @@ import tk.mybatis.mapper.common.rowbounds.SelectRowBoundsMapper;
  * @author wangganggang
  * @Date 2017/3/23
  */
-public interface ISelectDao<T extends BaseModel> extends BaseSelectMapper<T>,
+public interface ISelectDao<T> extends BaseSelectMapper<T>,
         SelectByConditionMapper<T>,
         SelectCountByConditionMapper<T>,
         SelectByExampleMapper<T>,

@@ -22,7 +22,11 @@
             <artifactId>xqsight-data-mybatis</artifactId>
             <version>${project.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${tk.mybatis.mapper.version}</version>
+        </dependency>
         <dependency>
             <groupId>tk.mybatis</groupId>
             <artifactId>mapper</artifactId>

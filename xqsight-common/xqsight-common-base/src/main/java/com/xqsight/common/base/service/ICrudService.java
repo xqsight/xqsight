@@ -7,9 +7,9 @@ package com.xqsight.common.base.service;
  * <p>
  * 基本增删改查(CRUD)数据访问服务接口
  */
-public interface ICrudService<T> extends
+public interface ICrudService<T, Example> extends
         IAddService<T>,
-        IRemoveService<T>,
-        IEditService<T>,
-        IGetService<T> {
+        IRemoveService<T, Example>,
+        IEditService<T, Example>,
+        IGetService<T, Example> {
 }

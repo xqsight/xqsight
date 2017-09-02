@@ -1,9 +1,5 @@
 package com.xqsight.common.base.dao;
 
-import com.xqsight.common.model.BaseModel;
-
-import java.io.Serializable;
-
 /**
  * @param <T>
  * @author wangganggang
@@ -11,7 +7,7 @@ import java.io.Serializable;
  * <p>
  * 基本增删改查(CRUD)数据访问接口
  */
-public interface ICrudDao<T extends BaseModel> extends
+public interface ICrudDao<T> extends
         IInsertDao<T>,
         IDeleteDao<T>,
         IUpdateDao<T>,
