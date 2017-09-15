@@ -20,9 +20,4 @@ public class UserToken extends BaseModel {
     private String token;
     /*过期时间 */
     private LocalDate expireTime;
-
-    @Override
-    public Serializable getPK() {
-        return this.userId;
-    }
 }
