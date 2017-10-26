@@ -15,5 +15,6 @@
         <module>xqsight-data-redis</module>
         <module>xqsight-data-ehcache</module>
         <module>xqsight-data-mybatis</module>
+        <module>xqsight-data-elasticsearch</module>
     </modules>
 </project>
