@@ -53,4 +53,5 @@ public abstract class BaseModel{
         return this.active == Constants.ACTIVE;
     }
 
+    protected  abstract Serializable getPK();
 }

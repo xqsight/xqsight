@@ -41,4 +41,8 @@ public class SysArea extends AbstractTreeModel<SysArea>{
         this.areaName = areaName;
     }
 
+    @Override
+    protected Serializable getPK() {
+        return null;
+    }
 }
