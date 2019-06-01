@@ -65,4 +65,12 @@ public class HouseNoCombine {
         comb(StringUtils.split(combineHouseNo,COMMON_AND));
     }
 
+
+    @Test
+    public void test1(){
+        String str="c2Fbt8gkZFL9/Uw/rqAdsm25+BnR/WciQNi8NqE66I9VC1+tuJt1cq8zp5qFENn5alnJzt45hipOCXCqHtWrtHcG1FLVqI6y5KxGV0we8lBZdJI8Yt6iOB0NDqgrZ7K00VF7ghvU/6eK4DWBeL6he0PANcCbYSpElL8o8L0Fbrw=";
+        String str2="Ff7NMVsRV+b65jPadj+12JEI5W9AxLlkV67whbkFeE/JM47KJxAj/82a+p8KzLGVJQKVvHiOTI17KH9oA3U4e2px7eVeiP32n34VuL9FEChbwC4on3yGDJ6GB7yvk30VcIISmkknzE2S2QHsGvvgVUUGp+GlV66zAQ1t1YeJbnk=";
+        System.out.println(str.length() + "===" + str2.length());
+    }
+
 }
