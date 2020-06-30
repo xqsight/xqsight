@@ -95,7 +95,7 @@
         <jaxen.version>1.1.6</jaxen.version>
         <xalan.version>2.7.2</xalan.version>
         <xstream.version>1.3.1</xstream.version>
-        <xstream.thoughtworks.version>1.4.8</xstream.thoughtworks.version>
+        <xstream.thoughtworks.version>1.4.10-java7</xstream.thoughtworks.version>
         <jcifs.version>1.3.17</jcifs.version>
         <zip4j.version>1.3.2</zip4j.version>
         <el.ri.version>1.0</el.ri.version>
