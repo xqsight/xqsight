@@ -111,7 +111,7 @@
         <shiro.ehcache.version>1.2.4</shiro.ehcache.version>
 
         <imgscalr.version>4.2</imgscalr.version>
-        <ant.version>1.9.6</ant.version>
+        <ant.version>1.9.15</ant.version>
 
     </properties>
 
