@@ -30,7 +30,7 @@
         <apache.xmlsec.version>1.4.1</apache.xmlsec.version>
         <avro.version>1.7.6</avro.version>
         <kafka.2.9.2.version>0.8.2.1</kafka.2.9.2.version>
-        <poi.version>3.12</poi.version>
+        <poi.version>4.1.2</poi.version>
         <jxl.version>2.6.12</jxl.version>
         <shiro.version>1.2.3</shiro.version>
         <!-- web -->
