@@ -37,36 +37,29 @@ public class ${table.className}Service extends ServiceImpl<${table.className}Map
 
     @Override
     public Boolean upd(${table.className}Request request){
-        ${table.className} ${table.javaProperty} = ${table.className}ConvertMapper.INSTANCE.${table.javaProperty}RequestToEntity(request);
-        return this.updateById(${table.javaProperty});
+        return this.updateById(${table.className}ConvertMapper.INSTANCE.${table.javaProperty}RequestToEntity(request));
     }
 
     @Override
     public Boolean del(String id){
-        ${table.className} ${table.javaProperty} = new ${table.className}();
-        ${table.javaProperty}.setId(id);
-        ${table.javaProperty}.setStatus(CommonConstants.STATUS_DELETED);
-        return this.updateById(${table.javaProperty});
+        return this.lambdaUpdate().eq(${table.className}::getId,id)
+                    .set(${table.className}::getStatus,CommonConstants.STATUS_DELETED)
+                    .update();
     }
 
     @Override
     public Boolean delByIds(List<String> ids){
         if (!CollectionUtils.isEmpty(ids)) {
-            List<${table.className}> ${table.javaProperty}s =  ids.stream().map(id->{
-                ${table.className} ${table.javaProperty} = new ${table.className}();
-                ${table.javaProperty}.setId(id);
-                ${table.javaProperty}.setStatus(CommonConstants.STATUS_DELETED);
-                return ${table.javaProperty};
-                }).collect(Collectors.toList());
-            return this.updateBatchById(${table.javaProperty}s);
+            return this.lambdaUpdate().in({table.className}::getId,ids)
+                        .set(${table.className}::getStatus,CommonConstants.STATUS_DELETED)
+                        .update();
         }
         return Boolean.FALSE;
     }
 
     @Override
     public ${table.className}DTO getOneById(String id){
-        ${table.className} ${table.javaProperty} = this.getById(id);
-        return ${table.className}ConvertMapper.INSTANCE.entityToDTO(${table.javaProperty});
+        return ${table.className}ConvertMapper.INSTANCE.entityToDTO(this.getById(id));
     }
 
     @Override
@@ -86,8 +79,7 @@ public class ${table.className}Service extends ServiceImpl<${table.className}Map
 
     @Override
     public List<${table.className}DTO> getListByIds(List<String> ids){
-        List< ${table.className}> ${table.javaProperty}s = this.listByIds(ids);
-        return Optional.ofNullable(${table.javaProperty}s).orElseGet(Collections::emptyList).stream()
+        return Optional.ofNullable(this.listByIds(ids)).orElseGet(Collections::emptyList).stream()
                     .map(${table.className}ConvertMapper::entityToDTO)
                     .collect(Collectors.toList());
     }
