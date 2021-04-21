@@ -42,6 +42,11 @@ public class DriverInfo {
         this.url = url;
     }
 
+    @Override
+    public String toString() {
+        return name + "-" + driverClass;
+    }
+
     /**
      * Gets the name.
      *

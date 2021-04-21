@@ -30,7 +30,7 @@
     <map sqlType="SMALLINT" javaType="Short" fullJavaType="java.lang.Short" />
     <map sqlType="STRUCT" javaType="Object" fullJavaType="java.lang.Object" />
     <map sqlType="TIME" javaType="Date" fullJavaType="java.sql.Date" />
-    <map sqlType="TIMESTAMP" javaType="Date" fullJavaType="java.sql.Date" />
+    <map sqlType="TIMESTAMP" javaType="LocalDateTime" fullJavaType="java.time.LocalDateTime" />
     <map sqlType="TINYINT" javaType="Byte" fullJavaType="java.lang.Byte" />
     <map sqlType="VARBINARY" javaType="byte[]" fullJavaType="byte[]" />
     <map sqlType="VARCHAR" javaType="String" fullJavaType="java.lang.String" />

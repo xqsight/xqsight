@@ -9,51 +9,97 @@
     <connections>
         <database name="rms">
             <driverClass>com.mysql.jdbc.Driver</driverClass>
-            <url>jdbc:mysql://139.196.83.11:3310/rms</url>
+            <url>jdbc:mysql://ip:3310/rms</url>
             <username>root</username>
-            <password>Tangchaoroot#1234@abcd</password>
+            <password>password</password>
+            <schema/>
+        </database>
+
+        <database name="mall">
+            <driverClass>com.mysql.jdbc.Driver</driverClass>
+            <url>jdbc:mysql://ip:3306/new_mall</url>
+            <username>root</username>
+            <password>password</password>
             <schema/>
         </database>
 
     </connections>
     <tagertProject>temp</tagertProject>
-    <basePackage>com.xqsight</basePackage>
+    <basePackage>com.billbear</basePackage>
     <moduleName>system</moduleName>
     <templates>
-        <template engine="freemarker" name="控制类" selected="true">
-            <templateFile>controller.ftl</templateFile>
-            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\controller\</targetPath>
-            <targetFileName>${table.className}Controller.java</targetFileName>
+        <template engine="freemarker" name="stub-dto" selected="true">
+            <templateFile>stub-beandto.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.stub.bean</targetPath>
+            <targetFileName>${table.className}DTO.java</targetFileName>
             <encoding>UTF-8</encoding>
         </template>
-        <template engine="freemarker" name="服务类接口" selected="true">
-            <templateFile>service.ftl</templateFile>
-            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\service\</targetPath>
-            <targetFileName>${table.className}Service.java</targetFileName>
+        <template engine="freemarker" name="stub-facade" selected="true">
+            <templateFile>stub-facade.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.stub.facade</targetPath>
+            <targetFileName>${table.className}Feign.java</targetFileName>
             <encoding>UTF-8</encoding>
         </template>
-        <template engine="freemarker" name="服务类实现" selected="true">
-            <templateFile>serviceImpl.ftl</templateFile>
-            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\service\impl</targetPath>
-            <targetFileName>${table.className}ServiceImpl.java</targetFileName>
+        <template engine="freemarker" name="stub-client" selected="true">
+            <templateFile>stub-client.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.stub.feign.client</targetPath>
+            <targetFileName>${table.className}Client.java</targetFileName>
             <encoding>UTF-8</encoding>
         </template>
-        <template engine="freemarker" name="实体类" selected="true">
-            <templateFile>model.ftl</templateFile>
-            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\model\</targetPath>
+        <template engine="freemarker" name="stub-clientimpl" selected="true">
+            <templateFile>stub-clientimpl.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.stub.feign.client.impl</targetPath>
+            <targetFileName>${table.className}ClientImpl.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="stub-request" selected="true">
+            <templateFile>stub-request.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.stub.request</targetPath>
+            <targetFileName>${table.className}Request.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="stub-searchrequest" selected="true">
+            <templateFile>stub-searchrequest.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.stub.request</targetPath>
+            <targetFileName>${table.className}SearchRequest.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+
+        <template engine="freemarker" name="facade-impl" selected="true">
+            <templateFile>facade-impl.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.facade.impl</targetPath>
+            <targetFileName>${table.className}FacadeImpl.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+
+        <template engine="freemarker" name="svc-entity" selected="true">
+            <templateFile>svc-entity.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.entity</targetPath>
             <targetFileName>${table.className}.java</targetFileName>
             <encoding>UTF-8</encoding>
         </template>
-        <template engine="freemarker" name="Mapping类" selected="true">
-            <templateFile>mapper.ftl</templateFile>
-            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\mapper\</targetPath>
+        <template engine="freemarker" name="svc-mapper" selected="true">
+            <templateFile>svc-mapper.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.mapper</targetPath>
             <targetFileName>${table.className}Mapper.java</targetFileName>
             <encoding>UTF-8</encoding>
         </template>
-        <template engine="freemarker" name="MappingSql类" selected="true">
-            <templateFile>mappersql.ftl</templateFile>
-            <targetPath>${tagertProject}\src\${basePackage}\${moduleName}\mapper\</targetPath>
-            <targetFileName>${table.className}Mapper.xml</targetFileName>
+        <template engine="freemarker" name="svc-service" selected="true">
+            <templateFile>svc-service.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.service</targetPath>
+            <targetFileName>${table.className}Service.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="svc-serviceimpl" selected="true">
+            <templateFile>svc-serviceimpl.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.service.impl</targetPath>
+            <targetFileName>${table.className}ServiceImpl.java</targetFileName>
+            <encoding>UTF-8</encoding>
+        </template>
+        <template engine="freemarker" name="svc-convert" selected="true">
+            <templateFile>svc-convert.ftl</templateFile>
+            <targetPath>${tagertProject}.src.${basePackage}.${moduleName}.service.convert</targetPath>
+            <targetFileName>${table.className}ConvertMapper.java</targetFileName>
             <encoding>UTF-8</encoding>
         </template>
     </templates>
