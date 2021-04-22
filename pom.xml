@@ -108,7 +108,7 @@
         <velocity.version>1.7</velocity.version>
         <!-- ehcache -->
         <ehcache.version>2.4.3</ehcache.version>
-        <shiro.ehcache.version>1.2.4</shiro.ehcache.version>
+        <shiro.ehcache.version>1.7.1</shiro.ehcache.version>
 
         <imgscalr.version>4.2</imgscalr.version>
         <ant.version>1.9.6</ant.version>
