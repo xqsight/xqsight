@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.billbear.common.entity.BaseEntity;
 <#if (table.hasDateColumn)>
-import java.util.LocalDateTime;
+import java.time.LocalDateTime;
 </#if>
 import lombok.Getter;
 import lombok.Setter;

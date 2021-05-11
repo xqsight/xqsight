@@ -4,7 +4,7 @@ package ${basePackage}.${moduleName}.stub.request;
 import com.billbear.common.request.BaseRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
 <#if (table.hasDateColumn)>
-import java.util.LocalDateTime;
+import java.time.LocalDateTime;
 </#if>
 import lombok.Getter;
 import lombok.Setter;

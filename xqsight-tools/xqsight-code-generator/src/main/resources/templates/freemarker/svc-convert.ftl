@@ -1,10 +1,9 @@
 <#include "copyright.ftl"/>
 package ${basePackage}.${moduleName}.service.convert;
 
-import ${basePackage}.${moduleName}.bean.${table.className}DTO;
+import ${basePackage}.${moduleName}.stub.bean.${table.className}DTO;
 import ${basePackage}.${moduleName}.entity.${table.className};
 import ${basePackage}.${moduleName}.stub.request.${table.className}Request;
-import ${basePackage}.${moduleName}.stub.request.${table.className}SearchRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -24,7 +23,7 @@ public interface ${table.className}ConvertMapper {
 
     ${table.className}ConvertMapper INSTANCE = Mappers.getMapper(${table.className}ConvertMapper.class);
 
-    **
+    /**
     * 转DTO
     *
     * @param ${table.javaProperty}
@@ -33,7 +32,7 @@ public interface ${table.className}ConvertMapper {
     ${table.className}DTO entityToDTO(${table.className} ${table.javaProperty});
 
 
-    **
+    /**
     * request to entity
     *
     * @param request

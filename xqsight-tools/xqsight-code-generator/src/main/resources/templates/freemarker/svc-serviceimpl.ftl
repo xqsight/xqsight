@@ -1,22 +1,26 @@
 <#include "copyright.ftl"/>
 package ${basePackage}.${moduleName}.service;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.billbear.common.constants.CommonConstants;
 import com.billbear.common.response.PageData;
 import ${basePackage}.${moduleName}.entity.${table.className};
 import ${basePackage}.${moduleName}.stub.bean.${table.className}DTO;
-import ${basePackage}.${moduleName}.service.${table.className}Service
+import ${basePackage}.${moduleName}.service.${table.className}Service;
 import ${basePackage}.${moduleName}.mapper.${table.className}Mapper;
 import ${basePackage}.${moduleName}.stub.request.${table.className}Request;
 import ${basePackage}.${moduleName}.stub.request.${table.className}SearchRequest;
 import ${basePackage}.${moduleName}.service.convert.${table.className}ConvertMapper;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
 * <p>${table.remarks} service impl</p>
@@ -26,7 +30,7 @@ import org.springframework.util.CollectionUtils;
 */
 @Slf4j
 @Service
-public class ${table.className}Service extends ServiceImpl<${table.className}Mapper, ${table.className}> implements ${table.className}Service {
+public class ${table.className}ServiceImpl extends ServiceImpl<${table.className}Mapper, ${table.className}> implements ${table.className}Service {
 
 
     @Override
@@ -50,7 +54,7 @@ public class ${table.className}Service extends ServiceImpl<${table.className}Map
     @Override
     public Boolean delByIds(List<String> ids){
         if (!CollectionUtils.isEmpty(ids)) {
-            return this.lambdaUpdate().in({table.className}::getId,ids)
+            return this.lambdaUpdate().in(${table.className}::getId,ids)
                         .set(${table.className}::getStatus,CommonConstants.STATUS_DELETED)
                         .update();
         }
@@ -66,21 +70,22 @@ public class ${table.className}Service extends ServiceImpl<${table.className}Map
     public PageData<${table.className}DTO> search(${table.className}SearchRequest request){
         LambdaQueryWrapper< ${table.className}> queryWrapper = new LambdaQueryWrapper<>();
         IPage< ${table.className}> page = this.page(request.getPage(),queryWrapper);
-        return PageData.conversion(page, (d) -> ${table.className}ConvertMapper.entityToDTO((VerificationRecordExt) d));
+        return PageData.conversion(page, (d) -> ${table.className}ConvertMapper.INSTANCE.entityToDTO((${table.className}) d));
     }
 
     @Override
     public List<${table.className}DTO> getList(${table.className}SearchRequest request){
-            LambdaQueryWrapper< ${table.className}> queryWrapper = new LambdaQueryWrapper<>();
-            IPage< ${table.className}> page = this.page(request.getPage(),queryWrapper);
-            return PageData.conversion(page, (d) -> ${table.className}ConvertMapper.entityToDTO((VerificationRecordExt) d));
-
+        LambdaQueryWrapper< ${table.className}> queryWrapper = new LambdaQueryWrapper<>();
+        List<${table.className}> list = this.list(queryWrapper);
+        return Optional.ofNullable(list).orElseGet(Collections::emptyList).stream()
+        .map(${table.className}ConvertMapper.INSTANCE::entityToDTO)
+        .collect(Collectors.toList());
     }
 
     @Override
     public List<${table.className}DTO> getListByIds(List<String> ids){
         return Optional.ofNullable(this.listByIds(ids)).orElseGet(Collections::emptyList).stream()
-                    .map(${table.className}ConvertMapper::entityToDTO)
+                    .map(${table.className}ConvertMapper.INSTANCE::entityToDTO)
                     .collect(Collectors.toList());
     }
 }

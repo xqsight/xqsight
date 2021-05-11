@@ -1,11 +1,14 @@
 <#include "copyright.ftl"/>
 package ${basePackage}.${moduleName}.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.billbear.common.response.PageData;
 import ${basePackage}.${moduleName}.entity.${table.className};
 import ${basePackage}.${moduleName}.stub.bean.${table.className}DTO;
 import ${basePackage}.${moduleName}.stub.request.${table.className}Request;
 import ${basePackage}.${moduleName}.stub.request.${table.className}SearchRequest;
+
+import java.util.List;
 
 /**
 * <p>${table.remarks} service</p>
