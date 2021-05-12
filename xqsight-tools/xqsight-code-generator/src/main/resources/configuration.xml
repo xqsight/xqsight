@@ -17,9 +17,9 @@
 
         <database name="mall">
             <driverClass>com.mysql.jdbc.Driver</driverClass>
-            <url>jdbc:mysql://ip:3306/new_mall</url>
+            <url>jdbc:mysql://139.196.44.175:3306/new_mall</url>
             <username>root</username>
-            <password>password</password>
+            <password>2020billbear.cn</password>
             <schema/>
         </database>
 

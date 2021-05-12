@@ -11,14 +11,16 @@ import ${basePackage}.${moduleName}.stub.request.${table.className}SearchRequest
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * <p>${table.remarks} controller</p>
  *
  * @since ${.now}
  * @author generator
- */
+*/
 @RestController
-public class ${table.className}Controller implements ${table.className}Feign {
+public class ${table.className}FacadeImpl implements ${table.className}Feign {
 
     @Autowired
     private ${table.className}Service ${table.javaProperty}Service;

@@ -23,10 +23,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
-* <p>${table.remarks} service impl</p>
-*
-* @since ${.now}
-* @author generator
+ * <p>${table.remarks} service impl</p>
+ *
+ * @since ${.now}
+ * @author generator
 */
 @Slf4j
 @Service
@@ -47,16 +47,14 @@ public class ${table.className}ServiceImpl extends ServiceImpl<${table.className
     @Override
     public Boolean del(String id){
         return this.lambdaUpdate().eq(${table.className}::getId,id)
-                    .set(${table.className}::getStatus,CommonConstants.STATUS_DELETED)
-                    .update();
+            .set(${table.className}::getStatus,CommonConstants.STATUS_DELETED).update();
     }
 
     @Override
     public Boolean delByIds(List<String> ids){
         if (!CollectionUtils.isEmpty(ids)) {
             return this.lambdaUpdate().in(${table.className}::getId,ids)
-                        .set(${table.className}::getStatus,CommonConstants.STATUS_DELETED)
-                        .update();
+                .set(${table.className}::getStatus,CommonConstants.STATUS_DELETED).update();
         }
         return Boolean.FALSE;
     }
@@ -78,14 +76,12 @@ public class ${table.className}ServiceImpl extends ServiceImpl<${table.className
         LambdaQueryWrapper< ${table.className}> queryWrapper = new LambdaQueryWrapper<>();
         List<${table.className}> list = this.list(queryWrapper);
         return Optional.ofNullable(list).orElseGet(Collections::emptyList).stream()
-        .map(${table.className}ConvertMapper.INSTANCE::entityToDTO)
-        .collect(Collectors.toList());
+        .map(${table.className}ConvertMapper.INSTANCE::entityToDTO).collect(Collectors.toList());
     }
 
     @Override
     public List<${table.className}DTO> getListByIds(List<String> ids){
         return Optional.ofNullable(this.listByIds(ids)).orElseGet(Collections::emptyList).stream()
-                    .map(${table.className}ConvertMapper.INSTANCE::entityToDTO)
-                    .collect(Collectors.toList());
+                .map(${table.className}ConvertMapper.INSTANCE::entityToDTO).collect(Collectors.toList());
     }
 }

@@ -4,8 +4,10 @@ package ${basePackage}.${moduleName}.model;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.billbear.common.entity.BaseEntity;
+<#if notNeed?seq_contains(column.javaProperty)><#else>
 <#if (table.hasDateColumn)>
 import java.time.LocalDateTime;
+</#if>
 </#if>
 import lombok.Getter;
 import lombok.Setter;
@@ -17,7 +19,7 @@ import lombok.ToString;
  *
  * @since ${.now}
  * @author generator
- */
+*/
 @Getter
 @Setter
 @ToString
@@ -25,7 +27,7 @@ public class ${table.className} extends BaseEntity{
 
 <#list table.primaryKeys as key>
 	/**
-    * 主键
+     * 主键
     */
     @TableId(type = IdType.ASSIGN_ID)
     private ${key.javaType} ${key.javaProperty};
@@ -35,7 +37,7 @@ public class ${table.className} extends BaseEntity{
 <#list table.baseColumns as column>
 <#if notNeed?seq_contains(column.javaProperty)><#else>
     /**
-    * ${column.remarks}
+     * ${column.remarks}
     */
     private ${column.javaType} ${column.javaProperty};
 

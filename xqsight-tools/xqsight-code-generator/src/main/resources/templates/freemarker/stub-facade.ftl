@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @since ${.now}
  * @author generator
- */
+*/
 @FeignClient(name = "${r"${"}billbear.feign.${moduleName}:${moduleName}-service}")
 @Tag(name = "${table.className}", description = "${table.remarks}")
 @RequestMapping("/admin/${moduleName}/${table.controllerPath}")
@@ -33,7 +33,7 @@ public interface ${table.className}Feign {
 
      @PostMapping(value = "/del/{id}")
      @Operation(summary = "删除}")
-     ResponseData<Boolean> del(@@PathVariable("id") String id);
+     ResponseData<Boolean> del(@PathVariable("id") String id);
 
      @PostMapping(value = "/delByIds")
      @Operation(summary = "批量删除")

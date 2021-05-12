@@ -3,8 +3,10 @@ package ${basePackage}.${moduleName}.stub.request;
 
 import com.billbear.common.request.BaseRequest;
 import io.swagger.v3.oas.annotations.media.Schema;
+<#if notNeed?seq_contains(column.javaProperty)><#else>
 <#if (table.hasDateColumn)>
 import java.time.LocalDateTime;
+</#if>
 </#if>
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +17,7 @@ import lombok.ToString;
  *
  * @since ${.now}
  * @author generator
- */
+*/
 @Getter
 @Setter
 @ToString

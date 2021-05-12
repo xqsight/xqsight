@@ -5,14 +5,18 @@ import com.billbear.common.response.PageData;
 import ${basePackage}.${moduleName}.stub.bean.${table.className}DTO;
 import ${basePackage}.${moduleName}.stub.feign.client.${table.className}Client;
 import ${basePackage}.${moduleName}.stub.facade.${table.className}Feign;
+import ${basePackage}.${moduleName}.stub.request.${table.className}Request;
+import ${basePackage}.${moduleName}.stub.request.${table.className}SearchRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 /**
-* <p>${table.remarks} client impl</p>
-*
-* @since ${.now}
-* @author generator
+ * <p>${table.remarks} client impl</p>
+ *
+ * @since ${.now}
+ * @author generator
 */
 @Component
 public class ${table.className}ClientImpl implements ${table.className}Client {
@@ -33,17 +37,17 @@ public class ${table.className}ClientImpl implements ${table.className}Client {
 
     @Override
     public Boolean del(String id){
-        return ${table.javaProperty}Feign.del(request).isSuccessGet();
+        return ${table.javaProperty}Feign.del(id).isSuccessGet();
     }
 
     @Override
     public Boolean delByIds(List<String> ids){
-        return ${table.javaProperty}Feign.delByIds(request).isSuccessGet();
+        return ${table.javaProperty}Feign.delByIds(ids).isSuccessGet();
     }
 
     @Override
     public ${table.className}DTO getById(String id){
-        return ${table.javaProperty}Feign.getById(request).isSuccessGet();
+        return ${table.javaProperty}Feign.getById(id).isSuccessGet();
     }
 
     @Override
