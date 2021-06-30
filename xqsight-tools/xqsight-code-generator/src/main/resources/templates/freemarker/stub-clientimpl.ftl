@@ -7,9 +7,9 @@ import ${basePackage}.${moduleName}.stub.feign.client.${table.className}Client;
 import ${basePackage}.${moduleName}.stub.facade.${table.className}Feign;
 import ${basePackage}.${moduleName}.stub.request.${table.className}Request;
 import ${basePackage}.${moduleName}.stub.request.${table.className}SearchRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,7 +21,7 @@ import java.util.List;
 @Component
 public class ${table.className}ClientImpl implements ${table.className}Client {
 
-    @Autowired
+    @Resource
     private ${table.className}Feign ${table.javaProperty}Feign;
 
 

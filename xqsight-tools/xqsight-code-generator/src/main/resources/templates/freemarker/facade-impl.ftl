@@ -8,9 +8,9 @@ import ${basePackage}.${moduleName}.stub.bean.${table.className}DTO;
 import ${basePackage}.${moduleName}.stub.facade.${table.className}Feign;
 import ${basePackage}.${moduleName}.stub.request.${table.className}Request;
 import ${basePackage}.${moduleName}.stub.request.${table.className}SearchRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -22,7 +22,7 @@ import java.util.List;
 @RestController
 public class ${table.className}FacadeImpl implements ${table.className}Feign {
 
-    @Autowired
+    @Resource
     private ${table.className}Service ${table.javaProperty}Service;
 
     @Override

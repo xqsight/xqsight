@@ -13,7 +13,7 @@ import ${basePackage}.${moduleName}.mapper.${table.className}Mapper;
 import ${basePackage}.${moduleName}.stub.request.${table.className}Request;
 import ${basePackage}.${moduleName}.stub.request.${table.className}SearchRequest;
 import ${basePackage}.${moduleName}.service.convert.${table.className}ConvertMapper;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  * @since ${.now}
  * @author generator
 */
-@Slf4j
+@Log4j2
 @Service
 public class ${table.className}ServiceImpl extends ServiceImpl<${table.className}Mapper, ${table.className}> implements ${table.className}Service {
 
