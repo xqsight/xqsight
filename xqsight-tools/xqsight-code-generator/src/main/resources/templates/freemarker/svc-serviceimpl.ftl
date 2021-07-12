@@ -68,7 +68,7 @@ public class ${table.className}ServiceImpl extends ServiceImpl<${table.className
     public PageData<${table.className}DTO> search(${table.className}SearchRequest request){
         LambdaQueryWrapper< ${table.className}> queryWrapper = new LambdaQueryWrapper<>();
         IPage< ${table.className}> page = this.page(request.getPage(),queryWrapper);
-        return PageData.conversion(page, (d) -> ${table.className}ConvertMapper.INSTANCE.entityToDTO((${table.className}) d));
+        return PageData.conversion(page, ${table.className}ConvertMapper.INSTANCE::entityToDTO);
     }
 
     @Override
