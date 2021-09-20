@@ -27,7 +27,7 @@
         <jetty9.version>9.3.6.v20151106</jetty9.version>
         <mchange.version>0.2.4</mchange.version>
         <!-- apache -->
-        <apache.xmlsec.version>1.4.1</apache.xmlsec.version>
+        <apache.xmlsec.version>2.1.7</apache.xmlsec.version>
         <avro.version>1.7.6</avro.version>
         <kafka.2.9.2.version>0.8.2.1</kafka.2.9.2.version>
         <poi.version>3.12</poi.version>
