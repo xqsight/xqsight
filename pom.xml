@@ -32,7 +32,7 @@
         <kafka.2.9.2.version>0.8.2.1</kafka.2.9.2.version>
         <poi.version>3.12</poi.version>
         <jxl.version>2.6.12</jxl.version>
-        <shiro.version>1.2.3</shiro.version>
+        <shiro.version>1.7.1</shiro.version>
         <!-- web -->
         <hibernate.validator.version>5.0.2.Final</hibernate.validator.version>
         <javax.servlet.api.version>3.1.0</javax.servlet.api.version>
@@ -108,7 +108,7 @@
         <velocity.version>1.7</velocity.version>
         <!-- ehcache -->
         <ehcache.version>2.4.3</ehcache.version>
-        <shiro.ehcache.version>1.2.4</shiro.ehcache.version>
+        <shiro.ehcache.version>1.7.1</shiro.ehcache.version>
 
         <imgscalr.version>4.2</imgscalr.version>
         <ant.version>1.9.6</ant.version>
