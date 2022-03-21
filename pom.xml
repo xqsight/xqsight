@@ -71,7 +71,7 @@
         <!-- alibaba -->
         <alibaba.druid.version>1.0.9</alibaba.druid.version>
         <alibaba.fastjson.version>1.2.6</alibaba.fastjson.version>
-        <alibaba.dubbo.version>2.5.3</alibaba.dubbo.version>
+        <alibaba.dubbo.version>2.6.9</alibaba.dubbo.version>
         <!--baidu-->
         <baidu.disconf.version>2.6.32</baidu.disconf.version>
         <!-- mybatis -->
