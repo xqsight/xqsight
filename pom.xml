@@ -70,7 +70,7 @@
         <junit.version>4.11</junit.version>
         <!-- alibaba -->
         <alibaba.druid.version>1.0.9</alibaba.druid.version>
-        <alibaba.fastjson.version>1.2.6</alibaba.fastjson.version>
+        <alibaba.fastjson.version>1.2.83</alibaba.fastjson.version>
         <alibaba.dubbo.version>2.5.3</alibaba.dubbo.version>
         <!--baidu-->
         <baidu.disconf.version>2.6.32</baidu.disconf.version>
