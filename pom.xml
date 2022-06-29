@@ -79,7 +79,7 @@
         <mybatis.spring.version>1.2.3</mybatis.spring.version>
         <mybatis.pagehelper.version>3.7.5</mybatis.pagehelper.version>
         <!-- zookeeper -->
-        <zookeeper.version>3.4.6</zookeeper.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
         <zkclient.sgroschupf.version>0.1</zkclient.sgroschupf.version>
         <zkclient.101tec.version>0.5</zkclient.101tec.version>
         <!-- bouncycastle -->
