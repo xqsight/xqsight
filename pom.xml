@@ -99,7 +99,7 @@
         <jcifs.version>1.3.17</jcifs.version>
         <zip4j.version>1.3.2</zip4j.version>
         <el.ri.version>1.0</el.ri.version>
-        <jsch.version>0.1.52</jsch.version>
+        <jsch.version>0.1.54</jsch.version>
         <java.mail.version>1.4.7</java.mail.version>
         <thumbnailator.version>0.4.2</thumbnailator.version>
         <pinyin4j.version>2.5.0</pinyin4j.version>
